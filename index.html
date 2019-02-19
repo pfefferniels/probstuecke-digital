@@ -1,0 +1,210 @@
+ <html>
+   <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="CETEI.js"></script>
+
+    <script>
+      $(document).ready(function() {
+        function highlight(element) {
+            element.addClass("highlight");
+            setTimeout(function () {
+              $(element).removeClass('highlight');
+            }, 5000);
+        }
+        
+        currentParams = {
+          page: 1,
+          nr: 7,
+          hideStems: false,
+          hideVariants: true,
+          emptyStaffsBelow: 0,
+          emptyStaffsAbove: 0,
+        };
+        
+        function updateView(params) {
+          var CETEIcean = new CETEI();
+          CETEIcean.getHTML5("annotations?nr=" + currentParams.nr, function(data) {
+            $("#annotations-view").html(data);
+          });
+          
+          $.get("svg?" + $.param(currentParams), function(svg) {
+            $("#score-view").html(svg);
+            
+            $(".indicator").remove();
+            $("tei-ref").each(function() {
+              ref = $(this).attr("target");
+              
+              // find target in SVG and mark it
+              target = $("svg").find("#" + ref);
+              if (target.length === 0) {
+                console.log("corresponding SVG element for ref=" + ref + " not found on this page.");
+                return true; // nothing found, continue with next reference
+              }
+              targetTop = target.offset().top;
+              targetLeft = target.offset().left;
+              targetWidth = target[0].getBoundingClientRect().width-10;
+              targetHeight = target[0].getBoundingClientRect().height-10;
+              $("<div class='indicator' data-ref='" + ref + "'></div>").appendTo("body").css({
+                top: targetTop,
+                left: targetLeft,
+                width: targetWidth,
+                height: targetHeight
+              }).click(function() {
+                // scroll to reference point and then highlight it
+                referencePoint = $("tei-ref[target='" + $(this).attr("data-ref") + "']");
+                $("#annotations-view").animate({
+                    scrollTop: referencePoint.offset().top
+                }, 200, function() {
+                  highlight(referencePoint);
+                });
+              });
+              
+              // connect text with indicator
+              $(this).find("a").click(function() {
+                e.preventDefault();
+                highlight($("#" + ref));
+              });
+            });
+          });
+        }
+        
+        $("#hide-stems").click(function() {
+          currentParams.hideStems = true;
+          updateView();
+        });
+        
+        $("#staves-below").change(function() {
+          currentParams.emptyStaffsBelow = $("#staves-below").val();
+          updateView();
+        });
+        
+        $("#staves-above").change(function() {
+          currentParams.emptyStaffsAbove = $("#staves-above").val();
+          updateView();
+        });
+
+        $("#page").change(function() {
+          currentParams.page = $("#page").val();
+          updateView();
+        });
+        
+        updateView();
+      });
+    </script>
+      
+      
+    <style>
+      svg {
+        display: block;
+        z-index: -1;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+      }
+      
+      .indicator {
+        position: absolute;
+        border: 3px solid #f47141;
+        background-color: #f4a742;
+        opacity: 0.3;
+      }
+          
+      .left-half {
+        position: absolute;
+        left: 0px;
+        width: 50%;
+      }
+
+      .right-half {
+        position: absolute;
+        right: 0px;
+        width: 50%;
+      }
+      
+      .controls {
+        z-index: 10;
+      }
+      
+      #score-view {
+        float:left;
+        width: 50%;
+        height: 95%;
+        overflow-y: scroll;
+      }
+      
+      #annotations-view {
+        float: right;
+        height: 95%;
+        overflow-y: scroll;
+      }
+      
+      @keyframes highlight {
+          0% {
+              background: #f4a742; 
+          }
+          100% {
+              background: none;
+          }
+      }
+
+      .highlight {
+          animation: highlight 5s;
+      }
+      
+      a {
+        color: black;
+      }
+      
+      tei-p {
+        display: block;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        text-align: justify;
+        position: relative;
+        width: 90%;
+        font-size: 10pt;
+      }
+      
+      tei-head {
+        display: block;
+        font-family: Arvo, sans-serif;
+        font-weight: normal;
+      }
+      
+      tei-body > tei-head {
+        font-size: 180%;
+        text-indent: -0.5em;
+      }
+      
+      
+    </style>
+  </head>
+  <body>
+    <div class="controls">
+      
+      <button id="hide-stems">hide stems</button>
+      
+      <label for="staves-below">staves below:</label>
+      <input type="number" id="staves-below" name="staves-below" min="0" max="10">
+      
+      <label for="staves-above">staves above:</label>
+      <input type="number" id="staves-above" name="staves-above" min="0" max="10">
+      
+      <label for="page">page nr:</label>
+      <input type="number" id="page" name="page" min="1" max="10">
+      
+      <button id="print">print</button>
+    </div>
+    
+    <div>
+       <div id="score-view" class="left-half">
+         Transkription
+       </div>
+       <div id="annotations-view" class="right-half">
+         Erläuterungen
+       </div>
+    </div>
+  </body>
+</html>
+  
