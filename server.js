@@ -22,7 +22,7 @@ app.get("/annotations", function(req, res) {
 });
 
 app.get('/svg', function (req, res) {
-  fs.readFile( './probstueck' + req.query.nr + '.mei', function(err, data) {
+  fs.readFile(__dirname + '/probstueck' + req.query.nr + '.mei', function(err, data) {
     var doc = new DOMParser().parseFromString(data.toString(),'text/xml');
     
     // hide stems
