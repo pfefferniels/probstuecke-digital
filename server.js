@@ -99,7 +99,7 @@ app.get('/', function(req, res) {
   res.sendFile(__dirname + "/index.html");
 });
 
-var ipaddress = process.env.OPENSHIFT_NODEJS_IP || "localhost";
+var ipaddress = process.env.OPENSHIFT_NODEJS_IP || "0.0.0.0";
 var port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
 app.listen(port, ipaddress, function() {
   console.log('Listening on port ' + port);
