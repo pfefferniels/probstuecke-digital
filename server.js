@@ -14,15 +14,23 @@ app.get("/CETEI.js", function(req, res) {
 });
 
 app.get("/facsimile", function(req, res) {
-  res.send("Hello World");
+  res.sendFile(__dirname + "bsb10598495_00420.jpg");
 });
 
 app.get("/annotations", function(req, res) {
-  res.sendFile(__dirname + "/annotations" + req.query.nr + '.tei');
+  if (req.query.lang === "en") {
+    res.sendFile(__dirname + "/data/" + req.query.nr + '/annotations_en.tei');
+  } else if (req.query.lang === "facsimile") {
+    res.sendFile(__dirname + "/data/" + req.query.nr + '/facsimile.tei');
+  }
+  else {
+    res.sendFile(__dirname + "/data/" + req.query.nr + "/annotations.tei");
+  }
+    
 });
 
 app.get('/svg', function (req, res) {
-  fs.readFile(__dirname + '/probstueck' + req.query.nr + '.mei', function(err, data) {
+  fs.readFile(__dirname + '/data/' + req.query.nr + '/score.mei', function(err, data) {
     var doc = new DOMParser().parseFromString(data.toString(),'text/xml');
     
     // hide stems

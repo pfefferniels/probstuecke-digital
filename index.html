@@ -5,6 +5,14 @@
 
     <script>
       $(document).ready(function() {
+        $(document)
+          .ajaxStart(function () {
+            console.log("ajax loading start");
+          })
+          .ajaxStop(function () {
+            console.log("ajax loading done");
+          });
+        
         function highlight(element) {
             element.addClass("highlight");
             setTimeout(function () {
@@ -19,17 +27,18 @@
           hideVariants: true,
           emptyStaffsBelow: 0,
           emptyStaffsAbove: 0,
+          lang: "de"
         };
         
         function updateView(params) {
           var CETEIcean = new CETEI();
-          CETEIcean.getHTML5("annotations?nr=" + currentParams.nr, function(data) {
+          CETEIcean.getHTML5("annotations?nr=" + currentParams.nr + "&lang=" + currentParams.lang, function(data) {
             $("#annotations-view").html(data);
           });
           
           $.get("svg?" + $.param(currentParams), function(svg) {
             $("#score-view").html(svg);
-            
+              
             $(".indicator").remove();
             $("tei-ref").each(function() {
               ref = $(this).attr("target");
@@ -68,6 +77,11 @@
           });
         }
         
+        $("nr").change(function() {
+          currentParams.nr = $("#nr").val();
+          updateView();
+        })
+        
         $("#hide-stems").click(function() {
           currentParams.hideStems = true;
           updateView();
@@ -85,6 +99,11 @@
 
         $("#page").change(function() {
           currentParams.page = $("#page").val();
+          updateView();
+        });
+        
+        $("#lang").change(function() {
+          currentParams.lang = $(this).val();
           updateView();
         });
         
@@ -124,18 +143,21 @@
       
       .controls {
         z-index: 10;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid black;
       }
       
       #score-view {
         float:left;
         width: 50%;
-        height: 95%;
+        height: 90%;
         overflow-y: scroll;
       }
       
       #annotations-view {
         float: right;
-        height: 95%;
+        height: 90%;
         overflow-y: scroll;
       }
       
@@ -164,12 +186,14 @@
         position: relative;
         width: 90%;
         font-size: 10pt;
+        line-height: 1.5;
       }
       
       tei-head {
         display: block;
         font-family: Arvo, sans-serif;
         font-weight: normal;
+        text-align: center;
       }
       
       tei-body > tei-head {
@@ -177,24 +201,34 @@
         text-indent: -0.5em;
       }
       
+      tei-graphic > img {
+        width: 80%;
+      }
       
     </style>
   </head>
   <body>
     <div class="controls">
+      <label for="nr">Probstück Nr. </label>
+      <input type="number" id="nr" name="nr" min="1" max="10" value="7">
       
       <button id="hide-stems">hide stems</button>
       
       <label for="staves-below">staves below:</label>
-      <input type="number" id="staves-below" name="staves-below" min="0" max="10">
+      <input type="number" id="staves-below" name="staves-below" min="0" max="10" value="0">
       
       <label for="staves-above">staves above:</label>
-      <input type="number" id="staves-above" name="staves-above" min="0" max="10">
+      <input type="number" id="staves-above" name="staves-above" min="0" max="10" value="0">
       
       <label for="page">page nr:</label>
-      <input type="number" id="page" name="page" min="1" max="10">
+      <input type="number" id="page" name="page" min="1" max="10" value="1">
       
-      <button id="print">print</button>
+      <label for="lang">right view:</label>
+      <select id="lang" name="lang">
+        <option value="de">Deutsch (original, second edition)</option>
+        <option value="en">English (second edition)</option>
+        <option value="facsimile">Facsimile (second edition)</option>
+      </select>
     </div>
     
     <div>
@@ -204,6 +238,7 @@
        <div id="annotations-view" class="right-half">
          Erläuterungen
        </div>
+       
     </div>
   </body>
 </html>
