@@ -1,0 +1,159 @@
+
+svg {
+  display: block;
+  z-index: -1;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+}
+
+.indicator {
+  position: absolute;
+  border: 2.5px solid #f47141;
+  background-color: #f4a742;
+  opacity: 0.3;
+}
+
+.tooltip {
+  position: absolute;
+  border: 1.5px solid #5f97fc;
+  background-color: #8cb5ff;
+  opacity: 0.3;
+}
+
+.tooltip-text {
+  font-size: 9.5pt;
+  line-height: 1.5;
+  font-family: serif;
+  text-align: justify;
+  max-width: 400px;
+}
+
+.left-half {
+  float:left;
+  width: 50%;
+  position: absolute;
+  left: 0px;
+  height: 86vh;
+  display: flex;
+  justify-content: center;
+}
+
+.right-half {
+  position: absolute;
+  right: 0px;
+  width: 50%;
+  height: 86vh;
+}
+
+.controls {
+  background-color: #f9fafc;
+  z-index: 10;
+  margin-bottom: 10px;
+  border-bottom: 1px solid black;
+}
+
+#controls-table {
+  width: 100%;
+  font-family: sans-serif;
+  font-size: 10pt;
+}
+
+#controls-table thead td {
+  border-bottom: 0.5px solid black;
+}
+
+.change-page {
+  font-family: sans-serif;
+  font-size: 15pt;
+  cursor: pointer;
+}
+
+#score-view {
+  height: 86vh;
+  overflow-y: scroll;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+#annotations-view {
+  float: right;
+  height: 86vh;
+  overflow-y: scroll;
+}
+
+@keyframes highlight {
+    0% {
+        background: #f4a742;
+        opacity: 0.8;
+    }
+    100% {
+        background: none;
+        opacity: 0.3;
+    }
+}
+
+.highlight {
+    animation: highlight 4s;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+tei-ref {
+  border: 0.7px solid #f47141;
+  border-radius: 5px 5px 5px;
+}
+
+tei-p {
+  display: block;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  text-align: justify;
+  position: relative;
+  width: 90%;
+  font-size: 10pt;
+  line-height: 1.5;
+}
+
+tei-head {
+  display: block;
+  font-family: Arvo, sans-serif;
+  font-weight: normal;
+  text-align: center;
+}
+
+tei-body > tei-head {
+  font-size: 180%;
+  text-indent: -0.5em;
+}
+
+tei-graphic > img {
+  width: 80%;
+}
+
+tei-foreign {
+  letter-spacing: 0.1em;
+}
+
+tei-note span {
+  color: gray;
+  
+}
+
+
+input[type="number"] {
+  width: 100px;
+}
+
+#error {
+  background-color: rgba(150, 20, 20, 0.5);
+  text-align: center;
+  width: 300px;
+  z-index: 999;
+  top: 0px;
+  display: none;
+}

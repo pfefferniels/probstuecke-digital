@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
+    <music>
+        <body>
+            <mdiv xml:id="mdiv-0000000238056308">
+                <score xml:id="score-0000001300125215">
+                    <scoreDef xml:id="scoredef-0000001227810225">
+                        <staffGrp xml:id="staffgrp-0000000097299438">
+                            <staffDef xml:id="staffdef-variant-1" clef.shape="C" clef.line="1" key.mode="major" key.sig="1f" meter.count="4" meter.unit="4" n="1" lines="5">
+                                <label></label>
+                            </staffDef>
+                            <staffDef xml:id="staffdef-bass" clef.shape="F" clef.line="4" key.mode="major" key.sig="1f" meter.count="4" meter.unit="4" n="2" lines="5">
+                                <label></label>
+                            </staffDef>
+                        </staffGrp>
+                    </scoreDef>
+                    <section xml:id="m-34">
+                        <sb xml:id="m-36"/>
+                        <measure xml:id="m-997" n="">
+                            <staff xml:id="m-999" n="1">
+                                <layer xml:id="m-1000" n="1">
+                                    <rest xml:id="m-1002" dur="4" dur.ges="64p" size="cue"/>
+                                    <rest xml:id="m-1002" dur="16" dur.ges="64p" size="cue"/>
+                                    <beam xml:id="m-1004">
+                                        <note xml:id="m-1003" breaksec="1" dur="16" dur.ges="64p" oct="5" pname="a" pnum="81" size="cue" stem.dir="down"/>
+                                        <note xml:id="m-1005" dur="32" dur.ges="32p" oct="5" pname="e" pnum="76" size="cue" stem.dir="down"/>
+                                        <note xml:id="m-1006" dur="32" dur.ges="32p" oct="5" pname="f" pnum="77" size="cue" stem.dir="down"/>
+                                        <note xml:id="m-1007" dur="16" dur.ges="64p" oct="5" pname="g" pnum="79" size="cue" stem.dir="down"/>
+                                    </beam>
+                                    <note xml:id="m-1008" dur="4" dur.ges="256p" oct="5" pname="f" pnum="77" size="cue" stem.dir="down"/>
+                                    <rest xml:id="m-1002" dur="16" dur.ges="64p" size="cue"/>
+                                    <beam xml:id="m-1004">
+                                        <note xml:id="m-1003" breaksec="1" dur="16" dur.ges="64p" oct="5" pname="a" pnum="81" size="cue" stem.dir="down"/>
+                                        <note xml:id="m-1005" dur="32" dur.ges="32p" oct="5" pname="e" pnum="76" size="cue" stem.dir="down"/>
+                                        <note xml:id="m-1006" dur="32" dur.ges="32p" oct="5" pname="f" pnum="77" size="cue" stem.dir="down">
+                                          <accid xml:id="m-1035" accid="s"/>
+                                        </note>
+                                        <note xml:id="m-1007" dur="16" dur.ges="64p" oct="5" pname="g" pnum="79" size="cue" stem.dir="down"/>
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <staff xml:id="m-1009" n="2">
+                                <layer xml:id="m-1010" n="1">
+                                    <beam xml:id="m-1013">
+                                        <note xml:id="m-1012" dur="16" dur.ges="64p" oct="3" pname="d" pnum="50" stem.dir="down"/>
+                                        <note xml:id="m-1014" breaksec="1" dur="16" dur.ges="64p" oct="4" pname="d" pnum="62" stem.dir="down"/>
+                                        <note xml:id="m-1015" dur="32" dur.ges="32p" oct="4" pname="c" pnum="61" stem.dir="down">
+                                            <accid xml:id="m-1016" accid="s"/>
+                                        </note>
+                                        <note xml:id="m-1017" dur="32" dur.ges="32p" oct="4" pname="d" pnum="62" stem.dir="down"/>
+                                        <note xml:id="m-1018" dur="16" dur.ges="64p" oct="4" pname="e" pnum="64" stem.dir="down"/>
+                                    </beam>
+                                    <note xml:id="m-1019" dur="4" dur.ges="256p" oct="3" pname="a" pnum="57" stem.dir="down"/>
+                                    <beam xml:id="m-1021">
+                                        <note xml:id="m-1020" dur="16" dur.ges="64p" oct="3" pname="d" pnum="50" stem.dir="down"/>
+                                        <note xml:id="m-1022" breaksec="1" dur="16" dur.ges="64p" oct="4" pname="d" pnum="62" stem.dir="down"/>
+                                        <note xml:id="m-1023" dur="32" dur.ges="32p" oct="4" pname="c" pnum="61" stem.dir="down">
+                                            <accid xml:id="m-1024" accid.ges="s"/>
+                                        </note>
+                                        <note xml:id="m-1025" dur="32" dur.ges="32p" oct="4" pname="d" pnum="62" stem.dir="down"/>
+                                        <note xml:id="m-1026" dur="16" dur.ges="64p" oct="4" pname="e" pnum="64" stem.dir="down"/>
+                                    </beam>
+                                    <note xml:id="m-1011" dur="4" dur.ges="256p" oct="3" pname="a" pnum="57" stem.dir="down"/>
+                                </layer>
+                            </staff>
+                        </measure>
+                        <measure xml:id="m-1027" n="">
+                            <staff xml:id="m-1028" n="1">
+                                <layer xml:id="m-1029" n="1">
+                                    <note xml:id="m-1037" dur="4" dur.ges="256p" oct="5" pname="f" pnum="78" size="cue" stem.dir="down">
+                                        <accid xml:id="m-1038" accid="s" func="caution"/>
+                                    </note>
+                                    <rest xml:id="m-1039" dur="16" dur.ges="64p" size="cue"/>
+                                    <beam xml:id="m-1041">
+                                        <note xml:id="m-1040" breaksec="1" dur="16" dur.ges="64p" oct="5" pname="g" pnum="79" size="cue" stem.dir="down"/>
+                                        <note xml:id="m-1042" dur="32" dur.ges="32p" oct="5" pname="d" pnum="74" size="cue" stem.dir="down"/>
+                                        <note xml:id="m-1043" dur="32" dur.ges="32p" oct="5" pname="e" pnum="76" size="cue" stem.dir="down">
+                                            <accid xml:id="m-1044" accid="n" func="caution"/>
+                                        </note>
+                                        <note xml:id="m-1045" dur="16" dur.ges="64p" oct="5" pname="f" pnum="78" size="cue" stem.dir="down">
+                                            <accid xml:id="m-1046" accid.ges="s"/>
+                                        </note>
+                                    </beam>
+                                    <note xml:id="m-1047" dur="4" dur.ges="256p" oct="5" pname="e" pnum="76" size="cue" stem.dir="down">
+                                        <accid xml:id="m-1048" accid="n"/>
+                                    </note>
+                                </layer>
+                            </staff>
+                            <staff xml:id="m-1049" n="2">
+                                <layer xml:id="m-1050" n="1">
+                                    <beam xml:id="m-1053">
+                                        <note xml:id="m-1052" dur="16" dur.ges="64p" oct="3" pname="d" pnum="50" stem.dir="down"/>
+                                        <note xml:id="m-1054" breaksec="1" dur="16" dur.ges="64p" oct="4" pname="d" pnum="62" stem.dir="down"/>
+                                        <note xml:id="m-1055" dur="32" dur.ges="32p" oct="3" pname="b" pnum="59" stem.dir="down">
+                                            <accid xml:id="m-1056" accid="n"/>
+                                        </note>
+                                        <note xml:id="m-1057" dur="32" dur.ges="32p" oct="4" pname="c" pnum="60" stem.dir="down">
+                                            <accid xml:id="m-1058" accid="n"/>
+                                        </note>
+                                        <note xml:id="m-1059" dur="16" dur.ges="64p" oct="4" pname="d" pnum="62" stem.dir="down"/>
+                                    </beam>
+                                    <note xml:id="m-1060" dur="4" dur.ges="256p" oct="3" pname="g" pnum="55" stem.dir="down"/>
+                                    <beam xml:id="m-1063">
+                                        <note xml:id="m-1061" dur="16" dur.ges="64p" oct="3" pname="c" pnum="48" stem.dir="down">
+                                            <accid xml:id="m-1062" accid="n"/>
+                                        </note>
+                                        <note xml:id="m-1064" breaksec="1" dur="16" dur.ges="64p" oct="4" pname="c" pnum="60" stem.dir="down"/>
+                                        <note xml:id="m-1065" dur="32" dur.ges="32p" oct="3" pname="b" pnum="59" stem.dir="down">
+                                            <accid xml:id="m-1066" accid="n"/>
+                                        </note>
+                                        <note xml:id="m-1067" dur="32" dur.ges="32p" oct="4" pname="c" pnum="60" stem.dir="down"/>
+                                        <note xml:id="m-1068" dur="16" dur.ges="64p" oct="4" pname="d" pnum="62" stem.dir="down"/>
+                                    </beam>
+                                    <note xml:id="m-1075" dur="4" dur.ges="256p" oct="3" pname="g" pnum="55" stem.dir="down"/>
+                                </layer>
+                            </staff>
+                        </measure>
+
+                    </section>
+                </score>
+            </mdiv>
+        </body>
+    </music>
+</mei>

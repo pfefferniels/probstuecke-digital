@@ -1,245 +1,122 @@
  <html>
    <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="jquery-ui.css">
+    <link rel="stylesheet" href="midiplayer.css">
+    <link rel="stylesheet" href="probstuecke_digital.css">
+    
+    <script src="jquery.min.js"></script>
+    <script src="jquery-ui.js"></script>
     <script src="CETEI.js"></script>
-
-    <script>
-      $(document).ready(function() {
-        $(document)
-          .ajaxStart(function () {
-            console.log("ajax loading start");
-          })
-          .ajaxStop(function () {
-            console.log("ajax loading done");
-          });
-        
-        function highlight(element) {
-            element.addClass("highlight");
-            setTimeout(function () {
-              $(element).removeClass('highlight');
-            }, 5000);
-        }
-        
-        currentParams = {
-          page: 1,
-          nr: 7,
-          hideStems: false,
-          hideVariants: true,
-          emptyStaffsBelow: 0,
-          emptyStaffsAbove: 0,
-          lang: "de"
-        };
-        
-        function updateView(params) {
-          var CETEIcean = new CETEI();
-          CETEIcean.getHTML5("annotations?nr=" + currentParams.nr + "&lang=" + currentParams.lang, function(data) {
-            $("#annotations-view").html(data);
-          });
-          
-          $.get("svg?" + $.param(currentParams), function(svg) {
-            $("#score-view").html(svg);
-              
-            $(".indicator").remove();
-            $("tei-ref").each(function() {
-              ref = $(this).attr("target");
-              
-              // find target in SVG and mark it
-              target = $("svg").find("#" + ref);
-              if (target.length === 0) {
-                console.log("corresponding SVG element for ref=" + ref + " not found on this page.");
-                return true; // nothing found, continue with next reference
-              }
-              targetTop = target.offset().top;
-              targetLeft = target.offset().left;
-              targetWidth = target[0].getBoundingClientRect().width-10;
-              targetHeight = target[0].getBoundingClientRect().height-10;
-              $("<div class='indicator' data-ref='" + ref + "'></div>").appendTo("body").css({
-                top: targetTop,
-                left: targetLeft,
-                width: targetWidth,
-                height: targetHeight
-              }).click(function() {
-                // scroll to reference point and then highlight it
-                referencePoint = $("tei-ref[target='" + $(this).attr("data-ref") + "']");
-                $("#annotations-view").animate({
-                    scrollTop: referencePoint.offset().top
-                }, 200, function() {
-                  highlight(referencePoint);
-                });
-              });
-              
-              // connect text with indicator
-              $(this).find("a").click(function() {
-                e.preventDefault();
-                highlight($("#" + ref));
-              });
-            });
-          });
-        }
-        
-        $("nr").change(function() {
-          currentParams.nr = $("#nr").val();
-          updateView();
-        })
-        
-        $("#hide-stems").click(function() {
-          currentParams.hideStems = true;
-          updateView();
-        });
-        
-        $("#staves-below").change(function() {
-          currentParams.emptyStaffsBelow = $("#staves-below").val();
-          updateView();
-        });
-        
-        $("#staves-above").change(function() {
-          currentParams.emptyStaffsAbove = $("#staves-above").val();
-          updateView();
-        });
-
-        $("#page").change(function() {
-          currentParams.page = $("#page").val();
-          updateView();
-        });
-        
-        $("#lang").change(function() {
-          currentParams.lang = $(this).val();
-          updateView();
-        });
-        
-        updateView();
-      });
-    </script>
-      
-      
-    <style>
-      svg {
-        display: block;
-        z-index: -1;
-        left: 0px;
-        top: 0px;
-        width: 100%;
-        height: 100%;
-      }
-      
-      .indicator {
-        position: absolute;
-        border: 3px solid #f47141;
-        background-color: #f4a742;
-        opacity: 0.3;
-      }
-          
-      .left-half {
-        position: absolute;
-        left: 0px;
-        width: 50%;
-      }
-
-      .right-half {
-        position: absolute;
-        right: 0px;
-        width: 50%;
-      }
-      
-      .controls {
-        z-index: 10;
-        padding-bottom: 10px;
-        margin-bottom: 10px;
-        border-bottom: 1px solid black;
-      }
-      
-      #score-view {
-        float:left;
-        width: 50%;
-        height: 90%;
-        overflow-y: scroll;
-      }
-      
-      #annotations-view {
-        float: right;
-        height: 90%;
-        overflow-y: scroll;
-      }
-      
-      @keyframes highlight {
-          0% {
-              background: #f4a742; 
-          }
-          100% {
-              background: none;
-          }
-      }
-
-      .highlight {
-          animation: highlight 5s;
-      }
-      
-      a {
-        color: black;
-      }
-      
-      tei-p {
-        display: block;
-        margin-top: 1em;
-        margin-bottom: 1em;
-        text-align: justify;
-        position: relative;
-        width: 90%;
-        font-size: 10pt;
-        line-height: 1.5;
-      }
-      
-      tei-head {
-        display: block;
-        font-family: Arvo, sans-serif;
-        font-weight: normal;
-        text-align: center;
-      }
-      
-      tei-body > tei-head {
-        font-size: 180%;
-        text-indent: -0.5em;
-      }
-      
-      tei-graphic > img {
-        width: 80%;
-      }
-      
-    </style>
+    <script type="text/javascript" src="wildwebmidi.js"></script>
+    <script type="text/javascript" src="midiplayer.js"></script>
+    <script type="text/javascript" src="probstuecke_digital.js"></script>
   </head>
   <body>
     <div class="controls">
-      <label for="nr">Probstück Nr. </label>
-      <input type="number" id="nr" name="nr" min="1" max="10" value="7">
-      
-      <button id="hide-stems">hide stems</button>
-      
-      <label for="staves-below">staves below:</label>
-      <input type="number" id="staves-below" name="staves-below" min="0" max="10" value="0">
-      
-      <label for="staves-above">staves above:</label>
-      <input type="number" id="staves-above" name="staves-above" min="0" max="10" value="0">
-      
-      <label for="page">page nr:</label>
-      <input type="number" id="page" name="page" min="1" max="10" value="1">
-      
-      <label for="lang">right view:</label>
-      <select id="lang" name="lang">
-        <option value="de">Deutsch (original, second edition)</option>
-        <option value="en">English (second edition)</option>
-        <option value="facsimile">Facsimile (second edition)</option>
-      </select>
+      <table id="controls-table">
+        <thead>
+          <tr>
+            <td>Probstück nr.</td>
+            <td>empty staves</td>
+            <td>tools</td>
+            <td>analysis</td>
+            <td>example realizations</td>
+            <td>right view</td>
+            <td>MIDI</td>
+            <td>export</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <input type="number" id="nr" name="nr" min="1" max="24" value="1" autocomplete="off">
+            </td>
+
+            <td>
+              <input type="number" id="staves-below" name="staves-below" min="0" max="10" value="0" autocomplete="off">
+              <label for="staves-below">below</label></li>
+              
+              <br/>
+              
+              <input type="number" id="staves-above" name="staves-above" min="0" max="10" value="0" autocomplete="off">
+              <label for="staves-above">above</label>
+            </td>
+            
+            <td>
+              <input type="checkbox" id="show-realized-annotations" name="show-realized-annotations" autocomplete="off">
+              <label for="show-realized-annotations">realized annotations</label>
+              <br/>
+              <input type="checkbox" id="modern-clefs" name="modern-clefs" autocomplete="off">
+              <label for="modern-clefs">modern clefs</label>
+            </td>
+            
+            <td>
+              <input type="checkbox" id="decolorized-bass" autocomplete="off">
+              <label for="decolorized-bass">decolorized bass
+              <br />
+              <input type="checkbox" id="basse-fondamentale" autocomplete="off">
+              <label for="basse-fondamentale"><i>basse fondamentale</i>
+            </td>
+            
+            <td>
+              <input type="checkbox" id="example-realization-1" autocomplete="off">
+              <label for="example-realization-1">nr. 1</label>
+              <br/>
+              <input type="checkbox" id="example-realization-2" autocomplete="off">
+              <label for="example-realization-2">nr. 2</label>
+            
+            <td>
+              <select id="lang" name="lang" autocomplete="off">
+                <option value="de">Deutsch (second edition, Hamburg 1731)</option>
+                <option value="first_edition">Deutsch (first edition, Hamburg 1719)</option>
+                <option value="en">English (second edition)</option>
+                <option value="facsimile">Facsimile (second edition)</option>
+              </select>
+            </td>
+            
+            <td>
+              <div id="player"></div>
+            </td>
+            
+            <td>
+              <select id="export-format" name="export-format" autocomplete="off">
+                <option value="pdf">PDF</option>
+                <option value="musicxml">MusicXML</option>
+                <option value="midi">MIDI</option>
+              </select> <br />
+              <button id="export">export</button>
+            </td>
+      </table>
     </div>
     
     <div>
-       <div id="score-view" class="left-half">
-         Transkription
+       <div class="left-half">
+         <table>
+           <tr>
+             <td>
+               <div class="change-page" id="previous-page">
+                 &lt;
+               </div>
+             </td>
+             <td>
+               <div id="score-view">
+                 Transkription
+               </div>
+             </td>
+             <td>
+               <div class="change-page" id="next-page">
+                 &gt;
+               </div>
+             </td>
+           </tr>
+         </table>
        </div>
        <div id="annotations-view" class="right-half">
          Erläuterungen
        </div>
-       
     </div>
+    
+    <div id="error"></div>
   </body>
 </html>
   
