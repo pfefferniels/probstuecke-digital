@@ -6,7 +6,8 @@ var xmldom = require('xmldom');
 var PDFDocument = require('pdfkit');
 var DOMParser = xmldom.DOMParser;
 var SVGtoPDF = require('svg-to-pdfkit');
-
+var libxslt = require('libxslt');
+ 
 PDFDocument.prototype.addSVG = function(svg, x, y, options) {
   return SVGtoPDF(this, svg, x, y, options), this;
 };
@@ -18,6 +19,20 @@ var options = {
 var vrvToolkit = new verovio.toolkit();
 vrvToolkit.setOptions(options);
 var app = express();
+
+function getAnnotationFilename(nr, lang) {
+  var fileToSend = __dirname + "/data/" + nr;
+  if (lang === "en") {
+    fileToSend += "/annotations_en.tei";
+  } else if (lang === "facsimile") {
+    fileToSend += "/facsimile.tei";
+  } else if (lang === "first_edition") {
+    fileToSend += "/annotations_1st.tei";
+  } else {
+    fileToSend += "/annotations.tei";
+  }
+  return fileToSend;
+}
 
 // takes a DOM object and replaces all <clef>s and <staffDef>s with
 // modern clefs
@@ -105,11 +120,18 @@ function generateSvg(req, allpages, callback, onFinish, onError) {
       staffsToRemove.push("31");
     }
     
-    if (req.query.exampleRealization1 === 'false') {
+    if (req.query.exampleRealization === '-1') {
       staffsToRemove.push("41");
+      
+      // remove also the <layer>s with n="41" inside a <staff> with n="2",
+      // since realizations are allowed to add something to the existing bass
+      var layers = doc.documentElement.getElementsByTagName("layer");
+      for (var i=0; i<layers.length; i++) {
+        if (layers[i].getAttribute("n") == "41") {
+          layers[i].parentNode.removeChild(layers[i]);
+        }
+      }
     }
-    
-    console.log(staffsToRemove);
     
     // remove all the <staff>s if the attribute n is on the removal list.
     var staffs = doc.documentElement.getElementsByTagName("staff");
@@ -197,25 +219,14 @@ function generateSvg(req, allpages, callback, onFinish, onError) {
   });
 }
 
+
 app.get("/annotations", function(req, res) {
-  var fileToSend = __dirname + "/data/" + req.query.nr;
-  if (req.query.lang === "en") {
-    fileToSend += "/annotations_en.tei";
-  } else if (req.query.lang === "facsimile") {
-    fileToSend += "/facsimile.tei";
-  } else if (req.query.lang === "first_edition") {
-    fileToSend += "/annotations_1st.tei";
-  } else {
-    fileToSend += "/annotations.tei";
-  }
-  
-  res.sendFile(fileToSend, {}, function(err) {
+  res.sendFile(getAnnotationFilename(req.query.nr, req.query.lang), {}, function(err) {
     if (err) {
       console.log(err.status);
       res.status("404").end();
     }
   });
-    
 });
 
 
@@ -267,6 +278,55 @@ app.get('/render', function (req, res) {
   });
 });
 
+var AnnotationToPDF = {
+  nr: 0,
+  pdfDoc: undefined,
+  traverse: function(tree) {
+    var children = tree.childNodes;
+    for (var i=0; i<children.length; i++) {
+      if (children[i].nodeName === "#text") {
+        // for now, treat them all the same.
+        if (children[i].parentNode.nodeName === "p" ||
+            children[i].parentNode.nodeName === "ref" || 
+            children[i].parentNode.nodeName === "emph" ||
+            children[i].parentNode.nodeName === "foreign") {
+          this.pdfDoc.text(children[i].textContent, {
+            width: 1500,
+            align: 'justify',
+            continued: true,
+            indent: 0
+          });
+        } 
+      } else if (children[i].nodeName === "head") {
+        // no further subchildren are expected
+        this.pdfDoc.moveDown(1);
+        this.pdfDoc.fontSize(29).text(children[i].textContent, {
+          width: 1500,
+          align: 'center',
+          underline: true
+        });
+        this.pdfDoc.fontSize(25);
+      } else if (children[i].nodeName === "ptr") {
+        // load music examples
+        var target = children[i].attributes[0].value;
+        var contents = fs.readFileSync(__dirname + "/data/" + this.nr + "/" + target, 'utf8');
+        var doc = new DOMParser().parseFromString(contents.toString(), 'text/xml');
+        var mei = new xmldom.XMLSerializer().serializeToString(doc);
+      
+        vrvToolkit.loadData(mei.toString());
+        svg = vrvToolkit.renderToSVG(1, {
+          adjustPageHeight: true
+        });
+
+        this.pdfDoc.addSVG(svg, this.pdfDoc.x, this.pdfDoc.y, {});
+        this.pdfDoc.moveDown(20);
+      } else {
+        this.traverse(children[i]);
+      }
+    }
+  }
+};
+
 app.get("/download", function(req, res) {
   if (req.query.exportFormat === "pdf") {
     const doc = new PDFDocument({
@@ -279,7 +339,38 @@ app.get("/download", function(req, res) {
       doc.addSVG(svg, 100, 100, {}).scale(0.5);
       doc.addPage();
     }, function() {
-      doc.end();
+      // when all the score pages are there, start adding the annotations
+      fs.readFile(getAnnotationFilename(req.query.nr, req.query.lang), function(err, data) {
+        if (err) {
+          console.log(err);
+          res.status("404").end();
+          return;
+        }
+        
+        // PDFKit will realize the newlines in the original TEI file as new paragraphs. To prevent,
+        // all line breaks have to be removed first.
+        var annotationDoc = new DOMParser().parseFromString(data.toString().replace(/(\r\n|\n|\r)/gm, ""), 'text/xml');
+        var converter = Object.create(AnnotationToPDF);
+        converter.nr = req.query.nr;
+        doc.font("Times-Roman").fontSize(25);
+        converter.pdfDoc = doc;
+        converter.traverse(annotationDoc);
+        
+        doc.end();
+      });
+    });
+  } else if (req.query.exportFormat === "musicxml") {
+    // TODO this is currently broken, since the mei2musicxml stylesheet requires XSLT 2.0,
+    // while, libxslt supports only XSLT 1.0
+    var meiString = fs.readFileSync(__dirname + "/data/" + req.query.nr + "/score.mei","utf-8");
+    var xsltString = fs.readFileSync(__dirname + "/mei2musicxml.xsl","utf-8");
+    
+    libxslt.parse(xsltString, function(err, stylesheet) {
+      if (stylesheet) {
+        stylesheet.apply(meiString, {}, function(err, result){
+          res.send(musicXMLString);
+        });  
+      }
     });
   } 
   else {
@@ -289,6 +380,16 @@ app.get("/download", function(req, res) {
 
 app.get('/', function(req, res) {
   res.sendFile(__dirname + "/index.html");
+});
+
+app.get('/description', function(req, res) {
+  res.sendFile(__dirname + '/data/' + req.query.nr + '/description.json', function(err) {
+    if (err) {
+      console.log(err);
+      res.send("internal error (file not found?)");
+      return;
+    }
+  });
 });
 
 app.use(express.static('public'));
