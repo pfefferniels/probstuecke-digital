@@ -6,7 +6,6 @@ var xmldom = require('xmldom');
 var PDFDocument = require('pdfkit');
 var DOMParser = xmldom.DOMParser;
 var SVGtoPDF = require('svg-to-pdfkit');
-var libxslt = require('libxslt');
  
 PDFDocument.prototype.addSVG = function(svg, x, y, options) {
   return SVGtoPDF(this, svg, x, y, options), this;
@@ -352,16 +351,17 @@ app.get("/download", function(req, res) {
   } else if (req.query.exportFormat === "musicxml") {
     // TODO this is currently broken, since the mei2musicxml stylesheet requires XSLT 2.0,
     // while, libxslt supports only XSLT 1.0
-    var meiString = fs.readFileSync(__dirname + "/data/" + req.query.nr + "/score.mei","utf-8");
-    var xsltString = fs.readFileSync(__dirname + "/mei2musicxml.xsl","utf-8");
-    
-    libxslt.parse(xsltString, function(err, stylesheet) {
-      if (stylesheet) {
-        stylesheet.apply(meiString, {}, function(err, result){
-          res.send(musicXMLString);
-        });  
-      }
-    });
+    // var meiString = fs.readFileSync(__dirname + "/data/" + req.query.nr + "/score.mei","utf-8");
+    // var xsltString = fs.readFileSync(__dirname + "/mei2musicxml.xsl","utf-8");
+    // 
+    // libxslt.parse(xsltString, function(err, stylesheet) {
+    //   if (stylesheet) {
+    //     stylesheet.apply(meiString, {}, function(err, result){
+    //       res.send(musicXMLString);
+    //     });  
+    //   }
+    // });
+    res.status("404").end();
   } 
   else {
     res.status("404").end();
