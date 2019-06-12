@@ -21,17 +21,7 @@ vrvToolkit.setOptions(options);
 var app = express();
 
 function getAnnotationFilename(nr, lang) {
-  var fileToSend = __dirname + "/data/" + nr;
-  if (lang === "en") {
-    fileToSend += "/annotations_en.tei";
-  } else if (lang === "facsimile") {
-    fileToSend += "/facsimile.tei";
-  } else if (lang === "first_edition") {
-    fileToSend += "/annotations_1st.tei";
-  } else {
-    fileToSend += "/annotations.tei";
-  }
-  return fileToSend;
+  return __dirname + "/data/" + nr + "/annotations_" + lang + ".tei";
 }
 
 // takes a DOM object and replaces all <clef>s and <staffDef>s with

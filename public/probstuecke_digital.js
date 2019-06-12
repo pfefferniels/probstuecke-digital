@@ -143,8 +143,10 @@ function updateDescription() {
           $("#lang").append('<option value="en">English (second edition)</option>');
         } else if (annotations[i] == "facsimile") {
           $("#lang").append('<option value="facsimile">Facsimile (second edition)</option>');
-        } else if (annotations[i] == "first_edition") {
-          $("#lang").append('<option value="first_edition">Deutsch (first edition, Hamburg 1719)</option>');
+        } else if (annotations[i] == "1st") {
+          $("#lang").append('<option value="1st">Deutsch (first edition, Hamburg 1719)</option>');
+        } else if (annotations[i] == "comments") {
+          $("#lang").append('<option value="comments">Comments</option>');
         }
       }
       $("#available-annotations").append('</select>');
@@ -153,6 +155,7 @@ function updateDescription() {
       $("#lang").change(function() {
         currentParams.lang = $(this).val();
         updateAnnotations();
+        renderCurrentPage();
       });
     }
     
