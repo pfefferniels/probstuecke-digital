@@ -384,9 +384,7 @@ app.get('/description', function(req, res) {
 
 app.use(express.static('public'));
 
-var ipaddress = process.env.OPENSHIFT_NODEJS_IP || "0.0.0.0";
-var port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
-app.listen(port, ipaddress, function() {
+app.listen(process.env.PORT || 3000, function() {
   console.log('Listening on port ' + port);
 });
 
