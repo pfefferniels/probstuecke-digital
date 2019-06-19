@@ -91,7 +91,26 @@ function generateSvg(req, allpages, callback, onFinish, onError) {
       }
       return;
     }
-    var doc = new DOMParser().parseFromString(data.toString(),'text/xml');
+    
+    let parser = new DOMParser({
+                    locator: {},
+                    errorHandler: {
+                       warning: (msg) => {
+                         console.log(msg);
+                       },
+                       error: (msg) => {
+                         onError();
+                         return;
+                       },
+                       fatalError: (msg) => { 
+                         onError();
+                       }
+                    }
+    });
+    
+    var doc = parser.parseFromString(data.toString(), 'text/xml');
+    
+    console.log("trying to parse " + data.toString());
     
     var staffsToRemove = [];
     

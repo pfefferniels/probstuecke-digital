@@ -173,6 +173,26 @@ function updateAnnotations() {
     cetei.domToHTML5(data, function(html) {
       $("#annotations-view").html(html);
     });
+    
+    // load the music examples subsequently
+    $("tei-notatedmusic").each(function() {
+      var notatedmusic = $(this);
+      $.get("music-example?" + $.param({
+        nr: currentParams.nr,
+        filename: $(this).find("tei-ptr").attr("target"),
+        modernClefs: currentParams.modernClefs
+      }), function(svg) {
+        notatedmusic.find("tei-ptr").replaceWith(svg);
+        
+        // TODO: this is quite hacky ...
+        var svg1 = notatedmusic.find("svg")[0];
+        var svg2 = notatedmusic.find("svg")[1];
+        var height = svg1.getBBox().height;
+        svg2.setAttribute("viewBox", "0 0 21000 " + Math.floor(height*65));
+        svg1.style.height = height;
+      });
+    });
+    
   }).fail(function() {
     printError("failed loading annotations");
   });
@@ -192,86 +212,9 @@ function renderCurrentPage(onFinish) {
     var svg = response.svg;
     
     $("#score-view").html(svg);
-      
-    $(".indicator").remove();
-    $(".tooltip").remove();
     
-    $("tei-notatedmusic").each(function() {
-      var notatedmusic = $(this);
-      $.get("music-example?" + $.param({
-        nr: currentParams.nr,
-        filename: $(this).find("tei-ptr").attr("target"),
-        modernClefs: currentParams.modernClefs
-      }), function(svg) {
-        notatedmusic.find("tei-ptr").replaceWith(svg);
-        
-        // TODO: this is quite hacky ...
-        var svg1 = notatedmusic.find("svg")[0];
-        var svg2 = notatedmusic.find("svg")[1];
-        var height = svg1.getBBox().height;
-        svg2.setAttribute("viewBox", "0 0 21000 " + Math.floor(height*60));
-        svg1.style.height = height;
-      });
-    });
-    
-    $("tei-ref").each(function() {
-      // connect text with an indicator
-      $(this).find("a").click(function(e) {
-        e.preventDefault();
-        highlight(".indicator[data-ref='" + ref + "']");
-      });
-      
-      // find target in SVG and underlay it colorfully
-      var ref = $(this).attr("target");
-      
-      target = $("svg").find("#" + ref);
-      if (target.length === 0) {
-        console.log("corresponding SVG element for ref=" + ref + " not found on this page.");
-        return true; // nothing found, continue with next reference
-      }
-      $("<div class='indicator' data-ref='" + ref + "'></div>").appendTo("body").css(getSvgElementBoxAsCss(target)).click(function() {
-        // scroll to reference point and then highlight it
-        var refSelector = "tei-ref[target='" + $(this).attr("data-ref") + "']";
-        referencePoint = $(refSelector);
-        annotationView = $("annotations-view")
-        $("#annotations-view").animate({
-            scrollTop: referencePoint.offset().top - $("#annotations-view").offset().top + $("#annotations-view").scrollTop()
-        }, 100, function() {
-          highlight(refSelector);
-        });
-      });
-    });
-    
-    var keySig = $("svg").find(".keySig");
-    if (keySig.length != 0) {
-      var keySigAnnotation = $("tei-note[type='on-key-signature'] span[data-original='']");
-      
-      $("<div class='tooltip' id='key-signature-tooltip'></div>").appendTo("body").css(getSvgElementBoxAsCss(keySig)).tooltip({
-        content: keySigAnnotation.text(),
-        items: "#key-signature-tooltip",
-        classes: {
-          "ui-tooltip": "tooltip-text"
-        }
-      });
-      
-      keySigAnnotation.parent().remove();
-    }
-    
-    
-    var meterSig = $("svg").find(".meterSig");
-    if (meterSig.length != 0) {
-      var meterSigAnnotation = $("tei-note[type='on-meter'] span[data-original='']");
-      
-      $("<div class='tooltip' id='meter-signature-tooltip'></div>").appendTo("body").css(getSvgElementBoxAsCss(meterSig)).tooltip({
-        content: meterSigAnnotation.text(),
-        items: "#meter-signature-tooltip",
-        classes: {
-          "ui-tooltip": "tooltip-text"
-        }
-      });
-      
-      meterSigAnnotation.parent().remove();
-    }
+    connectReferences();
+    connectTooltips();
     
     if (typeof onFinish === "function") {
       onFinish();
@@ -279,6 +222,73 @@ function renderCurrentPage(onFinish) {
   }).fail(function() {
     printError("failed loading SVG");
   });
+}
+
+function connectReferences() {
+  $(".indicator").remove();
+  
+  $("tei-ref").each(function() {
+    // connect text with an indicator
+    $(this).find("a").click(function(e) {
+      e.preventDefault();
+      highlight(".indicator[data-ref='" + ref + "']");
+    });
+    
+    // find target in SVG and underlay it colorfully
+    var ref = $(this).attr("target");
+    
+    target = $("svg").find("#" + ref);
+    if (target.length === 0) {
+      console.log("corresponding SVG element for ref=" + ref + " not found on this page.");
+      return true; // nothing found, continue with next reference
+    }
+    $("<div class='indicator' data-ref='" + ref + "'></div>").appendTo("body").css(getSvgElementBoxAsCss(target)).click(function() {
+      // scroll to reference point and then highlight it
+      var refSelector = "tei-ref[target='" + $(this).attr("data-ref") + "']";
+      referencePoint = $(refSelector);
+      annotationView = $("annotations-view")
+      $("#annotations-view").animate({
+          scrollTop: referencePoint.offset().top - $("#annotations-view").offset().top + $("#annotations-view").scrollTop()
+      }, 100, function() {
+        highlight(refSelector);
+      });
+    });
+  });
+}
+
+function connectTooltips() {
+  $(".tooltip").remove();
+  
+  var keySig = $("svg").find(".keySig");
+  if (keySig.length != 0) {
+    var keySigAnnotation = $("tei-note[type='on-key-signature'] span[data-original='']");
+    
+    $("<div class='tooltip' id='key-signature-tooltip'></div>").appendTo("body").css(getSvgElementBoxAsCss(keySig)).tooltip({
+      content: keySigAnnotation.text(),
+      items: "#key-signature-tooltip",
+      classes: {
+        "ui-tooltip": "tooltip-text"
+      }
+    });
+    
+    keySigAnnotation.parent().remove();
+  }
+  
+  
+  var meterSig = $("svg").find(".meterSig");
+  if (meterSig.length != 0) {
+    var meterSigAnnotation = $("tei-note[type='on-meter'] span[data-original='']");
+    
+    $("<div class='tooltip' id='meter-signature-tooltip'></div>").appendTo("body").css(getSvgElementBoxAsCss(meterSig)).tooltip({
+      content: meterSigAnnotation.text(),
+      items: "#meter-signature-tooltip",
+      classes: {
+        "ui-tooltip": "tooltip-text"
+      }
+    });
+    
+    meterSigAnnotation.parent().remove();
+  }
 }
 
 function updateView(onFinish) {
