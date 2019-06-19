@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
+    <music>
+        <body>
+            <mdiv>
+                <score>
+                    <scoreDef>
+                        <staffGrp>
+                            <staffDef clef.shape="C" clef.line="1" key.mode="major" key.sig="1s" meter.count="12" meter.unit="8" n="1" lines="5">
+                                <label></label>
+                            </staffDef>
+                        </staffGrp>
+                    </scoreDef>
+                    <section>
+
+                        <measure xml:id="m-101" n="14">
+                            <staff xml:id="m-590" n="1">
+                                <layer xml:id="m-591" n="1">
+                                    <rest dur="16" dur.ges="64p" size="cue"/>
+                                    <beam>
+                                        <note dur="16" dur.ges="64p" oct="5" pname="b" pnum="83" size="cue" stem.dir="down"/>
+                                        <note dur="16" dur.ges="64p" oct="5" pname="b" pnum="83" size="cue" stem.dir="down"/>
+                                        <note breaksec="1" dur="16" dur.ges="64p" oct="5" pname="a" pnum="81" size="cue" stem.dir="down"/>
+                                        <note dur="32" dur.ges="32p" oct="5" pname="g" pnum="79" size="cue" stem.dir="down"/>
+                                        <note dur="32" dur.ges="32p" oct="5" pname="a" pnum="81" size="cue" stem.dir="down"/>
+                                        <note dur="32" dur.ges="32p" oct="5" pname="f" pnum="78" size="cue" stem.dir="down">
+                                            <accid xml:id="m-600" accid.ges="s"/>
+                                        </note>
+                                        <note dur="32" dur.ges="32p" oct="5" pname="a" pnum="81" size="cue" stem.dir="down"/>
+                                    </beam>
+                                    <beam>
+                                        <note dur="16" dur.ges="64p" oct="5" pname="g" pnum="79" size="cue" stem.dir="down"/>
+                                        <note dur="16" dur.ges="64p" oct="5" pname="b" pnum="83" size="cue" stem.dir="down"/>
+                                        <note dur="16" dur.ges="64p" oct="5" pname="b" pnum="83" size="cue" stem.dir="down"/>
+                                        <note breaksec="1" dur="16" dur.ges="64p" oct="5" pname="a" pnum="81" size="cue" stem.dir="down"/>
+                                        <note dur="32" dur.ges="32p" oct="5" pname="g" pnum="79" size="cue" stem.dir="down"/>
+                                        <note dur="32" dur.ges="32p" oct="5" pname="a" pnum="81" size="cue" stem.dir="down"/>
+                                        <note dur="32" dur.ges="32p" oct="5" pname="f" pnum="78" size="cue" stem.dir="down">
+                                            <accid xml:id="m-610" accid.ges="s"/>
+                                        </note>
+                                        <note xml:id="m-611" dur="32" dur.ges="32p" oct="5" pname="a" pnum="81" size="cue" stem.dir="down"/>
+                                    </beam>
+                                </layer>
+                            </staff>
+                        </measure>
+                    </section>
+                </score>
+            </mdiv>
+        </body>
+    </music>
+</mei>
+

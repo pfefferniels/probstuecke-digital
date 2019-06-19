@@ -1,0 +1,1173 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
+    <meiHead>
+        <fileDesc>
+            <titleStmt>
+                <title></title>
+            </titleStmt>
+            <pubStmt></pubStmt>
+        </fileDesc>
+        <encodingDesc xml:id="encodingdesc-0000001837577778">
+            <appInfo xml:id="appinfo-0000001308915273">
+                <application xml:id="application-0000000086742556" isodate="2019-06-14T22:47:17" version="2.2.0-dev-af4e03d">
+                    <name xml:id="name-0000000548187428">Verovio</name>
+                    <p xml:id="p-0000001365676474">Transcoded from MusicXML</p>
+                </application>
+            </appInfo>
+        </encodingDesc>
+    </meiHead>
+    <music>
+        <body>
+            <mdiv xml:id="mdiv-0000000697614987">
+                <score xml:id="score-0000001878013548">
+                    <scoreDef xml:id="scoredef-0000001401518610">
+                        <staffGrp xml:id="staffgrp-0000000232867381">
+                            <staffDef xml:id="staffdef-0000001007497332" clef.shape="F" clef.line="4" key.mode="minor" key.sig="7f" meter.count="4" meter.unit="4" meter.sym="common" n="1" lines="5" ppq="256">
+                                <label xml:id="label-0000001540741491">P1</label>
+                            </staffDef>
+                        </staffGrp>
+                    </scoreDef>
+                    <section xml:id="section-0000000757801963">
+                        <pb xml:id="pb-0000000665811619" />
+                        <pb xml:id="pb-0000002050392765" />
+                        <measure xml:id="measure-0000001866591111" n="0">
+                            <staff xml:id="staff-0000001531712647" n="1">
+                                <layer xml:id="layer-0000002046929184" n="1">
+                                    <rest xml:id="rest-0000001257211313" dur.ppq="64" dur="16" />
+                                    <beam xml:id="beam-0000001308906800">
+                                        <note xml:id="note-0000001650794319" dur.ppq="64" dur="16" oct="3" pname="a" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000511105650" dur.ppq="64" dur="16" oct="3" pname="b" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000830580372" dur.ppq="64" dur="16" oct="4" pname="c" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                        </measure>
+                        <measure xml:id="measure-0000001611024018" n="1">
+                            <staff xml:id="staff-0000001928681659" n="1">
+                                <layer xml:id="layer-0000001801879483" n="1">
+                                    <beam xml:id="beam-0000001829791814">
+                                        <note xml:id="note-0000000982614995" dur.ppq="128" dur="8" oct="3" pname="b" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000374130594" dur.ppq="128" dur="8" oct="3" pname="e" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                    <beam xml:id="beam-0000000700646076">
+                                        <note xml:id="note-0000000882437513" dur.ppq="64" dur="16" oct="4" pname="e" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000826075447" dur.ppq="64" dur="16" oct="4" pname="d" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001117218998" dur.ppq="64" dur="16" oct="4" pname="c" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000150769206" dur.ppq="64" dur="16" oct="3" pname="b" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                    <beam xml:id="beam-0000000196145400">
+                                        <note xml:id="note-0000001518007932" dur.ppq="128" dur="8" oct="4" pname="c" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000429744098" dur.ppq="128" dur="8" oct="3" pname="a" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                    <rest xml:id="rest-0000001223721899" dur.ppq="64" dur="16" />
+                                    <beam xml:id="beam-0000000538252449">
+                                        <note xml:id="note-0000001954659046" dur.ppq="64" dur="16" oct="4" pname="c" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000002103151382" dur.ppq="64" dur="16" oct="4" pname="d" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001386881496" dur.ppq="64" dur="16" oct="4" pname="e" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <dir xml:id="dir-0000001136072245" staff="1" startid="#note-0000000982614995">
+                                <rend xml:id="rend-0000001334415724" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">´</rend>
+                            </dir>
+                            <dir xml:id="dir-0000001583133669" staff="1" startid="#note-0000000882437513">
+                                <rend xml:id="rend-0000001016971375" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">§</rend>
+                            </dir>
+                            <dir xml:id="dir-0000001633288049" staff="1" startid="#note-0000001518007932">
+                                <rend xml:id="rend-0000001208831509" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                        </measure>
+                        <measure xml:id="measure-0000001690353928" n="2">
+                            <staff xml:id="staff-0000001936885260" n="1">
+                                <layer xml:id="layer-0000000296194409" n="1">
+                                    <beam xml:id="beam-0000001772207215">
+                                        <note xml:id="note-0000000225334465" dur.ppq="128" dur="8" oct="4" pname="d" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001304398491" dur.ppq="128" dur="8" oct="3" pname="g" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                    <beam xml:id="beam-0000000967104326">
+                                        <note xml:id="note-0000000922860826" dur.ppq="64" dur="16" oct="4" pname="g" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001846464908" dur.ppq="64" dur="16" oct="4" pname="f" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000827210644" dur.ppq="64" dur="16" oct="4" pname="e" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001238021804" dur.ppq="64" dur="16" oct="4" pname="d" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                    <beam xml:id="beam-0000000638515500">
+                                        <note xml:id="note-0000000391702849" dur.ppq="64" dur="16" oct="4" pname="e" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001497570384" dur.ppq="64" dur="16" oct="4" pname="c" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001339302503" dur.ppq="64" dur="16" oct="4" pname="d" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001115450580" dur.ppq="64" dur="16" oct="4" pname="e" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                    <beam xml:id="beam-0000000634676096">
+                                        <note xml:id="note-0000000024212062" dur.ppq="64" dur="16" oct="4" pname="f" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001343768711" dur.ppq="64" dur="16" oct="4" pname="e" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001027082633" dur.ppq="64" dur="16" oct="4" pname="d" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001357918453" dur.ppq="64" dur="16" oct="4" pname="c" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <dir xml:id="dir-0000001945183426" staff="1" startid="#note-0000000391702849">
+                                <rend xml:id="rend-0000000347255473" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                            <dir xml:id="dir-0000000430036732" staff="1" startid="#note-0000000024212062">
+                                <rend xml:id="rend-0000001386386380" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                        </measure>
+                        <sb xml:id="sb-0000000219217547" />
+                        <measure xml:id="measure-0000001738605466" n="3">
+                            <staff xml:id="staff-0000000664587337" n="1" visible="true">
+                                <layer xml:id="layer-0000000777486855" n="1">
+                                    <beam xml:id="beam-0000001500340248">
+                                        <note xml:id="note-0000000241779860" dur.ppq="64" dur="16" oct="4" pname="d" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001843923932" dur.ppq="64" dur="16" oct="3" pname="b" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000230468853" dur.ppq="64" dur="16" oct="4" pname="c" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000002014971125" dur.ppq="64" dur="16" oct="4" pname="d" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                    <beam xml:id="beam-0000001224278874">
+                                        <note xml:id="note-0000001361852539" dur.ppq="64" dur="16" oct="4" pname="e" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000544978041" dur.ppq="64" dur="16" oct="4" pname="d" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000701566428" dur.ppq="64" dur="16" oct="4" pname="c" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000920795915" dur.ppq="64" dur="16" oct="3" pname="b" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                    <beam xml:id="beam-0000001341712929">
+                                        <note xml:id="note-0000001427932171" dur.ppq="64" dur="16" oct="4" pname="c" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000368371435" dur.ppq="64" dur="16" oct="3" pname="a" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001983566139" dur.ppq="64" dur="16" oct="3" pname="b" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000667221732" dur.ppq="64" dur="16" oct="4" pname="c" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                    <beam xml:id="beam-0000001675492603">
+                                        <note xml:id="note-0000000808054183" dur.ppq="64" dur="16" oct="4" pname="d" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000745606080" dur.ppq="64" dur="16" oct="4" pname="c" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001368266344" dur.ppq="64" dur="16" oct="3" pname="b" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001028665130" dur.ppq="64" dur="16" oct="3" pname="a" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <dir xml:id="dir-0000000736453319" staff="1" startid="#note-0000000241779860">
+                                <rend xml:id="rend-0000000020993862" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                                <rend xml:id="rend-0000000970168664" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">5</rend>
+                            </dir>
+                            <dir xml:id="dir-0000001135506120" staff="1" startid="#note-0000001361852539">
+                                <rend xml:id="rend-0000000775913630" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">§</rend>
+                            </dir>
+                            <dir xml:id="dir-0000001608360652" staff="1" startid="#note-0000001427932171">
+                                <rend xml:id="rend-0000000347413870" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                                <rend xml:id="rend-0000000662023125" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">5</rend>
+                            </dir>
+                        </measure>
+                        <measure xml:id="measure-0000000719905735" n="4">
+                            <staff xml:id="staff-0000000784487097" n="1">
+                                <layer xml:id="layer-0000002039878671" n="1">
+                                    <note xml:id="note-0000001857969357" dur.ppq="256" dur="4" oct="3" pname="g" color="#000000" stem.dir="down">
+                                        <accid xml:id="accid-0000000082366305" accid="n" />
+                                    </note>
+                                    <rest xml:id="rest-0000000335235203" dur.ppq="128" dur="8" />
+                                    <note xml:id="note-0000000121655740" dur.ppq="128" dur="8" oct="3" pname="g" color="#000000" stem.dir="down">
+                                        <accid xml:id="accid-0000000906825523" accid="f" accid.ges="f" />
+                                    </note>
+                                    <beam xml:id="beam-0000000999666913">
+                                        <note xml:id="note-0000001996531115" dur.ppq="64" dur="16" oct="3" pname="f" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000206854778" dur.ppq="64" dur="16" oct="3" pname="e" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000345574411" dur.ppq="64" dur="16" oct="3" pname="d" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001608555999" dur.ppq="64" dur="16" oct="4" pname="f" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                    <beam xml:id="beam-0000000340437565">
+                                        <note xml:id="note-0000000599766411" dur.ppq="128" dur="8" oct="4" pname="e" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000109374559" dur.ppq="128" dur="8" oct="2" pname="e" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <dir xml:id="dir-0000001495263788" staff="1" startid="#note-0000001857969357">
+                                <rend xml:id="rend-0000001794073377" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">b</rend>
+                                <rend xml:id="rend-0000001529153976" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">m</rend>
+                            </dir>
+                            <dir xml:id="dir-0000001287909014" staff="1" startid="#note-0000001996531115">
+                                <rend xml:id="rend-0000000488858084" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                            <dir xml:id="dir-0000002001802799" staff="1" startid="#note-0000000599766411">
+                                <rend xml:id="rend-0000000569991767" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                                <rend xml:id="rend-0000001727589077" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">4</rend>
+                            </dir>
+                            <dir xml:id="dir-0000000263349224" staff="1" startid="#note-0000000109374559">
+                                <rend xml:id="rend-0000001397766260" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">§</rend>
+                            </dir>
+                        </measure>
+                        <measure xml:id="measure-0000002049586006" n="5">
+                            <staff xml:id="staff-0000001811669298" n="1">
+                                <layer xml:id="layer-0000000898285532" n="1">
+                                    <note xml:id="note-0000001173034505" dur.ppq="256" dur="4" oct="2" pname="a" color="#000000" stem.dir="up" accid.ges="f" />
+                                    <rest xml:id="rest-0000001811466576" dur.ppq="128" dur="8" />
+                                    <note xml:id="note-0000000776054148" dur.ppq="128" dur="8" oct="3" pname="a" color="#000000" stem.dir="down" accid.ges="f" />
+                                    <note xml:id="note-0000000107486818" dur.ppq="256" dur="4" oct="3" pname="a" color="#000000" stem.dir="down" accid.ges="f" />
+                                    <note xml:id="note-0000000471590492" dur.ppq="256" dur="4" oct="3" pname="g" color="#000000" stem.dir="down">
+                                        <accid xml:id="accid-0000001284842563" accid="n" />
+                                    </note>
+                                </layer>
+                            </staff>
+                            <dir xml:id="dir-0000000938253417" staff="1" startid="#note-0000000107486818">
+                                <rend xml:id="rend-0000000776247036" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                                <rend xml:id="rend-0000001480714838" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">4</rend>
+                                <rend xml:id="rend-0000001854891480" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">2</rend>
+                            </dir>
+                            <dir xml:id="dir-0000001961318691" staff="1" startid="#note-0000000471590492">
+                                <rend xml:id="rend-0000000248091077" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                        </measure>
+                        <measure xml:id="measure-0000001044201468" n="6">
+                            <staff xml:id="staff-0000000865223501" n="1">
+                                <layer xml:id="layer-0000000442821466" n="1">
+                                    <note xml:id="note-0000001345865438" dur.ppq="256" dur="4" oct="3" pname="a" color="#000000" stem.dir="down" accid.ges="f" />
+                                    <rest xml:id="rest-0000000799135810" dur.ppq="128" dur="8" />
+                                    <note xml:id="note-0000001455154934" dur.ppq="128" dur="8" oct="3" pname="b" color="#000000" stem.dir="down" accid.ges="f" />
+                                    <note xml:id="note-0000001818411367" dur.ppq="256" dur="4" oct="4" pname="c" color="#000000" stem.dir="down" accid.ges="f" />
+                                    <note xml:id="note-0000000317716182" dur.ppq="256" dur="4" oct="3" pname="f" color="#000000" stem.dir="down" accid.ges="f" />
+                                </layer>
+                            </staff>
+                            <dir xml:id="dir-0000001650843960" staff="1" startid="#note-0000001455154934">
+                                <rend xml:id="rend-0000001352191099" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">b</rend>
+                            </dir>
+                            <dir xml:id="dir-0000001722583476" staff="1" startid="#note-0000000317716182">
+                                <rend xml:id="rend-0000001178676395" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">43</rend>
+                            </dir>
+                            <dir xml:id="dir-0000000475585557" staff="1" startid="#note-0000000317716182">
+                                <rend xml:id="rend-0000000512790127" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">76</rend>
+                            </dir>
+                        </measure>
+                        <sb xml:id="sb-0000000614695171" />
+                        <measure xml:id="measure-0000001283407495" n="7">
+                            <staff xml:id="staff-0000000218724992" n="1" visible="true">
+                                <layer xml:id="layer-0000000886445581" n="1">
+                                    <note xml:id="note-0000001660840855" dur.ppq="256" dur="4" oct="3" pname="e" color="#000000" stem.dir="down" accid.ges="f" />
+                                    <rest xml:id="rest-0000000619830228" dur.ppq="256" dur="4" />
+                                    <beam xml:id="beam-0000000896836398">
+                                        <note xml:id="note-0000000857117890" dur.ppq="128" dur="8" oct="3" pname="f" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000533889639" dur.ppq="128" dur="8" oct="3" pname="e" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000182346824" dur.ppq="128" dur="8" oct="3" pname="d" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000064219379" dur.ppq="128" dur="8" oct="3" pname="g" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <dir xml:id="dir-0000000903913327" staff="1" startid="#note-0000001660840855">
+                                <rend xml:id="rend-0000001850218264" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">§</rend>
+                            </dir>
+                            <dir xml:id="dir-0000000238498812" staff="1" startid="#note-0000000533889639">
+                                <rend xml:id="rend-0000002085240785" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                            <dir xml:id="dir-0000000197821737" staff="1" startid="#note-0000000182346824">
+                                <rend xml:id="rend-0000001016474947" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">7</rend>
+                            </dir>
+                            <dir xml:id="dir-0000000722754496" staff="1" startid="#note-0000000064219379">
+                                <rend xml:id="rend-0000002061604570" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">7</rend>
+                            </dir>
+                        </measure>
+                        <measure xml:id="measure-0000000225439963" n="8">
+                            <staff xml:id="staff-0000001195486747" n="1">
+                                <layer xml:id="layer-0000000395130467" n="1">
+                                    <beam xml:id="beam-0000000469092385">
+                                        <note xml:id="note-0000001487558391" dur.ppq="128" dur="8" oct="3" pname="c" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000035443271" dur.ppq="128" dur="8" oct="3" pname="d" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000509880563" dur.ppq="128" dur="8" oct="3" pname="e" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000002106112542" dur.ppq="128" dur="8" oct="3" pname="f" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                    <note xml:id="note-0000001434515374" dur.ppq="256" dur="4" oct="3" pname="g" color="#000000" stem.dir="down" accid.ges="f" />
+                                    <rest xml:id="rest-0000001831434202" dur.ppq="128" dur="8" />
+                                    <note xml:id="note-0000001881126799" dur.ppq="128" dur="8" oct="3" pname="e" color="#000000" stem.dir="down" accid.ges="f" />
+                                </layer>
+                            </staff>
+                            <dir xml:id="dir-0000001943808564" staff="1" startid="#note-0000000509880563">
+                                <rend xml:id="rend-0000001734323512" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                            <dir xml:id="dir-0000000562861068" staff="1" startid="#note-0000001881126799">
+                                <rend xml:id="rend-0000000060956695" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                        </measure>
+                        <measure xml:id="measure-0000001306816119" n="9">
+                            <staff xml:id="staff-0000001396016845" n="1">
+                                <layer xml:id="layer-0000001342123109" n="1">
+                                    <beam xml:id="beam-0000001550023886">
+                                        <note xml:id="note-0000001418544454" dur.ppq="64" dur="16" oct="3" pname="f" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000830585540" dur.ppq="64" dur="16" oct="3" pname="g" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000406256566" dur.ppq="64" dur="16" oct="3" pname="a" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001353677103" dur.ppq="64" dur="16" oct="3" pname="f" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                    <beam xml:id="beam-0000000634998595">
+                                        <note xml:id="note-0000000094529086" dur.ppq="128" dur="8" oct="3" pname="g" color="#000000" stem.dir="up" accid.ges="f" />
+                                        <note xml:id="note-0000001406917299" dur.ppq="128" dur="8" oct="2" pname="g" color="#000000" stem.dir="up" accid.ges="f" />
+                                    </beam>
+                                    <note xml:id="note-0000000348606465" dur.ppq="256" dur="4" oct="3" pname="c" color="#000000" stem.dir="up" accid.ges="f" />
+                                    <rest xml:id="rest-0000000609580272" dur.ppq="128" dur="8" />
+                                    <note xml:id="note-0000000815963299" dur.ppq="128" dur="8" oct="4" pname="c" color="#000000" stem.dir="down" accid.ges="f" />
+                                </layer>
+                            </staff>
+                            <dir xml:id="dir-0000000002645505" staff="1" startid="#note-0000000406256566">
+                                <rend xml:id="rend-0000002093781201" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                            <dir xml:id="dir-0000000722452454" staff="1" startid="#note-0000000094529086">
+                                <rend xml:id="rend-0000001349124202" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                                <rend xml:id="rend-0000000255403903" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">4</rend>
+                            </dir>
+                            <dir xml:id="dir-0000002020066905" staff="1" startid="#note-0000001406917299">
+                                <rend xml:id="rend-0000001248193835" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">3</rend>
+                            </dir>
+                        </measure>
+                        <measure xml:id="measure-0000000555420678" n="10">
+                            <staff xml:id="staff-0000001433474426" n="1">
+                                <layer xml:id="layer-0000000913984346" n="1">
+                                    <note xml:id="note-0000001755244892" dur.ppq="256" dur="4" oct="4" pname="c" color="#000000" stem.dir="down" accid.ges="f" />
+                                    <note xml:id="note-0000000350599130" dur.ppq="256" dur="4" oct="3" pname="b" color="#000000" stem.dir="down" accid.ges="f" />
+                                    <note xml:id="note-0000001049249277" dur.ppq="256" dur="4" oct="3" pname="b" color="#000000" stem.dir="down" accid.ges="f" />
+                                    <note xml:id="note-0000000373729130" dur.ppq="256" dur="4" oct="3" pname="a" color="#000000" stem.dir="down" accid.ges="f" />
+                                </layer>
+                            </staff>
+                            <dir xml:id="dir-0000002135787796" staff="1" startid="#note-0000001755244892">
+                                <rend xml:id="rend-0000001732713586" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">4</rend>
+                                <rend xml:id="rend-0000000363612001" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">2</rend>
+                            </dir>
+                            <dir xml:id="dir-0000000240129417" staff="1" startid="#note-0000000350599130">
+                                <rend xml:id="rend-0000001580702668" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                            <tie xml:id="tie-0000001837752973" startid="#note-0000000350599130" endid="#note-0000001049249277" />
+                            <dir xml:id="dir-0000001826254969" staff="1" startid="#note-0000001049249277">
+                                <rend xml:id="rend-0000000210152088" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">4</rend>
+                                <rend xml:id="rend-0000001036575366" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">2</rend>
+                            </dir>
+                            <dir xml:id="dir-0000001360034169" staff="1" startid="#note-0000000373729130">
+                                <rend xml:id="rend-0000001530888817" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                            <tie xml:id="tie-0000000851514958" startid="#note-0000000373729130" endid="#note-0000000833161015" />
+                        </measure>
+                        <measure xml:id="measure-0000001534931193" n="11">
+                            <staff xml:id="staff-0000001958054538" n="1">
+                                <layer xml:id="layer-0000001042929997" n="1">
+                                    <note xml:id="note-0000000833161015" dur.ppq="256" dur="4" oct="3" pname="a" color="#000000" stem.dir="down" accid.ges="f" />
+                                    <note xml:id="note-0000001065038813" dur.ppq="256" dur="4" oct="3" pname="g" color="#000000" stem.dir="down" accid.ges="f" />
+                                    <note xml:id="note-0000001155639351" dur.ppq="256" dur="4" oct="3" pname="g" color="#000000" stem.dir="down" accid.ges="f" />
+                                    <note xml:id="note-0000002034164781" dur.ppq="256" dur="4" oct="3" pname="f" color="#000000" stem.dir="down" accid.ges="f" />
+                                </layer>
+                            </staff>
+                            <dir xml:id="dir-0000001866568285" staff="1" startid="#note-0000000833161015">
+                                <rend xml:id="rend-0000002134241295" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">4</rend>
+                                <rend xml:id="rend-0000001780429446" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">2</rend>
+                            </dir>
+                            <dir xml:id="dir-0000000401835585" staff="1" startid="#note-0000001065038813">
+                                <rend xml:id="rend-0000001033565385" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                            <tie xml:id="tie-0000000285558951" startid="#note-0000001065038813" endid="#note-0000001155639351" />
+                            <dir xml:id="dir-0000001242781354" staff="1" startid="#note-0000001155639351">
+                                <rend xml:id="rend-0000001992105478" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">4</rend>
+                                <rend xml:id="rend-0000000578807960" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">2</rend>
+                            </dir>
+                            <dir xml:id="dir-0000001852868201" staff="1" startid="#note-0000002034164781">
+                                <rend xml:id="rend-0000000886214415" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                            <tie xml:id="tie-0000000942237279" startid="#note-0000002034164781" endid="#note-0000001633407433" />
+                        </measure>
+                        <sb xml:id="sb-0000000805029765" />
+                        <measure xml:id="measure-0000002030194781" n="12">
+                            <staff xml:id="staff-0000001312035991" n="1" visible="true">
+                                <layer xml:id="layer-0000001409138776" n="1">
+                                    <note xml:id="note-0000001633407433" dur.ppq="256" dur="4" oct="3" pname="f" color="#000000" stem.dir="down" accid.ges="f" />
+                                    <rest xml:id="rest-0000000403948301" dur.ppq="128" dur="8" />
+                                    <note xml:id="note-0000001528803364" dur.ppq="128" dur="8" oct="3" pname="e" color="#000000" stem.dir="down" accid.ges="f" />
+                                    <beam xml:id="beam-0000000437013441">
+                                        <note xml:id="note-0000000847255249" dur.ppq="128" dur="8" oct="3" pname="d" color="#000000" stem.dir="up" accid.ges="f" />
+                                        <note xml:id="note-0000000153716661" dur.ppq="128" dur="8" oct="2" pname="b" color="#000000" stem.dir="up" accid.ges="f" />
+                                        <note xml:id="note-0000000601876645" dur.ppq="128" dur="8" oct="3" pname="c" color="#000000" stem.dir="up" accid.ges="f" />
+                                        <note xml:id="note-0000002106480031" dur.ppq="128" dur="8" oct="3" pname="d" color="#000000" stem.dir="up" accid.ges="f" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <dir xml:id="dir-0000001680577467" staff="1" startid="#note-0000001633407433">
+                                <rend xml:id="rend-0000001583756990" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">4</rend>
+                                <rend xml:id="rend-0000001872086101" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">2</rend>
+                            </dir>
+                            <dir xml:id="dir-0000001598673601" staff="1" startid="#note-0000001528803364">
+                                <rend xml:id="rend-0000001628019830" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                            <dir xml:id="dir-0000000244080433" staff="1" startid="#note-0000000847255249">
+                                <rend xml:id="rend-0000001739206642" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                            <dir xml:id="dir-0000001526689877" staff="1" startid="#note-0000000153716661">
+                                <rend xml:id="rend-0000001325379485" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">´</rend>
+                            </dir>
+                            <dir xml:id="dir-0000001056389031" staff="1" startid="#note-0000000601876645">
+                                <rend xml:id="rend-0000001109906471" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                            <dir xml:id="dir-0000001694446959" staff="1" startid="#note-0000002106480031">
+                                <rend xml:id="rend-0000001706534032" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                        </measure>
+                        <measure xml:id="measure-0000001699049925" n="13">
+                            <staff xml:id="staff-0000001636664184" n="1">
+                                <layer xml:id="layer-0000000370945352" n="1">
+                                    <note xml:id="note-0000000451557389" dur.ppq="256" dur="4" oct="3" pname="e" color="#000000" stem.dir="down" accid.ges="f" />
+                                    <rest xml:id="rest-0000000442059761" dur.ppq="64" dur="16" />
+                                    <beam xml:id="beam-0000000140047610">
+                                        <note xml:id="note-0000000147464185" dur.ppq="64" dur="16" oct="4" pname="c" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000557887913" dur.ppq="64" dur="16" oct="4" pname="d" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001221860798" dur.ppq="64" dur="16" oct="4" pname="e" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                    <note xml:id="note-0000000854713690" dur.ppq="256" dur="4" oct="3" pname="f" color="#000000" stem.dir="down" accid.ges="f" />
+                                    <rest xml:id="rest-0000001490723461" dur.ppq="64" dur="16" />
+                                    <beam xml:id="beam-0000000969715395">
+                                        <note xml:id="note-0000000946637582" dur.ppq="64" dur="16" oct="3" pname="b" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000967491186" dur.ppq="64" dur="16" oct="4" pname="c" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001230290472" dur.ppq="64" dur="16" oct="4" pname="d" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <dir xml:id="dir-0000001974074387" staff="1" startid="#note-0000000451557389">
+                                <rend xml:id="rend-0000000365391602" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">§</rend>
+                            </dir>
+                            <dir xml:id="dir-0000001722204728" staff="1" startid="#rest-0000001490723461">
+                                <rend xml:id="rend-0000000575994022" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">76</rend>
+                            </dir>
+                        </measure>
+                        <measure xml:id="measure-0000001805508026" n="14">
+                            <staff xml:id="staff-0000000455937782" n="1">
+                                <layer xml:id="layer-0000000097243035" n="1">
+                                    <note xml:id="note-0000000007884594" dur.ppq="256" dur="4" oct="3" pname="e" color="#000000" stem.dir="down" accid.ges="f" />
+                                    <rest xml:id="rest-0000001509912646" dur.ppq="64" dur="16" />
+                                    <beam xml:id="beam-0000001933348092">
+                                        <note xml:id="note-0000001221201582" dur.ppq="64" dur="16" oct="2" pname="a" color="#000000" stem.dir="up" accid.ges="f" />
+                                        <note xml:id="note-0000002091603880" dur.ppq="64" dur="16" oct="2" pname="b" color="#000000" stem.dir="up" accid.ges="f" />
+                                        <note xml:id="note-0000001525569514" dur.ppq="64" dur="16" oct="3" pname="c" color="#000000" stem.dir="up" accid.ges="f" />
+                                    </beam>
+                                    <beam xml:id="beam-0000001835566964">
+                                        <note xml:id="note-0000001247184608" dur.ppq="64" dur="16" oct="3" pname="d" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000495465631" dur.ppq="64" dur="16" oct="3" pname="d" color="#000000" stem.dir="down">
+                                            <accid xml:id="accid-0000000435537769" accid="n" />
+                                        </note>
+                                        <note xml:id="note-0000001854853826" dur.ppq="64" dur="16" oct="3" pname="e" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000901807347" dur.ppq="64" dur="16" oct="3" pname="f" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                    <beam xml:id="beam-0000000408815443">
+                                        <note xml:id="note-0000001670787464" dur.ppq="128" dur="8" oct="3" pname="e" color="#000000" stem.dir="up" accid.ges="f" />
+                                        <note xml:id="note-0000000223458595" dur.ppq="128" dur="8" oct="2" pname="e" color="#000000" stem.dir="up" accid.ges="f" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <dir xml:id="dir-0000000160348682" staff="1" startid="#note-0000000007884594">
+                                <rend xml:id="rend-0000000956561249" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">7</rend>
+                                <rend xml:id="rend-0000000671136534" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">§</rend>
+                            </dir>
+                            <dir xml:id="dir-0000002130681019" staff="1" startid="#note-0000001854853826">
+                                <rend xml:id="rend-0000001093022708" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                            <dir xml:id="dir-0000001932298149" staff="1" startid="#note-0000000901807347">
+                                <rend xml:id="rend-0000001297926936" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">y</rend>
+                            </dir>
+                            <dir xml:id="dir-0000001746539933" staff="1" startid="#note-0000001670787464">
+                                <rend xml:id="rend-0000001284785775" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                                <rend xml:id="rend-0000002029020203" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">4</rend>
+                            </dir>
+                            <dir xml:id="dir-0000000609798636" staff="1" startid="#note-0000000223458595">
+                                <rend xml:id="rend-0000001738412616" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">§</rend>
+                            </dir>
+                        </measure>
+                        <measure xml:id="measure-0000001588576075" n="15">
+                            <staff xml:id="staff-0000001458320495" n="1">
+                                <layer xml:id="layer-0000000076322090" n="1">
+                                    <note xml:id="note-0000001825366552" dur.ppq="256" dur="4" oct="2" pname="a" color="#000000" stem.dir="up" accid.ges="f" />
+                                    <rest xml:id="rest-0000001997865008" dur.ppq="64" dur="16" />
+                                    <beam xml:id="beam-0000000208248602">
+                                        <note xml:id="note-0000000257905659" dur.ppq="64" dur="16" oct="4" pname="c" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001950544485" dur.ppq="64" dur="16" oct="4" pname="d" color="#000000" stem.dir="down">
+                                            <accid xml:id="accid-0000001237019607" accid="f" accid.ges="f" />
+                                        </note>
+                                        <note xml:id="note-0000000220884734" dur.ppq="64" dur="16" oct="4" pname="e" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                    <note xml:id="note-0000000583730099" dur.ppq="256" dur="4" oct="3" pname="f" color="#000000" stem.dir="down" accid.ges="f" />
+                                    <rest xml:id="rest-0000000194620689" dur.ppq="64" dur="16" />
+                                    <beam xml:id="beam-0000001374326816">
+                                        <note xml:id="note-0000000091389477" dur.ppq="64" dur="16" oct="3" pname="b" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001343834268" dur.ppq="64" dur="16" oct="4" pname="c" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000084751615" dur.ppq="64" dur="16" oct="4" pname="d" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <dir xml:id="dir-0000001398492120" staff="1" startid="#rest-0000000194620689">
+                                <rend xml:id="rend-0000000426574956" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">76</rend>
+                            </dir>
+                        </measure>
+                        <sb xml:id="sb-0000000691600389" />
+                        <measure xml:id="measure-0000001157174129" n="16">
+                            <staff xml:id="staff-0000001940753361" n="1" visible="true">
+                                <layer xml:id="layer-0000002095932609" n="1">
+                                    <note xml:id="note-0000000387498800" dur.ppq="256" dur="4" oct="3" pname="e" color="#000000" stem.dir="down" accid.ges="f" />
+                                    <rest xml:id="rest-0000001147164204" dur.ppq="64" dur="16" />
+                                    <beam xml:id="beam-0000001067039466">
+                                        <note xml:id="note-0000001838933625" dur.ppq="64" dur="16" oct="2" pname="a" color="#000000" stem.dir="up" accid.ges="f" />
+                                        <note xml:id="note-0000000715678983" dur.ppq="64" dur="16" oct="2" pname="b" color="#000000" stem.dir="up" accid.ges="f" />
+                                        <note xml:id="note-0000000510707158" dur.ppq="64" dur="16" oct="3" pname="c" color="#000000" stem.dir="up" accid.ges="f" />
+                                    </beam>
+                                    <beam xml:id="beam-0000000874499920">
+                                        <note xml:id="note-0000000542228859" dur.ppq="64" dur="16" oct="3" pname="d" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001987105771" dur.ppq="64" dur="16" oct="3" pname="d" color="#000000" stem.dir="down">
+                                            <accid xml:id="accid-0000000957909918" accid="n" />
+                                        </note>
+                                        <note xml:id="note-0000001747971942" dur.ppq="64" dur="16" oct="3" pname="e" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001809943411" dur.ppq="64" dur="16" oct="3" pname="f" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                    <beam xml:id="beam-0000001560434536">
+                                        <note xml:id="note-0000002045586312" dur.ppq="128" dur="8" oct="3" pname="e" color="#000000" stem.dir="up" accid.ges="f" />
+                                        <note xml:id="note-0000001348656854" dur.ppq="128" dur="8" oct="2" pname="e" color="#000000" stem.dir="up" accid.ges="f" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <dir xml:id="dir-0000000445608117" staff="1" startid="#note-0000000387498800">
+                                <rend xml:id="rend-0000001803524408" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">7</rend>
+                                <rend xml:id="rend-0000001858343739" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">§</rend>
+                            </dir>
+                            <dir xml:id="dir-0000001986595179" staff="1" startid="#note-0000001747971942">
+                                <rend xml:id="rend-0000000377678475" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                            <dir xml:id="dir-0000001754899798" staff="1" startid="#note-0000001809943411">
+                                <rend xml:id="rend-0000000913426736" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">y</rend>
+                            </dir>
+                            <dir xml:id="dir-0000001200337601" staff="1" startid="#note-0000002045586312">
+                                <rend xml:id="rend-0000001958690642" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                                <rend xml:id="rend-0000001389917026" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">4</rend>
+                            </dir>
+                            <dir xml:id="dir-0000001647016638" staff="1" startid="#note-0000001348656854">
+                                <rend xml:id="rend-0000001005889876" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">3</rend>
+                            </dir>
+                        </measure>
+                        <measure xml:id="measure-0000000841656867" n="17">
+                            <staff xml:id="staff-0000001484304577" n="1">
+                                <layer xml:id="layer-0000001411047886" n="1">
+                                    <note xml:id="note-0000001947862338" dur.ppq="256" dur="4" oct="2" pname="a" color="#000000" stem.dir="up" accid.ges="f" />
+                                    <rest xml:id="rest-0000002078060100" dur.ppq="128" dur="8" />
+                                    <beam xml:id="beam-0000000143333757">
+                                        <note xml:id="note-0000001793163853" dur.ppq="64" dur="16" oct="3" pname="a" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000771150556" dur.ppq="64" dur="16" oct="3" pname="b" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                    <note xml:id="note-0000000656787946" dur.ppq="256" dur="4" oct="4" pname="c" color="#000000" stem.dir="down" accid.ges="f" />
+                                    <note xml:id="note-0000000137788874" dur.ppq="256" dur="4" oct="4" pname="d" color="#000000" stem.dir="down">
+                                        <accid xml:id="accid-0000001288828406" accid="f" accid.ges="f" />
+                                    </note>
+                                </layer>
+                            </staff>
+                            <fermata xml:id="fermata-0000001647384458" staff="1" startid="#note-0000001947862338" shape="curved" />
+                            <dir xml:id="dir-0000000944540391" staff="1" startid="#note-0000001793163853">
+                                <rend xml:id="rend-0000000710695805" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">§</rend>
+                            </dir>
+                            <dir xml:id="dir-0000000020921616" staff="1" startid="#note-0000000656787946">
+                                <rend xml:id="rend-0000000379212594" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                        </measure>
+                        <measure xml:id="measure-0000001977465738" n="18">
+                            <staff xml:id="staff-0000000920222577" n="1">
+                                <layer xml:id="layer-0000000683496269" n="1">
+                                    <note xml:id="note-0000001926185585" dur.ppq="256" dur="4" oct="3" pname="a" color="#000000" stem.dir="down" accid.ges="f" />
+                                    <rest xml:id="rest-0000000837641463" dur.ppq="128" dur="8" />
+                                    <note xml:id="note-0000001820209039" dur.ppq="128" dur="8" oct="3" pname="f" color="#000000" stem.dir="down" accid.ges="f" />
+                                    <note xml:id="note-0000000662373259" dur.ppq="256" dur="4" oct="3" pname="g" color="#000000" stem.dir="down" accid.ges="f" />
+                                    <beam xml:id="beam-0000000686701007">
+                                        <note xml:id="note-0000001953583993" dur.ppq="128" dur="8" oct="3" pname="a" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000559337301" dur.ppq="128" dur="8" oct="2" pname="a" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <dir xml:id="dir-0000001942862279" staff="1" startid="#note-0000001926185585">
+                                <rend xml:id="rend-0000001161498407" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">§</rend>
+                            </dir>
+                            <dir xml:id="dir-0000001232594428" staff="1" startid="#note-0000001820209039">
+                                <rend xml:id="rend-0000000859030776" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                            <dir xml:id="dir-0000000723512920" staff="1" startid="#note-0000000662373259">
+                                <rend xml:id="rend-0000001088366772" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">!</rend>
+                            </dir>
+                            <dir xml:id="dir-0000001825189960" staff="1" startid="#note-0000001953583993">
+                                <rend xml:id="rend-0000001507112714" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">§</rend>
+                            </dir>
+                        </measure>
+                        <measure xml:id="measure-0000000079670363" n="19">
+                            <staff xml:id="staff-0000000708404532" n="1">
+                                <layer xml:id="layer-0000001864226624" n="1">
+                                    <note xml:id="note-0000001823178780" dur.ppq="256" dur="4" oct="3" pname="d" color="#000000" stem.dir="down" accid.ges="f" />
+                                    <rest xml:id="rest-0000001125104882" dur.ppq="64" dur="16" />
+                                    <beam xml:id="beam-0000000438062773">
+                                        <note xml:id="note-0000002046396046" dur.ppq="64" dur="16" oct="4" pname="d" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001594339375" dur.ppq="64" dur="16" oct="4" pname="c" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000530225597" dur.ppq="64" dur="16" oct="4" pname="d" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                    <beam xml:id="beam-0000002089446390">
+                                        <note xml:id="note-0000000202275044" dur.ppq="64" dur="16" oct="4" pname="e" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001715340076" dur.ppq="64" dur="16" oct="4" pname="d" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000801770586" dur.ppq="64" dur="16" oct="4" pname="c" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000130266185" dur.ppq="64" dur="16" oct="3" pname="b" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                    <beam xml:id="beam-0000000619192252">
+                                        <note xml:id="note-0000000596812697" dur.ppq="128" dur="8" oct="3" pname="a" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000374447131" dur.ppq="64" dur="16" oct="4" pname="d" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000181401886" dur.ppq="64" dur="16" oct="4" pname="c" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <dir xml:id="dir-0000001653274556" staff="1" startid="#note-0000001823178780">
+                                <rend xml:id="rend-0000001964085462" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">§</rend>
+                            </dir>
+                            <dir xml:id="dir-0000001594049139" staff="1" startid="#note-0000000202275044">
+                                <rend xml:id="rend-0000001783319474" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                            <dir xml:id="dir-0000002112775493" staff="1" startid="#note-0000000596812697">
+                                <rend xml:id="rend-0000000105585702" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                        </measure>
+                        <sb xml:id="sb-0000000104214426" />
+                        <measure xml:id="measure-0000001673404407" n="20">
+                            <staff xml:id="staff-0000000906551009" n="1" visible="true">
+                                <layer xml:id="layer-0000000260954214" n="1">
+                                    <beam xml:id="beam-0000000064313528">
+                                        <note xml:id="note-0000001242204717" dur.ppq="128" dur="8" oct="3" pname="b" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000332040840" dur.ppq="128" dur="8" oct="3" pname="g" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                    <rest xml:id="rest-0000001832427914" dur.ppq="128" dur="8" />
+                                    <note xml:id="note-0000002092669428" dur.ppq="128" dur="8" oct="3" pname="e" color="#000000" stem.dir="down" accid.ges="f" />
+                                    <beam xml:id="beam-0000000499167406">
+                                        <note xml:id="note-0000002050128201" dur.ppq="128" dur="8" oct="3" pname="a" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000347367848" dur.ppq="128" dur="8" oct="3" pname="b" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001816555373" dur.ppq="128" dur="8" oct="4" pname="c" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000286735594" dur.ppq="128" dur="8" oct="3" pname="a" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <dir xml:id="dir-0000001084214045" staff="1" startid="#note-0000001242204717">
+                                <rend xml:id="rend-0000000405198671" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                            <dir xml:id="dir-0000000569638611" staff="1" startid="#note-0000002050128201">
+                                <rend xml:id="rend-0000001050460080" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">´</rend>
+                            </dir>
+                            <dir xml:id="dir-0000001088842042" staff="1" startid="#note-0000001816555373">
+                                <rend xml:id="rend-0000001464689266" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                            <dir xml:id="dir-0000000883532676" staff="1" startid="#note-0000000286735594">
+                                <rend xml:id="rend-0000001461964318" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                        </measure>
+                        <measure xml:id="measure-0000000468127253" n="21">
+                            <staff xml:id="staff-0000000825365222" n="1">
+                                <layer xml:id="layer-0000001514214499" n="1">
+                                    <note xml:id="note-0000000971942412" dur.ppq="256" dur="4" oct="3" pname="a" color="#000000" stem.dir="down" accid.ges="f" />
+                                    <rest xml:id="rest-0000000133507169" dur.ppq="64" dur="16" />
+                                    <beam xml:id="beam-0000000997088672">
+                                        <note xml:id="note-0000002015369995" dur.ppq="64" dur="16" oct="3" pname="g" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001275743820" dur.ppq="64" dur="16" oct="3" pname="a" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001826619429" dur.ppq="64" dur="16" oct="3" pname="b" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                    <beam xml:id="beam-0000000343870775">
+                                        <note xml:id="note-0000000954962297" dur.ppq="64" dur="16" oct="4" pname="c" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001585226123" dur.ppq="64" dur="16" oct="3" pname="b" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001439681749" dur.ppq="64" dur="16" oct="3" pname="a" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000159398695" dur.ppq="64" dur="16" oct="3" pname="g" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                    <beam xml:id="beam-0000000834479146">
+                                        <note xml:id="note-0000000146532897" dur.ppq="64" dur="16" oct="3" pname="a" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000712010770" dur.ppq="64" dur="16" oct="3" pname="f" color="#000000" stem.dir="down">
+                                            <accid xml:id="accid-0000000464294127" accid="n" />
+                                        </note>
+                                        <note xml:id="note-0000000833053712" dur.ppq="64" dur="16" oct="3" pname="g" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001473133554" dur.ppq="64" dur="16" oct="3" pname="a" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <dir xml:id="dir-0000001444208286" staff="1" startid="#note-0000000971942412">
+                                <rend xml:id="rend-0000001185366463" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                                <rend xml:id="rend-0000000929624086" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">Ä</rend>
+                                <rend xml:id="rend-0000000851181995" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">2</rend>
+                            </dir>
+                            <dir xml:id="dir-0000000840939243" staff="1" startid="#note-0000002015369995">
+                                <rend xml:id="rend-0000000517744848" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                            <dir xml:id="dir-0000002050766147" staff="1" startid="#note-0000000954962297">
+                                <rend xml:id="rend-0000000433704637" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                            <dir xml:id="dir-0000000672791454" staff="1" startid="#note-0000000146532897">
+                                <rend xml:id="rend-0000000045564672" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">´</rend>
+                                <rend xml:id="rend-0000001982378849" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">5</rend>
+                            </dir>
+                        </measure>
+                        <measure xml:id="measure-0000001522010201" n="22">
+                            <staff xml:id="staff-0000001520577339" n="1">
+                                <layer xml:id="layer-0000001373135901" n="1">
+                                    <beam xml:id="beam-0000000228250022">
+                                        <note xml:id="note-0000000334955183" dur.ppq="64" dur="16" oct="3" pname="b" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000366132262" dur.ppq="64" dur="16" oct="3" pname="a" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000002049081915" dur.ppq="64" dur="16" oct="3" pname="g" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001460715524" dur.ppq="64" dur="16" oct="3" pname="f" color="#000000" stem.dir="down">
+                                            <accid xml:id="accid-0000000865044454" accid="n" />
+                                        </note>
+                                    </beam>
+                                    <beam xml:id="beam-0000001599318358">
+                                        <note xml:id="note-0000001188421475" dur.ppq="64" dur="16" oct="3" pname="g" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001146762207" dur.ppq="64" dur="16" oct="3" pname="e" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001651655370" dur.ppq="64" dur="16" oct="3" pname="f" color="#000000" stem.dir="down" />
+                                        <note xml:id="note-0000001655412339" dur.ppq="64" dur="16" oct="3" pname="g" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                    <beam xml:id="beam-0000000921834182">
+                                        <note xml:id="note-0000001476932694" dur.ppq="64" dur="16" oct="3" pname="a" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000445757528" dur.ppq="64" dur="16" oct="3" pname="b" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000002106473975" dur.ppq="64" dur="16" oct="4" pname="c" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000096518152" dur.ppq="64" dur="16" oct="3" pname="b" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                    <beam xml:id="beam-0000001550310163">
+                                        <note xml:id="note-0000001626475915" dur.ppq="64" dur="16" oct="3" pname="a" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000772427135" dur.ppq="64" dur="16" oct="3" pname="g" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000002078946589" dur.ppq="64" dur="16" oct="3" pname="f" color="#000000" stem.dir="down" />
+                                        <note xml:id="note-0000001349179851" dur.ppq="64" dur="16" oct="3" pname="e" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <dir xml:id="dir-0000001466969542" staff="1" startid="#note-0000000334955183">
+                                <rend xml:id="rend-0000001791838596" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">§</rend>
+                            </dir>
+                            <dir xml:id="dir-0000001274523783" staff="1" startid="#note-0000001188421475">
+                                <rend xml:id="rend-0000000793065138" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                                <rend xml:id="rend-0000001695004638" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">5</rend>
+                            </dir>
+                            <dir xml:id="dir-0000000938450312" staff="1" startid="#note-0000001476932694">
+                                <rend xml:id="rend-0000000587854159" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">5</rend>
+                                <rend xml:id="rend-0000001831423499" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                        </measure>
+                        <measure xml:id="measure-0000000762497726" n="23">
+                            <staff xml:id="staff-0000000201939657" n="1">
+                                <layer xml:id="layer-0000002067828618" n="1">
+                                    <note xml:id="note-0000000648428433" dur.ppq="256" dur="4" oct="3" pname="d" color="#000000" stem.dir="down">
+                                        <accid xml:id="accid-0000000811733436" accid="n" />
+                                    </note>
+                                    <rest xml:id="rest-0000001340172912" dur.ppq="128" dur="8" />
+                                    <note xml:id="note-0000002131837417" dur.ppq="128" dur="8" oct="3" pname="d" color="#000000" stem.dir="down" />
+                                    <beam xml:id="beam-0000001864167516">
+                                        <note xml:id="note-0000000029797121" dur.ppq="128" dur="8" oct="3" pname="e" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000545457076" dur.ppq="128" dur="8" oct="3" pname="a" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001787523295" dur.ppq="128" dur="8" oct="3" pname="b" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000716440340" dur.ppq="128" dur="8" oct="2" pname="b" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <dir xml:id="dir-0000001131996561" staff="1" startid="#note-0000000648428433">
+                                <rend xml:id="rend-0000000583364210" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">m</rend>
+                                <rend xml:id="rend-0000000615398171" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">5</rend>
+                            </dir>
+                            <dir xml:id="dir-0000000118994668" staff="1" startid="#note-0000002131837417">
+                                <rend xml:id="rend-0000002130847316" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                            <dir xml:id="dir-0000000406957612" staff="1" startid="#note-0000000545457076">
+                                <rend xml:id="rend-0000001392515654" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">7</rend>
+                                <rend xml:id="rend-0000000845058567" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">5</rend>
+                            </dir>
+                            <dir xml:id="dir-0000000914849838" staff="1" startid="#note-0000001787523295">
+                                <rend xml:id="rend-0000001880662927" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                                <rend xml:id="rend-0000001241619535" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">4</rend>
+                            </dir>
+                            <dir xml:id="dir-0000001859981947" staff="1" startid="#note-0000000716440340">
+                                <rend xml:id="rend-0000001392615715" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">§</rend>
+                            </dir>
+                        </measure>
+                        <sb xml:id="sb-0000000663177970" />
+                        <measure xml:id="measure-0000001274988200" n="24">
+                            <staff xml:id="staff-0000001111824804" n="1" visible="true">
+                                <layer xml:id="layer-0000001240059876" n="1">
+                                    <beam xml:id="beam-0000001545661697">
+                                        <note xml:id="note-0000001857959896" dur.ppq="64" dur="16" oct="3" pname="e" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000642488013" dur.ppq="64" dur="16" oct="4" pname="c" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000161447426" dur.ppq="64" dur="16" oct="3" pname="b" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001930576968" dur.ppq="64" dur="16" oct="3" pname="a" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                    <beam xml:id="beam-0000002046148664">
+                                        <note xml:id="note-0000000639579084" dur.ppq="64" dur="16" oct="3" pname="g" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001412608663" dur.ppq="64" dur="16" oct="3" pname="a" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000540078156" dur.ppq="64" dur="16" oct="3" pname="g" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001285219856" dur.ppq="64" dur="16" oct="3" pname="f" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                    <beam xml:id="beam-0000000085492522">
+                                        <note xml:id="note-0000000277120371" dur.ppq="64" dur="16" oct="3" pname="e" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000476775938" dur.ppq="64" dur="16" oct="4" pname="c" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001241846216" dur.ppq="64" dur="16" oct="3" pname="b" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001744579478" dur.ppq="64" dur="16" oct="3" pname="a" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                    <beam xml:id="beam-0000000781472935">
+                                        <note xml:id="note-0000000589447791" dur.ppq="64" dur="16" oct="3" pname="g" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000929756728" dur.ppq="64" dur="16" oct="3" pname="a" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000605190594" dur.ppq="64" dur="16" oct="3" pname="g" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001034736905" dur.ppq="64" dur="16" oct="3" pname="f" color="#000000" stem.dir="down">
+                                            <accid xml:id="accid-0000000293727898" accid="n" />
+                                        </note>
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <dir xml:id="dir-0000000405674821" staff="1" startid="#note-0000000642488013">
+                                <rend xml:id="rend-0000001990914340" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                            <dir xml:id="dir-0000001965908372" staff="1" startid="#note-0000000161447426">
+                                <rend xml:id="rend-0000000191463226" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                            <dir xml:id="dir-0000001718744876" staff="1" startid="#note-0000001930576968">
+                                <rend xml:id="rend-0000000361085553" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                            <dir xml:id="dir-0000000560469731" staff="1" startid="#note-0000000639579084">
+                                <rend xml:id="rend-0000000074898967" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                            <dir xml:id="dir-0000001508417713" staff="1" startid="#note-0000000476775938">
+                                <rend xml:id="rend-0000000636177726" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                            <dir xml:id="dir-0000000536753365" staff="1" startid="#note-0000001241846216">
+                                <rend xml:id="rend-0000001432648718" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                            <dir xml:id="dir-0000001939616289" staff="1" startid="#note-0000001744579478">
+                                <rend xml:id="rend-0000001790132571" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                            <dir xml:id="dir-0000002032547214" staff="1" startid="#note-0000000589447791">
+                                <rend xml:id="rend-0000001023682620" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                        </measure>
+                        <measure xml:id="measure-0000000716497040" n="25">
+                            <staff xml:id="staff-0000000735706456" n="1">
+                                <layer xml:id="layer-0000000975456113" n="1">
+                                    <beam xml:id="beam-0000001982436714">
+                                        <note xml:id="note-0000000557148960" dur.ppq="128" dur="8" oct="3" pname="e" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001136361880" dur.ppq="128" dur="8" oct="3" pname="f" color="#000000" stem.dir="down">
+                                            <accid xml:id="accid-0000000282178961" accid="n" />
+                                        </note>
+                                        <note xml:id="note-0000000255457695" dur.ppq="128" dur="8" oct="3" pname="g" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001757321634" dur.ppq="128" dur="8" oct="3" pname="e" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                    <note xml:id="note-0000001626972341" dur.ppq="256" dur="4" oct="3" pname="f" color="#000000" stem.dir="down" />
+                                    <rest xml:id="rest-0000000563911399" dur.ppq="128" dur="8" />
+                                    <note xml:id="note-0000000654126289" dur.ppq="128" dur="8" oct="3" pname="b" color="#000000" stem.dir="down" accid.ges="f" />
+                                </layer>
+                            </staff>
+                            <dir xml:id="dir-0000000563597557" staff="1" startid="#note-0000001757321634">
+                                <rend xml:id="rend-0000001444367383" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                            <dir xml:id="dir-0000000958287458" staff="1" startid="#note-0000001626972341">
+                                <rend xml:id="rend-0000001325353943" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">§</rend>
+                            </dir>
+                        </measure>
+                        <measure xml:id="measure-0000000122514185" n="26">
+                            <staff xml:id="staff-0000002012204058" n="1">
+                                <layer xml:id="layer-0000002104115096" n="1">
+                                    <note xml:id="note-0000002023806224" dur.ppq="256" dur="4" oct="3" pname="b" color="#000000" stem.dir="down" accid.ges="f" />
+                                    <note xml:id="note-0000000578594092" dur.ppq="256" dur="4" oct="3" pname="a" color="#000000" stem.dir="down">
+                                        <accid xml:id="accid-0000001121139895" accid="n" />
+                                    </note>
+                                    <note xml:id="note-0000002003032444" dur.ppq="256" dur="4" oct="3" pname="a" color="#000000" stem.dir="down">
+                                        <accid xml:id="accid-0000001251700021" accid="f" accid.ges="f" />
+                                    </note>
+                                    <note xml:id="note-0000001593115874" dur.ppq="256" dur="4" oct="3" pname="g" color="#000000" stem.dir="down">
+                                        <accid xml:id="accid-0000000500942785" accid="n" />
+                                    </note>
+                                </layer>
+                            </staff>
+                            <dir xml:id="dir-0000002141303377" staff="1" startid="#note-0000002023806224">
+                                <rend xml:id="rend-0000001591515585" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">4</rend>
+                                <rend xml:id="rend-0000000802355293" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">2</rend>
+                            </dir>
+                            <dir xml:id="dir-0000000981020185" staff="1" startid="#note-0000000578594092">
+                                <rend xml:id="rend-0000000675365987" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                            <dir xml:id="dir-0000000561013549" staff="1" startid="#note-0000002003032444">
+                                <rend xml:id="rend-0000001209082196" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">4</rend>
+                                <rend xml:id="rend-0000000886978010" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">2</rend>
+                            </dir>
+                            <dir xml:id="dir-0000000995609919" staff="1" startid="#note-0000001593115874">
+                                <rend xml:id="rend-0000000157310890" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                        </measure>
+                        <measure xml:id="measure-0000000386593385" n="27">
+                            <staff xml:id="staff-0000001731368419" n="1">
+                                <layer xml:id="layer-0000000210583324" n="1">
+                                    <note xml:id="note-0000002071444453" dur.ppq="256" dur="4" oct="3" pname="g" color="#000000" stem.dir="down">
+                                        <accid xml:id="accid-0000001993091912" accid="f" accid.ges="f" />
+                                    </note>
+                                    <note xml:id="note-0000001199380989" dur.ppq="256" dur="4" oct="3" pname="f" color="#000000" stem.dir="down">
+                                        <accid xml:id="accid-0000000872746259" accid="n" />
+                                    </note>
+                                    <note xml:id="note-0000001878642223" dur.ppq="256" dur="4" oct="3" pname="f" color="#000000" stem.dir="down" />
+                                    <note xml:id="note-0000001226507648" dur.ppq="256" dur="4" oct="3" pname="e" color="#000000" stem.dir="down">
+                                        <accid xml:id="accid-0000001940051893" accid="n" />
+                                    </note>
+                                </layer>
+                            </staff>
+                            <dir xml:id="dir-0000002085816436" staff="1" startid="#note-0000002071444453">
+                                <rend xml:id="rend-0000001459960479" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">v</rend>
+                                <rend xml:id="rend-0000000342053616" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">2</rend>
+                            </dir>
+                            <dir xml:id="dir-0000000912248286" staff="1" startid="#note-0000001199380989">
+                                <rend xml:id="rend-0000001967382630" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                            <tie xml:id="tie-0000001309059955" startid="#note-0000001199380989" endid="#note-0000001878642223" />
+                            <dir xml:id="dir-0000000050113731" staff="1" startid="#note-0000001878642223">
+                                <rend xml:id="rend-0000001964529006" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">r</rend>
+                                <rend xml:id="rend-0000000779207246" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">2</rend>
+                            </dir>
+                            <dir xml:id="dir-0000000020820550" staff="1" startid="#note-0000001226507648">
+                                <rend xml:id="rend-0000001275384790" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                        </measure>
+                        <measure xml:id="measure-0000001535241857" n="28">
+                            <staff xml:id="staff-0000000665437271" n="1">
+                                <layer xml:id="layer-0000001941772763" n="1">
+                                    <note xml:id="note-0000000844770914" dur.ppq="256" dur="4" oct="3" pname="e" color="#000000" stem.dir="down">
+                                        <accid xml:id="accid-0000000579512788" accid="f" accid.ges="f" />
+                                    </note>
+                                    <rest xml:id="rest-0000000796790836" dur.ppq="128" dur="8" />
+                                    <note xml:id="note-0000001282026167" dur.ppq="128" dur="8" oct="3" pname="d" color="#000000" stem.dir="down">
+                                        <accid xml:id="accid-0000001413616626" accid="n" />
+                                    </note>
+                                    <note xml:id="note-0000000122757968" dur.ppq="256" dur="4" oct="3" pname="e" color="#000000" stem.dir="down" accid.ges="f" />
+                                    <rest xml:id="rest-0000000469377129" dur.ppq="128" dur="8" />
+                                    <note xml:id="note-0000001598808104" dur.ppq="128" dur="8" oct="3" pname="e" color="#000000" stem.dir="down">
+                                        <accid xml:id="accid-0000001711482018" accid="n" />
+                                    </note>
+                                </layer>
+                            </staff>
+                            <dir xml:id="dir-0000000531315901" staff="1" startid="#note-0000000844770914">
+                                <rend xml:id="rend-0000001773215593" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">K</rend>
+                                <rend xml:id="rend-0000000746529746" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">2</rend>
+                            </dir>
+                            <dir xml:id="dir-0000000886538165" staff="1" startid="#note-0000001282026167">
+                                <rend xml:id="rend-0000000808338813" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                            <dir xml:id="dir-0000000996939759" staff="1" startid="#note-0000001598808104">
+                                <rend xml:id="rend-0000000054902304" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                        </measure>
+                        <sb xml:id="sb-0000001765761187" />
+                        <measure xml:id="measure-0000000117772895" n="29">
+                            <staff xml:id="staff-0000001309335132" n="1" visible="true">
+                                <layer xml:id="layer-0000001134361687" n="1">
+                                    <note xml:id="note-0000001623279339" dur.ppq="256" dur="4" oct="3" pname="f" color="#000000" stem.dir="down">
+                                        <accid xml:id="accid-0000000519041615" accid="n" />
+                                    </note>
+                                    <rest xml:id="rest-0000001843079938" dur.ppq="128" dur="8" />
+                                    <note xml:id="note-0000001197712097" dur.ppq="128" dur="8" oct="3" pname="b" color="#000000" stem.dir="down" accid.ges="f" />
+                                    <beam xml:id="beam-0000001927033996">
+                                        <note xml:id="note-0000001682320149" dur.ppq="128" dur="8" oct="3" pname="a" color="#000000" stem.dir="down">
+                                            <accid xml:id="accid-0000000243451114" accid="n" />
+                                        </note>
+                                        <note xml:id="note-0000002005581427" dur.ppq="128" dur="8" oct="4" pname="d" color="#000000" stem.dir="down">
+                                            <accid xml:id="accid-0000000906004934" accid="f" accid.ges="f" />
+                                        </note>
+                                        <note xml:id="note-0000000080748779" dur.ppq="128" dur="8" oct="4" pname="c" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001467474711" dur.ppq="128" dur="8" oct="3" pname="b" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <dir xml:id="dir-0000001551789408" staff="1" startid="#note-0000001623279339">
+                                <rend xml:id="rend-0000000160403611" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">§</rend>
+                            </dir>
+                            <dir xml:id="dir-0000000185852618" staff="1" startid="#note-0000001682320149">
+                                <rend xml:id="rend-0000000070440783" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                            <dir xml:id="dir-0000000223083243" staff="1" startid="#note-0000002005581427">
+                                <rend xml:id="rend-0000000671921830" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                            <dir xml:id="dir-0000001673457504" staff="1" startid="#note-0000000080748779">
+                                <rend xml:id="rend-0000001978586243" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">´</rend>
+                            </dir>
+                        </measure>
+                        <measure xml:id="measure-0000000834775169" n="30">
+                            <staff xml:id="staff-0000001921727284" n="1">
+                                <layer xml:id="layer-0000000679983929" n="1">
+                                    <note xml:id="note-0000001952944559" dur.ppq="256" dur="4" oct="3" pname="a" color="#000000" stem.dir="down">
+                                        <accid xml:id="accid-0000000857291699" accid="n" />
+                                    </note>
+                                    <rest xml:id="rest-0000001974123037" dur.ppq="128" dur="8" />
+                                    <note xml:id="note-0000000706192332" dur.ppq="128" dur="8" oct="3" pname="a" color="#000000" stem.dir="down" />
+                                    <beam xml:id="beam-0000000510884964">
+                                        <note xml:id="note-0000001986524335" dur.ppq="128" dur="8" oct="3" pname="b" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000659959735" dur.ppq="128" dur="8" oct="3" pname="a" color="#000000" stem.dir="down" />
+                                        <note xml:id="note-0000000198346048" dur.ppq="128" dur="8" oct="3" pname="g" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000264964798" dur.ppq="128" dur="8" oct="3" pname="f" color="#000000" stem.dir="down">
+                                            <accid xml:id="accid-0000000400862437" accid="n" />
+                                        </note>
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <dir xml:id="dir-0000002029688452" staff="1" startid="#note-0000001952944559">
+                                <rend xml:id="rend-0000000565671289" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                            <dir xml:id="dir-0000000451369587" staff="1" startid="#rest-0000001974123037">
+                                <rend xml:id="rend-0000002021951661" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">m</rend>
+                                <rend xml:id="rend-0000002024404151" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">5</rend>
+                            </dir>
+                            <dir xml:id="dir-0000001180396051" staff="1" startid="#note-0000000706192332">
+                                <rend xml:id="rend-0000000822545632" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                            <dir xml:id="dir-0000001507167882" staff="1" startid="#note-0000000198346048">
+                                <rend xml:id="rend-0000000329156883" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                            <dir xml:id="dir-0000000985879998" staff="1" startid="#note-0000000264964798">
+                                <rend xml:id="rend-0000001519115861" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">´</rend>
+                            </dir>
+                        </measure>
+                        <measure xml:id="measure-0000000001440791" n="31">
+                            <staff xml:id="staff-0000001107238745" n="1">
+                                <layer xml:id="layer-0000001193529390" n="1">
+                                    <note xml:id="note-0000000376933856" dur.ppq="256" dur="4" oct="3" pname="e" color="#000000" stem.dir="down" accid.ges="f" />
+                                    <beam xml:id="beam-0000001185043203">
+                                        <note xml:id="note-0000001869411365" dur.ppq="128" dur="8" oct="3" pname="f" color="#000000" stem.dir="up">
+                                            <accid xml:id="accid-0000001886997907" accid="n" />
+                                        </note>
+                                        <note xml:id="note-0000001141710549" dur.ppq="128" dur="8" oct="2" pname="f" color="#000000" stem.dir="up">
+                                            <accid xml:id="accid-0000001372333138" accid="n" />
+                                        </note>
+                                    </beam>
+                                    <beam xml:id="beam-0000000699187572">
+                                        <note xml:id="note-0000001495274510" dur.ppq="128" dur="8" oct="2" pname="g" color="#000000" stem.dir="up" accid.ges="f" />
+                                        <note xml:id="note-0000001263792885" dur.ppq="128" dur="8" oct="3" pname="g" color="#000000" stem.dir="up" accid.ges="f" />
+                                    </beam>
+                                    <note xml:id="note-0000000572131924" dur.ppq="256" dur="4" oct="3" pname="f" color="#000000" stem.dir="down">
+                                        <accid xml:id="accid-0000001536553401" accid="n" />
+                                    </note>
+                                </layer>
+                            </staff>
+                            <dir xml:id="dir-0000000349657417" staff="1" startid="#note-0000000376933856">
+                                <rend xml:id="rend-0000000605805165" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                                <rend xml:id="rend-0000001987185458" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">5</rend>
+                            </dir>
+                            <dir xml:id="dir-0000000464817145" staff="1" startid="#note-0000001869411365">
+                                <rend xml:id="rend-0000001569615793" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                                <rend xml:id="rend-0000001674364302" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">4</rend>
+                            </dir>
+                            <dir xml:id="dir-0000001856292172" staff="1" startid="#note-0000001141710549">
+                                <rend xml:id="rend-0000001635865459" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">§</rend>
+                            </dir>
+                            <dir xml:id="dir-0000000153529922" staff="1" startid="#note-0000000572131924">
+                                <rend xml:id="rend-0000002027644860" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">´</rend>
+                            </dir>
+                        </measure>
+                        <measure xml:id="measure-0000000345203196" n="32">
+                            <staff xml:id="staff-0000002062459963" n="1">
+                                <layer xml:id="layer-0000001734952300" n="1">
+                                    <note xml:id="note-0000002056508738" dur.ppq="256" dur="4" oct="3" pname="e" color="#000000" stem.dir="down" accid.ges="f" />
+                                    <rest xml:id="rest-0000000833352817" dur.ppq="128" dur="8" />
+                                    <note xml:id="note-0000001411404566" dur.ppq="128" dur="8" oct="3" pname="c" color="#000000" stem.dir="up" accid.ges="f" />
+                                    <note xml:id="note-0000000713377450" dur.ppq="256" dur="4" oct="3" pname="c" color="#000000" stem.dir="up" accid.ges="f" />
+                                    <rest xml:id="rest-0000000523264739" dur.ppq="128" dur="8" />
+                                    <note xml:id="note-0000001549789759" dur.ppq="128" dur="8" oct="2" pname="b" color="#000000" stem.dir="up" accid.ges="f" />
+                                </layer>
+                            </staff>
+                            <dir xml:id="dir-0000001650494586" staff="1" startid="#note-0000001411404566">
+                                <rend xml:id="rend-0000000783018755" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                            <dir xml:id="dir-0000000434306114" staff="1" startid="#note-0000000713377450">
+                                <rend xml:id="rend-0000000361276548" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                                <rend xml:id="rend-0000002064684212" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">K</rend>
+                                <rend xml:id="rend-0000000979747259" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">2</rend>
+                            </dir>
+                            <dir xml:id="dir-0000000010014570" staff="1" startid="#note-0000001549789759">
+                                <rend xml:id="rend-0000001000060727" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                        </measure>
+                        <sb xml:id="sb-0000001844198015" />
+                        <measure xml:id="measure-0000001540029179" n="33">
+                            <staff xml:id="staff-0000001466195884" n="1" visible="true">
+                                <layer xml:id="layer-0000001723321086" n="1">
+                                    <beam xml:id="beam-0000000286140915">
+                                        <note xml:id="note-0000001843996401" dur.ppq="64" dur="16" oct="3" pname="c" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000002135690171" dur.ppq="64" dur="16" oct="3" pname="d" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001584579080" dur.ppq="64" dur="16" oct="3" pname="e" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000342768024" dur.ppq="64" dur="16" oct="3" pname="f" color="#000000" stem.dir="down">
+                                            <accid xml:id="accid-0000000906512682" accid="n" />
+                                        </note>
+                                    </beam>
+                                    <beam xml:id="beam-0000000075765290">
+                                        <note xml:id="note-0000001234582718" dur.ppq="64" dur="16" oct="3" pname="g" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000438358071" dur.ppq="64" dur="16" oct="3" pname="a" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001406776467" dur.ppq="64" dur="16" oct="3" pname="b" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000123760114" dur.ppq="64" dur="16" oct="4" pname="c" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                    <beam xml:id="beam-0000000925760096">
+                                        <note xml:id="note-0000001763624715" dur.ppq="128" dur="8" oct="4" pname="d" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000287143984" dur.ppq="128" dur="8" oct="4" pname="d" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000626846445" dur.ppq="128" dur="8" oct="4" pname="d" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001657427568" dur.ppq="128" dur="8" oct="4" pname="d" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <dir xml:id="dir-0000000802225335" staff="1" startid="#note-0000001763624715">
+                                <rend xml:id="rend-0000000489679566" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">5</rend>
+                            </dir>
+                            <dir xml:id="dir-0000002024823069" staff="1" startid="#note-0000000287143984">
+                                <rend xml:id="rend-0000001084313716" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                                <rend xml:id="rend-0000001303885756" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">4</rend>
+                            </dir>
+                            <dir xml:id="dir-0000001603723173" staff="1" startid="#note-0000000626846445">
+                                <rend xml:id="rend-0000000672103781" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">5</rend>
+                            </dir>
+                            <dir xml:id="dir-0000001285280720" staff="1" startid="#note-0000001657427568">
+                                <rend xml:id="rend-0000001279420097" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                                <rend xml:id="rend-0000001972187251" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">4</rend>
+                            </dir>
+                        </measure>
+                        <measure xml:id="measure-0000001410164734" n="34">
+                            <staff xml:id="staff-0000001961047726" n="1">
+                                <layer xml:id="layer-0000000865081100" n="1">
+                                    <beam xml:id="beam-0000001816218610">
+                                        <note xml:id="note-0000000115710072" dur.ppq="128" dur="8" oct="4" pname="d" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000602038857" dur.ppq="128" dur="8" oct="4" pname="d" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001832704870" dur.ppq="128" dur="8" oct="4" pname="d" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001855627087" dur.ppq="128" dur="8" oct="4" pname="d" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                    <note xml:id="note-0000000870898709" dur.ppq="256" dur="4" oct="4" pname="d" color="#000000" stem.dir="down" accid.ges="f" />
+                                    <rest xml:id="rest-0000002051590298" dur.ppq="128" dur="8" />
+                                    <note xml:id="note-0000001457159732" dur.ppq="128" dur="8" oct="4" pname="d" color="#000000" stem.dir="down">
+                                        <accid xml:id="accid-0000001871240747" accid="n" />
+                                    </note>
+                                </layer>
+                            </staff>
+                            <dir xml:id="dir-0000002067231165" staff="1" startid="#note-0000000115710072">
+                                <rend xml:id="rend-0000001367956094" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">5</rend>
+                            </dir>
+                            <dir xml:id="dir-0000000956553219" staff="1" startid="#note-0000000602038857">
+                                <rend xml:id="rend-0000001037608367" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                                <rend xml:id="rend-0000000161646676" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">4</rend>
+                            </dir>
+                            <dir xml:id="dir-0000001066057687" staff="1" startid="#note-0000001832704870">
+                                <rend xml:id="rend-0000000961583680" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                            <dir xml:id="dir-0000001560857046" staff="1" startid="#note-0000001855627087">
+                                <rend xml:id="rend-0000000058017695" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                                <rend xml:id="rend-0000001192740180" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">4</rend>
+                            </dir>
+                            <dir xml:id="dir-0000001905842011" staff="1" startid="#note-0000000870898709">
+                                <rend xml:id="rend-0000000307041501" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">7</rend>
+                            </dir>
+                            <dir xml:id="dir-0000000496159954" staff="1" startid="#note-0000001457159732">
+                                <rend xml:id="rend-0000000863118590" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                                <rend xml:id="rend-0000001273118757" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">5</rend>
+                            </dir>
+                        </measure>
+                        <measure xml:id="measure-0000000643938260" right="end" n="35">
+                            <staff xml:id="staff-0000000903706028" n="1">
+                                <layer xml:id="layer-0000000650835817" n="1">
+                                    <beam xml:id="beam-0000001067814655">
+                                        <note xml:id="note-0000000010211474" dur.ppq="128" dur="8" oct="4" pname="e" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000757489505" dur.ppq="128" dur="8" oct="3" pname="a" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000000023623395" dur.ppq="128" dur="8" oct="3" pname="b" color="#000000" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="note-0000001900391455" dur.ppq="128" dur="8" oct="2" pname="b" color="#000000" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                    <note xml:id="note-0000000771591932" dur.ppq="512" dur="2" oct="3" pname="e" color="#000000" stem.dir="down" accid.ges="f" />
+                                </layer>
+                            </staff>
+                            <dir xml:id="dir-0000000152801933" staff="1" startid="#note-0000000757489505">
+                                <rend xml:id="rend-0000001183756761" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                            </dir>
+                            <dir xml:id="dir-0000001169749392" staff="1" startid="#note-0000000023623395">
+                                <rend xml:id="rend-0000001453951865" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6</rend>
+                                <rend xml:id="rend-0000001484581297" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">4</rend>
+                            </dir>
+                            <dir xml:id="dir-0000000894602097" staff="1" startid="#note-0000001900391455">
+                                <rend xml:id="rend-0000000856501519" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">§</rend>
+                            </dir>
+                        </measure>
+                    </section>
+                </score>
+            </mdiv>
+        </body>
+    </music>
+</mei>
