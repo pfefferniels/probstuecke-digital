@@ -256,7 +256,9 @@ app.get('/music-example', function(req, res) {
     
     // render MEI
     vrvToolkit.loadData(mei.toString());
-    svg = vrvToolkit.renderToSVG(1, {});
+    svg = vrvToolkit.renderToSVG(1, {
+      adjustPageHeight: 1
+    });
     res.send(svg);
   });
 });

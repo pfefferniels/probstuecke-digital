@@ -185,15 +185,21 @@ function updateAnnotations() {
         notatedmusic.find("tei-ptr").replaceWith(svg);
         
         // TODO: this is quite hacky ...
-        var svg1 = notatedmusic.find("svg")[0];
-        var svg2 = notatedmusic.find("svg")[1];
-        var height = svg1.getBBox().height;
-        svg2.setAttribute("viewBox", "0 0 21000 " + Math.floor(height*65));
-        svg1.style.height = height;
+        var svg1 = notatedmusic.find("svg")[1];
+        var svgDiv = notatedmusic.find("svg")[0];
+        var bb=svg1.getBBox();
+        var bbx=bb.x;
+        var bby=bb.y;
+        var bbw=bb.width;
+        var bbh=bb.height;
+        var vb=[bbx,bby,bbw,bbh];
+        svg1.setAttribute("viewBox", vb.join(" ") );
+        svgDiv.style.width=(bbw/1000)*28.34;
+        svgDiv.style.height=(bbh/1000)*28.34;
       });
     });
     
-  }).fail(function() {
+  }).fail(function(param) {
     printError("failed loading annotations");
   });
 }
