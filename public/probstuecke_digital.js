@@ -1,12 +1,8 @@
 currentParams = {
   page: 1,
   nr: 1,
-  showRealizedAnnotations: false,
-  basseFondamentale: false,
-  decolorizedBass: false,
-  exampleRealization: -1,
+  display: [],
   modernClefs: false,
-  hideVariants: true,
   emptyStaffsBelow: 0,
   emptyStaffsAbove: 0,
   lang: "de",
@@ -23,7 +19,6 @@ function printError(message) {
 }
 
 function highlight(selector) {
-  console.log("trying to highlight " + selector);
   var element = $(selector);
   if (element.length == 0) {
     currentParams.page = parseInt(currentParams.page, 10) + 1;
@@ -87,7 +82,34 @@ function playMIDI() {
 // update view functions
 // ------
 
-function updateDescription() {
+let staffLabels = {
+  "mattheson": "Matthson's annotations",
+  "basse-fondamentale": "<i>basse fondamentale</i> (Rameau)",
+  "fundamental-notes": "<i>Grund-Noten</i> (Mattheson)",
+  "pfeffer": "by Niels Pfeffer"
+};
+
+function displayCheckboxes(block, group) {
+  if (block) {
+    for (var i=0; i<block.length; i++) {
+      var blockName = block[i];
+      $("#" + group).append('<br/>');
+      
+      $('<input type="checkbox" id="' + blockName + '" autocomplete="off">').appendTo("#" + group).change(function() {
+        if ($(this).is(':checked')) {
+          currentParams.display.push($(this).attr("id"));
+        } else {
+          currentParams.display.splice($.inArray($(this).attr("id"), currentParams.display), 1);
+        }
+        updateView();
+      });
+      $("#" + blockName)[0].checked = currentParams.display.includes(blockName);
+      $("#" + group).append('<label for="' + blockName + '">' + staffLabels[blockName] + '</label>');
+    }
+  }
+}
+
+function updateDescription(onFinish) {
   $.get("description?nr=" + currentParams.nr, function(data) {
     $("#realizations").empty();
     $("#analysis").empty();
@@ -97,42 +119,9 @@ function updateDescription() {
     var analysis = data.analysis;
     var annotations = data.annotations;
     
-    if (realizations) {
-      for (var i=0; i<realizations.length; i++) {
-        $("#realizations").append('<br/>');
-        $("#realizations").append('<input type="checkbox" id="example-realization-' + i + '" autocomplete="off">');
-        $("#realizations").append('<label for="example-realization-' + i + '"> by ' + realizations[i] + '</label>');
-        
-        if (i == currentParams.exampleRealization) {
-          $("#example-realization-" + i)[0].checked = true;
-        }
-        $("#example-realization-" + i).change(function() {
-          if ($(this).is(':checked')) {
-            currentParams.exampleRealization = i;
-            console.log("currentParams.exampleRealization=" + currentParams.exampleRealization);
-          } else {
-            currentParams.exampleRealization = -1;
-          }
-          updateAnnotations();
-          renderCurrentPage();
-        });
-      }
-    }
+    displayCheckboxes(realizations, "realizations");
+    displayCheckboxes(analysis, "analysis");
     
-    if (analysis) {
-      for (var i=0; i<analysis.length; i++) {
-        $("#analysis").append('<br/>');
-        $("#analysis").append('<input type="checkbox" id="' + analysis[i] + '" autocomplete="off">');
-        $("#analysis").append('<label for="' + analysis[i] + '">' + analysis[i] + '</label>');
-      }
-      
-      $("#basse-fondamentale")[0].checked = currentParams.basseFondamentale;
-      $("#basse-fondamentale").change(function() {
-        currentParams.basseFondamentale = $(this).is(':checked');
-        updateAnnotations();
-        renderCurrentPage();
-      });
-    }
     
     if (annotations) {
       $("#available-annotations").append('<select id="lang" name="lang" autocomplete="off">');
@@ -151,7 +140,9 @@ function updateDescription() {
       }
       $("#available-annotations").append('</select>');
       
-      $("option[value='" + currentParams.lang + "']")[0].selected = true;
+      $("option[value='" + annotations[0] + "']")[0].selected = true;
+      currentParams.lang = annotations[0];
+      
       $("#lang").change(function() {
         currentParams.lang = $(this).val();
         updateAnnotations();
@@ -159,6 +150,9 @@ function updateDescription() {
       });
     }
     
+    if (typeof onFinish === "function") {
+      onFinish();
+    }
   }).fail(function() {
     printError("failed loading description");
   });
@@ -218,9 +212,6 @@ function renderCurrentPage(onFinish) {
     var svg = response.svg;
     
     $("#score-view").html(svg);
-    
-    connectReferences();
-    connectTooltips();
     
     if (typeof onFinish === "function") {
       onFinish();
@@ -302,9 +293,16 @@ function updateView(onFinish) {
     currentParams.page = 1;
   }
   
-  updateDescription();
-  updateAnnotations();
-  renderCurrentPage(onFinish);
+  updateDescription(function() {
+    updateAnnotations();
+    renderCurrentPage(function() {
+      connectReferences();
+      connectTooltips();
+      if (typeof onFinish === "function") {
+        onFinish();
+      }
+    });
+  });
 }
 
 $(document).ready(function() {
@@ -327,34 +325,24 @@ $(document).ready(function() {
   
   $("#staves-below").change(function() {
     currentParams.emptyStaffsBelow = $(this).val();
-    updateAnnotations();
-    renderCurrentPage();
+    updateView();
   });
   
   $("#staves-above").change(function() {
     currentParams.emptyStaffsAbove = $(this).val();
-    updateAnnotations();
-    renderCurrentPage();
+    updateView();
   });
   
   $("#previous-page").click(function() {
     currentParams.page = parseInt(currentParams.page, 10) - 1;
-    updateAnnotations();
-    renderCurrentPage();
+    updateView();
   });
   
   $("#next-page").click(function() {
     currentParams.page = parseInt(currentParams.page, 10) + 1;
-    updateAnnotations();
-    renderCurrentPage();
-  });
-  
-  
-  $("#show-realized-annotations").change(function() {
-    console.log($(this).val());
-    currentParams.showRealizedAnnotations = $(this).is(':checked');
     updateView();
   });
+  
   
   $("#modern-clefs").change(function() {
     currentParams.modernClefs = $(this).is(':checked');

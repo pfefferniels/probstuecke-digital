@@ -27,19 +27,19 @@
     </meiHead>
     <music>
         <body>
-            <mdiv xml:id="mdiv-0000000238056308">
-                <score xml:id="score-0000001300125215">
-                    <scoreDef xml:id="scoredef-0000001227810225">
-                        <staffGrp xml:id="staffgrp-0000000097299438">
-                            <staffDef clef.shape="C" clef.line="1" key.mode="major" key.sig="1f" meter.count="4" meter.unit="4" n="1" lines="5">
+            <mdiv>
+                <score>
+                    <scoreDef>
+                        <staffGrp>
+                            <staffDef xml:id="mattheson" clef.shape="C" clef.line="1" key.mode="major" key.sig="1f" meter.count="4" meter.unit="4" n="1" lines="5">
                                 <label>Mattheson's annotations</label>
                             </staffDef>
                             
-                            <staffDef clef.shape="F" clef.line="4" key.mode="major" key.sig="1f" meter.count="4" meter.unit="4" n="41" lines="5">
-                              <label>Realization (by Niels Pfeffer)</label>
+                            <staffDef xml:id="pfeffer" clef.shape="F" clef.line="4" key.mode="major" key.sig="1f" meter.count="4" meter.unit="4" n="3" lines="5">
+                              <label>Realization (Pfeffer)</label>
                             </staffDef>
                             
-                            <staffDef clef.shape="F" clef.line="4" key.mode="major" key.sig="1f" meter.count="4" meter.unit="4" n="2" lines="5">
+                            <staffDef xml:id="bass" clef.shape="F" clef.line="4" key.mode="major" key.sig="1f" meter.count="4" meter.unit="4" n="2" lines="5">
                                 <label></label>
                             </staffDef>
                         </staffGrp>
@@ -74,7 +74,7 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <staff n="41">
+                            <staff n="3">
                                 <layer n="1">
                                     <chord dots="1" dur="8" stem.dir="down">
                                         <note dots="1" dur="8" oct="3" pname="d" pnum="50"/>
@@ -124,7 +124,7 @@
                             </staff>
                             <staff xml:id="m-62" n="2">
                                 <layer n="1">
-                                    <rest xml:id="m-64" dur="32" dur.ges="32p"/>
+                                    <rest xml:id="m-64" dur="32" />
                                     <beam xml:id="m-66">
                                         <note xml:id="m-65" dur="32" oct="3" pname="d" pnum="50" stem.dir="down"/>
                                         <note xml:id="m-67" dur="32" oct="3" pname="e" pnum="52" stem.dir="down"/>
@@ -155,7 +155,7 @@
                                     </note>
                                     <rest xml:id="m-86" dur="8" />
                                 </layer>
-                                <layer n="41">
+                                <layer n="3">
                                     <space dur="2" visible="false" />
                                     <beam>
                                         <note dur="8" oct="3" pname="b" pnum="58" color="grey" stem.dir="up">
@@ -202,7 +202,7 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <staff n="41">
+                            <staff n="3">
                                 <layer n="1">
                                     <chord dots="1" dur="8" stem.dir="up">
                                         <note dots="1" dur="8" oct="3" pname="g" pnum="55"/>
@@ -253,7 +253,7 @@
                             </staff>
                             <staff xml:id="m-110" n="2">
                                 <layer n="1">
-                                    <rest xml:id="m-112" dur="32" dur.ges="32p"/>
+                                    <rest xml:id="m-112" dur="32" />
                                     <beam xml:id="m-114">
                                         <note xml:id="m-113" dur="32" oct="3" pname="g" pnum="55" stem.dir="down"/>
                                         <note xml:id="m-115" dur="32" oct="3" pname="a" pnum="57" stem.dir="down"/>
@@ -284,7 +284,7 @@
                                     </note>
                                     <rest xml:id="m-134" dur="8" />
                                 </layer>
-                                <layer n="41">
+                                <layer n="3">
                                     <space dur="2" visible="false" />
                                     <beam>
                                         <note dur="8" oct="4" pname="e" pnum="63" color="grey" stem.dir="up">
@@ -310,7 +310,7 @@
                                     <mRest xml:id="m-142" visible="false"/>
                                 </layer>
                             </staff>
-                            <staff n="41">
+                            <staff n="3">
                                 <layer n="1">
                                     <beam>
                                         <note dur="32" oct="5" pname="e" pnum="75" stem.dir="down">
@@ -449,7 +449,7 @@
                                     <mRest xml:id="m-195"/>
                                 </layer>
                             </staff>
-                            <staff n="41">
+                            <staff n="3">
                                 <layer n="1">
                                     <rest dur="32" />
                                     <note dur="32" oct="4" pname="d" pnum="62" stem.dir="down"/>
@@ -558,7 +558,7 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <staff n="41">
+                            <staff n="3">
                                 <layer n="1">
                                     <beam>
                                         <chord dur="8" stem.dir="down">
@@ -628,7 +628,7 @@
                                     <note xml:id="m-267" dur="8" oct="3" pname="e" pnum="52" stem.dir="down"/>
                                     <rest xml:id="m-268" dur="8" />
                                 </layer>
-                                <layer n="41">
+                                <layer n="3">
                                     <space dur="2" visible="false" />
                                     <beam>
                                         <note dur="8" oct="3" pname="a" pnum="57" color="grey" stem.dir="up"/>
@@ -688,7 +688,7 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <staff n="41">
+                            <staff n="3">
                                 <layer n="1">
                                     <beam>
                                         <note dur="32" oct="4" pname="a" pnum="69" stem.dir="down">
@@ -769,7 +769,7 @@
                                         <note xml:id="m-333" dur="16" oct="2" pname="a" pnum="45" stem.dir="up"/>
                                     </beam>
                                 </layer>
-                                <layer n="41">
+                                <layer n="3">
                                   <beam>
                                     <note dur="16" oct="3" pname="a" color="grey" stem.dir="up"/>
                                     <note dur="16" oct="3" pname="b" color="grey" stem.dir="up"/>
@@ -797,7 +797,7 @@
                                     <mRest xml:id="m-341" visible="false"/>
                                 </layer>
                             </staff>
-                            <staff n="41">
+                            <staff n="3">
                                 <layer n="1">
                                     <beam>
                                         <note dur="32" oct="4" pname="d" pnum="62" stem.dir="up"/>
@@ -853,7 +853,7 @@
                                 </layer>
                             </staff>
                             <staff xml:id="m-342" n="2">
-                                <layer n="41">
+                                <layer n="3">
                                     <beam>
                                         <note dur="16" oct="3" pname="d" stem.dir="up" color="grey" />
                                         <note dur="16" oct="3" pname="e" stem.dir="up" color="grey" />
@@ -939,7 +939,7 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <staff n="41">
+                            <staff n="3">
                                 <layer n="1">
                                     <chord dur="8" stem.dir="up">
                                         <note dur="8" oct="4" pname="c" pnum="61">
@@ -991,7 +991,7 @@
                             </staff>
                             <staff xml:id="m-400" n="2">
                                 <layer n="1">
-                                    <rest xml:id="m-402" dur="32" dur.ges="32p"/>
+                                    <rest xml:id="m-402" dur="32" />
                                     <beam xml:id="m-404">
                                         <note xml:id="m-403" dur="32" oct="3" pname="a" pnum="57" stem.dir="down"/>
                                         <note xml:id="m-405" dur="32" oct="3" pname="b" pnum="59" stem.dir="down">
@@ -1044,7 +1044,7 @@
                                     <mRest xml:id="m-440" visible="false"/>
                                 </layer>
                             </staff>
-                            <staff n="41">
+                            <staff n="3">
                                 <layer n="1">
                                     <beam>
                                         <chord dots="1" dur="8" stem.dir="up">
@@ -1146,7 +1146,7 @@
                             </staff>
                             <staff xml:id="m-441" n="2">
                                 <layer n="1">
-                                    <rest xml:id="m-443" dur="32" dur.ges="32p"/>
+                                    <rest xml:id="m-443" dur="32" />
                                     <beam xml:id="m-445">
                                         <note xml:id="m-444" dur="32" oct="3" pname="d" pnum="50" stem.dir="down"/>
                                         <note xml:id="m-446" dur="32" oct="3" pname="e" pnum="52" stem.dir="down"/>
@@ -1194,7 +1194,7 @@
                                     <mRest xml:id="m-478" visible="false"/>
                                 </layer>
                             </staff>
-                            <staff n="41">
+                            <staff n="3">
                                 <layer n="1">
                                     <beam>
                                         <chord dur="32" stem.dir="down">
@@ -1371,7 +1371,7 @@
                                     <mRest xml:id="m-514" visible="false"/>
                                 </layer>
                             </staff>
-                            <staff n="41">
+                            <staff n="3">
                                 <layer n="1">
                                     <beam>
                                         <chord dur="8" stem.dir="down">
@@ -1510,7 +1510,7 @@
                                     <mRest xml:id="m-571" visible="false"/>
                                 </layer>
                             </staff>
-                            <staff n="41">
+                            <staff n="3">
                                 <layer n="1">
                                     <beam>
                                         <note dur="32" oct="4" pname="e" pnum="63" stem.dir="down">
@@ -1664,7 +1664,7 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <staff n="41">
+                            <staff n="3">
                                 <layer n="1">
                                     <note dur="4" oct="4" pname="g" pnum="67" stem.dir="up"/>
                                     <rest dur="4" />
@@ -1693,7 +1693,7 @@
                                 </layer>
                             </staff>
                             <staff xml:id="m-629" n="2">
-                                <layer n="41">
+                                <layer n="3">
                                     <space dur="2" visible="false" />
                                     <beam>
                                         <note dur="4" oct="4" pname="b" stem.dir="up" color="grey" />
@@ -1753,7 +1753,7 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <staff n="41">
+                            <staff n="3">
                                 <layer n="1">
                                     <rest dur="16" />
                                     <beam>
@@ -1802,7 +1802,7 @@
                                 </layer>
                             </staff>
                             <staff xml:id="m-670" n="2">
-                                <layer n="41">
+                                <layer n="3">
                                     <beam>
                                         <note dur="4" oct="4" pname="a" stem.dir="up" color="grey" />
                                         <chord dur="8" stem.dir="up">
@@ -1881,7 +1881,7 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <staff n="41">
+                            <staff n="3">
                                 <layer n="1">
                                     <beam>
                                         <note dur="16" oct="5" pname="f" pnum="77" stem.dir="down"/>
@@ -1928,7 +1928,7 @@
                                 </layer>
                             </staff>
                             <staff xml:id="m-715" n="2">
-                                <layer n="41">
+                                <layer n="3">
                                     <beam>
                                         <chord dur="4" stem.dir="up">
                                             <note dur="4" oct="4" pname="f" color="grey"/>
@@ -2002,7 +2002,7 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <staff n="41">
+                            <staff n="3">
                                 <layer n="1">
                                     <chord dur="4" stem.dir="up">
                                         <note dur="4" oct="4" pname="f" pnum="65"/>
@@ -2040,7 +2040,7 @@
                             </staff>
                             <staff xml:id="m-753" n="2">
                                 <layer n="1">
-                                    <rest xml:id="m-755" dur="32" dur.ges="32p"/>
+                                    <rest xml:id="m-755" dur="32" />
                                     <beam xml:id="m-757">
                                         <note xml:id="m-756" dur="32" oct="3" pname="f" pnum="53" stem.dir="down"/>
                                         <note xml:id="m-758" dur="32" oct="3" pname="g" pnum="55" stem.dir="down"/>
@@ -2106,7 +2106,7 @@
                                     <space xml:id="m-805" dur="2" />
                                 </layer>
                             </staff>
-                            <staff n="41">
+                            <staff n="3">
                                 <layer n="1">
                                     <rest dur="32" />
                                     <beam>
@@ -2235,7 +2235,7 @@
                                     <space xml:id="m-866" dur="2" />
                                 </layer>
                             </staff>
-                            <staff n="41">
+                            <staff n="3">
                                 <layer n="1">
                                     <rest dur="32" />
                                     <beam>
@@ -2343,7 +2343,7 @@
                                     <mRest xml:id="m-911" visible="false"/>
                                 </layer>
                             </staff>
-                            <staff n="41">
+                            <staff n="3">
                                 <layer n="1">
                                     <beam>
                                         <chord dur="32" stem.dir="up">
@@ -2441,7 +2441,7 @@
                                     <mRest xml:id="m-934" visible="false"/>
                                 </layer>
                             </staff>
-                            <staff n="41">
+                            <staff n="3">
                                 <layer n="1">
                                     <beam>
                                         <note dur="32" oct="5" pname="c" pnum="72" stem.dir="down"/>
@@ -2578,7 +2578,7 @@
                                     <mRest xml:id="m-970" visible="false"/>
                                 </layer>
                             </staff>
-                            <staff n="41">
+                            <staff n="3">
                                 <layer n="1">
                                     <beam>
                                         <note dur="32" oct="4" pname="a" pnum="68" stem.dir="down">
@@ -2712,7 +2712,7 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <staff n="41">
+                            <staff n="3">
                                 <layer n="1">
                                     <beam>
                                         <chord dur="8" stem.dir="up">
@@ -2805,7 +2805,7 @@
                                     <mRest xml:id="m-1057" visible="false"/>
                                 </layer>
                             </staff>
-                            <staff n="41">
+                            <staff n="3">
                                 <layer n="1">
                                     <chord dur="4" stem.dir="up">
                                         <note dur="4" oct="4" pname="c" pnum="60"/>
@@ -2878,7 +2878,7 @@
                             </staff>
                             <staff xml:id="m-1058" n="2">
                                 <layer n="1">
-                                    <rest xml:id="m-1060" dur="32" dur.ges="32p"/>
+                                    <rest xml:id="m-1060" dur="32" />
                                     <beam xml:id="m-1062">
                                         <note xml:id="m-1061" dur="32" oct="3" pname="c" pnum="48" stem.dir="down"/>
                                         <note xml:id="m-1063" dur="32" oct="3" pname="d" pnum="50" stem.dir="down"/>
@@ -3016,7 +3016,7 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <staff n="41">
+                            <staff n="3">
                                 <layer n="1">
                                     <beam>
                                         <note dur="32" oct="5" pname="c" pnum="72" stem.dir="down"/>
@@ -3135,7 +3135,7 @@
                         </measure>
                         <measure xml:id="m-1193" n="25">
                             <staff xml:id="m-1195" n="1"/>
-                            <staff n="41">
+                            <staff n="3">
                                 <layer n="1">
                                     <beam>
                                         <note dur="32" oct="5" pname="d" pnum="74" stem.dir="up"/>
@@ -3224,7 +3224,7 @@
                                     <mRest xml:id="m-1218" visible="false"/>
                                 </layer>
                             </staff>
-                            <staff n="41">
+                            <staff n="3">
                                 <layer n="1">
                                     <beam>
                                         <note dur="32" oct="5" pname="c" pnum="72" stem.dir="up"/>
@@ -3308,7 +3308,7 @@
                                     <mRest xml:id="m-1240" visible="false"/>
                                 </layer>
                             </staff>
-                            <staff n="41">
+                            <staff n="3">
                                 <layer n="1">
                                     <beam>
                                         <note dur="32" oct="4" pname="a" pnum="69" stem.dir="up"/>
@@ -3395,7 +3395,7 @@
                                     <mRest xml:id="m-1261" visible="false"/>
                                 </layer>
                             </staff>
-                            <staff n="41">
+                            <staff n="3">
                                 <layer n="1">
                                     <chord dur="4" stem.dir="up">
                                         <note dur="4" oct="4" pname="f" pnum="66">
@@ -3469,7 +3469,7 @@
                                     <mRest xml:id="m-1283" visible="false"/>
                                 </layer>
                             </staff>
-                            <staff n="41">
+                            <staff n="3">
                                 <layer n="1">
                                     <beam>
                                         <note dur="32" oct="4" pname="g" pnum="67" stem.dir="down"/>
@@ -3576,7 +3576,7 @@
                                     <mRest xml:id="m-1317" visible="false"/>
                                 </layer>
                             </staff>
-                            <staff n="41">
+                            <staff n="3">
                                 <layer n="1">
                                     <beam>
                                         <note dur="32" oct="4" pname="e" pnum="64" stem.dir="up">
@@ -3675,10 +3675,10 @@
                                         </note>
                                         <note xml:id="m-1360" dur="16" oct="4" pname="a" pnum="69" size="cue" stem.dir="up"/>
                                     </beam>
-                                    <space xml:id="m-1361" dur="16" dur.ges="64p"/>
+                                    <space xml:id="m-1361" dur="16" />
                                 </layer>
                             </staff>
-                            <staff n="41">
+                            <staff n="3">
                                 <layer n="1">
                                     <rest dur="32" />
                                     <beam>
@@ -3746,7 +3746,7 @@
                             </staff>
                             <staff xml:id="m-1362" n="2">
                                 <layer n="1">
-                                    <rest xml:id="m-1364" dur="32" dur.ges="32p"/>
+                                    <rest xml:id="m-1364" dur="32" />
                                     <beam xml:id="m-1366">
                                         <note xml:id="m-1365" dur="32" oct="3" pname="a" pnum="57" stem.dir="down"/>
                                         <note xml:id="m-1367" dur="32" oct="3" pname="b" pnum="59" stem.dir="down">
@@ -3815,7 +3815,7 @@
                                         </note>
                                         <note xml:id="m-1418" dur="16" oct="5" pname="d" pnum="74" size="cue" stem.dir="down"/>
                                     </beam>
-                                    <space xml:id="m-1419" dur="16" dur.ges="64p"/>
+                                    <space xml:id="m-1419" dur="16" />
                                     <rest xml:id="m-1420" dur="32" size="cue"/>
                                     <beam xml:id="m-1422">
                                         <note xml:id="m-1421" dur="32" oct="5" pname="d" pnum="74" size="cue" stem.dir="down"/>
@@ -3840,7 +3840,7 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <staff n="41">
+                            <staff n="3">
                                 <layer n="1">
                                     <beam>
                                         <chord dur="32" stem.dir="down">
@@ -4001,7 +4001,7 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <staff n="41">
+                            <staff n="3">
                                 <layer n="1">
                                     <beam>
                                         <note dur="32" oct="5" pname="g" pnum="79" stem.dir="down"/>
@@ -4138,7 +4138,7 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <staff n="41">
+                            <staff n="3">
                                 <layer n="1">
                                     <beam>
                                         <note dur="32" oct="5" pname="e" pnum="76" stem.dir="down"/>
@@ -4230,7 +4230,7 @@
                         <measure xml:id="m-1609" n="35">
                             <staff xml:id="m-1614" n="1">
                                 <layer n="1">
-                                    <space xml:id="m-1616" dur="32" dur.ges="32p"/>
+                                    <space xml:id="m-1616" dur="32" />
                                     <beam xml:id="m-1618">
                                         <note xml:id="m-1617" dur="32" oct="4" pname="a" pnum="69" size="cue" stem.dir="up"/>
                                         <note xml:id="m-1619" dur="32" oct="4" pname="b" pnum="71" size="cue" stem.dir="down">
@@ -4280,7 +4280,7 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <staff n="41">
+                            <staff n="3">
                                 <layer n="1">
                                     <beam>
                                         <note dur="32" oct="5" pname="f" pnum="77" stem.dir="down"/>
@@ -4426,7 +4426,7 @@
                                     <note xml:id="m-1724" dur="16" oct="5" pname="d" pnum="74" size="cue" stem.dir="down"/>
                                 </layer>
                             </staff>
-                            <staff n="41">
+                            <staff n="3">
                                 <layer n="1">
                                     <beam>
                                         <note dur="32" oct="4" pname="b" pnum="70" stem.dir="up">
@@ -4534,7 +4534,7 @@
                                     <space xml:id="m-1766" dur="4" />
                                 </layer>
                             </staff>
-                            <staff n="41">
+                            <staff n="3">
                                 <layer n="1">
                                     <beam>
                                         <chord dur="16" stem.dir="down">

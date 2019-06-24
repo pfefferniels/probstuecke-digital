@@ -80,10 +80,9 @@ function modernizeClefs(doc) {
   }
 }
 
-function generateSvg(req, allpages, callback, onFinish, onError) {
-  // used in app.get("svg") and app.get("download")
-  
-  fs.readFile(__dirname + '/data/' + req.query.nr + '/score.mei', function(err, data) {
+// used in app.get("svg") and app.get("download")
+function generateSvg(params, allpages, callback, onFinish, onError) {
+  fs.readFile(__dirname + '/data/' + params.nr + '/score.mei', function(err, data) {
     if (err) {
       console.log(err);
       if (typeof onError === "function") {
@@ -110,66 +109,53 @@ function generateSvg(req, allpages, callback, onFinish, onError) {
     
     var doc = parser.parseFromString(data.toString(), 'text/xml');
     
-    console.log("trying to parse " + data.toString());
-    
-    var staffsToRemove = [];
-    
-    // hide realized annotations
-    if (req.query.showRealizedAnnotations === 'false') {
-      staffsToRemove.push("1");
+    // find all the staffs that are not in the display parameter, remove their <staffDef> ...
+    if (!params.display) {
+      params.display = [];
     }
-    
-    // hide decolorized bass
-    if (req.query.decolorizedBass === 'false') {
-      staffsToRemove.push("30");
-    }
-    
-    if (req.query.basseFondamentale === 'false') {
-      staffsToRemove.push("31");
-    }
-    
-    if (req.query.exampleRealization === '-1') {
-      staffsToRemove.push("41");
-      
-      // remove also the <layer>s with n="41" inside a <staff> with n="2",
-      // since realizations are allowed to add something to the existing bass
-      var layers = doc.documentElement.getElementsByTagName("layer");
-      for (var i=0; i<layers.length; i++) {
-        if (layers[i].getAttribute("n") == "41") {
-          layers[i].parentNode.removeChild(layers[i]);
-        }
+    var toRemove = [];
+    var staffDefs = doc.documentElement.getElementsByTagName("staffDef");
+    for (var i=0; i<staffDefs.length; i++) {
+      var xmlId = staffDefs[i].getAttribute("xml:id");
+      var n = staffDefs[i].getAttribute("n");
+      console.log(xmlId + " contained by " + params.display);
+      if (!params.display.includes(xmlId) && n != 2) {
+        console.log("yes, removing");
+        toRemove.push(staffDefs[i].getAttribute("n"));
+        staffDefs[i].parentNode.removeChild(staffDefs[i]);
+        i -= 1;
       }
     }
     
-    // remove all the <staff>s if the attribute n is on the removal list.
-    var staffs = doc.documentElement.getElementsByTagName("staff");
+    console.log("toRemove=" + toRemove);
+    console.log("params.display=" + params.display);
     
-    for (var j=0; j<staffsToRemove.length; j++) {
-      for (var i=0; i<staffs.length; i++) {
-        if (staffs[i].getAttribute("n") == staffsToRemove[j]) {
-          staffs[i].parentNode.removeChild(staffs[i]);
-        }
+    // ... and accordingly remove their <staff>s.
+    let staffs = doc.documentElement.getElementsByTagName("staff");
+    for (var i=0; i<staffs.length; i++) {
+      if (toRemove.includes(staffs[i].getAttribute("n"))) {
+        staffs[i].parentNode.removeChild(staffs[i]);
+        i -= 1;
       }
     }
-    
     
     // modernize clefs
-    if (req.query.modernClefs === 'true') {
+    if (params.modernClefs === 'true') {
       modernizeClefs(doc);
     }
     
     // more than 9 staffs below or above would exceed the space of one page
     // and will be ignored
-    if (req.query.emptyStaffsBelow > 9) {
-      req.query.emptyStaffsBelow = 9
+    if (params.emptyStaffsBelow > 9) {
+      params.emptyStaffsBelow = 9;
     }
-    if (req.query.emptyStaffsAbove > 9) {
-      req.query.emptyStaffsAbove = 9
+    if (params.emptyStaffsAbove > 9) {
+      params.emptyStaffsAbove = 9;
     }
     
     // insert empty staffs below
     // numbering: the range from 20–29 is reserved for staff lines below.
-    for (i=0; i<req.query.emptyStaffsBelow; i++) {
+    for (i=0; i<params.emptyStaffsBelow; i++) {
       var staffGrp = doc.documentElement.getElementsByTagName("staffGrp")[0];
       var newStaffDef = doc.createElement("staffDef");
       newStaffDef.setAttribute("n", i+20);
@@ -189,7 +175,7 @@ function generateSvg(req, allpages, callback, onFinish, onError) {
     
     // insert empty staffs above
     // numbering: the range from 10–19 is reserved for staff lines above
-    for (i=0; i<req.query.emptyStaffsAbove; i++) {
+    for (i=0; i<params.emptyStaffsAbove; i++) {
       var staffGrp = doc.documentElement.getElementsByTagName("staffGrp")[0];
       var newStaffDef = doc.createElement("staffDef");
       newStaffDef.setAttribute("n", i+10);
@@ -217,8 +203,8 @@ function generateSvg(req, allpages, callback, onFinish, onError) {
         callback(vrvToolkit.renderToSVG(i, {}));
       }
     } else {
-      if ((req.query.page <= pageCount) && (req.query.page >= 1)) {
-        callback(vrvToolkit.renderToSVG(req.query.page, {}));
+      if ((params.page <= pageCount) && (params.page >= 1)) {
+        callback(vrvToolkit.renderToSVG(params.page, {}));
       }
     }
     if (typeof onFinish === "function") {
@@ -273,7 +259,7 @@ app.get('/music-example', function(req, res) {
 
 app.get('/render', function (req, res) {
   var jsonResponse = {};
-  generateSvg(req, false, function(svg) {
+  generateSvg(req.query, false, function(svg) {
     // on retrieving the rendered SVG 
     jsonResponse.svg = svg;
   }, function() {
@@ -345,7 +331,7 @@ app.get("/download", function(req, res) {
   
     doc.pipe(res);
   
-    generateSvg(req, true, function(svg) {
+    generateSvg(req.query, true, function(svg) {
       doc.addSVG(svg, 100, 100, {}).scale(0.5);
       doc.addPage();
     }, function() {
