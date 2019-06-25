@@ -10,7 +10,8 @@ svg {
 
 .indicator {
   position: absolute;
-  border: 2.5px solid #f47141;
+  border: 0.5px solid black;
+  border-radius: 5px 5px 5px;
   background-color: #f4a742;
   opacity: 0.3;
 }
@@ -148,6 +149,10 @@ tei-note span {
   
 }
 
+tei-notatedmusic svg {
+  margin-left: auto;
+  margin-right: auto;
+}
 
 input[type="number"] {
   width: 100px;

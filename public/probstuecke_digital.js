@@ -109,116 +109,120 @@ function displayCheckboxes(block, group) {
   }
 }
 
-function updateDescription(onFinish) {
-  $.get("description?nr=" + currentParams.nr, function(data) {
-    $("#realizations").empty();
-    $("#analysis").empty();
-    $("#available-annotations").empty();
-    
-    var realizations = data.realizations;
-    var analysis = data.analysis;
-    var annotations = data.annotations;
-    
-    displayCheckboxes(realizations, "realizations");
-    displayCheckboxes(analysis, "analysis");
-    
-    
-    if (annotations) {
-      $("#available-annotations").append('<select id="lang" name="lang" autocomplete="off">');
-      for (var i=0; i<annotations.length; i++) {
-        if (annotations[i] == "de") {
-          $("#lang").append('<option value="de">Deutsch (second edition, Hamburg 1731)</option>');
-        } else if (annotations[i] == "en") {
-          $("#lang").append('<option value="en">English (second edition)</option>');
-        } else if (annotations[i] == "facsimile") {
-          $("#lang").append('<option value="facsimile">Facsimile (second edition)</option>');
-        } else if (annotations[i] == "1st") {
-          $("#lang").append('<option value="1st">Deutsch (first edition, Hamburg 1719)</option>');
-        } else if (annotations[i] == "comments") {
-          $("#lang").append('<option value="comments">Comments</option>');
-        }
+async function updateDescription() {
+  let data;
+  
+  try {
+    data = await $.get("description?nr=" + currentParams.nr);
+  } catch (error) {
+    printError("failed loading description: " + error);
+  }
+  
+  $("#realizations").empty();
+  $("#analysis").empty();
+  $("#available-annotations").empty();
+  
+  var realizations = data.realizations;
+  var analysis = data.analysis;
+  var annotations = data.annotations;
+  
+  displayCheckboxes(realizations, "realizations");
+  displayCheckboxes(analysis, "analysis");
+  
+  
+  if (annotations) {
+    $("#available-annotations").append('<select id="lang" name="lang" autocomplete="off">');
+    for (var i=0; i<annotations.length; i++) {
+      if (annotations[i] == "de") {
+        $("#lang").append('<option value="de">Deutsch (second edition, Hamburg 1731)</option>');
+      } else if (annotations[i] == "en") {
+        $("#lang").append('<option value="en">English (second edition)</option>');
+      } else if (annotations[i] == "facsimile") {
+        $("#lang").append('<option value="facsimile">Facsimile (second edition)</option>');
+      } else if (annotations[i] == "1st") {
+        $("#lang").append('<option value="1st">Deutsch (first edition, Hamburg 1719)</option>');
+      } else if (annotations[i] == "comments") {
+        $("#lang").append('<option value="comments">Comments</option>');
       }
-      $("#available-annotations").append('</select>');
-      
-      $("option[value='" + annotations[0] + "']")[0].selected = true;
-      currentParams.lang = annotations[0];
-      
-      $("#lang").change(function() {
-        currentParams.lang = $(this).val();
-        updateAnnotations();
-        renderCurrentPage();
-      });
     }
+    $("#available-annotations").append('</select>');
     
-    if (typeof onFinish === "function") {
-      onFinish();
-    }
-  }).fail(function() {
-    printError("failed loading description");
-  });
+    $("option[value='" + annotations[0] + "']")[0].selected = true;
+    currentParams.lang = annotations[0];
+    
+    $("#lang").change(function() {
+      currentParams.lang = $(this).val();
+      updateAnnotations();
+      renderCurrentPage();
+    });
+  }
 }
 
-function updateAnnotations() {
-  $.get("annotations?" + $.param({
-    nr: currentParams.nr,
-    lang: currentParams.lang
-  }), function(data) {
-    var cetei = new CETEI();
-    cetei.domToHTML5(data, function(html) {
-      $("#annotations-view").html(html);
-    });
+async function updateAnnotations() {
+  let data;
+  
+  try {
+    data = await $.get("annotations?" + $.param({nr: currentParams.nr, lang: currentParams.lang}));
+  } catch (error) {
+    printError("failed updating annotations: " + error);
+  }
+  
+  var cetei = new CETEI();
+  cetei.domToHTML5(data, function(html) {
+    $("#annotations-view").html(html);
+  });
+  
+  // load the music examples subsequently
+  $("tei-notatedmusic").each(async function() {
+    var notatedmusic = $(this);
+    let svg;
     
-    // load the music examples subsequently
-    $("tei-notatedmusic").each(function() {
-      var notatedmusic = $(this);
-      $.get("music-example?" + $.param({
+    try {
+      svg = await $.get("music-example?" + $.param({
         nr: currentParams.nr,
         filename: $(this).find("tei-ptr").attr("target"),
         modernClefs: currentParams.modernClefs
-      }), function(svg) {
-        notatedmusic.find("tei-ptr").replaceWith(svg);
-        
-        // TODO: this is quite hacky ...
-        var svg1 = notatedmusic.find("svg")[1];
-        var svgDiv = notatedmusic.find("svg")[0];
-        var bb=svg1.getBBox();
-        var bbx=bb.x;
-        var bby=bb.y;
-        var bbw=bb.width;
-        var bbh=bb.height;
-        var vb=[bbx,bby,bbw,bbh];
-        svg1.setAttribute("viewBox", vb.join(" ") );
-        svgDiv.style.width=(bbw/1000)*28.34;
-        svgDiv.style.height=(bbh/1000)*28.34;
-      });
-    });
+      }));
+    } catch (error) {
+      printError("failed loading embedded music example: " + error);
+    }
     
-  }).fail(function(param) {
-    printError("failed loading annotations");
+    notatedmusic.find("tei-ptr").replaceWith(svg);
+    
+    var svg1 = notatedmusic.find("svg")[1];
+    var svgDiv = notatedmusic.find("svg")[0];
+    var bb=svg1.getBBox();
+    var bbx=bb.x;
+    var bby=bb.y;
+    var bbw=bb.width;
+    var bbh=bb.height;
+    svg1.setAttribute("viewBox", [bbx,bby,bbw,bbh].join(" ") );
+    svgDiv.style.width=(bbw/1000)*28.34;
+    svgDiv.style.height=(bbh/1000)*28.34;
   });
 }
 
-function renderCurrentPage(onFinish) {
-  $.get("render?" + $.param(currentParams), function(response) {
-    if (currentParams.page > response.pageCount) {
-      currentParams.page = 1;
-      updateView();
-      return;
-    }
-    
-    midiTimemap = response.timemap;
-    midiData = response.midi;
-    
-    var svg = response.svg;
-    
-    $("#score-view").html(svg);
-    
-    if (typeof onFinish === "function") {
-      onFinish();
-    }
-  }).fail(function() {
-    printError("failed loading SVG");
-  });
+async function renderCurrentPage() {
+  let response;
+  
+  try {
+    response = await $.get("render?" + $.param(currentParams));
+  } catch (error) {
+    printError("failed rendering page: " + error);
+  }
+  
+  if (currentParams.page > response.pageCount) {
+    currentParams.page = 1;
+    updateView();
+    return;
+  }
+  
+  midiTimemap = response.timemap;
+  midiData = response.midi;
+  
+  var svg = response.svg;
+  
+  $("#score-view").html(svg);
 }
 
 function connectReferences() {
@@ -234,7 +238,7 @@ function connectReferences() {
     // find target in SVG and underlay it colorfully
     var ref = $(this).attr("target");
     
-    target = $("svg").find("#" + ref);
+    target = $("#score-view svg").find("#" + ref);
     if (target.length === 0) {
       console.log("corresponding SVG element for ref=" + ref + " not found on this page.");
       return true; // nothing found, continue with next reference
@@ -256,7 +260,7 @@ function connectReferences() {
 function connectTooltips() {
   $(".tooltip").remove();
   
-  var keySig = $("svg").find(".keySig");
+  var keySig = $("#score-view svg").find(".keySig");
   if (keySig.length != 0) {
     var keySigAnnotation = $("tei-note[type='on-key-signature'] span[data-original='']");
     
@@ -288,21 +292,16 @@ function connectTooltips() {
   }
 }
 
-function updateView(onFinish) {
+async function updateView() {
   if (currentParams.page < 1) {
     currentParams.page = 1;
   }
   
-  updateDescription(function() {
-    updateAnnotations();
-    renderCurrentPage(function() {
-      connectReferences();
-      connectTooltips();
-      if (typeof onFinish === "function") {
-        onFinish();
-      }
-    });
-  });
+  await updateDescription()
+  await updateAnnotations();
+  await renderCurrentPage();
+  connectReferences();
+  connectTooltips();
 }
 
 $(document).ready(function() {

@@ -223,8 +223,6 @@ app.get("/annotations", function(req, res) {
   });
 });
 
-
-
 app.get('/music-example', function(req, res) {
   fs.readFile(__dirname + '/data/' + req.query.nr + '/' + req.query.filename, function(err, data) {
     if (err) {
@@ -248,14 +246,6 @@ app.get('/music-example', function(req, res) {
     res.send(svg);
   });
 });
-
-// expected staff numbering:
-// 1: realized annotations
-// 2: original bass
-// 10–19: empty staff lines above
-// 20–29: empty staff lines below
-// 30–39: analysis
-// 40–49: realizations
 
 app.get('/render', function (req, res) {
   var jsonResponse = {};
@@ -356,18 +346,7 @@ app.get("/download", function(req, res) {
       });
     });
   } else if (req.query.exportFormat === "musicxml") {
-    // TODO this is currently broken, since the mei2musicxml stylesheet requires XSLT 2.0,
-    // while, libxslt supports only XSLT 1.0
-    // var meiString = fs.readFileSync(__dirname + "/data/" + req.query.nr + "/score.mei","utf-8");
-    // var xsltString = fs.readFileSync(__dirname + "/mei2musicxml.xsl","utf-8");
-    // 
-    // libxslt.parse(xsltString, function(err, stylesheet) {
-    //   if (stylesheet) {
-    //     stylesheet.apply(meiString, {}, function(err, result){
-    //       res.send(musicXMLString);
-    //     });  
-    //   }
-    // });
+    // TODO not implemented yet
     res.status("404").end();
   } 
   else {
