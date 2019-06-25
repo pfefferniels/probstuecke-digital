@@ -297,9 +297,8 @@ async function updateView() {
     currentParams.page = 1;
   }
   
-  await updateDescription()
-  await updateAnnotations();
-  await renderCurrentPage();
+  await updateDescription();
+  await Promise.all([renderCurrentPage(),updateAnnotations()]);
   connectReferences();
   connectTooltips();
 }

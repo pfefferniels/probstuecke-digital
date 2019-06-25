@@ -109,33 +109,51 @@ function generateSvg(params, allpages, callback, onFinish, onError) {
     
     var doc = parser.parseFromString(data.toString(), 'text/xml');
     
-    // find all the staffs that are not in the display parameter, remove their <staffDef> ...
+    // find all the staffs or layers that are not in the display parameter, remove their <staffDef> ...
     if (!params.display) {
       params.display = [];
     }
-    var toRemove = [];
+    var staffsToRemove = [];
     var staffDefs = doc.documentElement.getElementsByTagName("staffDef");
     for (var i=0; i<staffDefs.length; i++) {
       var xmlId = staffDefs[i].getAttribute("xml:id");
       var n = staffDefs[i].getAttribute("n");
-      console.log(xmlId + " contained by " + params.display);
       if (!params.display.includes(xmlId) && n != 2) {
-        console.log("yes, removing");
-        toRemove.push(staffDefs[i].getAttribute("n"));
+        staffsToRemove.push(n);
         staffDefs[i].parentNode.removeChild(staffDefs[i]);
         i -= 1;
       }
     }
     
-    console.log("toRemove=" + toRemove);
-    console.log("params.display=" + params.display);
+    var layersToRemove = [];
+    var layerDefs = doc.documentElement.getElementsByTagName("layerDef");
+    for (var i=0; i<layerDefs.length; i++) {
+      var xmlId = layerDefs[i].getAttribute("xml:id");
+      var n = layerDefs[i].getAttribute("n");
+      if (!params.display.includes(xmlId.substring(6))) {
+        layersToRemove.push(n);
+        layerDefs[i].parentNode.removeChild(layerDefs[i]);
+      }
+    }
     
-    // ... and accordingly remove their <staff>s.
-    let staffs = doc.documentElement.getElementsByTagName("staff");
-    for (var i=0; i<staffs.length; i++) {
-      if (toRemove.includes(staffs[i].getAttribute("n"))) {
-        staffs[i].parentNode.removeChild(staffs[i]);
-        i -= 1;
+    if (staffsToRemove.length > 0) {
+      // ... and accordingly remove their <staff>s resp. <layer>s.
+      let staffs = doc.documentElement.getElementsByTagName("staff");
+      for (var i=0; i<staffs.length; i++) {
+        if (staffsToRemove.includes(staffs[i].getAttribute("n"))) {
+          staffs[i].parentNode.removeChild(staffs[i]);
+          i -= 1;
+        }
+      }
+    }
+    
+    if (layersToRemove.length > 0) {
+      let layers = doc.documentElement.getElementsByTagName("layer");
+      for (var i=0; i<layers.length; i++) {
+        if (layersToRemove.includes(layers[i].getAttribute("n"))) {
+          layers[i].parentNode.removeChild(layers[i]);
+          i -= 1;
+        }
       }
     }
     
