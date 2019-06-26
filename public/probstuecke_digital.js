@@ -18,13 +18,12 @@ function printError(message) {
   $("#error").show().fadeOut("slow");
 }
 
-function highlight(selector) {
+async function highlight(selector) {
   var element = $(selector);
   if (element.length == 0) {
     currentParams.page = parseInt(currentParams.page, 10) + 1;
-    updateView(function() {
-      highlight(selector);
-    });
+    await updateView();
+    highlight(selector);
     return;
   }
   element.addClass("highlight");
@@ -150,10 +149,10 @@ async function updateDescription() {
     $("option[value='" + annotations[0] + "']")[0].selected = true;
     currentParams.lang = annotations[0];
     
-    $("#lang").change(function() {
+    $("#lang").change(async function() {
       currentParams.lang = $(this).val();
-      updateAnnotations();
-      renderCurrentPage();
+      await Promise.all([updateAnnotations(), renderCurrentPage()]);
+      connectReferences();
     });
   }
 }
@@ -172,11 +171,12 @@ async function updateAnnotations() {
     $("#annotations-view").html(html);
   });
   
-  // load the music examples subsequently
+
+  // load the music examples, if there are any
   $("tei-notatedmusic").each(async function() {
     var notatedmusic = $(this);
     let svg;
-    
+  
     try {
       svg = await $.get("music-example?" + $.param({
         nr: currentParams.nr,
@@ -186,9 +186,9 @@ async function updateAnnotations() {
     } catch (error) {
       printError("failed loading embedded music example: " + error);
     }
-    
+  
     notatedmusic.find("tei-ptr").replaceWith(svg);
-    
+  
     var svg1 = notatedmusic.find("svg")[1];
     var svgDiv = notatedmusic.find("svg")[0];
     var bb=svg1.getBBox();
@@ -228,33 +228,73 @@ async function renderCurrentPage() {
 function connectReferences() {
   $(".indicator").remove();
   
-  $("tei-ref").each(function() {
-    // connect text with an indicator
-    $(this).find("a").click(function(e) {
-      e.preventDefault();
-      highlight(".indicator[data-ref='" + ref + "']");
-    });
-    
-    // find target in SVG and underlay it colorfully
-    var ref = $(this).attr("target");
-    
-    target = $("#score-view svg").find("#" + ref);
-    if (target.length === 0) {
-      console.log("corresponding SVG element for ref=" + ref + " not found on this page.");
-      return true; // nothing found, continue with next reference
-    }
-    $("<div class='indicator' data-ref='" + ref + "'></div>").appendTo("body").css(getSvgElementBoxAsCss(target)).click(function() {
-      // scroll to reference point and then highlight it
-      var refSelector = "tei-ref[target='" + $(this).attr("data-ref") + "']";
-      referencePoint = $(refSelector);
-      annotationView = $("annotations-view")
-      $("#annotations-view").animate({
-          scrollTop: referencePoint.offset().top - $("#annotations-view").offset().top + $("#annotations-view").scrollTop()
-      }, 100, function() {
-        highlight(refSelector);
+  console.log(currentParams.lang);
+  // ----
+  // referencing facsimile and transcription
+  // ----
+  if (currentParams.lang == "facsimile") {
+    $("tei-zone").each(function() {
+      var ulx = $(this).attr("ulx");
+      var uly = $(this).attr("uly");
+      var lrx = $(this).attr("lrx");
+      var lry = $(this).attr("lry");
+      
+      var zoom = $(this).parent().find("img")[0].width / $(this).parent().attr("lrx");
+      var offset = $(this).parent().offset();
+      
+      $(this).offset({
+        top: offset.top + zoom*uly,
+        left: offset.left + zoom*ulx
+      });
+      $(this).css({
+        width: zoom * (lrx-ulx),
+        height: zoom * (lry-uly)
       });
     });
-  });
+    
+    $("tei-zone").click(function() {
+      var corresp = $(this).attr("corresp");
+      var target = $("#score-view svg").find(corresp);
+      if (target.length > 0) {
+        target.addClass("highlight");
+        setTimeout(function() {
+          target.removeClass("highlight");
+        }, 3000);
+      }
+    });
+    
+  // -----
+  // referencing annotations and score
+  // -----
+  } else {
+    $("tei-ref").each(function() {
+      // connect text with an indicator
+      $(this).find("a").click(function(e) {
+        e.preventDefault();
+        highlight(".indicator[data-ref='" + ref + "']");
+      });
+    
+      // find target in SVG and underlay it colorfully
+      var ref = $(this).attr("target");
+    
+      target = $("#score-view svg").find("#" + ref);
+      if (target.length === 0) {
+        console.log("corresponding SVG element for ref=" + ref + " not found on this page.");
+        return true; // nothing found, continue with next reference
+      }
+      $("<div class='indicator' data-ref='" + ref + "'></div>").appendTo("body").css(getSvgElementBoxAsCss(target)).click(function() {
+        // scroll to reference point and then highlight it
+        var refSelector = "tei-ref[target='" + $(this).attr("data-ref") + "']";
+        referencePoint = $(refSelector);
+        annotationView = $("annotations-view")
+        $("#annotations-view").animate({
+            scrollTop: referencePoint.offset().top - $("#annotations-view").offset().top + $("#annotations-view").scrollTop()
+        }, 100, function() {
+          highlight(refSelector);
+        });
+      });
+    });
+  }
 }
 
 function connectTooltips() {
@@ -340,7 +380,6 @@ $(document).ready(function() {
     currentParams.page = parseInt(currentParams.page, 10) + 1;
     updateView();
   });
-  
   
   $("#modern-clefs").change(function() {
     currentParams.modernClefs = $(this).is(':checked');
