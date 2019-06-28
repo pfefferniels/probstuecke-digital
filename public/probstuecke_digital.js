@@ -22,7 +22,7 @@ async function highlight(selector) {
   var element = $(selector);
   if (element.length == 0) {
     currentParams.page = parseInt(currentParams.page, 10) + 1;
-    await updateView();
+    await updateView(true);
     highlight(selector);
     return;
   }
@@ -92,7 +92,9 @@ function displayCheckboxes(block, group) {
   if (block) {
     for (var i=0; i<block.length; i++) {
       var blockName = block[i];
-      $("#" + group).append('<br/>');
+      if (i!=0) {
+        $("#" + group).append('<br />');
+      }
       
       $('<input type="checkbox" id="' + blockName + '" autocomplete="off">').appendTo("#" + group).change(function() {
         if ($(this).is(':checked')) {
@@ -100,7 +102,7 @@ function displayCheckboxes(block, group) {
         } else {
           currentParams.display.splice($.inArray($(this).attr("id"), currentParams.display), 1);
         }
-        updateView();
+        updateView(true);
       });
       $("#" + blockName)[0].checked = currentParams.display.includes(blockName);
       $("#" + group).append('<label for="' + blockName + '">' + staffLabels[blockName] + '</label>');
@@ -213,7 +215,7 @@ async function renderCurrentPage() {
   
   if (currentParams.page > response.pageCount) {
     currentParams.page = 1;
-    updateView();
+    updateView(false);
     return;
   }
   
@@ -228,41 +230,52 @@ async function renderCurrentPage() {
 function connectReferences() {
   $(".indicator").remove();
   
-  console.log(currentParams.lang);
   // ----
   // referencing facsimile and transcription
   // ----
   if (currentParams.lang == "facsimile") {
-    $("tei-zone").each(function() {
-      var ulx = $(this).attr("ulx");
-      var uly = $(this).attr("uly");
-      var lrx = $(this).attr("lrx");
-      var lry = $(this).attr("lry");
-      
-      var zoom = $(this).parent().find("img")[0].width / $(this).parent().attr("lrx");
-      var offset = $(this).parent().offset();
-      
-      $(this).offset({
-        top: offset.top + zoom*uly,
-        left: offset.left + zoom*ulx
-      });
-      $(this).css({
-        width: zoom * (lrx-ulx),
-        height: zoom * (lry-uly)
-      });
-    });
-    
-    $("tei-zone").click(function() {
-      var corresp = $(this).attr("corresp");
-      var target = $("#score-view svg").find(corresp);
-      if (target.length > 0) {
-        target.addClass("highlight");
-        setTimeout(function() {
-          target.removeClass("highlight");
-        }, 3000);
+    $(document).find("tei-graphic img").one("load", function() {
+      if (currentParams.lang === "facsimile") {
+        let surface = $(this).parent().parent();
+        let zoom = $(this)[0].width / surface.attr("lrx");
+        let url = $(this).attr("src");
+        
+        surface.children("tei-zone").each(function() {
+          var zone = $(this);
+          let ulx = zone.attr("ulx");
+          let uly = zone.attr("uly");
+          let lrx = zone.attr("lrx");
+          let lry = zone.attr("lry");
+  
+          var corresp = $(this).attr("corresp");
+          var target = $("#score-view svg").find(corresp);
+          if (target.length > 0) {
+            target.mouseenter(function() {
+              $("<div class='facsimile-tooltip' />").css({
+                position: "absolute",
+                top: $(this).offset().top+50,
+                left: $(this).offset().left,
+                backgroundImage: "url(" + url + ")",
+                backgroundPosition: (-ulx) + "px " + (-uly) + "px",
+                width: lrx-ulx,
+                height: lry-uly,
+                transform: "scale(0.6)",
+                transformOrigin: "left top"
+              }).appendTo("body");
+              
+              $(this).children().css('fill', "#6F216C");
+            }).mouseleave(function() {
+              $(".facsimile-tooltip").remove();
+              $(this).children().css('fill', "black");
+            });
+          }
+           
+        });
       }
+    }).each(function() {
+      if(this.complete) { $(this).trigger('load'); }
     });
-    
+  
   // -----
   // referencing annotations and score
   // -----
@@ -315,7 +328,6 @@ function connectTooltips() {
     keySigAnnotation.parent().remove();
   }
   
-  
   var meterSig = $("svg").find(".meterSig");
   if (meterSig.length != 0) {
     var meterSigAnnotation = $("tei-note[type='on-meter'] span[data-original='']");
@@ -332,12 +344,14 @@ function connectTooltips() {
   }
 }
 
-async function updateView() {
+async function updateView(resetting) {
   if (currentParams.page < 1) {
     currentParams.page = 1;
   }
   
-  await updateDescription();
+  if (resetting) {
+    await updateDescription();
+  }
   await Promise.all([renderCurrentPage(),updateAnnotations()]);
   connectReferences();
   connectTooltips();
@@ -358,34 +372,32 @@ $(document).ready(function() {
   $("#nr").change(function() {
     currentParams.nr = $(this).val();
     currentParams.page = 1;
-    updateView();
+    updateView(true);
   });
   
   $("#staves-below").change(function() {
     currentParams.emptyStaffsBelow = $(this).val();
-    updateView();
+    updateView(false);
   });
   
   $("#staves-above").change(function() {
     currentParams.emptyStaffsAbove = $(this).val();
-    updateView();
+    updateView(false);
   });
   
   $("#previous-page").click(function() {
     currentParams.page = parseInt(currentParams.page, 10) - 1;
-    updateView();
+    updateView(false);
   });
   
   $("#next-page").click(function() {
     currentParams.page = parseInt(currentParams.page, 10) + 1;
-    updateView();
+    updateView(false);
   });
   
   $("#modern-clefs").change(function() {
     currentParams.modernClefs = $(this).is(':checked');
-     // clefs in the music examples of the annotations should be updated as well
-    updateAnnotations();
-    renderCurrentPage();
+    updateView(false);
   });
   
   $("#export").click(function() {
@@ -396,6 +408,11 @@ $(document).ready(function() {
   $("#midiPlayer_play").click(function() {
     playMIDI();
   });
-
-  updateView();
+  
+  $("img").on("load", function() {
+    alert("test");
+  });
+  
+  
+  updateView(true);
 });
