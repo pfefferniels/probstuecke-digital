@@ -24,7 +24,23 @@ svg {
 }
 
 .facsimile-tooltip {
+  float: left;
   border: 1px solid black;
+  z-index: 300;
+}
+
+.system-break {
+  background-color: white;
+  float: left;
+  margin-left: -160;
+  margin-bottom: -50;
+  transform: rotate(-90deg);
+  width: 100px;
+  height: 30px;
+}
+
+.facsimile-tooltip:nth-child(3) {
+  margin-left: -100;
 }
 
 .tooltip-text {

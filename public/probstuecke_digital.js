@@ -136,10 +136,10 @@ async function updateDescription() {
     for (var i=0; i<annotations.length; i++) {
       if (annotations[i] == "de") {
         $("#lang").append('<option value="de">Deutsch (second edition, Hamburg 1731)</option>');
+      //} else if (annotations[i] == "facsimile") {
+      //  $("#lang").append('<option value="facsimile">Facsimile (second edition)</option>');
       } else if (annotations[i] == "en") {
         $("#lang").append('<option value="en">English (second edition)</option>');
-      } else if (annotations[i] == "facsimile") {
-        $("#lang").append('<option value="facsimile">Facsimile (second edition)</option>');
       } else if (annotations[i] == "1st") {
         $("#lang").append('<option value="1st">Deutsch (first edition, Hamburg 1719)</option>');
       } else if (annotations[i] == "comments") {
@@ -171,6 +171,9 @@ async function updateAnnotations() {
   var cetei = new CETEI();
   cetei.domToHTML5(data, function(html) {
     $("#annotations-view").html(html);
+    $("#annotations-view tei-facsimile img").css({
+      display:"none"
+    });
   });
   
 
@@ -233,45 +236,52 @@ function connectReferences() {
   // ----
   // referencing facsimile and transcription
   // ----
-  if (currentParams.lang == "facsimile") {
-    $(document).find("tei-graphic img").one("load", function() {
-      if (currentParams.lang === "facsimile") {
-        let surface = $(this).parent().parent();
-        let zoom = $(this)[0].width / surface.attr("lrx");
-        let url = $(this).attr("src");
-        
-        surface.children("tei-zone").each(function() {
-          var zone = $(this);
-          let ulx = zone.attr("ulx");
-          let uly = zone.attr("uly");
-          let lrx = zone.attr("lrx");
-          let lry = zone.attr("lry");
+  //if (currentParams.lang == "facsimile") {
+    $("tei-body").find("tei-graphic img").one("load", function() {
+      let surface = $(this).parent().parent();
+      let zoom = $(this)[0].width / surface.attr("lrx");
+      let url = $(this).attr("src");
+      
+      surface.children("tei-zone").each(function() {
+        var zone = $(this);
+        let ulx = zone.attr("ulx");
+        let uly = zone.attr("uly");
+        let lrx = zone.attr("lrx");
+        let lry = zone.attr("lry");
   
-          var corresp = $(this).attr("corresp");
-          var target = $("#score-view svg").find(corresp);
-          if (target.length > 0) {
-            target.mouseenter(function() {
-              $("<div class='facsimile-tooltip' />").css({
+        var corresp = $(this).attr("corresp");
+        console.log("corresp=" + corresp);
+        var prevCorresp = $(this).prev().attr("corresp");
+        var target = $("body").find(corresp);
+        if (target.length > 0) {
+          target.mouseenter(function(e) {
+            if (prevCorresp != corresp) {
+              $("#facsimile-tooltips").css({
                 position: "absolute",
-                top: $(this).offset().top+50,
-                left: $(this).offset().left,
-                backgroundImage: "url(" + url + ")",
-                backgroundPosition: (-ulx) + "px " + (-uly) + "px",
-                width: lrx-ulx,
-                height: lry-uly,
-                transform: "scale(0.6)",
-                transformOrigin: "left top"
-              }).appendTo("body");
-              
-              $(this).children().css('fill', "#6F216C");
-            }).mouseleave(function() {
-              $(".facsimile-tooltip").remove();
-              $(this).children().css('fill', "black");
-            });
-          }
-           
-        });
-      }
+                top: e.pageY,
+                left: e.pageX
+              });
+            } else {
+              $("<div class='system-break'>[system break]</div>").css({
+                rotate: "-90deg"
+              }).appendTo("#facsimile-tooltips");
+            }
+            $("<div class='facsimile-tooltip' />").css({
+              backgroundImage: "url(" + url + ")",
+              backgroundPosition: (-ulx) + "px " + (-uly) + "px",
+              width: lrx-ulx,
+              height: lry-uly,
+              transform: "scale(0.6)",
+              transformOrigin: "left top"
+            }).appendTo("#facsimile-tooltips");
+            
+            $(this).children().css('fill', "#6F216C");
+          }).mouseleave(function() {
+            $("#facsimile-tooltips").empty();
+            $(this).children().css('fill', "black");
+          });
+        }
+      });
     }).each(function() {
       if(this.complete) { $(this).trigger('load'); }
     });
@@ -279,7 +289,7 @@ function connectReferences() {
   // -----
   // referencing annotations and score
   // -----
-  } else {
+    //} else {
     $("tei-ref").each(function() {
       // connect text with an indicator
       $(this).find("a").click(function(e) {
@@ -307,7 +317,7 @@ function connectReferences() {
         });
       });
     });
-  }
+    //}
 }
 
 function connectTooltips() {
@@ -408,11 +418,6 @@ $(document).ready(function() {
   $("#midiPlayer_play").click(function() {
     playMIDI();
   });
-  
-  $("img").on("load", function() {
-    alert("test");
-  });
-  
   
   updateView(true);
 });
