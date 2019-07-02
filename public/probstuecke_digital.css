@@ -1,4 +1,3 @@
-
 svg {
   display: block;
   z-index: -1;
@@ -23,6 +22,11 @@ svg {
   opacity: 0.3;
 }
 
+#facsimile-tooltips {
+  transform: scale(0.6);
+  transform-origin: top left;
+}
+
 .facsimile-tooltip {
   float: left;
   border: 1px solid black;
@@ -32,15 +36,10 @@ svg {
 .system-break {
   background-color: white;
   float: left;
-  margin-left: -160;
-  margin-bottom: -50;
   transform: rotate(-90deg);
+  transform-origin: bottom;
   width: 100px;
   height: 30px;
-}
-
-.facsimile-tooltip:nth-child(3) {
-  margin-left: -100;
 }
 
 .tooltip-text {
@@ -127,11 +126,6 @@ a {
 tei-ref {
   border: 0.7px solid #f47141;
   border-radius: 5px 5px 5px;
-}
-
-tei-zone {
-  position: absolute;
-  border: 2px dotted red;
 }
 
 tei-p {

@@ -13,6 +13,21 @@ currentParams = {
 // Helper functions
 // ------
 
+
+// TEMPORARY
+function copyToClipboard(text) {
+  if (!navigator.clipboard) {
+    printError("no fallback");
+    //fallbackCopyTextToClipboard(text);
+    return;
+  }
+  navigator.clipboard.writeText(text).then(function() {
+    //printError('Async: Copying to clipboard was successful!');
+  }, function(err) {
+    printError('Async: Could not copy text: ', err);
+  });
+}
+
 function printError(message) {
   $("#error").text(message);
   $("#error").show().fadeOut("slow");
@@ -171,9 +186,7 @@ async function updateAnnotations() {
   var cetei = new CETEI();
   cetei.domToHTML5(data, function(html) {
     $("#annotations-view").html(html);
-    $("#annotations-view tei-facsimile img").css({
-      display:"none"
-    });
+    $("#annotations-view tei-facsimile img").hide();
   });
   
 
@@ -195,15 +208,14 @@ async function updateAnnotations() {
     notatedmusic.find("tei-ptr").replaceWith(svg);
   
     var svg1 = notatedmusic.find("svg")[1];
-    var svgDiv = notatedmusic.find("svg")[0];
     var bb=svg1.getBBox();
-    var bbx=bb.x;
-    var bby=bb.y;
     var bbw=bb.width;
     var bbh=bb.height;
-    svg1.setAttribute("viewBox", [bbx,bby,bbw,bbh].join(" ") );
-    svgDiv.style.width=(bbw/1000)*28.34;
-    svgDiv.style.height=(bbh/1000)*28.34;
+    svg1.setAttribute("viewBox", [bb.x,bb.y,bbw,bbh].join(" "));
+    notatedmusic.find("svg").css({
+      width: (bbw/1000)*28.34 + "px",
+      height: (bbh/1000)*28.34 + "px"
+    });
   });
 }
 
@@ -231,13 +243,16 @@ async function renderCurrentPage() {
 }
 
 function connectReferences() {
+  console.log("connectReferences();");
   $(".indicator").remove();
   
   // ----
   // referencing facsimile and transcription
   // ----
   //if (currentParams.lang == "facsimile") {
-    $("tei-body").find("tei-graphic img").one("load", function() {
+    console.log("imgs found: " + $("tei-body").find("tei-graphic img").length);
+    $("tei-body").find("tei-graphic img").on("load", function() {
+      console.log("img load");
       let surface = $(this).parent().parent();
       let zoom = $(this)[0].width / surface.attr("lrx");
       let url = $(this).attr("src");
@@ -266,14 +281,25 @@ function connectReferences() {
                 rotate: "-90deg"
               }).appendTo("#facsimile-tooltips");
             }
+            var facsWidth = lrx-ulx;
+            var facsHeight = lry-uly;
             $("<div class='facsimile-tooltip' />").css({
               backgroundImage: "url(" + url + ")",
               backgroundPosition: (-ulx) + "px " + (-uly) + "px",
-              width: lrx-ulx,
-              height: lry-uly,
-              transform: "scale(0.6)",
-              transformOrigin: "left top"
+              width: facsWidth,
+              height: facsHeight
             }).appendTo("#facsimile-tooltips");
+            
+            if (e.pageX+facsWidth*0.6 > $(window).width()) {
+              $("#facsimile-tooltips").css({
+                left: e.pageX-facsWidth*0.6-20
+              });
+            }
+            if (e.pageY+facsHeight*0.6 > $(window).height()) {
+              $("#facsimile-tooltips").css({
+                top: e.pageY-facsHeight*0.6-20
+              });
+            }
             
             $(this).children().css('fill', "#6F216C");
           }).mouseleave(function() {
@@ -321,6 +347,7 @@ function connectReferences() {
 }
 
 function connectTooltips() {
+  console.log("connectTooltips();");  
   $(".tooltip").remove();
   
   var keySig = $("#score-view svg").find(".keySig");
@@ -352,6 +379,46 @@ function connectTooltips() {
     
     meterSigAnnotation.parent().remove();
   }
+  
+  // just for editing
+  // TEMPORARY
+  console.log("removing indicators");
+  $(".indicator").remove();
+  console.log("measures found:" + $("#score-view svg").find(".measure").length);
+  $("#score-view svg").find(".measure").on("click", function() {
+    copyToClipboard("#" + $(this).attr("id"));
+    printError("copied to clipboard");
+  });
+    
+  meiStrings = [];
+  $("#score-view svg").find(".note, .rest").one("click", function() {
+    console.log(meiStrings);
+    let id = $(this).attr("id");
+    printError("note " + id + " recognized");
+    $("#copyright").empty();
+    $("#copyright").append("<input type='text' id='figures'>");
+    $("#figures").focus();
+    $('#figures').keypress(function (e) {
+      if (e.which == 13) {
+        var figures = $(this).val().replace("b", "♭").replace("6/", "6⃥").replace("n", "♮").split(",");
+        var meiString = "<harm place='above' staff='2' startid='" + id + "'><fb>";
+        for (var i=0; i<figures.length; i++) {
+          meiString += "<f>" + figures[i] + "</f>";
+        }
+        meiString +="</fb></harm>";
+        meiStrings.push(meiString);
+        printError("added");
+        $(this).val("");
+        return false;
+      }
+    });
+    $("<button>copy to clipboard</button>").on("click", function() {
+      copyToClipboard(meiStrings.join("\n"));
+      printError("copied to clipboard");
+      meiStrings = [];
+    }).appendTo("#copyright");
+  });
+  
 }
 
 async function updateView(resetting) {
@@ -363,6 +430,7 @@ async function updateView(resetting) {
     await updateDescription();
   }
   await Promise.all([renderCurrentPage(),updateAnnotations()]);
+  
   connectReferences();
   connectTooltips();
 }
