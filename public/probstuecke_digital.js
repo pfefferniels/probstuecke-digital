@@ -48,15 +48,12 @@ async function highlight(selector) {
 }
 
 function getSvgElementBoxAsCss(target) {
-  var targetTop = target.offset().top;
-  var targetLeft = target.offset().left;
-  var targetWidth = target[0].getBoundingClientRect().width-6;
-  var targetHeight = target[0].getBoundingClientRect().height;
+  var bRect = target[0].getBoundingClientRect();
   return {
-        top: targetTop,
-        left: targetLeft,
-        width: targetWidth,
-        height: targetHeight
+        top: bRect.top,
+        left: bRect.left,
+        width: bRect.width,
+        height: bRect.height
   };
 }
 
@@ -81,16 +78,6 @@ var midiUpdate = function(time) {
   //  }
   //}
 }
-var midiStop = function() {
-  console.log("Stop");
-}
-
-function playMIDI() {
-   var piece = 'data:audio/midi;base64,' + midiData;
-   $("#player").show();
-   $("#player").midiPlayer.play(piece);
-}
-
 
 // ------
 // update view functions
@@ -236,6 +223,9 @@ async function renderCurrentPage() {
   
   midiTimemap = response.timemap;
   midiData = response.midi;
+  var piece = 'data:audio/midi;base64,' + midiData;
+  $("#player").show();
+  $("#player").midiPlayer.load(piece);
   
   var svg = response.svg;
   
@@ -243,109 +233,46 @@ async function renderCurrentPage() {
 }
 
 function connectReferences() {
-  console.log("connectReferences();");
   $(".indicator").remove();
-  
-  // ----
-  // referencing facsimile and transcription
-  // ----
-  //if (currentParams.lang == "facsimile") {
-    $("tei-body").find("tei-graphic img").on("load", function() {
-      console.log("img load");
-      let surface = $(this).parent().parent();
-      let zoom = $(this)[0].width / surface.attr("lrx");
-      let url = $(this).attr("src");
-      
-      surface.children("tei-zone").each(function() {
-        var zone = $(this);
-        let ulx = zone.attr("ulx");
-        let uly = zone.attr("uly");
-        let lrx = zone.attr("lrx");
-        let lry = zone.attr("lry");
-  
-        var corresp = $(this).attr("corresp");
-        console.log("corresp=" + corresp);
-        var prevCorresp = $(this).prev().attr("corresp");
-        var target = $("body").find(corresp);
-        if (target.length > 0) {
-          target.mouseenter(function(e) {
-            if (prevCorresp != corresp) {
-              $("#facsimile-tooltips").css({
-                position: "absolute",
-                top: e.pageY+5,
-                left: e.pageX+5
-              });
-            } else {
-              $("<div class='system-break'>[system break]</div>").css({
-                rotate: "-90deg"
-              }).appendTo("#facsimile-tooltips");
-            }
-            var facsWidth = lrx-ulx;
-            var facsHeight = lry-uly;
-            $("<div class='facsimile-tooltip' />").css({
-              backgroundImage: "url(" + url + ")",
-              backgroundPosition: (-ulx) + "px " + (-uly) + "px",
-              width: facsWidth,
-              height: facsHeight
-            }).appendTo("#facsimile-tooltips");
-            
-            if (e.pageX+facsWidth*0.6 > $(window).width()) {
-              $("#facsimile-tooltips").css({
-                left: e.pageX-facsWidth*0.6-20
-              });
-            }
-            if (e.pageY+facsHeight*0.6 > $(window).height()) {
-              $("#facsimile-tooltips").css({
-                top: e.pageY-facsHeight*0.6-20
-              });
-            }
-            
-            $(this).children().css('fill', "#6F216C");
-          }).mouseleave(function() {
-            $("#facsimile-tooltips").empty();
-            $(this).children().css('fill', "black");
-          });
-        }
-      });
-    }).each(function() {
-      if(this.complete) { $(this).trigger('load'); }
-    });
   
   // -----
   // referencing annotations and score
   // -----
-    //} else {
-    $("tei-ref").each(function() {
-      // connect text with an indicator
-      $(this).find("a").click(function(e) {
-        e.preventDefault();
-        highlight(".indicator[data-ref='" + ref + "']");
-      });
+  $("tei-ref").each(function() {
+    // connect text with an indicator
+    $(this).find("a").click(function(e) {
+      e.preventDefault();
+      highlight(".indicator[data-ref='" + ref + "']");
+    });
+  
+    // find target in SVG and underlay it colorfully
+    var ref = $(this).attr("target");
+  
+    target = $("#score-view svg").find("#" + ref);
+    if (target.length === 0) {
+      console.log("corresponding SVG element for ref=" + ref + " not found on this page.");
+      return true; // nothing found, continue with next reference
+    }
     
-      // find target in SVG and underlay it colorfully
-      var ref = $(this).attr("target");
-    
-      target = $("#score-view svg").find("#" + ref);
-      if (target.length === 0) {
-        console.log("corresponding SVG element for ref=" + ref + " not found on this page.");
-        return true; // nothing found, continue with next reference
-      }
-      $("<div class='indicator' data-ref='" + ref + "'></div>").appendTo("body").css(getSvgElementBoxAsCss(target)).click(function() {
-        // scroll to reference point and then highlight it
-        var refSelector = "tei-ref[target='" + $(this).attr("data-ref") + "']";
-        referencePoint = $(refSelector);
-        annotationView = $("annotations-view")
-        $("#annotations-view").animate({
-            scrollTop: referencePoint.offset().top - $("#annotations-view").offset().top + $("#annotations-view").scrollTop()
-        }, 100, function() {
-          highlight(refSelector);
-        });
+    $("<div class='indicator' data-ref='" + ref + "'></div>").appendTo("body").css(getSvgElementBoxAsCss(target)).click(function() {
+      // scroll to reference point and then highlight it
+      var refSelector = "tei-ref[target='" + $(this).attr("data-ref") + "']";
+      referencePoint = $(refSelector);
+      annotationView = $("annotations-view")
+      $("#annotations-view").animate({
+          scrollTop: referencePoint.offset().top - $("#annotations-view").offset().top + $("#annotations-view").scrollTop()
+      }, 100, function() {
+        highlight(refSelector);
       });
     });
-    //}
+  });
 }
 
 function connectTooltips() {
+  if (!$("#show-tooltips").is(":checked")) {
+    return;
+  }
+  
   $(".tooltip").remove();
   
   var keySig = $("#score-view svg").find(".keySig");
@@ -378,8 +305,68 @@ function connectTooltips() {
     meterSigAnnotation.parent().remove();
   }
   
-  // just for editing
-  // TEMPORARY
+  // ----
+  // connecting transcription and facsimile
+  // ----
+  $("tei-body").find("tei-graphic img").on("load", function() {
+    let surface = $(this).parent().parent();
+    let zoom = $(this)[0].width / surface.attr("lrx");
+    let url = $(this).attr("src");
+    
+    surface.children("tei-zone").each(function() {
+      var zone = $(this);
+      let ulx = zone.attr("ulx");
+      let uly = zone.attr("uly");
+      let lrx = zone.attr("lrx");
+      let lry = zone.attr("lry");
+  
+      var corresp = $(this).attr("corresp");
+      var prevCorresp = $(this).prev().attr("corresp");
+      var target = $("body").find(corresp);
+      if (target.length > 0) {
+        target.mouseenter(function(e) {
+          if (prevCorresp != corresp) {
+            $("#facsimile-tooltips").css({
+              position: "absolute",
+              top: e.pageY+5,
+              left: e.pageX+5
+            });
+          } else {
+            $("<div class='system-break'>⤶</div>").appendTo("#facsimile-tooltips");
+          }
+          var facsWidth = lrx-ulx;
+          var facsHeight = lry-uly;
+          $("<div class='facsimile-tooltip' />").css({
+            backgroundImage: "url(" + url + ")",
+            backgroundPosition: (-ulx) + "px " + (-uly) + "px",
+            width: facsWidth,
+            height: facsHeight
+          }).appendTo("#facsimile-tooltips");
+          
+          if (e.pageX+facsWidth*0.6 > $(window).width()) {
+            $("#facsimile-tooltips").css({
+              left: e.pageX-facsWidth*0.6-20
+            });
+          }
+          if (e.pageY+facsHeight*0.6 > $(window).height()) {
+            $("#facsimile-tooltips").css({
+              top: e.pageY-facsHeight*0.6-20
+            });
+          }
+          
+          $(this).children().css('fill', "#6F216C");
+        }).mouseleave(function() {
+          $("#facsimile-tooltips").empty();
+          $(this).children().css('fill', "black");
+        });
+      }
+    });
+  }).each(function() {
+    if(this.complete) { $(this).trigger('load'); }
+  });
+  
+  
+  // temporary code for allowing faster MEI editing
   //console.log("removing indicators");
   //$(".indicator").remove();
   //console.log("measures found:" + $("#score-view svg").find(".measure").length);
@@ -437,7 +424,6 @@ $(document).ready(function() {
   
   $("#player").midiPlayer({
       onUpdate: midiUpdate,
-      onStop: midiStop,
       width: 150
   });
   
@@ -461,6 +447,14 @@ $(document).ready(function() {
     updateView(false);
   });
   
+  $("#show-fb").change(function() {
+    $("#score-view svg").find(".fb").toggle($(this).is(':checked'));
+  });
+  
+  $("#show-tooltips").change(function() {
+    updateView(false);
+  });
+  
   $("#previous-page").click(function() {
     currentParams.page = parseInt(currentParams.page, 10) - 1;
     updateView(false);
@@ -479,10 +473,6 @@ $(document).ready(function() {
   $("#export").click(function() {
     currentParams.exportFormat = $("#export-format").val();
     window.open("/download?" + $.param(currentParams), "about:blank");
-  });
-  
-  $("#midiPlayer_play").click(function() {
-    playMIDI();
   });
   
   updateView(true);

@@ -248,10 +248,10 @@ function convertFile(file, data) {
     MidiPlayer['FS'].writeFile(midiPlayer_midiName, data, {
         encoding: 'binary'
     });
-    play();
 }
 
 function pause() {
+  console.log("pause()");
     _EM_signalStop = 2;
     circularBuffer.reset();
     midiPlayer_play.style.display = 'inline-block';
@@ -282,6 +282,8 @@ function play() {
 }
 
 function stop() {
+  console.log("stop()");
+  
     _EM_signalStop = 1;
     _EM_seekSamples = 0;
     circularBuffer.reset();
@@ -342,11 +344,10 @@ function runConversion() {
         // update rate should not be less than 10 milliseconds
         options.updateRate = Math.max(options.updateRate, 10);
         
-        $.fn.midiPlayer.play = function (song) {
+        $.fn.midiPlayer.load = function (song) {
             if (midiPlayer_isLoaded == false) {
                 midiPlayer_input = song;
-            }
-            else {
+            } else {
                 var byteArray = convertDataURIToBinary(song);
                 if (midiPlayer_totalSamples > 0) {
                     stop();
@@ -372,18 +373,18 @@ function runConversion() {
         
         // Create the player
         this.append("<div id=\"midiPlayer_div\"></div>");
-        $("#midiPlayer_div").append("<div id=\"midiPlayer_playingTime\">0:00</div>")
+        $("#midiPlayer_div").append("<a class='icon play' id='midiPlayer_play' onclick='play()'>&#9654;</a>")
+            .append("<a class='icon pause' id=\"midiPlayer_pause\" onclick='pause()'>||</a>")
+            .append("<a class='icon stop' id='midiPlayer_stop' onclick='stop()'>&#9632;</a>")
+            .append("<div id=\"midiPlayer_playingTime\">0:00</div>")
             .append("<div id=\"midiPlayer_bar\"><div id=\"midiPlayer_progress\"></div></div>")
-            .append("<div id=\"midiPlayer_totalTime\">0:00</div>")
-            .append("<a class=\"icon play\" id=\"midiPlayer_play\"\">&#9654;</a>")
-            .append("<a class=\"icon pause\" id=\"midiPlayer_pause\" onclick=\"pause()\">||</a>")
-            .append("<a class=\"icon stop\" id=\"midiPlayer_stop\" onclick=\"stop()\">&#9632;</a>");
+            .append("<div id=\"midiPlayer_totalTime\">0:00</div>");
             
-        $("#midiPlayer_div").css("width", options.width + 150);
+        $("#midiPlayer_div").css("width", options.width + 130);
         $("#midiPlayer_bar").css("width", options.width);
         $("#midiPlayer_progress").css("background", options.color);
-        $("#midiPlayer_pause").css("display", "none");
-        $("#midiPlayer_stop").css("display", "none")
+        $("#midiPlayer_pause").hide();
+        $("#midiPlayer_stop").hide();
         
         // Assign the global variables
         midiPlayer_onStop = options.onStop;

@@ -319,7 +319,8 @@ var AnnotationToPDF = {
       
         vrvToolkit.loadData(mei.toString());
         svg = vrvToolkit.renderToSVG(1, {
-          adjustPageHeight: true
+          adjustPageHeight: true,
+          font: "Bravura"
         });
 
         this.pdfDoc.addSVG(svg, this.pdfDoc.x, this.pdfDoc.y, {});
