@@ -20,20 +20,21 @@ svg {
   z-index: 0;
 }
 
-.tooltip {
+.tooltip-overlay {
   position: absolute;
   border: 1.5px solid #5f97fc;
   background-color: #8cb5ff;
   opacity: 0.3;
 }
 
-#facsimile-tooltips {
+#tooltips {
   transform: scale(0.6);
   transform-origin: top left;
   z-index: 900;
+  background-color: white;
 }
 
-.facsimile-tooltip {
+.tooltip {
   float: left;
   border: 1px solid black;
   z-index: 900;
@@ -48,11 +49,12 @@ svg {
 }
 
 .tooltip-text {
-  font-size: 0.7em;
+  font-size: 1.2em;
   line-height: 1.5;
   font-family: serif;
   text-align: justify;
-  max-width: 400px;
+  width: 400px;
+  padding: 0.5em;
 }
 
 .left-half {
@@ -73,6 +75,7 @@ svg {
 }
 
 #options {
+  font-family: arial;
   font-size: 2em;
 }
 
@@ -233,12 +236,14 @@ input[type="number"] {
 
 #copyright {
   position: fixed;
-  bottom: 0px;
-  left: 0px;
-  font-size: 10pt;
-  background-color: white;
+  left: 0;
+  bottom: 0;
+  width: 100px;
+  font-family: sans-serif;
+  font-size: 11pt;
+  background-color: #ededed;
   text-align: left;
   padding: 5px;
-  width: 100px;
   z-index: 999;
+  border-radius: 6px 6px 6px;
 }

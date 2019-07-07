@@ -268,41 +268,61 @@ function connectReferences() {
   });
 }
 
+function positionAtMouse(el, e) {
+  el.css({
+    position: "absolute",
+    left: e.pageX+5,
+    top: e.pageY+5
+  });
+  
+  if (e.pageX+el.width()*0.6 > $(window).width()) {
+    el.css({
+      left: e.pageX-el.width()*0.6-20
+    });
+  }
+  if (e.pageY+el.height()*0.6 > $(window).height()) {
+    el.css({
+      top: e.pageY-el.height()*0.6-20
+    })
+  }
+}
+
 function connectTooltips() {
   if (!$("#show-tooltips").is(":checked")) {
+    $(".tooltip-overlay").remove();
     return;
   }
   
-  $(".tooltip").remove();
+  $(".tooltips").empty();
   
   var keySig = $("#score-view svg").find(".keySig");
   if (keySig.length != 0) {
-    var keySigAnnotation = $("tei-note[type='on-key-signature'] span[data-original='']");
+    let annotation = $("tei-note[type='on-key-signature'] span[data-original='']");
     
-    $("<div class='tooltip' id='key-signature-tooltip'></div>").appendTo("body").css(getSvgElementBoxAsCss(keySig)).tooltip({
-      content: keySigAnnotation.text(),
-      items: "#key-signature-tooltip",
-      classes: {
-        "ui-tooltip": "tooltip-text"
-      }
+    $("<div class='tooltip-overlay'></div>").appendTo("body").css(getSvgElementBoxAsCss(keySig)).mouseenter(function(e) {
+      let tooltips = $("#tooltips");
+      $("<div class='tooltip tooltip-text' />").append(annotation.text()).css({width: "400px"}).appendTo("#tooltips");
+      positionAtMouse(tooltips, e);
+    }).mouseleave(function(e) {
+      $("#tooltips").empty();
     });
     
-    keySigAnnotation.parent().remove();
+    annotation.parent().remove();
   }
   
   var meterSig = $("svg").find(".meterSig");
   if (meterSig.length != 0) {
-    var meterSigAnnotation = $("tei-note[type='on-meter'] span[data-original='']");
+    let annotation = $("tei-note[type='on-meter'] span[data-original='']");
     
-    $("<div class='tooltip' id='meter-signature-tooltip'></div>").appendTo("body").css(getSvgElementBoxAsCss(meterSig)).tooltip({
-      content: meterSigAnnotation.text(),
-      items: "#meter-signature-tooltip",
-      classes: {
-        "ui-tooltip": "tooltip-text"
-      }
+    $("<div class='tooltip-overlay'></div>").appendTo("body").css(getSvgElementBoxAsCss(meterSig)).mouseenter(function(e) {
+      let tooltips = $("#tooltips");
+      $("<div class='tooltip tooltip-text' />").append(annotation.text()).css({width: "400px"}).appendTo("#tooltips");
+      positionAtMouse(tooltips, e);
+    }).mouseleave(function(e) {
+      $("#tooltips").empty();
     });
     
-    meterSigAnnotation.parent().remove();
+    annotation.parent().remove();
   }
   
   // ----
@@ -326,37 +346,37 @@ function connectTooltips() {
       if (target.length > 0) {
         target.mouseenter(function(e) {
           if (prevCorresp != corresp) {
-            $("#facsimile-tooltips").css({
+            $("#tooltips").css({
               position: "absolute",
               top: e.pageY+5,
               left: e.pageX+5
             });
           } else {
-            $("<div class='system-break'>⤶</div>").appendTo("#facsimile-tooltips");
+            $("<div class='system-break'>⤶</div>").appendTo("#tooltips");
           }
           var facsWidth = lrx-ulx;
           var facsHeight = lry-uly;
-          $("<div class='facsimile-tooltip' />").css({
+          $("<div class='tooltip' />").css({
             backgroundImage: "url(" + url + ")",
             backgroundPosition: (-ulx) + "px " + (-uly) + "px",
             width: facsWidth,
             height: facsHeight
-          }).appendTo("#facsimile-tooltips");
+          }).appendTo("#tooltips");
           
           if (e.pageX+facsWidth*0.6 > $(window).width()) {
-            $("#facsimile-tooltips").css({
+            $("#tooltips").css({
               left: e.pageX-facsWidth*0.6-20
             });
           }
           if (e.pageY+facsHeight*0.6 > $(window).height()) {
-            $("#facsimile-tooltips").css({
+            $("#tooltips").css({
               top: e.pageY-facsHeight*0.6-20
             });
           }
           
           $(this).children().css('fill', "#6F216C");
         }).mouseleave(function() {
-          $("#facsimile-tooltips").empty();
+          $("#tooltips").empty();
           $(this).children().css('fill', "black");
         });
       }
@@ -474,18 +494,6 @@ $(document).ready(function() {
     currentParams.exportFormat = $("#export-format").val();
     window.open("/download?" + $.param(currentParams), "about:blank");
   });
-  
-  //$("#show-options").click(function(e) {
-  //  e.preventDefault();
-  //  $("#controls-table").show();
-  //  $("#hide-options").show().click(function(e) {
-  //    e.preventDefault();
-  //    $(this).hide();
-  //    $("#controls-table").hide();
-  //    $("#show-options").show();
-  //  });
-  //  $(this).hide();
-  //});
   
   updateView(true);
 });
