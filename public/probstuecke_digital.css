@@ -56,33 +56,70 @@ svg {
 }
 
 .left-half {
+  position: absolute;
   display: flex;
   justify-content: center;
   float:left;
   left: 0px;
   width: 50%;
-  height: 86vh;
+  height: 95vh;
 }
 
 .right-half {
   position: absolute;
   right: 0px;
   width: 50%;
-  height: 86vh;
+  height: 95vh;
+}
+
+#options {
+  font-size: 2em;
+}
+
+#options:hover {
+  color: #991c00;
 }
 
 .controls {
-  background-color: #f9fafc;
+  position: absolute;
   z-index: 10;
   margin-bottom: 5px;
 }
 
 #controls-table {
-  width: 100%;
-  font-family: sans-serif;
-  font-size: 0.78em;
-  border: 1px solid black;
-  border-radius: 5px 5px 5px;
+    position: absolute;
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 500ms, visibility 500ms;
+    width: 95vw;
+    background-color: #f9fafc;
+    font-family: sans-serif;
+    font-size: 0.78em;
+    border: 1px solid black;
+    border-radius: 5px 5px 5px;
+    box-shadow: 4px 4px 8px 0px rgba(191,191,191,1);
+}
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.controls:hover #controls-table {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    animation: fade 1s;
+}
+
+#controls-table td {
+  padding: 5px;
 }
 
 #controls-table thead td {
@@ -100,7 +137,7 @@ input[type="number"] {
 }
 
 #score-view {
-  height: 86vh;
+  height: 95vh;
   overflow-y: scroll;
   margin-left: 30px;
   margin-right: 30px;
@@ -108,7 +145,7 @@ input[type="number"] {
 
 #annotations-view {
   float: right;
-  height: 86vh;
+  height: 95vh;
   overflow-y: scroll;
 }
 
@@ -160,7 +197,7 @@ tei-head {
 }
 
 tei-body > tei-head {
-  font-size: 180%;
+  font-size: 1.5em;
   text-indent: -0.5em;
 }
 

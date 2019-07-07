@@ -66,17 +66,17 @@ var midiData = {};
 
 var midiUpdate = function(time) {
   // TODO look up time in midiTimemap
-  //for (event of midiTimemap) {
-  //  if (event.tstamp === time) {
-  //    var onsets = event.on;
-  //    if (onsets) {
-  //      for (var i=0; i<onsets.length; i++) {
-  //        $("svg").find("#" + onsets[i]).attr("fill", "#c00").attr("stroke", "#c00");
-  //      }
-  //    }
-  //    break;
-  //  }
-  //}
+  for (event of midiTimemap) {
+    if (event.tstamp === time) {
+      var onsets = event.on;
+      if (onsets) {
+        for (var i=0; i<onsets.length; i++) {
+          $("svg").find("#" + onsets[i]).attr("fill", "#c00").attr("stroke", "#c00");
+        }
+      }
+      break;
+    }
+  }
 }
 
 // ------
@@ -474,6 +474,18 @@ $(document).ready(function() {
     currentParams.exportFormat = $("#export-format").val();
     window.open("/download?" + $.param(currentParams), "about:blank");
   });
+  
+  //$("#show-options").click(function(e) {
+  //  e.preventDefault();
+  //  $("#controls-table").show();
+  //  $("#hide-options").show().click(function(e) {
+  //    e.preventDefault();
+  //    $(this).hide();
+  //    $("#controls-table").hide();
+  //    $("#show-options").show();
+  //  });
+  //  $(this).hide();
+  //});
   
   updateView(true);
 });
