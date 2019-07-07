@@ -265,6 +265,8 @@ function connectReferences() {
         highlight(refSelector);
       });
     });
+    
+    
   });
 }
 
@@ -301,7 +303,7 @@ function connectTooltips() {
     
     $("<div class='tooltip-overlay'></div>").appendTo("body").css(getSvgElementBoxAsCss(keySig)).mouseenter(function(e) {
       let tooltips = $("#tooltips");
-      $("<div class='tooltip tooltip-text' />").append(annotation.text()).css({width: "400px"}).appendTo("#tooltips");
+      $("<div class='tooltip tooltip-text' />").append(annotation.text()).appendTo("#tooltips");
       positionAtMouse(tooltips, e);
     }).mouseleave(function(e) {
       $("#tooltips").empty();
@@ -316,7 +318,7 @@ function connectTooltips() {
     
     $("<div class='tooltip-overlay'></div>").appendTo("body").css(getSvgElementBoxAsCss(meterSig)).mouseenter(function(e) {
       let tooltips = $("#tooltips");
-      $("<div class='tooltip tooltip-text' />").append(annotation.text()).css({width: "400px"}).appendTo("#tooltips");
+      $("<div class='tooltip tooltip-text' />").append(annotation.text()).appendTo("#tooltips");
       positionAtMouse(tooltips, e);
     }).mouseleave(function(e) {
       $("#tooltips").empty();
@@ -346,33 +348,17 @@ function connectTooltips() {
       if (target.length > 0) {
         target.mouseenter(function(e) {
           if (prevCorresp != corresp) {
-            $("#tooltips").css({
-              position: "absolute",
-              top: e.pageY+5,
-              left: e.pageX+5
-            });
+            positionAtMouse($("#tooltips"), e);
           } else {
             $("<div class='system-break'>⤶</div>").appendTo("#tooltips");
           }
-          var facsWidth = lrx-ulx;
-          var facsHeight = lry-uly;
           $("<div class='tooltip' />").css({
             backgroundImage: "url(" + url + ")",
             backgroundPosition: (-ulx) + "px " + (-uly) + "px",
-            width: facsWidth,
-            height: facsHeight
+            width: lrx-ulx,
+            height: lry-uly
           }).appendTo("#tooltips");
-          
-          if (e.pageX+facsWidth*0.6 > $(window).width()) {
-            $("#tooltips").css({
-              left: e.pageX-facsWidth*0.6-20
-            });
-          }
-          if (e.pageY+facsHeight*0.6 > $(window).height()) {
-            $("#tooltips").css({
-              top: e.pageY-facsHeight*0.6-20
-            });
-          }
+          positionAtMouse($("#tooltips"), e);
           
           $(this).children().css('fill', "#6F216C");
         }).mouseleave(function() {
