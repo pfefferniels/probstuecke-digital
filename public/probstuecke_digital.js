@@ -235,7 +235,7 @@ function reconnectCrossRefs() {
     // highlight the target
     var svg = SVG.get($(this).attr("target"));
     let bbox = svg.bbox();
-    let rect = svg.rect(bbox.width,bbox.height).move(bbox.x,bbox.y).fill("#ffe47a");
+    let rect = svg.rect(bbox.width,bbox.height).move(bbox.x,bbox.y).fill("#ffe47a").attr("class", "indicator");
     rect.back();
     
     // connect indicator with text
