@@ -3,6 +3,11 @@ var fs = require('fs')
 var http = require('http');
 var express = require('express');
 var xmldom = require('xmldom');
+const window   = require('svgdom'),
+      SVG      = require('svg.js')(window),
+      document = window.document,
+      draw     = SVG(document.documentElement);
+      
 var PDFDocument = require('pdfkit');
 var DOMParser = xmldom.DOMParser;
 var SVGtoPDF = require('svg-to-pdfkit');
@@ -314,17 +319,23 @@ var AnnotationToPDF = {
         // load music examples
         var target = children[i].attributes[0].value;
         var contents = fs.readFileSync(__dirname + "/data/" + this.nr + "/" + target, 'utf8');
-        var doc = new DOMParser().parseFromString(contents.toString(), 'text/xml');
-        var mei = new xmldom.XMLSerializer().serializeToString(doc);
-      
-        vrvToolkit.loadData(mei.toString());
+
+        vrvToolkit.loadData(contents);
         svg = vrvToolkit.renderToSVG(1, {
           adjustPageHeight: true,
           font: "Bravura"
         });
 
+        draw.svg(svg);
+        let elements = SVG.select('g.system');
+        var height = 0;
+        elements.each(function(i) {
+          height += elements.get(i).bbox().height;
+        });
+        draw.clear();
+        
         this.pdfDoc.addSVG(svg, this.pdfDoc.x, this.pdfDoc.y, {});
-        this.pdfDoc.moveDown(20);
+        this.pdfDoc.y += height*0.1+10;
       } else {
         this.traverse(children[i]);
       }

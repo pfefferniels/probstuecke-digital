@@ -277,7 +277,7 @@ function positionAtMouse(el, e) {
 }
 
 function cleanUpTooltips() {
-  $(".tooltips").empty();
+  $("#tooltips").empty();
   $(".tooltip-overlay").remove();
 }
 
@@ -304,7 +304,7 @@ function connectTooltips() {
     annotation.parent().remove();
   }
   
-  var meterSig = $("svg").find(".meterSig");
+  var meterSig = $("#score-view svg").find(".meterSig");
   if (meterSig.length != 0) {
     var annotation = $("tei-note[type='on-meter'] span[data-original='']");
     
@@ -338,6 +338,10 @@ function connectTooltips() {
       var prevCorresp = $(this).prev().attr("corresp");
       var target = $("body").find(corresp);
       if (target.length > 0) {
+        if (prevCorresp != corresp) {
+          target.off("mouseenter");
+        }
+        
         target.mouseenter(function(e) {
           if (prevCorresp != corresp) {
             positionAtMouse($("#tooltips"), e);
@@ -416,7 +420,7 @@ async function updateView(resetting) {
 async function updateScoreView() {
   await renderCurrentPage();
   reconnectCrossRefs();
-  cleanUpTooltips();
+  connectTooltips();
 }
 
 $(document).ready(function() {
