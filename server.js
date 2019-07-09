@@ -330,7 +330,9 @@ var AnnotationToPDF = {
         let elements = SVG.select('g.system');
         var height = 0;
         elements.each(function(i) {
-          height += elements.get(i).bbox().height;
+          if (elements.get(i).bbox().height !== NaN) {
+            height += elements.get(i).bbox().height;
+          }
         });
         draw.clear();
         
