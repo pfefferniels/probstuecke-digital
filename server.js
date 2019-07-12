@@ -367,7 +367,7 @@ app.get("/download", function(req, res) {
         
         // PDFKit will realize the newlines in the original TEI file as new paragraphs. To prevent,
         // all line breaks have to be removed first.
-        var annotationDoc = new DOMParser().parseFromString(data.toString().replace(/(\r\n|\n|\r)/gm, ""), 'text/xml');
+        var annotationDoc = new DOMParser().parseFromString(data.toString().replace(/\s\s+/g, ' '), 'text/xml');
         var converter = Object.create(AnnotationToPDF);
         converter.nr = req.query.nr;
         doc.font("Times-Roman").fontSize(25);

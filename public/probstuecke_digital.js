@@ -333,9 +333,16 @@ function connectTooltips() {
       let uly = zone.attr("uly");
       let lrx = zone.attr("lrx");
       let lry = zone.attr("lry");
-  
-      var corresp = $(this).attr("corresp");
-      var prevCorresp = $(this).prev().attr("corresp");
+      
+      let corresp = $(this).attr("corresp");
+      let prevCorresp = $(this).prev().attr("corresp");
+      if (!prevCorresp) {
+        prevCorresp = $(this).parent().prev().find("tei-zone").last().attr("corresp");
+      }
+      
+      console.log("corresp: " + corresp);
+      console.log("prevCorresp: " + prevCorresp);
+      
       var target = $("body").find(corresp);
       if (target.length > 0) {
         if (prevCorresp != corresp) {
