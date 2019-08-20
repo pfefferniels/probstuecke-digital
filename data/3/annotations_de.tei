@@ -18,7 +18,7 @@
       <head>Erläuterung</head>
       <div n="1" type="section">
         <head>§ 1.</head>
-        <p>
+        <p id="p1-1">
           Da ist gut General-Baß spielen, wenn nicht mehr Ziffern vorkommen, als in diesem Exempel. Ey! wie wird sich mancher
           freuen, daß die Zahlen so dünn gesäet sind. Die Warheit<note type="footnote">sic</note> zu getehen, ich muß den guten
           Leuten auch dann und wann gönnen, daß sie Athem schöpffen; sonst würde es ihnen allzu sauer. Es könnte aber doch 
@@ -29,7 +29,7 @@
       </div>
       <div n="2" type="section">
         <head>§ 2.</head>
-        <p>
+        <p id="p2-1">
           Sonst kann ich wol sagen, daß in gegenwärtiger Vorschrift mehrentheils auf die so nützliche Beförderung, einer guten Ordnung
           der lauffenden Finger gesehen worden: massen man sich, bey vorfallender Gelegenheit, sonderlich,
           wenn der Baß viel unterwerts läufft, nicht genug über das garstige <emph>Stolpern</emph> etlicher
@@ -56,21 +56,21 @@
       
       <div n="3" type="section">
         <head>§ 3.</head>
-        <p>
+        <p id="p3-1">
           Im <ref target="m-407">zehnten</ref> und <ref target="m-438">folgenden Tact</ref> schlägt die rechte Hand allemahl vor, wo die Pause
           stehet, solches giebt eine gar angenehme Brechung. Im <ref target="m-603">siebenzehnten Tact</ref> aber wird es umgekehrt,
           und da schlägt der Baß seine ehrbaren Viertel voran, wozu die rechte Hand, mit den Signaturen oder Accorden, auf die 
           vorige Weise syncopirt. Eben. also wird es mit allen vorkommenden Vierteln gehalten, die durch Sechzehn-Theile abgehöst
           werden, etwa auf diese Art:
-          <notatedMusic>
-            <ptr target="music-example1.mei" />
-          </notatedMusic>
         </p>
+        <notatedMusic id="music-example1">
+          <ptr target="music-example1.mei" />
+        </notatedMusic>
       </div> 
       
       <div n="4" type="section">
         <head>§ 4.</head>
-        <p>
+        <p id="p4-1">
           Wobey ebenfalls zu mercken: daß alle dergleichen BRechungen um so viel angenehmer klingen, je weiter die Intervalle
           voneinander entlegen sind: solche müssen wol nie kleiner werden, als eine Quarte. denn die Verhältniß der Tertzen
           (zumahl in der rechten Hand) klingt gar zu enge, und kann fast nicht gebraucht werden. Wenn demnach im
@@ -148,12 +148,17 @@
       <surface ulx="0" uly="0" lrx="1000" lry="1199">
         <graphic url="facsimile/bsb10598495_00402.svg.jpg"/>
         
-        <zone ulx='62' uly='182' lrx='964' lry='482' corresp="div[n='1']" />
+        <zone ulx='58' uly='162' lrx='967' lry='484' corresp='#p1-1' />
+        <zone ulx='64' uly='497' lrx='965' lry='1125' corresp='#p2-1' />
       </surface>
       
       <surface ulx="0" uly="0" lrx="1000" lry="1199">
         <graphic url="facsimile/bsb10598495_00403.svg.jpg"/>
         
+        <zone ulx='40' uly='65' lrx='945' lry='363' corresp='#p2-1' />
+        <zone ulx='42' uly='366' lrx='953' lry='560' corresp='#p3-1' />
+        <zone ulx='207' uly='562' lrx='772' lry='841' corresp='#music-example1' />
+        <zone ulx='36' uly='830' lrx='953' lry='1091' corresp='#p4-1' />
       </surface>
     </facsimile>
     </body>

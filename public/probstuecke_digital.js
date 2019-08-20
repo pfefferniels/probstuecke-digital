@@ -272,7 +272,7 @@ function positionAtMouse(el, e) {
   if (e.pageY+el.height()*0.6 > $(window).height()) {
     el.css({
       top: e.pageY-el.height()*0.6-20
-    })
+    });
   }
 }
 
@@ -373,40 +373,40 @@ function connectTooltips() {
   
   
   // temporary code for allowing faster MEI editing
-  //console.log("measures found:" + $("#score-view svg").find(".measure").length);
-  //$("#score-view svg").find(".measure").on("click", function() {
-  //  copyToClipboard("#" + $(this).attr("id"));
-  //  printError("copied to clipboard");
-  //});
-  //  
-  //meiStrings = [];
-  //$("#score-view svg").find(".note, .rest").one("click", function() {
-  //  console.log(meiStrings);
-  //  let id = $(this).attr("id");
-  //  printError("note " + id + " recognized");
-  //  $("#copyright").empty();
-  //  $("#copyright").append("<input type='text' id='figures'>");
-  //  $("#figures").focus();
-  //  $('#figures').keypress(function (e) {
-  //    if (e.which == 13) {
-  //      var figures = $(this).val().replace("b", "♭").replace("6/", "6⃥").replace("n", "♮").split(",");
-  //      var meiString = "<harm place='above' staff='2' startid='" + id + "'><fb>";
-  //      for (var i=0; i<figures.length; i++) {
-  //        meiString += "<f>" + figures[i] + "</f>";
-  //      }
-  //      meiString +="</fb></harm>";
-  //      meiStrings.push(meiString);
-  //      printError("added");
-  //      $(this).val("");
-  //      return false;
-  //    }
-  //  });
-  //  $("<button>copy to clipboard</button>").on("click", function() {
-  //    copyToClipboard(meiStrings.join("\n"));
-  //    printError("copied to clipboard");
-  //    meiStrings = [];
-  //  }).appendTo("#copyright");
-  //});
+  console.log("measures found:" + $("#score-view svg").find(".measure").length);
+  $("#score-view svg").find(".measure").on("click", function() {
+    copyToClipboard("#" + $(this).attr("id"));
+    printError("copied to clipboard");
+  });
+    
+  meiStrings = [];
+  $("#score-view svg").find(".note, .rest").one("click", function() {
+    console.log(meiStrings);
+    let id = $(this).attr("id");
+    printError("note " + id + " recognized");
+    $("#copyright").empty();
+    $("#copyright").append("<input type='text' id='figures'>");
+    $("#figures").focus();
+    $('#figures').keypress(function (e) {
+      if (e.which == 13) {
+        var figures = $(this).val().replace("b", "♭").replace("6/", "6⃥").replace("n", "♮").split(",");
+        var meiString = "<harm place='above' staff='2' startid='" + id + "'><fb>";
+        for (var i=0; i<figures.length; i++) {
+          meiString += "<f>" + figures[i] + "</f>";
+        }
+        meiString +="</fb></harm>";
+        meiStrings.push(meiString);
+        printError("added");
+        $(this).val("");
+        return false;
+      }
+    });
+    $("<button>copy to clipboard</button>").on("click", function() {
+      copyToClipboard(meiStrings.join("\n"));
+      printError("copied to clipboard");
+      meiStrings = [];
+    }).appendTo("#copyright");
+  });
   
 }
 
