@@ -70,8 +70,12 @@ svg {
 }
 
 #options {
-  font-family: arial;
-  font-size: 2em;
+  font-family: sans-serif;
+  font-size: 0.8em;
+  transform: rotate(90deg);
+  transform-origin: left bottom;
+  text-transform: uppercase;
+  cursor: pointer;
 }
 
 #options:hover {

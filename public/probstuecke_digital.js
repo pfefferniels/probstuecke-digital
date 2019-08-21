@@ -373,11 +373,11 @@ function connectTooltips() {
   
   
   // temporary code for allowing faster MEI editing
-  console.log("measures found:" + $("#score-view svg").find(".measure").length);
-  $("#score-view svg").find(".measure").on("click", function() {
-    copyToClipboard("#" + $(this).attr("id"));
-    printError("copied to clipboard");
-  });
+  //console.log("measures found:" + $("#score-view svg").find(".measure").length);
+  //$("#score-view svg").find(".measure").on("click", function() {
+  //  copyToClipboard("#" + $(this).attr("id"));
+  //  printError("copied to clipboard");
+  //});
     
   meiStrings = [];
   $("#score-view svg").find(".note, .rest").one("click", function() {
