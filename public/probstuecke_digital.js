@@ -340,9 +340,6 @@ function connectTooltips() {
         prevCorresp = $(this).parent().prev().find("tei-zone").last().attr("corresp");
       }
       
-      console.log("corresp: " + corresp);
-      console.log("prevCorresp: " + prevCorresp);
-      
       var target = $("body").find(corresp);
       if (target.length > 0) {
         if (prevCorresp != corresp) {

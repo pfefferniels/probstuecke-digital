@@ -247,3 +247,30 @@ input[type="number"] {
   z-index: 999;
   border-radius: 6px 6px 6px;
 }
+
+
+@media only screen and (max-width: 800px) {
+  .left-half {
+    position: relative;
+    float: none;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .right-half {
+    position: absolute;
+    right: auto;
+    width: 100%;
+  }
+  
+  #annotations-view {
+    float: none;
+    height: auto;
+  }
+  
+  #score-view {
+    margin: 0;
+  }
+}
+
