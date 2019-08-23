@@ -14,90 +14,94 @@
   <body>
     <div class="controls">
       <div id="options">contents and options</div>
-      <table id="controls-table">
-        <thead>
-          <tr>
-            <td>nr.</td>
-            <td>empty staves</td>
-            <td>tools</td>
-            <td>analysis</td>
-            <td>realizations</td>
-            <td>recordings</td>
-            <td>right view</td>
-            <td>export</td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <input type="number" id="nr" name="nr" min="1" max="24" value="1" autocomplete="off">
-            </td>
-
-            <td>
+      
+      <div id="controls-table">
+        <div class="controls-item">
+          <h1>Probstück number</h1>
+          <input type="number" id="nr" name="nr" min="1" max="24" value="1" autocomplete="off">
+        </div>
+        
+        <div class="controls-item">
+          <h1>empty staves</h1>
+          <ul>
+            <li>
               <input type="number" id="staves-above" name="staves-above" min="0" max="10" value="0" autocomplete="off">
               <label for="staves-above">⤴</label>
-              <br/>
-              
+            </li>
+            <li>
               <input type="number" id="staves-below" name="staves-below" min="0" max="10" value="0" autocomplete="off">
-              <label for="staves-below">⤵</label></li>
-            </td>
-            
-            <td>
+              <label for="staves-below">⤵</label>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="controls-item">
+          <h1>tools</h1>
+          <ul>
+            <li>
               <input type="checkbox" id="show-fb" name="show-fb" autocomplete="off" checked>
               <label for="show-fb">show figured bass</label>
-              <br/>
-              
+            </li>
+            
+            <li>
               <input type="checkbox" id="show-tooltips" name="show-tooltips" autocomplete="off" checked>
               <label for="show-tooltips">facsimile tooltips</label>
-              <br/>
-              
+            </li>
+            
+            <li>
               <input type="checkbox" id="modern-clefs" name="modern-clefs" autocomplete="off">
               <label for="modern-clefs">modern clefs</label>
-            </td>
-            
-            <td id="analysis"></td>
-            <td id="realizations"></td>
-            <td>
-              <div id="player"></div>
-            </td>
-            <td id="available-annotations"></td>
-            
-            <td>
-              <select id="export-format" name="export-format" autocomplete="off">
-                <option value="pdf">PDF</option>
-                <option value="musicxml">MusicXML</option>
-                <option value="midi">MIDI</option>
-              </select> <br />
-              <button id="export">export</button>
-            </td>
-      </table>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="controls-item" id="analysis">
+        </div>
+        
+        <div class="controls-item" id="realizations">
+        </div>
+        
+        <div class="controls-item" id="available-annotations">
+        </div>
+
+        <div class="controls-item">
+          <h1>MIDI</h1>
+          <div id="player"></div>
+        </div>
+        
+        <div class="controls-item">
+          <h1>export</h1>
+          
+          <a class="pdf-download">PDF</a>
+        </div>
+      </div>
     </div>
-    
+      
     <div>
-       <div class="left-half">
-         <table>
-           <tr>
-             <td>
-               <div class="change-page" id="previous-page">
-                 &lt;
-               </div>
-             </td>
-             <td>
-               <div id="score-view">
-                 transcription
-               </div>
-             </td>
-             <td>
-               <div class="change-page" id="next-page">
-                 &gt;
-               </div>
-             </td>
-           </tr>
-         </table>
-       </div>
-       <div id="annotations-view" class="right-half">
-         Erläuterungen
-       </div>
+      <div class="left-half">
+        <table>
+          <tr>
+            <td>
+              <div class="change-page" id="previous-page">
+                &lt;
+              </div>
+            </td>
+            <td>
+              <div id="score-view">
+                transcription
+              </div>
+            </td>
+            <td>
+              <div class="change-page" id="next-page">
+                &gt;
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id="annotations-view" class="right-half">
+        Erläuterungen
+      </div>
     </div>
     
     <div id="tooltips"></div>

@@ -333,14 +333,14 @@ function runConversion() {
             // These are the defaults.
             color: "#556b2f",
             backgroundColor: "white",
-            width: 500,
+            width: 130,
             onStop: null,
             onUpdate: null,
             updateRate: 50,
         },
         options);
         // width should not be less than 150
-        options.width = Math.max(options.width, 150);
+        options.width = Math.max(options.width, 130);
         // update rate should not be less than 10 milliseconds
         options.updateRate = Math.max(options.updateRate, 10);
         

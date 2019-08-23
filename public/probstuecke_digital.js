@@ -80,7 +80,9 @@ let staffLabels = {
 };
 
 function displayCheckboxes(block, group) {
+  console.log("displayCheckboxes: " + block + " " + group);
   if (block) {
+    $("#" + group).append("<h1>" + group + "</h1>");
     for (var i=0; i<block.length; i++) {
       var blockName = block[i];
       if (i!=0) {
@@ -123,6 +125,7 @@ async function updateDescription() {
   
   
   if (annotations) {
+    $("#available-annotations").append('<h1>annotations</h1>');
     $("#available-annotations").append('<select id="lang" name="lang" autocomplete="off">');
     for (var i=0; i<annotations.length; i++) {
       if (annotations[i] == "de") {
@@ -430,8 +433,7 @@ async function updateScoreView() {
 $(document).ready(function() {
   
   $("#player").midiPlayer({
-      onUpdate: midiUpdate,
-      width: 150
+      onUpdate: midiUpdate
   });
   
   // ------
@@ -479,8 +481,8 @@ $(document).ready(function() {
     updateView(false);
   });
   
-  $("#export").click(function() {
-    currentParams.exportFormat = $("#export-format").val();
+  $(".pdf-download").click(function() {
+    currentParams.exportFormat = "pdf";
     window.open("/download?" + $.param(currentParams), "about:blank");
   });
   

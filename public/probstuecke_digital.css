@@ -94,7 +94,6 @@ svg {
   opacity: 0;
   visibility: hidden;
   transition: opacity 500ms, visibility 500ms;
-  width: 95vw;
   background-color: #f9fafc;
   font-family: sans-serif;
   font-size: 0.78em;
@@ -120,13 +119,20 @@ svg {
   animation: fade 1s;
 }
 
-#controls-table td {
-  vertical-align: top;
-  padding: 5px;
+.controls-item {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  clear: both;
 }
 
-#controls-table thead td {
+.controls-item h1 {
+  font-size: 1em;
   font-weight: bold;
+}
+
+.controls-item ul {
+  list-style: none;
+  padding-left: 0;
 }
 
 input[type="number"] {
@@ -170,6 +176,26 @@ input[type="number"] {
 a {
   text-decoration: none;
   color: black;
+}
+
+.pdf-download {
+  width: 16px;
+  vertical-align: middle;
+  margin: 4px 0 2px 4px;
+  padding: 4px 0 1px 0px;
+  background-color: #fff;
+  color: red;
+  border: 1px solid red;
+  border-top-right-radius: 7px;
+  box-shadow: 1px 1px #ccc;
+  font-size: 7.7px;
+  font-weight: 700;
+  font-family: sans-serif;
+  line-height: 16px;
+  text-decoration: none;
+  display: inline-block;
+  box-sizing: content-box;
+  cursor: pointer;
 }
 
 tei-ref {
@@ -271,6 +297,10 @@ input[type="number"] {
   
   #score-view {
     margin: 0;
+  }
+  
+  #options {
+    transform: none;
   }
 }
 
