@@ -191,10 +191,17 @@ async function updateAnnotations() {
     var bbw=bb.width;
     var bbh=bb.height;
     svg1.setAttribute("viewBox", [bb.x,bb.y,bbw,bbh].join(" "));
-    notatedmusic.find("svg").css({
+    svg0 = notatedmusic.find("svg");
+    svg0.css({
       width: (bbw/1000)*28.34 + "px",
       height: (bbh/1000)*28.34 + "px"
     });
+    
+    // on smaller screen sizes, the svg might too wide.
+    var normalParagraph = notatedmusic.parent().find("tei-p");
+    if (svg0.width() > normalParagraph.width()) {
+      svg0.attr("width", normalParagraph.width());
+    }
   });
 }
 
@@ -431,7 +438,6 @@ async function updateScoreView() {
 }
 
 $(document).ready(function() {
-  
   $("#player").midiPlayer({
       onUpdate: midiUpdate
   });
