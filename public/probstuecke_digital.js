@@ -492,5 +492,25 @@ $(document).ready(function() {
     window.open("/download?" + $.param(currentParams), "about:blank");
   });
   
+  $(".controls").click(function() {
+    $("#controls-table").css({
+      "display": "block",
+      "visibility": "visible",
+      "opacity": "1",
+      "animation": "fade 1s"
+    });
+  });
+  
   updateView(true);
+});
+
+$(document).mouseup(function(e) 
+{
+    var container = $(".controls");
+
+    // if the target of the click isn't the container nor a descendant of the container
+    if (!container.is(e.target) && container.has(e.target).length === 0) 
+    {
+        $("#controls-table").hide();
+    }
 });
