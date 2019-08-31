@@ -118,6 +118,10 @@ svg {
   clear: both;
 }
 
+.controls-item:last-child {
+  padding-bottom: 0.5em;
+}
+
 .controls-item h1 {
   font-size: 1em;
   font-weight: bold;
@@ -129,7 +133,7 @@ svg {
 }
 
 input[type="number"] {
-  max-width: 50px;
+  max-width: 4em;
 }
 
 .change-page {
@@ -290,10 +294,18 @@ input[type="number"] {
   
   #score-view {
     margin: 0;
+    width: 90vw;
   }
   
   #options {
+    margin-top: 0.5em;
+    font-size: 1.4em;
     transform: none;
+  }
+    
+  #controls-table {
+    width: 40vw;
+    font-size: 1.5em;
   }
 }
 

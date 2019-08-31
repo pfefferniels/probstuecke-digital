@@ -261,17 +261,35 @@ function reconnectCrossRefs() {
     // connect indicator with text
     rect.click(function() {
       // scroll to reference point and then highlight it
-      var annotationView = $("#annotations-view");
-      annotationView.animate({
-          scrollTop: teiRef.offset().top - annotationView.offset().top + annotationView.scrollTop()
-      }, 100, function() {
-        highlight(teiRef);
-      });
+      // portrait mode
+      if(window.innerHeight > window.innerWidth) {
+        $("html,body").animate({
+          scrollTop: teiRef.offset().top-50
+        }, 100, function() {
+          highlight(teiRef);
+        });
+      }
+      
+      // landscape mode
+      if(window.innerWidth > window.innerHeight){
+        var annotationView = $("#annotations-view");
+        annotationView.animate({
+            scrollTop: teiRef.offset().top - annotationView.offset().top + annotationView.scrollTop()
+        }, 100, function() {
+          highlight(teiRef);
+        });
+      }
     });
+    
     
     // connect text with an indicator
     $(this).find("a").off("click").click(function(e) {
       e.preventDefault();
+      
+      if (window.innerHeight > window.innerWidth) {
+        $("html,body").animate({scrollTop: 0}, 100);
+      }
+      
       rect.animate(500).attr({opacity: 0}).animate().attr({opacity: 1});
     });
   });
