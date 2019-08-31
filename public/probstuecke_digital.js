@@ -80,7 +80,6 @@ let staffLabels = {
 };
 
 function displayCheckboxes(block, group) {
-  console.log("displayCheckboxes: " + block + " " + group);
   if (block) {
     $("#" + group).append("<h1>" + group + "</h1>");
     for (var i=0; i<block.length; i++) {
@@ -130,8 +129,6 @@ async function updateDescription() {
     for (var i=0; i<annotations.length; i++) {
       if (annotations[i] == "de") {
         $("#lang").append('<option value="de">Deutsch (second edition, Hamburg 1731)</option>');
-      //} else if (annotations[i] == "facsimile") {
-      //  $("#lang").append('<option value="facsimile">Facsimile (second edition)</option>');
       } else if (annotations[i] == "en") {
         $("#lang").append('<option value="en">English (second edition)</option>');
       } else if (annotations[i] == "1st") {
@@ -147,8 +144,9 @@ async function updateDescription() {
     
     $("#lang").change(async function() {
       currentParams.lang = $(this).val();
-      await Promise.all([updateAnnotations(), renderCurrentPage()]);
-      reconnectCrossRefs();
+      updateView(false);
+      //await Promise.all([updateAnnotations(), renderCurrentPage()]);
+      //reconnectCrossRefs();
     });
   }
 }
@@ -221,7 +219,6 @@ async function renderCurrentPage() {
   }
   
   midiTimemap = response.timemap;
-  console.log(midiTimemap);
   midiData = response.midi;
   var piece = 'data:audio/midi;base64,' + midiData;
   $("#player").show();
@@ -235,15 +232,28 @@ async function renderCurrentPage() {
 function reconnectCrossRefs() {
   $("tei-ref").each(function() {
     // find target in SVG
-    let target = $("#score-view svg").find("#" + $(this).attr("target"));
+    let targetAttr = $(this).attr("target");
+    let target = $("#score-view svg").find("#" + targetAttr);
     let teiRef = $(this);
     if (target.length === 0) {
       console.log("corresponding SVG element not found on this page.");
-      return true; // nothing found, continue with next reference
+      // In case the use clicks on a reference that is not found in the current SVG, 
+      // we have to look it up in one of the following pages
+      $(this).find("a").off("click").click(async function(e) {
+        console.log("unknown a clicked");
+        e.preventDefault();
+        currentParams.page = parseInt(currentParams.page, 10) + 1;
+        await updateScoreView();
+        setTimeout(function() {
+          
+          $("body").find("tei-ref[target='" + targetAttr + "'] a").trigger("click");
+        }, 900);
+      });
+      return true;
     }
     
     // highlight the target
-    var svg = SVG.get($(this).attr("target"));
+    var svg = SVG.get(targetAttr);
     let bbox = svg.bbox();
     let rect = svg.rect(bbox.width,bbox.height).move(bbox.x,bbox.y).fill("#ffe47a").attr("class", "indicator");
     rect.back();
@@ -260,7 +270,7 @@ function reconnectCrossRefs() {
     });
     
     // connect text with an indicator
-    $(this).find("a").click(function(e) {
+    $(this).find("a").off("click").click(function(e) {
       e.preventDefault();
       rect.animate(500).attr({opacity: 0}).animate().attr({opacity: 1});
     });
@@ -291,13 +301,9 @@ function cleanUpTooltips() {
   $(".tooltip-overlay").remove();
 }
 
-function connectTooltips() {
+// connecting key and meter signature with annotations
+function connectSignatureTooltips() {
   cleanUpTooltips();
-  
-  if (!$("#show-tooltips").is(":checked")) {
-    $(".tooltip-overlay").remove();
-    return;
-  }
   
   var keySig = $("#score-view svg").find(".keySig");
   if (keySig.length != 0) {
@@ -311,7 +317,7 @@ function connectTooltips() {
       $("#tooltips").empty();
     });
     
-    annotation.parent().remove();
+    annotation.parent().hide();
   }
   
   var meterSig = $("#score-view svg").find(".meterSig");
@@ -326,12 +332,20 @@ function connectTooltips() {
       $("#tooltips").empty();
     });
     
-    annotation.parent().remove();
+    annotation.parent().hide();
   }
-  
-  // ----
-  // connecting transcription and facsimile
-  // ----
+}
+
+function disconnectFacsimileTooltips() {
+  $("tei-zone").each(function() {
+    $("body").find($(this).attr("corresp")).each(function() {
+      $(this).off("mouseenter");
+    });
+  });
+}
+
+// connecting transcription and facsimile
+function connectFacsimileTooltips() {
   $("tei-body").find("tei-graphic img").on("load", function() {
     let surface = $(this).parent().parent();
     let zoom = $(this)[0].width / surface.attr("lrx");
@@ -386,34 +400,34 @@ function connectTooltips() {
   //  printError("copied to clipboard");
   //});
     
-  meiStrings = [];
-  $("#score-view svg").find(".note, .rest").one("click", function() {
-    console.log(meiStrings);
-    let id = $(this).attr("id");
-    printError("note " + id + " recognized");
-    $("#copyright").empty();
-    $("#copyright").append("<input type='text' id='figures'>");
-    $("#figures").focus();
-    $('#figures').keypress(function (e) {
-      if (e.which == 13) {
-        var figures = $(this).val().replace("b", "♭").replace("6/", "6⃥").replace("n", "♮").split(",");
-        var meiString = "<harm place='above' staff='2' startid='" + id + "'><fb>";
-        for (var i=0; i<figures.length; i++) {
-          meiString += "<f>" + figures[i] + "</f>";
-        }
-        meiString +="</fb></harm>";
-        meiStrings.push(meiString);
-        printError("added");
-        $(this).val("");
-        return false;
-      }
-    });
-    $("<button>copy to clipboard</button>").on("click", function() {
-      copyToClipboard(meiStrings.join("\n"));
-      printError("copied to clipboard");
-      meiStrings = [];
-    }).appendTo("#copyright");
-  });
+  //meiStrings = [];
+  //$("#score-view svg").find(".note, .rest").one("click", function() {
+  //  console.log(meiStrings);
+  //  let id = $(this).attr("id");
+  //  printError("note " + id + " recognized");
+  //  $("#copyright").empty();
+  //  $("#copyright").append("<input type='text' id='figures'>");
+  //  $("#figures").focus();
+  //  $('#figures').keypress(function (e) {
+  //    if (e.which == 13) {
+  //      var figures = $(this).val().replace("b", "♭").replace("6/", "6⃥").replace("n", "♮").split(",");
+  //      var meiString = "<harm place='above' staff='2' startid='" + id + "'><fb>";
+  //      for (var i=0; i<figures.length; i++) {
+  //        meiString += "<f>" + figures[i] + "</f>";
+  //      }
+  //      meiString +="</fb></harm>";
+  //      meiStrings.push(meiString);
+  //      printError("added");
+  //      $(this).val("");
+  //      return false;
+  //    }
+  //  });
+  //  $("<button>copy to clipboard</button>").on("click", function() {
+  //    copyToClipboard(meiStrings.join("\n"));
+  //    printError("copied to clipboard");
+  //    meiStrings = [];
+  //  }).appendTo("#copyright");
+  //});
   
 }
 
@@ -428,13 +442,13 @@ async function updateView(resetting) {
   await Promise.all([renderCurrentPage(),updateAnnotations()]);
   
   reconnectCrossRefs();
-  connectTooltips();
+  connectSignatureTooltips();
 }
 
 async function updateScoreView() {
   await renderCurrentPage();
   reconnectCrossRefs();
-  connectTooltips();
+  connectSignatureTooltips();
 }
 
 $(document).ready(function() {
@@ -467,7 +481,11 @@ $(document).ready(function() {
   });
   
   $("#show-tooltips").change(function() {
-    updateView(false);
+    if ($(this).is(':checked')) {
+      connectFacsimileTooltips();
+    } else {
+      disconnectFacsimileTooltips();
+    }
   });
   
   $("#previous-page").click(function() {
