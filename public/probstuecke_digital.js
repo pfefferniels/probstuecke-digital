@@ -540,8 +540,7 @@ $(document).ready(function() {
   updateView(true);
 });
 
-$(document).mouseup(function(e) 
-{
+$(document).on("touchmove mousemove", function(e) {
     var container = $(".controls");
 
     // if the target of the click isn't the container nor a descendant of the container
