@@ -364,7 +364,7 @@ function disconnectFacsimileTooltips() {
 
 // connecting transcription and facsimile
 function connectFacsimileTooltips() {
-  $("tei-body").find("tei-graphic img").on("load", function() {
+  $("tei-body").find("tei-graphic img").each(function() {
     let surface = $(this).parent().parent();
     let zoom = $(this)[0].width / surface.attr("lrx");
     let url = $(this).attr("src");
