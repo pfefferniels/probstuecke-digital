@@ -294,13 +294,10 @@
                             </staff>
                             <staff n="3">
                                 <layer n="1">
-                                    <note dur="4" oct="3" pname="f" pnum="60" stem.dir="down"/>
-                                    <beam>
-                                        <note xml:id="bf-6" dur="8" oct="3" pname="f" pnum="53" stem.dir="down"/>
+                                    <note dots="1" dur="4" oct="3" pname="f" pnum="60" stem.dir="down"/>
                                         <note xml:id="bf-7" dur="8" oct="3" pname="b" pnum="58" stem.dir="down">
                                             <accid xml:id="m-65" accid.ges="f"/>
                                         </note>
-                                    </beam>
                                     <beam xml:id="m-67">
                                         <note xml:id="bf-8" dur="8" oct="3" pname="e" pnum="52" stem.dir="down"/>
                                         <note xml:id="bf-9" dur="8" oct="3" pname="a" pnum="57" stem.dir="down"/>
@@ -537,8 +534,7 @@
                                         <note xml:id="m-99" dur="8" oct="4" pname="c" pnum="60" stem.dir="down"/>
                                     </beam>
                                     <note xml:id="m-100" dur="4" oct="3" pname="f" pnum="53" stem.dir="down"/>
-                                    <note xml:id="m-101" dur="4" oct="3" pname="b" pnum="58" stem.dir="down">
-                                        <accid xml:id="m-102" accid.ges="f"/>
+                                    <note xml:id="m-101" dur="4" oct="4" pname="d" pnum="58" stem.dir="down">
                                     </note>
                                 </layer>
                             </staff>
@@ -554,6 +550,11 @@
                             <harm place="above" staff="2" startid="#m-248">
                                <fb><f>6</f></fb>
                             </harm>
+                            
+                            <harm place="above" staff="3" startid="#m-101">
+                              <fb><f>7</f></fb>
+                            </harm>
+                            
                         </measure>
                         <measure xml:id="m-255" n="8">
                             <staff xml:id="m-257" n="1">
@@ -617,6 +618,12 @@
                             </harm>
                             <harm place="above" staff="2" startid="#m-282">
                                <fb><f>6</f></fb>
+                            </harm>
+                            <harm place="above" staff="3" startid="#m-106">
+                              <fb><f>7</f></fb>
+                            </harm>
+                            <harm place="above" staff="3" startid="#m-107">
+                              <fb><f>7</f></fb>
                             </harm>
                             
                         </measure>
@@ -920,10 +927,26 @@
                             </staff>
                             <staff n="3">
                                 <layer n="1">
-                                    <note dur="4" oct="3" pname="d" pnum="50" stem.dir="down"/>
-                                    <note dots="1" dur="2" oct="2" pname="g" pnum="43" stem.dir="up"/>
+                                    <note xml:id="bf-110" dur="4" oct="4" pname="d" pnum="50" stem.dir="down"/>
+                                    <note xml:id="bf-111" dur="4" oct="3" pname="b" pnum="50" stem.dir="down"/>
+                                    <note xml:id="bf-112" dur="4" oct="3" pname="g" pnum="50" stem.dir="down"/>
+                                    <note xml:id="bf-113" dur="4" oct="3" pname="e" pnum="50" stem.dir="down"/>
                                 </layer>
                             </staff>
+                            
+                            <harm place="above" staff="3" startid="bf-110">
+                              <fb><f>7</f></fb>
+                            </harm>
+                            <harm place="above" staff="3" startid="bf-111">
+                              <fb><f>7</f></fb>
+                            </harm>
+                            <harm place="above" staff="3" startid="bf-112">
+                              <fb><f>7</f></fb>
+                            </harm>
+                            <harm place="above" staff="3" startid="bf-113">
+                              <fb><f>7</f></fb>
+                            </harm>
+                            
                             
                         </measure>
                         <measure xml:id="m-445" n="14">
@@ -965,19 +988,41 @@
                             </staff>
                             <staff n="3">
                                 <layer n="1">
-                                    <note dur="4" oct="2" pname="g" pnum="43" stem.dir="up"/>
+                                    <note xml:id="bf-114" dur="4" oct="4" pname="c" pnum="43" stem.dir="down"/>
                                     <beam>
-                                        <note dur="8" oct="3" pname="c" pnum="48" stem.dir="down"/>
-                                        <note dur="8" oct="3" pname="f" pnum="53" stem.dir="down"/>
+                                        <note xml:id="bf-115" dur="8" oct="3" pname="a" pnum="48" stem.dir="down"/>
+                                        <note xml:id="bf-116" dur="8" oct="3" pname="f" pnum="53" stem.dir="down"/>
                                     </beam>
                                     <beam>
-                                        <note dur="8" oct="3" pname="d" pnum="50" stem.dir="down"/>
-                                        <note dur="8" oct="3" pname="g" pnum="55" stem.dir="down"/>
-                                        <note dur="8" oct="3" pname="c" pnum="52" stem.dir="down"/>
-                                        <note dur="8" oct="3" pname="f" pnum="57" stem.dir="down"/>
+                                        <note xml:id="bf-117" dur="8" oct="3" pname="d" pnum="50" stem.dir="down"/>
+                                        <note xml:id="bf-118" dur="8" oct="3" pname="b" pnum="55" stem.dir="down"/>
+                                        <note xml:id="bf-119" dur="8" oct="3" pname="e" pnum="52" stem.dir="down"/>
+                                        <note xml:id="bf-120" dur="8" oct="3" pname="a" pnum="57" stem.dir="down"/>
                                     </beam>
                                 </layer>
                             </staff>
+                            
+                            <harm place="above" staff="3" startid="bf-114">
+                              <fb><f>7</f></fb>
+                            </harm>
+                            <harm place="above" staff="3" startid="bf-115">
+                              <fb><f>7</f></fb>
+                            </harm>
+                            <harm place="above" staff="3" startid="bf-116">
+                              <fb><f>7</f></fb>
+                            </harm>
+                            <harm place="above" staff="3" startid="bf-117">
+                              <fb><f>7</f></fb>
+                            </harm>
+                            <harm place="above" staff="3" startid="bf-118">
+                              <fb><f>7</f></fb>
+                            </harm>
+                            <harm place="above" staff="3" startid="bf-119">
+                              <fb><f>7</f></fb>
+                            </harm>
+                            <harm place="above" staff="3" startid="bf-120">
+                              <fb><f>7</f></fb>
+                            </harm>
                             
                         </measure>
                         <measure xml:id="m-474" n="15">
@@ -1022,14 +1067,13 @@
                             <staff n="3">
                                 <layer>
                                     <beam>
-                                        <note dur="8" oct="3" pname="f" pnum="53" stem.dir="down"/>
-                                        <note dur="8" oct="3" pname="b" pnum="58" stem.dir="down">
-                                            <accid accid.ges="f"/>
+                                        <note xml:id="bf-121" dur="8" oct="3" pname="d" pnum="53" stem.dir="down"/>
+                                        <note xml:id="bf-122" dur="8" oct="3" pname="g" pnum="58" stem.dir="down">
                                         </note>
                                     </beam>
-                                    <note dur="4" oct="3" pname="c" pnum="48" stem.dir="down"/>
-                                    <note dur="4" oct="3" pname="f" pnum="53" stem.dir="down"/>
-                                    <note dur="4" oct="3" pname="c" pnum="48" stem.dir="up"/>
+                                    <note xml:id="bf-123" dur="4" oct="3" pname="c" pnum="48" stem.dir="down"/>
+                                    <note xml:id="bf-124" dur="4" oct="3" pname="f" pnum="53" stem.dir="down"/>
+                                    <note xml:id="bf-125" dur="4" oct="3" pname="c" pnum="48" stem.dir="up"/>
                                 </layer>
                             </staff>
                             
@@ -1042,6 +1086,21 @@
                             <harm place="above" staff="2" startid="#m-502">
                                <fb><f>3</f></fb>
                             </harm>
+                            
+                            <harm place="above" staff="3" startid="bf-121">
+                              <fb><f>7</f></fb>
+                            </harm>
+                            <harm place="above" staff="3" startid="bf-122">
+                              <fb><f>7</f></fb>
+                            </harm>
+                            <harm place="above" staff="3" startid="bf-123">
+                              <fb><f>7</f></fb>
+                            </harm>
+                            <harm place="above" staff="3" startid="bf-125">
+                              <fb><f>7</f></fb>
+                            </harm>
+                            
+                            
                         </measure>
                         <measure xml:id="m-503" n="16">
                             <staff xml:id="m-504" n="1">
