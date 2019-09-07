@@ -128,11 +128,11 @@ async function updateDescription() {
     $("#available-annotations").append('<select id="lang" name="lang" autocomplete="off">');
     for (var i=0; i<annotations.length; i++) {
       if (annotations[i] == "de") {
-        $("#lang").append('<option value="de">Deutsch (second edition, Hamburg 1731)</option>');
+        $("#lang").append('<option value="de">German (second edition, Hamburg 1731)</option>');
       } else if (annotations[i] == "en") {
         $("#lang").append('<option value="en">English (second edition)</option>');
       } else if (annotations[i] == "1st") {
-        $("#lang").append('<option value="1st">Deutsch (first edition, Hamburg 1719)</option>');
+        $("#lang").append('<option value="1st">German (first edition, Hamburg 1719)</option>');
       } else if (annotations[i] == "comments") {
         $("#lang").append('<option value="comments">Comments</option>');
       }
@@ -145,8 +145,6 @@ async function updateDescription() {
     $("#lang").change(async function() {
       currentParams.lang = $(this).val();
       updateView(false);
-      //await Promise.all([updateAnnotations(), renderCurrentPage()]);
-      //reconnectCrossRefs();
     });
   }
 }
@@ -540,7 +538,7 @@ $(document).ready(function() {
   updateView(true);
 });
 
-$(document).on("touchmove mousemove", function(e) {
+$(document).on("touchstart mousemove", function(e) {
     var container = $(".controls");
 
     // if the target of the click isn't the container nor a descendant of the container

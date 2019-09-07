@@ -358,24 +358,27 @@ app.get("/download", function(req, res) {
       doc.addPage();
     }, function() {
       // when all the score pages are there, start adding the annotations
-      fs.readFile(getAnnotationFilename(req.query.nr, req.query.lang), function(err, data) {
-        if (err) {
-          console.log(err);
-          res.status("404").end();
-          return;
-        }
-        
-        // PDFKit will realize the newlines in the original TEI file as new paragraphs. To prevent,
-        // all line breaks have to be removed first.
-        var annotationDoc = new DOMParser().parseFromString(data.toString().replace(/\s\s+/g, ' '), 'text/xml');
-        var converter = Object.create(AnnotationToPDF);
-        converter.nr = req.query.nr;
-        doc.font("Times-Roman").fontSize(25);
-        converter.pdfDoc = doc;
-        converter.traverse(annotationDoc);
-        
-        doc.end();
-      });
+      
+      // TODO for some reason, this code works fine on localhost, but non on amazon beanstalks.
+      // Deactivated for now.
+      // fs.readFile(getAnnotationFilename(req.query.nr, req.query.lang), function(err, data) {
+      //   if (err) {
+      //     console.log(err);
+      //     res.status("404").end();
+      //     return;
+      //   }
+      //   
+      //   // PDFKit will realize the newlines in the original TEI file as new paragraphs. To prevent,
+      //   // all line breaks have to be removed first.
+      //   var annotationDoc = new DOMParser().parseFromString(data.toString().replace(/\s\s+/g, ' '), 'text/xml');
+      //   var converter = Object.create(AnnotationToPDF);
+      //   converter.nr = req.query.nr;
+      //   doc.font("Times-Roman").fontSize(25);
+      //   converter.pdfDoc = doc;
+      //   converter.traverse(annotationDoc);
+      //   
+         doc.end();
+      // });
     });
   } else if (req.query.exportFormat === "musicxml") {
     // TODO not implemented yet
