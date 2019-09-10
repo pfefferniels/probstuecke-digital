@@ -248,6 +248,18 @@ tei-notatedmusic svg {
   margin-right: auto;
 }
 
+tei-rdg:last-child {
+  color: gray;
+}
+
+tei-rdg:last-child::before {
+  content: "[alternative reading: ";
+}
+
+tei-rdg:last-child::after {
+  content: "]";
+}
+
 input[type="number"] {
   width: 100px;
 }
