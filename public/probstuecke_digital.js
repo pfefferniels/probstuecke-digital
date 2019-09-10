@@ -323,7 +323,7 @@ function connectSignatureTooltips() {
   
   var keySig = $("#score-view svg").find(".keySig");
   if (keySig.length != 0) {
-    var annotation = $("tei-note[type='on-key-signature'] span[data-original='']");
+    let annotation = $("tei-note[type='on-key-signature'] span[data-original='']");
     
     $("<div class='tooltip-overlay' />").appendTo("body").css(getSvgElementBoxAsCss(keySig)).mouseenter(function(e) {
       let tooltips = $("#tooltips");
@@ -338,7 +338,7 @@ function connectSignatureTooltips() {
   
   var meterSig = $("#score-view svg").find(".meterSig");
   if (meterSig.length != 0) {
-    var annotation = $("tei-note[type='on-meter'] span[data-original='']");
+    let annotation = $("tei-note[type='on-meter'] span[data-original='']");
     
     $("<div class='tooltip-overlay' />").appendTo("body").css(getSvgElementBoxAsCss(meterSig)).mouseenter(function(e) {
       let tooltips = $("#tooltips");
