@@ -319,13 +319,25 @@ function cleanUpTooltips() {
 
 // connecting key and meter signature with annotations
 function connectSignatureTooltips() {
+  console.log("connectSignatureTooltips()");
   cleanUpTooltips();
   
   var keySig = $("#score-view svg").find(".keySig");
+  var signatureBox;
+  if (keySig.length == 0) {
+    // In that case we are probably dealing with a key without any signature, A minor or C major.
+    // Taking the first clef instead and shifting the box for some pixels to the right.
+    var keySig = $("#score-view svg").find(".clef");
+    signatureBox = getSvgElementBoxAsCss(keySig);
+    signatureBox.left += signatureBox.width;
+  } else {
+    signatureBox = getSvgElementBoxAsCss(keySig)
+  }
+  
   if (keySig.length != 0) {
     let annotation = $("tei-note[type='on-key-signature'] span[data-original='']");
     
-    $("<div class='tooltip-overlay' />").appendTo("body").css(getSvgElementBoxAsCss(keySig)).mouseenter(function(e) {
+    $("<div class='tooltip-overlay' />").appendTo("body").css(signatureBox).mouseenter(function(e) {
       let tooltips = $("#tooltips");
       $("<div class='tooltip tooltip-text' />").append(annotation.text()).appendTo("#tooltips");
       positionAtMouse(tooltips, e);

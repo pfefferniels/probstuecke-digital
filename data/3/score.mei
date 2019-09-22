@@ -41,9 +41,9 @@
             <score>
                 <scoreDef>
                     <staffGrp>
-                        <staffDef xml:id="pfeffer" clef.line="2" clef.shape="G" key.mode="minor" key.sig="0" lines="5" n="1">
+                        <staffDef xml:id="pfeffer" clef.line="2" clef.shape="G" key.mode="minor" key.sig="0" meter.count="3" meter.unit="4" lines="5" n="1">
                         </staffDef>
-                        <staffDef xml:id="bass" clef.line="4" clef.shape="F" key.mode="minor" key.sig="0" label="" lines="5" n="2">
+                        <staffDef xml:id="bass" clef.line="4" clef.shape="F" key.mode="minor" key.sig="0" meter.count="3" meter.unit="4" label="" lines="5" n="2">
                             <layerDef n="3" xml:id="layer-pfeffer"></layerDef>
                         </staffDef>
                     </staffGrp>
@@ -226,6 +226,8 @@
                                 </beam>
                             </layer>
                         </staff>
+                        
+                        <dir startid="#m-146" place="above">§</dir>
                     </measure>
                     <measure xml:id="m-163" n="4">
                         <staff n="1">
@@ -683,6 +685,7 @@
                         </staff>
                         <staff xml:id="m-494" n="2">
                             <layer xml:id="m-495" n="1">
+                                <clef shape="C" line="3" staff="1" />
                                 <rest xml:id="m-496" dur="16"/>
                                 <beam xml:id="m-498">
                                     <note xml:id="m-497" dur="16" oct="4" pname="d" pnum="62" stem.dir="down"/>
@@ -874,6 +877,8 @@
                         </staff>
                         <staff xml:id="m-633" n="2">
                             <layer xml:id="m-634" n="1">
+                                <clef shape="F" line="4" staff="2" />
+                              
                                 <note xml:id="m-636" dur="4" oct="3" pname="b" pnum="59"/>
                                 <note xml:id="m-639" dur="4" oct="3" pname="b" pnum="47"/>
                                 <note xml:id="m-644" dur="4" oct="3" pname="b" pnum="59"/>
@@ -1697,6 +1702,8 @@
                         </staff>
                         <staff xml:id="m-1185" n="2">
                             <layer xml:id="m-1186" n="1">
+                                <clef shape="C" line="4" staff="1" />
+                                
                                 <rest xml:id="m-1187" dur="16"/>
                                 <beam xml:id="m-1189">
                                     <note xml:id="m-1188" dur="16" oct="3" pname="b" pnum="59" stem.dir="down"/>
@@ -1831,7 +1838,7 @@
                             </layer>
                         </staff>
                     </measure>
-                                        <measure xml:id="m-1277" n="35">
+                    <measure xml:id="m-1277" n="35">
                         <staff n="1">
                             <layer xml:id="m-1280" n="1">
                                 <rest xml:id="m-1281" dur="16"/>
@@ -1856,6 +1863,8 @@
                         </staff>
                         <staff xml:id="m-1296" n="2">
                             <layer xml:id="m-1297" n="1">
+                                <clef shape="F" line="4" staff="1" />
+                                
                                 <note xml:id="m-1298" dur="4" oct="3" pname="f" pnum="54" stem.dir="down">
                                     <accid xml:id="m-1299" accid="s"/>
                                 </note>
@@ -2570,7 +2579,7 @@
                         </staff>
                         <harm place='above' staff='2' startid='m-1770'><fb><f>♮7</f><f>♭5</f></fb></harm>
                     </measure>
-                    <measure xml:id="m-1790" n="52" right="end">
+                    <measure xml:id="m-1790" n="52" right="rptend">
                         <staff n="1">
                             <layer xml:id="m-1792" n="1">
                                 <beam xml:id="m-1797">
@@ -2640,6 +2649,8 @@
                         <harm place='above' staff='2' startid='m-1820'><fb><f>6</f></fb></harm>
                         <harm place='above' staff='2' startid='m-1823'><fb><f>6⃥</f></fb></harm>
                         <harm place='above' staff='2' startid='m-1830'><fb><f>#</f></fb></harm>
+                        
+                        <dir place="below" startid="#m-1836">dal segno §</dir>
                     </measure>
                 </section>
             </score>
