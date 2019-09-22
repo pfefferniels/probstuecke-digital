@@ -319,7 +319,6 @@ function cleanUpTooltips() {
 
 // connecting key and meter signature with annotations
 function connectSignatureTooltips() {
-  console.log("connectSignatureTooltips()");
   cleanUpTooltips();
   
   var keySig = $("#score-view svg").find(".keySig");
