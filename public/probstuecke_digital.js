@@ -480,6 +480,7 @@ async function updateScoreView() {
   await renderCurrentPage();
   reconnectCrossRefs();
   connectSignatureTooltips();
+  connectFacsimileTooltips();
 }
 
 $(document).ready(function() {
