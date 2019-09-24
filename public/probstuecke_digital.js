@@ -430,10 +430,10 @@ function connectFacsimileTooltips() {
   //  copyToClipboard("#" + $(this).attr("id"));
   //  printError("copied to clipboard");
   //});
-    
+  //  
   //meiStrings = [];
   //$("#score-view svg").find(".note, .rest").one("click", function() {
-  //  console.log(meiStrings);
+  //  //console.log(meiStrings);
   //  let id = $(this).attr("id");
   //  printError("note " + id + " recognized");
   //  $("#copyright").empty();

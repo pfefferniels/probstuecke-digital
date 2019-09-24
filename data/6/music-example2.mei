@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
+    <meiHead>
+        <fileDesc>
+            <titleStmt>
+                <composer>Johann Mattheson</composer>
+                <editor>Niels Pfeffer</editor>
+            </titleStmt>
+            <editionStmt>
+                <edition>First draft, <date>2019</date></edition>
+            </editionStmt>
+            <pubStmt>
+                <unpub />
+            </pubStmt>
+        </fileDesc>
+    </meiHead>
+    
+    <music>
+        <body>
+            <mdiv>
+                <score>
+                    <scoreDef>
+                        <staffGrp>
+                            <staffDef clef.shape="F" clef.line="4" key.mode="major" key.sig="1f" meter.count="3" meter.unit="4" n="1" lines="5">
+                                <label></label>
+                            </staffDef>
+                        </staffGrp>
+                    </scoreDef>
+                    <section>
+                        <measure n="1">
+                            <staff n="1">
+                                <layer n="1">
+                                    <note dur="4" oct="2" pname="c" />
+                                    <note dur="4" oct="2" pname="d" />
+                                    <note dur="4" oct="2" pname="e" />
+                                </layer>
+                            </staff>
+                        </measure>
+                        <measure n="2">
+                            <staff n="1">
+                                <layer n="1">
+                                    <note dur="4" oct="2" pname="f" />
+                                    <note dur="4" oct="2" pname="g" />
+                                    <note dur="4" oct="2" pname="a" />
+                                </layer>
+                            </staff>
+                        </measure>
+                        <measure n="3">
+                            <staff n="1">
+                                <layer n="1">
+                                    <note dur="4" oct="2" pname="b" />
+                                    <note dur="2" oct="2" pname="g" />
+                                </layer>
+                            </staff>
+                        </measure>
+                        <measure n="4">
+                            <staff n="1">
+                                <layer n="1">
+                                    <note dur="4" oct="2" pname="a" />
+                                    <note dur="4" oct="2" pname="b" accid="n" />
+                                    <note dur="4" oct="3" pname="c" accid="s" />
+                                    </note>
+                                </layer>
+                            </staff>
+                        </measure>
+                        <measure n="5">
+                            <staff n="1">
+                                <layer n="1">
+                                    <note dur="4" oct="3" pname="d" />
+                                    <note dur="4" oct="3" pname="e" />
+                                    <beam>
+                                        <note dur="8" oct="3" pname="f" />
+                                        <note dur="8" oct="3" pname="g" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                        </measure>
+                        <measure n="6">
+                            <staff n="1">
+                                <layer n="1">
+                                    <note dur="2" oct="3" pname="a" />
+                                    <note dur="4" oct="3" pname="g" />
+                                </layer>
+                            </staff>
+                        </measure>
+                        <measure n="7">
+                            <staff n="1">
+                                <layer n="1">
+                                    <note dur="4" oct="3" pname="f" />
+                                    <note dur="4" oct="3" pname="g" />
+                                    <note dur="4" oct="3" pname="a" />
+                                </layer>
+                            </staff>
+                        </measure>
+                        <measure n="8">
+                            <staff n="1">
+                                <layer n="1">
+                                    <note dur="2" oct="3" pname="b" />
+                                    <note dur="4" oct="3" pname="e" />
+                                </layer>
+                            </staff>
+                        </measure>
+                        <measure n="9">
+                            <staff n="1">
+                                <layer n="1">
+                                    <note dur="4" oct="3" pname="f" />
+                                    <note dur="4" oct="3" pname="g" />
+                                    <note dur="4" oct="3" pname="a" />
+                                </layer>
+                            </staff>
+                        </measure>
+                        <measure n="10">
+                            <staff n="1">
+                                <layer n="1">
+                                    <note dur="4" oct="2" pname="d" stem.dir="up" />
+                                    <rest dur="4" />
+                                    <rest dur="4" />
+                                </layer>
+                                <layer n="2">
+                                    <note dur="4" oct="3" pname="d" stem.dir="up" />
+                                    <space dur="4" />
+                                    <space dur="4" />
+                                </layer>
+                                
+                            </staff>
+                        </measure>
+                    </section>
+                </score>
+            </mdiv>
+        </body>
+    </music>
+</mei>
+
