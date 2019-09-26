@@ -105,19 +105,19 @@ function displayCheckboxes(block, group) {
 async function updateDescription() {
   let data;
   
+  $("#realizations").empty();
+  $("#analysis").empty();
+  $("#available-annotations").empty();
+  
   try {
     data = await $.get("description?nr=" + currentParams.nr);
   } catch (error) {
     printError("failed loading description: " + error);
   }
   
-  $("#realizations").empty();
-  $("#analysis").empty();
-  $("#available-annotations").empty();
-  
-  var realizations = data.realizations;
-  var analysis = data.analysis;
-  var annotations = data.annotations;
+  let realizations = data.realizations;
+  let analysis = data.analysis;
+  let annotations = data.annotations;
   
   displayCheckboxes(realizations, "realizations");
   displayCheckboxes(analysis, "analysis");
