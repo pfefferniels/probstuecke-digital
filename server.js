@@ -7,6 +7,7 @@ const window   = require('svgdom'),
       SVG      = require('svg.js')(window),
       document = window.document,
       draw     = SVG(document.documentElement);
+const path = require('path');
       
 var PDFDocument = require('pdfkit');
 var DOMParser = xmldom.DOMParser;
@@ -23,6 +24,11 @@ var options = {
 var vrvToolkit = new verovio.toolkit();
 vrvToolkit.setOptions(options);
 var app = express();
+
+// prevent possible dot-dot-slash attacks
+function preventDotDotSlash(userInput) {
+  return path.parse(userInput).base;
+}
 
 function getAnnotationFilename(nr, lang) {
   return __dirname + "/data/" + nr + "/annotations_" + lang + ".tei";
@@ -238,7 +244,13 @@ function generateSvg(params, allpages, callback, onFinish, onError) {
 
 
 app.get("/annotations", function(req, res) {
-  res.sendFile(getAnnotationFilename(req.query.nr, req.query.lang), {}, function(err) {
+  // make sure req.query.nr is indeed a number
+  if (isNaN(req.query.nr)) {
+    console.log("invalid query number passed.");
+    res.status("404");
+  }
+  
+  res.sendFile(getAnnotationFilename(req.query.nr, preventDotDotSlash(req.query.lang)), {}, function(err) {
     if (err) {
       console.log(err.status);
       res.status("404").end();
@@ -247,10 +259,16 @@ app.get("/annotations", function(req, res) {
 });
 
 app.get('/music-example', function(req, res) {
-  fs.readFile(__dirname + '/data/' + req.query.nr + '/' + req.query.filename, function(err, data) {
+  // make sure req.query.nr is indeed a number
+  if (isNaN(req.query.nr)) {
+    console.log("invalid query number passed.");
+    res.status("404");
+  }
+  
+  fs.readFile(__dirname + '/data/' + req.query.nr + '/' + preventDotDotSlash(req.query.filename), function(err, data) {
     if (err) {
       console.log(err);
-      res.send("internal error (file not found?)");
+      res.status("404").end();
       return;
     }
     
