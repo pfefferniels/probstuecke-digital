@@ -1,37 +1,19 @@
 ﻿<?xml version="1.0" encoding="UTF-16" ?>
 <mei xml:id="m-1" meiversion="3.0.0" xmlns="http://www.music-encoding.org/ns/mei" xmlns:xlink="http://www.w3.org/1999/xlink">
-<meiHead xml:id="m-2">
-    <fileDesc xml:id="m-3">
-        <titleStmt xml:id="m-4">
-            <title xml:id="m-10">Der Ober-Classe Achtes Prob-Stück</title>
-            <respStmt xml:id="m-11">
-                <persName xml:id="m-12"/>
-            </respStmt>
+<meiHead>
+    <fileDesc>
+        <titleStmt>
+            <title>Der Ober-Classe Achtes Prob-Stück</title>
+            <composer>Johann Mattheson</composer>
+            <editor>Niels Pfeffer</editor>
         </titleStmt>
-        <pubStmt xml:id="m-13">
-            <availability xml:id="m-14">
-                <useRestrict xml:id="m-15">Copyright © Niels Pfeffer</useRestrict>
-            </availability>
+        <editionStmt>
+            <edition>First draft, <date>February 2019</date></edition>
+        </editionStmt>
+        <pubStmt>
+            <unpub />
         </pubStmt>
     </fileDesc>
-    <encodingDesc xml:id="m-16">
-        <appInfo xml:id="m-17">
-            <application xml:id="sibelius" isodate="2019-6-19T11:52:14Z" version="8300">
-                <name xml:id="m-19" type="operating-system">Mac OS X Mountain Lion</name>
-            </application>
-            <application xml:id="sibmei" type="plugin" version="2.1.0">
-                <name xml:id="m-21">Sibelius to MEI Exporter (2.1.0)</name>
-            </application>
-        </appInfo>
-    </encodingDesc>
-    <workDesc xml:id="m-5">
-        <work xml:id="m-6">
-            <titleStmt xml:id="m-7">
-                <title xml:id="m-8"/>
-                <respStmt xml:id="m-9"/>
-            </titleStmt>
-        </work>
-    </workDesc>
 </meiHead>
 <music>
     <body>
@@ -39,17 +21,19 @@
             <score>
                 <scoreDef>
                     <staffGrp>
-                        <staffDef xml:id="mattheson" clef.line="2" clef.shape="G" key.mode="major" key.sig="1s" lines="5" n="1">
-                            <label>Mattheson's annotations</label>
+                        <staffDef xml:id="mattheson" clef.line="1" clef.shape="C" key.mode="major" key.sig="1s" lines="5" n="1">
+                          <label>Mattheson's realization</label>
                         </staffDef>
-                        <staffDef xml:id="bass" clef.line="4" clef.shape="F" key.mode="major" key.sig="1s" label="" lines="5" n="2" />
+                        <staffDef xml:id="bass" clef.line="4" clef.shape="F" key.mode="major" key.sig="1s" label="" lines="5" n="2">
+                        </staffDef>
                     </staffGrp>
                 </scoreDef>
+                
                 <section xml:id="m-34">
                     <measure xml:id="m-35" label="1" n="1">
                         <staff xml:id="m-37" n="1">
                             <layer xml:id="m-38" n="1">
-                                <space  xml:id="m-39" />
+                                <mRest visible="false" />
                             </layer>
                         </staff>
                         <staff xml:id="m-40" n="2">
@@ -73,11 +57,12 @@
                                 </beam>
                             </layer>
                         </staff>
+                        <tempo startid="#m-42">Cantabile.</tempo>
                     </measure>
                     <measure xml:id="m-55" n="2">
                         <staff xml:id="m-56" n="1">
                             <layer xml:id="m-57" n="1">
-                                <space  xml:id="m-58" />
+                                <mRest visible="false" />
                             </layer>
                         </staff>
                         <staff xml:id="m-59" n="2">
@@ -107,7 +92,7 @@
                     <measure xml:id="m-75" n="3">
                         <staff xml:id="m-76" n="1">
                             <layer xml:id="m-77" n="1">
-                                <space  xml:id="m-78" />
+                                <mRest visible="false" />
                             </layer>
                         </staff>
                         <staff xml:id="m-79" n="2">
@@ -133,7 +118,7 @@
                     <measure xml:id="m-93" n="4">
                         <staff xml:id="m-94" n="1">
                             <layer xml:id="m-95" n="1">
-                                <space  xml:id="m-96" />
+                                <mRest visible="false" />
                             </layer>
                         </staff>
                         <staff xml:id="m-97" n="2">
@@ -161,7 +146,7 @@
                     <measure xml:id="m-112" n="5">
                         <staff xml:id="m-113" n="1">
                             <layer xml:id="m-114" n="1">
-                                <space  xml:id="m-115" />
+                                <mRest visible="false" />
                             </layer>
                         </staff>
                         <staff xml:id="m-116" n="2">
@@ -186,11 +171,11 @@
                             </layer>
                         </staff>
                     </measure>
-                    <sb xml:id="m-132"/>
+                    
                     <measure xml:id="m-131" n="6">
                         <staff xml:id="m-133" n="1">
                             <layer xml:id="m-134" n="1">
-                                <space  xml:id="m-135" />
+                                <mRest visible="false" />
                             </layer>
                         </staff>
                         <staff xml:id="m-136" n="2">
@@ -222,7 +207,7 @@
                     <measure xml:id="m-153" n="7">
                         <staff xml:id="m-154" n="1">
                             <layer xml:id="m-155" n="1">
-                                <space  xml:id="m-156" />
+                                <mRest visible="false" />
                             </layer>
                         </staff>
                         <staff xml:id="m-157" n="2">
@@ -295,7 +280,7 @@
                         </staff>
                         <staff xml:id="m-203" n="2">
                             <layer xml:id="m-204" n="1">
-                                <space  xml:id="m-205"/>
+                                <mRest visible="false" />
                             </layer>
                         </staff>
                     </measure>
@@ -372,7 +357,7 @@
                             </layer>
                         </staff>
                     </measure>
-                    <sb xml:id="m-257"/>
+                    
                     <measure xml:id="m-256" n="13">
                         <staff xml:id="m-258" n="1">
                             <layer xml:id="m-259" n="1">
@@ -436,7 +421,7 @@
                         </staff>
                         <staff xml:id="m-298" n="2">
                             <layer xml:id="m-299" n="1">
-                                <space  xml:id="m-300"/>
+                                <mRest visible="false" />
                             </layer>
                         </staff>
                     </measure>
@@ -530,7 +515,7 @@
                             </layer>
                         </staff>
                     </measure>
-                    <sb xml:id="m-365"/>
+                    
                     <measure xml:id="m-364" n="19">
                         <staff xml:id="m-366" n="1">
                             <layer xml:id="m-367" n="1">
@@ -712,7 +697,7 @@
                             </layer>
                         </staff>
                     </measure>
-                    <sb xml:id="m-489"/>
+                    
                     <measure xml:id="m-488" n="25">
                         <staff xml:id="m-490" n="1">
                             <layer xml:id="m-491" n="1">
@@ -843,7 +828,7 @@
                             </layer>
                         </staff>
                     </measure>
-                    <sb xml:id="m-581"/>
+                    
                     <measure xml:id="m-580" n="29">
                         <staff xml:id="m-582" n="1">
                             <layer xml:id="m-583" n="1">
@@ -988,7 +973,7 @@
                     <measure xml:id="m-677" n="33">
                         <staff xml:id="m-678" n="1">
                             <layer xml:id="m-679" n="1">
-                                <space  xml:id="m-680" />
+                                <mRest visible="false" />
                             </layer>
                         </staff>
                         <staff xml:id="m-681" n="2">
@@ -1015,11 +1000,11 @@
                             </layer>
                         </staff>
                     </measure>
-                    <sb xml:id="m-698"/>
+                    
                     <measure xml:id="m-697" n="34">
                         <staff xml:id="m-699" n="1">
                             <layer xml:id="m-700" n="1">
-                                <space  xml:id="m-701" />
+                                <mRest visible="false" />
                             </layer>
                         </staff>
                         <staff xml:id="m-702" n="2">
@@ -1051,7 +1036,7 @@
                     <measure xml:id="m-719" n="35">
                         <staff xml:id="m-720" n="1">
                             <layer xml:id="m-721" n="1">
-                                <space  xml:id="m-722" />
+                                <mRest visible="false" />
                             </layer>
                         </staff>
                         <staff xml:id="m-723" n="2">
@@ -1083,7 +1068,7 @@
                     <measure xml:id="m-740" n="36">
                         <staff xml:id="m-741" n="1">
                             <layer xml:id="m-742" n="1">
-                                <space  xml:id="m-743" />
+                                <mRest visible="false" />
                             </layer>
                         </staff>
                         <staff xml:id="m-744" n="2">
@@ -1113,7 +1098,7 @@
                     <measure xml:id="m-760" n="37">
                         <staff xml:id="m-761" n="1">
                             <layer xml:id="m-762" n="1">
-                                <space  xml:id="m-763" />
+                                <mRest visible="false" />
                             </layer>
                         </staff>
                         <staff xml:id="m-764" n="2">
@@ -1145,7 +1130,7 @@
                     <measure xml:id="m-781" n="38">
                         <staff xml:id="m-782" n="1">
                             <layer xml:id="m-783" n="1">
-                                <space  xml:id="m-784" />
+                                <mRest visible="false" />
                             </layer>
                         </staff>
                         <staff xml:id="m-785" n="2">
@@ -1175,11 +1160,11 @@
                         </staff>
                     </measure>
                     <pb xml:id="m-804" n="2"/>
-                    <sb xml:id="m-803"/>
+                    
                     <measure xml:id="m-802" n="39">
                         <staff xml:id="m-805" n="1">
                             <layer xml:id="m-806" n="1">
-                                <space  xml:id="m-807" />
+                                <mRest visible="false" />
                             </layer>
                         </staff>
                         <staff xml:id="m-808" n="2">
@@ -1198,7 +1183,7 @@
                     <measure xml:id="m-816" n="40">
                         <staff xml:id="m-817" n="1">
                             <layer xml:id="m-818" n="1">
-                                <space  xml:id="m-819" />
+                                <mRest visible="false" />
                             </layer>
                         </staff>
                         <staff xml:id="m-820" n="2">
@@ -1377,7 +1362,7 @@
                         </staff>
                         <tie xml:id="m-911" endid="#m-912" startid="#m-910"/>
                     </measure>
-                    <sb xml:id="m-937"/>
+                    
                     <measure xml:id="m-936" n="46">
                         <staff xml:id="m-938" n="1">
                             <layer xml:id="m-939" n="1">
@@ -1576,7 +1561,7 @@
                             </layer>
                         </staff>
                     </measure>
-                    <sb xml:id="m-1074"/>
+                    
                     <measure xml:id="m-1073" n="51">
                         <staff xml:id="m-1075" n="1">
                             <layer xml:id="m-1076" n="1">
@@ -1755,7 +1740,7 @@
                             </layer>
                         </staff>
                     </measure>
-                    <sb xml:id="m-1193"/>
+                    
                     <measure xml:id="m-1192" n="57">
                         <staff xml:id="m-1194" n="1">
                             <layer xml:id="m-1195" n="1">
@@ -1908,7 +1893,7 @@
                             </layer>
                         </staff>
                     </measure>
-                    <sb xml:id="m-1300"/>
+                    
                     <measure xml:id="m-1299" n="62">
                         <staff xml:id="m-1301" n="1">
                             <layer xml:id="m-1302" n="1">
