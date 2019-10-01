@@ -301,12 +301,16 @@ input[type="number"] {
   .right-half {
     position: absolute;
     right: auto;
-    width: 100%;
   }
   
   #annotations-view {
     float: none;
     height: auto;
+    width: 95vw;
+  }
+  
+  #annotations-view tei-p {
+    width: 100%;
   }
   
   #score-view {
