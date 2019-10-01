@@ -542,8 +542,9 @@ $(document).ready(function() {
     window.open("/download?" + $.param(currentParams), "about:blank");
   });
   
-  $(".controls").click(function() {
-    $("#controls-table").css({
+  $("#options-control").click(function() {
+    $("#contents-table").hide();
+    $("#options-table").css({
       "display": "block",
       "visibility": "visible",
       "opacity": "1",
@@ -551,17 +552,28 @@ $(document).ready(function() {
     });
   });
   
+  $("#contents-control").click(function() {
+    $("#options-table").hide();
+    $("#contents-table").css({
+      "display": "block",
+      "visibility": "visible",
+      "opacity": "1",
+      "animation": "fade 1s"
+    });
+  });
+  
+  
   updateView(true);
   
   console.log(number);
 });
 
 $(document).on("touchstart mousemove", function(e) {
-    var container = $(".controls");
+    var container = $("#controls");
 
     // if the target of the click isn't the container nor a descendant of the container
     if (!container.is(e.target) && container.has(e.target).length === 0) 
     {
-        $("#controls-table").hide();
+        $(".controls-table").hide();
     }
 });

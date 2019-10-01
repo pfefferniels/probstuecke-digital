@@ -1,6 +1,6 @@
 doctype html
 head
-  title= number
+  title Mattheson, #{number}. Probstück 
   
   link(rel='stylesheet' href='midiplayer.css')
   link(rel='stylesheet' href='index.css')
@@ -15,9 +15,33 @@ head
   script(type='text/javascript' src='midiplayer.js')
   script(type='text/javascript' src='index.js')
   
-.controls
-  #options contents and options
-  #controls-table
+#controls
+  #contents-control.control contents
+  
+  #contents-table.controls-table
+    .controls-item
+      h1 Der Ober-Classe ...
+      ul
+        li
+          a(href='/1') ... erstes Prob-Stück
+        li 
+          a(href='/2') ... zweites Prob-Stück
+        li
+          a(href='/3') ... drittes Prob-Stück
+        li
+          a(href='/4') ... viertes Prob-Stück
+        li
+          a(href='/5') ... fünfftes Prob-Stück
+        li
+          a(href='/6') ... sechstes Prob-Stück
+        li
+          a(href='/7') ... siebendes Prob-Stück
+        li
+          a(href='/8') ... achtes Prob-Stück
+
+  #options-control.control options
+  
+  #options-table.controls-table
     .controls-item
       h1 empty staves
       ul
