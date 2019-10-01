@@ -422,9 +422,14 @@ app.get('/description', function(req, res) {
 });
 
 app.get('^/:number([0-9]{1,2})', function(req, res) {
-  res.render('index', {
-    number: req.params.number
-   });
+  // Mattheson wrote precisely 24 Prob-Stücke.
+  if (req.params.number > 24) {
+    res.status("404").send("Prob-Stück " + req.params.number + " does not exist.");
+  } else {
+    res.render('index', {
+      number: req.params.number
+     });
+  }
 });
 
 app.get('/', function(req, res) {
