@@ -1,0 +1,68 @@
+doctype html
+head
+  title= number
+  
+  link(rel='stylesheet' href='midiplayer.css')
+  link(rel='stylesheet' href='index.css')
+  
+  script.
+    number = "#{number}";
+  
+  script(type='text/javascript' src='jquery.min.js')
+  script(type='text/javascript' src='svg.min.js')
+  script(type='text/javascript' src='CETEI.js')
+  script(type='text/javascript' src='wildwebmidi.js')
+  script(type='text/javascript' src='midiplayer.js')
+  script(type='text/javascript' src='index.js')
+  
+.controls
+  #options contents and options
+  #controls-table
+    .controls-item
+      h1 empty staves
+      ul
+        li
+          input#staves-above(type='number' name='staves-above' min='0' max='10' value='0' autocomplete='off')
+          label(for='staves-above') &#x2934;
+        li
+          input#staves-below(type='number' name='staves-below' min='0' max='10' value='0' autocomplete='off')
+          label(for='staves-below') &cudarrr;
+    .controls-item
+      h1 tools
+      ul
+        li
+          input#show-fb(type='checkbox' name='show-fb' autocomplete='off' checked='')
+          label(for='show-fb') show figured bass
+        li
+          input#show-tooltips(type='checkbox' name='show-tooltips' autocomplete='off')
+          label(for='show-tooltips') facsimile tooltips
+        li
+          input#modern-clefs(type='checkbox' name='modern-clefs' autocomplete='off')
+          label(for='modern-clefs') modern clefs
+    #analysis.controls-item
+    #realizations.controls-item
+    #available-annotations.controls-item
+    .controls-item
+      h1 MIDI
+      #player
+    .controls-item
+      h1 export
+      a.pdf-download PDF
+div
+  .left-half
+    table
+      tr
+        td
+          #previous-page.change-page
+            | &lt;
+        td
+          #score-view
+            svg= svgScore
+        td
+          #next-page.change-page
+            | &gt;
+  #annotations-view.right-half
+    | loading ...
+#tooltips
+#error
+#copyright &copy; Niels Pfeffer

@@ -1,6 +1,6 @@
 currentParams = {
+  nr: number,
   page: 1,
-  nr: 1,
   display: [],
   modernClefs: false,
   emptyStaffsBelow: 0,
@@ -110,7 +110,8 @@ async function updateDescription() {
   $("#available-annotations").empty();
   
   try {
-    data = await $.get("description?nr=" + currentParams.nr);
+    data = await $.get("description?nr=" + number);
+    console.log(data);
   } catch (error) {
     printError("failed loading description: " + error);
   }
@@ -155,7 +156,7 @@ async function updateAnnotations() {
   let data;
   
   try {
-    data = await $.get("annotations?" + $.param({nr: currentParams.nr, lang: currentParams.lang}));
+    data = await $.get("annotations?" + $.param({nr: number, lang: currentParams.lang}));
   } catch (error) {
     printError("failed updating annotations: " + error);
   }
@@ -174,7 +175,7 @@ async function updateAnnotations() {
   
     try {
       svg = await $.get("music-example?" + $.param({
-        nr: currentParams.nr,
+        nr: number,
         filename: $(this).find("tei-ptr").attr("target"),
         modernClefs: currentParams.modernClefs
       }));
@@ -492,7 +493,7 @@ $(document).ready(function() {
   // ------
   
   $("#nr").change(function() {
-    currentParams.nr = $(this).val();
+    number = $(this).val();
     currentParams.page = 1;
     updateView(true);
   });
@@ -551,6 +552,8 @@ $(document).ready(function() {
   });
   
   updateView(true);
+  
+  console.log(number);
 });
 
 $(document).on("touchstart mousemove", function(e) {

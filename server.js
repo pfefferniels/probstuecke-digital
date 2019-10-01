@@ -1,29 +1,33 @@
-var verovio = require('verovio-dev');
-var fs = require('fs')
-var http = require('http');
-var express = require('express');
-var xmldom = require('xmldom');
-const window   = require('svgdom'),
-      SVG      = require('svg.js')(window),
+const verovio = require('verovio-dev'),
+      fs = require('fs'),
+      http = require('http'),
+      express = require('express'),
+      xmldom = require('xmldom'),
+      window = require('svgdom'),
+      SVG = require('svg.js')(window),
       document = window.document,
-      draw     = SVG(document.documentElement);
-const path = require('path');
-      
-var PDFDocument = require('pdfkit');
-var DOMParser = xmldom.DOMParser;
-var SVGtoPDF = require('svg-to-pdfkit');
- 
+      draw = SVG(document.documentElement),
+      path = require('path'),
+      PDFDocument = require('pdfkit'),
+      DOMParser = xmldom.DOMParser,
+      SVGtoPDF = require('svg-to-pdfkit');
+
+// pdfkit setup
 PDFDocument.prototype.addSVG = function(svg, x, y, options) {
   return SVGtoPDF(this, svg, x, y, options), this;
 };
 
+// verovio setup
 var options = {
   noFooter: 1
 };
-
 var vrvToolkit = new verovio.toolkit();
 vrvToolkit.setOptions(options);
+
+// express.js setup
 var app = express();
+app.set('view engine', 'pug');
+app.set('views', './views');
 
 // prevent possible dot-dot-slash attacks
 function preventDotDotSlash(userInput) {
@@ -407,10 +411,6 @@ app.get("/download", function(req, res) {
   }
 });
 
-app.get('/', function(req, res) {
-  res.sendFile(__dirname + "/index.html");
-});
-
 app.get('/description', function(req, res) {
   res.sendFile(__dirname + '/data/' + req.query.nr + '/description.json', function(err) {
     if (err) {
@@ -419,6 +419,16 @@ app.get('/description', function(req, res) {
       return;
     }
   });
+});
+
+app.get('^/:number([0-9]{1,2})', function(req, res) {
+  res.render('index', {
+    number: req.params.number
+   });
+});
+
+app.get('/', function(req, res) {
+  res.sendFile(__dirname + "/index.html");
 });
 
 app.use(express.static('public'));
