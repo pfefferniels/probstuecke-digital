@@ -428,7 +428,7 @@ app.get('^/:number([0-9]{1,2})', function(req, res) {
 });
 
 app.get('/', function(req, res) {
-  res.sendFile(__dirname + "/index.html");
+  res.render('introduction');
 });
 
 app.use(express.static('public'));
