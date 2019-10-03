@@ -240,15 +240,13 @@ function reconnectCrossRefs() {
     let teiRef = $(this);
     if (target.length === 0) {
       console.log("corresponding SVG element not found on this page.");
-      // In case the use clicks on a reference that is not found in the current SVG, 
+      // In case the user clicks on a reference that is not found in the current SVG, 
       // we have to look it up in one of the following pages
       $(this).find("a").off("click").click(async function(e) {
-        console.log("unknown a clicked");
         e.preventDefault();
         currentParams.page = parseInt(currentParams.page, 10) + 1;
         await updateScoreView();
         setTimeout(function() {
-          
           $("body").find("tei-ref[target='" + targetAttr + "'] a").trigger("click");
         }, 900);
       });
@@ -258,11 +256,19 @@ function reconnectCrossRefs() {
     // highlight the target
     var svg = SVG.get(targetAttr);
     let bbox = svg.bbox();
-    let rect = svg.rect(bbox.width,bbox.height).move(bbox.x,bbox.y).fill("#ffe47a").attr("class", "indicator");
-    rect.back();
+    let rect = svg.rect(bbox.width,bbox.height).
+                   move(bbox.x,bbox.y).
+                   fill("#ffe47a").
+                   attr("class", "indicator mark_" + targetAttr).
+                   back();
     
+
     // connect indicator with text
-    rect.click(function() {
+    rect.click(async function() {
+      // TODO the same measure might be referenced multiple times. Make sure that in case of a click 
+      // they other indicators be triggered as well.
+
+      
       // scroll to reference point and then highlight it
       // portrait mode
       if(window.innerHeight > window.innerWidth) {
@@ -293,7 +299,7 @@ function reconnectCrossRefs() {
         $("html,body").animate({scrollTop: 0}, 100);
       }
       
-      rect.animate(500).attr({opacity: 0}).animate().attr({opacity: 1});
+      rect.animate(500).attr({fill: "#ffaa99"}).animate().attr({fill: "#ffe47a"});
     });
   });
 }
