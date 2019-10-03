@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
+    <meiHead>
+        <fileDesc>
+            <titleStmt>
+                <composer>Johann Mattheson</composer>
+                <editor>Niels Pfeffer</editor>
+            </titleStmt>
+            <editionStmt>
+                <edition>First draft, <date>2019</date></edition>
+            </editionStmt>
+            <pubStmt>
+                <unpub />
+            </pubStmt>
+        </fileDesc>
+    </meiHead>
+    
+    <music>
+        <body>
+            <mdiv>
+                <score>
+                    <scoreDef>
+                        <staffGrp>
+                            <staffDef clef.shape="C" clef.line="1" key.mode="minor" key.sig="2f" meter.count="4" meter.unit="4" n="1" lines="5" />
+                            <staffDef clef.shape="F" clef.line="4" key.mode="minor" key.sig="2f" meter.count="4" meter.unit="4" n="2" lines="5" />
+                        </staffGrp>
+                    </scoreDef>
+                    <section>
+                        <measure n="1">
+                            <staff n="1">
+                                <layer n="1">
+                                    <space dur="2" />
+                                    <beam>
+                                        <note dur="16" oct="5" pname="e" />
+                                        <note dur="16" oct="5" pname="c" />
+                                        <note dur="16" oct="4" pname="b" />
+                                        <note dur="16" oct="5" pname="c" />
+                                    </beam>
+                                    <beam>
+                                        <note dur="16" oct="4" pname="a" accid="f" />
+                                        <note dur="16" oct="5" pname="e" />
+                                        <note dur="16"  oct="4" pname="g"/>
+                                        <note dur="16"  oct="5" pname="e" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <staff n="2">
+                                <layer n="1">
+                                    <space dots="1" dur="4"/>
+                                    <space dur="8" />
+                                    <note dots="1" dur="4"  oct="4" pname="c" />
+                                    <note dur="8"  oct="4" pname="c" />
+                                </layer>
+                            </staff>
+                        </measure>
+                        <measure n="2">
+                            <staff n="1">
+                                <layer  n="1">
+                                    <beam >
+                                        <note  dur="16"  oct="4" pname="a" accid="f" />
+                                        <note  dur="16"  oct="5" pname="e"   >
+                                            <accid  accid.ges="f"/>
+                                        </note>
+                                        <note  dur="16"  oct="4" pname="g"   />
+                                        <note  dur="16"  oct="5" pname="e"   >
+                                            <accid  accid.ges="f"/>
+                                        </note>
+                                    </beam>
+                                    <beam >
+                                        <note  dur="16"  oct="4" pname="a"   />
+                                        <note  dur="16"  oct="5" pname="e"   >
+                                            <accid  accid.ges="f"/>
+                                        </note>
+                                        <note  dur="16"  oct="4" pname="f" />
+                                        <note  dur="16"  oct="5" pname="c"   />
+                                    </beam>
+                                    <beam >
+                                        <note  dur="16"  oct="5" pname="d"   />
+                                        <note  dur="16"  oct="4" pname="b"   >
+                                            <accid  accid.ges="f"/>
+                                        </note>
+                                        <note  dur="16"  oct="4" pname="a"   >
+                                            <accid  accid="f"/>
+                                        </note>
+                                        <note  dur="16"  oct="4" pname="b"   >
+                                            <accid  accid.ges="f"/>
+                                        </note>
+                                    </beam>
+                                    <beam >
+                                        <note  dur="16"  oct="4" pname="g"   />
+                                        <note  dur="16"  oct="5" pname="d"   />
+                                        <note  dur="16"  oct="4" pname="f"   />
+                                        <note  dur="16"  oct="5" pname="d"   />
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <staff n="2">
+                                <layer n="1">
+                                    <note dur="4"  oct="3" pname="f"/>
+                                    <rest dur="8" />
+                                    <note dur="8"  oct="3" pname="f"/>
+                                    <note dur="4"  oct="3" pname="b" accid="f" />
+                                    <rest dur="8" />
+                                    <note dur="8"  oct="3" pname="b" /> 
+                                </layer>
+
+                            </staff>
+                        </measure>
+                        <measure n="3">
+                            <staff n="1">
+                                <layer n="1">
+                                    <beam>
+                                        <note dur="16"  oct="4" pname="g"   />
+                                        <note dur="16"  oct="5" pname="d"   />
+                                        <note dur="16"  oct="4" pname="f"   />
+                                        <note dur="16"  oct="5" pname="d"   />
+                                    </beam>
+                                    <beam>
+                                        <note dur="16"  oct="4" pname="g"   />
+                                        <note dur="16"  oct="5" pname="d"   />
+                                        <note dur="16"  oct="4" pname="e"   >
+                                            <accid accid.ges="f"/>
+                                        </note>
+                                        <note dur="16"  oct="5" pname="d"   />
+                                    </beam>
+                                    <beam>
+                                        <note dur="16"  oct="5" pname="c"   />
+                                        <note dur="16"  oct="4" pname="a"   >
+                                            <accid accid="f"/>
+                                        </note>
+                                        <note dur="16"  oct="4" pname="g"   />
+                                        <note dur="16"  oct="4" pname="a"   >
+                                            <accid accid.ges="f"/>
+                                        </note>
+                                    </beam>
+                                    <beam>
+                                        <note dur="16"  oct="4" pname="f"   />
+                                        <note dur="16"  oct="5" pname="c"   />
+                                        <note dur="16"  oct="4" pname="e"   >
+                                            <accid accid.ges="f"/>
+                                        </note>
+                                        <note dur="16"  oct="5" pname="c"   />
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <staff n="2">
+                                <layer n="1">
+                                    <note dur="4"  oct="3" pname="e" />
+                                    <rest dur="8" />
+                                    <note dur="8"  oct="3" pname="e" />
+                                    <note dur="4"  oct="3" pname="a" accid="f" />
+                                    <rest dur="8" />
+                                    <note dur="8"  oct="3" pname="a" />
+                                </layer>
+                            </staff>
+                            </staff>
+                        </measure>
+                        <measure n="4">
+                            <staff n="1">
+                                <layer n="1">
+                                    <beam>
+                                        <note dur="16"  oct="4" pname="f"  />
+                                        <note dur="16"  oct="5" pname="c"  />
+                                        <note dur="16"  oct="4" pname="e"  >
+                                            <accid accid.ges="f"/>
+                                        </note>
+                                        <note dur="16"  oct="5" pname="c"  />
+                                    </beam>
+                                    <beam>
+                                        <note dur="16"  oct="4" pname="f"  />
+                                        <note dur="16"  oct="5" pname="c"  />
+                                        <note dur="16"  oct="4" pname="d"  />
+                                        <note dur="16"  oct="5" pname="c"  />
+                                    </beam>
+                                    <beam>
+                                        <note dur="16"  oct="4" pname="b"  >
+                                            <accid accid="n"/>
+                                        </note>
+                                        <note dur="16"  oct="4" pname="g"  />
+                                        <note dur="16"  oct="4" pname="f"  />
+                                        <note dur="16"  oct="4" pname="g"  />
+                                    </beam>
+                                    <beam>
+                                        <note dur="16"  oct="4" pname="e"  >
+                                            <accid accid.ges="f"/>
+                                        </note>
+                                        <note dur="16"  oct="5" pname="c"  />
+                                        <note dur="16"  oct="4" pname="d"  />
+                                        <note dur="16"  oct="4" pname="b"  >
+                                            <accid accid="n" func="caution"/>
+                                        </note>
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <staff n="2">
+                                <layer n="1">
+                                    <note dur="4"  oct="3" pname="d"/>
+                                    <rest dur="8" />
+                                    <note dur="8"  oct="3" pname="d"/>
+                                    <note dur="4"  oct="3" pname="g"/>
+                                    <rest dur="8" />
+                                    <note dur="8"  oct="3" pname="g"/>
+                                </layer>
+                            </staff>
+                        </measure>
+                    </section>
+                </score>
+            </mdiv>
+        </body>
+    </music>
+</mei>
+
