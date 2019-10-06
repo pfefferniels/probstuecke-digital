@@ -266,7 +266,7 @@ app.get('/music-example', function(req, res) {
   // make sure req.query.nr is indeed a number
   if (isNaN(req.query.nr)) {
     console.log("invalid query number passed.");
-    res.status("404");
+    res.status("404").end();
   }
   
   fs.readFile(__dirname + '/data/' + req.query.nr + '/' + preventDotDotSlash(req.query.filename), function(err, data) {
@@ -412,10 +412,15 @@ app.get("/download", function(req, res) {
 });
 
 app.get('/description', function(req, res) {
+  if (isNaN(req.query.nr)) {
+    console.log("invalid query number passed.");
+    res.status("404").end();
+  }
+  
   res.sendFile(__dirname + '/data/' + req.query.nr + '/description.json', function(err) {
     if (err) {
       console.log(err);
-      res.send("internal error (file not found?)");
+      res.status("404").end();
       return;
     }
   });
