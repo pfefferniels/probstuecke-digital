@@ -39,7 +39,7 @@ function printInfo(message) {
 
 async function highlight(element) {
   if (element.length == 0) {
-    currentParams.page = parseInt(currentParams.page, 10) + 1;
+    currentParams.page += 1;
     await updateView(true);
     highlight(element);
     return;
@@ -250,7 +250,7 @@ function reconnectCrossRefs() {
       // we have to look it up in one of the following pages
       $(this).find("a").off("click").click(async function(e) {
         e.preventDefault();
-        currentParams.page = parseInt(currentParams.page, 10) + 1;
+        currentParams.page += 1;
         await updateScoreView();
         setTimeout(function() {
           $("body").find("tei-ref[target='" + targetAttr + "'] a").trigger("click");
@@ -537,12 +537,12 @@ $(document).ready(function() {
       printInfo("Already on first page.");
       return;
     }
-    currentParams.page = parseInt(currentParams.page, 10) - 1;
+    currentParams.page -= 1;
     updateScoreView();
   });
   
   $("#next-page").click(function() {
-    currentParams.page = parseInt(currentParams.page, 10) + 1;
+    currentParams.page += 1;
     updateScoreView();
   });
   
