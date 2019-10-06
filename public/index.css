@@ -138,6 +138,12 @@ svg {
   text-decoration: underline;
 }
 
+.visible-table {
+  visibility: visible;
+  opacity: 1;
+  animation: fade 1s;
+}
+
 input[type="number"] {
   max-width: 4em;
 }

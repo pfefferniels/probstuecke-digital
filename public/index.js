@@ -560,22 +560,12 @@ $(document).ready(function() {
   
   $("#options-control").click(function() {
     $("#contents-table").hide();
-    $("#options-table").css({
-      "display": "block",
-      "visibility": "visible",
-      "opacity": "1",
-      "animation": "fade 1s"
-    });
+    $("#options-table").addClass("visible-table").show();
   });
   
   $("#contents-control").click(function() {
     $("#options-table").hide();
-    $("#contents-table").css({
-      "display": "block",
-      "visibility": "visible",
-      "opacity": "1",
-      "animation": "fade 1s"
-    });
+    $("#contents-table").addClass("visible-table").show();
   });
   
   
