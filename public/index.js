@@ -21,15 +21,20 @@ function copyToClipboard(text) {
     return;
   }
   navigator.clipboard.writeText(text).then(function() {
-    //printError('Async: Copying to clipboard was successful!');
+    //printInfo('Async: Copying to clipboard was successful!');
   }, function(err) {
     printError('Async: Could not copy text: ', err);
   });
 }
 
 function printError(message) {
-  $("#error").text(message);
-  $("#error").show().fadeOut("slow");
+  $("#message").append(message).append("<br/>").css('background-color', 'rgba(200,20,20)');
+  $("#message").show().delay(2000).fadeOut("slow").clear();
+}
+
+function printInfo(message) {
+  $("#message").append(message).append("<br/>").css('background-color', 'rgba(200,200,200)');
+  $("#message").show().delay(2000).fadeOut("slow").clear();
 }
 
 async function highlight(element) {
@@ -111,9 +116,9 @@ async function updateDescription() {
   
   try {
     data = await $.get("description?nr=" + number);
-    console.log(data);
   } catch (error) {
-    printError("failed loading description: " + error);
+    $("#options-table").text("failed loading description: " + error.status + " " + error.statusText);
+    return;
   }
   
   let realizations = data.realizations;
@@ -158,7 +163,7 @@ async function updateAnnotations() {
   try {
     data = await $.get("annotations?" + $.param({nr: number, lang: currentParams.lang}));
   } catch (error) {
-    printError("failed updating annotations: " + error);
+    $("#annotations-view").text("failed loading annotations: " + error.status + " " + error.statusText);
   }
   
   var cetei = new CETEI();
@@ -212,7 +217,8 @@ async function renderCurrentPage() {
   try {
     response = await $.get("render?" + $.param(currentParams));
   } catch (error) {
-    printError("failed rendering page: " + error);
+    $("#score-view").text("failed rendering page: " + error.status + " " + error.statusText);
+    return;
   }
   
   if (currentParams.page > response.pageCount) {
@@ -527,6 +533,10 @@ $(document).ready(function() {
   });
   
   $("#previous-page").click(function() {
+    if (currentParams.page == 1) {
+      printInfo("Already on first page.");
+      return;
+    }
     currentParams.page = parseInt(currentParams.page, 10) - 1;
     updateScoreView();
   });
@@ -570,8 +580,6 @@ $(document).ready(function() {
   
   
   updateView(true);
-  
-  console.log(number);
 });
 
 $(document).on("touchstart mousemove", function(e) {
