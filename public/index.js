@@ -9,6 +9,8 @@ currentParams = {
   exportFormat: "pdf"
 };
 
+let cetei = new CETEI();
+
 // ------
 // Helper functions
 // ------
@@ -29,12 +31,16 @@ function copyToClipboard(text) {
 
 function printError(message) {
   $("#message").append(message).append("<br/>").css('background-color', 'rgba(200,20,20)');
-  $("#message").show().delay(2000).fadeOut("slow").clear();
+  $("#message").show().delay(2000).fadeOut("slow").queue(function() {
+    $(this).empty().dequeue();
+  });
 }
 
 function printInfo(message) {
   $("#message").append(message).append("<br/>").css('background-color', 'rgba(200,200,200)');
-  $("#message").show().delay(2000).fadeOut("slow").clear();
+  $("#message").show().delay(2000).fadeOut("slow").queue(function() {
+    $(this).empty().dequeue();
+  });
 }
 
 async function highlight(element) {
@@ -70,7 +76,7 @@ var midiData = {};
 updateCounter = 1;
 var midiUpdate = function(time) {
   // TODO time and the tstamps from midiTimemap are not identical.
-  // An aprroximate lookup would be necessary.
+  // An approximate lookup would be necessary.
 }
 
 // ------
@@ -166,7 +172,6 @@ async function updateAnnotations() {
     $("#annotations-view").text("failed loading annotations: " + error.status + " " + error.statusText);
   }
   
-  var cetei = new CETEI();
   cetei.domToHTML5(data, function(html) {
     $("#annotations-view").html(html);
     $("#annotations-view tei-facsimile img").hide();
@@ -338,6 +343,10 @@ function cleanUpTooltips() {
 function connectSignatureTooltips() {
   cleanUpTooltips();
   
+  if (currentParams.page != 1) {
+    return;
+  }
+  
   var keySig = $("#score-view svg").find(".keySig");
   var signatureBox;
   if (keySig.length == 0) {
@@ -355,7 +364,7 @@ function connectSignatureTooltips() {
     
     $("<div class='tooltip-overlay' />").appendTo("body").css(signatureBox).mouseenter(function(e) {
       let tooltips = $("#tooltips");
-      $("<div class='tooltip tooltip-text' />").append(annotation.text()).appendTo("#tooltips");
+      $("<div class='tooltip tooltip-text' />").append(annotation.removeAttr("hidden")).appendTo("#tooltips");
       positionAtMouse(tooltips, e);
     }).mouseleave(function(e) {
       $("#tooltips").empty();
@@ -370,7 +379,7 @@ function connectSignatureTooltips() {
     
     $("<div class='tooltip-overlay' />").appendTo("body").css(getSvgElementBoxAsCss(meterSig)).mouseenter(function(e) {
       let tooltips = $("#tooltips");
-      $("<div class='tooltip tooltip-text' />").append(annotation.text()).appendTo("#tooltips");
+      $("<div class='tooltip tooltip-text' />").append(annotation.removeAttr("hidden")).appendTo("#tooltips");
       positionAtMouse(tooltips, e);
     }).mouseleave(function(e) {
       $("#tooltips").empty();
@@ -390,6 +399,10 @@ function disconnectFacsimileTooltips() {
 
 // connecting transcription and facsimile
 function connectFacsimileTooltips() {
+  if (!$("#show-tooltips").is(':checked')) {
+    return;
+  }
+  
   $("tei-body").find("tei-graphic img").each(function() {
     let surface = $(this).parent().parent();
     let zoom = $(this)[0].width / surface.attr("lrx");
@@ -493,6 +506,7 @@ async function updateScoreView() {
   await renderCurrentPage();
   reconnectCrossRefs();
   connectSignatureTooltips();
+  connectFacsimileTooltips();
 }
 
 $(document).ready(function() {
