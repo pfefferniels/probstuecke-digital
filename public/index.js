@@ -462,10 +462,10 @@ function connectFacsimileTooltips() {
 
 
   // temporary code for allowing faster MEI editing
-  //$("svg").find(".measure").on("click", function() {
-  //  copyToClipboard("#" + $(this).attr("id"));
-  //  printError("copied to clipboard");
-  //});
+  $("svg").find(".measure").on("click", function() {
+    copyToClipboard("#" + $(this).attr("id"));
+    printError("copied to clipboard");
+  });
   //
   //meiStrings = [];
   //$("#score-view svg").find(".note, .rest").one("click", function() {
