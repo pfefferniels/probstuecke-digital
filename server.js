@@ -18,11 +18,21 @@ PDFDocument.prototype.addSVG = function(svg, x, y, options) {
 };
 
 // verovio setup
-var options = {
+let options = {
+  pageHeight: 2970,
+  adjustPageHeight: 0,
   noFooter: 1
 };
+
+// in case of rendering an example in the annotations
+// everything has to fit in one SVG.
+let exampleOptions = {
+  pageHeight: 10000,
+  adjustPageHeight: 1,
+  noFooter: 1
+};
+
 var vrvToolkit = new verovio.toolkit();
-vrvToolkit.setOptions(options);
 
 // express.js setup
 var app = express();
@@ -41,12 +51,12 @@ function getAnnotationFilename(nr, lang) {
 // takes a DOM object and replaces all <clef>s and <staffDef>s with
 // modern clefs
 function modernizeClefs(doc) {
-  // find all <staffDef>s. 
+  // find all <staffDef>s.
   var staffDefs = doc.documentElement.getElementsByTagName("staffDef");
   for (var i=0; i<staffDefs.length; i++) {
     var shape = staffDefs[i].getAttribute("clef.shape");
     var line = staffDefs[i].getAttribute("clef.line");
-    
+
     if (shape === "C") {
       if (line === "1") {
         // replace discant clef with G-clef
@@ -66,14 +76,14 @@ function modernizeClefs(doc) {
       staffDefs[i].setAttribute("clef.line", "4");
     }
   }
-  
-  // find all remaining clef changes 
+
+  // find all remaining clef changes
   // TODO redundant with above code. Use a map?
   var clefs = doc.documentElement.getElementsByTagName("clef");
   for (var i=0; i<clefs.length; i++) {
     var shape = clefs[i].getAttribute("shape");
     var line = clefs[i].getAttribute("line");
-    
+
     if (shape === "C") {
       if (line === "1") {
         // replace discant clef with G-clef
@@ -105,7 +115,7 @@ function generateSvg(params, allpages, callback, onFinish, onError) {
       }
       return;
     }
-    
+
     let parser = new DOMParser({
                     locator: {},
                     errorHandler: {
@@ -116,14 +126,14 @@ function generateSvg(params, allpages, callback, onFinish, onError) {
                          onError();
                          return;
                        },
-                       fatalError: (msg) => { 
+                       fatalError: (msg) => {
                          onError();
                        }
                     }
     });
-    
+
     var doc = parser.parseFromString(data.toString(), 'text/xml');
-    
+
     // find all the staffs or layers that are not in the display parameter, remove their <staffDef> ...
     if (!params.display) {
       params.display = [];
@@ -139,7 +149,7 @@ function generateSvg(params, allpages, callback, onFinish, onError) {
         i -= 1;
       }
     }
-    
+
     var layersToRemove = [];
     var layerDefs = doc.documentElement.getElementsByTagName("layerDef");
     for (var i=0; i<layerDefs.length; i++) {
@@ -150,7 +160,7 @@ function generateSvg(params, allpages, callback, onFinish, onError) {
         layerDefs[i].parentNode.removeChild(layerDefs[i]);
       }
     }
-    
+
     if (staffsToRemove.length > 0) {
       // ... and accordingly remove their <staff>s resp. <layer>s.
       let staffs = doc.documentElement.getElementsByTagName("staff");
@@ -161,7 +171,7 @@ function generateSvg(params, allpages, callback, onFinish, onError) {
         }
       }
     }
-    
+
     if (layersToRemove.length > 0) {
       let layers = doc.documentElement.getElementsByTagName("layer");
       for (var i=0; i<layers.length; i++) {
@@ -171,12 +181,12 @@ function generateSvg(params, allpages, callback, onFinish, onError) {
         }
       }
     }
-    
+
     // modernize clefs
     if (params.modernClefs === 'true') {
       modernizeClefs(doc);
     }
-    
+
     // more than 9 staffs below or above would exceed the space of one page
     // and will be ignored
     if (params.emptyStaffsBelow > 9) {
@@ -185,7 +195,7 @@ function generateSvg(params, allpages, callback, onFinish, onError) {
     if (params.emptyStaffsAbove > 9) {
       params.emptyStaffsAbove = 9;
     }
-    
+
     // insert empty staffs below
     // numbering: the range from 20–29 is reserved for staff lines below.
     for (i=0; i<params.emptyStaffsBelow; i++) {
@@ -205,7 +215,7 @@ function generateSvg(params, allpages, callback, onFinish, onError) {
         measures[j].appendChild(staff);
       }
     }
-    
+
     // insert empty staffs above
     // numbering: the range from 10–19 is reserved for staff lines above
     for (i=0; i<params.emptyStaffsAbove; i++) {
@@ -224,11 +234,12 @@ function generateSvg(params, allpages, callback, onFinish, onError) {
         empty.setAttribute("dur", 1)
         measures[j].insertBefore(staff, measures[j].getElementsByTagName("staff")[0]);
       }
-    } 
-    
+    }
+
     var mei = new xmldom.XMLSerializer().serializeToString(doc);
-    
+
     // render MEI
+    vrvToolkit.setOptions(options);
     vrvToolkit.loadData(mei);
     var pageCount = vrvToolkit.getPageCount();
     if (allpages) {
@@ -253,7 +264,7 @@ app.get("/annotations", function(req, res) {
     console.log("invalid query number passed.");
     res.status("404");
   }
-  
+
   res.sendFile(getAnnotationFilename(req.query.nr, preventDotDotSlash(req.query.lang)), {}, function(err) {
     if (err) {
       console.log(err.status);
@@ -268,26 +279,25 @@ app.get('/music-example', function(req, res) {
     console.log("invalid query number passed.");
     res.status("404").end();
   }
-  
+
   fs.readFile(__dirname + '/data/' + req.query.nr + '/' + preventDotDotSlash(req.query.filename), function(err, data) {
     if (err) {
       console.log(err);
       res.status("404").end();
       return;
     }
-    
+
     var doc = new DOMParser().parseFromString(data.toString(), 'text/xml');
     if (req.query.modernClefs === "true") {
       modernizeClefs(doc);
-    } 
-    
+    }
+
     var mei = new xmldom.XMLSerializer().serializeToString(doc);
-    
+
     // render MEI
+    vrvToolkit.setOptions(exampleOptions);
     vrvToolkit.loadData(mei.toString());
-    svg = vrvToolkit.renderToSVG(1, {
-      adjustPageHeight: 1
-    });
+    svg = vrvToolkit.renderToSVG(1, {});
     res.send(svg);
   });
 });
@@ -295,7 +305,7 @@ app.get('/music-example', function(req, res) {
 app.get('/render', function (req, res) {
   var jsonResponse = {};
   generateSvg(req.query, false, function(svg) {
-    // on retrieving the rendered SVG 
+    // on retrieving the rendered SVG
     jsonResponse.svg = svg;
   }, function() {
     // on success
@@ -318,7 +328,7 @@ var AnnotationToPDF = {
       if (children[i].nodeName === "#text") {
         // for now, treat them all the same.
         if (children[i].parentNode.nodeName === "p" ||
-            children[i].parentNode.nodeName === "ref" || 
+            children[i].parentNode.nodeName === "ref" ||
             children[i].parentNode.nodeName === "emph" ||
             children[i].parentNode.nodeName === "foreign") {
           this.pdfDoc.text(children[i].textContent, {
@@ -327,7 +337,7 @@ var AnnotationToPDF = {
             continued: true,
             indent: 0
           });
-        } 
+        }
       } else if (children[i].nodeName === "head") {
         // no further subchildren are expected
         this.pdfDoc.moveDown(1);
@@ -357,7 +367,7 @@ var AnnotationToPDF = {
           }
         });
         draw.clear();
-        
+
         this.pdfDoc.addSVG(svg, this.pdfDoc.x, this.pdfDoc.y, {});
         this.pdfDoc.y += height*0.1+10;
       } else {
@@ -372,15 +382,15 @@ app.get("/download", function(req, res) {
     const doc = new PDFDocument({
       size: "A1"
     });
-  
+
     doc.pipe(res);
-  
+
     generateSvg(req.query, true, function(svg) {
       doc.addSVG(svg, 100, 100, {}).scale(0.5);
       doc.addPage();
     }, function() {
       // when all the score pages are there, start adding the annotations
-      
+
       // TODO for some reason, this code works fine on localhost, but non on amazon beanstalks.
       // Deactivated for now.
       // fs.readFile(getAnnotationFilename(req.query.nr, req.query.lang), function(err, data) {
@@ -389,7 +399,7 @@ app.get("/download", function(req, res) {
       //     res.status("404").end();
       //     return;
       //   }
-      //   
+      //
       //   // PDFKit will realize the newlines in the original TEI file as new paragraphs. To prevent,
       //   // all line breaks have to be removed first.
       //   var annotationDoc = new DOMParser().parseFromString(data.toString().replace(/\s\s+/g, ' '), 'text/xml');
@@ -398,14 +408,14 @@ app.get("/download", function(req, res) {
       //   doc.font("Times-Roman").fontSize(25);
       //   converter.pdfDoc = doc;
       //   converter.traverse(annotationDoc);
-      //   
+      //
          doc.end();
       // });
     });
   } else if (req.query.exportFormat === "musicxml") {
     // TODO not implemented yet
     res.status("404").end();
-  } 
+  }
   else {
     res.status("404").end();
   }
@@ -416,7 +426,7 @@ app.get('/description', function(req, res) {
     console.log("invalid query number passed.");
     res.status("404").end();
   }
-  
+
   res.sendFile(__dirname + '/data/' + req.query.nr + '/description.json', function(err) {
     if (err) {
       console.log(err);
@@ -446,4 +456,3 @@ app.use(express.static('public'));
 app.listen(process.env.PORT || 3000, function() {
   console.log('Listening');
 });
-
