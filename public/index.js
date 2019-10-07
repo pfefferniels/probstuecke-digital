@@ -98,7 +98,7 @@ function displayCheckboxes(block, group) {
       if (i!=0) {
         $("#" + group).append('<br />');
       }
-      
+
       $('<input type="checkbox" id="' + blockName + '" autocomplete="off">').appendTo("#" + group).change(function() {
         if ($(this).is(':checked')) {
           currentParams.display.push($(this).attr("id"));
@@ -115,26 +115,26 @@ function displayCheckboxes(block, group) {
 
 async function updateDescription() {
   let data;
-  
+
   $("#realizations").empty();
   $("#analysis").empty();
   $("#available-annotations").empty();
-  
+
   try {
     data = await $.get("description?nr=" + number);
   } catch (error) {
     $("#options-table").text("failed loading description: " + error.status + " " + error.statusText);
     return;
   }
-  
+
   let realizations = data.realizations;
   let analysis = data.analysis;
   let annotations = data.annotations;
-  
+
   displayCheckboxes(realizations, "realizations");
   displayCheckboxes(analysis, "analysis");
-  
-  
+
+
   if (annotations) {
     $("#available-annotations").append('<h1>annotations</h1>');
     $("#available-annotations").append('<select id="lang" name="lang" autocomplete="off">');
@@ -150,10 +150,10 @@ async function updateDescription() {
       }
     }
     $("#available-annotations").append('</select>');
-    
+
     $("option[value='" + annotations[0] + "']")[0].selected = true;
     currentParams.lang = annotations[0];
-    
+
     $("#lang").change(async function() {
       currentParams.lang = $(this).val();
       updateView(false);
@@ -163,23 +163,23 @@ async function updateDescription() {
 
 async function updateAnnotations() {
   $("#annotations-view").html("loading ...");
-  
+
   let data;
-  
+
   try {
     data = await $.get("annotations?" + $.param({nr: number, lang: currentParams.lang}));
   } catch (error) {
     $("#annotations-view").text("failed loading annotations: " + error.status + " " + error.statusText);
   }
-  
+
   cetei.domToHTML5(data, function(html) {
     $("#annotations-view").html(html);
     $("#annotations-view tei-facsimile img").hide();
   });
-  
+
 
   // load the music examples, if there are any
-  
+
   var notatedMusicPromises = [];
   $("tei-notatedmusic").each(async function() {
     var dfd = $.Deferred();
@@ -187,20 +187,20 @@ async function updateAnnotations() {
 
     var notatedmusic = $(this);
     let svg;
-  
+
     try {
       svg = await $.get("music-example?" + $.param({
         nr: number,
         filename: $(this).find("tei-ptr").attr("target"),
         modernClefs: currentParams.modernClefs
       }));
-      
+
     } catch (error) {
       printError("failed loading embedded music example: " + error);
     }
-  
+
     notatedmusic.find("tei-ptr").replaceWith(svg);
-  
+
     var svg1 = notatedmusic.find("svg")[1];
     var bb=svg1.getBBox();
     var bbw=bb.width;
@@ -211,7 +211,7 @@ async function updateAnnotations() {
       width: (bbw/1000)*28.34 + "px",
       height: (bbh/1000)*28.34 + "px"
     });
-    
+
     // on smaller screen sizes, the svg might too wide.
     var normalParagraph = notatedmusic.parent().find("tei-p");
     if (svg0.width() > normalParagraph.width()) {
@@ -219,38 +219,38 @@ async function updateAnnotations() {
     }
     dfd.resolve();
   });
-  
-  // make sure that loading the annotations is done only when all 
+
+  // make sure that loading the annotations is done only when all
   // the notatedMusic elements are resolved.
-  await Promise.all(notatedMusicPromises); 
+  await Promise.all(notatedMusicPromises);
 }
 
 async function renderCurrentPage() {
   $("#score-view").html("loading ...");
-  
+
   let response;
-  
+
   try {
     response = await $.get("render?" + $.param(currentParams));
   } catch (error) {
     $("#score-view").text("failed rendering page: " + error.status + " " + error.statusText);
     return;
   }
-  
+
   if (currentParams.page > response.pageCount) {
     currentParams.page = 1;
     updateView(false);
     return;
   }
-  
+
   midiTimemap = response.timemap;
   midiData = response.midi;
   var piece = 'data:audio/midi;base64,' + midiData;
   $("#player").show();
   $("#player").midiPlayer.load(piece);
-  
+
   var svg = response.svg;
-  
+
   $("#score-view").html(svg);
 }
 
@@ -262,7 +262,7 @@ function reconnectCrossRefs() {
     let teiRef = $(this);
     if (target.length === 0) {
       console.log("corresponding SVG element not found on this page.");
-      // In case the user clicks on a reference that is not found in the current SVG, 
+      // In case the user clicks on a reference that is not found in the current SVG,
       // we have to look it up in one of the following pages
       $(this).find("a").off("click").click(async function(e) {
         e.preventDefault();
@@ -274,7 +274,7 @@ function reconnectCrossRefs() {
       });
       return true;
     }
-    
+
     // highlight the target
     var svg = SVG.get(targetAttr);
     let bbox = svg.bbox();
@@ -283,14 +283,14 @@ function reconnectCrossRefs() {
                    fill("#ffe47a").
                    attr("class", "indicator mark_" + targetAttr).
                    back();
-    
+
 
     // connect indicator with text
     rect.click(async function() {
-      // TODO the same measure might be referenced multiple times. Make sure that in case of a click 
+      // TODO the same measure might be referenced multiple times. Make sure that in case of a click
       // they other indicators be triggered as well.
 
-      
+
       // scroll to reference point and then highlight it
       // portrait mode
       if(window.innerHeight > window.innerWidth) {
@@ -300,7 +300,7 @@ function reconnectCrossRefs() {
           highlight(teiRef);
         });
       }
-      
+
       // landscape mode
       if(window.innerWidth > window.innerHeight){
         var annotationView = $("#annotations-view");
@@ -311,16 +311,16 @@ function reconnectCrossRefs() {
         });
       }
     });
-    
-    
+
+
     // connect text with an indicator
     $(this).find("a").off("click").click(function(e) {
       e.preventDefault();
-      
+
       if (window.innerHeight > window.innerWidth) {
         $("html,body").animate({scrollTop: 0}, 100);
       }
-      
+
       rect.animate(500).attr({fill: "#ffaa99"}).animate().attr({fill: "#ffe47a"});
     });
   });
@@ -332,7 +332,7 @@ function positionAtMouse(el, e) {
     left: e.pageX+5,
     top: e.pageY+5
   });
-  
+
   if (e.pageX+el.width()*0.6 > $(window).width()) {
     el.css({
       left: e.pageX-el.width()*0.6-20
@@ -353,11 +353,11 @@ function cleanUpTooltips() {
 // connecting key and meter signature with annotations
 function connectSignatureTooltips() {
   cleanUpTooltips();
-  
+
   if (currentParams.page != 1) {
     return;
   }
-  
+
   var keySig = $("#score-view svg").find(".keySig");
   var signatureBox;
   if (keySig.length == 0) {
@@ -369,10 +369,10 @@ function connectSignatureTooltips() {
   } else {
     signatureBox = getSvgElementBoxAsCss(keySig)
   }
-  
+
   if (keySig.length != 0) {
     let annotation = $("tei-note[type='on-key-signature'] span[data-original='']");
-    
+
     $("<div class='tooltip-overlay' />").appendTo("body").css(signatureBox).mouseenter(function(e) {
       let tooltips = $("#tooltips");
       $("<div class='tooltip tooltip-text' />").append(annotation.removeAttr("hidden")).appendTo("#tooltips");
@@ -380,14 +380,14 @@ function connectSignatureTooltips() {
     }).mouseleave(function(e) {
       $("#tooltips").empty();
     });
-    
+
     annotation.parent().hide();
   }
-  
+
   var meterSig = $("#score-view svg").find(".meterSig");
   if (meterSig.length != 0) {
     let annotation = $("tei-note[type='on-meter'] span[data-original='']");
-    
+
     $("<div class='tooltip-overlay' />").appendTo("body").css(getSvgElementBoxAsCss(meterSig)).mouseenter(function(e) {
       let tooltips = $("#tooltips");
       $("<div class='tooltip tooltip-text' />").append(annotation.removeAttr("hidden")).appendTo("#tooltips");
@@ -395,7 +395,7 @@ function connectSignatureTooltips() {
     }).mouseleave(function(e) {
       $("#tooltips").empty();
     });
-    
+
     annotation.parent().hide();
   }
 }
@@ -413,31 +413,31 @@ function connectFacsimileTooltips() {
   if (!$("#show-tooltips").is(':checked')) {
     return;
   }
-  
+
   $("tei-body").find("tei-graphic img").each(function() {
     let surface = $(this).parent().parent();
     let zoom = $(this)[0].width / surface.attr("lrx");
     let url = $(this).attr("src");
-    
+
     surface.children("tei-zone").each(function() {
       var zone = $(this);
       let ulx = zone.attr("ulx");
       let uly = zone.attr("uly");
       let lrx = zone.attr("lrx");
       let lry = zone.attr("lry");
-      
+
       let corresp = $(this).attr("corresp");
       let prevCorresp = $(this).prev().attr("corresp");
       if (!prevCorresp) {
         prevCorresp = $(this).parent().prev().find("tei-zone").last().attr("corresp");
       }
-      
+
       var target = $("body").find(corresp);
       if (target.length > 0) {
         if (prevCorresp != corresp) {
           target.off("mouseenter");
         }
-        
+
         target.mouseenter(function(e) {
           if (prevCorresp != corresp) {
             positionAtMouse($("#tooltips"), e);
@@ -459,15 +459,14 @@ function connectFacsimileTooltips() {
   }).each(function() {
     if(this.complete) { $(this).trigger('load'); }
   });
-  
-  
+
+
   // temporary code for allowing faster MEI editing
-  //console.log("measures found:" + $("#score-view svg").find(".measure").length);
-  //$("#score-view svg").find(".measure").on("click", function() {
+  //$("svg").find(".measure").on("click", function() {
   //  copyToClipboard("#" + $(this).attr("id"));
   //  printError("copied to clipboard");
   //});
-  //  
+  //
   //meiStrings = [];
   //$("#score-view svg").find(".note, .rest").one("click", function() {
   //  //console.log(meiStrings);
@@ -496,19 +495,19 @@ function connectFacsimileTooltips() {
   //    meiStrings = [];
   //  }).appendTo("#copyright");
   //});
-  
+
 }
 
 async function updateView(resetting) {
   if (currentParams.page < 1) {
     currentParams.page = 1;
   }
-  
+
   if (resetting) {
     await updateDescription();
   }
   await Promise.all([renderCurrentPage(),updateAnnotations()]);
-  
+
   reconnectCrossRefs();
   connectSignatureTooltips();
 }
@@ -524,31 +523,31 @@ $(document).ready(function() {
   $("#player").midiPlayer({
       onUpdate: midiUpdate
   });
-  
+
   // ------
   // view controls
   // ------
-  
+
   $("#nr").change(function() {
     number = $(this).val();
     currentParams.page = 1;
     updateView(true);
   });
-  
+
   $("#staves-below").change(function() {
     currentParams.emptyStaffsBelow = $(this).val();
     updateScoreView();
   });
-  
+
   $("#staves-above").change(function() {
     currentParams.emptyStaffsAbove = $(this).val();
     updateScoreView();
   });
-  
+
   $("#show-fb").change(function() {
     $("#score-view svg").find(".fb").toggle($(this).is(':checked'));
   });
-  
+
   $("#show-tooltips").change(function() {
     if ($(this).is(':checked')) {
       connectFacsimileTooltips();
@@ -556,7 +555,7 @@ $(document).ready(function() {
       disconnectFacsimileTooltips();
     }
   });
-  
+
   $("#previous-page").click(function() {
     if (currentParams.page == 1) {
       printInfo("Already on first page.");
@@ -565,35 +564,35 @@ $(document).ready(function() {
     currentParams.page -= 1;
     updateScoreView();
   });
-  
+
   $("#next-page").click(function() {
     currentParams.page += 1;
     updateScoreView();
   });
-  
+
   $("#modern-clefs").change(function() {
     currentParams.modernClefs = $(this).is(':checked');
     // a change in the cleffing may also affect examples in the annotations,
     // therefore a complete update is performed.
     updateView(false);
   });
-  
+
   $(".pdf-download").click(function() {
     currentParams.exportFormat = "pdf";
     window.open("/download?" + $.param(currentParams), "about:blank");
   });
-  
+
   $("#options-control").click(function() {
     $("#contents-table").hide();
     $("#options-table").addClass("visible-table").show();
   });
-  
+
   $("#contents-control").click(function() {
     $("#options-table").hide();
     $("#contents-table").addClass("visible-table").show();
   });
-  
-  
+
+
   updateView(true);
 });
 
@@ -601,7 +600,7 @@ $(document).on("touchstart mousemove", function(e) {
     var container = $("#controls");
 
     // if the target of the click isn't the container nor a descendant of the container
-    if (!container.is(e.target) && container.has(e.target).length === 0) 
+    if (!container.is(e.target) && container.has(e.target).length === 0)
     {
         $(".controls-table").hide();
     }
