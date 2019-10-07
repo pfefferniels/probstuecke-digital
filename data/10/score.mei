@@ -56,7 +56,7 @@
                                 <space xml:id="m-56" dur="8" />
                             </layer>
                         </staff>
-                        <harm place='above' staff='2' startid='m-53'><fb><f>76</f></fb></harm>
+                        <harm place='above' staff='2' startid='m-53' xml:id="fb-1"><fb><f>76</f></fb></harm>
                     </measure>
                     <measure xml:id="m-57" n="2">
                         <staff xml:id="m-58" n="1">
@@ -1450,7 +1450,7 @@
                                 <chord xml:id="m-1169" dots="1" dur="4" size="cue">
                                     <note xml:id="m-1170" dots="1" dur="4" oct="4" pname="e" />
                                     <note xml:id="m-1172" dots="1" dur="4" oct="4" pname="g"/>
-                                    <note xml:id="m-1173" dots="1" dur="4" oct="4" pname="b" accid="f" />
+                                    <note xml:id="m-1173" dots="1" dur="4" oct="4" pname="b" />
                                     <note xml:id="m-1175" dots="1" dur="4" oct="5" pname="e" />
                                 </chord>
                                 <beam xml:id="m-1180">
@@ -1459,7 +1459,7 @@
                                     <note xml:id="m-1183" dur="16" oct="5" pname="d" size="cue">
                                         <accid xml:id="m-1184" accid="f"/>
                                     </note>
-                                    <note xml:id="m-1185" dur="16" oct="5" pname="d" size="cue" accid="f" />
+                                    <note xml:id="m-1185" dur="16" oct="5" pname="d" size="cue" />
                                     <note xml:id="m-1187" dur="16" oct="4" pname="a" size="cue" />
                                     <note xml:id="m-1189" dur="16" oct="4" pname="a" size="cue" />
                                 </beam>
