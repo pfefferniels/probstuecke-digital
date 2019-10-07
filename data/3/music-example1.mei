@@ -2,6 +2,22 @@
 <?xml-model href="http://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="http://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
+    <meiHead>
+        <fileDesc>
+            <titleStmt>
+                <composer>Johann Mattheson</composer>
+                <editor>Niels Pfeffer</editor>
+            </titleStmt>
+            <editionStmt>
+                <edition>First draft, <date>2019</date></edition>
+            </editionStmt>
+            <pubStmt>
+                <unpub />
+            </pubStmt>
+        </fileDesc>
+    </meiHead>
+  
+    
     <music>
         <body>
             <mdiv>
@@ -16,9 +32,9 @@
                             </staffDef>
                         </staffGrp>
                     </scoreDef>
-                    <section xml:id="m-34">
-                      <measure xml:id="m-269" n="">
-                        <staff xml:id="m-273" n="1">
+                    <section xml:id="ex-34">
+                      <measure xml:id="ex-269" n="">
+                        <staff xml:id="ex-273" n="1">
                               <layer n="1">
                                   <rest dur="16" />
                                   <beam stem.dir="down">
@@ -40,11 +56,11 @@
                                   </beam>
                               </layer>
                           </staff>
-                          <staff xml:id="m-633" n="2">
-                              <layer xml:id="m-634" n="1">
-                                  <note xml:id="m-636" dur="4" oct="3" pname="b" pnum="59"/>
-                                  <note xml:id="m-639" dur="4" oct="3" pname="b" pnum="47"/>
-                                  <note xml:id="m-644" dur="4" oct="3" pname="b" pnum="59"/>
+                          <staff xml:id="ex-633" n="2">
+                              <layer xml:id="ex-634" n="1">
+                                  <note xml:id="ex-636" dur="4" oct="3" pname="b" pnum="59"/>
+                                  <note xml:id="ex-639" dur="4" oct="3" pname="b" pnum="47"/>
+                                  <note xml:id="ex-644" dur="4" oct="3" pname="b" pnum="59"/>
                               </layer>
                           </staff>
                           <harm place='above' staff='2' startid='m-636'><fb><f>6</f><f>5</f></fb></harm>

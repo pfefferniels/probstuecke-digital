@@ -2,6 +2,22 @@
 <?xml-model href="http://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="http://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
+    <meiHead>
+        <fileDesc>
+            <titleStmt>
+                <composer>Johann Mattheson</composer>
+                <editor>Niels Pfeffer</editor>
+            </titleStmt>
+            <editionStmt>
+                <edition>First draft, <date>2019</date></edition>
+            </editionStmt>
+            <pubStmt>
+                <unpub />
+            </pubStmt>
+        </fileDesc>
+    </meiHead>
+  
+    
     <music>
         <body>
             <mdiv>
@@ -15,32 +31,32 @@
                     </scoreDef>
                     <section>
 
-                        <measure xml:id="m-101" n="">
-                            <staff xml:id="m-1079" n="1">
-                                <layer xml:id="m-1080" n="1">
-                                    <beam xml:id="m-1083">
-                                        <note xml:id="m-1081" dur="8" dur.ges="128p" oct="5" pname="f" pnum="78" size="cue" stem.dir="down">
-                                            <accid xml:id="m-1082" accid.ges="s"/>
+                        <measure xml:id="ex-101" n="">
+                            <staff xml:id="ex-1079" n="1">
+                                <layer xml:id="ex-1080" n="1">
+                                    <beam xml:id="ex-1083">
+                                        <note xml:id="ex-1081" dur="8" oct="5" pname="f" size="cue" stem.dir="down">
+                                            <accid xml:id="ex-1082" accid.ges="s"/>
                                         </note>
-                                        <note xml:id="m-1084" dur="8" dur.ges="128p" oct="5" pname="d" pnum="74" size="cue" stem.dir="down"/>
-                                        <note xml:id="m-1085" dur="8" dur.ges="128p" oct="5" pname="d" pnum="74" size="cue" stem.dir="down"/>
+                                        <note xml:id="ex-1084" dur="8" oct="5" pname="d" size="cue" stem.dir="down"/>
+                                        <note xml:id="ex-1085" dur="8" oct="5" pname="d" size="cue" stem.dir="down"/>
                                     </beam>
-                                    <beam xml:id="m-1087">
-                                        <note xml:id="m-1086" dur="8" dur.ges="128p" oct="5" pname="e" pnum="76" size="cue" stem.dir="down"/>
-                                        <note xml:id="m-1088" dur="8" dur.ges="128p" oct="4" pname="a" pnum="69" size="cue" stem.dir="up"/>
-                                        <note xml:id="m-1089" dur="8" dur.ges="128p" oct="4" pname="a" pnum="69" size="cue" stem.dir="up"/>
+                                    <beam xml:id="ex-1087">
+                                        <note xml:id="ex-1086" dur="8" oct="5" pname="e" size="cue" stem.dir="down"/>
+                                        <note xml:id="ex-1088" dur="8" oct="4" pname="a" size="cue" stem.dir="up"/>
+                                        <note xml:id="ex-1089" dur="8" oct="4" pname="a" size="cue" stem.dir="up"/>
                                     </beam>
                                     <beam>
-                                        <note dur="8" dur.ges="128p" oct="5" pname="f" pnum="78" size="cue" stem.dir="down">
-                                            <accid xml:id="m-1082" accid.ges="s"/>
+                                        <note dur="8" oct="5" pname="f" size="cue" stem.dir="down">
+                                            <accid xml:id="ex-1082" accid.ges="s"/>
                                         </note>
-                                        <note dur="8" dur.ges="128p" oct="5" pname="d" pnum="74" size="cue" stem.dir="down"/>
-                                        <note dur="8" dur.ges="128p" oct="5" pname="d" pnum="74" size="cue" stem.dir="down"/>
+                                        <note dur="8" oct="5" pname="d" size="cue" stem.dir="down"/>
+                                        <note dur="8" oct="5" pname="d" size="cue" stem.dir="down"/>
                                     </beam>
                                     <beam>
-                                        <note dur="8" dur.ges="128p" oct="5" pname="e" pnum="76" size="cue" stem.dir="down"/>
-                                        <note dur="8" dur.ges="128p" oct="4" pname="a" pnum="69" size="cue" stem.dir="up"/>
-                                        <note dur="8" dur.ges="128p" oct="4" pname="a" pnum="69" size="cue" stem.dir="up"/>
+                                        <note dur="8" oct="5" pname="e" size="cue" stem.dir="down"/>
+                                        <note dur="8" oct="4" pname="a" size="cue" stem.dir="up"/>
+                                        <note dur="8" oct="4" pname="a" size="cue" stem.dir="up"/>
                                     </beam>
                                     
                                 </layer>

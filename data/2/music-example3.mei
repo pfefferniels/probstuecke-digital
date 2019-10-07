@@ -2,6 +2,22 @@
 <?xml-model href="http://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="http://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
+    <meiHead>
+        <fileDesc>
+            <titleStmt>
+                <composer>Johann Mattheson</composer>
+                <editor>Niels Pfeffer</editor>
+            </titleStmt>
+            <editionStmt>
+                <edition>First draft, <date>2019</date></edition>
+            </editionStmt>
+            <pubStmt>
+                <unpub />
+            </pubStmt>
+        </fileDesc>
+    </meiHead>
+  
+    
     <music>
         <body>
             <mdiv xml:id="mdiv-0000000238056308">
@@ -16,51 +32,51 @@
                             </staffDef>
                         </staffGrp>
                     </scoreDef>
-                    <section xml:id="m-34">
+                    <section xml:id="ex-34">
                       <measure n="">
                         <staff n="1">
                           <layer n="1">
                             <space dur="2" />
-                            <beam xml:id="m-1140">
-                                <note xml:id="m-1139" dur="32" dur.ges="32p" oct="5" pname="d" pnum="74" size="cue" stem.dir="down"/>
-                                <note xml:id="m-1141" dur="32" dur.ges="32p" oct="4" pname="g" pnum="67" size="cue" stem.dir="up"/>
-                                <note xml:id="m-1142" dur="32" dur.ges="32p" oct="4" pname="b" pnum="71" size="cue" stem.dir="down">
-                                    <accid xml:id="m-1143" accid="n"/>
+                            <beam xml:id="ex-1140">
+                                <note xml:id="ex-1139" dur="32" oct="5" pname="d" size="cue" stem.dir="down"/>
+                                <note xml:id="ex-1141" dur="32" oct="4" pname="g" size="cue" stem.dir="up"/>
+                                <note xml:id="ex-1142" dur="32" oct="4" pname="b" size="cue" stem.dir="down">
+                                    <accid xml:id="ex-1143" accid="n"/>
                                 </note>
-                                <note xml:id="m-1144" breaksec="1" dur="32" dur.ges="32p" oct="4" pname="g" pnum="67" size="cue" stem.dir="up"/>
-                                <note xml:id="m-1145" dur="32" dur.ges="32p" oct="5" pname="d" pnum="74" size="cue" stem.dir="down"/>
-                                <note xml:id="m-1146" dur="32" dur.ges="32p" oct="4" pname="g" pnum="67" size="cue" stem.dir="up"/>
-                                <note xml:id="m-1147" dur="32" dur.ges="32p" oct="4" pname="b" pnum="71" size="cue" stem.dir="down">
-                                    <accid xml:id="m-1148" accid="n"/>
+                                <note xml:id="ex-1144" breaksec="1" dur="32" oct="4" pname="g" size="cue" stem.dir="up"/>
+                                <note xml:id="ex-1145" dur="32" oct="5" pname="d" size="cue" stem.dir="down"/>
+                                <note xml:id="ex-1146" dur="32" oct="4" pname="g" size="cue" stem.dir="up"/>
+                                <note xml:id="ex-1147" dur="32" oct="4" pname="b" size="cue" stem.dir="down">
+                                    <accid xml:id="ex-1148" accid="n"/>
                                 </note>
-                                <note xml:id="m-1149" dur="32" dur.ges="32p" oct="4" pname="g" pnum="67" size="cue" stem.dir="up"/>
+                                <note xml:id="ex-1149" dur="32" oct="4" pname="g" size="cue" stem.dir="up"/>
                             </beam>
-                            <beam xml:id="m-1152">
-                                <note xml:id="m-1150" dur="32" dur.ges="32p" oct="5" pname="e" pnum="75" size="cue" stem.dir="down">
-                                    <accid xml:id="m-1151" accid="f"/>
+                            <beam xml:id="ex-1152">
+                                <note xml:id="ex-1150" dur="32" oct="5" pname="e" size="cue" stem.dir="down">
+                                    <accid xml:id="ex-1151" accid="f"/>
                                 </note>
-                                <note xml:id="m-1153" dur="32" dur.ges="32p" oct="4" pname="g" pnum="67" size="cue" stem.dir="up"/>
-                                <note xml:id="m-1154" dur="32" dur.ges="32p" oct="5" pname="c" pnum="72" size="cue" stem.dir="down"/>
-                                <note xml:id="m-1155" breaksec="1" dur="32" dur.ges="32p" oct="4" pname="g" pnum="67" size="cue" stem.dir="up"/>
-                                <note xml:id="m-1156" dur="32" dur.ges="32p" oct="5" pname="e" pnum="75" size="cue" stem.dir="down">
-                                    <accid xml:id="m-1157" accid.ges="f"/>
+                                <note xml:id="ex-1153" dur="32" oct="4" pname="g" size="cue" stem.dir="up"/>
+                                <note xml:id="ex-1154" dur="32" oct="5" pname="c" size="cue" stem.dir="down"/>
+                                <note xml:id="ex-1155" breaksec="1" dur="32" oct="4" pname="g" size="cue" stem.dir="up"/>
+                                <note xml:id="ex-1156" dur="32" oct="5" pname="e" size="cue" stem.dir="down">
+                                    <accid xml:id="ex-1157" accid.ges="f"/>
                                 </note>
-                                <note xml:id="m-1158" dur="32" dur.ges="32p" oct="4" pname="g" pnum="67" size="cue" stem.dir="up"/>
-                                <note xml:id="m-1159" dur="32" dur.ges="32p" oct="5" pname="c" pnum="72" size="cue" stem.dir="down"/>
-                                <note xml:id="m-1160" dur="32" dur.ges="32p" oct="4" pname="g" pnum="67" size="cue" stem.dir="up"/>
+                                <note xml:id="ex-1158" dur="32" oct="4" pname="g" size="cue" stem.dir="up"/>
+                                <note xml:id="ex-1159" dur="32" oct="5" pname="c" size="cue" stem.dir="down"/>
+                                <note xml:id="ex-1160" dur="32" oct="4" pname="g" size="cue" stem.dir="up"/>
                             </beam>
                           </layer>
                         </staff>
                         <staff n="2">
                           <layer n="1">
                             <space dur="2" />
-                            <beam xml:id="m-1188">
-                                <note xml:id="m-1187" dur="8" dur.ges="128p" oct="3" pname="g" pnum="55" stem.dir="down"/>
-                                <note xml:id="m-1189" dur="8" dur.ges="128p" oct="3" pname="b" pnum="59" stem.dir="down">
-                                    <accid xml:id="m-1190" accid="n"/>
+                            <beam xml:id="ex-1188">
+                                <note xml:id="ex-1187" dur="8" oct="3" pname="g" stem.dir="down"/>
+                                <note xml:id="ex-1189" dur="8" oct="3" pname="b" stem.dir="down">
+                                    <accid xml:id="ex-1190" accid="n"/>
                                 </note>
-                                <note xml:id="m-1191" dur="8" dur.ges="128p" oct="4" pname="c" pnum="60" stem.dir="down"/>
-                                <note xml:id="m-1192" dur="8" dur.ges="128p" oct="3" pname="c" pnum="48" stem.dir="down"/>
+                                <note xml:id="ex-1191" dur="8" oct="4" pname="c" stem.dir="down"/>
+                                <note xml:id="ex-1192" dur="8" oct="3" pname="c" stem.dir="down"/>
                             </beam>
                           </layer>
                         </staff>
@@ -69,36 +85,36 @@
                         <staff n="1">
                           <layer n="1">
                             <space dur="2" />
-                            <beam xml:id="m-1113">
-                                <note xml:id="m-1112" dur="32" dur.ges="32p" oct="4" pname="g" pnum="67" size="cue" stem.dir="up"/>
-                                <note xml:id="m-1114" dur="32" dur.ges="32p" oct="5" pname="d" pnum="74" size="cue" stem.dir="down"/>
-                                <note xml:id="m-1115" dur="32" dur.ges="32p" oct="4" pname="b" pnum="71" size="cue" stem.dir="down">
-                                    <accid xml:id="m-1116" accid="n"/>
+                            <beam xml:id="ex-1113">
+                                <note xml:id="ex-1112" dur="32" oct="4" pname="g" size="cue" stem.dir="up"/>
+                                <note xml:id="ex-1114" dur="32" oct="5" pname="d" size="cue" stem.dir="down"/>
+                                <note xml:id="ex-1115" dur="32" oct="4" pname="b" size="cue" stem.dir="down">
+                                    <accid xml:id="ex-1116" accid="n"/>
                                 </note>
-                                <note xml:id="m-1117" breaksec="1" dur="32" dur.ges="32p" oct="5" pname="d" pnum="74" size="cue" stem.dir="down"/>
-                                <note xml:id="m-1118" dur="32" dur.ges="32p" oct="4" pname="g" pnum="67" size="cue" stem.dir="up"/>
-                                <note xml:id="m-1119" dur="32" dur.ges="32p" oct="5" pname="d" pnum="74" size="cue" stem.dir="down"/>
-                                <note xml:id="m-1120" dur="32" dur.ges="32p" oct="4" pname="b" pnum="71" size="cue" stem.dir="down">
-                                    <accid xml:id="m-1121" accid="n"/>
+                                <note xml:id="ex-1117" breaksec="1" dur="32" oct="5" pname="d" size="cue" stem.dir="down"/>
+                                <note xml:id="ex-1118" dur="32" oct="4" pname="g" size="cue" stem.dir="up"/>
+                                <note xml:id="ex-1119" dur="32" oct="5" pname="d" size="cue" stem.dir="down"/>
+                                <note xml:id="ex-1120" dur="32" oct="4" pname="b" size="cue" stem.dir="down">
+                                    <accid xml:id="ex-1121" accid="n"/>
                                 </note>
-                                <note xml:id="m-1122" dur="32" dur.ges="32p" oct="5" pname="d" pnum="74" size="cue" stem.dir="down"/>
+                                <note xml:id="ex-1122" dur="32" oct="5" pname="d" size="cue" stem.dir="down"/>
                             </beam>
-                            <beam xml:id="m-1124">
-                                <note xml:id="m-1123" dur="32" dur.ges="32p" oct="4" pname="g" pnum="67" size="cue" stem.dir="up"/>
-                                <note xml:id="m-1125" dur="32" dur.ges="32p" oct="5" pname="e" pnum="75" size="cue" stem.dir="down">
-                                    <accid xml:id="m-1126" accid="f"/>
+                            <beam xml:id="ex-1124">
+                                <note xml:id="ex-1123" dur="32" oct="4" pname="g" size="cue" stem.dir="up"/>
+                                <note xml:id="ex-1125" dur="32" oct="5" pname="e" size="cue" stem.dir="down">
+                                    <accid xml:id="ex-1126" accid="f"/>
                                 </note>
-                                <note xml:id="m-1127" dur="32" dur.ges="32p" oct="5" pname="c" pnum="72" size="cue" stem.dir="down"/>
-                                <note xml:id="m-1128" breaksec="1" dur="32" dur.ges="32p" oct="5" pname="e" pnum="75" size="cue" stem.dir="down">
-                                    <accid xml:id="m-1129" accid.ges="f"/>
+                                <note xml:id="ex-1127" dur="32" oct="5" pname="c" size="cue" stem.dir="down"/>
+                                <note xml:id="ex-1128" breaksec="1" dur="32" oct="5" pname="e" size="cue" stem.dir="down">
+                                    <accid xml:id="ex-1129" accid.ges="f"/>
                                 </note>
-                                <note xml:id="m-1130" dur="32" dur.ges="32p" oct="4" pname="g" pnum="67" size="cue" stem.dir="up"/>
-                                <note xml:id="m-1131" dur="32" dur.ges="32p" oct="5" pname="e" pnum="75" size="cue" stem.dir="down">
-                                    <accid xml:id="m-1132" accid.ges="f"/>
+                                <note xml:id="ex-1130" dur="32" oct="4" pname="g" size="cue" stem.dir="up"/>
+                                <note xml:id="ex-1131" dur="32" oct="5" pname="e" size="cue" stem.dir="down">
+                                    <accid xml:id="ex-1132" accid.ges="f"/>
                                 </note>
-                                <note xml:id="m-1133" dur="32" dur.ges="32p" oct="5" pname="c" pnum="72" size="cue" stem.dir="down"/>
-                                <note xml:id="m-1134" dur="32" dur.ges="32p" oct="5" pname="e" pnum="75" size="cue" stem.dir="down">
-                                    <accid xml:id="m-1135" accid.ges="f"/>
+                                <note xml:id="ex-1133" dur="32" oct="5" pname="c" size="cue" stem.dir="down"/>
+                                <note xml:id="ex-1134" dur="32" oct="5" pname="e" size="cue" stem.dir="down">
+                                    <accid xml:id="ex-1135" accid.ges="f"/>
                                 </note>
                             </beam>
                           </layer>
@@ -106,13 +122,13 @@
                         <staff n="2">
                           <layer n="1">
                             <space dur="2" />
-                            <beam xml:id="m-1188">
-                                <note xml:id="m-1187" dur="8" dur.ges="128p" oct="3" pname="g" pnum="55" stem.dir="down"/>
-                                <note xml:id="m-1189" dur="8" dur.ges="128p" oct="3" pname="b" pnum="59" stem.dir="down">
-                                    <accid xml:id="m-1190" accid="n"/>
+                            <beam xml:id="ex-1188">
+                                <note xml:id="ex-1187" dur="8" oct="3" pname="g" stem.dir="down"/>
+                                <note xml:id="ex-1189" dur="8" oct="3" pname="b" stem.dir="down">
+                                    <accid xml:id="ex-1190" accid="n"/>
                                 </note>
-                                <note xml:id="m-1191" dur="8" dur.ges="128p" oct="4" pname="c" pnum="60" stem.dir="down"/>
-                                <note xml:id="m-1192" dur="8" dur.ges="128p" oct="3" pname="c" pnum="48" stem.dir="down"/>
+                                <note xml:id="ex-1191" dur="8" oct="4" pname="c" stem.dir="down"/>
+                                <note xml:id="ex-1192" dur="8" oct="3" pname="c" stem.dir="down"/>
                             </beam>
                           </layer>
                         </staff>
