@@ -1,32 +1,32 @@
 doctype html
 head
   meta( name='viewport', content='width=device-width, initial-scale=1' )
-  
-  title Mattheson, #{number}. Probstück 
-  
+
+  title Mattheson, #{number}. Probstück
+
   link(rel='stylesheet' href='midiplayer.css')
   link(rel='stylesheet' href='index.css')
-  
+
   script.
     number = "#{number}";
-  
+
   script(type='text/javascript' src='jquery.min.js')
   script(type='text/javascript' src='svg.min.js')
   script(type='text/javascript' src='CETEI.js')
   script(type='text/javascript' src='wildwebmidi.js')
   script(type='text/javascript' src='midiplayer.js')
   script(type='text/javascript' src='index.js')
-  
+
 #controls
   #contents-control.control contents
-  
+
   #contents-table.controls-table
     .controls-item
       h1 Der Ober-Classe ...
       ul
         li
           a(href='/1') ... erstes Prob-Stück
-        li 
+        li
           a(href='/2') ... zweites Prob-Stück
         li
           a(href='/3') ... drittes Prob-Stück
@@ -41,10 +41,14 @@ head
         li
           a(href='/8') ... achtes Prob-Stück
         li
-          a(href='/9') ... neuntes Probstück
+          a(href='/9') ... neuntes Prob-Stück
+        li
+          a(href='/10') ... zehntes Prob-Stück
+        li
+          a(href='/11') ... elfftes Prob-Stück
 
   #options-control.control options
-  
+
   #options-table.controls-table
     .controls-item
       h1 empty staves
