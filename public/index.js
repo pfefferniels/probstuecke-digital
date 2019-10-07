@@ -179,7 +179,12 @@ async function updateAnnotations() {
   
 
   // load the music examples, if there are any
+  
+  var notatedMusicPromises = [];
   $("tei-notatedmusic").each(async function() {
+    var dfd = $.Deferred();
+    notatedMusicPromises.push(dfd);
+
     var notatedmusic = $(this);
     let svg;
   
@@ -189,6 +194,7 @@ async function updateAnnotations() {
         filename: $(this).find("tei-ptr").attr("target"),
         modernClefs: currentParams.modernClefs
       }));
+      
     } catch (error) {
       printError("failed loading embedded music example: " + error);
     }
@@ -211,7 +217,12 @@ async function updateAnnotations() {
     if (svg0.width() > normalParagraph.width()) {
       svg0.attr("width", normalParagraph.width());
     }
+    dfd.resolve();
   });
+  
+  // make sure that loading the annotations is done only when all 
+  // the notatedMusic elements are resolved.
+  await Promise.all(notatedMusicPromises); 
 }
 
 async function renderCurrentPage() {
@@ -247,7 +258,7 @@ function reconnectCrossRefs() {
   $("tei-ref").each(function() {
     // find target in SVG
     let targetAttr = $(this).attr("target");
-    let target = $("#score-view svg").find("#" + targetAttr);
+    let target = $("svg").find("#" + targetAttr);
     let teiRef = $(this);
     if (target.length === 0) {
       console.log("corresponding SVG element not found on this page.");
