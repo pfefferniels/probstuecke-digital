@@ -71,8 +71,8 @@ function modernizeClefs(doc) {
         staffDefs[i].setAttribute("clef.line", "4");
         staffDefs[i].setAttribute("clef.shape", "F");
       }
-    } else if (shape === "F" && line === 3) {
-      // replace with normal F-clef
+    } else if (shape === "F" && line === "3") {
+      // replace F3 with normal F-clef
       staffDefs[i].setAttribute("clef.line", "4");
     }
   }
