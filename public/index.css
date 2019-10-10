@@ -133,8 +133,13 @@ svg {
 }
 
 #contents-table .controls-item li {
+  white-space: nowrap;
+  word-break: keep-all;
   padding-bottom: 0.5em;
   padding-left: 1em;
+}
+
+#contents-table .controls-item li a {
   text-decoration: underline;
 }
 
