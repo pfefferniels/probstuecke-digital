@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
+    <meiHead>
+        <fileDesc>
+            <titleStmt>
+                <composer>Johann Mattheson</composer>
+                <editor>Niels Pfeffer</editor>
+            </titleStmt>
+            <editionStmt>
+                <edition>First draft, <date>2019</date></edition>
+            </editionStmt>
+            <pubStmt>
+                <unpub />
+            </pubStmt>
+        </fileDesc>
+    </meiHead>
+
+    <music>
+        <body>
+            <mdiv>
+                <score>
+                    <scoreDef key.mode="major" key.sig="2f" meter.count="3" meter.unit="8" >
+                        <staffGrp>
+                            <staffDef clef.shape="C" clef.line="1" key.mode="minor" key.sig="5f" meter.count="12" meter.unit="8" n='1' lines='5' label="Mattheson's annotations" />
+                        </staffGrp>
+                    </scoreDef>
+                    <section>
+                      <measure n="8">
+                          <staff n="1" visible="true">
+                              <layer n="1">
+                                  <space dur="2" dots="1" />
+                                  <beam>
+                                      <note xml:id="ex-1" dur="16" oct="4" pname="b" stem.dir="down" accid.ges="f" />
+                                      <note dur="16" oct="5" pname="g" stem.dir="down">
+                                          <accid accid="f" accid.ges="f" />
+                                      </note>
+                                      <note dur="16" oct="4" pname="b" stem.dir="down" accid.ges="f" />
+                                      <note dur="16" oct="5" pname="g" stem.dir="down" accid.ges="f" />
+                                      <note dur="16" oct="4" pname="b" stem.dir="down" accid.ges="f" />
+                                      <note dur="16" oct="5" pname="g" stem.dir="down" accid.ges="f" />
+                                  </beam>
+                                  <beam>
+                                      <note dur="16" oct="4" pname="a" stem.dir="down" accid.ges="f" />
+                                      <note dur="16" oct="5" pname="g" stem.dir="down" accid.ges="f" />
+                                      <note dur="16" oct="4" pname="a" stem.dir="down" accid.ges="f" />
+                                      <note dur="16" oct="5" pname="g" stem.dir="down" accid.ges="f" />
+                                      <note dur="16" oct="4" pname="a" stem.dir="down" accid.ges="f" />
+                                      <note dur="16" oct="5" pname="g" stem.dir="down" accid.ges="f" />
+                                  </beam>
+                              </layer>
+                          </staff>
+                          <dir place="below" startid="#ex-1">Achter Tact.</dir>
+                        </measure>
+                        <measure n="9">
+                            <staff n="1">
+                                <layer n="1">
+                                    <beam>
+                                        <note xml:id="ex-2" dur="16" oct="4" pname="a" stem.dir="down" accid.ges="f" />
+                                        <note dur="16" oct="5" pname="f" stem.dir="down" />
+                                        <note dur="16" oct="4" pname="a" stem.dir="down" accid.ges="f" />
+                                        <note dur="16" oct="5" pname="f" stem.dir="down" />
+                                        <note dur="16" oct="4" pname="a" stem.dir="down" accid.ges="f" />
+                                        <note dur="16" oct="5" pname="f" stem.dir="down" />
+                                    </beam>
+                                    <space dur="2" />
+                                    <space dur="4" />
+                                </layer>
+                            </staff>
+                            <dir place="below" startid="#ex-2">Neunter Tact.</dir>
+                          </measure>
+                    </section>
+                </score>
+            </mdiv>
+        </body>
+    </music>
+</mei>
