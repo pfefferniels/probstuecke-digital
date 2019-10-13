@@ -141,9 +141,9 @@ function generateSvg(params, allpages, callback, onFinish, onError) {
     var staffsToRemove = [];
     var staffDefs = doc.documentElement.getElementsByTagName("staffDef");
     for (var i=0; i<staffDefs.length; i++) {
-      var xmlId = staffDefs[i].getAttribute("xml:id");
-      var n = staffDefs[i].getAttribute("n");
-      if (!params.display.includes(xmlId) && n != 2) {
+      let xmlId = staffDefs[i].getAttribute("xml:id");
+      if (!params.display.includes(xmlId) && xmlId != "bass") {
+        let n = staffDefs[i].getAttribute("n");
         staffsToRemove.push(n);
         staffDefs[i].parentNode.removeChild(staffDefs[i]);
         i -= 1;
@@ -153,9 +153,10 @@ function generateSvg(params, allpages, callback, onFinish, onError) {
     var layersToRemove = [];
     var layerDefs = doc.documentElement.getElementsByTagName("layerDef");
     for (var i=0; i<layerDefs.length; i++) {
-      var xmlId = layerDefs[i].getAttribute("xml:id");
-      var n = layerDefs[i].getAttribute("n");
+      let xmlId = layerDefs[i].getAttribute("xml:id");
+      // layers must be named "layer-...". Thus ignoring the first six characters.
       if (!params.display.includes(xmlId.substring(6))) {
+        let n = layerDefs[i].getAttribute("n");
         layersToRemove.push(n);
         layerDefs[i].parentNode.removeChild(layerDefs[i]);
       }
@@ -241,7 +242,7 @@ function generateSvg(params, allpages, callback, onFinish, onError) {
     // render MEI
     vrvToolkit.setOptions(options);
     vrvToolkit.loadData(mei);
-    var pageCount = vrvToolkit.getPageCount();
+    let pageCount = vrvToolkit.getPageCount();
     if (allpages) {
       for (var i=1; i<=pageCount; i++) {
         callback(vrvToolkit.renderToSVG(i, {}));
