@@ -1,4 +1,5 @@
 const verovio = require('verovio-dev'),
+      vrvToolkit = new verovio.toolkit(),
       fs = require('fs'),
       http = require('http'),
       express = require('express'),
@@ -17,25 +18,8 @@ PDFDocument.prototype.addSVG = function(svg, x, y, options) {
   return SVGtoPDF(this, svg, x, y, options), this;
 };
 
-// verovio setup
-let options = {
-  pageHeight: 2970,
-  adjustPageHeight: 0,
-  noFooter: 1
-};
-
-// in case of rendering an example in the annotations
-// everything has to fit in one SVG.
-let exampleOptions = {
-  pageHeight: 10000,
-  adjustPageHeight: 1,
-  noFooter: 1
-};
-
-var vrvToolkit = new verovio.toolkit();
-
 // express.js setup
-var app = express();
+const app = express();
 app.set('view engine', 'pug');
 app.set('views', './views');
 
@@ -51,56 +35,37 @@ function getAnnotationFilename(nr, lang) {
 // takes a DOM object and replaces all <clef>s and <staffDef>s with
 // modern clefs
 function modernizeClefs(doc) {
-  // find all <staffDef>s.
-  var staffDefs = doc.documentElement.getElementsByTagName("staffDef");
-  for (var i=0; i<staffDefs.length; i++) {
-    var shape = staffDefs[i].getAttribute("clef.shape");
-    var line = staffDefs[i].getAttribute("clef.line");
+  const replacementMap = {
+    "C1": {shape: "G", line: 2},
+    "C2": {shape: "G", line: 2},
+    "C3": {shape: "G", line: 2},
+    "C4": {shape: "F", line: 4},
+    "F3": {shape: "F", line: 4}
+  };
 
-    if (shape === "C") {
-      if (line === "1") {
-        // replace discant clef with G-clef
-        staffDefs[i].setAttribute("clef.line", "2");
-        staffDefs[i].setAttribute("clef.shape", "G");
-      } else if (line === "3") {
-        // replace altus clef with G-clef
-        staffDefs[i].setAttribute("clef.line", "2");
-        staffDefs[i].setAttribute("clef.shape", "G");
-      } else if (line === "4") {
-        // replace tenor clefs with F-clef
-        staffDefs[i].setAttribute("clef.line", "4");
-        staffDefs[i].setAttribute("clef.shape", "F");
-      }
-    } else if (shape === "F" && line === "3") {
-      // replace F3 with normal F-clef
-      staffDefs[i].setAttribute("clef.line", "4");
+  // find all <staffDef>s.
+  const staffDefs = doc.documentElement.getElementsByTagName("staffDef");
+  for (var i=0; i<staffDefs.length; i++) {
+    const shape = staffDefs[i].getAttribute("clef.shape");
+    const line = staffDefs[i].getAttribute("clef.line");
+    const comb = shape + line;
+    if (comb in replacementMap) {
+      const replacement = replacementMap[comb];
+      staffDefs[i].setAttribute("clef.line",  replacement.line);
+      staffDefs[i].setAttribute("clef.shape", replacement.shape);
     }
   }
 
   // find all remaining clef changes
-  // TODO redundant with above code. Use a map?
-  var clefs = doc.documentElement.getElementsByTagName("clef");
+  const clefs = doc.documentElement.getElementsByTagName("clef");
   for (var i=0; i<clefs.length; i++) {
-    var shape = clefs[i].getAttribute("shape");
-    var line = clefs[i].getAttribute("line");
-
-    if (shape === "C") {
-      if (line === "1") {
-        // replace discant clef with G-clef
-        clefs[i].setAttribute("line", "2");
-        clefs[i].setAttribute("shape", "G");
-      } else if (line === "3") {
-        // replace altus clef with G-clef (?)
-        clefs[i].setAttribute("line", "2");
-        clefs[i].setAttribute("shape", "G");
-      } else if (line === "4") {
-        // replace tenor clefs with F-clef
-        clefs[i].setAttribute("line", "4");
-        clefs[i].setAttribute("shape", "F");
-      }
-    } else if (shape === "F" && line === 3) {
-      // replace with normal F-clef
-      clefs[i].setAttribute("line", "4");
+    const shape = clefs[i].getAttribute("shape");
+    const line = clefs[i].getAttribute("line");
+    const comb = shape + line;
+    if (comb in replacementMap) {
+      const replacement = replacementMap[comb];
+      clefs[i].setAttribute("line",  replacement.line);
+      clefs[i].setAttribute("shape", replacement.shape);
     }
   }
 }
@@ -240,7 +205,11 @@ function generateSvg(params, allpages, callback, onFinish, onError) {
     var mei = new xmldom.XMLSerializer().serializeToString(doc);
 
     // render MEI
-    vrvToolkit.setOptions(options);
+    vrvToolkit.setOptions({
+      pageHeight: 2970,
+      adjustPageHeight: 0,
+      noFooter: 1
+    });
     vrvToolkit.loadData(mei);
     let pageCount = vrvToolkit.getPageCount();
     if (allpages) {
@@ -296,7 +265,11 @@ app.get('/music-example', function(req, res) {
     var mei = new xmldom.XMLSerializer().serializeToString(doc);
 
     // render MEI
-    vrvToolkit.setOptions(exampleOptions);
+    vrvToolkit.setOptions({
+      pageHeight: 10000,
+      adjustPageHeight: 1,
+      noFooter: 1
+    });
     vrvToolkit.loadData(mei.toString());
     svg = vrvToolkit.renderToSVG(1, {});
     res.send(svg);
@@ -354,10 +327,7 @@ var AnnotationToPDF = {
         var contents = fs.readFileSync(__dirname + "/data/" + this.nr + "/" + target, 'utf8');
 
         vrvToolkit.loadData(contents);
-        svg = vrvToolkit.renderToSVG(1, {
-          adjustPageHeight: true,
-          font: "Bravura"
-        });
+        svg = vrvToolkit.renderToSVG(1, {});
 
         draw.svg(svg);
         let elements = SVG.select('g.system');
