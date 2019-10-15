@@ -1,7 +1,6 @@
 const verovio = require('verovio-dev'),
       vrvToolkit = new verovio.toolkit(),
       fs = require('fs'),
-      http = require('http'),
       express = require('express'),
       xmldom = require('xmldom'),
       window = require('svgdom'),
@@ -45,7 +44,7 @@ function modernizeClefs(doc) {
 
   // find all <staffDef>s.
   const staffDefs = doc.documentElement.getElementsByTagName("staffDef");
-  for (var i=0; i<staffDefs.length; i++) {
+  for (let i=0; i<staffDefs.length; i++) {
     const shape = staffDefs[i].getAttribute("clef.shape");
     const line = staffDefs[i].getAttribute("clef.line");
     const comb = shape + line;
@@ -58,7 +57,7 @@ function modernizeClefs(doc) {
 
   // find all remaining clef changes
   const clefs = doc.documentElement.getElementsByTagName("clef");
-  for (var i=0; i<clefs.length; i++) {
+  for (let i=0; i<clefs.length; i++) {
     const shape = clefs[i].getAttribute("shape");
     const line = clefs[i].getAttribute("line");
     const comb = shape + line;
@@ -88,11 +87,11 @@ function generateSvg(params, allpages, callback, onFinish, onError) {
                          console.log(msg);
                        },
                        error: (msg) => {
-                         onError();
+                         onError(msg);
                          return;
                        },
                        fatalError: (msg) => {
-                         onError();
+                         onError(msg);
                        }
                     }
     });
@@ -105,7 +104,7 @@ function generateSvg(params, allpages, callback, onFinish, onError) {
     }
     var staffsToRemove = [];
     var staffDefs = doc.documentElement.getElementsByTagName("staffDef");
-    for (var i=0; i<staffDefs.length; i++) {
+    for (let i=0; i<staffDefs.length; i++) {
       let xmlId = staffDefs[i].getAttribute("xml:id");
       if (!params.display.includes(xmlId) && xmlId != "bass") {
         let n = staffDefs[i].getAttribute("n");
@@ -117,7 +116,7 @@ function generateSvg(params, allpages, callback, onFinish, onError) {
 
     var layersToRemove = [];
     var layerDefs = doc.documentElement.getElementsByTagName("layerDef");
-    for (var i=0; i<layerDefs.length; i++) {
+    for (let i=0; i<layerDefs.length; i++) {
       let xmlId = layerDefs[i].getAttribute("xml:id");
       // layers must be named "layer-...". Thus ignoring the first six characters.
       if (!params.display.includes(xmlId.substring(6))) {
@@ -130,7 +129,7 @@ function generateSvg(params, allpages, callback, onFinish, onError) {
     if (staffsToRemove.length > 0) {
       // ... and accordingly remove their <staff>s resp. <layer>s.
       let staffs = doc.documentElement.getElementsByTagName("staff");
-      for (var i=0; i<staffs.length; i++) {
+      for (let i=0; i<staffs.length; i++) {
         if (staffsToRemove.includes(staffs[i].getAttribute("n"))) {
           staffs[i].parentNode.removeChild(staffs[i]);
           i -= 1;
@@ -140,7 +139,7 @@ function generateSvg(params, allpages, callback, onFinish, onError) {
 
     if (layersToRemove.length > 0) {
       let layers = doc.documentElement.getElementsByTagName("layer");
-      for (var i=0; i<layers.length; i++) {
+      for (let i=0; i<layers.length; i++) {
         if (layersToRemove.includes(layers[i].getAttribute("n"))) {
           layers[i].parentNode.removeChild(layers[i]);
           i -= 1;
@@ -164,17 +163,17 @@ function generateSvg(params, allpages, callback, onFinish, onError) {
 
     // insert empty staffs below
     // numbering: the range from 20–29 is reserved for staff lines below.
-    for (i=0; i<params.emptyStaffsBelow; i++) {
-      var staffGrp = doc.documentElement.getElementsByTagName("staffGrp")[0];
-      var newStaffDef = doc.createElement("staffDef");
+    for (let i=0; i<params.emptyStaffsBelow; i++) {
+      let staffGrp = doc.documentElement.getElementsByTagName("staffGrp")[0];
+      let newStaffDef = doc.createElement("staffDef");
       newStaffDef.setAttribute("n", i+20);
       newStaffDef.setAttribute("lines", 5);
       staffGrp.appendChild(newStaffDef);
-      var measures = doc.documentElement.getElementsByTagName("measure");
-      for (j=0; j<measures.length; j++) {
-        var staff = doc.createElement("staff");
-        var layer = doc.createElement("layer");
-        var empty = doc.createElement("empty");
+      let measures = doc.documentElement.getElementsByTagName("measure");
+      for (let j=0; j<measures.length; j++) {
+        let staff = doc.createElement("staff");
+        let layer = doc.createElement("layer");
+        let empty = doc.createElement("empty");
         staff.setAttribute("n", i+20);
         layer.setAttribute("n", 1);
         empty.setAttribute("dur", 1)
@@ -184,17 +183,17 @@ function generateSvg(params, allpages, callback, onFinish, onError) {
 
     // insert empty staffs above
     // numbering: the range from 10–19 is reserved for staff lines above
-    for (i=0; i<params.emptyStaffsAbove; i++) {
-      var staffGrp = doc.documentElement.getElementsByTagName("staffGrp")[0];
-      var newStaffDef = doc.createElement("staffDef");
+    for (let i=0; i<params.emptyStaffsAbove; i++) {
+      let staffGrp = doc.documentElement.getElementsByTagName("staffGrp")[0];
+      let newStaffDef = doc.createElement("staffDef");
       newStaffDef.setAttribute("n", i+10);
       newStaffDef.setAttribute("lines", 5);
       staffGrp.insertBefore(newStaffDef, staffGrp.getElementsByTagName("staffDef")[0]);
-      var measures = doc.documentElement.getElementsByTagName("measure");
-      for (j=0; j<measures.length; j++) {
-        var staff = doc.createElement("staff");
-        var layer = doc.createElement("layer");
-        var empty = doc.createElement("empty");
+      let measures = doc.documentElement.getElementsByTagName("measure");
+      for (let j=0; j<measures.length; j++) {
+        let staff = doc.createElement("staff");
+        let layer = doc.createElement("layer");
+        let empty = doc.createElement("empty");
         staff.setAttribute("n", i+10);
         layer.setAttribute("n", 1);
         empty.setAttribute("dur", 1)
@@ -213,7 +212,7 @@ function generateSvg(params, allpages, callback, onFinish, onError) {
     vrvToolkit.loadData(mei);
     let pageCount = vrvToolkit.getPageCount();
     if (allpages) {
-      for (var i=1; i<=pageCount; i++) {
+      for (let i=1; i<=pageCount; i++) {
         callback(vrvToolkit.renderToSVG(i, {}));
       }
     } else {
@@ -257,12 +256,12 @@ app.get('/music-example', function(req, res) {
       return;
     }
 
-    var doc = new DOMParser().parseFromString(data.toString(), 'text/xml');
+    let doc = new DOMParser().parseFromString(data.toString(), 'text/xml');
     if (req.query.modernClefs === "true") {
       modernizeClefs(doc);
     }
 
-    var mei = new xmldom.XMLSerializer().serializeToString(doc);
+    let mei = new xmldom.XMLSerializer().serializeToString(doc);
 
     // render MEI
     vrvToolkit.setOptions({
@@ -271,8 +270,7 @@ app.get('/music-example', function(req, res) {
       noFooter: 1
     });
     vrvToolkit.loadData(mei.toString());
-    svg = vrvToolkit.renderToSVG(1, {});
-    res.send(svg);
+    res.send(vrvToolkit.renderToSVG(1, {}));
   });
 });
 
@@ -289,7 +287,7 @@ app.get('/render', function (req, res) {
     res.send(jsonResponse);
   }, function(err) {
     // on error
-    res.status("404").end();
+    res.status("500").send(err);
   });
 });
 
@@ -298,7 +296,7 @@ var AnnotationToPDF = {
   pdfDoc: undefined,
   traverse: function(tree) {
     var children = tree.childNodes;
-    for (var i=0; i<children.length; i++) {
+    for (let i=0; i<children.length; i++) {
       if (children[i].nodeName === "#text") {
         // for now, treat them all the same.
         if (children[i].parentNode.nodeName === "p" ||
@@ -323,17 +321,17 @@ var AnnotationToPDF = {
         this.pdfDoc.fontSize(25);
       } else if (children[i].nodeName === "ptr") {
         // load music examples
-        var target = children[i].attributes[0].value;
-        var contents = fs.readFileSync(__dirname + "/data/" + this.nr + "/" + target, 'utf8');
+        let target = children[i].attributes[0].value;
+        let contents = fs.readFileSync(__dirname + "/data/" + this.nr + "/" + target, 'utf8');
 
         vrvToolkit.loadData(contents);
-        svg = vrvToolkit.renderToSVG(1, {});
+        let svg = vrvToolkit.renderToSVG(1, {});
 
         draw.svg(svg);
         let elements = SVG.select('g.system');
-        var height = 0;
+        let height = 0;
         elements.each(function(i) {
-          if (elements.get(i).bbox().height !== NaN) {
+          if (!isNaN(elements.get(i).bbox().height)) {
             height += elements.get(i).bbox().height;
           }
         });
@@ -364,24 +362,24 @@ app.get("/download", function(req, res) {
 
       // TODO for some reason, this code works fine on localhost, but non on amazon beanstalks.
       // Deactivated for now.
-      // fs.readFile(getAnnotationFilename(req.query.nr, req.query.lang), function(err, data) {
-      //   if (err) {
-      //     console.log(err);
-      //     res.status("404").end();
-      //     return;
-      //   }
-      //
-      //   // PDFKit will realize the newlines in the original TEI file as new paragraphs. To prevent,
-      //   // all line breaks have to be removed first.
-      //   var annotationDoc = new DOMParser().parseFromString(data.toString().replace(/\s\s+/g, ' '), 'text/xml');
-      //   var converter = Object.create(AnnotationToPDF);
-      //   converter.nr = req.query.nr;
-      //   doc.font("Times-Roman").fontSize(25);
-      //   converter.pdfDoc = doc;
-      //   converter.traverse(annotationDoc);
-      //
+       fs.readFile(getAnnotationFilename(req.query.nr, req.query.lang), function(err, data) {
+         if (err) {
+           console.log(err);
+           res.status("404").end();
+           return;
+         }
+
+         // PDFKit will realize the newlines in the original TEI file as new paragraphs. To prevent,
+         // all line breaks have to be removed first.
+         var annotationDoc = new DOMParser().parseFromString(data.toString().replace(/\s\s+/g, ' '), 'text/xml');
+         var converter = Object.create(AnnotationToPDF);
+         converter.nr = req.query.nr;
+         doc.font("Times-Roman").fontSize(25);
+         converter.pdfDoc = doc;
+         converter.traverse(annotationDoc);
+
          doc.end();
-      // });
+      });
     });
   } else if (req.query.exportFormat === "musicxml") {
     // TODO not implemented yet

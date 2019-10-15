@@ -1,4 +1,4 @@
-currentParams = {
+var currentParams = {
   nr: number,
   page: 1,
   display: [],
@@ -9,7 +9,7 @@ currentParams = {
   exportFormat: "pdf"
 };
 
-let cetei = new CETEI();
+const cetei = new CETEI();
 
 // ------
 // Helper functions
@@ -57,7 +57,7 @@ async function highlight(element) {
 }
 
 function getSvgElementBoxAsCss(target) {
-  var bRect = target[0].getBoundingClientRect();
+  const bRect = target[0].getBoundingClientRect();
   return {
         top: bRect.top,
         left: bRect.left,
@@ -73,8 +73,7 @@ function getSvgElementBoxAsCss(target) {
 var midiTimemap = {};
 var midiData = {};
 
-updateCounter = 1;
-var midiUpdate = function(time) {
+const midiUpdate = function(time) {
   // TODO time and the tstamps from midiTimemap are not identical.
   // An approximate lookup would be necessary.
 }
@@ -83,7 +82,7 @@ var midiUpdate = function(time) {
 // update view functions
 // ------
 
-let staffLabels = {
+const staffLabels = {
   "mattheson": "Matthson's annotations",
   "basse-fondamentale": "<i>basse fondamentale</i> (Rameau)",
   "fundamental-notes": "<i>Grund-Noten</i> (Mattheson)",
@@ -94,7 +93,7 @@ function displayCheckboxes(block, group) {
   if (block) {
     $("#" + group).append("<h1>" + group + "</h1>");
     for (var i=0; i<block.length; i++) {
-      var blockName = block[i];
+      const blockName = block[i];
       if (i!=0) {
         $("#" + group).append('<br />');
       }
@@ -127,9 +126,9 @@ async function updateDescription() {
     return;
   }
 
-  let realizations = data.realizations;
-  let analysis = data.analysis;
-  let annotations = data.annotations;
+  const realizations = data.realizations;
+  const analysis = data.analysis;
+  const annotations = data.annotations;
 
   displayCheckboxes(realizations, "realizations");
   displayCheckboxes(analysis, "analysis");
@@ -187,7 +186,6 @@ async function updateAnnotations() {
 
     var notatedmusic = $(this);
     let svg;
-
     try {
       svg = await $.get("music-example?" + $.param({
         nr: number,
@@ -201,12 +199,13 @@ async function updateAnnotations() {
 
     notatedmusic.find("tei-ptr").replaceWith(svg);
 
-    var svg1 = notatedmusic.find("svg")[1];
-    var bb=svg1.getBBox();
-    var bbw=bb.width;
-    var bbh=bb.height;
+    let svg1 = notatedmusic.find("svg")[1];
+    const bb = svg1.getBBox();
+    const bbw = bb.width;
+    const bbh = bb.height;
     svg1.setAttribute("viewBox", [bb.x,bb.y,bbw,bbh].join(" "));
-    svg0 = notatedmusic.find("svg");
+
+    let svg0 = notatedmusic.find("svg");
     svg0.css({
       width: (bbw/1000)*28.34 + "px",
       height: (bbh/1000)*28.34 + "px"
@@ -229,7 +228,6 @@ async function renderCurrentPage() {
   $("#score-view").html("loading ...");
 
   let response;
-
   try {
     response = await $.get("render?" + $.param(currentParams));
   } catch (error) {
@@ -245,13 +243,11 @@ async function renderCurrentPage() {
 
   midiTimemap = response.timemap;
   midiData = response.midi;
-  var piece = 'data:audio/midi;base64,' + midiData;
+  const piece = 'data:audio/midi;base64,' + midiData;
   $("#player").show();
   $("#player").midiPlayer.load(piece);
 
-  var svg = response.svg;
-
-  $("#score-view").html(svg);
+  $("#score-view").html(response.svg);
 }
 
 function reconnectCrossRefs() {
@@ -363,7 +359,7 @@ function connectSignatureTooltips() {
   if (keySig.length == 0) {
     // In that case we are probably dealing with a key without any signature, A minor or C major.
     // Taking the first clef instead and shifting the box for some pixels to the right.
-    var keySig = $("#score-view svg").find(".clef");
+    keySig = $("#score-view svg").find(".clef");
     signatureBox = getSvgElementBoxAsCss(keySig);
     signatureBox.left += signatureBox.width;
   } else {
@@ -416,15 +412,14 @@ function connectFacsimileTooltips() {
 
   $("tei-body").find("tei-graphic img").each(function() {
     let surface = $(this).parent().parent();
-    let zoom = $(this)[0].width / surface.attr("lrx");
     let url = $(this).attr("src");
 
     surface.children("tei-zone").each(function() {
-      var zone = $(this);
-      let ulx = zone.attr("ulx");
-      let uly = zone.attr("uly");
-      let lrx = zone.attr("lrx");
-      let lry = zone.attr("lry");
+      const zone = $(this),
+            ulx = zone.attr("ulx"),
+            uly = zone.attr("uly"),
+            lrx = zone.attr("lrx"),
+            lry = zone.attr("lry");
 
       let corresp = $(this).attr("corresp");
       let prevCorresp = $(this).prev().attr("corresp");
@@ -466,36 +461,6 @@ function connectFacsimileTooltips() {
     copyToClipboard("#" + $(this).attr("id"));
     printError("copied to clipboard");
   });
-  //
-  //meiStrings = [];
-  //$("#score-view svg").find(".note, .rest").one("click", function() {
-  //  //console.log(meiStrings);
-  //  let id = $(this).attr("id");
-  //  printError("note " + id + " recognized");
-  //  $("#copyright").empty();
-  //  $("#copyright").append("<input type='text' id='figures'>");
-  //  $("#figures").focus();
-  //  $('#figures').keypress(function (e) {
-  //    if (e.which == 13) {
-  //      var figures = $(this).val().replace("b", "♭").replace("6/", "6⃥").replace("n", "♮").split(",");
-  //      var meiString = "<harm place='above' staff='2' startid='" + id + "'><fb>";
-  //      for (var i=0; i<figures.length; i++) {
-  //        meiString += "<f>" + figures[i] + "</f>";
-  //      }
-  //      meiString +="</fb></harm>";
-  //      meiStrings.push(meiString);
-  //      printError("added");
-  //      $(this).val("");
-  //      return false;
-  //    }
-  //  });
-  //  $("<button>copy to clipboard</button>").on("click", function() {
-  //    copyToClipboard(meiStrings.join("\n"));
-  //    printError("copied to clipboard");
-  //    meiStrings = [];
-  //  }).appendTo("#copyright");
-  //});
-
 }
 
 async function updateView(resetting) {
@@ -597,7 +562,7 @@ $(document).ready(function() {
 });
 
 $(document).on("touchstart mousemove", function(e) {
-    var container = $("#controls");
+    const container = $("#controls");
 
     // if the target of the click isn't the container nor a descendant of the container
     if (!container.is(e.target) && container.has(e.target).length === 0)
