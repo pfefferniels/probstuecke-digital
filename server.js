@@ -307,16 +307,18 @@ var AnnotationToPDF = {
             width: 1500,
             align: 'justify',
             continued: true,
-            indent: 0
+            indent: 0,
+            lineGap: 10
           });
         }
       } else if (children[i].nodeName === "head") {
         // no further subchildren are expected
-        this.pdfDoc.moveDown(1);
-        this.pdfDoc.fontSize(29).text(children[i].textContent, {
-          width: 1500,
+        this.pdfDoc.moveDown(2);
+        this.pdfDoc.fontSize(30).text("", {continued: false}).text(children[i].textContent, {
           align: 'center',
-          underline: true
+          underline: true,
+          continued: false,
+          lineGap: 30
         });
         this.pdfDoc.fontSize(25);
       } else if (children[i].nodeName === "ptr") {
@@ -327,18 +329,16 @@ var AnnotationToPDF = {
         vrvToolkit.loadData(contents);
         let svg = vrvToolkit.renderToSVG(1, {});
 
+        // since verovio uses xlink:href and svgdom only understand href on
+        // <use> elements, we have to run this search and replace first.
+        svg = svg.replace(/xlink:href/g, "href");
+
         draw.svg(svg);
-        let elements = SVG.select('g.system');
-        let height = 0;
-        elements.each(function(i) {
-          if (!isNaN(elements.get(i).bbox().height)) {
-            height += elements.get(i).bbox().height;
-          }
-        });
+        let height = SVG.select('g.page-margin').first().bbox().height;
         draw.clear();
 
         this.pdfDoc.addSVG(svg, this.pdfDoc.x, this.pdfDoc.y, {});
-        this.pdfDoc.y += height*0.1+10;
+        this.pdfDoc.y += height * 0.1 + 20;
       } else {
         this.traverse(children[i]);
       }
