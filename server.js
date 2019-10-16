@@ -320,7 +320,7 @@ var AnnotationToPDF = {
           continued: false,
           lineGap: 30
         });
-        this.pdfDoc.fontSize(25);
+        this.pdfDoc.fontSize(28);
       } else if (children[i].nodeName === "ptr") {
         // load music examples
         let target = children[i].attributes[0].value;
@@ -349,7 +349,8 @@ var AnnotationToPDF = {
 app.get("/download", function(req, res) {
   if (req.query.exportFormat === "pdf") {
     const doc = new PDFDocument({
-      size: "A1"
+      size: "A1",
+      margin: 110
     });
 
     doc.pipe(res);
@@ -374,7 +375,7 @@ app.get("/download", function(req, res) {
          var annotationDoc = new DOMParser().parseFromString(data.toString().replace(/\s\s+/g, ' '), 'text/xml');
          var converter = Object.create(AnnotationToPDF);
          converter.nr = req.query.nr;
-         doc.font("Times-Roman").fontSize(25);
+         doc.font("Times-Roman").fontSize(28);
          converter.pdfDoc = doc;
          converter.traverse(annotationDoc);
 
