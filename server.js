@@ -3,10 +3,6 @@ const verovio = require('verovio-dev'),
       fs = require('fs'),
       express = require('express'),
       xmldom = require('xmldom'),
-      window = require('svgdom'),
-      SVG = require('svg.js')(window),
-      document = window.document,
-      draw = SVG(document.documentElement),
       path = require('path'),
       PDFDocument = require('pdfkit'),
       DOMParser = xmldom.DOMParser,
@@ -301,44 +297,50 @@ var AnnotationToPDF = {
         // for now, treat them all the same.
         if (children[i].parentNode.nodeName === "p" ||
             children[i].parentNode.nodeName === "ref" ||
-            children[i].parentNode.nodeName === "emph" ||
             children[i].parentNode.nodeName === "foreign") {
-          this.pdfDoc.text(children[i].textContent, {
-            width: 1500,
+          this.pdfDoc.font("Times-Roman").fontSize(28).text(children[i].textContent, {
             align: 'justify',
             continued: true,
-            indent: 0,
+            lineGap: 10
+          });
+        } else if (children[i].parentNode.nodeName === "emph") {
+          this.pdfDoc.font("Times-Bold").text(children[i].textContent, {
+            align: 'justify',
+            continued: true,
             lineGap: 10
           });
         }
       } else if (children[i].nodeName === "head") {
         // no further subchildren are expected
         this.pdfDoc.moveDown(2);
-        this.pdfDoc.fontSize(30).text("", {continued: false}).text(children[i].textContent, {
+        this.pdfDoc.font("Times-Bold").fontSize(30).text("", {continued: false}).
+          text(children[i].textContent, {
           align: 'center',
-          underline: true,
           continued: false,
           lineGap: 30
         });
-        this.pdfDoc.fontSize(28);
-      } else if (children[i].nodeName === "ptr") {
+      } else if (children[i].nodeName === "ptr" && children[i].parentNode.nodeName === "notatedMusic") {
         // load music examples
         let target = children[i].attributes[0].value;
         let contents = fs.readFileSync(__dirname + "/data/" + this.nr + "/" + target, 'utf8');
 
+        vrvToolkit.setOptions({
+          adjustPageHeight: 1,
+          noFooter: 1
+        });
         vrvToolkit.loadData(contents);
         let svg = vrvToolkit.renderToSVG(1, {});
 
-        // since verovio uses xlink:href and svgdom only understand href on
-        // <use> elements, we have to run this search and replace first.
-        svg = svg.replace(/xlink:href/g, "href");
-
-        draw.svg(svg);
-        let height = SVG.select('g.page-margin').first().bbox().height;
-        draw.clear();
+        // find the page height
+        let regexResult = svg.match(/<svg width="(\d)+px" height="((\d)+)px"/);
+        if (regexResult.length < 3) {
+          console.error("The generated SVG has an unexpected format.");
+          continue;
+        }
+        let pageHeight = regexResult[2];
 
         this.pdfDoc.addSVG(svg, this.pdfDoc.x, this.pdfDoc.y, {});
-        this.pdfDoc.y += height * 0.1 + 20;
+        this.pdfDoc.y += pageHeight * 0.72 + 10;
       } else {
         this.traverse(children[i]);
       }
@@ -347,10 +349,15 @@ var AnnotationToPDF = {
 };
 
 app.get("/download", function(req, res) {
+  if (isNaN(req.query.nr)) {
+    console.log("invalid query number passed.");
+    res.status("404").end();
+  }
+
   if (req.query.exportFormat === "pdf") {
     const doc = new PDFDocument({
       size: "A1",
-      margin: 110
+      margin: 80
     });
 
     doc.pipe(res);
@@ -360,26 +367,23 @@ app.get("/download", function(req, res) {
       doc.addPage();
     }, function() {
       // when all the score pages are there, start adding the annotations
+      fs.readFile(getAnnotationFilename(req.query.nr, req.query.lang), function(err, data) {
+        if (err) {
+          console.log(err);
+          res.status("404").end();
+          return;
+        }
 
-      // TODO for some reason, this code works fine on localhost, but non on amazon beanstalks.
-      // Deactivated for now.
-       fs.readFile(getAnnotationFilename(req.query.nr, req.query.lang), function(err, data) {
-         if (err) {
-           console.log(err);
-           res.status("404").end();
-           return;
-         }
+        // PDFKit will realize the newlines in the original TEI file as new paragraphs. To prevent,
+        // all line breaks have to be removed first.
+        var annotationDoc = new DOMParser().parseFromString(data.toString().replace(/\s\s+/g, ' '), 'text/xml');
+        var converter = Object.create(AnnotationToPDF);
+        converter.nr = req.query.nr;
+        doc.font("Times-Roman").fontSize(28);
+        converter.pdfDoc = doc;
+        converter.traverse(annotationDoc);
 
-         // PDFKit will realize the newlines in the original TEI file as new paragraphs. To prevent,
-         // all line breaks have to be removed first.
-         var annotationDoc = new DOMParser().parseFromString(data.toString().replace(/\s\s+/g, ' '), 'text/xml');
-         var converter = Object.create(AnnotationToPDF);
-         converter.nr = req.query.nr;
-         doc.font("Times-Roman").fontSize(28);
-         converter.pdfDoc = doc;
-         converter.traverse(annotationDoc);
-
-         doc.end();
+        doc.end();
       });
     });
   } else if (req.query.exportFormat === "musicxml") {
