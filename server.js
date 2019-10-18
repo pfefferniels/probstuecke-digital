@@ -290,6 +290,11 @@ app.get('/render', function (req, res) {
 var AnnotationToPDF = {
   nr: 0,
   pdfDoc: undefined,
+  normalFontSize: 34,
+  _resetTextCursor() {
+    this.pdfDoc.text("", {continued: false});
+  },
+
   traverse: function(tree) {
     var children = tree.childNodes;
     for (let i=0; i<children.length; i++) {
@@ -298,7 +303,7 @@ var AnnotationToPDF = {
         if (children[i].parentNode.nodeName === "p" ||
             children[i].parentNode.nodeName === "ref" ||
             children[i].parentNode.nodeName === "foreign") {
-          this.pdfDoc.font("Times-Roman").fontSize(28).text(children[i].textContent, {
+          this.pdfDoc.font("Times-Roman").fontSize(this.normalFontSize).text(children[i].textContent, {
             align: 'justify',
             continued: true,
             lineGap: 10
@@ -310,11 +315,15 @@ var AnnotationToPDF = {
             lineGap: 10
           });
         }
+      } else if ((children[i].nodeName === "note") ||
+                 (children[i].nodeName === "teiHeader")) {
+        // notes and meta information are ignored for now.
+        continue;
       } else if (children[i].nodeName === "head") {
         // no further subchildren are expected
         this.pdfDoc.moveDown(2);
-        this.pdfDoc.font("Times-Bold").fontSize(30).text("", {continued: false}).
-          text(children[i].textContent, {
+        this._resetTextCursor();
+        this.pdfDoc.font("Times-Bold").fontSize(this.normalFontSize+5).text(children[i].textContent, {
           align: 'center',
           continued: false,
           lineGap: 30
@@ -329,18 +338,25 @@ var AnnotationToPDF = {
           noFooter: 1
         });
         vrvToolkit.loadData(contents);
-        let svg = vrvToolkit.renderToSVG(1, {});
+        let pageCount = vrvToolkit.getPageCount();
+        for (let j=1; j<=pageCount; ++j) {
+          if (pageCount > 1) {
+            this.pdfDoc.addPage();
+          }
+          let svg = vrvToolkit.renderToSVG(j, {});
 
-        // find the page height
-        let regexResult = svg.match(/<svg width="(\d)+px" height="((\d)+)px"/);
-        if (regexResult.length < 3) {
-          console.error("The generated SVG has an unexpected format.");
-          continue;
+          // find the page height
+          let regexResult = svg.match(/<svg width="(\d)+px" height="((\d)+)px"/);
+          if (regexResult.length < 3) {
+            console.error("The generated SVG has an unexpected format.");
+            continue;
+          }
+          let pageHeight = regexResult[2];
+
+          this.pdfDoc.addSVG(svg, this.pdfDoc.x, this.pdfDoc.y, {});
+          this.pdfDoc.y += pageHeight * 0.72 + 10;
         }
-        let pageHeight = regexResult[2];
-
-        this.pdfDoc.addSVG(svg, this.pdfDoc.x, this.pdfDoc.y, {});
-        this.pdfDoc.y += pageHeight * 0.72 + 10;
+        this._resetTextCursor();
       } else {
         this.traverse(children[i]);
       }
@@ -359,6 +375,7 @@ app.get("/download", function(req, res) {
       size: "A1",
       margin: 80
     });
+    doc.info["Title"] = req.query.nr + ". Probstück";
 
     doc.pipe(res);
 
@@ -379,7 +396,6 @@ app.get("/download", function(req, res) {
         var annotationDoc = new DOMParser().parseFromString(data.toString().replace(/\s\s+/g, ' '), 'text/xml');
         var converter = Object.create(AnnotationToPDF);
         converter.nr = req.query.nr;
-        doc.font("Times-Roman").fontSize(28);
         converter.pdfDoc = doc;
         converter.traverse(annotationDoc);
 
