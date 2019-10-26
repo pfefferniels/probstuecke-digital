@@ -9,8 +9,16 @@ const verovio = require('verovio-dev'),
       SVGtoPDF = require('svg-to-pdfkit');
 
 // pdfkit setup
-PDFDocument.prototype.addSVG = function(svg, x, y, options) {
-  return SVGtoPDF(this, svg, x, y, options), this;
+PDFDocument.prototype.addSVG = function(svg, x, y) {
+  return SVGtoPDF(this, svg, x, y, {
+    // in the exported PDF use Times Roman as standard font for SVGs
+    fontCallback: function(family, bold, italic, options) {
+      if (bold) {
+        return "Times-Bold";
+      }
+      return "Times-Roman";
+    }
+  }), this;
 };
 
 // express.js setup
@@ -353,7 +361,7 @@ var AnnotationToPDF = {
           }
           let pageHeight = regexResult[2];
 
-          this.pdfDoc.addSVG(svg, this.pdfDoc.x, this.pdfDoc.y, {});
+          this.pdfDoc.addSVG(svg, this.pdfDoc.x, this.pdfDoc.y);
           this.pdfDoc.y += pageHeight * 0.72 + 10;
         }
         this._resetTextCursor();
@@ -376,11 +384,11 @@ app.get("/download", function(req, res) {
       margin: 80
     });
     doc.info["Title"] = req.query.nr + ". Probstück";
-
+    //doc.font("Times-Bold").fontSize(38);
     doc.pipe(res);
 
     generateSvg(req.query, true, function(svg) {
-      doc.addSVG(svg, 100, 100, {}).scale(0.5);
+      doc.addSVG(svg, 100, 100).scale(0.5);
       doc.addPage();
     }, function() {
       // when all the score pages are there, start adding the annotations
