@@ -1,4 +1,4 @@
-const verovio = require('verovio-dev'),
+const verovio = require('verovio'),
       vrvToolkit = new verovio.toolkit(),
       fs = require('fs'),
       express = require('express'),
