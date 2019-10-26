@@ -1,1 +1,14 @@
-A critical digital edition of the 24 Probstücke (test pieces) by Johann Mattheson from the Große Generalbassschule (1719/1731). Run "npm start" and open localhost:3000. Or visit probstuecke-digital.de.
+A critical digital edition of the 24 Probstücke (test pieces) by Johann Mattheson
+from the Große Generalbassschule (1719/1731). The edition is available at
+<http://probstuecke-digital.de>.
+
+Requirements
+------------
+- [Node.js](nodejs.org)
+
+Installation
+------------
+
+1. `git clone https://github.com/pfefferniels/probstuecke-digital`
+2. `npm install`
+3. `npm start` and open `localhost:3000` in the browser.
