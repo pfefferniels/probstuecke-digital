@@ -161,7 +161,7 @@ async function updateDescription() {
 }
 
 async function updateAnnotations() {
-  $("#annotations-view").html("loading ...");
+  $("#annotations-view").html("<center>loading ...</center>");
 
   let data;
 
@@ -225,7 +225,7 @@ async function updateAnnotations() {
 }
 
 async function renderCurrentPage() {
-  $("#score-view").html("loading ...");
+  $("#score-view").html("<center>loading ...</center>");
 
   let response;
   try {
