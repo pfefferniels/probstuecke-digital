@@ -63,6 +63,7 @@
                             <harm place='above' staff="2" tstamp="4.000000" vgrp="80"><fb>
                                 <f>6⃥</f>
                             </fb></harm>
+                            <tempo startid="#rest-0000001788744701" place="above">A giusto tempo.</tempo>
                         </measure>
                         <measure xml:id="measure-0000000183024625" n="2">
                             <staff xml:id="staff-0000000854220101" n="1">
@@ -72,6 +73,7 @@
                             </staff>
                             <staff xml:id="staff-0000001707759743" n="2">
                                 <layer xml:id="layer-0000000262292433" n="1">
+                                    <clef shape="C" line="4" />
                                     <beam xml:id="beam-0000001403948747">
                                         <note xml:id="note-0000001824451800" dur="16" oct="4" pname="c" stem.dir="down" accid.ges="s" />
                                         <note xml:id="note-0000001905129810" dur="16" oct="4" pname="d" stem.dir="down" />
@@ -116,6 +118,7 @@
                                         <note xml:id="note-0000000521551991" dur="32" oct="4" pname="d" stem.dir="down" />
                                         <note xml:id="note-0000000036880000" dur="32" oct="4" pname="e" stem.dir="down" />
                                     </beam>
+                                    <clef shape="F" line="4" />
                                     <beam xml:id="beam-0000001885871963">
                                         <note xml:id="note-0000001595180266" dur="8" oct="3" pname="f" stem.dir="down" accid.ges="s" />
                                         <note xml:id="note-0000000884144693" dur="8" oct="4" pname="d" stem.dir="down" />
@@ -1108,6 +1111,7 @@
                                         <note xml:id="note-0000000651121715" dur="16" oct="3" pname="b" stem.dir="down" />
                                         <note xml:id="note-0000000011517842" dur="16" oct="3" pname="f" stem.dir="down" accid.ges="s" />
                                     </beam>
+                                    <clef shape="C" line="4" />
                                     <beam xml:id="beam-0000000179600990">
                                         <note xml:id="note-0000000307906662" dur="16" oct="4" pname="c" stem.dir="down" accid.ges="s" />
                                         <note xml:id="note-0000001127530067" dur="32" oct="4" pname="c" stem.dir="down" accid.ges="s" />
@@ -1166,7 +1170,6 @@
 
                             </fb></harm>
                         </measure>
-                        <pb xml:id="pb-0000001591648802" />
                         <measure xml:id="measure-0000001811850333" n="28">
                             <staff xml:id="staff-0000001922687300" n="1" visible="true">
                                 <layer xml:id="layer-0000000816504958" n="1">
@@ -1220,6 +1223,7 @@
                                         <note xml:id="note-0000000842089033" dur="16" oct="4" pname="d" stem.dir="down" />
                                         <note xml:id="note-0000001959486242" dur="16" oct="4" pname="c" stem.dir="down" accid.ges="s" />
                                     </beam>
+                                    <clef shape="F" line="4" />
                                     <beam xml:id="beam-0000001639563257">
                                         <note xml:id="note-0000001248134908" dur="16" oct="3" pname="b" stem.dir="down">
                                             <accid xml:id="accid-0000000239243955" accid="n" />
@@ -1957,6 +1961,8 @@
                                 <f>#</f>
 
                             </fb></harm>
+
+                            <dir startid="note-0000001579609946">Da Capo.</dir>
                         </measure>
                     </section>
                 </score>
