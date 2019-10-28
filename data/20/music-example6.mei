@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
+    <meiHead>
+        <fileDesc>
+            <titleStmt>
+                <title></title>
+                <respStmt />
+            </titleStmt>
+            <pubStmt></pubStmt>
+        </fileDesc>
+        <encodingDesc xml:id="encodingdesc-0000000741956610">
+            <appInfo xml:id="appinfo-0000000898643190">
+                <application xml:id="application-0000001871425528" isodate="2019-10-28T09:42:52" version="2.3.0-dev-3df101b">
+                    <name xml:id="name-0000000081934014">Verovio</name>
+                    <p xml:id="p-0000000372639239">Transcoded from MusicXML</p>
+                </application>
+            </appInfo>
+        </encodingDesc>
+    </meiHead>
+    <music>
+        <body>
+            <mdiv xml:id="mdiv-0000000154953537">
+                <score xml:id="score-0000000193073904">
+                    <scoreDef xml:id="scoredef-0000000576268836">
+                        <staffGrp xml:id="staffgrp-0000001676223579">
+                            <staffDef xml:id="staffdef-0000000696310725" n='1' lines='5' label="Mattheson's annotations" clef.shape="C" clef.line="1" meter.count="4" meter.unit="4">
+                                <keySig xml:id="keysig-0000002072137670" mode="major" sig="2s" />
+                            </staffDef>
+                            <staffDef xml:id="staffdef-0000001653960881" n="2" lines="5" ppq="256" clef.shape="F" clef.line="4" meter.count="4" meter.unit="4">
+                                <keySig xml:id="keysig-0000002094104278" mode="major" sig="2s" />
+
+                            </staffDef>
+                        </staffGrp>
+                    </scoreDef>
+                    <section xml:id="section-0000001820955135">
+                        <pb xml:id="pb-0000000534202089" />
+                        <pb xml:id="pb-0000001303234513" />
+                        <measure xml:id="measure-0000001570447245" n="1">
+                            <staff xml:id="staff-0000001873060105" n="1">
+                                <layer xml:id="layer-0000000261205807" n="1">
+                                    <space xml:id="space-0000000352642876" dur="4" />
+                                    <space xml:id="space-0000000893190536" dur="4" />
+                                    <rest xml:id="rest-0000002100951847" dur="16" />
+                                    <beam xml:id="beam-0000000841723181">
+                                        <note xml:id="note-0000001479160989" dur="16" oct="5" pname="d" stem.dir="down" />
+                                        <note xml:id="note-0000000156472114" dur="16" oct="4" pname="b" stem.dir="down" />
+                                        <note xml:id="note-0000001861600333" dur="16" oct="5" pname="d" stem.dir="down" />
+                                    </beam>
+                                    <beam xml:id="beam-0000001021865475">
+                                        <note xml:id="note-0000001300692181" dur="16" oct="4" pname="g" stem.dir="down" />
+                                        <note xml:id="note-0000000845942649" dur="16" oct="4" pname="b" stem.dir="down" />
+                                        <note xml:id="note-0000000521237809" dur="16" oct="4" pname="e" stem.dir="down" />
+                                        <note xml:id="note-0000001954788980" dur="16" oct="4" pname="g" stem.dir="down" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <staff xml:id="staff-0000000427759079" n="2">
+                                <layer xml:id="layer-0000001739479437" n="1">
+                                    <space xml:id="space-0000001793545118" dur="2" />
+                                    <note xml:id="note-0000000413724862" dur="4" oct="2" pname="g" stem.dir="up" />
+                                    <note xml:id="note-0000001713630028" dur="4" oct="3" pname="g" stem.dir="down" />
+                                </layer>
+                            </staff>
+                            <harm place='above' staff="2" tstamp="4.000000" vgrp="80"><fb>
+                                <f>6</f>
+
+                            </fb></harm>
+                            <tie xml:id="tie-0000001078877846" startid="#note-0000001713630028" endid="#note-0000001517531065" />
+                        </measure>
+                        <measure xml:id="measure-0000000607294325" right="end" n="2">
+                            <staff xml:id="staff-0000001362094137" n="1">
+                                <layer xml:id="layer-0000002009694746" n="1">
+                                    <beam xml:id="beam-0000000485871666">
+                                        <note xml:id="note-0000000743584254" dur="16" oct="4" pname="c" stem.dir="up" accid.ges="s" />
+                                        <note xml:id="note-0000000814466664" dur="16" oct="3" pname="a" stem.dir="up" />
+                                        <note xml:id="note-0000001455184557" dur="16" oct="4" pname="c" stem.dir="up" accid.ges="s" />
+                                        <note xml:id="note-0000000202253440" dur="16" oct="4" pname="e" stem.dir="up" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <staff xml:id="staff-0000001133215241" n="2">
+                                <layer xml:id="layer-0000000297253335" n="1">
+                                    <note xml:id="note-0000001517531065" dur="4" oct="3" pname="g" stem.dir="down" />
+                                </layer>
+                            </staff>
+                            <harm place='above' staff="2" tstamp="1.000000" vgrp="80"><fb>
+                                <f>6</f>
+
+                                <f>4+</f>
+
+                                <f>2</f>
+
+                            </fb></harm>
+                        </measure>
+                    </section>
+                </score>
+            </mdiv>
+        </body>
+    </music>
+</mei>
