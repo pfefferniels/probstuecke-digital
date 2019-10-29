@@ -1,19 +1,76 @@
+
+
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="http://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="http://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
-<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
+<mei xmlns="http://www.music-encoding.org/ns/mei" xmlns:xlink="http://www.w3.org/1999/xlink" meiversion="4.0.0">
     <meiHead>
         <fileDesc>
             <titleStmt>
-                <title>Der Ober-Classe Vierzehntes Prob-Stück.</title>
+                <title>Der Ober-Classe vierzehntes Prob-Stück.</title>
+                <composer>
+                    <persName role="composer" auth.uri="http://d-nb.info/gnd/118578995" auth="GND">Johann Mattheson</persName>
+                </composer>
+                <respStmt>
+                    <resp>Edited by</resp>
+                    <persName role="editor">Niels Pfeffer</persName>
+                </respStmt>
             </titleStmt>
-            <pubStmt></pubStmt>
+            <pubStmt>
+                <respStmt>
+                    <persName role="publisher">Niels Pfeffer</persName>
+                </respStmt>
+                <date>2019</date>
+                <availability>
+                    <useRestrict>This encoding is licensed under GPL. You may copy, distribute and
+                modify the software as long as you track changes/dates in source files.
+                Any modifications to or software including (via compiler) GPL-licensed
+                code must also be made available under the GPL along with build &amp; install instructions.</useRestrict>
+                </availability>
+            </pubStmt>
+            <sourceDesc>
+                <source n="1" xml:id="1nd_edition">
+                    <identifier type="URI">http://mdz-nbn-resolving.de/urn:nbn:de:bvb:12-bsb10527431-0</identifier>
+                    <titleStmt>
+                        <title type="uniform">Exemplarische Organisten-Probe</title>
+                        <respStmt>
+                            <persName role="composer" auth.uri="http://d-nb.info/gnd/118578995" auth="GND">Johann Mattheson</persName>
+                        </respStmt>
+                        <pubStmt>
+                            <respStmt>
+                                <corpName role="publisher">Schiller &amp; Kißner</corpName>
+                            </respStmt>
+                            <pubPlace>Hamburg</pubPlace>
+                            <date>1719</date>
+                        </pubStmt>
+                    </titleStmt>
+                </source>
+                <source n="2" xml:id="2nd_edition">
+                    <identifier type="URI">http://mdz-nbn-resolving.de/urn:nbn:de:bvb:12-bsb10598495-7</identifier>
+                    <titleStmt>
+                        <title type="uniform">Grosse General-Baß-Schule</title>
+                        <respStmt>
+                            <persName role="composer" auth.uri="http://d-nb.info/gnd/118578995" auth="GND">Johann Mattheson</persName>
+                        </respStmt>
+                        <pubStmt>
+                            <respStmt>
+                                <corpName role="publisher">Kißner</corpName>
+                            </respStmt>
+                            <pubPlace>Hamburg</pubPlace>
+                            <date>1731</date>
+                        </pubStmt>
+                    </titleStmt>
+                </source>
+            </sourceDesc>
         </fileDesc>
-        <encodingDesc xml:id="encodingdesc-0000000622958014">
-            <appInfo xml:id="appinfo-0000001140323031">
-                <application xml:id="application-0000001811702272" isodate="2019-10-10T11:52:03" version="2.2.0-dev-c01b3a1-dirty">
-                    <name xml:id="name-0000000616131345">Verovio</name>
-                    <p xml:id="p-0000000677268378">Transcoded from MusicXML</p>
+        <encodingDesc>
+            <appInfo>
+                <application xml:id="sibelius" version="8300">
+                    <name type="operating-system">macOS</name>
+                </application>
+                <application version="2.3.0-dev-3df101b">
+                    <name>Verovio</name>
+                    <p>Transcoded from MusicXML</p>
                 </application>
             </appInfo>
         </encodingDesc>
@@ -24,10 +81,8 @@
                 <score xml:id="score-0000000446933555">
                     <scoreDef xml:id="scoredef-0000001209062199">
                         <staffGrp xml:id="staffgrp-0000002136832219">
-                            <staffDef xml:id="mattheson" clef.shape="C" clef.line="1" key.mode="minor" key.sig="5f" meter.count="12" meter.unit="8" n='1' lines='5' label="Mattheson's annotations" />
-                            <staffDef xml:id='bass' clef.shape='F' clef.line="4" key.mode="minor" key.sig="5f" meter.count="12" meter.unit="8" n="2" lines="5" ppq="256">
-
-                            </staffDef>
+                            <staffDef xml:id="mattheson" clef.shape="C" clef.line="1" key.mode="minor" key.sig="5f" meter.count="12" meter.unit="8" n="1" lines="5" label="Mattheson's annotations" />
+                            <staffDef xml:id="bass" clef.shape="F" clef.line="4" key.mode="minor" key.sig="5f" meter.count="12" meter.unit="8" n="2" lines="5" ppq="256" />
                         </staffGrp>
                     </scoreDef>
                     <section xml:id="section-0000000840219442">
@@ -52,15 +107,17 @@
                                     <note xml:id="note-0000001299653443" dots="1" dur="4" oct="3" pname="b" stem.dir="down" accid.ges="f" />
                                 </layer>
                             </staff>
-                            <tempo place='above' staff="2" tstamp="1.000000" vgrp="230">Discretamente.</tempo>
-                            <harm place='above' staff="2" tstamp="7.000000" vgrp="80"><fb>
-                                <f>76</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="10.000000" vgrp="80"><fb>
-                                <f>76</f>
-
-                            </fb></harm>
+                            <tempo place="above" staff="2" tstamp="1.000000" vgrp="230">Discretamente.</tempo>
+                            <harm place="above" staff="2" tstamp="7.000000" vgrp="80">
+                                <fb>
+                                    <f>76</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="10.000000" vgrp="80">
+                                <fb>
+                                    <f>76</f>
+                                </fb>
+                            </harm>
                         </measure>
                         <measure xml:id="measure-0000001530245462" n="2">
                             <staff xml:id="staff-0000001722655246" n="1">
@@ -83,24 +140,27 @@
                                     <note xml:id="note-0000000598544615" dots="1" dur="4" oct="2" pname="b" stem.dir="up" accid.ges="f" />
                                 </layer>
                             </staff>
-                            <harm place='above' staff="2" tstamp="1.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                                <f>♭</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="3.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="4.000000" vgrp="80"><fb>
-                                <f>6⃥</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="7.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                            </fb></harm>
+                            <harm place="above" staff="2" tstamp="1.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                    <f>♭</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="3.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="4.000000" vgrp="80">
+                                <fb>
+                                    <f>6⃥</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="7.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                </fb>
+                            </harm>
                         </measure>
                         <measure xml:id="measure-0000000574216572" n="3">
                             <staff xml:id="staff-0000001119835979" n="1">
@@ -130,10 +190,11 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <harm place='above' staff="2" tstamp="1.000000" vgrp="80"><fb>
-                                <f>♮</f>
-
-                            </fb></harm>
+                            <harm place="above" staff="2" tstamp="1.000000" vgrp="80">
+                                <fb>
+                                    <f>♮</f>
+                                </fb>
+                            </harm>
                         </measure>
                         <measure xml:id="measure-0000000503178109" n="4">
                             <staff xml:id="staff-0000001600098637" n="1">
@@ -189,14 +250,16 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <harm place='above' staff="2" tstamp="1.000000" vgrp="80"><fb>
-                                <f>7</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="7.000000" vgrp="80"><fb>
-                                <f>7</f>
-
-                            </fb></harm>
+                            <harm place="above" staff="2" tstamp="1.000000" vgrp="80">
+                                <fb>
+                                    <f>7</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="7.000000" vgrp="80">
+                                <fb>
+                                    <f>7</f>
+                                </fb>
+                            </harm>
                         </measure>
                         <measure xml:id="measure-0000001343669455" n="6">
                             <staff xml:id="staff-0000001908510724" n="1">
@@ -226,16 +289,17 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <harm place='above' staff="2" tstamp="1.000000" vgrp="80"><fb>
-                                <f>7</f>
-
-                                <f>♮</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="10.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                            </fb></harm>
+                            <harm place="above" staff="2" tstamp="1.000000" vgrp="80">
+                                <fb>
+                                    <f>7</f>
+                                    <f>♮</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="10.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                </fb>
+                            </harm>
                         </measure>
                         <measure xml:id="measure-0000000219048580" n="7">
                             <staff xml:id="staff-0000000687665432" n="1">
@@ -262,26 +326,28 @@
                                     <note xml:id="note-0000001566145969" dur="8" oct="2" pname="b" stem.dir="up" accid.ges="f" />
                                 </layer>
                             </staff>
-                            <harm place='above' staff="2" tstamp="4.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="9.000000" vgrp="80"><fb>
-                                <f>7</f>
-
-                                <f>5</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="10.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                                <f>4</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="12.000000" vgrp="80"><fb>
-                                <f>♮</f>
-
-                            </fb></harm>
+                            <harm place="above" staff="2" tstamp="4.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="9.000000" vgrp="80">
+                                <fb>
+                                    <f>7</f>
+                                    <f>5</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="10.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                    <f>4</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="12.000000" vgrp="80">
+                                <fb>
+                                    <f>♮</f>
+                                </fb>
+                            </harm>
                         </measure>
                         <measure xml:id="measure-0000002110347575" n="8">
                             <staff xml:id="staff-0000001801070812" n="1" visible="true">
@@ -326,12 +392,12 @@
                                 </layer>
                             </staff>
                             <tie xml:id="tie-0000001022933698" startid="#note-0000000343897132" endid="#note-0000001657684736" />
-                            <harm place='above' staff="2" tstamp="10.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                                <f>4</f>
-
-                            </fb></harm>
+                            <harm place="above" staff="2" tstamp="10.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                    <f>4</f>
+                                </fb>
+                            </harm>
                         </measure>
                         <measure xml:id="measure-0000000003979548" n="9">
                             <staff xml:id="staff-0000000355872925" n="1">
@@ -373,20 +439,22 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <harm place='above' staff="2" tstamp="4.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                                <f>5</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="9.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="12.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                            </fb></harm>
+                            <harm place="above" staff="2" tstamp="4.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                    <f>5</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="9.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="12.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                </fb>
+                            </harm>
                         </measure>
                         <measure xml:id="measure-0000001047628166" n="10">
                             <staff xml:id="staff-0000000487713868" n="1">
@@ -411,10 +479,11 @@
                                 </layer>
                             </staff>
                             <tie xml:id="tie-0000001977220106" startid="#note-0000000366106319" endid="#note-0000000441543591" />
-                            <harm place='above' staff="2" tstamp="10.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                            </fb></harm>
+                            <harm place="above" staff="2" tstamp="10.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                </fb>
+                            </harm>
                         </measure>
                         <sb xml:id="sb-0000000279032399" />
                         <measure xml:id="measure-0000000128472588" n="11">
@@ -438,22 +507,26 @@
                                     <note xml:id="note-0000001032866142" dots="1" dur="4" oct="3" pname="a" stem.dir="down" accid.ges="f" />
                                 </layer>
                             </staff>
-                            <harm place='above' staff="2" tstamp="1.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="4.000000" vgrp="80"><fb>
-                                <f>♭</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="7.000000" vgrp="80"><fb>
-                                <f>76</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="10.000000" vgrp="80"><fb>
-                                <f>76</f>
-
-                            </fb></harm>
+                            <harm place="above" staff="2" tstamp="1.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="4.000000" vgrp="80">
+                                <fb>
+                                    <f>♭</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="7.000000" vgrp="80">
+                                <fb>
+                                    <f>76</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="10.000000" vgrp="80">
+                                <fb>
+                                    <f>76</f>
+                                </fb>
+                            </harm>
                         </measure>
                         <measure xml:id="measure-0000001841425997" n="12">
                             <staff xml:id="staff-0000000151720023" n="1">
@@ -474,24 +547,27 @@
                                     <note xml:id="note-0000001318704646" dur="8" oct="2" pname="a" stem.dir="up" accid.ges="f" />
                                 </layer>
                             </staff>
-                            <harm place='above' staff="2" tstamp="1.000000" vgrp="80"><fb>
-                                <f>76</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="4.000000" vgrp="80"><fb>
-                                <f>76</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="7.000000" vgrp="80"><fb>
-                                <f>7</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="10.000000" vgrp="80"><fb>
-                                <f>7</f>
-
-                                <f>♭</f>
-
-                            </fb></harm>
+                            <harm place="above" staff="2" tstamp="1.000000" vgrp="80">
+                                <fb>
+                                    <f>76</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="4.000000" vgrp="80">
+                                <fb>
+                                    <f>76</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="7.000000" vgrp="80">
+                                <fb>
+                                    <f>7</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="10.000000" vgrp="80">
+                                <fb>
+                                    <f>7</f>
+                                    <f>♭</f>
+                                </fb>
+                            </harm>
                         </measure>
                         <measure xml:id="measure-0000001854105576" n="13">
                             <staff xml:id="staff-0000000821880042" n="1">
@@ -521,18 +597,21 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <harm place='above' staff="2" tstamp="1.000000" vgrp="80"><fb>
-                                <f>7♭</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="4.000000" vgrp="80"><fb>
-                                <f>7</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="10.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                            </fb></harm>
+                            <harm place="above" staff="2" tstamp="1.000000" vgrp="80">
+                                <fb>
+                                    <f>7♭</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="4.000000" vgrp="80">
+                                <fb>
+                                    <f>7</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="10.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                </fb>
+                            </harm>
                         </measure>
                         <measure xml:id="measure-0000000052822412" n="14">
                             <staff xml:id="staff-0000002016296748" n="1">
@@ -560,38 +639,40 @@
                                     <note xml:id="note-0000000790952040" dur="8" oct="3" pname="d" stem.dir="down" accid.ges="f" />
                                 </layer>
                             </staff>
-                            <harm place='above' staff="2" tstamp="1.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                                <f>4</f>
-
-                                <f>2</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="4.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="7.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="9.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                                <f>5</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="10.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                                <f>4</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="12.000000" vgrp="80"><fb>
-                                <f>3</f>
-
-                            </fb></harm>
+                            <harm place="above" staff="2" tstamp="1.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                    <f>4</f>
+                                    <f>2</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="4.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="7.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="9.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                    <f>5</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="10.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                    <f>4</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="12.000000" vgrp="80">
+                                <fb>
+                                    <f>3</f>
+                                </fb>
+                            </harm>
                         </measure>
                         <sb xml:id="sb-0000000609208604" />
                         <measure xml:id="measure-0000001387119307" n="15">
@@ -643,16 +724,17 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <harm place='above' staff="2" tstamp="1.000000" vgrp="80"><fb>
-                                <f>7</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="4.000000" vgrp="80"><fb>
-                                <f>7</f>
-
-                                <f>♮</f>
-
-                            </fb></harm>
+                            <harm place="above" staff="2" tstamp="1.000000" vgrp="80">
+                                <fb>
+                                    <f>7</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="4.000000" vgrp="80">
+                                <fb>
+                                    <f>7</f>
+                                    <f>♮</f>
+                                </fb>
+                            </harm>
                         </measure>
                         <measure xml:id="measure-0000000016859198" n="17">
                             <staff xml:id="staff-0000000579421169" n="1">
@@ -677,10 +759,11 @@
                                     <note xml:id="note-0000000352602188" dur="8" oct="3" pname="b" stem.dir="down" accid.ges="f" />
                                 </layer>
                             </staff>
-                            <harm place='above' staff="2" tstamp="10.000000" vgrp="80"><fb>
-                                <f>6⃥</f>
-
-                            </fb></harm>
+                            <harm place="above" staff="2" tstamp="10.000000" vgrp="80">
+                                <fb>
+                                    <f>6⃥</f>
+                                </fb>
+                            </harm>
                         </measure>
                         <sb xml:id="sb-0000001823033080" />
                         <measure xml:id="measure-0000000076845282" n="18">
@@ -715,14 +798,16 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <harm place='above' staff="2" tstamp="1.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="7.000000" vgrp="80"><fb>
-                                <f>♭</f>
-
-                            </fb></harm>
+                            <harm place="above" staff="2" tstamp="1.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="7.000000" vgrp="80">
+                                <fb>
+                                    <f>♭</f>
+                                </fb>
+                            </harm>
                         </measure>
                         <measure xml:id="measure-0000002010271932" n="19">
                             <staff xml:id="staff-0000001792339611" n="1">
@@ -753,24 +838,27 @@
                                     <note xml:id="note-0000002010486705" dur="8" oct="4" pname="e" stem.dir="down" accid.ges="f" />
                                 </layer>
                             </staff>
-                            <harm place='above' staff="2" tstamp="1.000000" vgrp="80"><fb>
-                                <f>6⃥</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="4.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="7.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                                <f>5</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="10.000000" vgrp="80"><fb>
-                                <f>♮</f>
-
-                            </fb></harm>
+                            <harm place="above" staff="2" tstamp="1.000000" vgrp="80">
+                                <fb>
+                                    <f>6⃥</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="4.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="7.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                    <f>5</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="10.000000" vgrp="80">
+                                <fb>
+                                    <f>♮</f>
+                                </fb>
+                            </harm>
                         </measure>
                         <measure xml:id="measure-0000000123906253" n="20">
                             <staff xml:id="staff-0000000621728947" n="1">
@@ -797,14 +885,16 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <harm place='above' staff="2" tstamp="4.000000" vgrp="80"><fb>
-                                <f>♮</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="7.000000" vgrp="80"><fb>
-                                <f>♮</f>
-
-                            </fb></harm>
+                            <harm place="above" staff="2" tstamp="4.000000" vgrp="80">
+                                <fb>
+                                    <f>♮</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="7.000000" vgrp="80">
+                                <fb>
+                                    <f>♮</f>
+                                </fb>
+                            </harm>
                         </measure>
                         <pb xml:id="pb-0000000649199400" />
                         <measure xml:id="measure-0000000699399024" n="21">
@@ -828,18 +918,21 @@
                                     <note xml:id="note-0000002147043392" dur="8" oct="4" pname="e" stem.dir="down" accid.ges="f" />
                                 </layer>
                             </staff>
-                            <harm place='above' staff="2" tstamp="7.000000" vgrp="80"><fb>
-                                <f>♮</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="9.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="10.000000" vgrp="80"><fb>
-                                <f>6⃥</f>
-
-                            </fb></harm>
+                            <harm place="above" staff="2" tstamp="7.000000" vgrp="80">
+                                <fb>
+                                    <f>♮</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="9.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="10.000000" vgrp="80">
+                                <fb>
+                                    <f>6⃥</f>
+                                </fb>
+                            </harm>
                         </measure>
                         <measure xml:id="measure-0000000153836857" n="22">
                             <staff xml:id="staff-0000001500016790" n="1">
@@ -865,24 +958,27 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <harm place='above' staff="2" tstamp="1.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="4.000000" vgrp="80"><fb>
-                                <f>♮</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="7.000000" vgrp="80"><fb>
-                                <f>5♮</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="10.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                                <f>5</f>
-
-                            </fb></harm>
+                            <harm place="above" staff="2" tstamp="1.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="4.000000" vgrp="80">
+                                <fb>
+                                    <f>♮</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="7.000000" vgrp="80">
+                                <fb>
+                                    <f>5♮</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="10.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                    <f>5</f>
+                                </fb>
+                            </harm>
                         </measure>
                         <measure xml:id="measure-0000000751545693" n="23">
                             <staff xml:id="staff-0000000876713302" n="1">
@@ -911,22 +1007,23 @@
                                     <note xml:id="note-0000001988458793" dur="8" oct="2" pname="b" stem.dir="up" accid.ges="f" />
                                 </layer>
                             </staff>
-                            <harm place='above' staff="2" tstamp="4.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                                <f>5</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="10.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                                <f>4</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="12.000000" vgrp="80"><fb>
-                                <f>♮</f>
-
-                            </fb></harm>
+                            <harm place="above" staff="2" tstamp="4.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                    <f>5</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="10.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                    <f>4</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="12.000000" vgrp="80">
+                                <fb>
+                                    <f>♮</f>
+                                </fb>
+                            </harm>
                         </measure>
                         <sb xml:id="sb-0000001048323742" />
                         <measure xml:id="measure-0000000054139501" right="dbl" n="24">
@@ -965,15 +1062,21 @@
                                     <note xml:id="note-0000001295575915" dots="1" dur="4" oct="3" pname="a" stem.dir="down" accid.ges="s" />
                                 </layer>
                             </staff>
-                            <harm place='above' staff="2" tstamp="4.000000" vgrp="80"><fb>
-                                <f>6</f>
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="7.000000" vgrp="80"><fb>
-                                <f>76</f>
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="10.000000" vgrp="80"><fb>
-                                <f>76</f>
-                            </fb></harm>
+                            <harm place="above" staff="2" tstamp="4.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="7.000000" vgrp="80">
+                                <fb>
+                                    <f>76</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="10.000000" vgrp="80">
+                                <fb>
+                                    <f>76</f>
+                                </fb>
+                            </harm>
                             <dir startid="#note-0000001892758909">Auf andre Art notiret.</dir>
                         </measure>
                         <measure xml:id="measure-0000001462366731" n="26">
@@ -997,26 +1100,31 @@
                                     <note xml:id="note-0000000575710868" dots="1" dur="4" oct="2" pname="a" stem.dir="up" accid.ges="s" />
                                 </layer>
                             </staff>
-                            <harm place='above' staff="2" tstamp="1.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="3.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="4.000000" vgrp="80"><fb>
-                                <f>6♮</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="7.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="10.000000" vgrp="80"><fb>
-                                <f>#</f>
-
-                            </fb></harm>
+                            <harm place="above" staff="2" tstamp="1.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="3.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="4.000000" vgrp="80">
+                                <fb>
+                                    <f>6♮</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="7.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="10.000000" vgrp="80">
+                                <fb>
+                                    <f>#</f>
+                                </fb>
+                            </harm>
                         </measure>
                         <measure xml:id="measure-0000000661676449" n="27">
                             <staff xml:id="staff-0000000563469344" n="1">
@@ -1044,10 +1152,11 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <harm place='above' staff="2" tstamp="1.000000" vgrp="80"><fb>
-                                <f>#</f>
-
-                            </fb></harm>
+                            <harm place="above" staff="2" tstamp="1.000000" vgrp="80">
+                                <fb>
+                                    <f>#</f>
+                                </fb>
+                            </harm>
                         </measure>
                         <sb xml:id="sb-0000000011475450" />
                         <measure xml:id="measure-0000001258107719" n="28">
@@ -1074,10 +1183,11 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <harm place='above' staff="2" tstamp="1.000000" vgrp="80"><fb>
-                                <f>#</f>
-
-                            </fb></harm>
+                            <harm place="above" staff="2" tstamp="1.000000" vgrp="80">
+                                <fb>
+                                    <f>#</f>
+                                </fb>
+                            </harm>
                         </measure>
                         <measure xml:id="measure-0000000651811331" n="29">
                             <staff xml:id="staff-0000001434505089" n="1">
@@ -1103,14 +1213,16 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <harm place='above' staff="2" tstamp="1.000000" vgrp="80"><fb>
-                                <f>7</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="7.000000" vgrp="80"><fb>
-                                <f>7</f>
-
-                            </fb></harm>
+                            <harm place="above" staff="2" tstamp="1.000000" vgrp="80">
+                                <fb>
+                                    <f>7</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="7.000000" vgrp="80">
+                                <fb>
+                                    <f>7</f>
+                                </fb>
+                            </harm>
                         </measure>
                         <measure xml:id="measure-0000000993337320" n="30">
                             <staff xml:id="staff-0000001187954238" n="1">
@@ -1138,16 +1250,17 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <harm place='above' staff="2" tstamp="1.000000" vgrp="80"><fb>
-                                <f>7</f>
-
-                                <f>#</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="10.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                            </fb></harm>
+                            <harm place="above" staff="2" tstamp="1.000000" vgrp="80">
+                                <fb>
+                                    <f>7</f>
+                                    <f>#</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="10.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                </fb>
+                            </harm>
                         </measure>
                         <measure xml:id="measure-0000000376076216" n="31">
                             <staff xml:id="staff-0000000175308583" n="1">
@@ -1174,22 +1287,23 @@
                                     <note xml:id="note-0000000199655368" dur="8" oct="2" pname="a" stem.dir="up" accid.ges="s" />
                                 </layer>
                             </staff>
-                            <harm place='above' staff="2" tstamp="4.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="9.000000" vgrp="80"><fb>
-                                <f>7</f>
-
-                                <f>5</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="10.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                                <f>4</f>
-
-                            </fb></harm>
+                            <harm place="above" staff="2" tstamp="4.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="9.000000" vgrp="80">
+                                <fb>
+                                    <f>7</f>
+                                    <f>5</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="10.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                    <f>4</f>
+                                </fb>
+                            </harm>
                         </measure>
                         <sb xml:id="sb-0000001040271688" />
                         <measure xml:id="measure-0000000691469583" n="32">
@@ -1217,12 +1331,12 @@
                                 </layer>
                             </staff>
                             <tie xml:id="tie-0000000015467347" startid="#note-0000001475193252" endid="#note-0000000486940640" />
-                            <harm place='above' staff="2" tstamp="10.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                                <f>5</f>
-
-                            </fb></harm>
+                            <harm place="above" staff="2" tstamp="10.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                    <f>5</f>
+                                </fb>
+                            </harm>
                         </measure>
                         <measure xml:id="measure-0000001927056899" n="33">
                             <staff xml:id="staff-0000000132012120" n="1">
@@ -1251,20 +1365,22 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <harm place='above' staff="2" tstamp="4.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                                <f>5</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="9.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="11.000000" vgrp="80"><fb>
-                                <f>6⃥</f>
-
-                            </fb></harm>
+                            <harm place="above" staff="2" tstamp="4.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                    <f>5</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="9.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="11.000000" vgrp="80">
+                                <fb>
+                                    <f>6⃥</f>
+                                </fb>
+                            </harm>
                         </measure>
                         <measure xml:id="measure-0000001766618316" n="34">
                             <staff xml:id="staff-0000000640183974" n="1">
@@ -1287,10 +1403,11 @@
                                 </layer>
                             </staff>
                             <tie xml:id="tie-0000000404741372" startid="#note-0000000050977896" endid="#note-0000000666057020" />
-                            <harm place='above' staff="2" tstamp="10.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                            </fb></harm>
+                            <harm place="above" staff="2" tstamp="10.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                </fb>
+                            </harm>
                         </measure>
                         <measure xml:id="measure-0000000593036998" n="35">
                             <staff xml:id="staff-0000000894702182" n="1">
@@ -1311,18 +1428,21 @@
                                     <note xml:id="note-0000000559639639" dots="1" dur="4" oct="3" pname="g" stem.dir="down" accid.ges="s" />
                                 </layer>
                             </staff>
-                            <harm place='above' staff="2" tstamp="1.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="7.000000" vgrp="80"><fb>
-                                <f>76</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="10.000000" vgrp="80"><fb>
-                                <f>76</f>
-
-                            </fb></harm>
+                            <harm place="above" staff="2" tstamp="1.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="7.000000" vgrp="80">
+                                <fb>
+                                    <f>76</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="10.000000" vgrp="80">
+                                <fb>
+                                    <f>76</f>
+                                </fb>
+                            </harm>
                         </measure>
                         <sb xml:id="sb-0000001200940185" />
                         <measure xml:id="measure-0000001634486648" n="36">
@@ -1344,22 +1464,26 @@
                                     <note xml:id="note-0000000117722315" dur="8" oct="2" pname="g" stem.dir="up" accid.ges="s" />
                                 </layer>
                             </staff>
-                            <harm place='above' staff="2" tstamp="1.000000" vgrp="80"><fb>
-                                <f>76</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="4.000000" vgrp="80"><fb>
-                                <f>76</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="7.000000" vgrp="80"><fb>
-                                <f>7</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="10.000000" vgrp="80"><fb>
-                                <f>7</f>
-
-                            </fb></harm>
+                            <harm place="above" staff="2" tstamp="1.000000" vgrp="80">
+                                <fb>
+                                    <f>76</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="4.000000" vgrp="80">
+                                <fb>
+                                    <f>76</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="7.000000" vgrp="80">
+                                <fb>
+                                    <f>7</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="10.000000" vgrp="80">
+                                <fb>
+                                    <f>7</f>
+                                </fb>
+                            </harm>
                         </measure>
                         <measure xml:id="measure-0000001542485032" n="37">
                             <staff xml:id="staff-0000000269165730" n="1">
@@ -1385,18 +1509,21 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <harm place='above' staff="2" tstamp="1.000000" vgrp="80"><fb>
-                                <f>7</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="4.000000" vgrp="80"><fb>
-                                <f>7</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="10.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                            </fb></harm>
+                            <harm place="above" staff="2" tstamp="1.000000" vgrp="80">
+                                <fb>
+                                    <f>7</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="4.000000" vgrp="80">
+                                <fb>
+                                    <f>7</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="10.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                </fb>
+                            </harm>
                         </measure>
                         <measure xml:id="measure-0000001471672445" n="38">
                             <staff xml:id="staff-0000000865572304" n="1">
@@ -1422,38 +1549,40 @@
                                     <note xml:id="note-0000001221428083" dur="8" oct="3" pname="c" stem.dir="up" accid.ges="s" />
                                 </layer>
                             </staff>
-                            <harm place='above' staff="2" tstamp="1.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                                <f>5</f>
-
-                                <f>2</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="4.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="7.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="9.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                                <f>5</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="10.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                                <f>4</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="12.000000" vgrp="80"><fb>
-                                <f>3</f>
-
-                            </fb></harm>
+                            <harm place="above" staff="2" tstamp="1.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                    <f>5</f>
+                                    <f>2</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="4.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="7.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="9.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                    <f>5</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="10.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                    <f>4</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="12.000000" vgrp="80">
+                                <fb>
+                                    <f>3</f>
+                                </fb>
+                            </harm>
                         </measure>
                         <measure xml:id="measure-0000000437215108" n="39">
                             <staff xml:id="staff-0000001809613686" n="1">
@@ -1505,16 +1634,17 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <harm place='above' staff="2" tstamp="1.000000" vgrp="80"><fb>
-                                <f>7</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="7.000000" vgrp="80"><fb>
-                                <f>7</f>
-
-                                <f>#</f>
-
-                            </fb></harm>
+                            <harm place="above" staff="2" tstamp="1.000000" vgrp="80">
+                                <fb>
+                                    <f>7</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="7.000000" vgrp="80">
+                                <fb>
+                                    <f>7</f>
+                                    <f>#</f>
+                                </fb>
+                            </harm>
                         </measure>
                         <measure xml:id="measure-0000001917565991" n="41">
                             <staff xml:id="staff-0000000036817532" n="1">
@@ -1541,10 +1671,11 @@
                                     <note xml:id="note-0000000546212176" dur="8" oct="3" pname="a" stem.dir="down" accid.ges="s" />
                                 </layer>
                             </staff>
-                            <harm place='above' staff="2" tstamp="10.000000" vgrp="80"><fb>
-                                <f>6⃥</f>
-
-                            </fb></harm>
+                            <harm place="above" staff="2" tstamp="10.000000" vgrp="80">
+                                <fb>
+                                    <f>6⃥</f>
+                                </fb>
+                            </harm>
                         </measure>
                         <measure xml:id="measure-0000000469069174" n="42">
                             <staff xml:id="staff-0000000452497154" n="1">
@@ -1580,10 +1711,11 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <harm place='above' staff="2" tstamp="1.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                            </fb></harm>
+                            <harm place="above" staff="2" tstamp="1.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                </fb>
+                            </harm>
                         </measure>
                         <sb xml:id="sb-0000000573419287" />
                         <measure xml:id="measure-0000000135218864" n="43">
@@ -1615,18 +1747,21 @@
                                     <note xml:id="note-0000000560308510" dur="8" oct="4" pname="d" stem.dir="down" accid.ges="s" />
                                 </layer>
                             </staff>
-                            <harm place='above' staff="2" tstamp="1.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="4.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="7.000000" vgrp="80"><fb>
-                                <f>5</f>
-
-                            </fb></harm>
+                            <harm place="above" staff="2" tstamp="1.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="4.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="7.000000" vgrp="80">
+                                <fb>
+                                    <f>5</f>
+                                </fb>
+                            </harm>
                         </measure>
                         <measure xml:id="measure-0000001014999967" n="44">
                             <staff xml:id="staff-0000000571215293" n="1">
@@ -1655,18 +1790,21 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <harm place='above' staff="2" tstamp="1.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="4.000000" vgrp="80"><fb>
-                                <f>#</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="7.000000" vgrp="80"><fb>
-                                <f>#</f>
-
-                            </fb></harm>
+                            <harm place="above" staff="2" tstamp="1.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="4.000000" vgrp="80">
+                                <fb>
+                                    <f>#</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="7.000000" vgrp="80">
+                                <fb>
+                                    <f>#</f>
+                                </fb>
+                            </harm>
                         </measure>
                         <measure xml:id="measure-0000000649794277" n="45">
                             <staff xml:id="staff-0000001133297421" n="1">
@@ -1689,14 +1827,16 @@
                                     <note xml:id="note-0000000290728056" dur="8" oct="4" pname="d" stem.dir="down" accid.ges="s" />
                                 </layer>
                             </staff>
-                            <harm place='above' staff="2" tstamp="7.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="10.000000" vgrp="80"><fb>
-                                <f>6⃥</f>
-
-                            </fb></harm>
+                            <harm place="above" staff="2" tstamp="7.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="10.000000" vgrp="80">
+                                <fb>
+                                    <f>6⃥</f>
+                                </fb>
+                            </harm>
                         </measure>
                         <pb xml:id="pb-0000001286265968" />
                         <measure xml:id="measure-0000000039101677" n="46">
@@ -1725,20 +1865,22 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <harm place='above' staff="2" tstamp="1.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="4.000000" vgrp="80"><fb>
-                                <f>#</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="10.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                                <f>5</f>
-
-                            </fb></harm>
+                            <harm place="above" staff="2" tstamp="1.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="4.000000" vgrp="80">
+                                <fb>
+                                    <f>#</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="10.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                    <f>5</f>
+                                </fb>
+                            </harm>
                         </measure>
                         <measure xml:id="measure-0000001576823654" n="47">
                             <staff xml:id="staff-0000000052205790" n="1">
@@ -1769,20 +1911,22 @@
                                     <note xml:id="note-0000000398056615" dur="8" oct="2" pname="a" stem.dir="up" accid.ges="s" />
                                 </layer>
                             </staff>
-                            <harm place='above' staff="2" tstamp="4.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="10.000000" vgrp="80"><fb>
-                                <f>6</f>
-
-                                <f>4</f>
-
-                            </fb></harm>
-                            <harm place='above' staff="2" tstamp="12.000000" vgrp="80"><fb>
-                                <f>#</f>
-
-                            </fb></harm>
+                            <harm place="above" staff="2" tstamp="4.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="10.000000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                    <f>4</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="12.000000" vgrp="80">
+                                <fb>
+                                    <f>#</f>
+                                </fb>
+                            </harm>
                         </measure>
                         <measure xml:id="measure-0000001872700788" right="end" n="48">
                             <staff xml:id="staff-0000002014281369" n="1">
