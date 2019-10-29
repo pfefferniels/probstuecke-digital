@@ -2199,6 +2199,7 @@
                                         </verse>
                                     </note>
                                     <note xml:id="note-0000001076809704" dur="8" oct="4" pname="g" stem.dir="up">
+                                        <accid accid="n" />
                                         <verse xml:id="verse-0000001774923226" n="1">
                                             <syl wordpos="t">do</syl>
                                         </verse>
@@ -2221,23 +2222,23 @@
                             <staff xml:id="staff-0000002055537751" n="1">
                                 <layer xml:id="layer-0000002145891911" n="1">
                                     <beam xml:id="beam-0000002022664826">
-                                        <note xml:id="note-0000001563699545" dur="8" oct="4" pname="f" stem.dir="up">
+                                        <note xml:id="note-0000001563699545" dur="8" oct="4" pname="g" stem.dir="up">
                                             <accid accid="f" />
                                             <verse xml:id="verse-0000000656479847" n="1">
                                                 <syl con="d" wordpos="i">ven</syl>
                                             </verse>
                                         </note>
-                                        <note xml:id="note-0000000197593014" dur="8" oct="4" pname="e" stem.dir="up" accid.ges="f">
+                                        <note xml:id="note-0000000197593014" dur="8" oct="4" pname="f" stem.dir="up" accid.ges="f">
                                             <verse xml:id="verse-0000000441688855" n="1">
                                                 <syl wordpos="t">ga</syl>
                                             </verse>
                                         </note>
-                                        <note xml:id="note-0000001929837383" dur="8" oct="4" pname="a" stem.dir="up" accid.ges="f">
-                                            <verse xml:id="verse-0000001617973844" n="1">
-                                                <syl con="u">il</syl>
-                                            </verse>
-                                        </note>
                                     </beam>
+                                    <note xml:id="note-0000001929837383" dur="8" oct="4" pname="a" stem.dir="up" accid.ges="f">
+                                      <verse xml:id="verse-0000001617973844" n="1">
+                                        <syl con="u">il</syl>
+                                      </verse>
+                                    </note>
                                 </layer>
                             </staff>
                             <staff xml:id="staff-0000000926938390" n="2">
@@ -2563,8 +2564,8 @@
                                     <note xml:id="note-0000000326947604" dur="4" oct="3" pname="c" stem.dir="up" />
                                 </layer>
                             </staff>
-                            <dir xml:id="dir-0000000942408096" staff="1" tstamp="2.992188" vgrp="230">
-                                <rend xml:id="rend-0000000217361766" fontstyle="normal" fontweight="bold">Da Capo</rend>
+                            <dir xml:id="dir-0000000942408096" staff="1" tstamp="2.992188" place="within">
+                                <rend xml:id="rend-0000000217361766" fontstyle="normal">Da Capo.</rend>
                             </dir>
                         </measure>
                     </section>
