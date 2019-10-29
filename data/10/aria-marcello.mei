@@ -228,7 +228,7 @@
                                     <beam xml:id="beam-0000000008742549">
                                         <note xml:id="note-0000001273066016" dur="8" oct="3" pname="g" stem.dir="down">
                                             <reg >
-                                                <accid accid="f" />
+                                                <accid accid="f" enclose="brack" />
                                             </reg>
                                         </note>
                                         <note xml:id="note-0000000482508617" dur="8" oct="3" pname="b" stem.dir="down" accid.ges="f" />
@@ -682,11 +682,15 @@
                                 <layer xml:id="layer-0000000157553020" n="1">
                                     <beam xml:id="beam-0000000139416302">
                                         <note xml:id="note-0000000302277523" dur="8" oct="4" pname="d" stem.dir="up">
-                                            <accid accid="f" />
+                                            <reg>
+                                                <accid accid="f" enclose="brack" />
+                                            </reg>
                                         </note>
                                         <note xml:id="note-0000000076787460" dur="8" oct="4" pname="b" stem.dir="up" accid.ges="f" />
                                         <note xml:id="note-0000001674991584" dur="8" oct="4" pname="d" stem.dir="up">
-                                            <accid accid="f" />
+                                          <reg>
+                                              <accid accid.ges="f" />
+                                          </reg>
                                         </note>
                                     </beam>
                                 </layer>
