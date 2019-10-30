@@ -227,8 +227,15 @@ tei-p {
   line-height: 1.5;
 }
 
-tei-emph {
+tei-hi[], tei-hi[rendition="#b"] {
   font-weight: bold;
+}
+
+tei-hi[rendition="#aq"] {
+}
+
+tei-hi[rendition="#i"] {
+  font-style: italic;
 }
 
 tei-head {
