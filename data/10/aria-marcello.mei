@@ -249,7 +249,7 @@
               <staff xml:id="staff-0000000914446367" n="2">
                 <layer xml:id="layer-0000000374476540" n="1">
                   <beam xml:id="beam-0000000008742549">
-                    <note xml:id="note-0000001273066016" dur="8" oct="3" pname="g" stem.dir="down" accid.ges="f"> 
+                    <note xml:id="note-0000001273066016" dur="8" oct="3" pname="g" stem.dir="down" accid.ges="f">
                       <reg>
                         <accid accid="f" enclose="brack" />
                       </reg>
@@ -1692,10 +1692,19 @@
             <measure xml:id="measure-0000001332810412" n="68">
               <staff xml:id="staff-0000001105748506" n="1">
                 <layer xml:id="layer-0000001193994069" n="1">
-                  <note xml:id="note-0000002117553986" dur="8" oct="4" pname="g" stem.dir="up" accid.ges="f" />
+                  <note xml:id="note-0000002117553986" dur="8" oct="4" pname="g" stem.dir="up" accid.ges="f">
+                    <reg>
+                      <accid accid="f" enclose="brack" />
+                    </reg>
+                  </note>
                   <note xml:id="note-0000000876657499" dur="8" oct="4" pname="b" stem.dir="down" accid.ges="f">
                     <verse xml:lang="ita" xml:id="verse-0000001802991605" n="1">
-                      <syl wordpos="t">de</syl>
+                      <syl wordpos="t">
+                        <choice>
+                          <corr confidence="1">do</corr>
+                          <sic>de</sic>
+                        </choice>
+                      </syl>
                     </verse>
                   </note>
                   <note xml:id="note-0000000040320827" dur="8" oct="5" pname="d" stem.dir="down">
