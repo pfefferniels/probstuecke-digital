@@ -685,7 +685,14 @@
               <staff xml:id="staff-0000000030850372" n="1">
                 <layer xml:id="layer-0000001812028381" n="1">
                   <note xml:id="note-0000001290683804" dots="1" dur="4" oct="4" pname="d">
-                    <accid accid="f" />
+                    <choice>
+                      <sic>
+                        <accid accid="f" oloc="4" ploc="f" />
+                      </sic>
+                      <corr confidence="1" resp="#rettinghaus">
+                        <accid accid="f" />
+                      </corr>
+                    </choice>
                   </note>
                 </layer>
               </staff>
