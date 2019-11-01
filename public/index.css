@@ -227,15 +227,24 @@ tei-p {
   line-height: 1.5;
 }
 
-tei-hi[], tei-hi[rendition="#b"] {
+tei-hi[rendition="#aq"] {
+}
+
+tei-hi[rendition="#b"] {
   font-weight: bold;
 }
 
-tei-hi[rendition="#aq"] {
+tei-hi[rendition="#c"] {
+  display: block;
+  text-align: center;
 }
 
 tei-hi[rendition="#i"] {
   font-style: italic;
+}
+
+tei-hi[rendition="#k"] {
+  font-variant: small-caps;
 }
 
 tei-head {
