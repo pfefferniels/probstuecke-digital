@@ -2017,8 +2017,10 @@
                             </staff>
                             <staff xml:id="staff-0000001579252876" n="2">
                                 <layer xml:id="layer-0000000529316857" n="1">
-                                    <note xml:id="note-0000001045565359" dur="4" oct="3" pname="f">
-                                        <accid xml:id="accid-0000001037953299" accid="x" accid.ges="ss" />
+                                    <note xml:id="note-0000001045565359" dur="4" oct="3" pname="f" accid.ges="ff">
+                                        <reg resp="#rettinghaus">
+                                            <accid enclose="brack" accid="x" />
+                                        </reg>
                                     </note>
                                     <rest xml:id="rest-0000001003455284" dur="8" />
                                 </layer>
