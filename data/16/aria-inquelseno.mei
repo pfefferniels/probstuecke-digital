@@ -29,16 +29,17 @@
         <body>
             <mdiv xml:id="mdiv-0000000865615733">
                 <score xml:id="score-0000000340989726">
-                    <scoreDef xml:id="scoredef-0000000210982282">
+                    <scoreDef key.pname="e" key.mode="major" mnum.visible="false">
                         <pgHead type="title">
                             <rend halign="left">ARIA.</rend>
                         </pgHead>
-                        <staffGrp xml:id="staffgrp-0000000859162580">
-                            <staffDef xml:id="staffdef-0000000680846677" clef.shape="G" clef.line="2" key.mode="major" key.sig="3s" meter.count="3" meter.unit="8" n="1" lines="5" />
-                            <staffDef xml:id="staffdef-0000001975092576" clef.shape="F" clef.line="4" key.mode="major" key.sig="3s" meter.count="3" meter.unit="8" n="2" lines="5" />
+                        <staffGrp>
+                            <staffDef clef.shape="G" clef.line="2" key.sig="3s" meter.count="3" meter.unit="8" n="1" lines="5" />
+                            <staffDef clef.shape="F" clef.line="4" key.sig="3s" meter.count="3" meter.unit="8" n="2" lines="5" />
                         </staffGrp>
                     </scoreDef>
                     <section xml:id="section-0000000197742071">
+                        <pb n="396" />
                         <measure xml:id="measure-0000000239654491" n="1">
                             <staff xml:id="staff-0000001926831172" n="1">
                                 <layer xml:id="layer-0000000514006407" n="1">
@@ -221,6 +222,7 @@
                                 </layer>
                             </staff>
                         </measure>
+                        <sb />
                         <measure xml:id="measure-0000001507272729" n="8">
                             <staff xml:id="staff-0000001742638443" n="1">
                                 <layer xml:id="layer-0000001579207053" n="1">
@@ -421,6 +423,7 @@
                             </staff>
                             <tie xml:id="tie-0000000742529244" startid="#note-0000001846882140" endid="#note-0000000273072535" />
                         </measure>
+                        <sb />
                         <measure xml:id="measure-0000000461963604" n="16">
                             <staff xml:id="staff-0000001586901545" n="1">
                                 <layer xml:id="layer-0000000849375402" n="1">
@@ -589,6 +592,7 @@
                                 </layer>
                             </staff>
                         </measure>
+                        <sb />
                         <measure xml:id="measure-0000000198800372" n="23">
                             <staff xml:id="staff-0000001978225040" n="1">
                                 <layer xml:id="layer-0000000647103102" n="1">
@@ -763,6 +767,7 @@
                                 </layer>
                             </staff>
                         </measure>
+                        <pb n="397" />
                         <measure xml:id="measure-0000000593633234" n="30">
                             <staff xml:id="staff-0000000642183619" n="1">
                                 <layer xml:id="layer-0000000449560302" n="1">
@@ -950,6 +955,7 @@
                                 </layer>
                             </staff>
                         </measure>
+                        <sb />
                         <measure xml:id="measure-0000000955932290" n="37">
                             <staff xml:id="staff-0000001857685944" n="1">
                                 <layer xml:id="layer-0000001861702224" n="1">
@@ -1083,6 +1089,7 @@
                                 </layer>
                             </staff>
                         </measure>
+                        <sb />
                         <measure xml:id="measure-0000001138848111" n="43">
                             <staff xml:id="staff-0000000872800004" n="1">
                                 <layer xml:id="layer-0000000458992063" n="1">
@@ -1233,6 +1240,7 @@
                                 </layer>
                             </staff>
                         </measure>
+                        <sb />
                         <measure xml:id="measure-0000001000940254" n="50">
                             <staff xml:id="staff-0000000579610351" n="1">
                                 <layer xml:id="layer-0000000324775707" n="1">
@@ -1386,6 +1394,7 @@
                                 </layer>
                             </staff>
                         </measure>
+                        <pb n="398" />
                         <measure xml:id="measure-0000001072804330" n="57">
                             <staff xml:id="staff-0000000792507987" n="1">
                                 <layer xml:id="layer-0000000848800550" n="1">
@@ -1557,6 +1566,7 @@
                                 </layer>
                             </staff>
                         </measure>
+                        <sb />
                         <measure xml:id="measure-0000001025935675" n="65">
                             <staff xml:id="staff-0000001535242275" n="1">
                                 <layer xml:id="layer-0000000692110431" n="1">
@@ -1753,6 +1763,7 @@
                                 </layer>
                             </staff>
                         </measure>
+                        <sb />
                         <measure xml:id="measure-0000001224571258" n="73">
                             <staff xml:id="staff-0000001160951432" n="1">
                                 <layer xml:id="layer-0000000090392196" n="1">
@@ -1903,6 +1914,7 @@
                                 </layer>
                             </staff>
                         </measure>
+                        <sb />
                         <measure xml:id="measure-0000000874463434" n="79">
                             <staff xml:id="staff-0000000724017121" n="1" visible="true">
                                 <layer xml:id="layer-0000000375858483" n="1">
@@ -2045,8 +2057,11 @@
                                     <note xml:id="note-0000000505744868" dots="1" dur="4" oct="2" pname="g" accid.ges="s" />
                                 </layer>
                             </staff>
-                            <dir xml:id="dir-0000001775414095" staff="1" tstamp="1.000000" vgrp="223">
-                                <rend xml:id="rend-0000002032373905" fontfam="Plantin MT Std" fontstyle="normal" fontweight="bold">Da Capo.</rend>
+                            <dir staff="1" tstamp="4" place="within">
+                                <rend fontstyle="normal">Da Capo.</rend>
+                            </dir>
+                            <dir staff="2" tstamp="4" place="within">
+                                <rend fontstyle="normal">Da Capo.</rend>
                             </dir>
                         </measure>
                     </section>
