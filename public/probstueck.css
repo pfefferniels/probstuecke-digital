@@ -64,7 +64,7 @@ svg {
   position: absolute;
   display: flex;
   justify-content: center;
-  float:left;
+  float: left;
   left: 0px;
   width: 50%;
   height: 95vh;
@@ -109,18 +109,19 @@ input[type="number"] {
 }
 
 @keyframes highlight {
-    0% {
-        background: #f4a742;
-        opacity: 0.8;
-    }
-    100% {
-        background: none;
-        opacity: 0.3;
-    }
+  0% {
+    background: #f4a742;
+    opacity: 0.8;
+  }
+
+  100% {
+    background: none;
+    opacity: 0.3;
+  }
 }
 
 .highlight {
-    animation: highlight 4s;
+  animation: highlight 4s;
 }
 
 a {
@@ -163,8 +164,7 @@ tei-p {
   text-indent: 2em;
 }
 
-tei-hi[rendition="#aq"] {
-}
+tei-hi[rendition="#aq"] {}
 
 tei-hi[rendition="#b"] {
   font-weight: bold;
@@ -190,12 +190,12 @@ tei-head {
   text-align: center;
 }
 
-tei-body > tei-head {
+tei-body>tei-head {
   font-size: 1.5em;
   text-indent: -0.5em;
 }
 
-tei-graphic > img {
+tei-graphic>img {
   width: 80%;
 }
 
