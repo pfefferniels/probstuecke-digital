@@ -557,10 +557,6 @@ $(document).ready(function() {
     $("#contents-table").addClass("visible-table").show();
   });
   
-  // Hiding the contents when viewing a particular Probstück. 
-  // On all the other pages it is displayed by default.
-  $("#contents-table").hide(); 
-
   updateView(true);
 });
 
