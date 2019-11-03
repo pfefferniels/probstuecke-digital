@@ -445,14 +445,26 @@ app.get('^/:number([0-9]{1,2})', function(req, res) {
   if (req.params.number > 24) {
     res.status("404").send("Prob-Stück " + req.params.number + " does not exist.");
   } else {
-    res.render('index', {
+    res.render('probstueck', {
       number: req.params.number
      });
   }
 });
 
 app.get('/', function(req, res) {
-  res.render('introduction');
+  res.render('frontpage');
+});
+
+app.get('/howto', function(req, res) {
+  res.render('howto');
+});
+
+app.get('/guidelines', function(req, res) {
+  res.render('guidelines');
+});
+
+app.get('/contributions', function(req, res) {
+  res.render('contributions');
 });
 
 app.use(express.static('public'));
