@@ -193,7 +193,12 @@
                                     <space xml:id="m-127" dur="8" />
                                 </layer>
                             </staff>
-                            <harm place="above" staff="2" startid="m-122">
+                            <harm place="above" staff="2" tstamp="4" xml:id="fb-04-01">
+                                <fb>
+                                    <f>7</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="5" xml:id="fb-04-02">
                                 <fb>
                                     <f>76</f>
                                 </fb>
@@ -250,7 +255,9 @@
                                     <beam xml:id="m-158">
                                         <note xml:id="m-157" dur="8" oct="3" pname="c" />
                                         <note xml:id="m-159" dur="16" oct="3" pname="d">
-                                            <accid xml:id="m-160" accid="n" />
+                                            <supplied resp="#pfeffer">
+                                                <accid xml:id="m-160" accid="n" func="caution"/>
+                                            </supplied>
                                         </note>
                                         <note xml:id="m-161" dur="16" oct="3" pname="e">
                                             <accid xml:id="m-162" accid="n" />
