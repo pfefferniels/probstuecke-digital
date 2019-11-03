@@ -307,7 +307,7 @@ var AnnotationToPDF = {
     var children = tree.childNodes;
     for (let i=0; i<children.length; i++) {
       if (children[i].nodeName === "#text") {
-        // for now, treat them all the same.
+        // for now, treat them all as normal text.
         if (children[i].parentNode.nodeName === "p" ||
             children[i].parentNode.nodeName === "ref" ||
             children[i].parentNode.nodeName === "foreign") {
@@ -316,7 +316,8 @@ var AnnotationToPDF = {
             continued: true,
             lineGap: 10
           });
-        } else if (children[i].parentNode.nodeName === "emph") {
+        } else if (children[i].parentNode.nodeName === "hi" ||
+                   children[i].parentNode.nodeName === "emph") {
           this.pdfDoc.font("Times-Bold").text(children[i].textContent, {
             align: 'justify',
             continued: true,
@@ -401,11 +402,16 @@ app.get("/download", function(req, res) {
 
         // PDFKit will realize the newlines in the original TEI file as new paragraphs. To prevent,
         // all line breaks have to be removed first.
-        var annotationDoc = new DOMParser().parseFromString(data.toString().replace(/\s\s+/g, ' '), 'text/xml');
-        var converter = Object.create(AnnotationToPDF);
+        let annotationDoc = new DOMParser().parseFromString(data.toString().replace(/\s\s+/g, ' '), 'text/xml');
+        let textElement = annotationDoc.documentElement.getElementsByTagName("text");
+        if (!textElement.length) {
+          res.status("404").end();
+        }
+        
+        let converter = Object.create(AnnotationToPDF);
         converter.nr = req.query.nr;
         converter.pdfDoc = doc;
-        converter.traverse(annotationDoc);
+        converter.traverse(textElement[0]);
 
         doc.end();
       });
