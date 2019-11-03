@@ -99,9 +99,14 @@
                                     <space xml:id="m-56" dur="8" />
                                 </layer>
                             </staff>
-                            <harm place="above" staff="2" startid="m-53" xml:id="fb-1">
+                            <harm place="above" staff="2" tstamp="4" xml:id="fb-01-01">
                                 <fb>
-                                    <f>76</f>
+                                    <f>7</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="5" xml:id="fb-01-02">
+                                <fb>
+                                    <f>6</f>
                                 </fb>
                             </harm>
                         </measure>
@@ -129,9 +134,14 @@
                                     <space xml:id="m-79" dur="8" />
                                 </layer>
                             </staff>
-                            <harm place="above" staff="2" startid="m-76">
+                            <harm place="above" staff="2" tstamp="4" xml:id="fb-02-01">
                                 <fb>
-                                    <f>76♭</f>
+                                    <f>7</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="5" xml:id="fb-02-02">
+                                <fb>
+                                    <f>6♭</f>
                                 </fb>
                             </harm>
                         </measure>
@@ -159,9 +169,14 @@
                                     <space xml:id="m-104" dur="8" />
                                 </layer>
                             </staff>
-                            <harm place="above" staff="2" startid="m-99">
+                            <harm place="above" staff="2" tstamp="4" xml:id="fb-03-01">
                                 <fb>
-                                    <f>76</f>
+                                    <f>7</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="5" xml:id="fb-03-02">
+                                <fb>
+                                    <f>6</f>
                                 </fb>
                             </harm>
                         </measure>
@@ -200,7 +215,7 @@
                             </harm>
                             <harm place="above" staff="2" tstamp="5" xml:id="fb-04-02">
                                 <fb>
-                                    <f>76</f>
+                                    <f>6</f>
                                 </fb>
                             </harm>
                         </measure>
@@ -232,12 +247,12 @@
                                     <space xml:id="m-150" dur="8" />
                                 </layer>
                             </staff>
-                            <harm place="above" staff="2" startid="m-134">
+                            <harm place="above" staff="2" tstamp="1" xml:id="fb-05-01">
                                 <fb>
                                     <f>♭</f>
                                 </fb>
                             </harm>
-                            <harm place="above" staff="2" startid="m-147">
+                            <harm place="above" staff="2" tstamp="4" xml:id="fb-05-02">
                                 <fb>
                                     <f>7</f>
                                     <f>♮</f>
@@ -272,12 +287,12 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <harm place="above" staff="2" startid="m-157">
+                            <harm place="above" staff="2" tstamp="1" xml:id="fb-06-01">
                                 <fb>
                                     <f>♮</f>
                                 </fb>
                             </harm>
-                            <harm place="above" staff="2" startid="m-165">
+                            <harm place="above" staff="2" tstamp="4" xml:id="fb-06-02">
                                 <fb>
                                     <f>6</f>
                                 </fb>
@@ -310,17 +325,17 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <harm place="above" staff="2" startid="m-177">
+                            <harm place="above" staff="2" tstamp="1" xml:id="fb-07-01">
                                 <fb>
                                     <f>6</f>
                                 </fb>
                             </harm>
-                            <harm place="above" staff="2" startid="m-181">
+                            <harm place="above" staff="2" tstamp="3" xml:id="fb-07-02">
                                 <fb>
                                     <f>♭</f>
                                 </fb>
                             </harm>
-                            <harm place="above" staff="2" startid="m-183">
+                            <harm place="above" staff="2" tstamp="4" xml:id="fb-07-03">
                                 <fb>
                                     <f>♮</f>
                                 </fb>
@@ -352,7 +367,7 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <harm place="above" staff="2" startid="m-203">
+                            <harm place="above" staff="2" tstamp="4" xml:id="fb-08-01">
                                 <fb>
                                     <f>6</f>
                                 </fb>
@@ -383,7 +398,7 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <harm place="above" staff="2" startid="m-225">
+                            <harm place="above" staff="2" tstamp="1" xml:id="fb-09-01">
                                 <fb>
                                     <f>♭6</f>
                                 </fb>
@@ -415,7 +430,7 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <harm place="above" staff="2" startid="m-247">
+                            <harm place="above" staff="2" tstamp="4" xml:id="fb-10-01">
                                 <fb>
                                     <f>6</f>
                                 </fb>
@@ -446,7 +461,7 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <harm place="above" staff="2" startid="m-268">
+                            <harm place="above" staff="2" tstamp="4" xml:id="fb-11-01">
                                 <fb>
                                     <f>6</f>
                                 </fb>
@@ -469,19 +484,21 @@
                                             <accid xml:id="m-292" accid="n" />
                                         </note>
                                         <note xml:id="m-293" dur="16" oct="3" pname="d">
-                                            <accid xml:id="m-294" accid="n" />
+                                          <supplied resp="#pfeffer">
+                                              <accid xml:id="m-294" accid="n" func="caution"/>
+                                          </supplied>
                                         </note>
                                     </beam>
                                     <note xml:id="m-295" dur="4" oct="3" pname="c" />
                                     <rest xml:id="m-296" dur="8" />
                                 </layer>
                             </staff>
-                            <harm place="above" staff="2" startid="m-284">
+                            <harm place="above" staff="2" tstamp="1" xml:id="fb-12-01">
                                 <fb>
                                     <f>♭</f>
                                 </fb>
                             </harm>
-                            <harm place="above" staff="2" startid="m-295">
+                            <harm place="above" staff="2" tstamp="4" xml:id="fb-12-02">
                                 <fb>
                                     <f>♮</f>
                                 </fb>
