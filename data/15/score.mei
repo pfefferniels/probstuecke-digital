@@ -2266,6 +2266,13 @@
                                         <note xml:id="note-0000000538984530" dur="16" oct="3" pname="b" stem.dir="down" accid.ges="f" />
                                         <note xml:id="note-0000000779035972" dur="16" oct="4" pname="c" stem.dir="down" />
                                     </beam>
+                                    <choice>
+                                        <corr confidence="1" resp="#rettinghaus"></corr>
+                                        <sic>
+                                            <barLine/>
+                                        </sic>
+                                    </choice>
+                                    <clef shape="C" line="4" />
                                     <beam xml:id="beam-0000001013392778">
                                         <note xml:id="note-0000001842517319" dur="8" oct="4" pname="d" stem.dir="down" accid.ges="f" />
                                         <note xml:id="note-0000001350299331" dur="8" oct="4" pname="g" stem.dir="down">
@@ -2297,7 +2304,6 @@
                                 </layer>
                             </staff>
                             <staff xml:id="staff-0000000533730066" n="2">
-                                <clef shape="C" line="4" />
                                 <layer xml:id="layer-0000000352221068" n="1">
                                     <beam xml:id="beam-0000001421856602">
                                         <note xml:id="note-0000001919859998" dur="8" oct="4" pname="c" stem.dir="down" />
