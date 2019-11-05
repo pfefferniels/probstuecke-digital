@@ -72,7 +72,7 @@
                         </staffGrp>
                     </scoreDef>
                     <section xml:id="section-0000001678136450">
-                        <measure xml:id="measure-0000000308092062" n="0">
+                        <measure xml:id="measure-0000000308092062" metcon="false">
                             <staff xml:id="staff-0000000951353407" n="1">
                                 <layer xml:id="layer-0000000786294745" n="1">
                                     <rest xml:id="rest-0000001572955975" dur="1" />
@@ -2450,7 +2450,7 @@
                                 </fb>
                             </harm>
                         </measure>
-                        <measure xml:id="measure-0000000064748466" right="end" n="92">
+                        <measure xml:id="measure-0000000064748466" right="end" n="92" metcon="false">
                             <staff xml:id="staff-0000001469732284" n="1">
                                 <layer xml:id="layer-0000001621149895" n="1">
                                     <mRest xml:id="mrest-0000000073125072" />
@@ -2459,10 +2459,11 @@
                             <staff xml:id="staff-0000001958190834" n="2">
                                 <layer xml:id="layer-0000001142113686" n="1">
                                     <note xml:id="note-0000001726533915" dur="4" oct="3" pname="f" stem.dir="down" />
-                                    <rest xml:id="rest-0000001170685611" dur="4" />
                                 </layer>
                             </staff>
-                            <dir staff="2" tstamp="2.996094" vgrp="90">Da Capo.</dir>
+                            <dir staff="2" tstamp="2" place="within">
+                                <rend fontstyle="normal">Da Capo</rend>
+                            </dir>
                         </measure>
                     </section>
                 </score>
