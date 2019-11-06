@@ -254,7 +254,7 @@ function reconnectCrossRefs() {
   $("tei-ref").each(function() {
     // find target in SVG
     let targetAttr = $(this).attr("target");
-    let target = $("svg").find("#" + targetAttr);
+    let target = $("svg").find(targetAttr);
     let teiRef = $(this);
     if (target.length === 0) {
       console.log("corresponding SVG element not found on this page.");
@@ -556,7 +556,7 @@ $(document).ready(function() {
     $("#options-table").hide();
     $("#contents-table").addClass("visible-table").show();
   });
-  
+
   updateView(true);
 });
 
