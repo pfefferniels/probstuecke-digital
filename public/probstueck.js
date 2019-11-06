@@ -405,56 +405,73 @@ function disconnectFacsimileTooltips() {
 }
 
 // connecting transcription and facsimile
-function connectFacsimileTooltips() {
+async function connectFacsimileTooltips() {
   if (!$("#show-tooltips").is(':checked')) {
     return;
   }
 
-  $("tei-body").find("tei-graphic img").each(function() {
-    let surface = $(this).parent().parent();
-    let url = $(this).attr("src");
+  let iiif;
+  try {
+    iiif = await $.get("iiif/" + number + "/list/" + "facsimile_de");
+  } catch(e) {
+    printError("Could not loud IIIF AnnotationList");
+    return;
+  }
 
-    surface.children("tei-zone").each(function() {
-      const zone = $(this),
-            ulx = zone.attr("ulx"),
-            uly = zone.attr("uly"),
-            lrx = zone.attr("lrx"),
-            lry = zone.attr("lry");
+  iiif.resources.forEach(async function(r) {
+    let canvasUri = r.on;
+    if (!canvasUri) {
+      return;
+    }
 
-      let corresp = $(this).attr("corresp");
-      let prevCorresp = $(this).prev().attr("corresp");
-      if (!prevCorresp) {
-        prevCorresp = $(this).parent().prev().find("tei-zone").last().attr("corresp");
-      }
+    // extract the X, Y, width and height from the annotation
+    // if no region is given, we are dealing with full page annotation on a <pb>
+    let xywhParam = "";
+    let xywhMatch = canvasUri.match(/#xywh=((\d)+,(\d)+,(\d)+,(\d)+)/);
+    if (xywhMatch) {
+      xywhParam = xywhMatch[1];
+    }
 
-      var target = $("body").find(corresp);
-      if (target.length > 0) {
-        if (prevCorresp != corresp) {
-          target.off("mouseenter");
-        }
+    // extract the identifier from the annotation
+    let idMatch = canvasUri.match(/\/(bsb(\d)+)\//);
+    if (!idMatch) {
+      return;
+    }
+    let identifier = idMatch[1];
 
-        target.mouseenter(function(e) {
-          if (prevCorresp != corresp) {
-            positionAtMouse($("#tooltips"), e);
-          } else {
-            $("<div class='system-break'>⤶</div>").appendTo("#tooltips");
-          }
-          $("<div class='tooltip' />").css({
-            backgroundImage: "url(" + url + ")",
-            backgroundPosition: (-ulx) + "px " + (-uly) + "px",
-            width: lrx-ulx,
-            height: lry-uly
-          }).appendTo("#tooltips");
-          positionAtMouse($("#tooltips"), e);
-        }).mouseleave(function() {
-          $("#tooltips").empty();
-        });
-      }
-    });
-  }).each(function() {
-    if(this.complete) { $(this).trigger('load'); }
+    // extract scan number
+    let scanMatch = canvasUri.match(/canvas\/((\d)+)#/);
+    if (!scanMatch) {
+      return;
+    }
+    let scan = scanMatch[1].padStart(5, "0");
+
+    // create an Image API URI from the given information
+    let imageApiUri = [
+      "https://api.digitale-sammlungen.de/iiif/image/v2",
+      (identifier + '_' + scan),
+      xywhParam,
+      "full",
+      "0",
+      "default.jpg"].join("/"); // here we might define gray or color according to the
+                                // users choice.
+
+    // extract what is actually annotating the canvas region
+    let rTarget = r.resource["@id"];
+
+    // presuming that the XPath inside xpointer() is always following the same scheme
+    let targetMatch = rTarget.match(/xml:id='(.+)'\]/);
+    let xmlId = targetMatch[1];
+    if (xmlId) {
+      var target = $("#" + xmlId);
+      target.mouseenter(function(e) {
+        $("<img class='tooltip' src='" + imageApiUri + "' />").appendTo("#tooltips");
+        positionAtMouse($("#tooltips"), e);
+      }).mouseleave(function() {
+        $("#tooltips").empty();
+      });
+    }
   });
-
 
   // temporary code for allowing faster MEI editing
   $("svg").find(".measure").on("click", function() {
@@ -556,7 +573,7 @@ $(document).ready(function() {
     $("#options-table").hide();
     $("#contents-table").addClass("visible-table").show();
   });
-  
+
   updateView(true);
 });
 
