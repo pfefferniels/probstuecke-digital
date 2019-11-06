@@ -288,12 +288,90 @@ app.get('/render', function (req, res) {
     jsonResponse.pageCount = vrvToolkit.getPageCount();
     jsonResponse.midi = vrvToolkit.renderToMIDI();
     jsonResponse.timemap = vrvToolkit.renderToTimemap();
-    res.send(jsonResponse);
+    res.json(jsonResponse);
   }, function(err) {
     // on error
     res.status("500").send(err);
   });
 });
+
+var AnnotationToPDF = {
+  nr: 0,
+  pdfDoc: undefined,
+  normalFontSize: 34,
+  _resetTextCursor() {
+    this.pdfDoc.text("", {continued: false});
+  },
+
+  traverse: function(tree) {
+    var children = tree.childNodes;
+    for (let i=0; i<children.length; i++) {
+      if (children[i].nodeName === "#text") {
+        // for now, treat them all as normal text.
+        if (children[i].parentNode.nodeName === "p" ||
+            children[i].parentNode.nodeName === "ref" ||
+            children[i].parentNode.nodeName === "foreign") {
+          this.pdfDoc.font("Times-Roman").fontSize(this.normalFontSize).text(children[i].textContent, {
+            align: 'justify',
+            continued: true,
+            lineGap: 10
+          });
+        } else if (children[i].parentNode.nodeName === "hi" ||
+                   children[i].parentNode.nodeName === "emph") {
+          this.pdfDoc.font("Times-Bold").text(children[i].textContent, {
+            align: 'justify',
+            continued: true,
+            lineGap: 10
+          });
+        }
+      } else if ((children[i].nodeName === "note") ||
+                 (children[i].nodeName === "teiHeader")) {
+        // notes and meta information are ignored for now.
+        continue;
+      } else if (children[i].nodeName === "head") {
+        // no further subchildren are expected
+        this.pdfDoc.moveDown(2);
+        this._resetTextCursor();
+        this.pdfDoc.font("Times-Bold").fontSize(this.normalFontSize+5).text(children[i].textContent, {
+          align: 'center',
+          continued: false,
+          lineGap: 30
+        });
+      } else if (children[i].nodeName === "ptr" && children[i].parentNode.nodeName === "notatedMusic") {
+        // load music examples
+        let target = children[i].attributes[0].value;
+        let contents = fs.readFileSync(__dirname + "/data/" + this.nr + "/" + target, 'utf8');
+
+        vrvToolkit.setOptions({
+          adjustPageHeight: 1,
+          noFooter: 1
+        });
+        vrvToolkit.loadData(contents);
+        let pageCount = vrvToolkit.getPageCount();
+        for (let j=1; j<=pageCount; ++j) {
+          if (pageCount > 1) {
+            this.pdfDoc.addPage();
+          }
+          let svg = vrvToolkit.renderToSVG(j, {});
+
+          // find the page height
+          let regexResult = svg.match(/<svg width="(\d)+px" height="((\d)+)px"/);
+          if (regexResult.length < 3) {
+            console.error("The generated SVG has an unexpected format.");
+            continue;
+          }
+          let pageHeight = regexResult[2];
+
+          this.pdfDoc.addSVG(svg, this.pdfDoc.x, this.pdfDoc.y);
+          this.pdfDoc.y += pageHeight * 0.72 + 10;
+        }
+        this._resetTextCursor();
+      } else {
+        this.traverse(children[i]);
+      }
+    }
+  }
+};
 
 var AnnotationToPDF = {
   nr: 0,
@@ -407,7 +485,7 @@ app.get("/download", function(req, res) {
         if (!textElement.length) {
           res.status("404").end();
         }
-        
+
         let converter = Object.create(AnnotationToPDF);
         converter.nr = req.query.nr;
         converter.pdfDoc = doc;
@@ -432,6 +510,24 @@ app.get('/description', function(req, res) {
   }
 
   res.sendFile(__dirname + '/data/' + req.query.nr + '/description.json', function(err) {
+    if (err) {
+      console.log(err);
+      res.status("404").end();
+      return;
+    }
+  });
+});
+
+// provide a simple AnnotationList service in the
+// recommended URI pattern: /{prefix}/{identifier}/list/{name}
+app.get('^/iiif/:number([0-9]{1,2})/list/:name', function(req, res) {
+  if (isNaN(req.params.number)) {
+    console.log("invalid query number passed.");
+    res.status("404").end();
+    return;
+  }
+
+  res.sendFile(__dirname + '/data/' + req.params.number + '/' + req.params.name + '.json', function(err) {
     if (err) {
       console.log(err);
       res.status("404").end();
