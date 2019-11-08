@@ -13,13 +13,13 @@
       </sourceDesc>
     </fileDesc>
   </teiHeader>
-  <text>
+  <facsimile decls="#secondEdition"><surface ulx="0" uly="0" lrx="1998" lry="2396" xml:id="facs-p402"><graphic width="1998" height="2396" target="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/402"/><zone ulx="125" uly="329" lrx="965" xml:id="facsZone-p1-1"/><zone ulx="123" uly="962" lrx="2237" xml:id="facsZone-p2-1"/></surface><surface ulx="0" uly="0" lrx="1998" lry="2396" xml:id="facs-p403"><graphic width="1998" height="2396" target="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/403"/><zone ulx="87" uly="146" lrx="725" xml:id="facsZone-p2-1-2"/><zone ulx="75" uly="710" lrx="1142" xml:id="facsZone-p3-1"/><zone ulx="396" uly="1121" lrx="1676" xml:id="facsZone-music-example1"/><zone ulx="57" uly="1652" lrx="2231" xml:id="facsZone-p4-1"/></surface></facsimile><text>
     <body>
       <div n="0" type="chapter">
       <head>Erläuterung</head>
       <div n="1" type="section">
         <head>§. 1.</head>
-        <p xml:id="p1-1">
+        <p xml:id="p1-1" facs="#facsZone-p1-1">
           <hi rendition="#in">D</hi>A ist gut General-Baß spielen, wenn nicht mehr Ziffern vorkommen, als in diesem Exempel. Ey! wie wird sich mancher
           freuen, daß die Zahlen so dünn gesäet sind. Die Warheit<note type="footnote">sic</note> zu gestehen, ich muß den guten
           Leuten auch dann und wann gönnen, daß sie Athem schöpffen; sonst würde es ihnen allzu sauer. Es könnte aber doch
@@ -30,7 +30,7 @@
       </div>
       <div n="2" type="section">
         <head>§. 2.</head>
-        <p xml:id="p2-1">
+        <p xml:id="p2-1" facs="#facsZone-p2-1 #facsZone-p2-1-2">
           Sonst kann ich wol sagen, daß in gegenwärtiger Vorschrift mehrentheils auf die so nützliche Beförderung, einer guten Ordnung
           der lauffenden Finger gesehen worden: massen man sich, bey vorfallender Gelegenheit, sonderlich,
           wenn der Baß viel unterwerts läufft, nicht genug über das garstige <hi rendition="#b">Stolpern</hi> etlicher
@@ -57,21 +57,21 @@
 
       <div n="3" type="section">
         <head>§. 3.</head>
-        <p xml:id="p3-1">
+        <p xml:id="p3-1" facs="#facsZone-p3-1">
           Im <ref target="#m-407">zehnten</ref> und <ref target="#m-438">folgenden Tact</ref> schlägt die rechte Hand allemahl vor, wo die Pause
           stehet, solches giebt eine gar angenehme Brechung. Im <ref target="#m-603">siebenzehnten Tact</ref> aber wird es umgekehrt,
           und da schlägt der Baß seine ehrbaren Viertel voran, wozu die rechte Hand, mit den Signaturen oder Accorden, auf die
           vorige Weise syncopirt. Eben. also wird es mit allen vorkommenden Vierteln gehalten, die durch Sechzehn-Theile abgehöst
           werden, etwa auf diese Art:
         </p>
-        <notatedMusic xml:id="music-example1">
-          <ptr target="music-example1.mei" />
+        <notatedMusic xml:id="music-example1" facs="#facsZone-music-example1">
+          <ptr target="music-example1.mei"/>
         </notatedMusic>
       </div>
 
       <div n="4" type="section">
         <head>§. 4.</head>
-        <p xml:id="p4-1">
+        <p xml:id="p4-1" facs="#facsZone-p4-1">
           Wobey ebenfalls zu mercken: daß alle dergleichen Brechungen um so viel angenehmer klingen, je weiter die Intervalle
           voneinander entlegen sind: solche müssen wol nie kleiner werden, als eine Quarte. denn die Verhältniß der Tertzen
           (zumahl in der rechten Hand) klingt gar zu enge, und kann fast nicht gebraucht werden. Wenn demnach im
