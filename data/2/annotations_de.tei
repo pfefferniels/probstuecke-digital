@@ -3,7 +3,7 @@
   <teiHeader>
     <fileDesc>
       <titleStmt>
-        <title type="part">Mattheson: Der Ober-Classe Erstes Probstück</title>
+        <title type="part">Mattheson: Der Ober-Classe Zweites Probstück</title>
       </titleStmt>
       <publicationStmt>
         <p>Niels Pfeffer</p>
@@ -27,6 +27,13 @@
       <zone ulx="66" uly="308" lrx="677" xml:id="facsZone-p3-1"/>
       <zone ulx="69" uly="677" lrx="1025" xml:id="facsZone-p4-1"/>
       <zone ulx="60" uly="1013" lrx="2105" xml:id="facsZone-music-example2"/>
+    </surface>
+    <surface ulx="0" uly="0" lrx="1998" lry="2396" xml:id="facs-p398">
+      <graphic width="1998" height="2396" target="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/398"/>
+      <zone ulx="117" uly="167" lrx="629" xml:id="facsZone-p5-1"/>
+      <zone ulx="117" uly="626" lrx="1184" xml:id="facsZone-p6-1"/>
+      <zone ulx="120" uly="1181" lrx="1835" xml:id="facsZone-music-example3"/>
+      <zone ulx="117" uly="1805" lrx="2210" xml:id="facsZone-p7-1"/>
     </surface>
   </facsimile>
   <text>
@@ -94,7 +101,7 @@
 
               <div n="5" type="section">
                 <head>§. 5.</head>
-                <p xml:id="p5-1">
+                <p xml:id="p5-1" facs="#facsZone-p5-1">
                   Wie man vor allen Dingen den schon oben angemerckten achten Tact, wegen Anbringung des Haupt-Satzes im Discant, wol zu beobachten
                   hat, also scheinet in den folgenden sechszehnten, siebenzehnten und achtzehnten auch nöthig zu seyn, deßwegen eine kleine Erinnerung
                   zu thun. Dreimahl kömmt das Thema da vor: das erste hebt im f, das andere gleich darauf im b,
@@ -105,7 +112,7 @@
 
               <div n="6" type="section">
                 <head>§. 6.</head>
-                <p xml:id="p6-1">
+                <p xml:id="p6-1" facs="#facsZone-p6-1">
                   Was die Achtel im <ref target="#m-1051">drey- und zwantzigsten</ref> bis <ref target="#m-1212">sechs und zwantzigsten Tact</ref> betrifft,
                   so ist leicht so [zu] schließen, daß, bey so bunter
                   Art zu spielen, man daselbst nicht müßig seyn könne. Es sind aber unzählige Veränderungen und gebrochene Sachen anzubringen, die alle
@@ -113,14 +120,14 @@
                   Denn diese Aufgaben sind nicht nur so für sich allein etwas bunt eingerichtet; sondern es sind allgemeine Lehren darinnen begriffen, die
                   man bey allerhand besondern Vorfällen anzubringen lernen muß.
                 </p>
-                <notatedMusic xml:id="music-example3">
+                <notatedMusic xml:id="music-example3" facs="#facsZone-music-example3">
                   <ptr target="music-example3.mei"/>
                 </notatedMusic>
               </div>
 
               <div n="7" type="section">
                 <head>§. 7.</head>
-                <p xml:id="p7-1">
+                <p xml:id="p7-1" facs="#facsZone-p7-1">
                   Bey der <ref target="#m-1382">letzten Helffte des dreißigsten Tacts</ref>
                   <note type="footnote">Gemeint ist vermutlich der 31. Takt.</note> kann die
                     rechte Hand durch Sexten mitlauffen, so auch in der <ref target="#m-1440">ersten Helffte des folgenden
@@ -175,4 +182,3 @@
               </body>
             </text>
           </TEI>
-          
