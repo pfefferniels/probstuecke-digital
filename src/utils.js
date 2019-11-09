@@ -46,7 +46,11 @@ function createFacsimileElement(doc, regions, scanPage, before, referencedTags) 
   let graphic = doc.createElement("graphic");
   graphic.setAttribute("width", "1998");
   graphic.setAttribute("height", "2396");
-  graphic.setAttribute("target", "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/" + scanPage);
+  let targetAttr = "target";
+  if (doc.documentElement.nodeName == "TEI") {
+    targetAttr = "url";
+  }
+  graphic.setAttribute(targetAttr, "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/" + scanPage);
   surface.appendChild(graphic);
 
   for (let i=0; i<regions.length; i++) {
