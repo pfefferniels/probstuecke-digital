@@ -19,6 +19,14 @@
       <zone ulx="60" uly="302" lrx="1655" xml:id="facsZone-p1-1"/>
       <zone ulx="54" uly="1643" lrx="2195" xml:id="facsZone-p2-1"/>
     </surface>
+    <surface ulx="0" uly="0" lrx="1998" lry="2396" xml:id="facs-p418">
+      <graphic width="1998" height="2396" target="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/418"/>
+      <zone ulx="132" uly="137" lrx="614" xml:id="facsZone-p2-1-2"/>
+      <zone ulx="125" uly="626" lrx="1280" xml:id="facsZone-p3-1"/>
+      <zone ulx="372" uly="1259" lrx="1547" xml:id="facsZone-music-example1"/>
+      <zone ulx="132" uly="1535" lrx="1658" xml:id="facsZone-p3-2"/>
+      <zone ulx="129" uly="1634" lrx="2213" xml:id="facsZone-p4-1"/>
+    </surface>
   </facsimile>
   <text>
     <body>
@@ -47,7 +55,7 @@
           </div>
           <div n="2" type="section">
             <head>§. 2.</head>
-            <p xml:id="p2-1" facs="#facsZone-p2-1">
+            <p xml:id="p2-1" facs="#facsZone-p2-1 #facsZone-p2-1-2">
               Geschähe es nicht, ehrlichen Leuten zu gefallen, die sich dieses Werckleins auch bedienen möchten, ich kann versichern,
               meine gute Organisten und ihre Burschen sollten noch
               ein Weilgen zappeln, ehe sie erführen, wo Bartold hier
@@ -67,7 +75,7 @@
         
         <div n="3" type="section">
           <head>§. 3.</head>
-          <p xml:id="p3-1">
+          <p xml:id="p3-1" facs="#facsZone-p3-1">
             Die gewöhnlichen Gründe der Baß-Veränderungen sind sonst diese, daß die Haupt-Noten vorher, die zufälligen aber hintennach
             anschlagen: doch bei heutiger Art zu spielen, absonderlich, wenn sich das Clavier allein hören lässt, kehrt man es offt um,
             und macht es wie mit den Consonanzen und Dissonanzen, welche auch ihre <hi rendition="#aq">
@@ -78,17 +86,17 @@
           <ref target="#m-282">9.</ref>  <ref target="#m-310">10.</ref>  <ref target="#m-340">11.</ref> <ref target="#m-369">12.</ref>
           <ref target="#m-399">etc.</ref> Tact des vorhabenden Exempels diese:
           </p>
-          <notatedMusic xml:id="music-example1">
+          <notatedMusic xml:id="music-example1" facs="#facsZone-music-example1">
             <ptr target="music-example1.mei"/>
           </notatedMusic>
-          <p xml:id="p3-2">
+          <p xml:id="p3-2" facs="#facsZone-p3-2">
             Ob was legaleres, grundrichtigers und deutlichers seyn könne, weiß ich nicht.
           </p>
         </div>
         
         <div n="4" type="section">
           <head>§. 4.</head>
-          <p xml:id="p4-1">
+          <p xml:id="p4-1" facs="#facsZone-p4-1">
             Nun sind noch neun bunte Tacte im Basse; und obgleich hin und
             wieder eine Zieffer ausgelassen, so wird man
             doch wohl urtheilen, wohin etwan eine Sexte oder b5 gehöre. Wer auch gerne wissen will, was bey diesen sogenannten
