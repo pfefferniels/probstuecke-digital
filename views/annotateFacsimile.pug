@@ -1,0 +1,62 @@
+doctype html
+head
+  meta( name='viewport', content='width=device-width, initial-scale=1' )
+  
+  link(rel='stylesheet' href='css/annotorious.css')
+
+  style.
+    #left {
+      width: 49vw;
+      float: left;
+    }
+    
+    #right {
+      width: 49vw;
+      float: right;
+    }
+    
+    svg {
+      display: block;
+      left: 0px;
+      top: 0px;
+      width: 100%;
+      height: 100%;
+      z-index: 400;
+    }
+
+
+  script(type='text/javascript' src='annotorious.min.js')
+  script(type='text/javascript' src='annotateFacsimile.js')
+    
+#content
+  h2 Annotate Facsimile Tool
+  
+  small (for internal use)
+
+p  
+  button(id="loadPS") load Probstueck Nr.
+  input(type="number" id="psNumber")
+
+#left
+  span ...
+  
+#right
+  p
+    span Scan Page (e.g. #[code 386])
+    input(type="text" id="scanId")
+    button#getScan retrieve scan
+  p 
+      span type (#[code "text"] or #[code "music"]):
+      input(type="text" id="type")
+  p
+    button#inject inject boxes
+  p
+    button#getMEI download MEI 
+    button#getTEI download TEI 
+    button#getIIIF download IIIF AnnotationList 
+  
+  p#displayBoxes
+  
+  div
+    img.annotatable#mainImage(src="#" alt="...")
+    

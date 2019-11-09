@@ -15,20 +15,6 @@ const cetei = new CETEI();
 // Helper functions
 // ------
 
-
-// TEMPORARY
-function copyToClipboard(text) {
-  if (!navigator.clipboard) {
-    printError("no fallback");
-    return;
-  }
-  navigator.clipboard.writeText(text).then(function() {
-    //printInfo('Async: Copying to clipboard was successful!');
-  }, function(err) {
-    printError('Async: Could not copy text: ', err);
-  });
-}
-
 function printError(message) {
   $("#message").append(message).append("<br/>").css('background-color', 'rgba(200,20,20)');
   $("#message").show().delay(2000).fadeOut("slow").queue(function() {
@@ -414,7 +400,7 @@ async function connectFacsimileTooltips() {
   try {
     iiif = await $.get("iiif/" + number + "/list/" + "facsimile_de");
   } catch(e) {
-    printError("Could not loud IIIF AnnotationList");
+    printError("Could not load IIIF AnnotationList");
     return;
   }
 
@@ -471,12 +457,6 @@ async function connectFacsimileTooltips() {
         $("#tooltips").empty();
       });
     }
-  });
-
-  // temporary code for allowing faster MEI editing
-  $("svg").find(".measure").on("click", function() {
-    copyToClipboard("#" + $(this).attr("id"));
-    printError("copied to clipboard");
   });
 }
 

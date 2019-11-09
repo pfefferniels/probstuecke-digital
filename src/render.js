@@ -182,8 +182,8 @@ function generateSvg(params, allpages, callback, onFinish, onError) {
 
     // render MEI
     vrvToolkit.setOptions({
-      pageHeight: 2970,
-      adjustPageHeight: 0,
+      pageHeight: (params.pageHeight ?  params.pageHeight : 2970),
+      adjustPageHeight: (params.pageHeight ?  1 : 0),
       noFooter: 1
     });
     vrvToolkit.loadData(mei);
