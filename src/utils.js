@@ -127,8 +127,7 @@ function annotateFile(req, res) {
   }
 
   // AnnotationList
-  fs.mkdirSync(path.join(__dirname, '../tmp', nr), { recursive: true });
-  const iiifPath = path.join(__dirname, '../tmp', nr, 'facsimile_de.json');
+  const iiifPath = path.join(__dirname, '../data', nr, 'facsimile_de.json');
   var iiifObject;
   if (fs.existsSync(iiifPath)) {
     iiifObject = JSON.parse(fs.readFileSync(iiifPath));
@@ -180,7 +179,9 @@ function annotateFile(req, res) {
   }
 
   newIIIFContent = JSON.stringify(iiifObject, null, 4);
-  fs.writeFile(iiifPath, newIIIFContent, function(err) {
+  fs.mkdirSync(path.join(__dirname, '../tmp', nr), { recursive: true });
+  const newIIIFPath = path.join(__dirname, '../tmp', nr, 'facsimile_de.json');
+  fs.writeFile(newIIIFPath, newIIIFContent, function(err) {
     if (err) {
       console.error(err);
     }
