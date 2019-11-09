@@ -35,6 +35,11 @@
       <zone ulx="120" uly="1181" lrx="1835" xml:id="facsZone-music-example3"/>
       <zone ulx="117" uly="1805" lrx="2210" xml:id="facsZone-p7-1"/>
     </surface>
+    <surface ulx="0" uly="0" lrx="1998" lry="2396" xml:id="facs-p399">
+      <graphic width="1998" height="2396" target="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/399"/>
+      <zone ulx="72" uly="149" lrx="1244" xml:id="facsZone-p7-1-2"/>
+      <zone ulx="69" uly="1232" lrx="2144" xml:id="facsZone-p8-1"/>
+    </surface>
   </facsimile>
   <text>
     <body>
@@ -127,7 +132,7 @@
 
               <div n="7" type="section">
                 <head>§. 7.</head>
-                <p xml:id="p7-1" facs="#facsZone-p7-1">
+                <p xml:id="p7-1" facs="#facsZone-p7-1 #facsZone-p7-1-2">
                   Bey der <ref target="#m-1382">letzten Helffte des dreißigsten Tacts</ref>
                   <note type="footnote">Gemeint ist vermutlich der 31. Takt.</note> kann die
                     rechte Hand durch Sexten mitlauffen, so auch in der <ref target="#m-1440">ersten Helffte des folgenden
@@ -152,7 +157,7 @@
 
                   <div n="8" type="section">
                     <head>§. 8.</head>
-                    <p xml:id="p8-1">
+                    <p xml:id="p8-1" facs="#facsZone-p8-1">
                       Ich hatte dieses Exempel, mit allen Bequemlichkeiten, auf zwo kleine gegen einander überliegende Quart-Seiten entworffen, nicht denckend,
                       daß es im Druck zweimahl so viel Raums erfodern, noch dem Spieler die verhassete Mühe des Umschlagens bey so geschwinden Gängen verursachen
                       solte. Indessen weiset es der Augenschein, daß mit den Druck-Noten nicht anders hat mögen verfahren werden: weil die dreigeschwäntzte
@@ -182,3 +187,4 @@
               </body>
             </text>
           </TEI>
+          
