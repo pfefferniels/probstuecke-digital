@@ -21,6 +21,13 @@
       <zone ulx="72" uly="1316" lrx="2009" xml:id="facsZone-music-example1"/>
       <zone ulx="69" uly="1982" lrx="2198" xml:id="facsZone-p2-2"/>
     </surface>
+    <surface ulx="0" uly="0" lrx="1998" lry="2396" xml:id="facs-p397">
+      <graphic width="1998" height="2396" target="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/397"/>
+      <zone ulx="60" uly="173" lrx="311" xml:id="facsZone-p2-2-2"/>
+      <zone ulx="66" uly="308" lrx="677" xml:id="facsZone-p3-1"/>
+      <zone ulx="69" uly="677" lrx="1025" xml:id="facsZone-p4-1"/>
+      <zone ulx="60" uly="1013" lrx="2105" xml:id="facsZone-music-example2"/>
+    </surface>
   </facsimile>
   <text>
     <body>
@@ -56,7 +63,7 @@
               <notatedMusic xml:id="music-example1" facs="#facsZone-music-example1">
                 <ptr target="music-example1.mei"/>
               </notatedMusic>
-              <p xml:id="p2-2" facs="#facsZone-p2-2">
+              <p xml:id="p2-2" facs="#facsZone-p2-2 #facsZone-p2-2-2">
                 Selbige Art zu syncopieren ist ganz leicht, und macht ein Aufsehen, als wenn es rechtes wäre: derowegen man sich
                 derselben vielahl, mit sonderbaren Vorzug und weniger Mühe, bedienen kann.
               </p>
@@ -64,7 +71,7 @@
 
             <div n="3" type="section">
               <head>§. 3.</head>
-              <p xml:id="p3-1">
+              <p xml:id="p3-1" facs="#facsZone-p3-1">
                 Im <ref target="#m-433">neunten Tact</ref> kömmt dergleichen Gelegenheit abermahl vor,
                 es kann deßwegen auch bemeldte Brechung wieder angebracht werden. <ref target="#clef-001"> Wo der
                 niedrige Discant-Schlüssel einfällt</ref>, und weiter hin, <ref target="#m-1267">wo der Baß denselben Lauff in der Versetzung aus dem G anhebet,</ref>
@@ -74,13 +81,13 @@
 
             <div n="4" type="section">
               <head>§. 4.</head>
-              <p xml:id="p4-1">
+              <p xml:id="p4-1" facs="#facsZone-p4-1">
                 <ref target="#m-635">Im Anfange des andern Theils dieses Prob-Stücks, nach dem Endigungs-Zeichen</ref>,
                   bricht man gantz füglich die Accorde und überstehende
                   Zieffern auf eine bequeme, oder langsame, bedächtliche Art, bloß mit sechszehntheilen, und fähret drey Tacte damit fort.
                   Soll ich meine Meynung mit Noten deutlicher endecken<note type="footnote">sic</note>?
                 </p>
-                <notatedMusic xml:id="music-example2">
+                <notatedMusic xml:id="music-example2" facs="#facsZone-music-example2">
                   <ptr target="music-example2.mei"/>
                 </notatedMusic>
               </div>
@@ -168,3 +175,4 @@
               </body>
             </text>
           </TEI>
+          
