@@ -21,6 +21,16 @@
       <zone ulx="57" uly="1514" lrx="2081" xml:id="facsZone-p2-1"/>
       <zone ulx="54" uly="2057" lrx="2252" xml:id="facsZone-p3-1"/>
     </surface>
+    <surface ulx="0" uly="0" lrx="1998" lry="2396" xml:id="facs-p408">
+      <graphic width="1998" height="2396" target="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/408"/>
+      <zone ulx="132" uly="158" lrx="320" xml:id="facsZone-p3-1-2"/>
+      <zone ulx="132" uly="278" lrx="659" xml:id="facsZone-music-example2"/>
+      <zone ulx="129" uly="635" lrx="899" xml:id="facsZone-p3-2"/>
+      <zone ulx="132" uly="890" lrx="1247" xml:id="facsZone-p4-1"/>
+      <zone ulx="327" uly="1232" lrx="1538" xml:id="facsZone-music-example3"/>
+      <zone ulx="138" uly="1496" lrx="1706" xml:id="facsZone-p4-2"/>
+      <zone ulx="138" uly="1697" lrx="2138" xml:id="facsZone-p5-1"/>
+    </surface>
   </facsimile>
   <text>
     <body>
@@ -53,14 +63,14 @@
 
             <div n="3" type="section">
               <head>§. 3.</head>
-              <p xml:id="p3-1" facs="#facsZone-p3-1">
+              <p xml:id="p3-1" facs="#facsZone-p3-1 #facsZone-p3-1-2">
                 Der <ref target="#m-327">achte Tact</ref> nimmt das schon beschriebene kleine Zwischen-Spiel dreimahl durch steigende Grade, in der rechten
                 Hand herdurch, mit doppeltem Baß, auf diese Weise:
               </p>
-              <notatedMusic xml:id="music-example2">
+              <notatedMusic xml:id="music-example2" facs="#facsZone-music-example2">
                 <ptr target="music-example2.mei"/>
               </notatedMusic>
-              <p xml:id="p3-2">
+              <p xml:id="p3-2" facs="#facsZone-p3-2">
                 Bey dem <ref target="#m-405">neunten Tact</ref> fällt der allererste Satz wieder ein: dabey der Discant leicht eine geschickte Melodie in
                 Achteln finden, und den Baß vollstimmig mitführen kann. Im <ref target="#m-415">zehnten Tact</ref> muß auf der ersten Note der Triller
                 nicht vergessen werden; bey dem <ref target="#m-423">elften</ref> aber ist nichts zu erinnern.
@@ -69,17 +79,17 @@
 
             <div n="4" type="section">
               <head>§. 4.</head>
-              <p xml:id="p4-1">
+              <p xml:id="p4-1" facs="#facsZone-p4-1">
                 Der <ref target="#m-468">zwölfte Abschnitt</ref> will im Baß vollstimmig gespielet seyn, dazu die rechte Hand alles,
                 was im vorhergehenden Tact gewesen, wieder gebrauchen kann, wenn sie nur aus dem <hi rendition="#b">g</hi> ein <hi rendition="#b">d</hi> machet,
                 und so fortfähret. Der <ref target="#m-533">dreizehnte Tact</ref> wird, wie er steht,
                 geschlagen: und die <ref target="#m-588">erste Helffte des vierzehnten</ref> verlangt im Discant das kleine Zwischen-Spiel also anzufangen:
               </p>
 
-              <notatedMusic xml:id="music-example3">
+              <notatedMusic xml:id="music-example3" facs="#facsZone-music-example3">
                 <ptr target="music-example3.mei"/>
               </notatedMusic>
-              <p xml:id="p4-2">
+              <p xml:id="p4-2" facs="#facsZone-p4-2">
                 dasselbe wird auch in der ersten Helffte des <ref target="#m-651">funffzehnten Tacts</ref>, wiewol um einen Ton tieffer, können angebracht
                 werden, und bey dem <ref target="#m-763">siebenzehnten Tact</ref> beobachtet man nur was § 1. erinnert worden ist.
               </p>
@@ -87,7 +97,7 @@
 
             <div n="5" type="section">
               <head>§. 5.</head>
-              <p xml:id="p5-1">
+              <p xml:id="p5-1" facs="#facsZone-p5-1">
                 Nun ist zwar § 3. angedeutet worden, wie es mit dergleichen Noten, als im <ref target="#m-928">ein- und zwantzigsten Tact</ref> wieder vorkommen,
                 gehalten werden könne; will jemand aber hier eine Veränderung machen, so ist es um so viel angenehmer zu hören. Man lasse sich aber
                 nochmahls den Triller im zwey- und zwantzigsten Tact, und zwar in der tieffen Octav, empfohlen seyn. Hat einer Lust diesen Triller
@@ -139,4 +149,3 @@
           </body>
         </text>
       </TEI>
-      
