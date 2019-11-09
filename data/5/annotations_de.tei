@@ -22,6 +22,12 @@
       <zone ulx="102" uly="1697" lrx="2060" xml:id="facsZone-p3-1"/>
       <zone ulx="102" uly="2027" lrx="2228" xml:id="facsZone-p4-1"/>
     </surface>
+    <surface ulx="0" uly="0" lrx="1998" lry="2396" xml:id="facs-p413">
+      <graphic width="1998" height="2396" target="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/413"/>
+      <zone ulx="51" uly="167" lrx="449" xml:id="facsZone-p4-1-2"/>
+      <zone ulx="48" uly="413" lrx="1343" xml:id="facsZone-p5-1"/>
+      <zone ulx="51" uly="1313" lrx="2081" xml:id="facsZone-p6-1"/>
+    </surface>
   </facsimile>
   <text>
     <body>
@@ -29,7 +35,7 @@
         <head>Erläuterung</head>
         <div n="1" type="section">
           <head>§. 1.</head>
-          <p>
+          <p xml:id="p1-1" facs="#facsZone-p1-1">
             <hi rendition="#in">M</hi>An wird des Lernens müde. Alle Music muß ihre Abwechslung haben, und wenn lange
               auf dem Claviere gedonnert worden ist, so muß eine Stille kommen.
               Ich meyne, es muß eine süße, liebliche Melodie, auf etwas rauschendes und brausendes, folgen.
@@ -37,7 +43,7 @@
           </div>
           <div n="2" type="section">
             <head>§. 2.</head>
-            <p>
+            <p xml:id="p2-1" facs="#facsZone-p2-1">
               Damit auch hierunter kein Mangel verspühret werde, so hat man in gegenwärtiger Vorschrift,
               einem Liebhaber des mannierlichen Spielens Gelegenheit geben wollen, seinen Vorrath auszulegen,
               nehmlich an den Orten, wo die Worte <ref target="#m-120">
@@ -66,7 +72,7 @@
 
         <div n="3" type="section">
           <head>§. 3.</head>
-          <p>
+          <p xml:id="p3-1" facs="#facsZone-p3-1">
             Wo das <ref target="#m-61">
             <hi rendition="#aq">
               <foreign xml:lang="ita">Presto</foreign>
@@ -79,7 +85,7 @@
 
       <div n="4" type="section">
         <head>§. 4.</head>
-        <p>
+        <p xml:id="p4-1" facs="#facsZone-p4-1 #facsZone-p4-1-2">
           Meine Anmerckung über den vorhabenden allergemeinsten Tone, (welcher bey dem Klimperer
           Trumpff ist) wäre sonst diese, daß, so wie man aus weichen und betrübten Tonen
           was fliessendes und munters, mit Beifall, setzen und spielen kann; also aus diesem harten und
@@ -90,7 +96,7 @@
 
       <div n="5" type="section">
         <head>§. 5.</head>
-        <p>
+        <p xml:id="p5-1" facs="#facsZone-p5-1">
           Übrigens wird hierdurch der Satz bewiesen werden, daß, wer nicht singen könne, auch nicht zu spielen wisse.
           Das möchte manchem Organisten ungereimt vorkommen, insonderheit denen in Städten, die nicht zugleich Küster-Amt
           mit verrichten; denn auf dem Lande ist man aus Noth und Sparsamkeit so bescheiden,
@@ -108,7 +114,7 @@
 
       <div n="6" type="section">
         <head>§. 6.</head>
-        <p>
+        <p xml:id="p6-1" facs="#facsZone-p6-1">
           Es ist aber diese Sang-Regel nicht so zu verstehen, daß einer nothwendig sein Handwerck und Wesen davon machet,
           oder ein Sänger in der That seyn müsste, wenn er geschicklich spielen will; Denn es
           gibt viele wackere Leute, die doch von der Natur keine Stimme zum Singen haben. Es ist auch nicht nöthig, daß jedermann
