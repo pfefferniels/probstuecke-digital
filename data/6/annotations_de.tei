@@ -27,6 +27,13 @@
       <zone ulx="132" uly="1535" lrx="1658" xml:id="facsZone-p3-2"/>
       <zone ulx="129" uly="1634" lrx="2213" xml:id="facsZone-p4-1"/>
     </surface>
+    <surface ulx="0" uly="0" lrx="1998" lry="2396" xml:id="facs-p419">
+      <graphic width="1998" height="2396" target="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/419"/>
+      <zone ulx="48" uly="173" lrx="677" xml:id="facsZone-p4-1-2"/>
+      <zone ulx="51" uly="659" lrx="1250" xml:id="facsZone-music-example2"/>
+      <zone ulx="54" uly="1193" lrx="1829" xml:id="facsZone-p5-1"/>
+      <zone ulx="57" uly="1802" lrx="2234" xml:id="facsZone-p6-1"/>
+    </surface>
   </facsimile>
   <text>
     <body>
@@ -96,7 +103,7 @@
         
         <div n="4" type="section">
           <head>§. 4.</head>
-          <p xml:id="p4-1" facs="#facsZone-p4-1">
+          <p xml:id="p4-1" facs="#facsZone-p4-1 #facsZone-p4-1-2">
             Nun sind noch neun bunte Tacte im Basse; und obgleich hin und
             wieder eine Zieffer ausgelassen, so wird man
             doch wohl urtheilen, wohin etwan eine Sexte oder b5 gehöre. Wer auch gerne wissen will, was bey diesen sogenannten
@@ -114,14 +121,14 @@
             <note type="footnote">i.e. T. 31.</note>
             <hi rendition="#b">u.s.w. bis zu Ende der Seite.</hi>
           </p>
-          <notatedMusic xml:id="music-example2">
+          <notatedMusic xml:id="music-example2" facs="#facsZone-music-example2">
             <ptr target="music-example2.mei"/>
           </notatedMusic>
         </div>
         
         <div n="5" type="section">
           <head>§. 5.</head>
-          <p xml:id="p5-1">
+          <p xml:id="p5-1" facs="#facsZone-p5-1">
             Aber weiter im Text. Was schlägst du denn zum <ref target="#m-1245">
             <hi rendition="#b">d</hi> und
               dessen zweyen Viertel-Pausen?</ref> Ja, was zu den <ref target="#m-1265">folgenden</ref>
@@ -143,7 +150,7 @@
           
           <div n="6" type="section">
             <head>§. 6.</head>
-            <p xml:id="p6-1">
+            <p xml:id="p6-1" facs="#facsZone-p6-1">
               Es ist bereits, wegen der Sexten und Quarten, das nöthige mehrmahlen erinnert worden; wem sie aber so,
               wie ich sie hier gerne haben wollte, nicht anstehen, der kann im  <ref target="#m-41">ersten</ref> und
               <ref target="#m-100">dritten</ref> Tact dieses Exempels lieber den Accord dafür nehmen, und zweimahl auf einem
