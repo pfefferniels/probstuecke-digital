@@ -118,7 +118,7 @@ function annotateFile(req, res) {
 
       let tei = new xmldom.XMLSerializer().serializeToString(doc);
       fs.mkdirSync(path.join(__dirname, '../tmp', nr), { recursive: true });
-      let targetFile = path.join(__dirname, '../tmp', nr, 'annotations_de.mei');
+      let targetFile = path.join(__dirname, '../tmp', nr, 'annotations_de.tei');
       fs.writeFile(targetFile, prettifyXml(tei), function (err) {
         if (err) throw err;
         console.log("saved");
@@ -195,7 +195,7 @@ function annotatedFile(req, res) {
   if (type == "music") {
     res.download(path.join(__dirname, '../tmp', nr, 'score.mei'));
   } else if (type == "text") {
-    res.download(path.join(__dirname, '../tmp', nr, 'annotations_de.mei'));
+    res.download(path.join(__dirname, '../tmp', nr, 'annotations_de.tei'));
   } else if (type == "iiif") {
     res.download(path.join(__dirname, '../tmp', nr, 'facsimile_de.json'));
   }
