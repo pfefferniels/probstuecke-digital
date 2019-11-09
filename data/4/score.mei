@@ -98,6 +98,20 @@
           <zone ulx="1227" uly="1931" lrx="2222" xml:id="facsZone-m-932"/>
           <zone ulx="1551" uly="1943" lrx="2204" xml:id="facsZone-m-952"/>
         </surface>
+        <surface ulx="0" uly="0" lrx="1998" lry="2396" xml:id="facs-p406">
+          <graphic width="1998" height="2396" target="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/406"/>
+          <zone ulx="102" uly="260" lrx="605" xml:id="facsZone-m-1007"/>
+          <zone ulx="987" uly="215" lrx="536" xml:id="facsZone-m-1032"/>
+          <zone ulx="99" uly="608" lrx="926" xml:id="facsZone-m-1032-2"/>
+          <zone ulx="945" uly="602" lrx="896" xml:id="facsZone-m-1090"/>
+          <zone ulx="105" uly="950" lrx="1232" xml:id="facsZone-m-1177"/>
+          <zone ulx="822" uly="908" lrx="1211" xml:id="facsZone-m-1218"/>
+          <zone ulx="90" uly="1250" lrx="1538" xml:id="facsZone-m-1284"/>
+          <zone ulx="1266" uly="1208" lrx="1562" xml:id="facsZone-m-1333"/>
+          <zone ulx="120" uly="1598" lrx="1904" xml:id="facsZone-m-1333-2"/>
+          <zone ulx="897" uly="1565" lrx="1868" xml:id="facsZone-m-1090-2"/>
+          <zone ulx="123" uly="1892" lrx="2246" xml:id="facsZone-m-1411"/>
+        </surface>
       </facsimile>
       <body xml:id="m-23">
         <mdiv xml:id="m-24">
@@ -1882,7 +1896,7 @@
                     </beam>
                   </layer>
                 </staff>
-                <staff xml:id="m-1007" n="2">
+                <staff xml:id="m-1007" n="2" facs="#facsZone-m-1007">
                   <layer xml:id="m-1008" n="1">
                     <rest xml:id="m-1009" dur="8"/>
                     <beam xml:id="m-1011">
@@ -1936,7 +1950,7 @@
               </measure>
               <measure xml:id="m-1028" n="24">
                 <staff xml:id="m-1031" n="1"/>
-                <staff xml:id="m-1032" n="2">
+                <staff xml:id="m-1032" n="2" facs="#facsZone-m-1032 #facsZone-m-1032-2">
                   <layer xml:id="m-1033" n="1">
                     <rest xml:id="m-1034" dur="16"/>
                     <beam xml:id="m-1036">
@@ -2040,7 +2054,7 @@
                     </beam>
                   </layer>
                 </staff>
-                <staff xml:id="m-1090" n="2">
+                <staff xml:id="m-1090" n="2" facs="#facsZone-m-1090 #facsZone-m-1090-2">
                   <layer xml:id="m-1091" n="1">
                     <beam xml:id="m-1093">
                       <note xml:id="m-1092" dur="16" oct="3" pname="b" pnum="59" stem.dir="down"/>
@@ -2184,7 +2198,7 @@
                     </beam>
                   </layer>
                 </staff>
-                <staff xml:id="m-1177" n="2">
+                <staff xml:id="m-1177" n="2" facs="#facsZone-m-1177">
                   <layer xml:id="m-1178" n="1">
                     <note xml:id="m-1179" dots="1" dur="4" oct="3" pname="d" pnum="50" stem.dir="down"/>
                     <note xml:id="m-1180" dots="1" dur="4" oct="2" pname="a" pnum="45" stem.dir="up"/>
@@ -2250,7 +2264,7 @@
                     </beam>
                   </layer>
                 </staff>
-                <staff xml:id="m-1218" n="2">
+                <staff xml:id="m-1218" n="2" facs="#facsZone-m-1218">
                   <layer xml:id="m-1219" n="1">
                     <beam xml:id="m-1222">
                       <note xml:id="m-1220" dur="8" oct="3" pname="f" pnum="54" stem.dir="down">
@@ -2363,7 +2377,7 @@
                     </beam>
                   </layer>
                 </staff>
-                <staff xml:id="m-1284" n="2">
+                <staff xml:id="m-1284" n="2" facs="#facsZone-m-1284">
                   <layer xml:id="m-1285" n="1">
                     <rest xml:id="m-1286" dur="16"/>
                     <beam xml:id="m-1288">
@@ -2450,7 +2464,7 @@
                     </beam>
                   </layer>
                 </staff>
-                <staff xml:id="m-1333" n="2">
+                <staff xml:id="m-1333" n="2" facs="#facsZone-m-1333 #facsZone-m-1333-2">
                   <layer xml:id="m-1334" n="1">
                     <beam xml:id="m-1337">
                       <note xml:id="m-1335" dur="8" oct="2" pname="f" pnum="42" stem.dir="up">
@@ -2614,7 +2628,7 @@
               </measure>
               <measure xml:id="m-1408" n="31">
                 <staff xml:id="m-1410" n="1"/>
-                <staff xml:id="m-1411" n="2">
+                <staff xml:id="m-1411" n="2" facs="#facsZone-m-1411">
                   <layer xml:id="m-1412" n="1">
                     <beam xml:id="m-1414">
                       <note xml:id="m-1413" dur="16" oct="3" pname="b" pnum="59" stem.dir="down"/>
