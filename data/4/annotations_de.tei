@@ -31,6 +31,15 @@
       <zone ulx="138" uly="1496" lrx="1706" xml:id="facsZone-p4-2"/>
       <zone ulx="138" uly="1697" lrx="2138" xml:id="facsZone-p5-1"/>
     </surface>
+    <surface ulx="0" uly="0" lrx="1998" lry="2396" xml:id="facs-p409">
+      <graphic width="1998" height="2396" target="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/409"/>
+      <zone ulx="87" uly="170" lrx="632" xml:id="facsZone-p6-1"/>
+      <zone ulx="75" uly="611" lrx="1025" xml:id="facsZone-p7-1"/>
+      <zone ulx="468" uly="965" lrx="1253" xml:id="facsZone-music-example4"/>
+      <zone ulx="62" uly="1208" lrx="1571" xml:id="facsZone-p7-2"/>
+      <zone ulx="60" uly="1559" lrx="1889" xml:id="facsZone-music-example5"/>
+      <zone ulx="57" uly="1868" lrx="2228" xml:id="facsZone-p8-1"/>
+    </surface>
   </facsimile>
   <text>
     <body>
@@ -107,7 +116,7 @@
 
             <div n="6" type="section">
               <head>§. 6.</head>
-              <p xml:id="p6-1">
+              <p xml:id="p6-1" facs="#facsZone-p6-1">
                 Nun kehren wir den Satz, im <ref target="#m-962">drey- und zwantzigsten Tact</ref>, ein wenig um, und nehmen ihn so in der rechten Hand, wie es
                 die nächste Tactmasse im Baß aufweiset: jedoch um eine Tertz höher. Daß sich beide Sätze rückwerts und vorwerts umkehren lassen, solches wird
                 zugleich hiebey ein Liebhaber des Contra-Puncts anzumercken Gelegenheit nehmen; wiewol es, so eigentlich auf dem Clavier heraus zu bringen,
@@ -117,27 +126,27 @@
 
             <div n="7" type="section">
               <head>§. 7.</head>
-              <p xml:id="p7-1">
+              <p xml:id="p7-1" facs="#facsZone-p7-1">
                 So kömmt denn auch, im <ref target="#m-1078">fünff und zwantzigsten Tact</ref>, der schlechte zu Anfang gewesene Satz wieder vor, welcher, da er sich nun
                 zu viertenmahl hören lässt, billig eine Ausschmückung mit der rechten Hand verdienet. Der sich darauf sonst schickende Gegen-Satz wäre etwa,
                 meiner Meynung nach, aus dem vierten Tact zu nehmen, und so wol vorhin, als hier, also anzubringen:
               </p>
-              <notatedMusic xml:id="music-example4">
+              <notatedMusic xml:id="music-example4" facs="#facsZone-music-example4">
                 <ptr target="music-example4.mei"/>
               </notatedMusic>
-              <p xml:id="p7-2">
+              <p xml:id="p7-2" facs="#facsZone-p7-2">
                 Daraus einer siehet, daß diese Sachen keine blosse Grillen, leere Sätze, unordentliche wilde Einfälle, oder auch trockene Bässe sind; sondern,
                 daß alles aneinander hänget, und fast keine Note zu finden ist, die nicht ihrem gewissen Verhalt mit den übrigen habe. Wenn man nun
                 den Gegen-Satz etwa ein paarmahl hat hören lassen, so mag er gar gerne, zu dritten und viertelmahl, also variieret werden.
               </p>
-              <notatedMusic xml:id="music-example5">
+              <notatedMusic xml:id="music-example5" facs="#facsZone-music-example5">
                 <ptr target="music-example5.mei"/>
               </notatedMusic>
             </div>
 
             <div n="8" type="section">
               <head>§. 8.</head>
-              <p xml:id="p8-1">
+              <p xml:id="p8-1" facs="#facsZone-p8-1">
                 Was im drey- und zwantzigsten Tact gewesen, fällt hier, mit nöthiger Veränderung, im <ref target="#m-1117">sechs-</ref>
                 <ref target="#m-1191">sieben-</ref> auch <ref target="#m-1247">acht- und zwantzigsten</ref> etc. wieder
                   vor. Die sechs letzten Noten im <ref target="#m-1373">dreyßigsten Tact</ref> wollen auch einen besonderen Discant haben:
@@ -149,3 +158,4 @@
           </body>
         </text>
       </TEI>
+      
