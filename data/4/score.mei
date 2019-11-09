@@ -112,6 +112,12 @@
           <zone ulx="897" uly="1565" lrx="1868" xml:id="facsZone-m-1090-2"/>
           <zone ulx="123" uly="1892" lrx="2246" xml:id="facsZone-m-1411"/>
         </surface>
+        <surface ulx="0" uly="0" lrx="1998" lry="2396" xml:id="facs-p407">
+          <graphic width="1998" height="2396" target="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/407"/>
+          <zone ulx="69" uly="143" lrx="491" xml:id="facsZone-m-1454"/>
+          <zone ulx="72" uly="470" lrx="800" xml:id="facsZone-m-1454-2"/>
+          <zone ulx="888" uly="509" lrx="797" xml:id="facsZone-m-1511"/>
+        </surface>
       </facsimile>
       <body xml:id="m-23">
         <mdiv xml:id="m-24">
@@ -2709,7 +2715,7 @@
               </measure>
               <measure xml:id="m-1451" n="32">
                 <staff xml:id="m-1453" n="1"/>
-                <staff xml:id="m-1454" n="2">
+                <staff xml:id="m-1454" n="2" facs="#facsZone-m-1454 #facsZone-m-1454-2">
                   <layer xml:id="m-1455" n="1">
                     <beam xml:id="m-1457">
                       <note xml:id="m-1456" dur="32" oct="3" pname="e" pnum="52" stem.dir="down"/>
@@ -2809,7 +2815,7 @@
               </measure>
               <measure xml:id="m-1509" n="33" right="end">
                 <staff xml:id="m-1510" n="1"/>
-                <staff xml:id="m-1511" n="2">
+                <staff xml:id="m-1511" n="2" facs="#facsZone-m-1511">
                   <layer xml:id="m-1512" n="1">
                     <note xml:id="m-1513" dots="1" dur="1" oct="3" pname="e" pnum="52" stem.dir="down"/>
                   </layer>
