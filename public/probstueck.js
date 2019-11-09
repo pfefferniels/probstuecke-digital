@@ -382,17 +382,17 @@ function connectSignatureTooltips() {
   }
 }
 
+var tooltipTargets = [];
+
 function disconnectFacsimileTooltips() {
-  $("tei-zone").each(function() {
-    $("body").find($(this).attr("corresp")).each(function() {
-      $(this).off("mouseenter");
-    });
-  });
+  for (let i=0; i<tooltipTargets.length; i++) {
+    tooltipTargets[i].off("mouseenter");
+  }
 }
 
 // connecting transcription and facsimile
 async function connectFacsimileTooltips() {
-  if (!$("#show-tooltips").is(':checked')) {
+  if (!$("#display-facsimile").is(':checked')) {
     return;
   }
 
@@ -433,14 +433,14 @@ async function connectFacsimileTooltips() {
     let scan = scanMatch[1].padStart(5, "0");
 
     // create an Image API URI from the given information
+    // and from the user's choice.
     let imageApiUri = [
       "https://api.digitale-sammlungen.de/iiif/image/v2",
       (identifier + '_' + scan),
       xywhParam,
-      "full",
+      ("pct:" + $("#facsimile-size").val()),
       "0",
-      "default.jpg"].join("/"); // here we might define gray or color according to the
-                                // users choice.
+      ($("#facsimile-quality").val() + ".jpg")].join("/");
 
     // extract what is actually annotating the canvas region
     let rTarget = r.resource["@id"];
@@ -449,7 +449,8 @@ async function connectFacsimileTooltips() {
     let targetMatch = rTarget.match(/xml:id='(.+)'\]/);
     let xmlId = targetMatch[1];
     if (xmlId) {
-      var target = $("#" + xmlId);
+      let target = $("#" + xmlId);
+      tooltipTargets.push(target);
       target.mouseenter(function(e) {
         $("<img class='tooltip' src='" + imageApiUri + "' />").appendTo("#tooltips");
         positionAtMouse($("#tooltips"), e);
@@ -458,6 +459,11 @@ async function connectFacsimileTooltips() {
       });
     }
   });
+}
+
+function reconnectFacsimileTooltips() {
+  disconnectFacsimileTooltips();
+  connectFacsimileTooltips();
 }
 
 async function updateView(resetting) {
@@ -510,11 +516,23 @@ $(document).ready(function() {
     $("#score-view svg").find(".fb").toggle($(this).is(':checked'));
   });
 
-  $("#show-tooltips").change(function() {
+  $("#display-facsimile").change(function() {
     if ($(this).is(':checked')) {
       connectFacsimileTooltips();
     } else {
       disconnectFacsimileTooltips();
+    }
+  });
+
+  $("#facsimile-size").change(function() {
+    if ($("#display-facsimile").is(':checked')) {
+      reconnectFacsimileTooltips();
+    }
+  });
+
+  $("#facsimile-quality").change(function() {
+    if ($("#display-facsimile").is(':checked')) {
+      reconnectFacsimileTooltips();
     }
   });
 
