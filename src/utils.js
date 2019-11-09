@@ -2,7 +2,7 @@ const render = require("./render.js"),
       path = require('path'),
       fs = require('fs'),
       xmldom = require('xmldom'),
-      format = require('xml-formatter'),
+      prettifyXml = require('prettify-xml'),
       DOMParser = xmldom.DOMParser;
 
 // prevent possible dot-dot-slash attacks
@@ -101,7 +101,7 @@ function annotateFile(req, res) {
       let mei = new xmldom.XMLSerializer().serializeToString(doc);
       fs.mkdirSync(path.join(__dirname, '../tmp', nr), { recursive: true });
       let targetFile = path.join(__dirname, '../tmp', nr, 'score.mei');
-      fs.writeFile(targetFile, mei, function (err) {
+      fs.writeFile(targetFile, prettifyXml(mei), function (err) {
         if (err) throw err;
         console.log("saved");
       });
@@ -119,7 +119,7 @@ function annotateFile(req, res) {
       let tei = new xmldom.XMLSerializer().serializeToString(doc);
       fs.mkdirSync(path.join(__dirname, '../tmp', nr), { recursive: true });
       let targetFile = path.join(__dirname, '../tmp', nr, 'annotations_de.mei');
-      fs.writeFile(targetFile, tei, function (err) {
+      fs.writeFile(targetFile, prettifyXml(tei), function (err) {
         if (err) throw err;
         console.log("saved");
       });
