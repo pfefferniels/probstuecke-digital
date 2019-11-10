@@ -3,16 +3,16 @@ extends layout.pug
 block headAdditions
   title Mattheson, #{number}. Probstück
 
-  link(rel='stylesheet' href='midiplayer.css')
-  link(rel='stylesheet' href='probstueck.css')
+  link(rel='stylesheet' href='css/midiplayer.css')
+  link(rel='stylesheet' href='css/probstueck.css')
 
   script.
     number = "#{number}";
 
-  script(type='text/javascript' src='svg.min.js')
-  script(type='text/javascript' src='wildwebmidi.js')
-  script(type='text/javascript' src='midiplayer.js')
-  script(type='text/javascript' src='probstueck.js')
+  script(type='text/javascript' src='js/svg.min.js')
+  script(type='text/javascript' src='js/wildwebmidi.js')
+  script(type='text/javascript' src='js/midiplayer.js')
+  script(type='text/javascript' src='js/probstueck.js')
 
 block controlsAdditions
 
