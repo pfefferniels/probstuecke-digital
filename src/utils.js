@@ -95,7 +95,11 @@ function annotateFile(req, res) {
   if (type === "music") {
     // read score.mei in xmldom, insert tags etc., serialize and overwrite
     fs.readFile(path.join(__dirname, '../data', nr, 'score.mei'), function(err, data) {
-      console.log(err);
+      if (err) {
+        console.log(err);
+        return;
+      }
+
       let doc = new DOMParser().parseFromString(data.toString(), 'text/xml');
 
       let before = "body",
@@ -113,7 +117,11 @@ function annotateFile(req, res) {
   } else if (type == "text") {
     // read annotations_de.tei in xmldom, insert tags etc., serialize and overwrite
     fs.readFile(path.join(__dirname, '../data', nr, 'annotations_de.tei'), function(err, data) {
-      console.log(err);
+      if (err) {
+        console.log(err);
+        return;
+      }
+      
       let doc = new DOMParser().parseFromString(data.toString(), 'text/xml');
 
       let before = "text",
