@@ -38,19 +38,23 @@
     </meiHead>
     <music>
         <body>
-            <mdiv xml:id="mdiv-0000001998743514">
-                <score xml:id="score-0000000055224235">
+            <mdiv>
+                <score>
                     <scoreDef key.pname="f" key.mode="minor" mnum.visible="false" midi.bpm="82">
                         <pgHead type="title">
                             <rend fontsize="larger" halign="center">ARIA del <rend fontstyle="italic">Signore Marcello</rend>, Nobile Veneto.</rend>
                         </pgHead>
                         <staffGrp>
-                            <staffDef clef.shape="C" clef.line="3" key.sig="3f" meter.count="3" meter.unit="8" n="1" lines="5" />
-                            <staffDef clef.shape="F" clef.line="4" key.sig="3f" meter.count="3" meter.unit="8" n="2" lines="5" />
+                            <staffDef clef.shape="C" clef.line="3" key.sig="3f" n="1" lines="5">
+                              <meterSig count="3" unit="8"/>
+                            </staffDef>
+                            <staffDef clef.shape="F" clef.line="4" key.sig="3f" n="2" lines="5">
+                              <meterSig count="3" unit="8"/>
+                            </staffDef>
                         </staffGrp>
                     </scoreDef>
                     <section xml:id="section-0000001262235770">
-                        <pb n="356" />
+                        <pb source="#secondEdition" n="356" />
                         <measure xml:id="measure-0000000685332484" metcon="false">
                             <staff xml:id="staff-0000001631678142" n="1">
                                 <layer xml:id="layer-0000000004586479" n="1">
@@ -179,7 +183,7 @@
                                 </layer>
                             </staff>
                         </measure>
-                        <sb />
+                        <sb source="#secondEdition" />
                         <measure xml:id="measure-0000001219466359" n="8">
                             <staff xml:id="staff-0000000653887933" n="1">
                                 <layer xml:id="layer-0000000267988018" n="1">
@@ -316,7 +320,7 @@
                                 </layer>
                             </staff>
                         </measure>
-                        <sb />
+                        <sb source="#secondEdition" />
                         <measure xml:id="measure-0000002145318766" n="16">
                             <staff xml:id="staff-0000002103072538" n="1">
                                 <layer xml:id="layer-0000001480853914" n="1">
@@ -516,7 +520,7 @@
                                 </layer>
                             </staff>
                         </measure>
-                        <sb />
+                        <sb source="#secondEdition" />
                         <measure xml:id="measure-0000001358819756" n="24">
                             <staff xml:id="staff-0000001604133899" n="1">
                                 <layer xml:id="layer-0000002126004103" n="1">
@@ -707,7 +711,7 @@
                             </staff>
                             <tie xml:id="tie-0000001774720271" startid="#note-0000001290683804" endid="#note-0000000302277523" />
                         </measure>
-                        <pb n="357" />
+                        <pb source="#secondEdition" n="357" />
                         <measure xml:id="measure-0000002113040272" n="32">
                             <staff xml:id="staff-0000001302629114" n="1">
                                 <layer xml:id="layer-0000000157553020" n="1">
@@ -888,7 +892,7 @@
                                 </layer>
                             </staff>
                         </measure>
-                        <sb />
+                        <sb source="#secondEdition" />
                         <measure xml:id="measure-0000001332910205" n="39">
                             <staff xml:id="staff-0000001082898990" n="1">
                                 <layer xml:id="layer-0000000512266725" n="1">
@@ -1095,7 +1099,7 @@
                                 </layer>
                             </staff>
                         </measure>
-                        <sb />
+                        <sb source="#secondEdition" />
                         <measure xml:id="measure-0000000126058140" n="47">
                             <staff xml:id="staff-0000000915261889" n="1">
                                 <layer xml:id="layer-0000002119713160" n="1">
@@ -1273,7 +1277,7 @@
                                 </layer>
                             </staff>
                         </measure>
-                        <sb />
+                        <sb source="#secondEdition" />
                         <measure xml:id="measure-0000000507132249" n="54">
                             <staff xml:id="staff-0000001677437811" n="1">
                                 <layer xml:id="layer-0000000430407325" n="1">
@@ -1481,7 +1485,7 @@
                             </staff>
                             <tie xml:id="tie-0000000846432627" startid="#note-0000000063399080" endid="#note-0000001175774428" />
                         </measure>
-                        <pb n="358" />
+                        <pb source="#secondEdition" n="358" />
                         <measure xml:id="measure-0000000108211109" n="61">
                             <staff xml:id="staff-0000001669005315" n="1">
                                 <layer xml:id="layer-0000002103028031" n="1">
@@ -1688,7 +1692,7 @@
                             </staff>
                             <tie xml:id="tie-0000000999296621" startid="#note-0000001991798293" endid="#note-0000002117553986" />
                         </measure>
-                        <sb />
+                        <sb source="#secondEdition" />
                         <measure xml:id="measure-0000001332810412" n="68">
                             <staff xml:id="staff-0000001105748506" n="1">
                                 <layer xml:id="layer-0000001193994069" n="1">
@@ -1806,7 +1810,7 @@
                                 </layer>
                             </staff>
                         </measure>
-                        <sb />
+                        <sb source="#secondEdition" />
                         <measure xml:id="measure-0000002136770805" n="73">
                             <staff xml:id="staff-0000002096745664" n="1">
                                 <layer xml:id="layer-0000001175994981" n="1">
@@ -2028,7 +2032,7 @@
                                 </layer>
                             </staff>
                         </measure>
-                        <sb />
+                        <sb source="#secondEdition" />
                         <measure xml:id="measure-0000000691549882" n="84">
                             <staff xml:id="staff-0000001854275977" n="1">
                                 <layer xml:id="layer-0000001779978432" n="1">
@@ -2212,7 +2216,7 @@
                             </staff>
                             <slur xml:id="slur-0000001943000346" startid="#note-0000001627111590" endid="#note-0000001164042132" />
                         </measure>
-                        <pb n="359" />
+                        <pb source="#secondEdition" n="359" />
                         <measure xml:id="measure-0000002054233721" n="91">
                             <staff xml:id="staff-0000001567636525" n="1">
                                 <layer xml:id="layer-0000000137563342" n="1">
@@ -2396,7 +2400,7 @@
                             </staff>
                             <tie xml:id="tie-0000000334006722" startid="#note-0000000243330666" endid="#note-0000001951941007" />
                         </measure>
-                        <sb />
+                        <sb source="#secondEdition" />
                         <measure xml:id="measure-0000001933569208" n="98">
                             <staff xml:id="staff-0000001991931329" n="1">
                                 <layer xml:id="layer-0000001563361356" n="1">
