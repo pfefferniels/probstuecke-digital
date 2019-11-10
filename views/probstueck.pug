@@ -3,16 +3,16 @@ extends layout.pug
 block headAdditions
   title Mattheson, #{number}. Probstück
 
-  link(rel='stylesheet' href='midiplayer.css')
-  link(rel='stylesheet' href='probstueck.css')
+  link(rel='stylesheet' href='css/midiplayer.css')
+  link(rel='stylesheet' href='css/probstueck.css')
 
   script.
     number = "#{number}";
 
-  script(type='text/javascript' src='svg.min.js')
-  script(type='text/javascript' src='wildwebmidi.js')
-  script(type='text/javascript' src='midiplayer.js')
-  script(type='text/javascript' src='probstueck.js')
+  script(type='text/javascript' src='js/svg.min.js')
+  script(type='text/javascript' src='js/wildwebmidi.js')
+  script(type='text/javascript' src='js/midiplayer.js')
+  script(type='text/javascript' src='js/probstueck.js')
 
 block controlsAdditions
 
@@ -20,23 +20,46 @@ block controlsAdditions
   
   #options-table.controls-table
     .controls-item
+      h1 facsimile
+      input#display-facsimile(type='checkbox' name='display-facsimile' autocomplete='off')
+      label(for='display-facsimile') display facsimile
+      p
+        small (moving the mouse on a measure or paragraph will display the according 
+          | facsimile region)
+      table
+        tr 
+          td 
+            label(for='facsimile-size') size 
+          td 
+            input#facsimile-size(type='range' name='facsimile-size' min='20' max='80')
+        tr
+          td 
+            label(for='facsimile-quality') quality
+          td 
+            select#facsimile-quality(name='facsimile-quality')
+              option color 
+              option gray 
+
+    .controls-item
       h1 empty staves
-      ul
-        li
-          input#staves-above(type='number' name='staves-above' min='0' max='10' value='0' autocomplete='off')
-          label(for='staves-above') &#x2934;
-        li
-          input#staves-below(type='number' name='staves-below' min='0' max='10' value='0' autocomplete='off')
-          label(for='staves-below') &cudarrr;
+      table
+        tr
+          td
+            label(for='staves-above') above
+          td 
+            input#staves-above(type='number' name='staves-above' min='0' max='10' value='0' autocomplete='off')
+        tr
+          td
+            label(for='staves-below') below
+          td
+            input#staves-below(type='number' name='staves-below' min='0' max='10' value='0' autocomplete='off')
+
     .controls-item
       h1 tools
       ul
         li
           input#show-fb(type='checkbox' name='show-fb' autocomplete='off' checked='')
           label(for='show-fb') show figured bass
-        li
-          input#show-tooltips(type='checkbox' name='show-tooltips' autocomplete='off')
-          label(for='show-tooltips') facsimile tooltips
         li
           input#modern-clefs(type='checkbox' name='modern-clefs' autocomplete='off')
           label(for='modern-clefs') modern clefs
