@@ -13,13 +13,39 @@
       </sourceDesc>
     </fileDesc>
   </teiHeader>
+  <facsimile>
+      <surface ulx="0" uly="0" lrx="1998" lry="2396" xml:id="facs-p491">
+          <graphic width="1998" height="2396"
+              url="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/491"/>
+          <zone ulx="75" uly="749" lrx="1133" xml:id="facsZone-p1-1"/>
+          <zone ulx="69" uly="1088" lrx="1715" xml:id="facsZone-p2-1"/>
+          <zone ulx="78" uly="1685" lrx="2228" xml:id="facsZone-p3-1"/>
+      </surface>
+      <surface ulx="0" uly="0" lrx="1998" lry="2396" xml:id="facs-p492">
+          <graphic width="1998" height="2396"
+              url="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/492"/>
+          <zone ulx="69" uly="173" lrx="401" xml:id="facsZone-p3-1-2"/>
+          <zone ulx="60" uly="386" lrx="737" xml:id="facsZone-p4-1"/>
+          <zone ulx="62" uly="716" lrx="1082" xml:id="facsZone-p5-1"/>
+          <zone ulx="60" uly="1079" lrx="1640" xml:id="facsZone-p6-1"/>
+          <zone ulx="51" uly="1598" lrx="2249" xml:id="facsZone-music-example1"/>
+      </surface>
+      <surface ulx="0" uly="0" lrx="1998" lry="2396" xml:id="facs-p493">
+          <graphic width="1998" height="2396"
+              url="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/493"/>
+          <zone ulx="21" uly="236" lrx="803" xml:id="facsZone-music-example1-2"/>
+          <zone ulx="24" uly="767" lrx="986" xml:id="facsZone-p6-2"/>
+          <zone ulx="30" uly="1556" lrx="2240" xml:id="facsZone-p8-1"/>
+          <zone ulx="27" uly="956" lrx="1577" xml:id="facsZone-p7-1"/>
+      </surface>
+  </facsimile>
   <text>
     <body>
       <div n="0" type="chapter">
       <head>Erläuterung</head>
       <div n="1" type="section">
         <head>§. 1.</head>
-        <p xml:id="p1-1">
+        <p xml:id="p1-1" facs="#facsZone-p1-1">
           <hi rendition="#in">I</hi>m <ref target="#measure-0000001647363724">ersten Tact</ref>
           wird zu den beiden ersten Noten angeschlagen; zu den übrigen aber nicht.
           Im <ref target="#measure-0000000342366502">andern Tact</ref>
@@ -31,7 +57,7 @@
 
       <div n="2" type="section">
         <head>§. 2.</head>
-        <p xml:id="p2-1">
+        <p xml:id="p2-1" facs="#facsZone-p2-1">
           Im
           <ref target="#measure-0000001605013106">fünfften Tact</ref>
           wird nur zu der
@@ -64,7 +90,7 @@
 
       <div n="3" type="section">
         <head>§. 3.</head>
-        <p xml:id="p3-1">
+        <p xml:id="p3-1" facs="#facsZone-p3-1 #facsZone-p3-1-2">
           Mit folgenden
           <ref target="#measure-0000000404998919">sechzehnten</ref>,
           <ref target="#measure-0000000797194466">siebenzehnten</ref> und
@@ -87,7 +113,7 @@
 
       <div n="4" type="section">
         <head>§. 4.</head>
-        <p xml:id="p4-1">
+        <p xml:id="p4-1" facs="#facsZone-p4-1">
           Es stehet wol zu beobachten, daß im
           <ref target="#measure-0000001612761976">andern Tact</ref>
           des andern Theils die erste Note durchgehet, welches selten also
@@ -100,7 +126,7 @@
 
       <div n="5" type="section">
         <head>§. 5.</head>
-        <p xml:id="p5-1">
+        <p xml:id="p5-1" facs="#facsZone-p5-1">
           Bis an den
           <ref target="#measure-0000000931339172">sieben und zwantzigsten Tact</ref> dieses Theils fällt weiter
           nichts zu erklären oder zu erläutern vor; sondern es muß allhier wieder der
@@ -114,7 +140,7 @@
 
       <div n="6" type="section">
         <head>§. 6.</head>
-        <p xml:id="p6-1">
+        <p xml:id="p6-1" facs="#facsZone-p6-1">
           Bey dem
           <ref target="#measure-0000000030851495">31sten Tact</ref>
           des andern Theils kommt der Satz wieder, ob wol in verschiedenen Tonen,
@@ -126,10 +152,10 @@
           weiteres Zuthun, durgehen lassen, und endlich wird der Beschluß mit einer
           abermahligen Versetzung des Haupt-Satzes in der rechten Hand gemacht:
         </p>
-        <notatedMusic xml:id="music-example1">
-          <ptr target="music-example1.mei" />
+        <notatedMusic xml:id="music-example1" facs="#facsZone-music-example1 #facsZone-music-example1-2">
+          <ptr target="music-example1.mei"/>
         </notatedMusic>
-        <p xml:id="p6-2">
+        <p xml:id="p6-2" facs="#facsZone-p6-2">
           Wobey jedoch unausbleiblich die lincke Hand alles auf das vollstimmigste
           anschlagen muß, welches je und allewege fest gesetzet wird.
         </p>
@@ -137,7 +163,7 @@
 
       <div n="7" type="section">
         <head>§. 7.</head>
-        <p xml:id="p7-1">
+        <p xml:id="p7-1" facs="#facsZone-p7-1">
           Sonst habe mit Fleiß den gantzen Vorfall hieher setzen wollen, damit, wenn
           in den vorigen Beschreibungen etwa einen oder andern etwas dunckel scheinen
           mögte, es alles mit einander aus dieser Probe erläutert und deutlicher gemacht
@@ -152,7 +178,7 @@
 
       <div n="8" type="section">
         <head>§. 8.</head>
-        <p xml:id="p8-1">
+        <p xml:id="p8-1" facs="#facsZone-p8-1">
           Es hat der berühmte <persName ref="http://d-nb.info/gnd/11862119X">Herr Telemann</persName> ehemals sechs Concerte herausgegeben,
           und gar sauber in Kupffer stechen lassen, die der weiland Durchlauchtige
           <persName ref="http://d-nb.info/gnd/118712357">Printz Ernst, von Sachsen-Weymar</persName>, mit eigener Hand, und aus eigener Erfindung
@@ -162,9 +188,6 @@
           aufstösset; der edlen Music aber einen sonderbaren Vortheil giebt.
         </p>
       </div>
-
-      <facsimile>
-      </facsimile>
 
       <note type="on-key-signature">
          <name>E dur</name> drucket eine Verzweiflungs-volle oder gantz tödliche
