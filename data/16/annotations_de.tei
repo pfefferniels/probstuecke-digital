@@ -13,13 +13,36 @@
       </sourceDesc>
     </fileDesc>
   </teiHeader>
+  <facsimile>
+      <surface ulx="0" uly="0" lrx="1998" lry="2396" xml:id="facs-p478">
+          <graphic width="1998" height="2396"
+              url="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/478"/>
+          <zone ulx="111" uly="218" lrx="1046" xml:id="facsZone-p1-1"/>
+          <zone ulx="114" uly="1025" lrx="1595" xml:id="facsZone-p2-1"/>
+          <zone ulx="114" uly="1562" lrx="2246" xml:id="facsZone-p3-1"/>
+      </surface>
+      <surface ulx="0" uly="0" lrx="1998" lry="2396" xml:id="facs-p479">
+          <graphic width="1998" height="2396"
+              url="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/479"/>
+          <zone ulx="12" uly="179" lrx="347" xml:id="facsZone-p3-1-2"/>
+          <zone ulx="12" uly="317" lrx="1022" xml:id="facsZone-p4-1"/>
+          <zone ulx="9" uly="965" lrx="1844" xml:id="facsZone-p5-1"/>
+          <zone ulx="18" uly="1796" lrx="2252" xml:id="facsZone-p6-1"/>
+      </surface>
+      <surface ulx="0" uly="0" lrx="1998" lry="2396" xml:id="facs-p483">
+          <graphic width="1998" height="2396"
+              url="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/483"/>
+          <zone ulx="60" uly="203" lrx="1424" xml:id="facsZone-p7-1"/>
+          <zone ulx="66" uly="1382" lrx="2249" xml:id="facsZone-p8-1"/>
+      </surface>
+  </facsimile>
   <text>
     <body>
       <div n="0" type="chapter">
       <head>Erläuterung</head>
       <div n="1" type="section">
         <head>§. 1.</head>
-        <p xml:id="p1-1">
+        <p xml:id="p1-1" facs="#facsZone-p1-1">
           <hi rendition="#in">I</hi>N der Mittel-Classe dieser grossen General-Baß-Schule ist gegenwärtiger
           Ton anders notiret worden, als hier, da es doch (nach der Einrichtung des
           gewöhnlichen Claviers zu reden) derselbe Tangent ist. Es wird wohlbedächtig
@@ -37,7 +60,7 @@
 
       <div n="2" type="section">
         <head>§. 2.</head>
-        <p xml:id="p2-1">
+        <p xml:id="p2-1" facs="#facsZone-p2-1">
           Man hat zwar lange wol gemercket, daß in den so genannten halben Tonen
           gleichsam eine Zweideutigkeit stecke; daß nemlich <hi rendition="#b">#C</hi> ein
           ander Ding an sich selbsten sey, als <hi rendition="#b">♭D</hi>; daß <hi rendition="#b">#D</hi>
@@ -55,7 +78,7 @@
 
       <div n="3" type="section">
         <head>§. 3.</head>
-        <p xml:id="p3-1">
+        <p xml:id="p3-1" facs="#facsZone-p3-1 #facsZone-p3-1-2">
           Allein so weit sind unsere Ausbesserer noch nicht gegangen, dß sie auch
           <hi rendition="#b">♭C</hi> vom <hi rendition="#b">H</hi> unterschieden, und <hi rendition="#b">♭F</hi>
           nicht mit <hi rendition="#b">E</hi> vermengt, oder daß, gleichwie <hi rendition="#b">C</hi>
@@ -71,7 +94,7 @@
 
       <div n="4" type="section">
         <head>§. 4.</head>
-        <p xml:id="p4-1">
+        <p xml:id="p4-1" facs="#facsZone-p4-1">
           Unsere Vorfahren, wie sie ihre Anmerckungen über den Mangel der Tone gemachet,
           u. vermeynet haben, daß dem Clavier bey den halben Stuffen noch sieben Tangenten
           in jeder Octave fehlten, sind wol schwerlich auf die Gedancken gerathen, daß
@@ -89,7 +112,7 @@
 
       <div n="5" type="section">
         <head>§. 5.</head>
-        <p xml:id="p5-1">
+        <p xml:id="p5-1" facs="#facsZone-p5-1">
           Eben so wenig als unser einer glauben mag, daß nach diesem aus dem <hi rendition="#b">#E</hi>
           in so weit es vom <hi rendition="#b">f</hi> unterschieden ist, etwas zum Vorschein kommen
           sollte, eben so leicht kann es doch geschehen; und wolte ich nicht Bürge
@@ -109,7 +132,7 @@
 
       <div n="6" type="section">
         <head>§. 6.</head>
-        <p xml:id="p6-1">
+        <p xml:id="p6-1" facs="#facsZone-p6-1">
           Mit wenigem ist sonst anzudeuten, daß vom
           <ref target="#measure-0000001123115174">5ten Tact dieses Prob-Stücks</ref>
           bis am
@@ -127,14 +150,14 @@
           <hi rendition="#b">ARIA.</hi>
           -->
           <notatedMusic xml:id="aria-inquelseno">
-            <ptr target="#aria-inquelseno.mei" />
+            <ptr target="#aria-inquelseno.mei"/>
           </notatedMusic>
         </p>
       </div>
 
       <div n="7" type="section">
         <head>§. 7.</head>
-        <p xml:id="p7-1">
+        <p xml:id="p7-1" facs="#facsZone-p7-1">
           Diese <hi rendition="#aq"><foreign xml:lang="ita">Aria</foreign></hi> habe ich bey einer vornehmen Person, welche
           aus Italien hieher gekommen, angetroffen, ohne zu wissen, wer Verfasser
           davon sey. Man sieht wol, daß sie entweder für einen Verschnittenen, oder
@@ -161,7 +184,7 @@
 
       <div n="8" type="section">
         <head>§. 8.</head>
-        <p xml:id="p8-1">
+        <p xml:id="p8-1" facs="#facsZone-p8-1">
           Ich habe am Ende der vorhergehenden Erläuterung gesagt, es sollte in dieser
           Arie gezeiget werden, daß wir unsre Meynung nicht allemahl, ohne Uebelstand,
           mit Noten recht ausdrucken können, und daß es uns wirchlich an Zeichen fehle,
@@ -175,10 +198,6 @@
           beibringen werden.
         </p>
       </div>
-
-
-      <facsimile>
-      </facsimile>
 
       <note type="on-key-signature">
         Mattheson gibt zu dieser Tonart keine Charakteristik an.
