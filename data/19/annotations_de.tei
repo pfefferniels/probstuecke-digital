@@ -13,13 +13,32 @@
       </sourceDesc>
     </fileDesc>
   </teiHeader>
+  <facsimile>
+      <surface ulx="0" uly="0" lrx="1998" lry="2396" xml:id="facs-p496">
+          <graphic width="1998" height="2396"
+              url="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/496"/>
+          <zone ulx="108" uly="224" lrx="749" xml:id="facsZone-p1-1"/>
+          <zone ulx="87" uly="713" lrx="1199" xml:id="facsZone-p2-1"/>
+          <zone ulx="96" uly="1169" lrx="1685" xml:id="facsZone-p3-1"/>
+          <zone ulx="102" uly="1661" lrx="2240" xml:id="facsZone-p4-1"/>
+      </surface>
+      <surface ulx="0" uly="0" lrx="1998" lry="2396" xml:id="facs-p497">
+          <graphic width="1998" height="2396"
+              url="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/497"/>
+          <zone ulx="66" uly="182" lrx="344" xml:id="facsZone-p4-1-2"/>
+          <zone ulx="62" uly="308" lrx="1010" xml:id="facsZone-p5-1"/>
+          <zone ulx="69" uly="986" lrx="1646" xml:id="facsZone-p6-1"/>
+          <zone ulx="54" uly="1601" lrx="1922" xml:id="facsZone-p7-1"/>
+          <zone ulx="51" uly="1880" lrx="2156" xml:id="facsZone-p8-1"/>
+      </surface>
+  </facsimile>
   <text>
     <body>
       <div n="0" type="chapter">
       <head>Erläuterung</head>
       <div n="1" type="section">
         <head>§. 1.</head>
-        <p xml:id="p1-1">
+        <p xml:id="p1-1" facs="#facsZone-p1-1">
           <hi rendition="#in">H</hi>ier möchte nun wohl ein wenig Tactirens nöthig seyn, zumahl für einen,
           der nicht fest im Sattel sitzt. Ich zweifle aber, ob ein solcher selber
           schlagen, oder sich den Tact lieber vorschlagen lassen wolle. Das letzte
@@ -32,7 +51,7 @@
 
       <div n="2" type="section">
         <head>§. 2.</head>
-        <p xml:id="p2-1">
+        <p xml:id="p2-1" facs="#facsZone-p2-1">
           An den Orten dieser Vorschrift, wo die 6 so häuffig stehet, als wenns ihrer
           aller Sammler-Platz wäre, kann man, insonderheit bey zweigeschwäntzten
           Noten, entweder mit der Sext allein, oder mit der Tertz zukommen: doch
@@ -46,7 +65,7 @@
 
       <div n="3" type="section">
         <head>§. 3.</head>
-        <p xml:id="p3-1">
+        <p xml:id="p3-1" facs="#facsZone-p3-1">
           Im
           <ref target="#measure-0000000533608303">andern</ref> und
           <ref target="#measure-0000001856501508">dritten</ref> Tact
@@ -66,7 +85,7 @@
 
       <div n="4" type="section">
         <head>§. 4.</head>
-        <p xml:id="p4-1">
+        <p xml:id="p4-1" facs="#facsZone-p4-1 #facsZone-p4-1-2">
           Wo der Satz mit einer Pause anfängt, nemlich mit einem Achtel, da wird
           zu der darauf folgenden Note nichts, auch billig allhier nicht einmahl
           vorgeschlagen; wiewol ich hievon den Anfang ausnehmen will, und rede nur
@@ -97,7 +116,7 @@
 
       <div n="5" type="section">
         <head>§. 5.</head>
-        <p xml:id="p5-1">
+        <p xml:id="p5-1" facs="#facsZone-p5-1">
           Im
           <ref target="#measure-0000001060551138">funffzehnten Tact</ref>
           haben die Sexten wiederum die Schule,
@@ -118,7 +137,7 @@
 
       <div n="6" type="section">
         <head>§. 6.</head>
-        <p xml:id="p6-1">
+        <p xml:id="p6-1" facs="#facsZone-p6-1">
           Im
           <ref target="#measure-0000000452779095">vier- </ref> und
           <ref target="#measure-0000002077720718">fünff dreissigsten</ref> Tact mägte jemand Wunder dencken,
@@ -139,7 +158,7 @@
 
       <div n="7" type="section">
         <head>§. 7.</head>
-        <p xml:id="p7-1">
+        <p xml:id="p7-1" facs="#facsZone-p7-1">
           Kan einer im
           <ref target="#measure-0000001126576291">ein und viertzigsten Tact</ref> mit der rechten Hand
           ein paar Noten <hi rendition="#aq"><foreign xml:lang="ita">canonicè</foreign></hi> vorher spielen, und den
@@ -151,15 +170,12 @@
 
       <div n="8" type="section">
         <head>§. 8.</head>
-        <p xml:id="p8-1">
+        <p xml:id="p8-1" facs="#facsZone-p8-1">
           <persName ref="https://d-nb.info/gnd/1050676637">Msr. <hi rendition="#aq">St. Lambert</hi></persName> nennet diesen Ton <hi rendition="#aq">p. 29 <foreign xml:lang="fra">F
           ut Fa Dièze mineur</foreign></hi>, und schreibet dabey: <hi rendition="#aq"><foreign xml:lang="fra">Rare</foreign></hi>.
           <hi rendition="#b">fis mol</hi> ist kürtzer gesagt, und bey mir nichts rares.
         </p>
       </div>
-
-      <facsimile>
-      </facsimile>
 
       <note type="on-key-signature">
 
