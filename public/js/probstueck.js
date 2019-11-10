@@ -15,6 +15,8 @@ const cetei = new CETEI();
 // Helper functions
 // ------
 
+const sleep = m => new Promise(r => setTimeout(r, m))
+
 function printError(message) {
   $("#message").append(message).append("<br/>").css('background-color', 'rgba(200,20,20)');
   $("#message").show().delay(2000).fadeOut("slow").queue(function() {
@@ -37,9 +39,8 @@ async function highlight(element) {
     return;
   }
   element.addClass("highlight");
-  setTimeout(function () {
-    $(element).removeClass('highlight');
-  }, 3000);
+  await sleep(3000);
+  $(element).removeClass('highlight');
 }
 
 function getSvgElementBoxAsCss(target) {
@@ -236,76 +237,94 @@ async function renderCurrentPage() {
   $("#score-view").html(response.svg);
 }
 
-function reconnectCrossRefs() {
-  $("tei-ref").each(function() {
-    // find target in SVG
-    let targetAttr = $(this).attr("target");
-    let target = $("svg").find(targetAttr);
-    let teiRef = $(this);
-    if (target.length === 0) {
-      console.log("corresponding SVG element not found on this page.");
-      // In case the user clicks on a reference that is not found in the current SVG,
-      // we have to look it up in one of the following pages
-      $(this).find("a").off("click").click(async function(e) {
-        e.preventDefault();
-        currentParams.page += 1;
-        await updateScoreView();
-        setTimeout(function() {
-          $("body").find("tei-ref[target='" + targetAttr + "'] a").trigger("click");
-        }, 900);
-      });
-      return true;
-    }
+function connectTEIRefAndSVG(teiRef, targetAttr) {
+  let target = $("svg").find(targetAttr);
+  if (target.length === 0) {
+    console.log("corresponding SVG element not found on this page.");
 
-    // highlight the target
-    var svg = SVG.get(targetAttr);
-    let bbox = svg.bbox();
-    let rect = svg.rect(bbox.width,bbox.height).
-                   move(bbox.x,bbox.y).
-                   fill("#ffe47a").
-                   attr("class", "indicator mark_" + targetAttr).
-                   back();
-
-
-    // connect indicator with text
-    rect.click(async function() {
-      // TODO the same measure might be referenced multiple times. Make sure that in case of a click
-      // they other indicators be triggered as well.
-
-
-      // scroll to reference point and then highlight it
-      // portrait mode
-      if(window.innerHeight > window.innerWidth) {
-        $("html,body").animate({
-          scrollTop: teiRef.offset().top-50
-        }, 100, function() {
-          highlight(teiRef);
-        });
-      }
-
-      // landscape mode
-      if(window.innerWidth > window.innerHeight){
-        var annotationView = $("#annotations-view");
-        annotationView.animate({
-            scrollTop: teiRef.offset().top - annotationView.offset().top + annotationView.scrollTop()
-        }, 100, function() {
-          highlight(teiRef);
-        });
-      }
-    });
-
-
-    // connect text with an indicator
-    $(this).find("a").off("click").click(function(e) {
+    // In case the user clicks on a reference that is not found in the current SVG,
+    // we recursively look it up on the following pages.
+    async function unknownTargetClicked(e) {
       e.preventDefault();
 
-      if (window.innerHeight > window.innerWidth) {
-        $("html,body").animate({scrollTop: 0}, 100);
+      // move on to the next page render it, wait for the references
+      // to be connected and then check if this one was one of them.
+      currentParams.page += 1;
+      await renderCurrentPage();
+      reconnectCrossRefs();
+      await sleep(1000);
+      target = $("svg").find(targetAttr);
+      if (target.length != 0) {
+        SVG.get("indicate_" + targetAttr.substr(1)).
+            animate(500).attr({fill: "#ffaa99"}).animate().attr({fill: "#ffe47a"});
+      } else {
+        await unknownTargetClicked(e);
       }
+    }
 
-      rect.animate(500).attr({fill: "#ffaa99"}).animate().attr({fill: "#ffe47a"});
-    });
+    teiRef.on("click", unknownTargetClicked);
+    return;
+  }
+
+  // highlight the target
+  var svg = SVG.get(targetAttr);
+  let bbox = svg.bbox();
+  let rect = svg.rect(bbox.width,bbox.height).
+                 move(bbox.x,bbox.y).
+                 fill("#ffe47a").
+                 attr("class", "indicator").
+                 attr("id", "indicate_" + targetAttr.substr(1)).
+                 back();
+
+  // connect indicator with text
+  rect.click(async function() {
+    // TODO the same measure might be referenced multiple times. Make sure that in case of a click
+    // they other indicators be triggered as well.
+
+
+    // scroll to reference point and then highlight it
+    // portrait mode
+    if(window.innerHeight > window.innerWidth) {
+      $("html,body").animate({
+        scrollTop: teiRef.offset().top-50
+      }, 100, function() {
+        highlight(teiRef);
+      });
+    }
+
+    // landscape mode
+    if(window.innerWidth > window.innerHeight){
+      var annotationView = $("#annotations-view");
+      annotationView.animate({
+          scrollTop: teiRef.offset().top - annotationView.offset().top + annotationView.scrollTop()
+      }, 100, function() {
+        highlight(teiRef);
+      });
+    }
   });
+
+  // connect text with an indicator
+  teiRef.find("a").on("click", function(e) {
+    e.preventDefault();
+
+    if (window.innerHeight > window.innerWidth) {
+      $("html,body").animate({scrollTop: 0}, 100);
+    }
+
+    rect.animate(500).attr({fill: "#ffaa99"}).animate().attr({fill: "#ffe47a"});
+  });
+}
+
+function reconnectCrossRefs(finished) {
+  $("tei-ref").each(function() {
+    let targetAttrs = $(this).attr("target").split(" ");
+    for (let i=0; i<targetAttrs.length; i++) {
+      connectTEIRefAndSVG($(this), targetAttrs[i]);
+    }
+  });
+  if (typeof finished === "function") {
+    finished();
+  }
 }
 
 function positionAtMouse(el, e) {
