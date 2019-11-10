@@ -1197,16 +1197,19 @@
                                     <note xml:id="note-0000001519923862" dur="2" oct="3" pname="f" />
                                 </layer>
                             </staff>
-                            <fermata xml:id="fermata-0000000621930074" staff="1" startid="#note-0000001184824953" shape="curved" />
+                            <fermata staff="1" startid="#note-0000001184824953" shape="curved" place="above" />
+                            <fermata staff="2" startid="#note-0000000060115955" shape="curved" place="below" />
                         </measure>
-                        <sb xml:id="sb-0000001379769220" />
+                    </section>
+                    <sb source="#secondEdition" />
+                    <section>
                         <measure xml:id="measure-0000001073406599" n="52">
-                            <staff xml:id="staff-0000000781194201" n="1" visible="true">
+                            <staff xml:id="staff-0000000781194201" n="1">
                                 <layer xml:id="layer-0000001227895956" n="1">
                                     <mRest />
                                 </layer>
                             </staff>
-                            <staff xml:id="staff-0000001385236528" n="2" visible="true">
+                            <staff xml:id="staff-0000001385236528" n="2">
                                 <layer xml:id="layer-0000000490070830" n="1">
                                     <note xml:id="note-0000000430834383" dur="2" oct="3" pname="d" />
                                     <note xml:id="note-0000001864263557" dur="4" oct="3" pname="c" />
