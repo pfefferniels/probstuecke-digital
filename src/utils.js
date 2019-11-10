@@ -1,5 +1,4 @@
-const render = require("./render.js"),
-      path = require('path'),
+const path = require('path'),
       fs = require('fs'),
       xmldom = require('xmldom'),
       prettifyXml = require('prettify-xml'),
@@ -121,7 +120,7 @@ function annotateFile(req, res) {
         console.log(err);
         return;
       }
-      
+
       let doc = new DOMParser().parseFromString(data.toString(), 'text/xml');
 
       let before = "text",
@@ -190,7 +189,7 @@ function annotateFile(req, res) {
     iiifObject.resources.push(annotation);
   }
 
-  newIIIFContent = JSON.stringify(iiifObject, null, 4);
+  let newIIIFContent = JSON.stringify(iiifObject, null, 4);
   fs.mkdirSync(path.join(__dirname, '../tmp', nr), { recursive: true });
   const newIIIFPath = path.join(__dirname, '../tmp', nr, 'facsimile_de.json');
   fs.writeFile(newIIIFPath, newIIIFContent, function(err) {
