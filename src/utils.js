@@ -103,8 +103,8 @@ function annotateFile(req, res) {
       createFacsimileElement(doc, regions, scanPage, before, referencedTags)
 
       let mei = new xmldom.XMLSerializer().serializeToString(doc);
-      //fs.mkdirSync(path.join(__dirname, '../tmp', nr), { recursive: true });
-      let targetFile = path.join(__dirname, '../data', nr, 'score.mei');
+      fs.mkdirSync(path.join(__dirname, '../tmp', nr), { recursive: true });
+      let targetFile = path.join(__dirname, '../tmp', nr, 'score.mei');
       fs.writeFile(targetFile, prettifyXml(mei), function (err) {
         if (err) throw err;
         console.log("saved");
@@ -121,8 +121,8 @@ function annotateFile(req, res) {
       createFacsimileElement(doc, regions, scanPage, before, referencedTags);
 
       let tei = new xmldom.XMLSerializer().serializeToString(doc);
-      //fs.mkdirSync(path.join(__dirname, '../tmp', nr), { recursive: true });
-      let targetFile = path.join(__dirname, '../data', nr, 'annotations_de.tei');
+      fs.mkdirSync(path.join(__dirname, '../tmp', nr), { recursive: true });
+      let targetFile = path.join(__dirname, '../tmp', nr, 'annotations_de.tei');
       fs.writeFile(targetFile, tei, function (err) {
         if (err) throw err;
         console.log("saved");
@@ -183,8 +183,8 @@ function annotateFile(req, res) {
   }
 
   newIIIFContent = JSON.stringify(iiifObject, null, 4);
-  //fs.mkdirSync(path.join(__dirname, '../tmp', nr), { recursive: true });
-  const newIIIFPath = path.join(__dirname, '../data', nr, 'facsimile_de.json');
+  fs.mkdirSync(path.join(__dirname, '../tmp', nr), { recursive: true });
+  const newIIIFPath = path.join(__dirname, '../tmp', nr, 'facsimile_de.json');
   fs.writeFile(newIIIFPath, newIIIFContent, function(err) {
     if (err) {
       console.error(err);
