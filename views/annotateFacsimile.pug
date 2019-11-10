@@ -43,17 +43,30 @@ p
 #right
   p
     span Scan Page (e.g. #[code 386])
-    input(type="text" id="scanId")
+    input(type="number" id="scanId")
     button#getScan retrieve scan
   p 
-      span type (#[code "text"] or #[code "music"]):
-      input(type="text" id="type")
+      span write regions into: 
+      select#type(name="type")
+        option text 
+        option music 
   p
     button#inject inject boxes
+    p 
+      small this will create a copy of #[code score.mei] or #[code annotation_de.tei]
+        | in the #[code tmp] folder of the server that includes the facsimile regions. 
+        | Furthermore a #[code facsimile_de.json] file is created that contains the 
+        | same data as an IIIF AnnotationList. You can also download those files 
+        | here:
   p
     button#getMEI download MEI 
     button#getTEI download TEI 
-    button#getIIIF download IIIF AnnotationList 
+    button#getIIIF download AnnotationList JSON 
+  
+  p
+    small For connecting a region with a measure of music, mark the region by click 
+      | and drag, then click in the transcription on the measure that you want to 
+      | reference.
   
   p#displayBoxes
   
