@@ -13,13 +13,50 @@
       </sourceDesc>
     </fileDesc>
   </teiHeader>
+  <facsimile>
+      <surface ulx="0" uly="0" lrx="1998" lry="2396" xml:id="facs-p501">
+          <graphic width="1998" height="2396"
+              url="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/501"/>
+          <zone ulx="48" uly="1157" lrx="1517" xml:id="facsZone-p1-1"/>
+          <zone ulx="288" uly="1490" lrx="1811" xml:id="facsZone-music-example1"/>
+          <zone ulx="39" uly="1751" lrx="1919" xml:id="facsZone-p1-2"/>
+          <zone ulx="45" uly="1895" lrx="2252" xml:id="facsZone-p2-1"/>
+          <zone ulx="1473" uly="1892" lrx="2222" xml:id="facsZone-music-example2"/>
+      </surface>
+      <surface ulx="0" uly="0" lrx="1998" lry="2396" xml:id="facs-p502">
+          <graphic width="1998" height="2396"
+              url="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/502"/>
+          <zone ulx="90" uly="185" lrx="440" xml:id="facsZone-p2-1-2"/>
+          <zone ulx="93" uly="407" lrx="761" xml:id="facsZone-p3-1"/>
+          <zone ulx="102" uly="737" lrx="1058" xml:id="facsZone-music-example3"/>
+          <zone ulx="711" uly="1586" lrx="1850" xml:id="facsZone-music-example4"/>
+          <zone ulx="111" uly="1049" lrx="1211" xml:id="facsZone-p3-2"/>
+          <zone ulx="120" uly="1199" lrx="1637" xml:id="facsZone-p4-1"/>
+          <zone ulx="135" uly="1856" lrx="2207" xml:id="facsZone-p5-1"/>
+      </surface>
+      <surface ulx="0" uly="0" lrx="1998" lry="2396" xml:id="facs-p503">
+          <graphic width="1998" height="2396"
+              url="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/503"/>
+          <zone ulx="81" uly="221" lrx="836" xml:id="facsZone-music-example5"/>
+          <zone ulx="381" uly="1322" lrx="1877" xml:id="facsZone-music-example6"/>
+          <zone ulx="78" uly="809" lrx="1142" xml:id="facsZone-p5-2"/>
+          <zone ulx="78" uly="1109" lrx="1397" xml:id="facsZone-p6-1"/>
+          <zone ulx="60" uly="1847" lrx="2228" xml:id="facsZone-p7-1"/>
+      </surface>
+      <surface ulx="0" uly="0" lrx="1998" lry="2396" xml:id="facs-p504">
+          <graphic width="1998" height="2396"
+              url="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/504"/>
+          <zone ulx="111" uly="218" lrx="1184" xml:id="facsZone-music-example7"/>
+          <zone ulx="117" uly="1175" lrx="2231" xml:id="facsZone-p8-1"/>
+      </surface>
+  </facsimile>
   <text>
     <body>
       <div n="0" type="chapter">
       <head>Erläuterung</head>
       <div n="1" type="section">
         <head>§. 1.</head>
-        <p xml:id="p1-1">
+        <p xml:id="p1-1" facs="#facsZone-p1-1">
           <hi rendition="#in">W</hi>er hier fest springen kann, der kömmt wol zu recht; ein anderer aber wird
           offt straucheln, stolpern, oder unrechte Palmulen ergreiffen.
           Zum Ende des
@@ -30,10 +67,10 @@
           <ref target="#measure-0000000328043882">siebenden</ref> auf
           diese Art:
         </p>
-        <notatedMusic xml:id="music-example1">
-          <ptr target="music-example1.mei" />
+        <notatedMusic xml:id="music-example1" facs="#facsZone-music-example1">
+          <ptr target="music-example1.mei"/>
         </notatedMusic>
-        <p xml:id="p1-2">
+        <p xml:id="p1-2" facs="#facsZone-p1-2">
           Solches wird sich auch im
           <ref target="#measure-0000000567414890">funffzehnten</ref>,
           <ref target="#measure-0000000493851592">sechzehnten</ref> und
@@ -44,7 +81,7 @@
 
       <div n="2" type="section">
         <head>§. 2.</head>
-        <p xml:id="p2-1">
+        <p xml:id="p2-1" facs="#facsZone-p2-1 #facsZone-p2-1-2">
           Am Ende des
           <ref target="#measure-0000001926508584">achten Tacts</ref>
           zu den zwey Achteln, spielet die rechte Hand diese
@@ -53,8 +90,8 @@
           <ref target="#measure-0000000362882873">zehnten</ref> und
           <ref target="#measure-0000000785009598">elfften Tact</ref>
           nach Maßgebung des Basses;
-          <notatedMusic xml:id="music-example2">
-            <ptr target="music-example2.mei" />
+          <notatedMusic xml:id="music-example2" facs="#facsZone-music-example2">
+            <ptr target="music-example2.mei"/>
           </notatedMusic>
           wie denn auch im
           <ref target="#measure-0000001425906512">achtzehnten</ref> und
@@ -68,16 +105,16 @@
 
       <div n="3" type="section">
         <head>§. 3.</head>
-        <p xml:id="p3-1">
+        <p xml:id="p3-1" facs="#facsZone-p3-1">
           Da der andere Theil mit einem gewissen <hi rendition="#aq"><foreign xml:lang="ita">Harpeggio</foreign></hi>
           anfänget, deutet solches allhie so viel an, daß die rechte Hand daher
           Gelegenheit suchen solle, es nachzuahmen. Solches kann auch sofort im
           andern Tact geschehen, etwa folgender Gestalt:
         </p>
-        <notatedMusic xml:id="music-example3">
-          <ptr target="music-example3.mei" />
+        <notatedMusic xml:id="music-example3" facs="#facsZone-music-example3">
+          <ptr target="music-example3.mei"/>
         </notatedMusic>
-        <p xml:id="p3-2">
+        <p xml:id="p3-2" facs="#facsZone-p3-2">
           Wobey nicht zu vergessen, daß die Baß-Noten mit Octaven einhergehen,
           und so dann dem Dinge eine Ernsthafftigkeit geben können.
         </p>
@@ -85,7 +122,7 @@
 
       <div n="4" type="section">
         <head>§. 4.</head>
-        <p xml:id="p4-1">
+        <p xml:id="p4-1" facs="#facsZone-p4-1">
           Im
           <ref target="#measure-0000001018439983">fünfften</ref> und
           <ref target="#measure-0000001374019244">sechsten Tact</ref> des andern Theils nimmt man
@@ -99,23 +136,23 @@
           zu den vier letzten Noten aber des elfftenTacts nur dieses
           wenige zu schlagen:
         </p>
-        <notatedMusic xml:id="music-example4">
-          <ptr target="music-example4.mei" />
+        <notatedMusic xml:id="music-example4" facs="#facsZone-music-example4">
+          <ptr target="music-example4.mei"/>
         </notatedMusic>
       </div>
 
       <div n="5" type="section">
         <head>§. 5.</head>
-        <p xml:id="p5-1">
+        <p xml:id="p5-1" facs="#facsZone-p5-1">
           Auch kann es nicht übel klingen, wenn mit dem Ende der
           <ref target="#measure-0000000216610351">vierten Mensur</ref> die
           rechte Hand ihre Accorde und Griffe eben so bricht, als der Baß die
           seine. Solches muß aber nur auf diese drey Viertel geschehen:
         </p>
-        <notatedMusic xml:id="music-example5">
-          <ptr target="music-example5.mei" />
+        <notatedMusic xml:id="music-example5" facs="#facsZone-music-example5">
+          <ptr target="music-example5.mei"/>
         </notatedMusic>
-        <p xml:id="p5-2">
+        <p xml:id="p5-2" facs="#facsZone-p5-2">
           Daß die beiden letzten Noten mit dem Baß Octaven nehmen, gechiehet mit Fleiß,
           um den Haupt-Satz, der daselbst wieder einfällt, desto deutlicher auszudrücken:
           da dieselben Noten aber noch einmahl vorkommen, darff man sie nicht auch noch
@@ -126,19 +163,19 @@
 
       <div n="6" type="section">
         <head>§. 6.</head>
-        <p xml:id="p6-1">
+        <p xml:id="p6-1" facs="#facsZone-p6-1">
           Gleich darauf kann, bey dem stillhaltenden Baß, die rechte Hand sich hören lassen,
           nur mit einem gebrochenen Accord, und was sonsten üerersteht. Zum
           Exempel:
         </p>
-        <notatedMusic xml:id="music-example6">
-          <ptr target="music-example6.mei" />
+        <notatedMusic xml:id="music-example6" facs="#facsZone-music-example6">
+          <ptr target="music-example6.mei"/>
         </notatedMusic>
       </div>
 
       <div n="7" type="section">
         <head>§. 7.</head>
-        <p xml:id="p7-1">
+        <p xml:id="p7-1" facs="#facsZone-p7-1">
           Gleicher gestalt leidet der
           <ref target="#measure-0000002005099252">achtzehnte Tact</ref> gar wol, daß die rechte Hand
           in der Harmonie mit der lincken auf eben vorbereitete Art verfahre.
@@ -147,14 +184,14 @@
           <ref target="#note-0000000045767801">wo der Baß durch Viertel geht</ref>, diese
           Veränderung im Discant gemacht:
         </p>
-        <notatedMusic xml:id="music-example7">
-          <ptr target="#music-example7.mei" />
+        <notatedMusic xml:id="music-example7" facs="#facsZone-music-example7">
+          <ptr target="music-example7.mei"/>
         </notatedMusic>
       </div>
 
       <div n="8" type="section">
         <head>§. 8.</head>
-        <p xml:id="p8-1">
+        <p xml:id="p8-1" facs="#facsZone-p8-1">
           Daß dieser Ton in Freinkreich was rares seyn müsse, ersehe aus dem
           Lambertischen<note place="foot" n="*)" type="footnote"><hi rendition="#aq"><foreign xml:lang="fra">Le B Fa Si Beccarre
           etant un Ton, sur lequel on compose rarement, il n'y a point demodulation qui lui soit particulierement affectée:
@@ -178,9 +215,6 @@
            ausgeführet hören, es würde ihm ins Hertz gehen.
         </p>
       </div>
-
-      <facsimile>
-      </facsimile>
 
       <note type="on-key-signature">
 
