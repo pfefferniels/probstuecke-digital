@@ -20,7 +20,6 @@ function displayPS(number) {
 
         let left = document.getElementById("left");
         let response = JSON.parse(xhr.responseText);
-        console.log(response.svg);
         left.innerHTML = response.svg;
         let staffs = document.getElementsByClassName("staff");
         for (let i=0; i<staffs.length; i++) {
