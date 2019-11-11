@@ -32,12 +32,6 @@ function printInfo(message) {
 }
 
 async function highlight(element) {
-  if (element.length == 0) {
-    currentParams.page += 1;
-    await updateView(true);
-    highlight(element);
-    return;
-  }
   element.addClass("highlight");
   await sleep(3000);
   $(element).removeClass('highlight');
@@ -521,12 +515,6 @@ $(document).ready(function() {
   // ------
   // view controls
   // ------
-
-  $("#nr").change(function() {
-    number = $(this).val();
-    currentParams.page = 1;
-    updateView(true);
-  });
 
   $("#staves-below").change(function() {
     currentParams.emptyStaffsBelow = $(this).val();
