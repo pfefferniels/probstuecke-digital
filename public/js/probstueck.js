@@ -267,8 +267,15 @@ function connectTEIRefAndSVG(teiRef, targetAttr) {
   }
 
   // highlight the target
-  var svg = SVG.get(targetAttr);
+  let svg = SVG.get(targetAttr);
   let bbox = svg.bbox();
+
+  // draw the box always into g.measure to make
+  // sure that it does not hide the staff lines.
+  if (!svg.hasClass("measure")) {
+    svg = svg.parent(".measure");
+  }
+
   let rect = svg.rect(bbox.width,bbox.height).
                  move(bbox.x,bbox.y).
                  fill("#ffe47a").
