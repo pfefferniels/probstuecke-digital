@@ -163,7 +163,10 @@ tei-p {
   position: relative;
   width: 90%;
   line-height: 1.5;
-  text-indent: 2em;
+}
+
+tei:div:not(:first-of-type)>tei-p {
+  text-indent: 2rem;
 }
 
 tei-hi[rendition="#aq"] {
