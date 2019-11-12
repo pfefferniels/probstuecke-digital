@@ -217,9 +217,8 @@ tei-note span {
   color: gray;
 }
 
-tei-notatedmusic svg {
-  margin-left: auto;
-  margin-right: auto;
+tei-notatedmusic>svg {
+  margin: 1rem auto;
 }
 
 tei-rdg:last-child {
