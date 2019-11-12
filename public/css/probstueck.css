@@ -166,7 +166,9 @@ tei-p {
   text-indent: 2em;
 }
 
-tei-hi[rendition="#aq"] {}
+tei-hi[rendition="#aq"] {
+  letter-spacing: 0.1rem;
+}
 
 tei-hi[rendition="#b"] {
   font-weight: bold;
@@ -206,7 +208,6 @@ tei-graphic>img {
 }
 
 tei-foreign {
-  letter-spacing: 0.1em;
 }
 
 tei-note span {
