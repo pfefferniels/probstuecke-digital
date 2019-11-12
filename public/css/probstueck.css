@@ -213,8 +213,12 @@ tei-graphic>img {
 tei-foreign {
 }
 
-tei-note span {
+tei-note {
   color: gray;
+}
+
+tei-note[n]::before {
+  content: attr(n);
 }
 
 tei-notatedmusic>svg {
