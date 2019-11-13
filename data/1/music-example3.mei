@@ -1,47 +1,49 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="http://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<?xml-model href="http://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-CMN.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
     <meiHead>
         <fileDesc>
             <titleStmt>
+                <title></title>
                 <composer>Johann Mattheson</composer>
-                <editor>Niels Pfeffer</editor>
+                <respStmt>
+                    <resp>Edited by</resp>
+                    <persName role="editor" xml:id="pfeffer">Niels Pfeffer</persName>
+                    <persName role="editor" xml:id="rettinghaus">Klaus Rettinghaus</persName>
+                </respStmt>
             </titleStmt>
             <editionStmt>
                 <edition>First draft, <date>2019</date></edition>
             </editionStmt>
             <pubStmt>
-                <unpub />
+                <date>2019</date>
             </pubStmt>
         </fileDesc>
     </meiHead>
-  
-  
     <music>
         <body>
-            <mdiv xml:id="mdiv-0000000238056308">
-                <score xml:id="score-0000001300125215">
-                    <scoreDef xml:id="scoredef-0000001227810225">
-                        <staffGrp xml:id="staffgrp-0000000097299438">
-                            <staffDef xml:id="staffdef-variant-1" clef.shape="C" clef.line="1" key.mode="major" key.sig="1f" meter.count="4" meter.unit="4" n="1" lines="5">
-                                <label></label>
+            <mdiv label="Example 3">
+                <score>
+                    <scoreDef key.pname="d" key.mode="minor">
+                        <staffGrp>
+                            <staffDef xml:id="staffdef-variant-1" clef.shape="C" clef.line="1" n="1" lines="5">
+                                <keySig sig="1f" type="supplied"/>
                             </staffDef>
-                            <staffDef xml:id="staffdef-bass" clef.shape="F" clef.line="4" key.mode="major" key.sig="1f" meter.count="4" meter.unit="4" n="2" lines="5">
-                                <label></label>
+                            <staffDef xml:id="staffdef-bass" clef.shape="F" clef.line="4" n="2" lines="5">
+                                <keySig sig="1f" type="supplied"/>
                             </staffDef>
                         </staffGrp>
                     </scoreDef>
                     <section xml:id="ex-34">
-                        <sb xml:id="ex-36"/>
-                        <measure xml:id="ex-1123" n="">
+                        <sb/>
+                        <measure xml:id="ex-1123" corresp="#m-1123">
                             <staff xml:id="ex-1124" n="1">
                                 <layer xml:id="ex-1125" n="1">
                                     <beam xml:id="ex-1127">
                                         <note xml:id="ex-1126" dur="32" oct="4" pname="a" stem.dir="up"/>
                                         <note xml:id="ex-1128" dur="32" oct="5" pname="f" stem.dir="down"/>
                                         <note xml:id="ex-1129" dur="32" oct="4" pname="a" stem.dir="up"/>
-                                        <note xml:id="ex-1130" breaksec="1" dur="32" oct="5" pname="f" stem.dir="down"/>
+                                        <note xml:id="ex-1130" dur="32" oct="5" pname="f" stem.dir="down"/>
                                         <note xml:id="ex-1131" dur="32" oct="4" pname="g" stem.dir="up"/>
                                         <note xml:id="ex-1132" dur="32" oct="5" pname="f" stem.dir="down"/>
                                         <note xml:id="ex-1133" dur="32" oct="4" pname="g" stem.dir="up"/>
@@ -51,7 +53,7 @@
                                         <note xml:id="ex-1135" dur="32" oct="4" pname="g" stem.dir="up"/>
                                         <note xml:id="ex-1137" dur="32" oct="5" pname="e" stem.dir="down"/>
                                         <note xml:id="ex-1138" dur="32" oct="4" pname="g" stem.dir="up"/>
-                                        <note xml:id="ex-1139" breaksec="1" dur="32" oct="5" pname="e" stem.dir="down"/>
+                                        <note xml:id="ex-1139" dur="32" oct="5" pname="e" stem.dir="down"/>
                                         <note xml:id="ex-1140" dur="32" oct="4" pname="f" stem.dir="up"/>
                                         <note xml:id="ex-1141" dur="32" oct="5" pname="e" stem.dir="down"/>
                                         <note xml:id="ex-1142" dur="32" oct="4" pname="f" stem.dir="up"/>
@@ -61,7 +63,7 @@
                                         <note xml:id="ex-1144" dur="32" oct="4" pname="f" stem.dir="up"/>
                                         <note xml:id="ex-1146" dur="32" oct="5" pname="d" stem.dir="down"/>
                                         <note xml:id="ex-1147" dur="32" oct="4" pname="f" stem.dir="up"/>
-                                        <note xml:id="ex-1148" breaksec="1" dur="32" oct="5" pname="d" stem.dir="down"/>
+                                        <note xml:id="ex-1148" dur="32" oct="5" pname="d" stem.dir="down"/>
                                         <note xml:id="ex-1149" dur="32" oct="4" pname="e" stem.dir="up"/>
                                         <note xml:id="ex-1150" dur="32" oct="5" pname="d" stem.dir="down"/>
                                         <note xml:id="ex-1151" dur="32" oct="4" pname="e" stem.dir="up"/>
@@ -71,7 +73,7 @@
                                         <note xml:id="ex-1153" dur="32" oct="4" pname="e" stem.dir="up"/>
                                         <note xml:id="ex-1155" dur="32" oct="5" pname="c" stem.dir="down"/>
                                         <note xml:id="ex-1156" dur="32" oct="4" pname="e" stem.dir="up"/>
-                                        <note xml:id="ex-1157" breaksec="1" dur="32" oct="5" pname="c" stem.dir="down"/>
+                                        <note xml:id="ex-1157" dur="32" oct="5" pname="c" stem.dir="down"/>
                                         <note xml:id="ex-1158" dur="32" oct="4" pname="d" stem.dir="up"/>
                                         <note xml:id="ex-1159" dur="32" oct="5" pname="c" stem.dir="down"/>
                                         <note xml:id="ex-1160" dur="32" oct="4" pname="d" stem.dir="up"/>
@@ -83,9 +85,7 @@
                                 <layer xml:id="ex-1163" n="1">
                                     <beam xml:id="ex-1165">
                                         <note xml:id="ex-1164" dur="16" oct="4" pname="d" stem.dir="down"/>
-                                        <note xml:id="ex-1166" breaksec="1" dur="16" oct="4" pname="c" stem.dir="down">
-                                            <accid xml:id="ex-1167" accid="n"/>
-                                        </note>
+                                        <note xml:id="ex-1166" dur="16" oct="4" pname="c" stem.dir="down"/>
                                         <note xml:id="ex-1168" dur="16" oct="3" pname="b" stem.dir="down">
                                             <accid xml:id="ex-1169" accid="f"/>
                                         </note>
@@ -94,8 +94,8 @@
                                     </beam>
                                     <beam xml:id="ex-1173">
                                         <note xml:id="ex-1172" dur="16" oct="4" pname="c" stem.dir="down"/>
-                                        <note xml:id="ex-1174" breaksec="1" dur="16" oct="3" pname="b" stem.dir="down">
-                                            <accid xml:id="ex-1175" accid.ges="f"/>
+                                        <note xml:id="ex-1174" dur="16" oct="3" pname="b" stem.dir="down">
+                                            <accid xml:id="ex-1175" accid="f"/>
                                         </note>
                                         <note xml:id="ex-1176" dur="16" oct="3" pname="a" stem.dir="down"/>
                                         <note xml:id="ex-1177" dur="32" oct="3" pname="g" stem.dir="down"/>
@@ -103,16 +103,16 @@
                                     </beam>
                                     <beam xml:id="ex-1181">
                                         <note xml:id="ex-1179" dur="16" oct="3" pname="b" stem.dir="down">
-                                            <accid xml:id="ex-1180" accid.ges="f"/>
+                                            <accid xml:id="ex-1180" accid="f"/>
                                         </note>
-                                        <note xml:id="ex-1182" breaksec="1" dur="16" oct="3" pname="a" stem.dir="down"/>
+                                        <note xml:id="ex-1182" dur="16" oct="3" pname="a" stem.dir="down"/>
                                         <note xml:id="ex-1183" dur="16" oct="3" pname="g" stem.dir="down"/>
                                         <note xml:id="ex-1184" dur="32" oct="3" pname="f" stem.dir="down"/>
                                         <note xml:id="ex-1185" dur="32" oct="3" pname="e" stem.dir="down"/>
                                     </beam>
                                     <beam xml:id="ex-1187">
                                         <note xml:id="ex-1186" dur="16" oct="3" pname="a" stem.dir="down"/>
-                                        <note xml:id="ex-1188" breaksec="1" dur="16" oct="3" pname="g" stem.dir="down"/>
+                                        <note xml:id="ex-1188" dur="16" oct="3" pname="g" stem.dir="down"/>
                                         <note xml:id="ex-1189" dur="16" oct="3" pname="f" stem.dir="down"/>
                                         <note xml:id="ex-1190" dur="32" oct="3" pname="e" stem.dir="down"/>
                                         <note xml:id="ex-1191" dur="32" oct="3" pname="d" stem.dir="down"/>
