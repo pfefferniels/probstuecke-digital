@@ -1,12 +1,19 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="http://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<?xml-model href="http://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-CMN.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
     <meiHead>
         <fileDesc>
             <titleStmt>
-                <composer>Johann Mattheson</composer>
-                <editor>Niels Pfeffer</editor>
+                <title>
+                </title>
+                <composer>
+                    <persName role="composer" auth.uri="http://d-nb.info/gnd/118578995" auth="GND">Johann Mattheson</persName>
+                </composer>
+                <respStmt>
+                    <resp>Edited by</resp>
+                    <persName role="editor" xml:id="pfeffer">Niels Pfeffer</persName>
+                    <persName role="editor" xml:id="rettinghaus">Klaus Rettinghaus</persName>
+                </respStmt>
             </titleStmt>
             <editionStmt>
                 <edition>First draft, <date>2019</date></edition>
@@ -16,25 +23,21 @@
             </pubStmt>
         </fileDesc>
     </meiHead>
-  
-    
     <music>
         <body>
-            <mdiv xml:id="mdiv-0000000238056308">
-                <score xml:id="score-0000001300125215">
-                    <scoreDef xml:id="scoredef-0000001227810225">
-                        <staffGrp xml:id="staffgrp-0000000097299438">
-                            <staffDef xml:id="staffdef-variant-1" clef.shape="G" clef.line="2" key.mode="major" key.sig="1f" meter.count="4" meter.unit="4" n="1" lines="5">
-                                <label></label>
+            <mdiv>
+                <score>
+                    <scoreDef>
+                        <staffGrp>
+                            <staffDef xml:id="staffdef-variant-1" clef.shape="G" clef.line="2" key.sig="1f" n="1" lines="5">
                             </staffDef>
-                            <staffDef xml:id="staffdef-bass" clef.shape="F" clef.line="4" key.mode="major" key.sig="1f" meter.count="4" meter.unit="4" n="2" lines="5">
-                                <label></label>
+                            <staffDef xml:id="staffdef-bass" clef.shape="F" clef.line="4" key.sig="1f" n="2" lines="5">
                             </staffDef>
                         </staffGrp>
                     </scoreDef>
                     <section xml:id="ex-34">
                       <measure xml:id="ex-606" n="">
-                          
+
                           <staff xml:id="ex-612" n="1">
                               <layer n="1">
                                   <space xml:id="ex-614" dur="2"/>
