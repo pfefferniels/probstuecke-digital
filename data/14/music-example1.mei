@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-CMN.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-CMN.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0" ?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
     <meiHead>
         <fileDesc>
             <titleStmt>
-                <title>
-                </title>
+                <title></title>
                 <composer>
                     <persName role="composer" auth.uri="http://d-nb.info/gnd/118578995" auth="GND">Johann Mattheson</persName>
                 </composer>
@@ -16,7 +15,10 @@
                 </respStmt>
             </titleStmt>
             <editionStmt>
-                <edition>First draft, <date>2019</date></edition>
+                <edition>
+                    First draft,
+                    <date>2019</date>
+                </edition>
             </editionStmt>
             <pubStmt>
                 <unpub />
@@ -29,42 +31,42 @@
                 <score>
                     <scoreDef>
                         <staffGrp>
-                            <staffDef clef.shape="C" clef.line="1" key.sig="5f" n='1' lines='5' label="Mattheson's annotations" />
+                            <staffDef clef.shape="C" clef.line="1" key.sig="5f" n="1" lines="5" label="Mattheson's annotations" />
                         </staffGrp>
                     </scoreDef>
                     <section>
-                      <measure n="8" label="Achter Tact">
-                          <staff n="1" visible="true">
-                              <layer n="1">
-                                  <supplied resp="#pfeffer">
-                                      <space dur="8" />
-                                      <space dur="8" />
-                                      <space dur="8" />
-                                      <space dur="8" />
-                                      <space dur="8" />
-                                      <space dur="8" />
-                                  </supplied>
-                                  <beam>
-                                      <note xml:id="ex-1" dur="16" oct="4" pname="b" stem.dir="down" accid.ges="f" />
-                                      <note dur="16" oct="5" pname="g" stem.dir="down" accid.ges="f">
-                                          <accid accid="f" />
-                                      </note>
-                                      <note dur="16" oct="4" pname="b" stem.dir="down" accid.ges="f" />
-                                      <note dur="16" oct="5" pname="g" stem.dir="down" accid.ges="f" />
-                                      <note dur="16" oct="4" pname="b" stem.dir="down" accid.ges="f" />
-                                      <note dur="16" oct="5" pname="g" stem.dir="down" accid.ges="f" />
-                                  </beam>
-                                  <beam>
-                                      <note dur="16" oct="4" pname="a" stem.dir="down" accid.ges="f" />
-                                      <note dur="16" oct="5" pname="g" stem.dir="down" accid.ges="f" />
-                                      <note dur="16" oct="4" pname="a" stem.dir="down" accid.ges="f" />
-                                      <note dur="16" oct="5" pname="g" stem.dir="down" accid.ges="f" />
-                                      <note dur="16" oct="4" pname="a" stem.dir="down" accid.ges="f" />
-                                      <note dur="16" oct="5" pname="g" stem.dir="down" accid.ges="f" />
-                                  </beam>
-                              </layer>
-                          </staff>
-                          <dir place="below" startid="#ex-1">Achter Tact</dir>
+                        <measure n="8" label="Achter Tact">
+                            <staff n="1" visible="true">
+                                <layer n="1">
+                                    <supplied resp="#pfeffer">
+                                        <space dur="8" />
+                                        <space dur="8" />
+                                        <space dur="8" />
+                                        <space dur="8" />
+                                        <space dur="8" />
+                                        <space dur="8" />
+                                    </supplied>
+                                    <beam>
+                                        <note xml:id="ex-1" dur="16" oct="4" pname="b" stem.dir="down" accid.ges="f" />
+                                        <note dur="16" oct="5" pname="g" stem.dir="down" accid.ges="f">
+                                            <accid accid="f" />
+                                        </note>
+                                        <note dur="16" oct="4" pname="b" stem.dir="down" accid.ges="f" />
+                                        <note dur="16" oct="5" pname="g" stem.dir="down" accid.ges="f" />
+                                        <note dur="16" oct="4" pname="b" stem.dir="down" accid.ges="f" />
+                                        <note dur="16" oct="5" pname="g" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                    <beam>
+                                        <note dur="16" oct="4" pname="a" stem.dir="down" accid.ges="f" />
+                                        <note dur="16" oct="5" pname="g" stem.dir="down" accid.ges="f" />
+                                        <note dur="16" oct="4" pname="a" stem.dir="down" accid.ges="f" />
+                                        <note dur="16" oct="5" pname="g" stem.dir="down" accid.ges="f" />
+                                        <note dur="16" oct="4" pname="a" stem.dir="down" accid.ges="f" />
+                                        <note dur="16" oct="5" pname="g" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <dir place="below" startid="#ex-1">Achter Tact</dir>
                         </measure>
                         <measure n="9" label="Neuter Tact." right="invis">
                             <staff n="1">
@@ -86,7 +88,7 @@
                                 </layer>
                             </staff>
                             <dir place="below" startid="#ex-2">Neunter Tact.</dir>
-                          </measure>
+                        </measure>
                     </section>
                 </score>
             </mdiv>

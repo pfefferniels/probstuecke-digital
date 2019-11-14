@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-CMN.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-CMN.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0" ?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
     <meiHead>
         <fileDesc>
             <titleStmt>
-                <title>
-                </title>
+                <title></title>
                 <composer>
                     <persName role="composer" auth.uri="http://d-nb.info/gnd/118578995" auth="GND">Johann Mattheson</persName>
                 </composer>
@@ -16,7 +15,10 @@
                 </respStmt>
             </titleStmt>
             <editionStmt>
-                <edition>First draft, <date>2019</date></edition>
+                <edition>
+                    First draft,
+                    <date>2019</date>
+                </edition>
             </editionStmt>
             <pubStmt>
                 <unpub />
@@ -29,7 +31,7 @@
                 <score xml:id="score-0000000219492500">
                     <scoreDef xml:id="scoredef-0000000815564185">
                         <staffGrp xml:id="staffgrp-0000000016095952">
-                            <staffDef xml:id="staffdef-0000000639396635" n='1' lines='5' clef.shape="C" clef.line="1">
+                            <staffDef xml:id="staffdef-0000000639396635" n="1" lines="5" clef.shape="C" clef.line="1">
                                 <keySig xml:id="keysig-0000002027405687" mode="major" sig="4s" />
                             </staffDef>
                             <staffDef xml:id="staffdef-0000000649331796" n="2" lines="5" clef.shape="F" clef.line="4">
@@ -204,7 +206,7 @@
                                 </layer>
                             </staff>
                         </measure>
-                                                <measure xml:id="measure-0000000409081264" n="5">
+                        <measure xml:id="measure-0000000409081264" n="5">
                             <staff xml:id="staff-0000001012358894" n="1" visible="true">
                                 <layer xml:id="layer-0000000598273226" n="1">
                                     <beam xml:id="beam-0000001992126984">
