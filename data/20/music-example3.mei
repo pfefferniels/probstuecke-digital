@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-CMN.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-CMN.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0" ?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
     <meiHead>
         <fileDesc>
             <titleStmt>
-                <title>
-                </title>
+                <title></title>
                 <composer>
                     <persName role="composer" auth.uri="http://d-nb.info/gnd/118578995" auth="GND">Johann Mattheson</persName>
                 </composer>
@@ -32,7 +31,7 @@
                 <score xml:id="score-0000001947674074">
                     <scoreDef xml:id="scoredef-0000001853856501">
                         <staffGrp xml:id="staffgrp-0000000786951084">
-                            <staffDef xml:id="staffdef-0000001250952647" n='1' lines='5' label="Mattheson's annotations" clef.shape="C" clef.line="1">
+                            <staffDef xml:id="staffdef-0000001250952647" n="1" lines="5" label="Mattheson's annotations" clef.shape="C" clef.line="1">
                                 <keySig xml:id="keysig-0000001803225219" mode="major" sig="2s" />
                             </staffDef>
                         </staffGrp>
