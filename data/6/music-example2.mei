@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-CMN.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-CMN.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0" ?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
     <meiHead>
         <fileDesc>
             <titleStmt>
-                <title>
-                </title>
+                <title></title>
                 <composer>
                     <persName role="composer" auth.uri="http://d-nb.info/gnd/118578995" auth="GND">Johann Mattheson</persName>
                 </composer>
@@ -16,14 +15,16 @@
                 </respStmt>
             </titleStmt>
             <editionStmt>
-                <edition>First draft, <date>2019</date></edition>
+                <edition>
+                    First draft,
+                    <date>2019</date>
+                </edition>
             </editionStmt>
             <pubStmt>
                 <unpub />
             </pubStmt>
         </fileDesc>
     </meiHead>
-
     <music>
         <body>
             <mdiv>

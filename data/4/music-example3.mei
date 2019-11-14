@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-CMN.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-CMN.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0" ?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
     <meiHead>
         <fileDesc>
             <titleStmt>
-                <title>
-                </title>
+                <title></title>
                 <composer>
                     <persName role="composer" auth.uri="http://d-nb.info/gnd/118578995" auth="GND">Johann Mattheson</persName>
                 </composer>
@@ -16,15 +15,16 @@
                 </respStmt>
             </titleStmt>
             <editionStmt>
-                <edition>First draft, <date>2019</date></edition>
+                <edition>
+                    First draft,
+                    <date>2019</date>
+                </edition>
             </editionStmt>
             <pubStmt>
                 <unpub />
             </pubStmt>
         </fileDesc>
     </meiHead>
-
-
     <music>
         <body>
             <mdiv>
@@ -38,27 +38,27 @@
                     </scoreDef>
                     <section>
                         <measure xml:id="ex-101" n="" metcon="false" right="invis">
-                            <staff xml:id="ex-590" n="1">
+                            <staff n="1">
                                 <layer xml:id="ex-591" n="1">
-                                    <rest dur="16"/>
+                                    <rest dur="16" />
                                     <beam>
-                                        <note dur="16" oct="5" pname="b" stem.dir="down"/>
-                                        <note dur="16" oct="5" pname="b" stem.dir="down"/>
-                                        <note dur="16" oct="5" pname="a" stem.dir="down"/>
-                                        <note dur="32" oct="5" pname="g" stem.dir="down"/>
-                                        <note dur="32" oct="5" pname="a" stem.dir="down"/>
-                                        <note dur="32" oct="5" pname="f" stem.dir="down" accid.ges="s"/>
-                                        <note dur="32" oct="5" pname="a" stem.dir="down"/>
+                                        <note dur="16" oct="5" pname="b" stem.dir="down" />
+                                        <note dur="16" oct="5" pname="b" stem.dir="down" />
+                                        <note dur="16" oct="5" pname="a" stem.dir="down" />
+                                        <note dur="32" oct="5" pname="g" stem.dir="down" />
+                                        <note dur="32" oct="5" pname="a" stem.dir="down" />
+                                        <note dur="32" oct="5" pname="f" stem.dir="down" accid.ges="s" />
+                                        <note dur="32" oct="5" pname="a" stem.dir="down" />
                                     </beam>
                                     <beam>
-                                        <note dur="16" oct="5" pname="g" stem.dir="down"/>
-                                        <note dur="16" oct="5" pname="b" stem.dir="down"/>
-                                        <note dur="16" oct="5" pname="b" stem.dir="down"/>
-                                        <note dur="16" oct="5" pname="a" stem.dir="down"/>
-                                        <note dur="32" oct="5" pname="g" stem.dir="down"/>
-                                        <note dur="32" oct="5" pname="a" stem.dir="down"/>
-                                        <note dur="32" oct="5" pname="f" stem.dir="down" accid.ges="s"/>
-                                        <note xml:id="ex-611" dur="32" oct="5" pname="a" stem.dir="down"/>
+                                        <note dur="16" oct="5" pname="g" stem.dir="down" />
+                                        <note dur="16" oct="5" pname="b" stem.dir="down" />
+                                        <note dur="16" oct="5" pname="b" stem.dir="down" />
+                                        <note dur="16" oct="5" pname="a" stem.dir="down" />
+                                        <note dur="32" oct="5" pname="g" stem.dir="down" />
+                                        <note dur="32" oct="5" pname="a" stem.dir="down" />
+                                        <note dur="32" oct="5" pname="f" stem.dir="down" accid.ges="s" />
+                                        <note xml:id="ex-611" dur="32" oct="5" pname="a" stem.dir="down" />
                                     </beam>
                                 </layer>
                             </staff>

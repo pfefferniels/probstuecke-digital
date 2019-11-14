@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-CMN.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-CMN.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0" ?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
     <meiHead>
         <fileDesc>
             <titleStmt>
-                <title>
-                </title>
+                <title></title>
                 <composer>
                     <persName role="composer" auth.uri="http://d-nb.info/gnd/118578995" auth="GND">Johann Mattheson</persName>
                 </composer>
@@ -16,14 +15,16 @@
                 </respStmt>
             </titleStmt>
             <editionStmt>
-                <edition>First draft, <date>2019</date></edition>
+                <edition>
+                    First draft,
+                    <date>2019</date>
+                </edition>
             </editionStmt>
             <pubStmt>
                 <unpub />
             </pubStmt>
         </fileDesc>
     </meiHead>
-
     <music>
         <body>
             <mdiv>
@@ -39,45 +40,45 @@
                         <measure n="1">
                             <staff n="1">
                                 <layer n="1">
-                                    <note dur="2" oct="3" pname="a" stem.dir="up"/>
-                                    <note dur="4" oct="3" pname="a" stem.dir="up"/>
+                                    <note dur="2" oct="3" pname="a" stem.dir="up" />
+                                    <note dur="4" oct="3" pname="a" stem.dir="up" />
                                 </layer>
                             </staff>
                         </measure>
                         <measure n="2">
                             <staff n="1">
                                 <layer n="1">
-                                    <note dots="1" dur="2" oct="3" pname="g" stem.dir="up"/>
+                                    <note dots="1" dur="2" oct="3" pname="g" stem.dir="up" />
                                 </layer>
                             </staff>
                         </measure>
                         <measure n="3">
                             <staff n="1">
                                 <layer n="1">
-                                    <note dur="2" oct="3" pname="g" stem.dir="up"/>
-                                    <note dur="4" oct="3" pname="g" stem.dir="up"/>
+                                    <note dur="2" oct="3" pname="g" stem.dir="up" />
+                                    <note dur="4" oct="3" pname="g" stem.dir="up" />
                                 </layer>
                             </staff>
                         </measure>
                         <measure n="4">
                             <staff n="1">
                                 <layer n="1">
-                                    <note dots="1" dur="2" oct="3" pname="f" stem.dir="up"/>
+                                    <note dots="1" dur="2" oct="3" pname="f" stem.dir="up" />
                                 </layer>
                             </staff>
                         </measure>
                         <measure n="5">
                             <staff n="1">
                                 <layer n="1">
-                                    <note dur="2" oct="3" pname="e" stem.dir="up"/>
-                                    <note dur="4" oct="3" pname="e" stem.dir="up"/>
+                                    <note dur="2" oct="3" pname="e" stem.dir="up" />
+                                    <note dur="4" oct="3" pname="e" stem.dir="up" />
                                 </layer>
                             </staff>
                         </measure>
                         <measure n="6">
                             <staff n="1">
                                 <layer n="1">
-                                    <note dots="1" dur="2" oct="3" pname="d" stem.dir="up"/>
+                                    <note dots="1" dur="2" oct="3" pname="d" stem.dir="up" />
                                 </layer>
                             </staff>
                         </measure>
