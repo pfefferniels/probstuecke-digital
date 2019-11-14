@@ -27,20 +27,20 @@
         <body>
             <mdiv>
                 <score>
-                    <scoreDef key.mode="major" key.sig="2f" >
+                    <scoreDef>
                         <staffGrp>
-                            <staffDef clef.shape="C" clef.line="1" key.mode="minor" key.sig="5f" n='1' lines='5' label="Mattheson's annotations" />
+                            <staffDef clef.shape="C" clef.line="1" key.sig="5f" n='1' lines='5' label="Mattheson's annotations" />
                         </staffGrp>
                     </scoreDef>
                     <section>
-                      <measure n="8">
+                      <measure n="8" label="Achter Tact">
                           <staff n="1" visible="true">
                               <layer n="1">
                                   <space dur="2" dots="1" />
                                   <beam>
                                       <note xml:id="ex-1" dur="16" oct="4" pname="b" stem.dir="down" accid.ges="f" />
-                                      <note dur="16" oct="5" pname="g" stem.dir="down">
-                                          <accid accid="f" accid.ges="f" />
+                                      <note dur="16" oct="5" pname="g" stem.dir="down" accid.ges="f">
+                                          <accid accid="f" />
                                       </note>
                                       <note dur="16" oct="4" pname="b" stem.dir="down" accid.ges="f" />
                                       <note dur="16" oct="5" pname="g" stem.dir="down" accid.ges="f" />
@@ -57,9 +57,9 @@
                                   </beam>
                               </layer>
                           </staff>
-                          <dir place="below" startid="#ex-1">Achter Tact.</dir>
+                          <dir place="below" startid="#ex-1">Achter Tact</dir>
                         </measure>
-                        <measure n="9">
+                        <measure n="9" label="Neuter Tact." right="invis">
                             <staff n="1">
                                 <layer n="1">
                                     <beam>
@@ -70,8 +70,12 @@
                                         <note dur="16" oct="4" pname="a" stem.dir="down" accid.ges="f" />
                                         <note dur="16" oct="5" pname="f" stem.dir="down" />
                                     </beam>
-                                    <space dur="2" />
-                                    <space dur="4" />
+                                    <space dur="8" />
+                                    <space dur="8" />
+                                    <space dur="8" />
+                                    <space dur="8" />
+                                    <space dur="8" />
+                                    <space dur="8" />
                                 </layer>
                             </staff>
                             <dir place="below" startid="#ex-2">Neunter Tact.</dir>
