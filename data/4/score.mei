@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="http://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<?xml-model href="http://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" xmlns:xlink="http://www.w3.org/1999/xlink" meiversion="4.0.0">
   <meiHead>
     <fileDesc>
@@ -12,6 +11,7 @@
         <respStmt>
           <resp>Edited by</resp>
           <persName role="editor">Niels Pfeffer</persName>
+          <persName role="editor">Klaus Rettinghaus</persName>
         </respStmt>
       </titleStmt>
       <pubStmt>
@@ -126,8 +126,11 @@
               <staffGrp>
                 <staffDef xml:id="mattheson" clef.line="2" clef.shape="G" key.mode="major" key.sig="1s" lines="5" n="1">
                   <label>Mattheson's annotations</label>
+                  <meterSig count="12" unit="8"/>
                 </staffDef>
-                <staffDef xml:id="bass" clef.line="4" clef.shape="F" key.mode="major" key.sig="1s" lines="5" n="2"/>
+                <staffDef xml:id="bass" clef.line="4" clef.shape="F" key.mode="major" key.sig="1s" lines="5" n="2">
+                  <meterSig count="12" unit="8"/>
+                </staffDef>
               </staffGrp>
             </scoreDef>
             <section xml:id="m-34">
