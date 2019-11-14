@@ -89,10 +89,10 @@
                                   </beam>
                               </layer>
                           </staff>
-                          <harm place='above' staff="2" tstamp="1.500000"><fb>
+                          <harm place='above' staff="2" tstamp="1.5"><fb>
                               <f>6</f>
                           </fb></harm>
-                          <harm place='above' staff="2" tstamp="2.000000"><fb>
+                          <harm place='above' staff="2" tstamp="2"><fb>
                               <f>6</f>
                           </fb></harm>
                       </measure>
@@ -116,13 +116,11 @@
                                   </beam>
                               </layer>
                           </staff>
-                          <harm place='above' staff="2" tstamp="1.500000"><fb>
+                          <harm place='above' staff="2" tstamp="1.5"><fb>
                               <f>6</f>
-
                           </fb></harm>
-                          <harm place='above' staff="2" tstamp="2.000000"><fb>
+                          <harm place='above' staff="2" tstamp="2"><fb>
                               <f>6</f>
-
                           </fb></harm>
                       </measure>
                       <measure xml:id="measure-0000000940232503" n="39">
@@ -149,16 +147,19 @@
                           </staff>
                           <staff xml:id="staff-0000001056744317" n="2">
                               <layer xml:id="layer-0000000749876085" n="1">
+                                  <clef shape="F" line="4"/>
                                   <note xml:id="note-0000000865978163" dur="4" oct="3" pname="f" stem.dir="down" />
                                   <note xml:id="note-0000000195277638" dur="8" oct="3" pname="e" stem.dir="down" accid.ges="f" />
                               </layer>
                           </staff>
-                          <harm place='above' staff="2" tstamp="1.500000"><fb>
-                              <rend xml:id="rend-0000000054017594" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">7 6</rend>
+                          <harm place='above' staff="2" tstamp="1"><fb>
+                              <f>7</f>
                           </fb></harm>
-                          <harm place='above' staff="2" tstamp="2.000000"><fb>
+                          <harm place='above' staff="2" tstamp="1.5"><fb>
+                              <f>♭6</f>
+                          </fb></harm>
+                          <harm place='above' staff="2" tstamp="2"><fb>
                               <f>6</f>
-
                           </fb></harm>
                       </measure>
                       <measure xml:id="measure-0000000932363120" n="40">
@@ -184,7 +185,7 @@
                                   <note xml:id="note-0000001328829456" dur="8" oct="3" pname="c" stem.dir="up" />
                               </layer>
                           </staff>
-                          <harm place='above' staff="2" tstamp="2.000000"><fb>
+                          <harm place='above' staff="2" tstamp="2"><fb>
                               <f>6</f>
                           </fb></harm>
                       </measure>
@@ -223,13 +224,11 @@
                                   </beam>
                               </layer>
                           </staff>
-                          <harm place='above' staff="2" tstamp="1.000000"><fb>
+                          <harm place='above' staff="2" tstamp="1"><fb>
                               <f>6</f>
-
                           </fb></harm>
-                          <harm place='above' staff="2" tstamp="1.500000"><fb>
+                          <harm place='above' staff="2" tstamp="1.5"><fb>
                               <f>6</f>
-
                           </fb></harm>
                       </measure>
                       <measure xml:id="measure-0000001137242887" n="42">
@@ -298,9 +297,17 @@
                                   <note xml:id="note-0000000255260884" dots="1" dur="4" oct="3" pname="e" stem.dir="down" accid.ges="f" />
                               </layer>
                           </staff>
-                          <harm place='above' staff="2" tstamp="1.750000"><fb>
-                              <rend xml:id="rend-0000001228708956" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">5 6 5</rend>
-                              <rend xml:id="rend-0000000653739180" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">3 4 3</rend>
+                          <harm place='above' staff="2" tstamp="1"><fb>
+                              <f>5</f>
+                              <f>3</f>
+                          </fb></harm>
+                          <harm place='above' staff="2" tstamp="1.5"><fb>
+                              <f>6</f>
+                              <f>4</f>
+                          </fb></harm>
+                          <harm place='above' staff="2" tstamp="2"><fb>
+                              <f>5</f>
+                              <f>3</f>
                           </fb></harm>
                           <tie xml:id="tie-0000000323997883" startid="#note-0000000255260884" endid="#note-0000000126112258" />
                       </measure>
@@ -329,9 +336,13 @@
                                   <note xml:id="note-0000000126112258" dots="1" dur="4" oct="3" pname="e" stem.dir="down" accid.ges="f" />
                               </layer>
                           </staff>
-                          <harm place='above' staff="2" tstamp="1.500000"><fb>
-                              <rend xml:id="rend-0000002104611737" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6 5</rend>
-                              <rend xml:id="rend-0000001135624555" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">4 3</rend>
+                          <harm place='above' staff="2" tstamp="1"><fb>
+                              <f>6</f>
+                              <f>4</f>
+                          </fb></harm>
+                          <harm place='above' staff="2" tstamp="1.5"><fb>
+                              <f>3</f>
+                              <f>5</f>
                           </fb></harm>
                       </measure>
                     </section>
