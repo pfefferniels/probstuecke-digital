@@ -37,32 +37,27 @@
                         </staffGrp>
                     </scoreDef>
                     <section>
-
-                        <measure xml:id="ex-101" n="">
+                        <measure xml:id="ex-101" n="" metcon="false" right="invis">
                             <staff xml:id="ex-590" n="1">
                                 <layer xml:id="ex-591" n="1">
                                     <rest dur="16"/>
                                     <beam>
                                         <note dur="16" oct="5" pname="b" stem.dir="down"/>
                                         <note dur="16" oct="5" pname="b" stem.dir="down"/>
-                                        <note breaksec="1" dur="16" oct="5" pname="a" stem.dir="down"/>
+                                        <note dur="16" oct="5" pname="a" stem.dir="down"/>
                                         <note dur="32" oct="5" pname="g" stem.dir="down"/>
                                         <note dur="32" oct="5" pname="a" stem.dir="down"/>
-                                        <note dur="32" oct="5" pname="f" stem.dir="down">
-                                            <accid xml:id="ex-600" accid.ges="s"/>
-                                        </note>
+                                        <note dur="32" oct="5" pname="f" stem.dir="down" accid.ges="s"/>
                                         <note dur="32" oct="5" pname="a" stem.dir="down"/>
                                     </beam>
                                     <beam>
                                         <note dur="16" oct="5" pname="g" stem.dir="down"/>
                                         <note dur="16" oct="5" pname="b" stem.dir="down"/>
                                         <note dur="16" oct="5" pname="b" stem.dir="down"/>
-                                        <note breaksec="1" dur="16" oct="5" pname="a" stem.dir="down"/>
+                                        <note dur="16" oct="5" pname="a" stem.dir="down"/>
                                         <note dur="32" oct="5" pname="g" stem.dir="down"/>
                                         <note dur="32" oct="5" pname="a" stem.dir="down"/>
-                                        <note dur="32" oct="5" pname="f" stem.dir="down">
-                                            <accid xml:id="ex-610" accid.ges="s"/>
-                                        </note>
+                                        <note dur="32" oct="5" pname="f" stem.dir="down" accid.ges="s"/>
                                         <note xml:id="ex-611" dur="32" oct="5" pname="a" stem.dir="down"/>
                                     </beam>
                                 </layer>
