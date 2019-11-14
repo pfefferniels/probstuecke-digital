@@ -24,7 +24,7 @@
     </meiHead>
     <music>
         <body>
-            <mdiv>
+            <mdiv label="example">
                 <score>
                     <scoreDef key.sig="2f" mnum.visible="false">
                         <staffGrp bar.thru="false">
@@ -32,13 +32,14 @@
                             <staffDef clef.shape="C" clef.line="4" n="2" lines="5" />
                         </staffGrp>
                     </scoreDef>
-                    <section>
+                    <section label="excerpt">
                       <measure xml:id="measure-0000000138979836" n="36">
                           <staff xml:id="staff-0000000591306918" n="1" visible="true">
                               <layer xml:id="layer-0000001512115330" n="1">
                                   <note xml:id="note-0000000432344121" dur="8" oct="5" pname="e" stem.dir="down" accid.ges="f">
                                       <verse xml:id="verse-0000000373038922" n="1">
-                                          <syl xml:id="syl-0000001742599460">Se_il</syl>
+                                          <syl con="b" xml:id="syl-0000001742599460">Se</syl>
+                                          <syl xml:id="syl-0000001742599461">il</syl>
                                       </verse>
                                   </note>
                                   <note xml:id="note-0000001856026488" dur="8" oct="5" pname="e" stem.dir="down" accid.ges="f">
@@ -129,7 +130,8 @@
                               <layer xml:id="layer-0000001438667324" n="1">
                                   <note xml:id="note-0000001448710044" dur="8" oct="5" pname="e" stem.dir="down" accid.ges="f">
                                       <verse xml:id="verse-0000001923347355" n="1">
-                                          <syl xml:id="syl-0000000510287976">se_il</syl>
+                                          <syl con="b" xml:id="syl-0000000510287976">se</syl>
+                                          <syl xml:id="syl-0000000510287977">il</syl>
                                       </verse>
                                   </note>
                                   <note xml:id="note-0000000609347176" dur="8" oct="5" pname="d" stem.dir="down">
@@ -184,15 +186,16 @@
                           </staff>
                           <harm place='above' staff="2" tstamp="2.000000"><fb>
                               <f>6</f>
-
                           </fb></harm>
                       </measure>
+                  <sb source="#firstEdition #secondEdition"/>
                       <measure xml:id="measure-0000000237890376" n="41">
                           <staff xml:id="staff-0000000705388750" n="1">
                               <layer xml:id="layer-0000001916883685" n="1">
                                   <note xml:id="note-0000002034692953" dur="8" oct="4" pname="g" stem.dir="up">
                                       <verse xml:id="verse-0000001527229232" n="1">
-                                          <syl xml:id="syl-0000001941768257">se_il</syl>
+                                          <syl con="b" xml:id="syl-0000001941768257">se</syl>
+                                          <syl xml:id="syl-0000001941768258">il</syl>
                                       </verse>
                                   </note>
                                   <note xml:id="note-0000000356531527" dur="8" oct="4" pname="a" stem.dir="up">
