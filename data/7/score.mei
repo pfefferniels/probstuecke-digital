@@ -63,7 +63,7 @@
     <music>
       <facsimile decls="#secondEdition">
         <surface ulx="0" uly="0" lrx="1998" lry="2396" xml:id="facs-p420">
-          <graphic width="1998" height="2396" target="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/420"/>
+          <graphic xml:id="page-01" width="1998" height="2396" target="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/420"/>
           <zone ulx="129" uly="245" lrx="656" xml:id="facsZone-staff-0000001077379416"/>
           <zone ulx="585" uly="320" lrx="656" xml:id="facsZone-staff-0000001423059601"/>
           <zone ulx="1095" uly="350" lrx="659" xml:id="facsZone-staff-0000000002981419"/>
@@ -89,7 +89,7 @@
           <zone ulx="1125" uly="1925" lrx="2231" xml:id="facsZone-staff-0000000017305758"/>
         </surface>
         <surface ulx="0" uly="0" lrx="1998" lry="2396" xml:id="facs-p421">
-          <graphic width="1998" height="2396" target="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/421"/>
+          <graphic xml:id="page-02" width="1998" height="2396" target="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/421"/>
           <zone ulx="66" uly="182" lrx="455" xml:id="facsZone-staff-0000001399965698"/>
           <zone ulx="777" uly="185" lrx="458" xml:id="facsZone-staff-0000001826190047"/>
           <zone ulx="1374" uly="176" lrx="452" xml:id="facsZone-staff-0000000498602132"/>
@@ -136,8 +136,9 @@
                 </staffDef>
               </staffGrp>
             </scoreDef>
-            <section xml:id="section-0000002100567594">
-              <measure xml:id="measure-0000001609393942" n="0">
+            <section>
+              <pb source="#secondEdition" n="336" facs="#page-01"/>
+              <measure xml:id="measure-0000001609393942" metcon="false">
                 <staff xml:id="staff-variant-1-0" n="1">
                   <layer xml:id="layer-0000001684204250" n="1">
                     <rest xml:id="rest-0000001358234439" dur="8"/>
@@ -1715,6 +1716,7 @@
                   </layer>
                 </staff>
               </measure>
+            <pb source="#secondEdition" n="337" facs="#page-02"/>
               <measure xml:id="measure-0000001338299755" n="20">
                 <staff xml:id="staff-variant-1-20" n="1">
                   <layer xml:id="layer-0000001841587289" n="1">
