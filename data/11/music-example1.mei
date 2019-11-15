@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="http://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<?xml-model href="http://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-CMN.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
     <meiHead>
         <fileDesc>
             <titleStmt>
-                <composer>Johann Mattheson</composer>
-                <editor>Niels Pfeffer</editor>
+                <title>
+                </title>
+                <composer>
+                    <persName role="composer" auth.uri="http://d-nb.info/gnd/118578995" auth="GND">Johann Mattheson</persName>
+                </composer>
+                <respStmt>
+                    <resp>Edited by</resp>
+                    <persName role="editor" xml:id="pfeffer">Niels Pfeffer</persName>
+                    <persName role="editor" xml:id="rettinghaus">Klaus Rettinghaus</persName>
+                </respStmt>
             </titleStmt>
             <editionStmt>
                 <edition>First draft, <date>2019</date></edition>
@@ -23,8 +30,8 @@
                 <score>
                     <scoreDef>
                         <staffGrp>
-                            <staffDef clef.shape="C" clef.line="1" key.mode="minor" key.sig="3f" meter.count="3" meter.unit="4" n="1" lines="5" />
-                            <staffDef clef.shape="F" clef.line="4" key.mode="minor" key.sig="3f" meter.count="3" meter.unit="4" n="2" lines="5" />
+                            <staffDef clef.shape="C" clef.line="1" key.sig="3f" n="1" lines="5" />
+                            <staffDef clef.shape="F" clef.line="4" key.sig="3f" n="2" lines="5" />
                         </staffGrp>
                     </scoreDef>
                     <section>
@@ -93,10 +100,10 @@
                                   </beam>
                               </layer>
                           </staff>
-                          <harm place='above' staff="2" tstamp="1.000000" vgrp="80"><fb>
+                          <harm place='above' staff="2" tstamp="1"><fb>
                               <f>5</f>
                           </fb></harm>
-                          <harm place='above' staff="2" tstamp="2.000000" vgrp="80"><fb>
+                          <harm place='above' staff="2" tstamp="2"><fb>
                               <f>6</f>
                           </fb></harm>
                       </measure>
@@ -166,10 +173,10 @@
                               </layer>
                           </staff>
                           <tie xml:id="tie-0000000810903591" startid="#note-0000001769775861" endid="#note-0000001881082125" />
-                          <harm place='above' staff="2" tstamp="1.000000" vgrp="80"><fb>
+                          <harm place='above' staff="2" tstamp="1"><fb>
                               <f>7</f>
                           </fb></harm>
-                          <harm place='above' staff="2" tstamp="2.000000" vgrp="80"><fb>
+                          <harm place='above' staff="2" tstamp="2"><fb>
                               <f>6</f>
                           </fb></harm>
                       </measure>
@@ -243,10 +250,10 @@
                               </layer>
                           </staff>
                           <tie xml:id="tie-0000001515009327" startid="#note-0000001193092165" endid="#note-0000000802666718" />
-                          <harm place='above' staff="2" tstamp="1.000000" vgrp="80"><fb>
+                          <harm place='above' staff="2" tstamp="1"><fb>
                               <f>7</f>
                           </fb></harm>
-                          <harm place='above' staff="2" tstamp="2.000000" vgrp="80"><fb>
+                          <harm place='above' staff="2" tstamp="2"><fb>
                               <f>6⃥</f>
                           </fb></harm>
                       </measure>

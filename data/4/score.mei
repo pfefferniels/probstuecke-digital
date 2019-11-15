@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="http://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<?xml-model href="http://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" xmlns:xlink="http://www.w3.org/1999/xlink" meiversion="4.0.0">
   <meiHead>
     <fileDesc>
@@ -12,6 +11,7 @@
         <respStmt>
           <resp>Edited by</resp>
           <persName role="editor">Niels Pfeffer</persName>
+          <persName role="editor">Klaus Rettinghaus</persName>
         </respStmt>
       </titleStmt>
       <pubStmt>
@@ -126,8 +126,11 @@
               <staffGrp>
                 <staffDef xml:id="mattheson" clef.line="2" clef.shape="G" key.mode="major" key.sig="1s" lines="5" n="1">
                   <label>Mattheson's annotations</label>
+                  <meterSig count="12" unit="8"/>
                 </staffDef>
-                <staffDef xml:id="bass" clef.line="4" clef.shape="F" key.mode="major" key.sig="1s" lines="5" n="2"/>
+                <staffDef xml:id="bass" clef.line="4" clef.shape="F" key.mode="major" key.sig="1s" lines="5" n="2">
+                  <meterSig count="12" unit="8"/>
+                </staffDef>
               </staffGrp>
             </scoreDef>
             <section xml:id="m-34">
@@ -145,12 +148,12 @@
                     <note xml:id="m-45" dots="1" dur="4" oct="3" pname="b" pnum="59" stem.dir="down"/>
                   </layer>
                 </staff>
-                <harm place="above" staff="2" startid="m-42">
+                <harm place="above" staff="2" tstamp="4">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="2" startid="m-45">
+                <harm place="above" staff="2" tstamp="10">
                   <fb>
                     <f>♯</f>
                   </fb>
@@ -164,17 +167,21 @@
                     <note xml:id="m-51" dots="1" dur="2" oct="3" pname="b" pnum="59" stem.dir="down"/>
                   </layer>
                 </staff>
-                <harm place="above" staff="2" startid="m-42">
+                <harm place="above" staff="2" tstamp="1">
+                  <fb>
+                    <f>7</f>
+                  </fb>
+                </harm>
+                <harm place="above" staff="2" tstamp="4">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="2" startid="m-45">
+                <harm place="above" staff="2" tstamp="7">
                   <fb>
                     <f>♯</f>
                   </fb>
                 </harm>
-                <trill xml:id="m-52" layer="1" staff="2" tstamp="1" vo="4.65mm"/>
               </measure>
               <measure xml:id="m-53" n="3">
                 <staff xml:id="m-54" n="1">
@@ -238,47 +245,37 @@
                     </beam>
                   </layer>
                 </staff>
-                <harm place="above" staff="2" startid="m-50">
-                  <fb>
-                    <f>76</f>
-                  </fb>
-                </harm>
-                <harm place="above" staff="2" startid="m-51">
-                  <fb>
-                    <f>♯</f>
-                  </fb>
-                </harm>
-                <harm place="above" staff="2" startid="m-64">
+                <harm place="above" staff="2" tstamp="3">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="2" startid="m-68">
+                <harm place="above" staff="2" tstamp="4">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="2" startid="m-71">
+                <harm place="above" staff="2" tstamp="5">
                   <fb>
                     <f>7</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="2" startid="m-78">
+                <harm place="above" staff="2" tstamp="7">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="2" startid="m-81">
+                <harm place="above" staff="2" tstamp="8">
                   <fb>
                     <f>7</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="2" startid="m-88">
+                <harm place="above" staff="2" tstamp="10">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="2" startid="m-91">
+                <harm place="above" staff="2" tstamp="11">
                   <fb>
                     <f>7</f>
                     <f>♯</f>
@@ -367,12 +364,12 @@
                     </beam>
                   </layer>
                 </staff>
-                <harm place="above" staff="2" startid="m-137">
+                <harm place="above" staff="2" tstamp="1">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="2" startid="m-146">
+                <harm place="above" staff="2" tstamp="4">
                   <fb>
                     <f>6⃥</f>
                   </fb>
@@ -461,22 +458,22 @@
                     </beam>
                   </layer>
                 </staff>
-                <harm place="above" staff="2" startid="m-196">
+                <harm place="above" staff="2" tstamp="1">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="2" startid="m-205">
+                <harm place="above" staff="2" tstamp="4">
                   <fb>
                     <f>6⃥</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="2" startid="m-213">
+                <harm place="above" staff="2" tstamp="7">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="2" startid="m-221">
+                <harm place="above" staff="2" tstamp="10">
                   <fb>
                     <f>6⃥</f>
                   </fb>
@@ -807,7 +804,6 @@
                     <f>76⃥</f>
                   </fb>
                 </harm>
-                <trill xml:id="m-422" layer="1" staff="2" tstamp="1" vo="4.65mm"/>
               </measure>
               <sb xml:id="m-424"/>
               <measure xml:id="m-423" n="11">
@@ -2827,4 +2823,3 @@
       </body>
     </music>
   </mei>
-  

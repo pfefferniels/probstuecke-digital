@@ -1,11 +1,10 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-CMN.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-CMN.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0" ?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
     <meiHead>
         <fileDesc>
             <titleStmt>
-                <title>
-                </title>
+                <title></title>
                 <composer>
                     <persName role="composer" auth.uri="http://d-nb.info/gnd/118578995" auth="GND">Johann Mattheson</persName>
                 </composer>
@@ -16,7 +15,10 @@
                 </respStmt>
             </titleStmt>
             <editionStmt>
-                <edition>First draft, <date>2019</date></edition>
+                <edition>
+                    First draft,
+                    <date>2019</date>
+                </edition>
             </editionStmt>
             <pubStmt>
                 <unpub />
@@ -29,45 +31,48 @@
                 <score>
                     <scoreDef>
                         <staffGrp>
-                            <staffDef xml:id="mattheson" clef.shape="C" clef.line="1" n="1" lines="5">
-                            </staffDef>
-                            <staffDef xml:id="bass" clef.shape="F" clef.line="4" n="2" lines="5">
-                            </staffDef>
+                            <staffDef xml:id="mattheson" clef.shape="C" clef.line="1" n="1" lines="5"></staffDef>
+                            <staffDef xml:id="bass" clef.shape="F" clef.line="4" n="2" lines="5"></staffDef>
                         </staffGrp>
                     </scoreDef>
                     <section xml:id="ex-34">
-                      <measure xml:id="ex-269" n="">
-                        <staff xml:id="ex-273" n="1">
-                              <layer n="1">
-                                  <rest dur="16" />
-                                  <beam>
-                                      <note dur="16" oct="4" pname="g" />
-                                      <note dur="16" oct="5" pname="f" />
-                                      <note dur="16" oct="4" pname="g" />
-                                  </beam>
-                                  <rest dur="16" />
-                                  <beam>
-                                      <note dur="16" oct="4" pname="g" />
-                                      <note dur="16" oct="5" pname="f" />
-                                      <note dur="16" oct="4" pname="g" />
-                                  </beam>
-                                  <rest dur="16" />
-                                  <beam>
-                                      <note dur="16" oct="4" pname="g" />
-                                      <note dur="16" oct="5" pname="f" />
-                                      <note dur="16" oct="4" pname="g" />
-                                  </beam>
-                              </layer>
-                          </staff>
-                          <staff xml:id="ex-633" n="2">
-                              <layer xml:id="ex-634" n="1">
-                                  <note xml:id="ex-636" dur="4" oct="3" pname="b" pnum="59"/>
-                                  <note xml:id="ex-639" dur="4" oct="3" pname="b" pnum="47"/>
-                                  <note xml:id="ex-644" dur="4" oct="3" pname="b" pnum="59"/>
-                              </layer>
-                          </staff>
-                          <harm place='above' staff='2' startid="1"><fb><f>6</f><f>5</f></fb></harm>
-                      </measure>
+                        <measure xml:id="ex-269" n="">
+                            <staff n="1">
+                                <layer n="1">
+                                    <rest dur="16" />
+                                    <beam>
+                                        <note dur="16" oct="4" pname="g" />
+                                        <note dur="16" oct="5" pname="f" />
+                                        <note dur="16" oct="4" pname="g" />
+                                    </beam>
+                                    <rest dur="16" />
+                                    <beam>
+                                        <note dur="16" oct="4" pname="g" />
+                                        <note dur="16" oct="5" pname="f" />
+                                        <note dur="16" oct="4" pname="g" />
+                                    </beam>
+                                    <rest dur="16" />
+                                    <beam>
+                                        <note dur="16" oct="4" pname="g" />
+                                        <note dur="16" oct="5" pname="f" />
+                                        <note dur="16" oct="4" pname="g" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <staff n="2">
+                                <layer n="1">
+                                    <note xml:id="ex-636" dur="4" oct="3" pname="b" pnum="59" />
+                                    <note xml:id="ex-639" dur="4" oct="3" pname="b" pnum="47" />
+                                    <note xml:id="ex-644" dur="4" oct="3" pname="b" pnum="59" />
+                                </layer>
+                            </staff>
+                            <harm place="above" staff="2" startid="1">
+                                <fb>
+                                    <f>6</f>
+                                    <f>5</f>
+                                </fb>
+                            </harm>
+                        </measure>
                     </section>
                 </score>
             </mdiv>

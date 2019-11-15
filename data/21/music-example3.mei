@@ -1,21 +1,24 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-CMN.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-CMN.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0" ?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
     <meiHead>
         <fileDesc>
             <titleStmt>
-                <title>
-                </title>
+                <title></title>
                 <composer>
                     <persName role="composer" auth.uri="http://d-nb.info/gnd/118578995" auth="GND">Johann Mattheson</persName>
                 </composer>
                 <respStmt>
                     <resp>Edited by</resp>
                     <persName role="editor" xml:id="pfeffer">Niels Pfeffer</persName>
+                    <persName role="editor" xml:id="rettinghaus">Klaus Rettinghaus</persName>
                 </respStmt>
             </titleStmt>
             <editionStmt>
-                <edition>First draft, <date>2019</date></edition>
+                <edition>
+                    First draft,
+                    <date>2019</date>
+                </edition>
             </editionStmt>
             <pubStmt>
                 <unpub />
@@ -24,20 +27,18 @@
     </meiHead>
     <music>
         <body>
-            <mdiv xml:id="mdiv-0000001298185929">
-                <score xml:id="score-0000000833670465">
-                    <scoreDef xml:id="scoredef-0000001577543022">
-                        <staffGrp xml:id="staffgrp-0000001814678031">
-                            <staffDef xml:id="staffdef-0000000784558855" n='1' lines='5' clef.shape="C" clef.line="1" meter.count="4" meter.unit="4">
-                                <keySig xml:id="keysig-0000001296674042" mode="major" sig="4s" />
-                            </staffDef>
+            <mdiv>
+                <score>
+                    <scoreDef>
+                        <staffGrp>
+                            <staffDef n="1" lines="5" clef.shape="C" clef.line="1" key.sig="4s" />
                         </staffGrp>
                     </scoreDef>
-                    <section xml:id="section-0000001618154821">
-                        <measure xml:id="measure-0000001678222769" right="end" n="2">
-                            <staff xml:id="staff-0000001913481397" n="1">
-                                <layer xml:id="layer-0000000795102812" n="1">
-                                    <beam xml:id="beam-0000000691086584">
+                    <section>
+                        <measure xml:id="measure-0000001678222769" n="2">
+                            <staff n="1">
+                                <layer n="1">
+                                    <beam>
                                         <note xml:id="note-0000002128094916" dur="16" oct="4" pname="f" accid.ges="s" />
                                         <note xml:id="note-0000001434773518" dur="16" oct="5" pname="d" accid.ges="s" />
                                         <note xml:id="note-0000001529675051" dur="16" oct="4" pname="f" accid.ges="s" />
@@ -45,7 +46,7 @@
                                         <note xml:id="note-0000002057384983" dur="16" oct="4" pname="f" accid.ges="s" />
                                         <note xml:id="note-0000000270616248" dur="16" oct="5" pname="d" accid.ges="s" />
                                     </beam>
-                                    <beam xml:id="beam-0000000223907129">
+                                    <beam>
                                         <note xml:id="note-0000001320530243" dur="16" oct="4" pname="f" accid.ges="s" />
                                         <note xml:id="note-0000000535007333" dur="16" oct="5" pname="c" accid.ges="s" />
                                         <note xml:id="note-0000001737848097" dur="16" oct="4" pname="f" accid.ges="s" />
