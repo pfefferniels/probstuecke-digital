@@ -129,15 +129,15 @@
         </surface>
       </facsimile>
       <body>
-        <mdiv xml:id="mdiv-0000002037864986">
-          <score xml:id="score-0000002043872679">
-            <scoreDef xml:id="scoredef-0000000741268290">
-              <staffGrp xml:id="staffgrp-0000000423531263">
+        <mdiv>
+          <score>
+            <scoreDef mode="minor" pname="b">
+              <staffGrp>
                 <staffDef xml:id="mattheson" n="1" lines="5" label="Mattheson's annotations" clef.shape="C" clef.line="1" meter.count="4" meter.unit="4" meter.sym="common">
-                  <keySig xml:id="keysig-0000000913895725" mode="major" sig="2s"/>
+                  <keySig sig="2s"/>
                 </staffDef>
-                <staffDef xml:id="bass" n="2" lines="5" ppq="256" clef.shape="F" clef.line="4" meter.count="4" meter.unit="4" meter.sym="common">
-                  <keySig xml:id="keysig-0000001993819922" mode="major" sig="2s"/>
+                <staffDef xml:id="bass" n="2" lines="5" clef.shape="F" clef.line="4" meter.count="4" meter.unit="4" meter.sym="common">
+                  <keySig sig="2s"/>
                 </staffDef>
               </staffGrp>
             </scoreDef>
