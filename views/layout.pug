@@ -2,10 +2,21 @@ doctype html
 head
   meta( name='viewport', content='width=device-width, initial-scale=1' )
 
-  link(rel='stylesheet' href='css/layout.css')
+  link(rel='stylesheet' href='/css/layout.css')
 
-  script(type='text/javascript' src='js/jquery.min.js')
-  script(type='text/javascript' src='js/CETEI.js')
+  script(type='text/javascript' src='/js/jquery.min.js')
+  script(type='text/javascript' src='/js/CETEI.js')
+
+  script.
+    // navigation
+    $(document).ready(function() {
+      $('.child').hide();
+      $('.parent').click(function() {
+        $(this).siblings('.parent').find('ul').slideUp();
+        $(this).find('ul').slideToggle();
+      });
+    });
+
   
   block headAdditions
 
@@ -17,65 +28,66 @@ head
       h1 Introduction
       ul
         li
-          a(href='howto') How to use this edition
+          a(href='/howto') How to use this edition
         li
-          a(href='guidelines') Edition guidelines
+          a(href='/guidelines') Edition guidelines
         li
-          a(href='Contributions') Contributions
+          a(href='/Contributions') Contributions
       
       h1 
         a(href='/') Front page
       
-      h1 Der Ober-Classe ...
+      h1 Ober-Classe
       ul
-        li
-          a(href='/1') ... erstes Prob-Stück
-        li
-          a(href='/2') ... zweites Prob-Stück
-        li
-          a(href='/3') ... drittes Prob-Stück
-        li
-          a(href='/4') ... viertes Prob-Stück
-        li
-          a(href='/5') ... fünfftes Prob-Stück
-        li
-          a(href='/6') ... sechstes Prob-Stück
-        li
-          a(href='/7') ... siebendes Prob-Stück
-        li
-          a(href='/8') ... achtes Prob-Stück
-        li
-          a(href='/9') ... neuntes Prob-Stück
-        li
-          a(href='/10') ... zehntes Prob-Stück
-        li
-          a(href='/11') ... elfftes Prob-Stück
-        li
-          a(href='/12') ... zwölfftes Prob-Stück
-        li
-          a(href='/13') ... dreizehntes Prob-Stück
-        li 
-          a(href='/14') ... vierzehntes Prob-Stück
-        li
-          a(href='/15') ... fünffzehntes Prob-Stück
-        li
-          a(href='/16') ... sechzehntes Prob-Stück
-        li
-          a(href='/17') ... siebenzehntes Prob-Stück
-        li
-          a(href='/18') ... achtzehnes Prob-Stück
-        li
-          a(href='/19') ... neunzehntes Prob-Stück
-        li
-          a(href='/20') ... zwantzigstes Prob-Stück
-        li
-          a(href='/21') ... ein und zwantzigstes Prob-Stück
-        li
-          | ... zwei und zwantzigstes Prob-Stück
-        li
-          | ... drey und zwantzigstes Prob-Stück
-        li
-          | ... vier und zwantzigstes Prob-Stück
+        li.parent First Prob-Stück
+          ul.child Facsimile
+            li
+              a(href='/facsimile/1/firstEdition') 1st edition (1719)
+            li
+              a(href='/facsimile/1/secondEdition') 2nd edition (1731)
+          ul.child Transcription
+            li
+              a(href='/transcription/1/mattheson/firstEdition') 1st edition (1719)
+            li
+              a(href='/transcription/1/mattheson/secondEdition') 2nd edition (1731)
+            li
+              a(href='/transcription/1/mattheson/english') English translation
+          ul.child Analysis
+            li
+              a(href='/transcription/1/basse-fondamentale/german') Basse Fondamentale
+
+        li.parent Second Prob-Stück
+          ul.child Facsimile
+            li
+              a(href='/facsimile/2/firstEdition') 1st edition (1719)
+            li
+              a(href='/facsimile/2/secondEdition') 2nd edition (1731)
+          ul.child Transcription
+            li
+              a(href='/transcription/2/mattheson/firstEdition') 1st edition (1719)
+            li
+              a(href='/transcription/2/mattheson/secondEdition') 2nd edition (1731)
+            li
+              a(href='/transcription/2/mattheson/english') English translation
+
+        li.parent Third Prob-Stück
+          ul.child Facsimile
+            li
+              a(href='/facsimile/3/firstEdition') 1st edition (1719)
+            li
+              a(href='/facsimile/3/secondEdition') 2nd edition (1731)
+          ul.child Transcription
+            li
+              a(href='/transcription/3/mattheson/firstEdition') 1st edition (1719)
+            li
+              a(href='/transcription/3/mattheson/secondEdition') 2nd edition (1731)
+            li
+              a(href='/transcription/3/mattheson/english') English translation
+          ul.child Comments 
+            li
+              a(href='/transcription/3/hill/english') Prof. Robert Hill (2019)
+
+
   block controlsAdditions
 
 #content

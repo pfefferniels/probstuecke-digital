@@ -126,15 +126,13 @@
           <score>
             <scoreDef>
               <staffGrp>
-                <staffDef xml:id="mattheson" clef.shape="C" clef.line="1" key.mode="major" key.sig="1f" meter.sym="common" meter.count="4" meter.unit="4" n="1" lines="5">
+                <staffDef xml:id="mattheson" clef.shape="C" clef.line="1" key.mode="major" key.sig="1f" meter.sym="common" meter.count="4" meter.unit="4" n="1" scale="75%" lines="5">
                   <label>Mattheson's annotations</label>
                 </staffDef>
                 <staffDef xml:id="bass" clef.shape="F" clef.line="4" key.mode="major" key.sig="1f" meter.sym="common" meter.count="4" meter.unit="4" n="2" lines="5">
                   <label/>
                 </staffDef>
-                <staffDef xml:id="basse-fondamentale" clef.shape="F" clef.line="4" key.mode="major" key.sig="1f" meter.sym="common" meter.count="4" meter.unit="4" n="3" lines="5">
-                  <label>basse fondamentale</label>
-                </staffDef>
+
               </staffGrp>
             </scoreDef>
             <section xml:id="m-34">
@@ -178,17 +176,7 @@
                     </beam>
                   </layer>
                 </staff>
-                <staff n="3">
-                  <layer n="1">
-                    <beam>
-                      <note dur="8" oct="4" pname="d" pnum="62" stem.dir="down"/>
-                      <note xml:id="bf-1" dur="8" oct="3" pname="a" pnum="57" stem.dir="down"/>
-                      <note dur="8" oct="4" pname="d" pnum="62" stem.dir="down"/>
-                      <note xml:id="bf-2" dur="8" oct="3" pname="a" pnum="57" stem.dir="down"/>
-                    </beam>
-                    <note dur="2" oct="3" pname="d" pnum="50" stem.dir="down"/>
-                  </layer>
-                </staff>
+
                 <harm place="above" staff="2" startid="#m-45">
                   <fb>
                     <f>6</f>
@@ -260,17 +248,7 @@
                     </beam>
                   </layer>
                 </staff>
-                <staff n="3">
-                  <layer n="1">
-                    <beam>
-                      <note dur="8" oct="4" pname="d" pnum="62" stem.dir="down"/>
-                      <note xml:id="bf-3" dur="8" oct="3" pname="a" pnum="57" stem.dir="down"/>
-                      <note dur="8" oct="4" pname="d" pnum="62" stem.dir="down"/>
-                      <note xml:id="bf-4" dur="8" oct="3" pname="a" pnum="57" stem.dir="down"/>
-                    </beam>
-                    <note dur="2" oct="3" pname="d" pnum="50" stem.dir="down"/>
-                  </layer>
-                </staff>
+
                 <harm place="above" staff="2" startid="#m-78">
                   <fb>
                     <f>6</f>
@@ -348,12 +326,7 @@
                     </beam>
                   </layer>
                 </staff>
-                <staff n="3">
-                  <layer n="1">
-                    <note xml:id="bf-5" dur="2" oct="3" pname="g" pnum="55" stem.dir="down"/>
-                    <note dur="2" oct="3" pname="c" pnum="48" stem.dir="up"/>
-                  </layer>
-                </staff>
+
                 <harm place="above" staff="2" startid="#m-105">
                   <fb>
                     <f>6</f>
@@ -415,20 +388,7 @@
                     </beam>
                   </layer>
                 </staff>
-                <staff n="3">
-                  <layer n="1">
-                    <note xml:id="bf-6" dots="1" dur="4" oct="3" pname="f" pnum="60" stem.dir="down"/>
-                    <note xml:id="bf-7" dur="8" oct="3" pname="b" pnum="58" stem.dir="down">
-                      <accid accid.ges="f"/>
-                    </note>
-                    <beam xml:id="m-67">
-                      <note xml:id="bf-8" dur="8" oct="3" pname="e" pnum="52" stem.dir="down"/>
-                      <note xml:id="bf-9" dur="8" oct="3" pname="a" pnum="57" stem.dir="down"/>
-                      <note xml:id="bf-10" dur="8" oct="3" pname="d" pnum="50" stem.dir="down"/>
-                      <note xml:id="bf-11" dur="8" oct="3" pname="g" pnum="55" stem.dir="down"/>
-                    </beam>
-                  </layer>
-                </staff>
+
                 <harm place="above" staff="2" startid="#m-139">
                   <fb>
                     <f>6</f>
@@ -509,21 +469,7 @@
                     <rest xml:id="m-193" dur="4"/>
                   </layer>
                 </staff>
-                <staff n="3">
-                  <layer n="1">
-                    <beam>
-                      <note xml:id="bf-12" dur="8" oct="3" pname="c" pnum="48" stem.dir="down">
-                        <accid accid="s"/>
-                      </note>
-                      <note xml:id="bf-13" dur="8" oct="3" pname="f" pnum="53" stem.dir="down"/>
-                      <note xml:id="bf-14" dur="8" oct="2" pname="b" pnum="46" stem.dir="down">
-                        <accid accid.ges="n"/>
-                      </note>
-                      <note xml:id="bf-15" dur="8" oct="3" pname="e" pnum="52" stem.dir="down"/>
-                    </beam>
-                    <note xml:id="bf-16" dur="2" oct="2" pname="a" pnum="45" stem.dir="up"/>
-                  </layer>
-                </staff>
+
                 <harm place="above" staff="2" startid="#m-176">
                   <fb>
                     <f>6</f>
@@ -607,17 +553,7 @@
                     <rest dur="8"/>
                   </layer>
                 </staff>
-                <staff n="3">
-                  <layer n="1">
-                    <beam>
-                      <note xml:id="bf-17" dur="8" oct="4" pname="d" pnum="62" stem.dir="down"/>
-                      <note xml:id="bf-18" dur="8" oct="3" pname="a" pnum="57" stem.dir="down"/>
-                      <note xml:id="bf-19" dur="8" oct="4" pname="d" pnum="62" stem.dir="down"/>
-                      <note xml:id="bf-20" dur="8" oct="3" pname="a" pnum="57" stem.dir="down"/>
-                    </beam>
-                    <note xml:id="bf-21" dur="2" oct="3" pname="d" pnum="50" stem.dir="down"/>
-                  </layer>
-                </staff>
+
                 <harm place="above" staff="2" startid="#m-203">
                   <fb>
                     <f>6</f>
@@ -689,18 +625,7 @@
                     </beam>
                   </layer>
                 </staff>
-                <staff n="3">
-                  <layer n="1">
-                    <beam>
-                      <note xml:id="bf-22" dur="8" oct="4" pname="f" pnum="65" stem.dir="down"/>
-                      <note xml:id="bf-23" dur="8" oct="4" pname="c" pnum="60" stem.dir="down"/>
-                      <note xml:id="bf-24" dur="8" oct="4" pname="f" pnum="65" stem.dir="down"/>
-                      <note xml:id="bf-25" dur="8" oct="4" pname="c" pnum="60" stem.dir="down"/>
-                    </beam>
-                    <note xml:id="bf-26" dur="4" oct="3" pname="f" pnum="53" stem.dir="down"/>
-                    <note xml:id="bf-27" dur="4" oct="4" pname="d" pnum="58" stem.dir="down"/>
-                  </layer>
-                </staff>
+
                 <harm place="above" staff="2" startid="#m-229">
                   <fb>
                     <f>6</f>
@@ -770,18 +695,7 @@
                     </beam>
                   </layer>
                 </staff>
-                <staff n="3">
-                  <layer n="1">
-                    <note xml:id="bf-28" dur="4" oct="3" pname="g" pnum="55" stem.dir="down"/>
-                    <note xml:id="bf-29" dur="4" oct="3" pname="c" pnum="48" stem.dir="up"/>
-                    <beam xml:id="bf-30">
-                      <note xml:id="bf-31" dur="8" oct="3" pname="f" pnum="53" stem.dir="down"/>
-                      <note xml:id="bf-32" dur="8" oct="3" pname="c" pnum="48" stem.dir="down"/>
-                      <note xml:id="bf-33" dur="8" oct="3" pname="f" pnum="53" stem.dir="down"/>
-                      <note xml:id="bf-34" dur="8" oct="3" pname="c" pnum="48" stem.dir="down"/>
-                    </beam>
-                  </layer>
-                </staff>
+
                 <harm place="above" staff="2" startid="#m-279">
                   <fb>
                     <f>6</f>
@@ -843,17 +757,7 @@
                     </beam>
                   </layer>
                 </staff>
-                <staff n="3">
-                  <layer n="1">
-                    <note xml:id="bf-35" dur="2" oct="3" pname="f" pnum="53" stem.dir="down"/>
-                    <beam>
-                      <note xml:id="bf-36" dur="8" oct="3" pname="g" pnum="55" stem.dir="down"/>
-                      <note xml:id="bf-37" dur="8" oct="3" pname="d" pnum="50" stem.dir="down"/>
-                      <note xml:id="bf-38" dur="8" oct="3" pname="g" pnum="55" stem.dir="down"/>
-                      <note xml:id="bf-39" dur="8" oct="3" pname="d" pnum="50" stem.dir="down"/>
-                    </beam>
-                  </layer>
-                </staff>
+
                 <harm place="above" staff="2" startid="#m-294">
                   <fb>
                     <f>6</f>
@@ -924,12 +828,7 @@
                     </beam>
                   </layer>
                 </staff>
-                <staff n="3">
-                  <layer n="1">
-                    <note xml:id="bf-40" dur="2" oct="3" pname="g" pnum="55" stem.dir="down"/>
-                    <note xml:id="bf-41" dur="2" oct="3" pname="c" pnum="48" stem.dir="up"/>
-                  </layer>
-                </staff>
+
                 <harm place="above" staff="2" startid="#m-324">
                   <fb>
                     <f>6</f>
@@ -985,16 +884,7 @@
                     </beam>
                   </layer>
                 </staff>
-                <staff n="3">
-                  <layer n="1">
-                    <note xml:id="bf-42" dur="4" oct="3" pname="f" pnum="53" stem.dir="down"/>
-                    <note xml:id="bf-43" dur="4" oct="3" pname="b" pnum="58" stem.dir="down">
-                      <accid accid.ges="f"/>
-                    </note>
-                    <note xml:id="bf-44" dur="4" oct="3" pname="e" pnum="52" stem.dir="down"/>
-                    <note xml:id="bf-45" dur="4" oct="3" pname="a" pnum="57" stem.dir="down"/>
-                  </layer>
-                </staff>
+
                 <harm place="above" staff="2" startid="#m-359">
                   <fb>
                     <f>6</f>
@@ -1053,17 +943,7 @@
                     </beam>
                   </layer>
                 </staff>
-                <staff n="3">
-                  <layer n="1">
-                    <note dur="4" oct="3" pname="d" pnum="50" stem.dir="down"/>
-                    <note dur="4" oct="3" pname="g" pnum="55" stem.dir="down"/>
-                    <beam>
-                      <note dur="8" oct="3" pname="c" pnum="48" stem.dir="down"/>
-                      <note dur="8" oct="3" pname="f" pnum="53" stem.dir="down"/>
-                    </beam>
-                    <note dur="4" oct="3" pname="d" pnum="50" stem.dir="down"/>
-                  </layer>
-                </staff>
+
                 <harm place="above" staff="2" startid="#m-392">
                   <fb>
                     <f>6</f>
@@ -1119,14 +999,7 @@
                     </beam>
                   </layer>
                 </staff>
-                <staff n="3">
-                  <layer n="1">
-                    <note xml:id="bf-110" dur="4" oct="4" pname="d" pnum="50" stem.dir="down"/>
-                    <note xml:id="bf-111" dur="4" oct="3" pname="b" pnum="50" stem.dir="down"/>
-                    <note xml:id="bf-112" dur="4" oct="3" pname="g" pnum="50" stem.dir="down"/>
-                    <note xml:id="bf-113" dur="4" oct="3" pname="e" pnum="50" stem.dir="down"/>
-                  </layer>
-                </staff>
+
                 <harm place="above" staff="3" startid="#bf-110">
                   <fb>
                     <f>7</f>
@@ -1185,21 +1058,7 @@
                     </beam>
                   </layer>
                 </staff>
-                <staff n="3">
-                  <layer n="1">
-                    <note xml:id="bf-114" dur="4" oct="4" pname="c" pnum="43" stem.dir="down"/>
-                    <beam>
-                      <note xml:id="bf-115" dur="8" oct="3" pname="a" pnum="48" stem.dir="down"/>
-                      <note xml:id="bf-116" dur="8" oct="3" pname="f" pnum="53" stem.dir="down"/>
-                    </beam>
-                    <beam>
-                      <note xml:id="bf-117" dur="8" oct="3" pname="d" pnum="50" stem.dir="down"/>
-                      <note xml:id="bf-118" dur="8" oct="3" pname="b" pnum="55" stem.dir="down"/>
-                      <note xml:id="bf-119" dur="8" oct="3" pname="e" pnum="52" stem.dir="down"/>
-                      <note xml:id="bf-120" dur="8" oct="3" pname="a" pnum="57" stem.dir="down"/>
-                    </beam>
-                  </layer>
-                </staff>
+
                 <harm place="above" staff="3" startid="#bf-114">
                   <fb>
                     <f>7</f>
@@ -1275,17 +1134,7 @@
                     </beam>
                   </layer>
                 </staff>
-                <staff n="3">
-                  <layer>
-                    <beam>
-                      <note xml:id="bf-121" dur="8" oct="3" pname="d" pnum="53" stem.dir="down"/>
-                      <note xml:id="bf-122" dur="8" oct="3" pname="g" pnum="58" stem.dir="down"/>
-                    </beam>
-                    <note xml:id="bf-123" dur="4" oct="3" pname="c" pnum="48" stem.dir="down"/>
-                    <note xml:id="bf-124" dur="4" oct="3" pname="f" pnum="53" stem.dir="down"/>
-                    <note xml:id="bf-125" dur="4" oct="3" pname="c" pnum="48" stem.dir="up"/>
-                  </layer>
-                </staff>
+
                 <harm place="above" staff="2" startid="#m-495">
                   <fb>
                     <f>6</f>
@@ -1393,25 +1242,7 @@
                     </beam>
                   </layer>
                 </staff>
-                <staff n="3">
-                  <layer n="1">
-                    <note dur="4" oct="3" pname="f" pnum="53" stem.dir="down"/>
-                    <beam>
-                      <note dur="8" oct="2" pname="b" pnum="46" stem.dir="up">
-                        <accid accid.ges="f"/>
-                      </note>
-                      <note dur="8" oct="2" pname="f" pnum="41" stem.dir="up"/>
-                    </beam>
-                    <beam>
-                      <note dur="8" oct="2" pname="b" pnum="46" stem.dir="up">
-                        <accid accid.ges="f"/>
-                      </note>
-                      <note dur="8" oct="2" pname="g" pnum="43" stem.dir="up"/>
-                      <note dur="8" oct="3" pname="c" pnum="48" stem.dir="up"/>
-                      <note dur="8" oct="2" pname="g" pnum="43" stem.dir="up"/>
-                    </beam>
-                  </layer>
-                </staff>
+
                 <harm place="above" staff="2" startid="#m-538">
                   <fb>
                     <f>6</f>
@@ -1502,21 +1333,7 @@
                     <note xml:id="m-603" dur="4" oct="3" pname="d" pnum="50" stem.dir="down"/>
                   </layer>
                 </staff>
-                <staff n="3">
-                  <layer n="1">
-                    <beam>
-                      <note dur="8" oct="3" pname="c" pnum="48" stem.dir="up"/>
-                      <note dur="8" oct="2" pname="a" pnum="45" stem.dir="up"/>
-                      <note dur="8" oct="3" pname="d" pnum="50" stem.dir="up"/>
-                      <note dur="8" oct="2" pname="a" pnum="45" stem.dir="up"/>
-                    </beam>
-                    <beam>
-                      <note dur="8" oct="3" pname="d" pnum="50" stem.dir="up"/>
-                      <note dur="8" oct="2" pname="a" pnum="45" stem.dir="up"/>
-                    </beam>
-                    <note dur="4" oct="3" pname="d" pnum="50" stem.dir="down"/>
-                  </layer>
-                </staff>
+
                 <tie xml:id="m-604" endid="#m-637" startid="#m-603"/>
                 <harm place="above" staff="2" startid="#m-594">
                   <fb>
@@ -1598,21 +1415,7 @@
                     </beam>
                   </layer>
                 </staff>
-                <staff n="3">
-                  <layer n="1">
-                    <note dur="4" oct="3" pname="e" pnum="52" stem.dir="down"/>
-                    <beam>
-                      <note dur="8" oct="2" pname="a" pnum="45" stem.dir="up"/>
-                      <note dur="8" oct="3" pname="e" pnum="52" stem.dir="up"/>
-                    </beam>
-                    <beam>
-                      <note dur="8" oct="2" pname="a" pnum="45" stem.dir="up"/>
-                      <note dur="8" oct="3" pname="e" pnum="52" stem.dir="up"/>
-                      <note dur="8" oct="2" pname="a" pnum="45" stem.dir="up"/>
-                      <note dur="8" oct="3" pname="e" pnum="52" stem.dir="up"/>
-                    </beam>
-                  </layer>
-                </staff>
+
                 <harm place="above" staff="2" startid="#m-637">
                   <fb>
                     <f>6</f>
@@ -1687,17 +1490,7 @@
                     </beam>
                   </layer>
                 </staff>
-                <staff n="3">
-                  <layer n="1">
-                    <beam>
-                      <note dur="8" oct="2" pname="a" pnum="45" stem.dir="up"/>
-                      <note dur="8" oct="3" pname="e" pnum="52" stem.dir="up"/>
-                      <note dur="8" oct="2" pname="a" pnum="45" stem.dir="up"/>
-                      <note dur="8" oct="3" pname="e" pnum="52" stem.dir="up"/>
-                    </beam>
-                    <note dur="2" oct="2" pname="a" pnum="45" stem.dir="up"/>
-                  </layer>
-                </staff>
+
                 <harm place="above" staff="2" startid="#m-660">
                   <fb>
                     <f>6</f>
@@ -1763,12 +1556,7 @@
                     </beam>
                   </layer>
                 </staff>
-                <staff n="3">
-                  <layer n="1">
-                    <note dur="2" oct="3" pname="d" pnum="50" stem.dir="down"/>
-                    <note dur="2" oct="3" pname="g" pnum="55" stem.dir="down"/>
-                  </layer>
-                </staff>
+
                 <harm place="above" staff="2" startid="#m-688">
                   <fb>
                     <f>6</f>
@@ -1824,18 +1612,7 @@
                     </beam>
                   </layer>
                 </staff>
-                <staff n="3">
-                  <layer n="1">
-                    <beam>
-                      <note dur="8" oct="3" pname="c" pnum="48" stem.dir="down"/>
-                      <note dur="8" oct="3" pname="g" pnum="55" stem.dir="down"/>
-                      <note dur="8" oct="3" pname="c" pnum="48" stem.dir="down"/>
-                      <note dur="8" oct="3" pname="g" pnum="55" stem.dir="down"/>
-                    </beam>
-                    <note dur="4" oct="3" pname="c" pnum="48" stem.dir="up"/>
-                    <note dur="4" oct="3" pname="f" pnum="53" stem.dir="down"/>
-                  </layer>
-                </staff>
+
                 <harm place="above" staff="2" startid="#m-725">
                   <fb>
                     <f>6</f>
@@ -1905,14 +1682,7 @@
                     </beam>
                   </layer>
                 </staff>
-                <staff n="3">
-                  <layer n="1">
-                    <note dur="4" oct="3" pname="d" pnum="50" stem.dir="down"/>
-                    <note dur="4" oct="3" pname="g" pnum="55" stem.dir="down"/>
-                    <note dur="4" oct="3" pname="c" pnum="48" stem.dir="up"/>
-                    <note dur="4" oct="3" pname="e" pnum="52" stem.dir="down"/>
-                  </layer>
-                </staff>
+
                 <harm place="above" staff="2" startid="#m-759">
                   <fb>
                     <f>♮</f>
@@ -1960,13 +1730,7 @@
                     </beam>
                   </layer>
                 </staff>
-                <staff n="3">
-                  <layer n="1">
-                    <note dur="2" oct="3" pname="e" pnum="52" stem.dir="down"/>
-                    <note dur="4" oct="3" pname="a" pnum="57" stem.dir="down"/>
-                    <note dur="4" oct="3" pname="d" pnum="50" stem.dir="down"/>
-                  </layer>
-                </staff>
+
                 <harm place="above" staff="2" startid="#m-787">
                   <fb>
                     <f>♯</f>
@@ -2069,22 +1833,7 @@
                     </beam>
                   </layer>
                 </staff>
-                <staff n="3">
-                  <layer n="1">
-                    <beam>
-                      <note dur="8" oct="3" pname="g" pnum="55" stem.dir="down"/>
-                      <note dur="8" oct="3" pname="e" pnum="52" stem.dir="down"/>
-                      <note dur="8" oct="3" pname="f" pnum="53" stem.dir="down"/>
-                      <note dur="8" oct="3" pname="d" pnum="50" stem.dir="down"/>
-                    </beam>
-                    <beam>
-                      <note dur="8" oct="3" pname="g" pnum="55" stem.dir="down"/>
-                      <note dur="8" oct="3" pname="e" pnum="52" stem.dir="down"/>
-                      <note dur="8" oct="3" pname="a" pnum="57" stem.dir="down"/>
-                      <note dur="8" oct="3" pname="f" pnum="53" stem.dir="down"/>
-                    </beam>
-                  </layer>
-                </staff>
+
                 <harm place="above" staff="2" startid="#m-834">
                   <fb>
                     <f>♮</f>
@@ -2141,21 +1890,7 @@
                     </beam>
                   </layer>
                 </staff>
-                <staff n="3">
-                  <layer n="1">
-                    <note dur="4" oct="3" pname="g" pnum="55" stem.dir="down"/>
-                    <beam>
-                      <note dur="8" oct="4" pname="c" pnum="60" stem.dir="down"/>
-                      <note dur="8" oct="3" pname="g" pnum="55" stem.dir="down"/>
-                    </beam>
-                    <beam>
-                      <note dur="8" oct="4" pname="c" pnum="60" stem.dir="down"/>
-                      <note dur="8" oct="3" pname="g" pnum="55" stem.dir="down"/>
-                      <note dur="8" oct="4" pname="c" pnum="60" stem.dir="down"/>
-                      <note dur="8" oct="3" pname="a" pnum="57" stem.dir="down"/>
-                    </beam>
-                  </layer>
-                </staff>
+
                 <harm place="above" staff="2" startid="#m-875">
                   <fb>
                     <f>6</f>
@@ -2217,17 +1952,7 @@
                     </beam>
                   </layer>
                 </staff>
-                <staff n="3">
-                  <layer n="1">
-                    <beam>
-                      <note dur="8" oct="4" pname="d" pnum="62" stem.dir="down"/>
-                      <note dur="8" oct="3" pname="a" pnum="57" stem.dir="down"/>
-                    </beam>
-                    <note dur="4" oct="4" pname="d" pnum="62" stem.dir="down"/>
-                    <note dur="4" oct="3" pname="a" pnum="57" stem.dir="down"/>
-                    <note dur="4" oct="4" pname="d" pnum="62" stem.dir="down"/>
-                  </layer>
-                </staff>
+
                 <harm place="above" staff="2" startid="#m-903">
                   <fb>
                     <f>6</f>
@@ -2302,16 +2027,7 @@
                     </beam>
                   </layer>
                 </staff>
-                <staff n="3">
-                  <layer n="1">
-                    <note dur="4" oct="3" pname="g" pnum="55" stem.dir="down"/>
-                    <note dur="4" oct="3" pname="c" pnum="48" stem.dir="up"/>
-                    <note dur="4" oct="3" pname="f" pnum="53" stem.dir="down"/>
-                    <note dur="4" oct="2" pname="b" pnum="46" stem.dir="up">
-                      <accid accid.ges="f"/>
-                    </note>
-                  </layer>
-                </staff>
+
                 <harm place="above" staff="2" startid="#m-931">
                   <fb>
                     <f>6</f>
@@ -2382,12 +2098,7 @@
                     </beam>
                   </layer>
                 </staff>
-                <staff n="3">
-                  <layer n="1">
-                    <note dur="4" oct="3" pname="e" pnum="52" stem.dir="down"/>
-                    <note dots="1" dur="2" oct="3" pname="a" pnum="57" stem.dir="down"/>
-                  </layer>
-                </staff>
+
                 <harm place="above" staff="2" startid="#m-977">
                   <fb>
                     <f>6</f>
@@ -2442,17 +2153,7 @@
                     </beam>
                   </layer>
                 </staff>
-                <staff n="3">
-                  <layer n="1">
-                    <note dur="4" oct="3" pname="a" pnum="57" stem.dir="down"/>
-                    <note dur="8" oct="3" pname="d" pnum="50" stem.dir="down"/>
-                    <note dots="1" dur="4" oct="2" pname="a" pnum="45" stem.dir="up"/>
-                    <beam>
-                      <note dur="8" oct="3" pname="d" pnum="50" stem.dir="up"/>
-                      <note dur="8" oct="2" pname="a" pnum="45" stem.dir="up"/>
-                    </beam>
-                  </layer>
-                </staff>
+
                 <harm place="above" staff="2" startid="#m-1011">
                   <fb>
                     <f>♯</f>
@@ -2533,17 +2234,7 @@
                     </beam>
                   </layer>
                 </staff>
-                <staff n="3">
-                  <layer n="1">
-                    <note dur="4" oct="2" pname="a" pnum="45" stem.dir="up"/>
-                    <note dur="8" oct="3" pname="d" pnum="50" stem.dir="down"/>
-                    <note dots="1" dur="4" oct="3" pname="g" pnum="55" stem.dir="down"/>
-                    <beam>
-                      <note dur="8" oct="3" pname="c" pnum="48" stem.dir="down"/>
-                      <note dur="8" oct="3" pname="g" pnum="55" stem.dir="down"/>
-                    </beam>
-                  </layer>
-                </staff>
+
                 <harm place="above" staff="2" startid="#m-1051">
                   <fb>
                     <f>♯</f>
@@ -2596,19 +2287,7 @@
                     </beam>
                   </layer>
                 </staff>
-                <staff n="3">
-                  <layer n="1">
-                    <note dur="4" oct="3" pname="g" pnum="55" stem.dir="down"/>
-                    <note dur="8" oct="3" pname="c" pnum="48" stem.dir="up"/>
-                    <note dots="1" dur="4" oct="3" pname="f" pnum="53" stem.dir="down"/>
-                    <beam>
-                      <note dur="8" oct="2" pname="b" pnum="46" stem.dir="down">
-                        <accid accid.ges="f"/>
-                      </note>
-                      <note dur="8" oct="3" pname="f" pnum="53" stem.dir="down"/>
-                    </beam>
-                  </layer>
-                </staff>
+
                 <harm place="above" staff="2" startid="#m-1075">
                   <fb>
                     <f>♮</f>
@@ -2669,24 +2348,7 @@
                     </beam>
                   </layer>
                 </staff>
-                <staff n="3">
-                  <layer n="1">
-                    <beam>
-                      <note dur="8" oct="2" pname="b" pnum="46" stem.dir="down">
-                        <accid accid.ges="f"/>
-                      </note>
-                      <note dur="8" oct="3" pname="g" pnum="55" stem.dir="down"/>
-                      <note dur="8" oct="3" pname="c" pnum="48" stem.dir="down"/>
-                      <note dur="8" oct="3" pname="g" pnum="55" stem.dir="down"/>
-                    </beam>
-                    <beam>
-                      <note dur="8" oct="3" pname="c" pnum="48" stem.dir="down"/>
-                      <note dur="8" oct="3" pname="a" pnum="57" stem.dir="down"/>
-                      <note dur="8" oct="3" pname="d" pnum="50" stem.dir="down"/>
-                      <note dur="8" oct="3" pname="a" pnum="57" stem.dir="down"/>
-                    </beam>
-                  </layer>
-                </staff>
+
                 <harm place="above" staff="2" startid="#m-1102">
                   <fb>
                     <f>6</f>
@@ -2793,24 +2455,7 @@
                     </beam>
                   </layer>
                 </staff>
-                <staff n="3">
-                  <layer n="1">
-                    <beam>
-                      <note dur="8" oct="4" pname="d" pnum="62" stem.dir="down"/>
-                      <note dur="8" oct="3" pname="g" pnum="55" stem.dir="down"/>
-                      <note dur="8" oct="4" pname="c" pnum="60" stem.dir="down"/>
-                      <note dur="8" oct="3" pname="f" pnum="53" stem.dir="down"/>
-                    </beam>
-                    <beam>
-                      <note dur="8" oct="3" pname="b" pnum="58" stem.dir="down">
-                        <accid accid.ges="f"/>
-                      </note>
-                      <note dur="8" oct="3" pname="e" pnum="52" stem.dir="down"/>
-                      <note dur="8" oct="3" pname="a" pnum="57" stem.dir="down"/>
-                      <note dur="8" oct="3" pname="d" pnum="50" stem.dir="down"/>
-                    </beam>
-                  </layer>
-                </staff>
+
                 <harm place="above" staff="2" startid="#m-1168">
                   <fb>
                     <f>6</f>
@@ -2879,21 +2524,7 @@
                     </beam>
                   </layer>
                 </staff>
-                <staff n="3">
-                  <layer n="1">
-                    <beam>
-                      <note dur="8" oct="3" pname="g" pnum="55" stem.dir="down"/>
-                      <note dur="8" oct="3" pname="e" pnum="52" stem.dir="down"/>
-                    </beam>
-                    <note dur="4" oct="3" pname="a" pnum="57" stem.dir="down"/>
-                    <beam>
-                      <note dur="8" oct="3" pname="d" pnum="50" stem.dir="up"/>
-                      <note dur="8" oct="2" pname="a" pnum="45" stem.dir="up"/>
-                      <note dur="8" oct="3" pname="d" pnum="50" stem.dir="up"/>
-                      <note dur="8" oct="2" pname="a" pnum="45" stem.dir="up"/>
-                    </beam>
-                  </layer>
-                </staff>
+
                 <harm place="above" staff="2" startid="#m-1211">
                   <fb>
                     <f>6</f>
@@ -2970,23 +2601,7 @@
                     </beam>
                   </layer>
                 </staff>
-                <staff n="3">
-                  <layer n="1">
-                    <note dur="4" oct="3" pname="d" pnum="50" stem.dir="down"/>
-                    <beam>
-                      <note dur="8" oct="3" pname="d" pnum="50" stem.dir="down"/>
-                      <note dur="8" oct="3" pname="g" pnum="55" stem.dir="down"/>
-                    </beam>
-                    <beam>
-                      <note dur="8" oct="3" pname="c" pnum="48" stem.dir="down"/>
-                      <note dur="8" oct="3" pname="f" pnum="53" stem.dir="down"/>
-                      <note dur="8" oct="2" pname="b" pnum="46" stem.dir="down">
-                        <accid accid.ges="f"/>
-                      </note>
-                      <note dur="8" oct="3" pname="e" pnum="52" stem.dir="down"/>
-                    </beam>
-                  </layer>
-                </staff>
+
                 <harm place="above" staff="2" startid="#m-1232">
                   <fb>
                     <f>6</f>
@@ -3071,24 +2686,7 @@
                     </beam>
                   </layer>
                 </staff>
-                <staff n="3">
-                  <layer n="1">
-                    <beam>
-                      <note dur="8" oct="2" pname="a" pnum="45" stem.dir="up"/>
-                      <note dur="8" oct="3" pname="d" pnum="50" stem.dir="up"/>
-                      <note dur="8" oct="2" pname="g" pnum="43" stem.dir="up"/>
-                      <note dur="8" oct="3" pname="c" pnum="48" stem.dir="up"/>
-                    </beam>
-                    <beam>
-                      <note dur="8" oct="2" pname="f" pnum="41" stem.dir="up"/>
-                      <note dur="8" oct="2" pname="b" pnum="46" stem.dir="up">
-                        <accid accid.ges="f"/>
-                      </note>
-                      <note dur="8" oct="2" pname="e" pnum="40" stem.dir="up"/>
-                      <note dur="8" oct="2" pname="a" pnum="45" stem.dir="up"/>
-                    </beam>
-                  </layer>
-                </staff>
+
                 <harm place="above" staff="2" startid="#m-1270">
                   <fb>
                     <f>7</f>
@@ -3153,13 +2751,7 @@
                     <rest xml:id="m-1324" dur="4"/>
                   </layer>
                 </staff>
-                <staff n="3">
-                  <layer n="1">
-                    <note dur="4" oct="2" pname="d" pnum="38" stem.dir="up"/>
-                    <note dur="4" oct="2" pname="a" pnum="45" stem.dir="up"/>
-                    <note dur="2" oct="2" pname="d" pnum="38" stem.dir="up"/>
-                  </layer>
-                </staff>
+
                 <harm place="above" staff="2" startid="#m-1316">
                   <fb>
                     <f>6</f>

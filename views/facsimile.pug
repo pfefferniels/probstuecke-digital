@@ -1,0 +1,17 @@
+extends layout.pug
+
+block headAdditions
+  title Mattheson, #{number}. Probstück
+
+  link(rel='stylesheet' href='/css/mirador-combined.min.css')
+  link(rel='stylesheet' href='/css/facsimile.css')
+
+  script.
+    number = '#{number}';
+    edition = '#{edition}';
+
+  script(type='text/javascript' src='/js/mirador.min.js')
+  script(type='text/javascript' src='/js/facsimile.js')
+  
+block content
+  #viewer

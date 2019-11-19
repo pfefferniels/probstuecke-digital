@@ -4,15 +4,6 @@ const path = require('path'),
       prettifyXml = require('prettify-xml'),
       DOMParser = xmldom.DOMParser;
 
-// prevent possible dot-dot-slash attacks
-function preventDotDotSlash(userInput) {
-  return path.parse(userInput).base;
-}
-
-function getAnnotationFilename(nr, lang) {
-  return path.join(__dirname, "../data", nr, "annotations_"+lang+".tei");
-}
-
 function hasZoneWithSameTarget(doc, target) {
   let zones = doc.getElementsByTagName("zone");
   for (let i=0; i<zones.length; i++) {
@@ -213,7 +204,5 @@ function annotatedFile(req, res) {
   }
 }
 
-exports.preventDotDotSlash = preventDotDotSlash;
-exports.getAnnotationFilename = getAnnotationFilename;
 exports.annotateFile = annotateFile;
 exports.annotatedFile = annotatedFile;

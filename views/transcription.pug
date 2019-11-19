@@ -3,16 +3,19 @@ extends layout.pug
 block headAdditions
   title Mattheson, #{number}. Probstück
 
-  link(rel='stylesheet' href='css/midiplayer.css')
-  link(rel='stylesheet' href='css/probstueck.css')
+  link(rel='stylesheet' href='/css/midiplayer.css')
+  link(rel='stylesheet' href='/css/transcription.css')
 
   script.
     number = "#{number}";
+    label = "#{label}";
+    language = "#{language}";
+    midi = "#{midi}";
 
-  script(type='text/javascript' src='js/svg.min.js')
-  script(type='text/javascript' src='js/wildwebmidi.js')
-  script(type='text/javascript' src='js/midiplayer.js')
-  script(type='text/javascript' src='js/probstueck.js')
+  script(type='text/javascript' src='/js/svg.min.js')
+  script(type='text/javascript' src='/js/wildwebmidi.js')
+  script(type='text/javascript' src='/js/midiplayer.js')
+  script(type='text/javascript' src='/js/transcription.js')
 
 block controlsAdditions
 
@@ -63,29 +66,17 @@ block controlsAdditions
         li
           input#modern-clefs(type='checkbox' name='modern-clefs' autocomplete='off')
           label(for='modern-clefs') modern clefs
-    #analysis.controls-item
-    #realizations.controls-item
-    #available-annotations.controls-item
+
     .controls-item
       h1 MIDI
       #player
+
     .controls-item
       h1 export
       a.pdf-download PDF
 
 block content
-  .left-half
-    table
-      tr
-        td
-          #previous-page.change-page
-            | &lt;
-        td
-          #score-view
-            | loading ...
-        td
-          #next-page.change-page
-            | &gt;
-  #annotations-view.right-half
-    | loading ...
+  .left-half#score-view !{svgScore}
+  .right-half#comments-view !{teiComment}
+  
   #tooltips

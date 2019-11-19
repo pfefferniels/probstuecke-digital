@@ -15,7 +15,6 @@ svg {
   left: 0px;
   top: 0px;
   width: 100%;
-  height: 100%;
   z-index: 400;
 }
 
@@ -43,14 +42,6 @@ svg {
   z-index: 900;
 }
 
-.system-break {
-  float: left;
-  font-size: 2rem;
-  padding-left: 5px;
-  padding-right: 5px;
-  background-color: white;
-}
-
 .tooltip-text {
   font-size: 1.2rem;
   line-height: 1.5;
@@ -67,18 +58,12 @@ svg {
   float: left;
   left: 0px;
   width: 50%;
-  height: 95vh;
-}
-
-.left-half table {
-  width: 90%;
 }
 
 .right-half {
   position: absolute;
   right: 0px;
   width: 50%;
-  height: 95vh;
 }
 
 input[type="number"] {
@@ -92,8 +77,6 @@ input[type="number"] {
 }
 
 #score-view {
-  height: 95vh;
-  overflow-y: scroll;
   margin-left: 30px;
   margin-right: 30px;
 }

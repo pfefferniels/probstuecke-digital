@@ -1,7 +1,8 @@
 // provide a simple AnnotationList service in the
 // recommended URI pattern: /{prefix}/{identifier}/list/{name}
 
-const path = require('path');
+const path = require('path'),
+      iiif = require('express').Router();
 
 function sendAnnotationList(req, res) {
   if (isNaN(req.params.number)) {
@@ -10,7 +11,7 @@ function sendAnnotationList(req, res) {
     return;
   }
 
-  res.sendFile(path.join(__dirname, '../data', req.params.number, (req.params.name+'.json')), function(err) {
+  res.sendFile(path.join(__dirname, '../data', req.params.number, 'mattheson', (req.params.name+'.json')), function(err) {
     if (err) {
       console.log(err);
       res.status("404").end();
@@ -19,4 +20,6 @@ function sendAnnotationList(req, res) {
   });
 }
 
-exports.sendAnnotationList = sendAnnotationList;
+iiif.get('/:number/list/:name', sendAnnotationList);
+
+module.exports = iiif;

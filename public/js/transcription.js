@@ -1,12 +1,7 @@
 var currentParams = {
-  nr: number,
-  page: 1,
-  display: [],
   modernClefs: false,
   emptyStaffsBelow: 0,
-  emptyStaffsAbove: 0,
-  lang: "de",
-  exportFormat: "pdf"
+  emptyStaffsAbove: 0
 };
 
 const cetei = new CETEI();
@@ -51,115 +46,18 @@ function getSvgElementBoxAsCss(target) {
 // MIDI player
 // ------
 
-var midiTimemap = {};
-var midiData = {};
-
 const midiUpdate = function(time) {
   // TODO time and the tstamps from midiTimemap are not identical.
   // An approximate lookup would be necessary.
 }
 
-// ------
-// update view functions
-// ------
-
-const staffLabels = {
-  "mattheson": "Matthson's annotations",
-  "basse-fondamentale": "<i>basse fondamentale</i> (Rameau)",
-  "fundamental-notes": "<i>Grund-Noten</i> (Mattheson)",
-  "pfeffer": "by Niels Pfeffer"
-};
-
-function displayCheckboxes(block, group) {
-  if (block) {
-    $("#" + group).append("<h1>" + group + "</h1>");
-    for (var i=0; i<block.length; i++) {
-      const blockName = block[i];
-      if (i!=0) {
-        $("#" + group).append('<br />');
-      }
-
-      $('<input type="checkbox" id="' + blockName + '" autocomplete="off">').appendTo("#" + group).change(function() {
-        if ($(this).is(':checked')) {
-          currentParams.display.push($(this).attr("id"));
-        } else {
-          currentParams.display.splice($.inArray($(this).attr("id"), currentParams.display), 1);
-        }
-        updateView(true);
-      });
-      $("#" + blockName)[0].checked = currentParams.display.includes(blockName);
-      $("#" + group).append('<label for="' + blockName + '">' + staffLabels[blockName] + '</label>');
-    }
-  }
-}
-
-async function updateDescription() {
-  let data;
-
-  $("#realizations").empty();
-  $("#analysis").empty();
-  $("#available-annotations").empty();
-
-  try {
-    data = await $.get("description?nr=" + number);
-  } catch (error) {
-    $("#options-table").text("failed loading description: " + error.status + " " + error.statusText);
-    return;
-  }
-
-  const realizations = data.realizations;
-  const analysis = data.analysis;
-  const annotations = data.annotations;
-
-  displayCheckboxes(realizations, "realizations");
-  displayCheckboxes(analysis, "analysis");
-
-
-  if (annotations) {
-    $("#available-annotations").append('<h1>annotations</h1>');
-    $("#available-annotations").append('<select id="lang" name="lang" autocomplete="off">');
-    for (var i=0; i<annotations.length; i++) {
-      if (annotations[i] == "de") {
-        $("#lang").append('<option value="de">German (second edition, Hamburg 1731)</option>');
-      } else if (annotations[i] == "en") {
-        $("#lang").append('<option value="en">English (second edition)</option>');
-      } else if (annotations[i] == "1st") {
-        $("#lang").append('<option value="1st">German (first edition, Hamburg 1719)</option>');
-      } else if (annotations[i] == "comments") {
-        $("#lang").append('<option value="comments">Comments</option>');
-      }
-    }
-    $("#available-annotations").append('</select>');
-
-    $("option[value='" + annotations[0] + "']")[0].selected = true;
-    currentParams.lang = annotations[0];
-
-    $("#lang").change(async function() {
-      currentParams.lang = $(this).val();
-      updateView(false);
-    });
-  }
-}
-
-async function updateAnnotations() {
-  $("#annotations-view").html("<center>loading ...</center>");
-
-  let data;
-
-  try {
-    data = await $.get("annotations?" + $.param({nr: number, lang: currentParams.lang}));
-  } catch (error) {
-    $("#annotations-view").text("failed loading annotations: " + error.status + " " + error.statusText);
-  }
-
-  cetei.domToHTML5(data, function(html) {
-    $("#annotations-view").html(html);
-    $("#annotations-view tei-facsimile img").hide();
+async function updateComments() {
+  cetei.makeHTML5($("#comments-view").html(), function(html) {
+      $("#comments-view").html(html);
+      $("#comments-view tei-facsimile img").hide();
   });
 
-
   // load the music examples, if there are any
-
   var notatedMusicPromises = [];
   $("tei-notatedmusic").each(async function() {
     var dfd = $.Deferred();
@@ -168,16 +66,11 @@ async function updateAnnotations() {
     var notatedmusic = $(this);
     let svg;
     try {
-      svg = await $.get("music-example?" + $.param({
-        nr: number,
-        filename: $(this).find("tei-ptr").attr("target"),
-        modernClefs: currentParams.modernClefs
-      }));
-
+      svg = await $.get(['/render', number, label, $(this).find('tei-ptr').attr('target')].join('/'));
+      modernClefs: currentParams.modernClefs
     } catch (error) {
       printError("failed loading embedded music example: " + error);
     }
-
     notatedmusic.find("tei-ptr").replaceWith(svg);
 
     let svg1 = notatedmusic.find("svg")[1];
@@ -200,63 +93,33 @@ async function updateAnnotations() {
     dfd.resolve();
   });
 
-  // make sure that loading the annotations is done only when all
+  // make sure that loading the comments is done only when all
   // the notatedMusic elements are resolved.
   await Promise.all(notatedMusicPromises);
 }
 
-async function renderCurrentPage() {
-  $("#score-view").html("<center>loading ...</center>");
-
-  let response;
-  try {
-    response = await $.get("render?" + $.param(currentParams));
-  } catch (error) {
-    $("#score-view").text("failed rendering page: " + error.status + " " + error.statusText);
-    return;
-  }
-
-  if (currentParams.page > response.pageCount) {
-    currentParams.page = 1;
-    updateView(false);
-    return;
-  }
-
-  midiTimemap = response.timemap;
-  midiData = response.midi;
-  const piece = 'data:audio/midi;base64,' + midiData;
+async function renderScore() {
+  const piece = 'data:audio/midi;base64,' + midi;
   $("#player").show();
   $("#player").midiPlayer.load(piece);
 
-  $("#score-view").html(response.svg);
+  let svg1 = $('#score-view').find('svg')[1];
+  const bb = svg1.getBBox();
+  const bbw = bb.width;
+  const bbh = bb.height;
+  svg1.setAttribute("viewBox", [bb.x,bb.y,bbw,bbh].join(" "));
+
+  let svg0 = $('#score-view').find("svg");
+  svg0.css({
+    width: (bbw/1000)*28.34 + "px",
+    height: (bbh/1000)*28.34 + "px"
+  });
 }
 
 function connectTEIRefAndSVG(teiRef, targetAttr) {
   let target = $("svg").find(targetAttr);
   if (target.length === 0) {
-    console.log("corresponding SVG element not found on this page.");
-
-    // In case the user clicks on a reference that is not found in the current SVG,
-    // we recursively look it up on the following pages.
-    async function unknownTargetClicked(e) {
-      e.preventDefault();
-
-      // move on to the next page render it, wait for the references
-      // to be connected and then check if this one was one of them.
-      currentParams.page += 1;
-      await renderCurrentPage();
-      reconnectCrossRefs();
-      await sleep(1000);
-      target = $("svg").find(targetAttr);
-      if (target.length != 0) {
-        SVG.get("indicate_" + targetAttr.substr(1)).
-            animate(500).attr({fill: "#ffaa99"}).animate().attr({fill: "#ffe47a"});
-      } else {
-        await unknownTargetClicked(e);
-      }
-    }
-
-    teiRef.on("click", unknownTargetClicked);
+    console.log("corresponding SVG element not found.");
     return;
   }
 
@@ -295,7 +158,7 @@ function connectTEIRefAndSVG(teiRef, targetAttr) {
 
     // landscape mode
     if(window.innerWidth > window.innerHeight){
-      var annotationView = $("#annotations-view");
+      var annotationView = $("#comments-view");
       annotationView.animate({
           scrollTop: teiRef.offset().top - annotationView.offset().top + annotationView.scrollTop()
       }, 100, function() {
@@ -352,13 +215,9 @@ function cleanUpTooltips() {
   $(".tooltip-overlay").remove();
 }
 
-// connecting key and meter signature with annotations
+// connecting key and meter signature with comments
 function connectSignatureTooltips() {
   cleanUpTooltips();
-
-  if (currentParams.page != 1) {
-    return;
-  }
 
   var keySig = $("#score-view svg").find(".keySig");
   var signatureBox;
@@ -418,7 +277,7 @@ async function connectFacsimileTooltips() {
 
   let iiif;
   try {
-    iiif = await $.get("iiif/" + number + "/list/" + "facsimile_de");
+    iiif = await $.get("/iiif/" + number + "/list/" + "facsimile_de");
   } catch(e) {
     printError("Could not load IIIF AnnotationList");
     return;
@@ -486,22 +345,15 @@ function reconnectFacsimileTooltips() {
   connectFacsimileTooltips();
 }
 
-async function updateView(resetting) {
-  if (currentParams.page < 1) {
-    currentParams.page = 1;
-  }
-
-  if (resetting) {
-    await updateDescription();
-  }
-  await Promise.all([renderCurrentPage(),updateAnnotations()]);
+async function updateAll() {
+  await Promise.all([renderScore(),updateComments()]);
 
   reconnectCrossRefs();
   connectSignatureTooltips();
 }
 
 async function updateScoreView() {
-  await renderCurrentPage();
+  await renderScore();
   reconnectCrossRefs();
   connectSignatureTooltips();
   connectFacsimileTooltips();
@@ -550,25 +402,11 @@ $(document).ready(function() {
     }
   });
 
-  $("#previous-page").click(function() {
-    if (currentParams.page == 1) {
-      printInfo("Already on first page.");
-      return;
-    }
-    currentParams.page -= 1;
-    updateScoreView();
-  });
-
-  $("#next-page").click(function() {
-    currentParams.page += 1;
-    updateScoreView();
-  });
-
   $("#modern-clefs").change(function() {
     currentParams.modernClefs = $(this).is(':checked');
-    // a change in the cleffing may also affect examples in the annotations,
+    // a change in the cleffing may also affect examples in the comments,
     // therefore a complete update is performed.
-    updateView(false);
+    updateAll();
   });
 
   $(".pdf-download").click(function() {
@@ -586,7 +424,7 @@ $(document).ready(function() {
     $("#contents-table").addClass("visible-table").show();
   });
 
-  updateView(true);
+  updateAll();
 });
 
 $(document).on("touchstart mousemove", function(e) {
