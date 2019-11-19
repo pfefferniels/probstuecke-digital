@@ -36,10 +36,10 @@
                         <measure n="23">
                             <staff n="1">
                                 <layer n="1">
-                                    <rest dur="16" />
+                                    <rest dur="16" staff="2" loc="6" />
                                     <beam>
-                                        <note dur="16" oct="3" pname="e" stem.dir="up" accid.ges="f" />
-                                        <note dur="16" oct="3" pname="g" stem.dir="up" />
+                                        <note dur="16" oct="3" pname="e" stem.dir="up" accid.ges="f" staff="2" />
+                                        <note dur="16" oct="3" pname="g" stem.dir="up" staff="2" />
                                         <note dur="16" oct="4" pname="c" stem.dir="up" />
                                     </beam>
                                     <beam>
@@ -59,9 +59,8 @@
                             </staff>
                             <staff n="2">
                                 <layer n="1">
-                                    <clef shape="F" line="4" />
+                                    <rest dur="16" loc="0" />
                                     <beam>
-                                        <note dur="16" oct="4" pname="c" stem.dir="down" />
                                         <note dur="16" oct="2" pname="g" stem.dir="down" />
                                         <note dur="16" oct="3" pname="c" stem.dir="down" />
                                         <note dur="16" oct="3" pname="e" stem.dir="down" accid.ges="f" />
@@ -126,10 +125,10 @@
                             </staff>
                             <staff n="2">
                                 <layer n="1">
+                                    <clef shape="F" line="4" />
                                     <beam>
-                                        <note dur="16" oct="4" pname="e" stem.dir="up" accid.ges="f" />
-                                        <clef shape="F" line="4" />
-                                        <note dur="16" oct="2" pname="e" stem.dir="up" accid.ges="f" />
+                                        <note dur="16" oct="4" pname="e" stem.dir="down" accid.ges="f" />
+                                        <note dur="16" oct="2" pname="e" stem.dir="up" accid.ges="f" staff="2" />
                                         <note dur="16" oct="2" pname="g" stem.dir="up" />
                                         <note dur="16" oct="3" pname="c" stem.dir="up" />
                                     </beam>
