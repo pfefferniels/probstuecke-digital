@@ -98,23 +98,25 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <harm place="above" staff="2" tstamp="1">
-                                <fb>
-                                    <f>5</f>
-                                </fb>
-                            </harm>
-                            <harm place="above" staff="2" tstamp="2">
-                                <fb>
-                                    <f>6</f>
-                                </fb>
-                            </harm>
+                            <supplied resp="#pfeffer">
+                                <harm place="above" staff="2" tstamp="1">
+                                    <fb>
+                                        <f>5</f>
+                                    </fb>
+                                </harm>
+                                <harm place="above" staff="2" tstamp="2">
+                                    <fb>
+                                        <f>6</f>
+                                    </fb>
+                                </harm>
+                            </supplied>
                         </measure>
                         <measure n="5">
                             <staff n="1" visible="true">
                                 <layer n="1">
-                                    <note dur="4" oct="5" pname="d" stem.dir="down" />
+                                    <note dur="4" oct="5" pname="d" stem.dir="down" xml:id="ex-1769775861" />
                                     <beam>
-                                        <note dur="16" oct="5" pname="d" stem.dir="down" />
+                                        <note dur="16" oct="5" pname="d" stem.dir="down" xml:id="ex-1881082125" />
                                         <note dur="16" oct="5" pname="e" stem.dir="down" accid.ges="f" />
                                         <note dur="16" oct="5" pname="f" stem.dir="down" />
                                         <note dur="16" oct="5" pname="e" stem.dir="down" accid.ges="f" />
@@ -174,24 +176,26 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <tie xml:id="tie-0000000810903591" startid="#note-0000001769775861" endid="#note-0000001881082125" />
-                            <harm place="above" staff="2" tstamp="1">
-                                <fb>
-                                    <f>7</f>
-                                </fb>
-                            </harm>
-                            <harm place="above" staff="2" tstamp="2">
-                                <fb>
-                                    <f>6</f>
-                                </fb>
-                            </harm>
+                            <tie startid="#ex-1769775861" endid="#ex-1881082125" />
+                            <supplied resp="#pfeffer">
+                                <harm place="above" staff="2" tstamp="1">
+                                    <fb>
+                                        <f>7</f>
+                                    </fb>
+                                </harm>
+                                <harm place="above" staff="2" tstamp="2">
+                                    <fb>
+                                        <f>6</f>
+                                    </fb>
+                                </harm>
+                            </supplied>
                         </measure>
                         <measure n="6">
                             <staff n="1">
                                 <layer n="1">
-                                    <note dur="4" oct="5" pname="c" stem.dir="down" />
+                                    <note dur="4" oct="5" pname="c" stem.dir="down" xml:id="ex-1193092165" />
                                     <beam>
-                                        <note dur="16" oct="5" pname="c" stem.dir="down" />
+                                        <note dur="16" oct="5" pname="c" stem.dir="down" xml:id="ex-0802666718" />
                                         <note dur="16" oct="5" pname="d" stem.dir="down" />
                                         <note dur="16" oct="5" pname="e" stem.dir="down" accid.ges="f" />
                                         <note dur="16" oct="5" pname="d" stem.dir="down" />
@@ -200,7 +204,7 @@
                                         <note dur="8" oct="5" pname="c" stem.dir="down" />
                                         <note dur="16" oct="4" pname="b" stem.dir="down" accid.ges="f" />
                                         <note dur="16" oct="4" pname="a" stem.dir="up">
-                                            <accid xml:id="accid-0000000172708545" accid="n" />
+                                            <accid accid="n" />
                                         </note>
                                     </beam>
                                 </layer>
@@ -220,8 +224,8 @@
                                     <beam>
                                         <chord dur="8" stem.dir="up">
                                             <note oct="4" pname="e" accid.ges="f" />
-                                            <note oct="4" pname="a" color="#000000">
-                                                <accid xml:id="accid-0000000245173094" accid="n" />
+                                            <note oct="4" pname="a">
+                                                <accid accid="n" />
                                             </note>
                                         </chord>
                                         <chord dur="8" stem.dir="up">
@@ -255,17 +259,19 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <tie xml:id="tie-0000001515009327" startid="#note-0000001193092165" endid="#note-0000000802666718" />
-                            <harm place="above" staff="2" tstamp="1">
-                                <fb>
-                                    <f>7</f>
-                                </fb>
-                            </harm>
-                            <harm place="above" staff="2" tstamp="2">
-                                <fb>
-                                    <f>6⃥</f>
-                                </fb>
-                            </harm>
+                            <tie startid="#ex-1193092165" endid="#ex-0802666718" />
+                            <supplied resp="#pfeffer">
+                                <harm place="above" staff="2" tstamp="1">
+                                    <fb>
+                                        <f>7</f>
+                                    </fb>
+                                </harm>
+                                <harm place="above" staff="2" tstamp="2">
+                                    <fb>
+                                        <f>6⃥</f>
+                                    </fb>
+                                </harm>
+                            </supplied>
                         </measure>
                     </section>
                 </score>
