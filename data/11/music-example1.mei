@@ -112,7 +112,7 @@
                             </supplied>
                         </measure>
                         <measure n="5">
-                            <staff n="1" visible="true">
+                            <staff n="1">
                                 <layer n="1">
                                     <note dur="4" oct="5" pname="d" stem.dir="down" xml:id="ex-1769775861" />
                                     <beam>
@@ -128,7 +128,7 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <staff n="2" visible="true">
+                            <staff n="2">
                                 <layer n="3">
                                     <beam>
                                         <chord dur="8" stem.dir="up">
@@ -272,6 +272,18 @@
                                     </fb>
                                 </harm>
                             </supplied>
+                        </measure>
+                        <measure n="5" right="invis">
+                            <staff n="1">
+                                <layer n="1">
+                                    <custos oct="5" pname="c" />
+                                </layer>
+                            </staff>
+                            <staff n="2">
+                                <layer n="2">
+                                    <custos oct="3" pname="b" />
+                                </layer>
+                            </staff>
                         </measure>
                     </section>
                 </score>
