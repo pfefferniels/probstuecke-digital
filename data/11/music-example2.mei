@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-CMN.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-CMN.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0" ?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
     <meiHead>
         <fileDesc>
             <titleStmt>
-                <title>
-                </title>
+                <title></title>
                 <composer>
                     <persName role="composer" auth.uri="http://d-nb.info/gnd/118578995" auth="GND">Johann Mattheson</persName>
                 </composer>
@@ -27,127 +26,139 @@
         <body>
             <mdiv>
                 <score>
-                    <scoreDef>
-                        <staffGrp mnum.visible="false">
+                    <scoreDef mnum.visible="false">
+                        <staffGrp>
                             <staffDef clef.shape="C" clef.line="1" key.sig="3f" n="1" lines="5" />
                             <staffDef clef.shape="F" clef.line="4" key.sig="3f" n="2" lines="5" />
                         </staffGrp>
                     </scoreDef>
                     <section>
-                      <measure n="23">
-                          <staff n="1" visible="true">
-                              <layer n="1">
-                                  <rest dur="16" />
-                                  <beam>
-                                    <note dur="16" oct="3" pname="e" stem.dir="up" accid.ges="f" />
-                                    <note dur="16" oct="3" pname="g" stem.dir="up" />
-                                    <note dur="16" oct="4" pname="c" stem.dir="up" />
-                                  </beam>
-                                  <beam>
-                                    <note dur="16" oct="4" pname="e" stem.dir="up" accid.ges="f" />
-                                    <note dur="16" oct="4" pname="g" stem.dir="up" />
-                                    <note dur="16" oct="5" pname="c" stem.dir="down" />
-                                    <note dur="16" oct="5" pname="e" stem.dir="down" accid.ges="f" />
-                                  </beam>
-                                  <beam>
-                                    <note dur="8" oct="5" pname="d" stem.dir="down" />
-                                    <note dur="16" oct="5" pname="c" stem.dir="down" />
-                                    <note dur="16" oct="4" pname="b" stem.dir="down">
-                                        <accid accid="n" />
-                                    </note>
-                                  </beam>
-                              </layer>
-                          </staff>
-                          <staff n="2" visible="true">
-                              <layer n="1">
-                                  <clef shape="F" line="4" />
-                                  <beam xml:id="beam-0000001296114855">
-                                      <note dur="16" oct="4" pname="c" stem.dir="down" />
-                                      <note dur="16" oct="2" pname="g" stem.dir="down" />
-                                      <note dur="16" oct="3" pname="c" stem.dir="down" />
-                                      <note dur="16" oct="3" pname="e" stem.dir="down" accid.ges="f" />
-                                  </beam>
-                                  <clef shape="C" line="4" />
-                                  <beam xml:id="beam-0000000193428611">
-                                      <note dur="16" oct="3" pname="g" stem.dir="down" />
-                                      <note dur="16" oct="4" pname="c" stem.dir="down" />
-                                      <note dur="16" oct="4" pname="e" stem.dir="down" accid.ges="f" />
-                                      <note dur="16" oct="4" pname="g" stem.dir="down" />
-                                  </beam>
-                                  <beam xml:id="beam-0000000009604777">
-                                      <note dur="8" oct="4" pname="f" stem.dir="down" />
-                                      <note dur="16" oct="4" pname="e" stem.dir="down" accid.ges="f" />
-                                      <note dur="16" oct="4" pname="d" stem.dir="down" />
-                                  </beam>
-                              </layer>
-                          </staff>
-                          <harm place='above' staff="2" tstamp="2"><fb>
-                              <f>6</f>
-                              <f>4</f>
-                          </fb></harm>
-                          <harm place='above' staff="2" tstamp="3"><fb>
-                              <f>6</f>
-                          </fb></harm>
-                          <harm place='above' staff="2" tstamp="3.500000" vgrp="80"><fb>
-                              <f>6</f>
-                          </fb></harm>
-                          <harm place='above' staff="2" tstamp="3.750000" vgrp="80"><fb>
-                              <f>6⃥</f>
-                          </fb></harm>
-                      </measure>
-                      <measure n="24">
-                          <staff n="1">
-                              <layer n="1">
-                                <beam>
-                                  <note dur="16" oct="5" pname="c" stem.dir="down" />
-                                  <note dur="16" oct="3" pname="g" stem.dir="up" />
-                                  <note dur="16" oct="4" pname="c" stem.dir="up" />
-                                  <note dur="16" oct="4" pname="e" stem.dir="up" accid.ges="f" />
-                                </beam>
-                                <beam>
-                                  <note dur="16" oct="4" pname="g" stem.dir="up" />
-                                  <note dur="16" oct="5" pname="c" stem.dir="down" />
-                                  <note dur="16" oct="5" pname="e" stem.dir="down" accid.ges="f" />
-                                  <note dur="16" oct="5" pname="g" stem.dir="down" />
-                                </beam>
-                                <beam>
-                                  <note dur="8" oct="5" pname="f" stem.dir="down" />
-                                  <note dur="16" oct="5" pname="e" stem.dir="down" accid.ges="f" />
-                                  <note dur="16" oct="5" pname="d" stem.dir="down" />
-                                </beam>
-                              </layer>
-                          </staff>
-                          <staff n="2">
-                              <layer n="1">
-                                  <beam xml:id="beam-0000001785130956">
-                                      <note dur="16" oct="4" pname="e" stem.dir="up" accid.ges="f" />
-                                      <clef shape="F" line="4" />
-                                      <note dur="16" oct="2" pname="e" stem.dir="up" accid.ges="f" />
-                                      <note dur="16" oct="2" pname="g" stem.dir="up" />
-                                      <note dur="16" oct="3" pname="c" stem.dir="up" />
-                                  </beam>
-                                  <beam xml:id="beam-0000002112509382">
-                                      <note dur="16" oct="3" pname="e" stem.dir="down" accid.ges="f" />
-                                      <note dur="16" oct="3" pname="g" stem.dir="down" />
-                                      <note dur="16" oct="4" pname="c" stem.dir="down" />
-                                      <note dur="16" oct="4" pname="e" stem.dir="down" accid.ges="f" />
-                                  </beam>
-                                  <beam xml:id="beam-0000001071651313">
-                                      <note dur="8" oct="4" pname="d" stem.dir="down" />
-                                      <note dur="16" oct="4" pname="c" stem.dir="down" />
-                                      <note dur="16" oct="3" pname="b" stem.dir="down">
-                                          <accid accid="n" />
-                                      </note>
-                                  </beam>
-                              </layer>
-                          </staff>
-                          <harm place='above' staff="2" tstamp="2"><fb>
-                              <f>6</f>
-                          </fb></harm>
-                          <harm place='above' staff="2" tstamp="3"><fb>
-                              <f>6⃥</f>
-                          </fb></harm>
-                      </measure>
+                        <measure n="23">
+                            <staff n="1">
+                                <layer n="1">
+                                    <rest dur="16" />
+                                    <beam>
+                                        <note dur="16" oct="3" pname="e" stem.dir="up" accid.ges="f" />
+                                        <note dur="16" oct="3" pname="g" stem.dir="up" />
+                                        <note dur="16" oct="4" pname="c" stem.dir="up" />
+                                    </beam>
+                                    <beam>
+                                        <note dur="16" oct="4" pname="e" stem.dir="up" accid.ges="f" />
+                                        <note dur="16" oct="4" pname="g" stem.dir="up" />
+                                        <note dur="16" oct="5" pname="c" stem.dir="down" />
+                                        <note dur="16" oct="5" pname="e" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                    <beam>
+                                        <note dur="8" oct="5" pname="d" stem.dir="down" />
+                                        <note dur="16" oct="5" pname="c" stem.dir="down" />
+                                        <note dur="16" oct="4" pname="b" stem.dir="down">
+                                            <accid accid="n" />
+                                        </note>
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <staff n="2">
+                                <layer n="1">
+                                    <clef shape="F" line="4" />
+                                    <beam>
+                                        <note dur="16" oct="4" pname="c" stem.dir="down" />
+                                        <note dur="16" oct="2" pname="g" stem.dir="down" />
+                                        <note dur="16" oct="3" pname="c" stem.dir="down" />
+                                        <note dur="16" oct="3" pname="e" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                    <clef shape="C" line="4" />
+                                    <beam>
+                                        <note dur="16" oct="3" pname="g" stem.dir="down" />
+                                        <note dur="16" oct="4" pname="c" stem.dir="down" />
+                                        <note dur="16" oct="4" pname="e" stem.dir="down" accid.ges="f" />
+                                        <note dur="16" oct="4" pname="g" stem.dir="down" />
+                                    </beam>
+                                    <beam>
+                                        <note dur="8" oct="4" pname="f" stem.dir="down" />
+                                        <note dur="16" oct="4" pname="e" stem.dir="down" accid.ges="f" />
+                                        <note dur="16" oct="4" pname="d" stem.dir="down" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <harm place="above" staff="2" tstamp="2">
+                                <fb>
+                                    <f>6</f>
+                                    <f>4</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="3">
+                                <fb>
+                                    <f>6</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="3.500000" vgrp="80">
+                                <fb>
+                                    <f>6</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="3.750000" vgrp="80">
+                                <fb>
+                                    <f>6⃥</f>
+                                </fb>
+                            </harm>
+                        </measure>
+                        <measure n="24">
+                            <staff n="1">
+                                <layer n="1">
+                                    <beam>
+                                        <note dur="16" oct="5" pname="c" stem.dir="down" />
+                                        <note dur="16" oct="3" pname="g" stem.dir="up" />
+                                        <note dur="16" oct="4" pname="c" stem.dir="up" />
+                                        <note dur="16" oct="4" pname="e" stem.dir="up" accid.ges="f" />
+                                    </beam>
+                                    <beam>
+                                        <note dur="16" oct="4" pname="g" stem.dir="up" />
+                                        <note dur="16" oct="5" pname="c" stem.dir="down" />
+                                        <note dur="16" oct="5" pname="e" stem.dir="down" accid.ges="f" />
+                                        <note dur="16" oct="5" pname="g" stem.dir="down" />
+                                    </beam>
+                                    <beam>
+                                        <note dur="8" oct="5" pname="f" stem.dir="down" />
+                                        <note dur="16" oct="5" pname="e" stem.dir="down" accid.ges="f" />
+                                        <note dur="16" oct="5" pname="d" stem.dir="down" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <staff n="2">
+                                <layer n="1">
+                                    <beam>
+                                        <note dur="16" oct="4" pname="e" stem.dir="up" accid.ges="f" />
+                                        <clef shape="F" line="4" />
+                                        <note dur="16" oct="2" pname="e" stem.dir="up" accid.ges="f" />
+                                        <note dur="16" oct="2" pname="g" stem.dir="up" />
+                                        <note dur="16" oct="3" pname="c" stem.dir="up" />
+                                    </beam>
+                                    <beam>
+                                        <note dur="16" oct="3" pname="e" stem.dir="down" accid.ges="f" />
+                                        <note dur="16" oct="3" pname="g" stem.dir="down" />
+                                        <note dur="16" oct="4" pname="c" stem.dir="down" />
+                                        <note dur="16" oct="4" pname="e" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                    <beam>
+                                        <note dur="8" oct="4" pname="d" stem.dir="down" />
+                                        <note dur="16" oct="4" pname="c" stem.dir="down" />
+                                        <note dur="16" oct="3" pname="b" stem.dir="down">
+                                            <accid accid="n" />
+                                        </note>
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <harm place="above" staff="2" tstamp="2">
+                                <fb>
+                                    <f>6</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="3">
+                                <fb>
+                                    <f>6⃥</f>
+                                </fb>
+                            </harm>
+                        </measure>
                     </section>
                 </score>
             </mdiv>

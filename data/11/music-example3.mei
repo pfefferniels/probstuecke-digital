@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-CMN.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-CMN.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0" ?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
     <meiHead>
         <fileDesc>
             <titleStmt>
-                <title>
-                </title>
+                <title></title>
                 <composer>
                     <persName role="composer" auth.uri="http://d-nb.info/gnd/118578995" auth="GND">Johann Mattheson</persName>
                 </composer>
@@ -27,56 +26,56 @@
         <body>
             <mdiv>
                 <score>
-                    <scoreDef>
-                        <staffGrp mnum.visible="false">
+                    <scoreDef mnum.visible="false">
+                        <staffGrp>
                             <staffDef clef.shape="C" clef.line="1" key.sig="3f" n="1" lines="5" />
                         </staffGrp>
                     </scoreDef>
                     <section>
-                      <measure n="33">
-                          <staff n="1">
-                              <layer n="1">
-                                <beam>
-                                  <note dur="32" oct="4" pname="a" stem.dir="up" accid.ges="f" />
-                                  <note dur="32" oct="5" pname="c" stem.dir="down" />
-                                  <note dur="32" oct="5" pname="f" stem.dir="down" />
-                                  <note dur="32" oct="5" pname="c" stem.dir="down" />
-                                </beam>
-                                <beam>
-                                  <note dur="32" oct="4" pname="a" stem.dir="up" accid.ges="f" />
-                                  <note dur="32" oct="5" pname="c" stem.dir="down" />
-                                  <note dur="32" oct="5" pname="f" stem.dir="down" />
-                                  <note dur="32" oct="5" pname="c" stem.dir="down" />
-                                </beam>
-                                <beam>
-                                  <note dur="32" oct="4" pname="a" stem.dir="up" accid.ges="f" />
-                                  <note dur="32" oct="5" pname="c" stem.dir="down" />
-                                  <note dur="32" oct="5" pname="f" stem.dir="down" />
-                                  <note dur="32" oct="5" pname="c" stem.dir="down" />
-                                </beam>
-                                <beam>
-                                  <note dur="32" oct="4" pname="a" stem.dir="up" accid.ges="f" />
-                                  <note dur="32" oct="5" pname="c" stem.dir="down" />
-                                  <note dur="32" oct="5" pname="f" stem.dir="down" />
-                                  <note dur="32" oct="5" pname="c" stem.dir="down" />
-                                </beam>
-                                <beam>
-                                  <note dur="32" oct="4" pname="g" stem.dir="up" />
-                                  <note dur="32" oct="4" pname="b" stem.dir="down" accid.ges="f" />
-                                  <note dur="32" oct="5" pname="e" stem.dir="down">
-                                      <accid accid="n" />
-                                  </note>
-                                  <note dur="32" oct="4" pname="b" stem.dir="down" accid.ges="f" />
-                                </beam>
-                                <beam>
-                                  <note dur="32" oct="4" pname="g" stem.dir="up" />
-                                  <note dur="32" oct="4" pname="b" stem.dir="down" accid.ges="f" />
-                                  <note dur="32" oct="5" pname="e" stem.dir="down" />
-                                  <note dur="32" oct="4" pname="b" stem.dir="down" accid.ges="f" />
-                                </beam>
-                              </layer>
-                          </staff>
-                      </measure>
+                        <measure n="33">
+                            <staff n="1">
+                                <layer n="1">
+                                    <beam>
+                                        <note dur="32" oct="4" pname="a" stem.dir="up" accid.ges="f" />
+                                        <note dur="32" oct="5" pname="c" stem.dir="down" />
+                                        <note dur="32" oct="5" pname="f" stem.dir="down" />
+                                        <note dur="32" oct="5" pname="c" stem.dir="down" />
+                                    </beam>
+                                    <beam>
+                                        <note dur="32" oct="4" pname="a" stem.dir="up" accid.ges="f" />
+                                        <note dur="32" oct="5" pname="c" stem.dir="down" />
+                                        <note dur="32" oct="5" pname="f" stem.dir="down" />
+                                        <note dur="32" oct="5" pname="c" stem.dir="down" />
+                                    </beam>
+                                    <beam>
+                                        <note dur="32" oct="4" pname="a" stem.dir="up" accid.ges="f" />
+                                        <note dur="32" oct="5" pname="c" stem.dir="down" />
+                                        <note dur="32" oct="5" pname="f" stem.dir="down" />
+                                        <note dur="32" oct="5" pname="c" stem.dir="down" />
+                                    </beam>
+                                    <beam>
+                                        <note dur="32" oct="4" pname="a" stem.dir="up" accid.ges="f" />
+                                        <note dur="32" oct="5" pname="c" stem.dir="down" />
+                                        <note dur="32" oct="5" pname="f" stem.dir="down" />
+                                        <note dur="32" oct="5" pname="c" stem.dir="down" />
+                                    </beam>
+                                    <beam>
+                                        <note dur="32" oct="4" pname="g" stem.dir="up" />
+                                        <note dur="32" oct="4" pname="b" stem.dir="down" accid.ges="f" />
+                                        <note dur="32" oct="5" pname="e" stem.dir="down">
+                                            <accid accid="n" />
+                                        </note>
+                                        <note dur="32" oct="4" pname="b" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                    <beam>
+                                        <note dur="32" oct="4" pname="g" stem.dir="up" />
+                                        <note dur="32" oct="4" pname="b" stem.dir="down" accid.ges="f" />
+                                        <note dur="32" oct="5" pname="e" stem.dir="down" />
+                                        <note dur="32" oct="4" pname="b" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                        </measure>
                     </section>
                 </score>
             </mdiv>

@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-CMN.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-CMN.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0" ?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
     <meiHead>
         <fileDesc>
             <titleStmt>
-                <title>
-                </title>
+                <title></title>
                 <composer>
                     <persName role="composer" auth.uri="http://d-nb.info/gnd/118578995" auth="GND">Johann Mattheson</persName>
                 </composer>
@@ -23,240 +22,251 @@
             </pubStmt>
         </fileDesc>
     </meiHead>
-
     <music>
         <body>
             <mdiv>
                 <score>
-                    <scoreDef>
-                        <staffGrp mnum.visible="false">
+                    <scoreDef mnum.visible="false">
+                        <staffGrp>
                             <staffDef clef.shape="C" clef.line="1" key.sig="3f" n="1" lines="5" />
                             <staffDef clef.shape="F" clef.line="4" key.sig="3f" n="2" lines="5" />
                         </staffGrp>
                     </scoreDef>
                     <section>
-                      <measure n="4">
-                          <staff n="1">
-                              <layer n="1">
-                                  <rest dur="4" />
-                                  <rest dur="16" />
-                                  <beam>
-                                    <note dur="16" oct="5" pname="f" stem.dir="down" />
-                                    <note dur="16" oct="5" pname="g" stem.dir="down" />
-                                    <note dur="16" oct="5" pname="f" stem.dir="down" />
-                                  </beam>
-                                  <beam>
-                                    <note dur="8" oct="5" pname="e" stem.dir="down" accid.ges="f" />
-                                    <note dur="16" oct="5" pname="d" stem.dir="down" />
-                                    <note dur="16" oct="5" pname="c" stem.dir="down" />
-                                  </beam>
-                              </layer>
-                          </staff>
-                          <staff n="2">
-                              <layer n="3">
-                                  <beam xml:id="beam-0000002015005583">
-                                      <chord dur="8" stem.dir="up">
-                                          <note oct="4" pname="g" />
-                                          <note oct="4" pname="b" accid.ges="f" />
-                                      </chord>
-                                      <chord dur="8" stem.dir="up">
-                                          <note oct="4" pname="g" />
-                                          <note oct="4" pname="b" accid.ges="f" />
-                                      </chord>
-                                  </beam>
-                                  <beam xml:id="beam-0000000278990011">
-                                      <chord dur="8" stem.dir="up">
-                                          <note oct="4" pname="g" />
-                                          <note oct="5" pname="c" />
-                                      </chord>
-                                      <chord dur="8" stem.dir="up">
-                                          <note oct="4" pname="g" />
-                                          <note oct="5" pname="c" />
-                                      </chord>
-                                  </beam>
-                                  <beam xml:id="beam-0000000829690062">
-                                      <chord dur="8" stem.dir="up">
-                                          <note oct="4" pname="g" />
-                                          <note oct="5" pname="c" />
-                                      </chord>
-                                      <chord dur="8" stem.dir="up">
-                                          <note oct="4" pname="g" />
-                                          <note oct="5" pname="c" />
-                                      </chord>
-                                  </beam>
-                              </layer>
-                              <layer n="2">
-                                  <beam xml:id="beam-0000001620104056">
-                                      <note dur="8" oct="4" pname="e" stem.dir="down" accid.ges="f" />
-                                      <note dur="8" oct="4" pname="e" stem.dir="down" accid.ges="f" />
-                                  </beam>
-                                  <beam xml:id="beam-0000001858429545">
-                                      <note dur="8" oct="4" pname="e" stem.dir="down" accid.ges="f" />
-                                      <note dur="8" oct="4" pname="e" stem.dir="down" accid.ges="f" />
-                                  </beam>
-                                  <beam xml:id="beam-0000001212274491">
-                                      <note dur="8" oct="4" pname="e" stem.dir="down" accid.ges="f" />
-                                      <note dur="8" oct="4" pname="e" stem.dir="down" accid.ges="f" />
-                                  </beam>
-                              </layer>
-                          </staff>
-                          <harm place='above' staff="2" tstamp="1"><fb>
-                              <f>5</f>
-                          </fb></harm>
-                          <harm place='above' staff="2" tstamp="2"><fb>
-                              <f>6</f>
-                          </fb></harm>
-                      </measure>
-                      <measure n="5">
-                          <staff n="1" visible="true">
-                              <layer n="1">
-                                  <note dur="4" oct="5" pname="d" stem.dir="down" />
-                                  <beam>
-                                    <note dur="16" oct="5" pname="d" stem.dir="down" />
-                                    <note dur="16" oct="5" pname="e" stem.dir="down" accid.ges="f" />
-                                    <note dur="16" oct="5" pname="f" stem.dir="down" />
-                                    <note dur="16" oct="5" pname="e" stem.dir="down" accid.ges="f" />
-                                  </beam>
-                                  <beam>
-                                    <note dur="8" oct="5" pname="d" stem.dir="down" />
-                                    <note dur="16" oct="5" pname="c" stem.dir="down" />
-                                    <note dur="16" oct="4" pname="b" stem.dir="down" accid.ges="f" />
-                                  </beam>
-                              </layer>
-                          </staff>
-                          <staff n="2" visible="true">
-                              <layer n="3">
-                                  <beam xml:id="beam-0000001992178321">
-                                      <chord dur="8" stem.dir="up">
-                                          <note oct="4" pname="f" />
-                                          <note oct="5" pname="c" />
-                                      </chord>
-                                      <chord dur="8" stem.dir="up">
-                                          <note oct="4" pname="f" />
-                                          <note oct="5" pname="c" />
-                                      </chord>
-                                  </beam>
-                                  <beam xml:id="beam-0000001083662410">
-                                      <chord dur="8" stem.dir="up">
-                                          <note oct="4" pname="f" />
-                                          <note oct="4" pname="b" accid.ges="f" />
-                                      </chord>
-                                      <chord dur="8" stem.dir="up">
-                                          <note oct="4" pname="f" />
-                                          <note oct="4" pname="b" accid.ges="f" />
-                                      </chord>
-                                  </beam>
-                                  <beam xml:id="beam-0000002044080682">
-                                      <chord dur="8" stem.dir="up">
-                                          <note oct="4" pname="f" />
-                                          <note oct="4" pname="b" accid.ges="f" />
-                                      </chord>
-                                      <chord dur="8" stem.dir="up">
-                                          <note oct="4" pname="f" />
-                                          <note oct="4" pname="b" accid.ges="f" />
-                                      </chord>
-                                  </beam>
-                              </layer>
-                              <layer n="2">
-                                  <beam xml:id="beam-0000000333915297">
-                                      <note dur="8" oct="4" pname="d" stem.dir="down" />
-                                      <note dur="8" oct="4" pname="d" stem.dir="down" />
-                                  </beam>
-                                  <beam xml:id="beam-0000001599189144">
-                                      <note dur="8" oct="4" pname="d" stem.dir="down" />
-                                      <note dur="8" oct="4" pname="d" stem.dir="down" />
-                                  </beam>
-                                  <beam xml:id="beam-0000000295139712">
-                                      <note dur="8" oct="4" pname="d" stem.dir="down" />
-                                      <note dur="8" oct="4" pname="d" stem.dir="down" />
-                                  </beam>
-                              </layer>
-                          </staff>
-                          <tie xml:id="tie-0000000810903591" startid="#note-0000001769775861" endid="#note-0000001881082125" />
-                          <harm place='above' staff="2" tstamp="1"><fb>
-                              <f>7</f>
-                          </fb></harm>
-                          <harm place='above' staff="2" tstamp="2"><fb>
-                              <f>6</f>
-                          </fb></harm>
-                      </measure>
-                      <measure n="6">
-                          <staff n="1">
-                              <layer n="1">
-                                  <note dur="4" oct="5" pname="c" stem.dir="down" />
-                                  <beam>
-                                    <note dur="16" oct="5" pname="c" stem.dir="down" />
-                                    <note dur="16" oct="5" pname="d" stem.dir="down" />
-                                    <note dur="16" oct="5" pname="e" stem.dir="down" accid.ges="f" />
-                                    <note dur="16" oct="5" pname="d" stem.dir="down" />
-                                  </beam>
-                                  <beam>
-                                    <note dur="8" oct="5" pname="c" stem.dir="down" />
-                                    <note dur="16" oct="4" pname="b" stem.dir="down" accid.ges="f" />
-                                    <note dur="16" oct="4" pname="a" stem.dir="up">
-                                        <accid xml:id="accid-0000000172708545" accid="n" />
-                                    </note>
-                                  </beam>
-                              </layer>
-                          </staff>
-                          <staff n="2">
-                              <layer n="3">
-                                  <beam xml:id="beam-0000000860823091">
-                                      <chord dur="8" stem.dir="up">
-                                          <note oct="4" pname="e" accid.ges="f" />
-                                          <note oct="4" pname="b" accid.ges="f" />
-                                      </chord>
-                                      <chord dur="8" stem.dir="up">
-                                          <note oct="4" pname="e" accid.ges="f" />
-                                          <note oct="4" pname="b" accid.ges="f" />
-                                      </chord>
-                                  </beam>
-                                  <beam xml:id="beam-0000001060964278">
-                                      <chord dur="8" stem.dir="up">
-                                          <note oct="4" pname="e" accid.ges="f" />
-                                          <note oct="4" pname="a" color="#000000">
-                                              <accid xml:id="accid-0000000245173094" accid="n" />
-                                          </note>
-                                      </chord>
-                                      <chord dur="8" stem.dir="up">
-                                          <note oct="4" pname="e" accid.ges="f" />
-                                          <note oct="4" pname="a" />
-                                      </chord>
-                                  </beam>
-                                  <beam xml:id="beam-0000001606815751">
-                                      <chord dur="8" stem.dir="up">
-                                          <note oct="4" pname="e" accid.ges="f" />
-                                          <note oct="4" pname="a" />
-                                      </chord>
-                                      <chord dur="8" stem.dir="up">
-                                          <note oct="4" pname="e" accid.ges="f" />
-                                          <note oct="4" pname="a" />
-                                      </chord>
-                                  </beam>
-                              </layer>
-                              <layer n="2">
-                                  <beam xml:id="beam-0000000740351594">
-                                      <note dur="8" oct="4" pname="c" stem.dir="down" />
-                                      <note dur="8" oct="4" pname="c" stem.dir="down" />
-                                  </beam>
-                                  <beam xml:id="beam-0000001144542136">
-                                      <note dur="8" oct="4" pname="c" stem.dir="down" />
-                                      <note dur="8" oct="4" pname="c" stem.dir="down" />
-                                  </beam>
-                                  <beam xml:id="beam-0000001199784798">
-                                      <note dur="8" oct="4" pname="c" stem.dir="down" />
-                                      <note dur="8" oct="4" pname="c" stem.dir="down" />
-                                  </beam>
-                              </layer>
-                          </staff>
-                          <tie xml:id="tie-0000001515009327" startid="#note-0000001193092165" endid="#note-0000000802666718" />
-                          <harm place='above' staff="2" tstamp="1"><fb>
-                              <f>7</f>
-                          </fb></harm>
-                          <harm place='above' staff="2" tstamp="2"><fb>
-                              <f>6⃥</f>
-                          </fb></harm>
-                      </measure>
+                        <measure n="4">
+                            <staff n="1">
+                                <layer n="1">
+                                    <rest dur="4" />
+                                    <rest dur="16" />
+                                    <beam>
+                                        <note dur="16" oct="5" pname="f" stem.dir="down" />
+                                        <note dur="16" oct="5" pname="g" stem.dir="down" />
+                                        <note dur="16" oct="5" pname="f" stem.dir="down" />
+                                    </beam>
+                                    <beam>
+                                        <note dur="8" oct="5" pname="e" stem.dir="down" accid.ges="f" />
+                                        <note dur="16" oct="5" pname="d" stem.dir="down" />
+                                        <note dur="16" oct="5" pname="c" stem.dir="down" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <staff n="2">
+                                <layer n="3">
+                                    <beam>
+                                        <chord dur="8" stem.dir="up">
+                                            <note oct="4" pname="g" />
+                                            <note oct="4" pname="b" accid.ges="f" />
+                                        </chord>
+                                        <chord dur="8" stem.dir="up">
+                                            <note oct="4" pname="g" />
+                                            <note oct="4" pname="b" accid.ges="f" />
+                                        </chord>
+                                    </beam>
+                                    <beam>
+                                        <chord dur="8" stem.dir="up">
+                                            <note oct="4" pname="g" />
+                                            <note oct="5" pname="c" />
+                                        </chord>
+                                        <chord dur="8" stem.dir="up">
+                                            <note oct="4" pname="g" />
+                                            <note oct="5" pname="c" />
+                                        </chord>
+                                    </beam>
+                                    <beam>
+                                        <chord dur="8" stem.dir="up">
+                                            <note oct="4" pname="g" />
+                                            <note oct="5" pname="c" />
+                                        </chord>
+                                        <chord dur="8" stem.dir="up">
+                                            <note oct="4" pname="g" />
+                                            <note oct="5" pname="c" />
+                                        </chord>
+                                    </beam>
+                                </layer>
+                                <layer n="2">
+                                    <beam>
+                                        <note dur="8" oct="4" pname="e" stem.dir="down" accid.ges="f" />
+                                        <note dur="8" oct="4" pname="e" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                    <beam>
+                                        <note dur="8" oct="4" pname="e" stem.dir="down" accid.ges="f" />
+                                        <note dur="8" oct="4" pname="e" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                    <beam>
+                                        <note dur="8" oct="4" pname="e" stem.dir="down" accid.ges="f" />
+                                        <note dur="8" oct="4" pname="e" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <harm place="above" staff="2" tstamp="1">
+                                <fb>
+                                    <f>5</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="2">
+                                <fb>
+                                    <f>6</f>
+                                </fb>
+                            </harm>
+                        </measure>
+                        <measure n="5">
+                            <staff n="1" visible="true">
+                                <layer n="1">
+                                    <note dur="4" oct="5" pname="d" stem.dir="down" />
+                                    <beam>
+                                        <note dur="16" oct="5" pname="d" stem.dir="down" />
+                                        <note dur="16" oct="5" pname="e" stem.dir="down" accid.ges="f" />
+                                        <note dur="16" oct="5" pname="f" stem.dir="down" />
+                                        <note dur="16" oct="5" pname="e" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                    <beam>
+                                        <note dur="8" oct="5" pname="d" stem.dir="down" />
+                                        <note dur="16" oct="5" pname="c" stem.dir="down" />
+                                        <note dur="16" oct="4" pname="b" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <staff n="2" visible="true">
+                                <layer n="3">
+                                    <beam>
+                                        <chord dur="8" stem.dir="up">
+                                            <note oct="4" pname="f" />
+                                            <note oct="5" pname="c" />
+                                        </chord>
+                                        <chord dur="8" stem.dir="up">
+                                            <note oct="4" pname="f" />
+                                            <note oct="5" pname="c" />
+                                        </chord>
+                                    </beam>
+                                    <beam>
+                                        <chord dur="8" stem.dir="up">
+                                            <note oct="4" pname="f" />
+                                            <note oct="4" pname="b" accid.ges="f" />
+                                        </chord>
+                                        <chord dur="8" stem.dir="up">
+                                            <note oct="4" pname="f" />
+                                            <note oct="4" pname="b" accid.ges="f" />
+                                        </chord>
+                                    </beam>
+                                    <beam>
+                                        <chord dur="8" stem.dir="up">
+                                            <note oct="4" pname="f" />
+                                            <note oct="4" pname="b" accid.ges="f" />
+                                        </chord>
+                                        <chord dur="8" stem.dir="up">
+                                            <note oct="4" pname="f" />
+                                            <note oct="4" pname="b" accid.ges="f" />
+                                        </chord>
+                                    </beam>
+                                </layer>
+                                <layer n="2">
+                                    <beam>
+                                        <note dur="8" oct="4" pname="d" stem.dir="down" />
+                                        <note dur="8" oct="4" pname="d" stem.dir="down" />
+                                    </beam>
+                                    <beam>
+                                        <note dur="8" oct="4" pname="d" stem.dir="down" />
+                                        <note dur="8" oct="4" pname="d" stem.dir="down" />
+                                    </beam>
+                                    <beam>
+                                        <note dur="8" oct="4" pname="d" stem.dir="down" />
+                                        <note dur="8" oct="4" pname="d" stem.dir="down" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <tie xml:id="tie-0000000810903591" startid="#note-0000001769775861" endid="#note-0000001881082125" />
+                            <harm place="above" staff="2" tstamp="1">
+                                <fb>
+                                    <f>7</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="2">
+                                <fb>
+                                    <f>6</f>
+                                </fb>
+                            </harm>
+                        </measure>
+                        <measure n="6">
+                            <staff n="1">
+                                <layer n="1">
+                                    <note dur="4" oct="5" pname="c" stem.dir="down" />
+                                    <beam>
+                                        <note dur="16" oct="5" pname="c" stem.dir="down" />
+                                        <note dur="16" oct="5" pname="d" stem.dir="down" />
+                                        <note dur="16" oct="5" pname="e" stem.dir="down" accid.ges="f" />
+                                        <note dur="16" oct="5" pname="d" stem.dir="down" />
+                                    </beam>
+                                    <beam>
+                                        <note dur="8" oct="5" pname="c" stem.dir="down" />
+                                        <note dur="16" oct="4" pname="b" stem.dir="down" accid.ges="f" />
+                                        <note dur="16" oct="4" pname="a" stem.dir="up">
+                                            <accid xml:id="accid-0000000172708545" accid="n" />
+                                        </note>
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <staff n="2">
+                                <layer n="3">
+                                    <beam>
+                                        <chord dur="8" stem.dir="up">
+                                            <note oct="4" pname="e" accid.ges="f" />
+                                            <note oct="4" pname="b" accid.ges="f" />
+                                        </chord>
+                                        <chord dur="8" stem.dir="up">
+                                            <note oct="4" pname="e" accid.ges="f" />
+                                            <note oct="4" pname="b" accid.ges="f" />
+                                        </chord>
+                                    </beam>
+                                    <beam>
+                                        <chord dur="8" stem.dir="up">
+                                            <note oct="4" pname="e" accid.ges="f" />
+                                            <note oct="4" pname="a" color="#000000">
+                                                <accid xml:id="accid-0000000245173094" accid="n" />
+                                            </note>
+                                        </chord>
+                                        <chord dur="8" stem.dir="up">
+                                            <note oct="4" pname="e" accid.ges="f" />
+                                            <note oct="4" pname="a" />
+                                        </chord>
+                                    </beam>
+                                    <beam>
+                                        <chord dur="8" stem.dir="up">
+                                            <note oct="4" pname="e" accid.ges="f" />
+                                            <note oct="4" pname="a" />
+                                        </chord>
+                                        <chord dur="8" stem.dir="up">
+                                            <note oct="4" pname="e" accid.ges="f" />
+                                            <note oct="4" pname="a" />
+                                        </chord>
+                                    </beam>
+                                </layer>
+                                <layer n="2">
+                                    <beam>
+                                        <note dur="8" oct="4" pname="c" stem.dir="down" />
+                                        <note dur="8" oct="4" pname="c" stem.dir="down" />
+                                    </beam>
+                                    <beam>
+                                        <note dur="8" oct="4" pname="c" stem.dir="down" />
+                                        <note dur="8" oct="4" pname="c" stem.dir="down" />
+                                    </beam>
+                                    <beam>
+                                        <note dur="8" oct="4" pname="c" stem.dir="down" />
+                                        <note dur="8" oct="4" pname="c" stem.dir="down" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <tie xml:id="tie-0000001515009327" startid="#note-0000001193092165" endid="#note-0000000802666718" />
+                            <harm place="above" staff="2" tstamp="1">
+                                <fb>
+                                    <f>7</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="2">
+                                <fb>
+                                    <f>6⃥</f>
+                                </fb>
+                            </harm>
+                        </measure>
                     </section>
                 </score>
             </mdiv>
