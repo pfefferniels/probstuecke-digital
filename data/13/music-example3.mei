@@ -15,30 +15,26 @@
                 </respStmt>
             </titleStmt>
             <editionStmt>
-                <edition>
-                    First draft,
-                    <date>2019</date>
-                </edition>
+                <edition>First draft, <date>2019</date></edition>
             </editionStmt>
             <pubStmt>
                 <unpub />
             </pubStmt>
         </fileDesc>
     </meiHead>
-
     <music>
         <body>
             <mdiv>
                 <score>
-                    <scoreDef key.sig="1f" mnum.visible="false">
+                    <scoreDef mnum.visible="false">
                         <staffGrp>
-                            <staffDef clef.shape="C" clef.line="1" n="1" lines="5" />
-                            <staffDef clef.shape="F" clef.line="4" n="2" lines="5" />
+                            <staffDef clef.shape="C" clef.line="1" key.sig="1f" n="1" lines="5" />
+                            <staffDef clef.shape="F" clef.line="4" key.sig="1f" n="2" lines="5" />
                         </staffGrp>
                     </scoreDef>
                     <section>
                         <measure n="1">
-                            <staff n="1" visible="true">
+                            <staff n="1">
                                 <layer n="1">
                                     <beam>
                                         <note dur="16" oct="4" pname="g" stem.dir="up" />
@@ -57,7 +53,7 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <staff n="2" visible="true">
+                            <staff n="2">
                                 <layer n="1">
                                     <beam>
                                         <note dots="1" dur="8" oct="3" pname="c" stem.dir="up" />
