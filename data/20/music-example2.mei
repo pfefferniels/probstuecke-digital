@@ -18,7 +18,7 @@
         </fileDesc>
         <encodingDesc>
             <appInfo>
-                <application xml:id="application-0000001579932470" isodate="2019-10-28T09:37:37" version="2.3.0-dev-3df101b">
+                <application xml:id="ex-001579932470" isodate="2019-10-28T09:37:37" version="2.3.0-dev-3df101b">
                     <name>Verovio</name>
                     <p>Transcoded from MusicXML</p>
                 </application>
@@ -29,22 +29,24 @@
         <body>
             <mdiv>
                 <score>
-                    <scoreDef>
+                    <scoreDef mnum.visible="false">
                         <staffGrp>
                             <staffDef n="1" lines="5" label="Mattheson's annotations" clef.shape="C" clef.line="1" key.sig="2s" />
                         </staffGrp>
                     </scoreDef>
                     <section>
-                        <measure xml:id="measure-0000001928354369" n="1">
+                        <measure xml:id="ex-001928354369" n="1">
                             <staff n="1">
                                 <layer n="1">
-                                    <space xml:id="space-0000001729636722" dur="2" />
-                                    <space xml:id="space-0000001944191686" dur="4" />
-                                    <rest xml:id="rest-0000000360696615" dur="16" />
+                                    <supplied resp="#pfeffer">
+                                        <space dur="2" />
+                                        <space dur="4" />
+                                    </supplied>
+                                    <rest xml:id="ex-000360696615" dur="16" />
                                     <beam>
-                                        <note xml:id="note-0000002070405722" dur="16" oct="5" pname="a" stem.dir="down" />
-                                        <note xml:id="note-0000001865419482" dur="16" oct="5" pname="e" stem.dir="down" />
-                                        <note xml:id="note-0000000585145918" dur="16" oct="5" pname="a" stem.dir="down" />
+                                        <note xml:id="ex-002070405722" dur="16" oct="5" pname="a" stem.dir="down" />
+                                        <note xml:id="ex-001865419482" dur="16" oct="5" pname="e" stem.dir="down" />
+                                        <note xml:id="ex-000585145918" dur="16" oct="5" pname="a" stem.dir="down" />
                                     </beam>
                                 </layer>
                             </staff>
