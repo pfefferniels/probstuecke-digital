@@ -6,14 +6,14 @@ const path = require('path'),
 
 function sendAnnotationList(req, res) {
   if (isNaN(req.params.number)) {
-    console.log("invalid query number passed.");
+    console.error("invalid query number passed.");
     res.status("404").end();
     return;
   }
 
   res.sendFile(path.join(__dirname, '../data', req.params.number, 'mattheson', (req.params.name+'.json')), function(err) {
     if (err) {
-      console.log(err);
+      console.error(err);
       res.status("404").end();
       return;
     }
