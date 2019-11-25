@@ -139,8 +139,7 @@ PDFDocument.prototype.addSVG = function(svg, x, y) {
 
 function streamPDF(res, number, label, file, above, below, modernClefs) {
   const doc = new PDFDocument({
-    size: "A1",
-    margin: 80
+    size: "A4"
   });
   doc.info["Title"] = number + ". Probstück";
   doc.pipe(res);
@@ -148,19 +147,20 @@ function streamPDF(res, number, label, file, above, below, modernClefs) {
   let mei = prepareMEI(number, label, file, above, below, modernClefs);
 
   vrvToolkit.setOptions({
-    pageHeight: 2670,
-    adjustPageHeight: 1,
-    noFooter: 1
+    pageHeight: 3200,
+    adjustPageHeight: 0,
+    noFooter: 1,
+    scale: 33
   });
   vrvToolkit.loadData(mei.toString());
 
   let pageCount = vrvToolkit.getPageCount();
   for (let i=1; i<=pageCount; ++i) {
-    doc.addSVG(vrvToolkit.renderToSVG(i, {}), 100, 100).scale(0.5);
-    doc.addPage();
+    doc.addSVG(vrvToolkit.renderToSVG(i, {}), 30, 30);
+    if (i != pageCount) { // do not add a page after the last
+      doc.addPage();
+    }
   }
-
-  doc.text("hi");
 
   doc.end();
 }
