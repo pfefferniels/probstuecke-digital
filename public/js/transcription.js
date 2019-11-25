@@ -1,10 +1,10 @@
-var currentParams = {
-  modernClefs: false,
-  emptyStaffsBelow: 0,
-  emptyStaffsAbove: 0
-};
-
 const cetei = new CETEI();
+
+var currentParams = {};
+
+function updatePage() {
+  window.location.search = $.param(currentParams);
+}
 
 // ------
 // Helper functions
@@ -42,6 +42,18 @@ function getSvgElementBoxAsCss(target) {
   };
 }
 
+function adjustToBBox(svgElement) {
+  const bb = svgElement[1].getBBox();
+  const bbw = bb.width;
+  const bbh = bb.height;
+  svgElement[1].setAttribute("viewBox", [bb.x,bb.y,bbw,bbh].join(" "));
+
+  svgElement.css({
+    width: (bbw/1000)*28.34 + "px",
+    height: (bbh/1000)*28.34 + "px"
+  });
+}
+
 // ------
 // MIDI player
 // ------
@@ -51,7 +63,7 @@ const midiUpdate = function(time) {
   // An approximate lookup would be necessary.
 }
 
-async function updateComments() {
+async function renderComments() {
   cetei.makeHTML5($("#comments-view").html(), function(html) {
       $("#comments-view").html(html);
       $("#comments-view tei-facsimile img").hide();
@@ -73,21 +85,11 @@ async function updateComments() {
     }
     notatedmusic.find("tei-ptr").replaceWith(svg);
 
-    let svg1 = notatedmusic.find("svg")[1];
-    const bb = svg1.getBBox();
-    const bbw = bb.width;
-    const bbh = bb.height;
-    svg1.setAttribute("viewBox", [bb.x,bb.y,bbw,bbh].join(" "));
-
-    let svg0 = notatedmusic.find("svg");
-    svg0.css({
-      width: (bbw/1000)*28.34 + "px",
-      height: (bbh/1000)*28.34 + "px"
-    });
+    adjustToBBox(notatedmusic.find("svg"));
 
     // on smaller screen sizes, the svg might too wide.
     var normalParagraph = notatedmusic.parent().find("tei-p");
-    if (svg0.width() > normalParagraph.width()) {
+    if (notatedmusic.find("svg").width() > normalParagraph.width()) {
       svg0.attr("width", normalParagraph.width());
     }
     dfd.resolve();
@@ -98,26 +100,8 @@ async function updateComments() {
   await Promise.all(notatedMusicPromises);
 }
 
-async function renderScore() {
-  const piece = 'data:audio/midi;base64,' + midi;
-  $("#player").show();
-  $("#player").midiPlayer.load(piece);
-
-  let svg1 = $('#score-view').find('svg')[1];
-  const bb = svg1.getBBox();
-  const bbw = bb.width;
-  const bbh = bb.height;
-  svg1.setAttribute("viewBox", [bb.x,bb.y,bbw,bbh].join(" "));
-
-  let svg0 = $('#score-view').find("svg");
-  svg0.css({
-    width: (bbw/1000)*28.34 + "px",
-    height: (bbh/1000)*28.34 + "px"
-  });
-}
-
 function connectTEIRefAndSVG(teiRef, targetAttr) {
-  let target = $("svg").find(targetAttr);
+  let target = $('#score-view').find(targetAttr);
   if (target.length === 0) {
     console.log("corresponding SVG element not found.");
     return;
@@ -179,16 +163,13 @@ function connectTEIRefAndSVG(teiRef, targetAttr) {
   });
 }
 
-function reconnectCrossRefs(finished) {
+function reconnectCrossRefs() {
   $("tei-ref").each(function() {
     let targetAttrs = $(this).attr("target").split(" ");
     for (let i=0; i<targetAttrs.length; i++) {
       connectTEIRefAndSVG($(this), targetAttrs[i]);
     }
   });
-  if (typeof finished === "function") {
-    finished();
-  }
 }
 
 function positionAtMouse(el, e) {
@@ -345,42 +326,33 @@ function reconnectFacsimileTooltips() {
   connectFacsimileTooltips();
 }
 
-async function updateAll() {
-  await Promise.all([renderScore(),updateComments()]);
+$(document).ready(async function() {
+  adjustToBBox($('#score-view').find('svg'));
 
-  reconnectCrossRefs();
-  connectSignatureTooltips();
-}
-
-async function updateScoreView() {
-  await renderScore();
-  reconnectCrossRefs();
-  connectSignatureTooltips();
-  connectFacsimileTooltips();
-}
-
-$(document).ready(function() {
   $("#player").midiPlayer({
       onUpdate: midiUpdate
   });
+  const piece = 'data:audio/midi;base64,' + midi;
+  $("#player").show();
+  $("#player").midiPlayer.load(piece);
 
   // ------
   // view controls
   // ------
 
   $("#staves-below").change(function() {
-    currentParams.emptyStaffsBelow = $(this).val();
-    updateScoreView();
+    currentParams.below = $(this).val();
   });
 
   $("#staves-above").change(function() {
-    currentParams.emptyStaffsAbove = $(this).val();
-    updateScoreView();
+    currentParams.above = $(this).val();
   });
 
-  $("#show-fb").change(function() {
-    $("#score-view svg").find(".fb").toggle($(this).is(':checked'));
+  $("#modern-clefs").change(function() {
+    currentParams.modernClefs = this.checked;
   });
+
+  $("#update-page").click(updatePage);
 
   $("#display-facsimile").change(function() {
     if ($(this).is(':checked')) {
@@ -402,16 +374,8 @@ $(document).ready(function() {
     }
   });
 
-  $("#modern-clefs").change(function() {
-    currentParams.modernClefs = $(this).is(':checked');
-    // a change in the cleffing may also affect examples in the comments,
-    // therefore a complete update is performed.
-    updateAll();
-  });
-
   $(".pdf-download").click(function() {
-    currentParams.exportFormat = "pdf";
-    window.open("/download?" + $.param(currentParams), "about:blank");
+    window.location += '/pdf';
   });
 
   $("#options-control").click(function() {
@@ -424,7 +388,9 @@ $(document).ready(function() {
     $("#contents-table").addClass("visible-table").show();
   });
 
-  updateAll();
+  await renderComments();
+  reconnectCrossRefs();
+  connectSignatureTooltips();
 });
 
 $(document).on("touchstart mousemove", function(e) {

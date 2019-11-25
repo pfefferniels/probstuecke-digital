@@ -111,7 +111,7 @@ a {
   text-decoration: none;
 }
 
-.pdf-download {
+span.pdf-download:after {
   width: 16px;
   vertical-align: middle;
   margin: 4px 0 2px 4px;
@@ -128,7 +128,7 @@ a {
   text-decoration: none;
   display: inline-block;
   box-sizing: content-box;
-  cursor: pointer;
+  content: 'PDF';
 }
 
 tei-ref {
@@ -220,6 +220,10 @@ tei-rdg:last-child::after {
   content: "]";
 }
 
+tei-teiheader {
+  display: none;
+}
+
 input[type="number"] {
   width: 100px;
 }
@@ -232,6 +236,25 @@ input[type="number"] {
   width: 20vw;
   top: 0px;
   display: none;
+}
+
+#footer {
+  position: fixed;
+  margin-left: auto;
+  margin-right: auto;
+  bottom: 0;
+  font-family: sans-serif;
+  font-size: 0.9em;
+  background-color: #ededed;
+  text-align: left;
+  padding: 5px;
+  z-index: 999;
+  border-radius: 6px 6px 6px;
+}
+
+#player {
+  float: left;
+  width: 50vw;
 }
 
 @media screen and (orientation:portrait) {

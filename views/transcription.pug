@@ -44,39 +44,29 @@ block controlsAdditions
               option gray 
 
     .controls-item
-      h1 empty staves
-      table
-        tr
-          td
-            label(for='staves-above') above
-          td 
-            input#staves-above(type='number' name='staves-above' min='0' max='10' value='0' autocomplete='off')
-        tr
-          td
-            label(for='staves-below') below
-          td
-            input#staves-below(type='number' name='staves-below' min='0' max='10' value='0' autocomplete='off')
-
-    .controls-item
-      h1 tools
+      h1 staves and clefs
       ul
+        li 
+          input#staves-above(type='number' name='staves-above' min='0' max='10' value='0' autocomplete='off')
+          label(for='staves-above') above
+        
         li
-          input#show-fb(type='checkbox' name='show-fb' autocomplete='off' checked='')
-          label(for='show-fb') show figured bass
+         input#staves-below(type='number' name='staves-below' min='0' max='10' value='0' autocomplete='off')
+         label(for='staves-below') below
+
         li
           input#modern-clefs(type='checkbox' name='modern-clefs' autocomplete='off')
           label(for='modern-clefs') modern clefs
-
-    .controls-item
-      h1 MIDI
-      #player
-
-    .controls-item
-      h1 export
-      a.pdf-download PDF
-
+        
+        li
+          button#update-page update
+        
 block content
   .left-half#score-view !{svgScore}
   .right-half#comments-view !{teiComment}
   
   #tooltips
+  
+  #footer 
+    span.pdf-download 
+    #player 
