@@ -1,333 +1,436 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="http://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<?xml-model href="http://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-CMN.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0" ?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
     <meiHead>
         <fileDesc>
             <titleStmt>
-                <composer>Johann Mattheson</composer>
-                <editor>Niels Pfeffer</editor>
+                <title>Georg Friedrich Händel: Oh Numi eterni (Aria) [excerpt]</title>
+                <composer>
+                    <persName role="composer" auth.uri="http://d-nb.info/gnd/118544489" auth="GND">Georg Friedrich Händel</persName>
+                </composer>
+                <respStmt>
+                    <resp>Edited by</resp>
+                    <persName role="editor" xml:id="pfeffer">Niels Pfeffer</persName>
+                    <persName role="editor" xml:id="rettinghaus">Klaus Rettinghaus</persName>
+                </respStmt>
             </titleStmt>
             <editionStmt>
-                <edition>First draft, <date>2019</date></edition>
+                <edition>
+                    First draft,
+                    <date>2019</date>
+                </edition>
             </editionStmt>
             <pubStmt>
                 <unpub />
             </pubStmt>
         </fileDesc>
     </meiHead>
-
     <music>
         <body>
-            <mdiv>
+            <mdiv label="example">
                 <score>
-                    <scoreDef xml:id="scoredef-0000000630408888" key.mode="major" key.sig="2f" meter.count="3" meter.unit="8" >
-                        <staffGrp>
+                    <scoreDef key.sig="2f" mnum.visible="false">
+                        <staffGrp bar.thru="false">
                             <staffDef clef.shape="C" clef.line="1" n="1" lines="5" />
-                            <staffDef clef.shape="F" clef.line="4" n="2" lines="5" />
+                            <staffDef clef.shape="C" clef.line="4" n="2" lines="5" />
                         </staffGrp>
                     </scoreDef>
-                    <section>
-                      <measure xml:id="measure-0000000138979836" n="36">
-                          <staff xml:id="staff-0000000591306918" n="1" visible="true">
-                              <layer xml:id="layer-0000001512115330" n="1">
-                                  <note xml:id="note-0000000432344121" dur="8" oct="5" pname="e" stem.dir="down" accid.ges="f">
-                                      <verse xml:id="verse-0000000373038922" n="1">
-                                          <syl xml:id="syl-0000001742599460">Se_il</syl>
-                                      </verse>
-                                  </note>
-                                  <note xml:id="note-0000001856026488" dur="8" oct="5" pname="e" stem.dir="down" accid.ges="f">
-                                      <verse xml:id="verse-0000001539197181" n="1">
-                                          <syl xml:id="syl-0000002053812362" con="d" wordpos="i">pas</syl>
-                                      </verse>
-                                  </note>
-                                  <note xml:id="note-0000001411128614" dur="8" oct="5" pname="e" stem.dir="down" accid.ges="f">
-                                      <verse xml:id="verse-0000001286611768" n="1">
-                                          <syl xml:id="syl-0000001505819330" wordpos="t">so</syl>
-                                      </verse>
-                                  </note>
-                              </layer>
-                          </staff>
-                          <staff xml:id="staff-0000001812156088" n="2" visible="true">
-                              <layer xml:id="layer-0000001282859130" n="1">
-                                  <rest xml:id="rest-0000000915491377" dur="1" />
-                              </layer>
-                          </staff>
-                      </measure>
-                      <measure xml:id="measure-0000001219140897" n="37">
-                          <staff xml:id="staff-0000000652343737" n="1">
-                              <layer xml:id="layer-0000001835861028" n="1">
-                                  <note xml:id="note-0000001598961215" dur="4" oct="5" pname="e" stem.dir="down" accid.ges="f">
-                                      <verse xml:id="verse-0000000695368339" n="1">
-                                          <syl xml:id="syl-0000000517775231" con="d" wordpos="i">mo</syl>
-                                      </verse>
-                                  </note>
-                                  <note xml:id="note-0000000635486181" dur="8" oct="5" pname="e" stem.dir="down" accid.ges="f">
-                                      <verse xml:id="verse-0000000277796462" n="1">
-                                          <syl xml:id="syl-0000000557401824" wordpos="t">ve,</syl>
-                                      </verse>
-                                  </note>
-                              </layer>
-                          </staff>
-                          <staff xml:id="staff-0000000268663001" n="2">
-                              <layer xml:id="layer-0000001471406175" n="1">
-                                  <rest xml:id="rest-0000002060591957" dur="16" />
-                                  <beam xml:id="beam-0000001381630912">
-                                      <note xml:id="note-0000001556428466" dur="16" oct="4" pname="e" stem.dir="down" accid.ges="f" />
-                                      <note xml:id="note-0000000566117093" dur="16" oct="4" pname="c" stem.dir="down" />
-                                      <note xml:id="note-0000002134182339" dur="16" oct="3" pname="a" stem.dir="down">
-                                          <accid xml:id="accid-0000001099952824" accid="f" accid.ges="f" />
-                                      </note>
-                                      <note xml:id="note-0000001515471197" dur="16" oct="3" pname="g" stem.dir="down" />
-                                      <note xml:id="note-0000000869110749" dur="16" oct="3" pname="e" stem.dir="down" accid.ges="f" />
-                                  </beam>
-                              </layer>
-                          </staff>
-                          <harm place='above' staff="2" tstamp="1.500000" vgrp="80"><fb>
-                              <f>6</f>
-
-                          </fb></harm>
-                          <harm place='above' staff="2" tstamp="2.000000" vgrp="80"><fb>
-                              <f>6</f>
-
-                          </fb></harm>
-                      </measure>
-                      <measure xml:id="measure-0000000386959677" n="38">
-                          <staff xml:id="staff-0000001994269329" n="1">
-                              <layer xml:id="layer-0000000077769265" n="1">
-                                  <mRest xml:id="mrest-0000001885285809" />
-                              </layer>
-                          </staff>
-                          <staff xml:id="staff-0000000775516368" n="2">
-                              <layer xml:id="layer-0000000338452981" n="1">
-                                  <rest xml:id="rest-0000000590065412" dur="16" />
-                                  <beam xml:id="beam-0000001278600714">
-                                      <note xml:id="note-0000000686266437" dur="16" oct="4" pname="e" stem.dir="down" accid.ges="f" />
-                                      <note xml:id="note-0000001501099337" dur="16" oct="4" pname="c" stem.dir="down" />
-                                      <note xml:id="note-0000000425736248" dur="16" oct="3" pname="a" stem.dir="down">
-                                          <accid xml:id="accid-0000000467882859" accid="f" accid.ges="f" />
-                                      </note>
-                                      <note xml:id="note-0000002074251922" dur="16" oct="3" pname="g" stem.dir="down" />
-                                      <note xml:id="note-0000000206826465" dur="16" oct="3" pname="e" stem.dir="down" accid.ges="f" />
-                                  </beam>
-                              </layer>
-                          </staff>
-                          <harm place='above' staff="2" tstamp="1.500000" vgrp="80"><fb>
-                              <f>6</f>
-
-                          </fb></harm>
-                          <harm place='above' staff="2" tstamp="2.000000" vgrp="80"><fb>
-                              <f>6</f>
-
-                          </fb></harm>
-                      </measure>
-                      <measure xml:id="measure-0000000940232503" n="39">
-                          <staff xml:id="staff-0000001334396645" n="1">
-                              <layer xml:id="layer-0000001438667324" n="1">
-                                  <note xml:id="note-0000001448710044" dur="8" oct="5" pname="e" stem.dir="down" accid.ges="f">
-                                      <verse xml:id="verse-0000001923347355" n="1">
-                                          <syl xml:id="syl-0000000510287976">se_il</syl>
-                                      </verse>
-                                  </note>
-                                  <note xml:id="note-0000000609347176" dur="8" oct="5" pname="d" stem.dir="down">
-                                      <accid xml:id="accid-0000002112412086" accid="f" accid.ges="f" />
-                                      <verse xml:id="verse-0000000102880860" n="1">
-                                          <syl xml:id="syl-0000001228086660" con="d" wordpos="i">pas</syl>
-                                      </verse>
-                                  </note>
-                                  <note xml:id="note-0000000564423187" dur="8" oct="5" pname="c" stem.dir="down">
-                                      <verse xml:id="verse-0000001955723640" n="1">
-                                          <syl xml:id="syl-0000000012522111" wordpos="t">so</syl>
-                                      </verse>
-                                  </note>
-                              </layer>
-                          </staff>
-                          <staff xml:id="staff-0000001056744317" n="2">
-                              <layer xml:id="layer-0000000749876085" n="1">
-                                  <note xml:id="note-0000000865978163" dur="4" oct="3" pname="f" stem.dir="down" />
-                                  <note xml:id="note-0000000195277638" dur="8" oct="3" pname="e" stem.dir="down" accid.ges="f" />
-                              </layer>
-                          </staff>
-                          <harm place='above' staff="2" tstamp="1.500000" vgrp="80"><fb>
-                              <rend xml:id="rend-0000000054017594" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">7 6</rend>
-                          </fb></harm>
-                          <harm place='above' staff="2" tstamp="2.000000" vgrp="80"><fb>
-                              <f>6</f>
-
-                          </fb></harm>
-                      </measure>
-                      <measure xml:id="measure-0000000932363120" n="40">
-                          <staff xml:id="staff-0000000384081824" n="1">
-                              <layer xml:id="layer-0000000906944292" n="1">
-                                  <note xml:id="note-0000001463799814" dur="4" oct="5" pname="f" stem.dir="down">
-                                      <verse xml:id="verse-0000000294505793" n="1">
-                                          <syl xml:id="syl-0000000015607186" con="d" wordpos="i">mo</syl>
-                                      </verse>
-                                  </note>
-                                  <note xml:id="note-0000001165766482" dur="8" oct="5" pname="e" stem.dir="down" accid.ges="f">
-                                      <verse xml:id="verse-0000001870726083" n="1">
-                                          <syl xml:id="syl-0000000723208941" wordpos="t">ve,</syl>
-                                      </verse>
-                                  </note>
-                              </layer>
-                          </staff>
-                          <staff xml:id="staff-0000001801480361" n="2">
-                              <layer xml:id="layer-0000002082858841" n="1">
-                                  <note xml:id="note-0000000035160798" dur="4" oct="3" pname="d" stem.dir="down">
-                                      <accid xml:id="accid-0000000937285098" accid="f" accid.ges="f" />
-                                  </note>
-                                  <note xml:id="note-0000001328829456" dur="8" oct="3" pname="c" stem.dir="up" />
-                              </layer>
-                          </staff>
-                          <harm place='above' staff="2" tstamp="2.000000" vgrp="80"><fb>
-                              <f>6</f>
-
-                          </fb></harm>
-                      </measure>
-                      <measure xml:id="measure-0000000237890376" n="41">
-                          <staff xml:id="staff-0000000705388750" n="1">
-                              <layer xml:id="layer-0000001916883685" n="1">
-                                  <note xml:id="note-0000002034692953" dur="8" oct="4" pname="g" stem.dir="up">
-                                      <verse xml:id="verse-0000001527229232" n="1">
-                                          <syl xml:id="syl-0000001941768257">se_il</syl>
-                                      </verse>
-                                  </note>
-                                  <note xml:id="note-0000000356531527" dur="8" oct="4" pname="a" stem.dir="up">
-                                      <accid xml:id="accid-0000002062288209" accid="f" accid.ges="f" />
-                                      <verse xml:id="verse-0000000831526538" n="1">
-                                          <syl xml:id="syl-0000000131810328" con="d" wordpos="i">guar</syl>
-                                      </verse>
-                                  </note>
-                                  <note xml:id="note-0000001434877771" dur="8" oct="5" pname="d" stem.dir="down">
-                                      <accid xml:id="accid-0000001128167814" accid="f" accid.ges="f" />
-                                      <verse xml:id="verse-0000001920868513" n="1">
-                                          <syl xml:id="syl-0000001014837440" wordpos="t">do</syl>
-                                      </verse>
-                                  </note>
-                              </layer>
-                          </staff>
-                          <staff xml:id="staff-0000000567199640" n="2">
-                              <layer xml:id="layer-0000001186207126" n="1">
-                                  <beam xml:id="beam-0000001324866263">
-                                      <note xml:id="note-0000001605372567" dur="8" oct="2" pname="b" stem.dir="up" accid.ges="f" />
-                                      <note xml:id="note-0000000186676218" dur="8" oct="3" pname="c" stem.dir="up" />
-                                      <note xml:id="note-0000001853142348" dur="8" oct="2" pname="a" stem.dir="up">
-                                          <accid xml:id="accid-0000002025832333" accid="f" accid.ges="f" />
-                                      </note>
-                                  </beam>
-                              </layer>
-                          </staff>
-                          <harm place='above' staff="2" tstamp="1.000000" vgrp="80"><fb>
-                              <f>6</f>
-
-                          </fb></harm>
-                          <harm place='above' staff="2" tstamp="1.500000" vgrp="80"><fb>
-                              <f>6</f>
-
-                          </fb></harm>
-                      </measure>
-                      <measure xml:id="measure-0000001137242887" n="42">
-                          <staff xml:id="staff-0000001743645509" n="1">
-                              <layer xml:id="layer-0000001698643506" n="1">
-                                  <beam xml:id="beam-0000000518809053">
-                                      <note xml:id="note-0000001498274790" dur="8" oct="4" pname="b" stem.dir="up" accid.ges="f">
-                                          <verse xml:id="verse-0000000860986481" n="1">
-                                              <syl xml:id="syl-0000001032417613" con="d" wordpos="i">gi</syl>
-                                          </verse>
-                                      </note>
-                                      <note xml:id="note-0000001694874200" dur="8" oct="4" pname="g" stem.dir="up" />
-                                  </beam>
-                                  <note xml:id="note-0000000784693148" dur="8" oct="4" pname="e" stem.dir="up" accid.ges="f">
-                                      <verse xml:id="verse-0000000099986840" n="1">
-                                          <syl xml:id="syl-0000001322816184" wordpos="t">ra,</syl>
-                                      </verse>
-                                  </note>
-                              </layer>
-                          </staff>
-                          <staff xml:id="staff-0000000382324767" n="2">
-                              <layer xml:id="layer-0000001070361221" n="1">
-                                  <note xml:id="note-0000000577644267" dots="1" dur="4" oct="3" pname="e" stem.dir="down" accid.ges="f" />
-                              </layer>
-                          </staff>
-                          <tie xml:id="tie-0000000054584404" startid="#note-0000000577644267" endid="#note-0000000255260884" />
-                      </measure>
-                      <measure xml:id="measure-0000000326138545" n="43">
-                          <staff xml:id="staff-0000001502977602" n="1">
-                              <layer xml:id="layer-0000000243086384" n="1">
-                                  <beam xml:id="beam-0000000926959100">
-                                      <note xml:id="note-0000000094477954" dur="16" oct="5" pname="e" stem.dir="down" accid.ges="f">
-                                          <verse xml:id="verse-0000000515263943" n="1">
-                                              <syl xml:id="syl-0000000686129068">se</syl>
-                                          </verse>
-                                      </note>
-                                      <note xml:id="note-0000001784434350" dur="16" oct="4" pname="g" stem.dir="down">
-                                          <verse xml:id="verse-0000001799190007" n="1">
-                                              <syl xml:id="syl-0000000477896097">il</syl>
-                                          </verse>
-                                      </note>
-                                  </beam>
-                                  <beam xml:id="beam-0000001497061157">
-                                      <note xml:id="note-0000001193426154" dur="16" oct="4" pname="a" stem.dir="down">
-                                          <accid xml:id="accid-0000000049862244" accid="f" accid.ges="f" />
-                                          <verse xml:id="verse-0000000705525399" n="1">
-                                              <syl xml:id="syl-0000000424637030" con="d" wordpos="i">gua</syl>
-                                          </verse>
-                                      </note>
-                                      <note xml:id="note-0000001925870056" dur="16" oct="5" pname="d" stem.dir="down">
-                                          <accid xml:id="accid-0000001826853357" accid="f" accid.ges="f" />
-                                      </note>
-                                  </beam>
-                                  <beam xml:id="beam-0000001147875369">
-                                      <note xml:id="note-0000001002266583" dur="16" oct="5" pname="c" stem.dir="down">
-                                          <verse xml:id="verse-0000000448689470" n="1">
-                                              <syl xml:id="syl-0000001669321042" con="u" wordpos="t">do</syl>
-                                          </verse>
-                                      </note>
-                                      <note xml:id="note-0000002089134158" dur="16" oct="4" pname="b" stem.dir="down" accid.ges="f" />
-                                  </beam>
-                              </layer>
-                          </staff>
-                          <staff xml:id="staff-0000001824578096" n="2">
-                              <layer xml:id="layer-0000000932096275" n="1">
-                                  <note xml:id="note-0000000255260884" dots="1" dur="4" oct="3" pname="e" stem.dir="down" accid.ges="f" />
-                              </layer>
-                          </staff>
-                          <harm place='above' staff="2" tstamp="1.750000" vgrp="80"><fb>
-                              <rend xml:id="rend-0000001228708956" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">5 6 5</rend>
-                              <rend xml:id="rend-0000000653739180" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">3 4 3</rend>
-                          </fb></harm>
-                          <tie xml:id="tie-0000000323997883" startid="#note-0000000255260884" endid="#note-0000000126112258" />
-                      </measure>
-                      <measure xml:id="measure-0000000160859088" right="end" n="44">
-                          <staff xml:id="staff-0000000303599540" n="1">
-                              <layer xml:id="layer-0000001096767786" n="1">
-                                  <beam xml:id="beam-0000001903782330">
-                                      <note xml:id="note-0000002104561080" dur="16" oct="5" pname="c" stem.dir="down">
-                                          <verse xml:id="verse-0000000916154731" n="1">
-                                              <syl xml:id="syl-0000000278012135" con="d" wordpos="i">gi</syl>
-                                          </verse>
-                                      </note>
-                                      <note xml:id="note-0000000827767468" dur="16" oct="4" pname="a" stem.dir="down">
-                                          <accid xml:id="accid-0000002130667058" accid="f" accid.ges="f" />
-                                      </note>
-                                  </beam>
-                                  <note xml:id="note-0000001704526613" dur="4" oct="4" pname="b" stem.dir="down" accid.ges="f">
-                                      <verse xml:id="verse-0000000095606167" n="1">
-                                          <syl xml:id="syl-0000000036440682" wordpos="t">ra</syl>
-                                      </verse>
-                                  </note>
-                              </layer>
-                          </staff>
-                          <staff xml:id="staff-0000001966515884" n="2">
-                              <layer xml:id="layer-0000001984086424" n="1">
-                                  <note xml:id="note-0000000126112258" dots="1" dur="4" oct="3" pname="e" stem.dir="down" accid.ges="f" />
-                              </layer>
-                          </staff>
-                          <harm place='above' staff="2" tstamp="1.500000" vgrp="80"><fb>
-                              <rend xml:id="rend-0000002104611737" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">6 5</rend>
-                              <rend xml:id="rend-0000001135624555" fontfam="Opus Figured Bass Std" fontstyle="normal" fontweight="normal">4 3</rend>
-                          </fb></harm>
-                      </measure>
+                    <section label="excerpt">
+                        <measure xml:id="measure-0000000138979836" n="36">
+                            <staff n="1">
+                                <layer n="1">
+                                    <note xml:id="note-0000000432344121" dur="8" oct="5" pname="e" accid.ges="f">
+                                        <verse xml:id="verse-0000000373038922" n="1">
+                                            <syl con="b" xml:id="syl-0000001742599460">Se</syl>
+                                            <syl xml:id="syl-0000001742599461">il</syl>
+                                        </verse>
+                                    </note>
+                                    <note xml:id="note-0000001856026488" dur="8" oct="5" pname="e" accid.ges="f">
+                                        <verse xml:id="verse-0000001539197181" n="1">
+                                            <syl xml:id="syl-0000002053812362" con="d" wordpos="i">pas</syl>
+                                        </verse>
+                                    </note>
+                                    <note xml:id="note-0000001411128614" dur="8" oct="5" pname="e" accid.ges="f">
+                                        <verse xml:id="verse-0000001286611768" n="1">
+                                            <syl xml:id="syl-0000001505819330" wordpos="t">so</syl>
+                                        </verse>
+                                    </note>
+                                </layer>
+                            </staff>
+                            <staff n="2">
+                                <layer n="1">
+                                    <mRest />
+                                </layer>
+                            </staff>
+                        </measure>
+                        <measure xml:id="measure-0000001219140897" n="37">
+                            <staff n="1">
+                                <layer n="1">
+                                    <note xml:id="note-0000001598961215" dur="4" oct="5" pname="e" accid.ges="f">
+                                        <verse xml:id="verse-0000000695368339" n="1">
+                                            <syl xml:id="syl-0000000517775231" con="d" wordpos="i">mo</syl>
+                                        </verse>
+                                    </note>
+                                    <note xml:id="note-0000000635486181" dur="8" oct="5" pname="e" accid.ges="f">
+                                        <verse xml:id="verse-0000000277796462" n="1">
+                                            <syl xml:id="syl-0000000557401824" wordpos="t">ve,</syl>
+                                        </verse>
+                                    </note>
+                                </layer>
+                            </staff>
+                            <staff n="2">
+                                <layer n="1">
+                                    <rest xml:id="rest-0000002060591957" dur="16" />
+                                    <beam xml:id="beam-0000001381630912">
+                                        <note xml:id="note-0000001556428466" dur="16" oct="4" pname="e" accid.ges="f" />
+                                        <note xml:id="note-0000000566117093" dur="16" oct="4" pname="c" />
+                                        <note xml:id="note-0000002134182339" dur="16" oct="3" pname="a">
+                                            <accid xml:id="accid-0000001099952824" accid="f" accid.ges="f" />
+                                        </note>
+                                        <note xml:id="note-0000001515471197" dur="16" oct="3" pname="g" />
+                                        <note xml:id="note-0000000869110749" dur="16" oct="3" pname="e" accid.ges="f" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <app resp="#rettinghaus">
+                                <lem source="#secondEdition">
+                                    <harm place="above" staff="2" tstamp="1.5">
+                                        <fb>
+                                            <f>6</f>
+                                        </fb>
+                                    </harm>
+                                    <harm place="above" staff="2" tstamp="2">
+                                        <fb>
+                                            <f>6</f>
+                                        </fb>
+                                    </harm>
+                                </lem>
+                                <rdg source="#firstEdition"></rdg>
+                            </app>
+                        </measure>
+                        <measure xml:id="measure-0000000386959677" n="38">
+                            <staff n="1">
+                                <layer n="1">
+                                    <mRest />
+                                </layer>
+                            </staff>
+                            <staff n="2">
+                                <layer n="1">
+                                    <rest xml:id="rest-0000000590065412" dur="16" />
+                                    <beam xml:id="beam-0000001278600714">
+                                        <note xml:id="note-0000000686266437" dur="16" oct="4" pname="e" accid.ges="f" />
+                                        <note xml:id="note-0000001501099337" dur="16" oct="4" pname="c" />
+                                        <note xml:id="note-0000000425736248" dur="16" oct="3" pname="a">
+                                            <accid xml:id="accid-0000000467882859" accid="f" accid.ges="f" />
+                                        </note>
+                                        <note xml:id="note-0000002074251922" dur="16" oct="3" pname="g" />
+                                        <note xml:id="note-0000000206826465" dur="16" oct="3" pname="e" accid.ges="f" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <app resp="#rettinghaus">
+                                <lem source="#secondEdition">
+                                    <harm place="above" staff="2" tstamp="1.5">
+                                        <fb>
+                                            <f>6</f>
+                                        </fb>
+                                    </harm>
+                                    <harm place="above" staff="2" tstamp="2">
+                                        <fb>
+                                            <f>6</f>
+                                        </fb>
+                                    </harm>
+                                </lem>
+                                <rdg source="#firstEdition"></rdg>
+                            </app>
+                        </measure>
+                        <measure xml:id="measure-0000000940232503" n="39">
+                            <staff n="1">
+                                <layer n="1">
+                                    <note xml:id="note-0000001448710044" dur="8" oct="5" pname="e" accid.ges="f">
+                                        <supplied resp="#pfeffer" evidence="internal">
+                                            <verse xml:id="verse-0000001923347355" n="1">
+                                                <syl con="b" xml:id="syl-0000000510287976">se</syl>
+                                                <syl xml:id="syl-0000000510287977">il</syl>
+                                            </verse>
+                                        </supplied>
+                                    </note>
+                                    <note xml:id="note-0000000609347176" dur="8" oct="5" pname="d">
+                                        <accid xml:id="accid-0000002112412086" accid="f" accid.ges="f" />
+                                        <supplied resp="#pfeffer" evidence="internal">
+                                            <verse xml:id="verse-0000000102880860" n="1">
+                                                <syl xml:id="syl-0000001228086660" con="d" wordpos="i">pas</syl>
+                                            </verse>
+                                        </supplied>
+                                    </note>
+                                    <note xml:id="note-0000000564423187" dur="8" oct="5" pname="c">
+                                        <supplied resp="#pfeffer" evidence="internal">
+                                            <verse xml:id="verse-0000001955723640" n="1">
+                                                <syl xml:id="syl-0000000012522111" wordpos="t">so</syl>
+                                            </verse>
+                                        </supplied>
+                                    </note>
+                                </layer>
+                            </staff>
+                            <staff n="2">
+                                <layer n="1">
+                                    <clef shape="F" line="4" />
+                                    <note xml:id="note-0000000865978163" dur="4" oct="3" pname="f" />
+                                    <note xml:id="note-0000000195277638" dur="8" oct="3" pname="e" accid.ges="f" />
+                                </layer>
+                            </staff>
+                            <app resp="#rettinghaus">
+                                <lem source="#secondEdition">
+                                    <harm place="above" staff="2" tstamp="1">
+                                        <fb>
+                                            <f>7</f>
+                                        </fb>
+                                    </harm>
+                                    <harm place="above" staff="2" tstamp="1.5">
+                                        <fb>
+                                            <f>♭6</f>
+                                        </fb>
+                                    </harm>
+                                    <harm place="above" staff="2" tstamp="2">
+                                        <fb>
+                                            <f>6</f>
+                                        </fb>
+                                    </harm>
+                                </lem>
+                                <rdg source="#firstEdition">
+                                    <harm place="above" staff="2" tstamp="1">
+                                        <fb>
+                                            <f>7</f>
+                                        </fb>
+                                    </harm>
+                                    <harm place="above" staff="2" tstamp="1.5">
+                                        <fb>
+                                            <f>♭6</f>
+                                        </fb>
+                                    </harm>
+                                </rdg>
+                            </app>
+                        </measure>
+                        <measure xml:id="measure-0000000932363120" n="40">
+                            <staff n="1">
+                                <layer n="1">
+                                    <note xml:id="note-0000001463799814" dur="4" oct="5" pname="f">
+                                        <supplied resp="#pfeffer" evidence="internal">
+                                            <verse xml:id="verse-0000000294505793" n="1">
+                                                <syl xml:id="syl-0000000015607186" con="d" wordpos="i">mo</syl>
+                                            </verse>
+                                        </supplied>
+                                    </note>
+                                    <note xml:id="note-0000001165766482" dur="8" oct="5" pname="e" accid.ges="f">
+                                        <supplied resp="#pfeffer" evidence="internal">
+                                            <verse xml:id="verse-0000001870726083" n="1">
+                                                <syl xml:id="syl-0000000723208941" wordpos="t">ve,</syl>
+                                            </verse>
+                                        </supplied>
+                                    </note>
+                                </layer>
+                            </staff>
+                            <staff n="2">
+                                <layer n="1">
+                                    <note xml:id="note-0000000035160798" dur="4" oct="3" pname="d">
+                                        <accid xml:id="accid-0000000937285098" accid="f" accid.ges="f" />
+                                    </note>
+                                    <note xml:id="note-0000001328829456" dur="8" oct="3" pname="c" />
+                                </layer>
+                            </staff>
+                            <app resp="#rettinghaus">
+                                <lem source="#secondEdition">
+                                    <harm place="above" staff="2" tstamp="1.5">
+                                        <fb>
+                                            <f>6</f>
+                                        </fb>
+                                    </harm>
+                                </lem>
+                                <rdg source="#firstEdition"></rdg>
+                            </app>
+                        </measure>
+                        <sb source="#firstEdition #secondEdition" />
+                        <measure xml:id="measure-0000000237890376" n="41">
+                            <staff n="1">
+                                <layer n="1">
+                                    <note xml:id="note-0000002034692953" dur="8" oct="4" pname="g">
+                                        <verse xml:id="verse-0000001527229232" n="1">
+                                            <syl con="b" xml:id="syl-0000001941768257">se</syl>
+                                            <syl xml:id="syl-0000001941768258">il</syl>
+                                        </verse>
+                                    </note>
+                                    <note xml:id="note-0000000356531527" dur="8" oct="4" pname="a">
+                                        <accid xml:id="accid-0000002062288209" accid="f" accid.ges="f" />
+                                        <verse xml:id="verse-0000000831526538" n="1">
+                                            <syl xml:id="syl-0000000131810328" con="d" wordpos="i">guar</syl>
+                                        </verse>
+                                    </note>
+                                    <note xml:id="note-0000001434877771" dur="8" oct="5" pname="d">
+                                        <accid xml:id="accid-0000001128167814" accid="f" accid.ges="f" />
+                                        <verse xml:id="verse-0000001920868513" n="1">
+                                            <syl xml:id="syl-0000001014837440" wordpos="t">do</syl>
+                                        </verse>
+                                    </note>
+                                </layer>
+                            </staff>
+                            <staff n="2">
+                                <layer n="1">
+                                    <beam xml:id="beam-0000001324866263">
+                                        <note xml:id="note-0000001605372567" dur="8" oct="2" pname="b" accid.ges="f" />
+                                        <note xml:id="note-0000000186676218" dur="8" oct="3" pname="c" />
+                                        <note xml:id="note-0000001853142348" dur="8" oct="2" pname="a">
+                                            <accid xml:id="accid-0000002025832333" accid="f" accid.ges="f" />
+                                        </note>
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <app resp="#rettinghaus">
+                                <lem source="#secondEdition">
+                                    <harm place="above" staff="2" tstamp="1">
+                                        <fb>
+                                            <f>6</f>
+                                        </fb>
+                                    </harm>
+                                    <harm place="above" staff="2" tstamp="1.5">
+                                        <fb>
+                                            <f>6</f>
+                                        </fb>
+                                    </harm>
+                                </lem>
+                                <rdg source="#firstEdition"></rdg>
+                            </app>
+                        </measure>
+                        <measure xml:id="measure-0000001137242887" n="42">
+                            <staff n="1">
+                                <layer n="1">
+                                    <beam xml:id="beam-0000000518809053">
+                                        <note xml:id="note-0000001498274790" dur="8" oct="4" pname="b" accid.ges="f">
+                                            <verse xml:id="verse-0000000860986481" n="1">
+                                                <syl xml:id="syl-0000001032417613" con="d" wordpos="i">gi</syl>
+                                            </verse>
+                                        </note>
+                                        <note xml:id="note-0000001694874200" dur="8" oct="4" pname="g" />
+                                    </beam>
+                                    <note xml:id="note-0000000784693148" dur="8" oct="4" pname="e" accid.ges="f">
+                                        <verse xml:id="verse-0000000099986840" n="1">
+                                            <syl xml:id="syl-0000001322816184" wordpos="t">ra,</syl>
+                                        </verse>
+                                    </note>
+                                </layer>
+                            </staff>
+                            <staff n="2">
+                                <layer n="1">
+                                    <note xml:id="note-0000000577644267" dots="1" dur="4" oct="3" pname="e" accid.ges="f" />
+                                </layer>
+                            </staff>
+                            <tie xml:id="tie-0000000054584404" startid="#note-0000000577644267" endid="#note-0000000255260884" />
+                        </measure>
+                        <measure xml:id="measure-0000000326138545" n="43">
+                            <staff n="1">
+                                <layer n="1">
+                                    <beam xml:id="beam-0000000926959100">
+                                        <note xml:id="note-0000000094477954" dur="16" oct="5" pname="e" accid.ges="f">
+                                            <verse xml:id="verse-0000000515263943" n="1">
+                                                <syl con="b" xml:id="syl-0000000686129068">se</syl>
+                                                <syl xml:id="syl-0000000477896097">il</syl>
+                                            </verse>
+                                        </note>
+                                        <note xml:id="note-0000001784434350" dur="16" oct="4" pname="g" />
+                                    </beam>
+                                    <beam xml:id="beam-0000001497061157">
+                                        <note xml:id="note-0000001193426154" dur="16" oct="4" pname="a">
+                                            <accid xml:id="accid-0000000049862244" accid="f" accid.ges="f" />
+                                            <verse xml:id="verse-0000000705525399" n="1">
+                                                <syl xml:id="syl-0000000424637030" con="d" wordpos="i">guar</syl>
+                                            </verse>
+                                        </note>
+                                        <note xml:id="note-0000001925870056" dur="16" oct="5" pname="d">
+                                            <accid xml:id="accid-0000001826853357" accid="f" accid.ges="f" />
+                                        </note>
+                                    </beam>
+                                    <beam xml:id="beam-0000001147875369">
+                                        <note xml:id="note-0000001002266583" dur="16" oct="5" pname="c">
+                                            <verse xml:id="verse-0000000448689470" n="1">
+                                                <syl xml:id="syl-0000001669321042" con="u" wordpos="t">do</syl>
+                                            </verse>
+                                        </note>
+                                        <note xml:id="note-0000002089134158" dur="16" oct="4" pname="b" accid.ges="f" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <staff n="2">
+                                <layer n="1">
+                                    <note xml:id="note-0000000255260884" dots="1" dur="4" oct="3" pname="e" accid.ges="f" />
+                                </layer>
+                            </staff>
+                            <app resp="#rettinghaus">
+                                <lem source="#secondEdition">
+                                    <harm place="above" staff="2" tstamp="1">
+                                        <fb>
+                                            <f>5</f>
+                                            <f>3</f>
+                                        </fb>
+                                    </harm>
+                                    <harm place="above" staff="2" tstamp="1.5">
+                                        <fb>
+                                            <f>6</f>
+                                            <f>4</f>
+                                        </fb>
+                                    </harm>
+                                    <harm place="above" staff="2" tstamp="2">
+                                        <fb>
+                                            <f>5</f>
+                                            <f>3</f>
+                                        </fb>
+                                    </harm>
+                                </lem>
+                                <rdg source="#firstEdition"></rdg>
+                            </app>
+                            <tie xml:id="tie-0000000323997883" startid="#note-0000000255260884" endid="#note-0000000126112258" />
+                        </measure>
+                        <measure xml:id="measure-0000000160859088" n="44">
+                            <staff n="1">
+                                <layer n="1">
+                                    <beam xml:id="beam-0000001903782330">
+                                        <note xml:id="note-0000002104561080" dur="16" oct="5" pname="c">
+                                            <verse xml:id="verse-0000000916154731" n="1">
+                                                <syl xml:id="syl-0000000278012135" con="d" wordpos="i">gi</syl>
+                                            </verse>
+                                        </note>
+                                        <note xml:id="note-0000000827767468" dur="16" oct="4" pname="a">
+                                            <accid xml:id="accid-0000002130667058" accid="f" accid.ges="f" />
+                                        </note>
+                                    </beam>
+                                    <note xml:id="note-0000001704526613" dur="4" oct="4" pname="b" accid.ges="f">
+                                        <verse xml:id="verse-0000000095606167" n="1">
+                                            <syl xml:id="syl-0000000036440682" wordpos="t">ra</syl>
+                                        </verse>
+                                    </note>
+                                </layer>
+                            </staff>
+                            <staff n="2">
+                                <layer n="1">
+                                    <note xml:id="note-0000000126112258" dots="1" dur="4" oct="3" pname="e" accid.ges="f" />
+                                </layer>
+                            </staff>
+                            <app resp="#rettinghaus">
+                                <lem source="#secondEdition">
+                                    <harm place="above" staff="2" tstamp="1">
+                                        <fb>
+                                            <f>6</f>
+                                            <f>4</f>
+                                        </fb>
+                                    </harm>
+                                    <harm place="above" staff="2" tstamp="1.5">
+                                        <fb>
+                                            <f>3</f>
+                                            <f>5</f>
+                                        </fb>
+                                    </harm>
+                                </lem>
+                                <rdg source="#firstEdition"></rdg>
+                            </app>
+                        </measure>
                     </section>
                 </score>
             </mdiv>

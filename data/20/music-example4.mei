@@ -1,54 +1,58 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="http://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<?xml-model href="http://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-CMN.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0" ?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
     <meiHead>
         <fileDesc>
             <titleStmt>
                 <title></title>
-                <respStmt />
+                <composer>
+                    <persName role="composer" auth.uri="http://d-nb.info/gnd/118578995" auth="GND">Johann Mattheson</persName>
+                </composer>
+                <respStmt>
+                    <resp>Edited by</resp>
+                    <persName role="editor" xml:id="pfeffer">Niels Pfeffer</persName>
+                    <persName role="editor" xml:id="rettinghaus">Klaus Rettinghaus</persName>
+                </respStmt>
             </titleStmt>
             <pubStmt></pubStmt>
         </fileDesc>
-        <encodingDesc xml:id="encodingdesc-0000000758740751">
-            <appInfo xml:id="appinfo-0000001175510375">
-                <application xml:id="application-0000000214971520" isodate="2019-10-28T09:40:57" version="2.3.0-dev-3df101b">
-                    <name xml:id="name-0000000082811610">Verovio</name>
-                    <p xml:id="p-0000000201482107">Transcoded from MusicXML</p>
+        <encodingDesc>
+            <appInfo>
+                <application xml:id="ex-000214971520" isodate="2019-10-28T09:40:57" version="2.3.0-dev-3df101b">
+                    <name>Verovio</name>
+                    <p>Transcoded from MusicXML</p>
                 </application>
             </appInfo>
         </encodingDesc>
     </meiHead>
     <music>
         <body>
-            <mdiv xml:id="mdiv-0000001668869550">
-                <score xml:id="score-0000001472595500">
-                    <scoreDef xml:id="scoredef-0000000533190625">
-                        <staffGrp xml:id="staffgrp-0000002136915407">
-                            <staffDef xml:id="staffdef-0000001791094019" n='1' lines='5' label="Mattheson's annotations" clef.shape="C" clef.line="1" meter.count="4" meter.unit="4">
-                                <keySig xml:id="keysig-0000000003552201" mode="major" sig="2s" />
-                            </staffDef>
+            <mdiv>
+                <score>
+                    <scoreDef mnum.visible="false">
+                        <staffGrp>
+                            <staffDef n="1" lines="5" label="Mattheson's annotations" clef.shape="C" clef.line="1" key.sig="2s" />
                         </staffGrp>
                     </scoreDef>
-                    <section xml:id="section-0000001357010899">
-                        <pb xml:id="pb-0000000436025589" />
-                        <pb xml:id="pb-0000001096286191" />
-                        <measure xml:id="measure-0000002136764270" right="end" n="1">
-                            <staff xml:id="staff-0000001851254335" n="1">
-                                <layer xml:id="layer-0000001010580835" n="1">
-                                    <space xml:id="space-0000000966854979" dur="2" />
-                                    <rest xml:id="rest-0000000028567568" dur="16" />
-                                    <beam xml:id="beam-0000001027190580">
-                                        <note xml:id="note-0000002147275227" dur="16" oct="4" pname="b" stem.dir="down" />
-                                        <note xml:id="note-0000001370000147" dur="16" oct="4" pname="f" stem.dir="down" accid.ges="s" />
-                                        <note xml:id="note-0000000196961617" dur="16" oct="4" pname="b" stem.dir="down" />
+                    <section>
+                        <measure xml:id="ex-002136764270" n="34">
+                            <staff n="1">
+                                <layer n="1">
+                                    <supplied resp="#pfeffer">
+                                        <space dur="2" />
+                                    </supplied>
+                                    <rest xml:id="ex-000028567568" dur="16" />
+                                    <beam>
+                                        <note xml:id="ex-002147275227" dur="16" oct="4" pname="b" stem.dir="down" />
+                                        <note xml:id="ex-001370000147" dur="16" oct="4" pname="f" stem.dir="down" accid.ges="s" />
+                                        <note xml:id="ex-000196961617" dur="16" oct="4" pname="b" stem.dir="down" />
                                     </beam>
-                                    <beam xml:id="beam-0000001514632487">
-                                        <note xml:id="note-0000001682067957" dur="16" oct="4" pname="d" stem.dir="up">
-                                            <accid xml:id="accid-0000000443626025" accid="s" accid.ges="s" />
+                                    <beam>
+                                        <note xml:id="ex-001682067957" dur="16" oct="4" pname="d" stem.dir="up">
+                                            <accid xml:id="ex-000443626025" accid="s" accid.ges="s" />
                                         </note>
-                                        <note xml:id="note-0000000308849797" dur="16" oct="4" pname="f" stem.dir="up" accid.ges="s" />
-                                        <note xml:id="note-0000000160512071" dur="8" oct="3" pname="b" stem.dir="up" />
+                                        <note xml:id="ex-000308849797" dur="16" oct="4" pname="f" stem.dir="up" accid.ges="s" />
+                                        <note xml:id="ex-000160512071" dur="8" oct="3" pname="b" stem.dir="up" />
                                     </beam>
                                 </layer>
                             </staff>

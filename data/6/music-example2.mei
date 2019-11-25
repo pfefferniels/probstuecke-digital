@@ -1,29 +1,37 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="http://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<?xml-model href="http://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-CMN.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0" ?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
     <meiHead>
         <fileDesc>
             <titleStmt>
-                <composer>Johann Mattheson</composer>
-                <editor>Niels Pfeffer</editor>
+                <title></title>
+                <composer>
+                    <persName role="composer" auth.uri="http://d-nb.info/gnd/118578995" auth="GND">Johann Mattheson</persName>
+                </composer>
+                <respStmt>
+                    <resp>Edited by</resp>
+                    <persName role="editor" xml:id="pfeffer">Niels Pfeffer</persName>
+                    <persName role="editor" xml:id="rettinghaus">Klaus Rettinghaus</persName>
+                </respStmt>
             </titleStmt>
             <editionStmt>
-                <edition>First draft, <date>2019</date></edition>
+                <edition>
+                    First draft,
+                    <date>2019</date>
+                </edition>
             </editionStmt>
             <pubStmt>
                 <unpub />
             </pubStmt>
         </fileDesc>
     </meiHead>
-    
     <music>
         <body>
             <mdiv>
                 <score>
                     <scoreDef>
                         <staffGrp>
-                            <staffDef clef.shape="F" clef.line="4" key.mode="major" key.sig="1f" meter.count="3" meter.unit="4" n="1" lines="5">
+                            <staffDef clef.shape="F" clef.line="4" key.sig="1f" n="1" lines="5">
                                 <label></label>
                             </staffDef>
                         </staffGrp>
@@ -61,7 +69,6 @@
                                     <note dur="4" oct="2" pname="a" />
                                     <note dur="4" oct="2" pname="b" accid="n" />
                                     <note dur="4" oct="3" pname="c" accid="s" />
-                                    </note>
                                 </layer>
                             </staff>
                         </measure>
@@ -123,7 +130,6 @@
                                     <space dur="4" />
                                     <space dur="4" />
                                 </layer>
-                                
                             </staff>
                         </measure>
                     </section>
@@ -132,4 +138,3 @@
         </body>
     </music>
 </mei>
-

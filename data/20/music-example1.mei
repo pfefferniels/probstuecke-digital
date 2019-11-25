@@ -1,73 +1,85 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="http://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<?xml-model href="http://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-CMN.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0" ?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
     <meiHead>
         <fileDesc>
             <titleStmt>
                 <title></title>
-                <respStmt />
+                <composer>
+                    <persName role="composer" auth.uri="http://d-nb.info/gnd/118578995" auth="GND">Johann Mattheson</persName>
+                </composer>
+                <respStmt>
+                    <resp>Edited by</resp>
+                    <persName role="editor" xml:id="pfeffer">Niels Pfeffer</persName>
+                    <persName role="editor" xml:id="rettinghaus">Klaus Rettinghaus</persName>
+                </respStmt>
             </titleStmt>
             <pubStmt></pubStmt>
         </fileDesc>
-        <encodingDesc xml:id="encodingdesc-0000001193939829">
-            <appInfo xml:id="appinfo-0000001589830531">
-                <application xml:id="application-0000000712270920" isodate="2019-10-28T09:39:51" version="2.3.0-dev-3df101b">
-                    <name xml:id="name-0000002064171904">Verovio</name>
-                    <p xml:id="p-0000000494343685">Transcoded from MusicXML</p>
+        <encodingDesc>
+            <appInfo>
+                <application xml:id="application-000712270920" isodate="2019-10-28T09:39:51" version="2.3.0-dev-3df101b">
+                    <name>Verovio</name>
+                    <p>Transcoded from MusicXML</p>
                 </application>
             </appInfo>
         </encodingDesc>
     </meiHead>
     <music>
         <body>
-            <mdiv xml:id="mdiv-0000001424929943">
-                <score xml:id="score-0000001041775823">
-                    <scoreDef xml:id="scoredef-0000001767921697">
-                        <staffGrp xml:id="staffgrp-0000001950754729">
-                            <staffDef xml:id="staffdef-0000001182706030" n='1' lines='5' label="Mattheson's annotations" clef.shape="C" clef.line="1" meter.count="4" meter.unit="4">
-                                <keySig xml:id="keysig-0000001010427471" mode="major" sig="2s" />
-                            </staffDef>
+            <mdiv>
+                <score>
+                    <scoreDef mnum.visible="false">
+                        <staffGrp>
+                            <staffDef n="1" lines="5" label="Mattheson's annotations" clef.shape="C" clef.line="1" key.sig="2s" />
                         </staffGrp>
                     </scoreDef>
-                    <section xml:id="section-0000001633913057">
-                        <pb xml:id="pb-0000001917574471" />
-                        <pb xml:id="pb-0000000758170289" />
-                        <measure xml:id="measure-0000000028921587" n="1">
-                            <staff xml:id="staff-0000000894883292" n="1">
-                                <layer xml:id="layer-0000001115771824" n="1">
-                                    <space xml:id="space-0000001107384863" dur="4" />
-                                    <rest xml:id="rest-0000001617513048" dur="16" />
-                                    <beam xml:id="beam-0000001240076771">
-                                        <note xml:id="note-0000000120428843" dur="16" oct="5" pname="f" stem.dir="down" accid.ges="s" />
-                                        <note xml:id="note-0000001583856273" dur="16" oct="5" pname="c" stem.dir="down" accid.ges="s" />
-                                        <note xml:id="note-0000000661471740" dur="16" oct="5" pname="f" stem.dir="down" accid.ges="s" />
+                    <section>
+                        <measure xml:id="ex-000028921587" n="15">
+                            <staff n="1">
+                                <layer n="1">
+                                    <supplied resp="#pfeffer">
+                                        <space xml:id="ex-001107384863" dur="4" />
+                                    </supplied>
+                                    <rest xml:id="ex-001617513048" dur="16" />
+                                    <beam>
+                                        <note xml:id="ex-000120428843" dur="16" oct="5" pname="f" stem.dir="down" accid.ges="s" />
+                                        <note xml:id="ex-001583856273" dur="16" oct="5" pname="c" stem.dir="down" accid.ges="s" />
+                                        <note xml:id="ex-000661471740" dur="16" oct="5" pname="f" stem.dir="down" accid.ges="s" />
                                     </beam>
-                                    <beam xml:id="beam-0000001440034130">
-                                        <note xml:id="note-0000002059631070" dur="16" oct="5" pname="d" stem.dir="down" />
-                                        <note xml:id="note-0000001109932862" dur="16" oct="4" pname="a" stem.dir="down" />
-                                        <note xml:id="note-0000000076775057" dur="16" oct="4" pname="g" stem.dir="down" />
-                                        <note xml:id="note-0000001787625025" dur="16" oct="4" pname="f" stem.dir="down" accid.ges="s" />
+                                    <beam>
+                                        <note xml:id="ex-002059631070" dur="16" oct="5" pname="d" stem.dir="down" />
+                                        <note xml:id="ex-001109932862" dur="16" oct="4" pname="a" stem.dir="down" />
+                                        <note xml:id="ex-000076775057" dur="16" oct="4" pname="g" stem.dir="down" />
+                                        <note xml:id="ex-001787625025" dur="16" oct="4" pname="f" stem.dir="down" accid.ges="s" />
                                     </beam>
-                                    <beam xml:id="beam-0000000987171703">
-                                        <note xml:id="note-0000000172781380" dur="16" oct="4" pname="g" stem.dir="down" />
-                                        <note xml:id="note-0000000895928818" dur="16" oct="5" pname="e" stem.dir="down" />
-                                        <note xml:id="note-0000001909631707" dur="16" oct="4" pname="b" stem.dir="down" />
-                                        <note xml:id="note-0000001148130017" dur="16" oct="5" pname="d" stem.dir="down" />
+                                    <beam>
+                                        <note xml:id="ex-000172781380" dur="16" oct="4" pname="g" stem.dir="down" />
+                                        <note xml:id="ex-000895928818" dur="16" oct="5" pname="e" stem.dir="down" />
+                                        <note xml:id="ex-001909631707" dur="16" oct="4" pname="b" stem.dir="down" />
+                                        <app>
+                                          <lem source="#secondEdition">
+                                            <note xml:id="ex-001148130017" dur="16" oct="5" pname="d" stem.dir="down" />
+                                          </lem>
+                                          <rdg source="#firstEdition">
+                                            <note xml:id="ex-001183629950" dur="16" oct="5" pname="d" stem.dir="down" />
+                                          </rdg>
+                                        </app>
                                     </beam>
                                 </layer>
                             </staff>
+                            <dir place="below">Fünffter Tact.</dir>
                         </measure>
-                        <measure xml:id="measure-0000002019113602" right="end" n="2">
-                            <staff xml:id="staff-0000000943637628" n="1">
-                                <layer xml:id="layer-0000001684614536" n="1">
-                                    <beam xml:id="beam-0000001500269338">
-                                        <note xml:id="note-0000000096475921" dur="16" oct="5" pname="c" stem.dir="down" accid.ges="s" />
-                                        <note xml:id="note-0000000970493944" dur="16" oct="4" pname="g" stem.dir="down" />
-                                        <note xml:id="note-0000001659223434" dur="16" oct="4" pname="f" stem.dir="down" accid.ges="s" />
-                                        <note xml:id="note-0000001768669183" dur="16" oct="4" pname="e" stem.dir="down" />
+                        <measure xml:id="ex-002019113602" n="16" right="invis">
+                            <staff n="1">
+                                <layer n="1">
+                                    <beam>
+                                        <note xml:id="ex-000096475921" dur="16" oct="5" pname="c" stem.dir="up" accid.ges="s" />
+                                        <note xml:id="ex-000970493944" dur="16" oct="4" pname="g" stem.dir="up" />
+                                        <note xml:id="ex-001659223434" dur="16" oct="4" pname="f" stem.dir="up" accid.ges="s" />
+                                        <note xml:id="ex-001768669183" dur="16" oct="4" pname="e" stem.dir="up" />
                                     </beam>
-                                    <note xml:id="note-0000001326895216" dur="16" oct="4" pname="f" stem.dir="up" accid.ges="s" />
+                                    <custos xml:id="ex-001326895216" oct="4" pname="f" />
                                 </layer>
                             </staff>
                         </measure>

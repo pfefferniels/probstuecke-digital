@@ -1,11 +1,10 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-CMN.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-CMN.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0" ?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
     <meiHead>
         <fileDesc>
             <titleStmt>
-                <title>
-                </title>
+                <title></title>
                 <composer>
                     <persName role="composer" auth.uri="http://d-nb.info/gnd/118578995" auth="GND">Johann Mattheson</persName>
                 </composer>
@@ -16,7 +15,10 @@
                 </respStmt>
             </titleStmt>
             <editionStmt>
-                <edition>First draft, <date>2019</date></edition>
+                <edition>
+                    First draft,
+                    <date>2019</date>
+                </edition>
             </editionStmt>
             <pubStmt>
                 <unpub />
@@ -29,89 +31,85 @@
                 <score>
                     <scoreDef>
                         <staffGrp>
-                            <staffDef xml:id="staffdef-variant-1" clef.shape="G" clef.line="2" key.sig="1f" n="1" lines="5">
-                            </staffDef>
-                            <staffDef xml:id="staffdef-bass" clef.shape="F" clef.line="4" key.sig="1f" n="2" lines="5">
-                            </staffDef>
+                            <staffDef xml:id="staffdef-variant-1" clef.shape="G" clef.line="2" key.sig="1f" n="1" lines="5"></staffDef>
+                            <staffDef xml:id="staffdef-bass" clef.shape="F" clef.line="4" key.sig="1f" n="2" lines="5"></staffDef>
                         </staffGrp>
                     </scoreDef>
                     <section xml:id="ex-34">
-                      <measure xml:id="ex-269" n="">
-                        <staff xml:id="ex-273" n="1">
-                              <layer n="1">
-                                  <beam xml:id="ex-276">
-                                      <note xml:id="ex-275" dur="32" oct="4" pname="a" stem.dir="up"/>
-                                      <note xml:id="ex-277" dur="32" oct="5" pname="f" stem.dir="down"/>
-                                      <note xml:id="ex-278" dur="32" oct="4" pname="a" stem.dir="up"/>
-                                      <note xml:id="ex-279" breaksec="1" dur="32" oct="5" pname="f" stem.dir="down"/>
-                                      <note xml:id="ex-280" dur="32" oct="4" pname="a" stem.dir="up"/>
-                                      <note xml:id="ex-281" dur="32" oct="5" pname="f" stem.dir="down"/>
-                                      <note xml:id="ex-282" dur="32" oct="4" pname="a" stem.dir="up"/>
-                                      <note xml:id="ex-283" dur="32" oct="5" pname="f" stem.dir="down"/>
-                                  </beam>
-                                  <beam xml:id="ex-285">
-                                      <note xml:id="ex-284" dur="32" oct="4" pname="g" stem.dir="up"/>
-                                      <note xml:id="ex-286" dur="32" oct="5" pname="e" stem.dir="down"/>
-                                      <note xml:id="ex-287" dur="32" oct="4" pname="g" stem.dir="up"/>
-                                      <note xml:id="ex-288" breaksec="1" dur="32" oct="5" pname="e" stem.dir="down"/>
-                                      <note xml:id="ex-289" dur="32" oct="4" pname="g" stem.dir="up"/>
-                                      <note xml:id="ex-290" dur="32" oct="5" pname="e" stem.dir="down"/>
-                                      <note xml:id="ex-291" dur="32" oct="4" pname="g" stem.dir="up"/>
-                                      <note xml:id="ex-292" dur="32" oct="5" pname="e" stem.dir="down"/>
-                                  </beam>
-                                  <beam xml:id="ex-294">
-                                      <note xml:id="ex-293" dur="32" oct="4" pname="f" stem.dir="up"/>
-                                      <note xml:id="ex-295" dur="32" oct="5" pname="d" stem.dir="down"/>
-                                      <note xml:id="ex-296" dur="32" oct="4" pname="f" stem.dir="up"/>
-                                      <note xml:id="ex-297" breaksec="1" dur="32" oct="5" pname="d" stem.dir="down"/>
-                                      <note xml:id="ex-298" dur="32" oct="4" pname="f" stem.dir="up"/>
-                                      <note xml:id="ex-299" dur="32" oct="5" pname="d" stem.dir="down"/>
-                                      <note xml:id="ex-300" dur="32" oct="4" pname="f" stem.dir="up"/>
-                                      <note xml:id="ex-301" dur="32" oct="5" pname="d" stem.dir="down"/>
-                                  </beam>
-                                  <beam xml:id="ex-303">
-                                      <note xml:id="ex-302" dur="32" oct="4" pname="e" stem.dir="up"/>
-                                      <note xml:id="ex-304" dur="32" oct="5" pname="c" stem.dir="down"/>
-                                      <note xml:id="ex-305" dur="32" oct="4" pname="e" stem.dir="up"/>
-                                      <note xml:id="ex-306" breaksec="1" dur="32" oct="5" pname="c" stem.dir="down"/>
-                                      <note xml:id="ex-307" dur="32" oct="4" pname="e" stem.dir="up"/>
-                                      <note xml:id="ex-308" dur="32" oct="5" pname="c" stem.dir="down"/>
-                                      <note xml:id="ex-309" dur="32" oct="4" pname="e" stem.dir="up"/>
-                                      <note xml:id="ex-310" dur="32" oct="5" pname="c" stem.dir="down"/>
-                                  </beam>
-                              </layer>
-                          </staff>
-                          <staff xml:id="ex-311" n="2">
-                              <layer n="1">
-                                  <beam xml:id="ex-314">
-                                      <note xml:id="ex-313" dur="16" oct="3" pname="f" stem.dir="up"/>
-                                      <note xml:id="ex-315" dur="16" oct="3" pname="g" stem.dir="up"/>
-                                      <note xml:id="ex-316" dur="16" oct="3" pname="a" stem.dir="up"/>
-                                      <note xml:id="ex-317" dur="16" oct="3" pname="b" stem.dir="up">
-                                          <accid xml:id="ex-318" accid.ges="f"/>
-                                      </note>
-                                  </beam>
-                                  <beam xml:id="ex-320">
-                                      <note xml:id="ex-319" dur="16" oct="4" pname="c" stem.dir="down"/>
-                                      <note xml:id="ex-321" dur="16" oct="3" pname="c" stem.dir="down"/>
-                                      <note xml:id="ex-322" dur="16" oct="3" pname="e" stem.dir="down"/>
-                                      <note xml:id="ex-323" dur="16" oct="3" pname="c" stem.dir="down"/>
-                                  </beam>
-                                  <beam xml:id="ex-325">
-                                      <note xml:id="ex-324" dur="16" oct="3" pname="d" stem.dir="down"/>
-                                      <note xml:id="ex-326" dur="16" oct="3" pname="e" stem.dir="down"/>
-                                      <note xml:id="ex-327" dur="16" oct="3" pname="f" stem.dir="down"/>
-                                      <note xml:id="ex-328" dur="16" oct="3" pname="g" stem.dir="down"/>
-                                  </beam>
-                                  <beam xml:id="ex-330">
-                                      <note xml:id="ex-329" dur="16" oct="3" pname="a" stem.dir="up"/>
-                                      <note xml:id="ex-331" dur="16" oct="2" pname="a" stem.dir="up"/>
-                                      <note xml:id="ex-332" dur="16" oct="3" pname="c" stem.dir="up"/>
-                                      <note xml:id="ex-333" dur="16" oct="2" pname="a" stem.dir="up"/>
-                                  </beam>
-                              </layer>
-                          </staff>
-                      </measure>
+                        <measure xml:id="ex-269" n="">
+                            <staff n="1">
+                                <layer n="1">
+                                    <beam xml:id="ex-276">
+                                        <note xml:id="ex-275" dur="32" oct="4" pname="a" stem.dir="up" />
+                                        <note xml:id="ex-277" dur="32" oct="5" pname="f" stem.dir="down" />
+                                        <note xml:id="ex-278" dur="32" oct="4" pname="a" stem.dir="up" />
+                                        <note xml:id="ex-279" breaksec="1" dur="32" oct="5" pname="f" stem.dir="down" />
+                                        <note xml:id="ex-280" dur="32" oct="4" pname="a" stem.dir="up" />
+                                        <note xml:id="ex-281" dur="32" oct="5" pname="f" stem.dir="down" />
+                                        <note xml:id="ex-282" dur="32" oct="4" pname="a" stem.dir="up" />
+                                        <note xml:id="ex-283" dur="32" oct="5" pname="f" stem.dir="down" />
+                                    </beam>
+                                    <beam xml:id="ex-285">
+                                        <note xml:id="ex-284" dur="32" oct="4" pname="g" stem.dir="up" />
+                                        <note xml:id="ex-286" dur="32" oct="5" pname="e" stem.dir="down" />
+                                        <note xml:id="ex-287" dur="32" oct="4" pname="g" stem.dir="up" />
+                                        <note xml:id="ex-288" breaksec="1" dur="32" oct="5" pname="e" stem.dir="down" />
+                                        <note xml:id="ex-289" dur="32" oct="4" pname="g" stem.dir="up" />
+                                        <note xml:id="ex-290" dur="32" oct="5" pname="e" stem.dir="down" />
+                                        <note xml:id="ex-291" dur="32" oct="4" pname="g" stem.dir="up" />
+                                        <note xml:id="ex-292" dur="32" oct="5" pname="e" stem.dir="down" />
+                                    </beam>
+                                    <beam xml:id="ex-294">
+                                        <note xml:id="ex-293" dur="32" oct="4" pname="f" stem.dir="up" />
+                                        <note xml:id="ex-295" dur="32" oct="5" pname="d" stem.dir="down" />
+                                        <note xml:id="ex-296" dur="32" oct="4" pname="f" stem.dir="up" />
+                                        <note xml:id="ex-297" breaksec="1" dur="32" oct="5" pname="d" stem.dir="down" />
+                                        <note xml:id="ex-298" dur="32" oct="4" pname="f" stem.dir="up" />
+                                        <note xml:id="ex-299" dur="32" oct="5" pname="d" stem.dir="down" />
+                                        <note xml:id="ex-300" dur="32" oct="4" pname="f" stem.dir="up" />
+                                        <note xml:id="ex-301" dur="32" oct="5" pname="d" stem.dir="down" />
+                                    </beam>
+                                    <beam xml:id="ex-303">
+                                        <note xml:id="ex-302" dur="32" oct="4" pname="e" stem.dir="up" />
+                                        <note xml:id="ex-304" dur="32" oct="5" pname="c" stem.dir="down" />
+                                        <note xml:id="ex-305" dur="32" oct="4" pname="e" stem.dir="up" />
+                                        <note xml:id="ex-306" breaksec="1" dur="32" oct="5" pname="c" stem.dir="down" />
+                                        <note xml:id="ex-307" dur="32" oct="4" pname="e" stem.dir="up" />
+                                        <note xml:id="ex-308" dur="32" oct="5" pname="c" stem.dir="down" />
+                                        <note xml:id="ex-309" dur="32" oct="4" pname="e" stem.dir="up" />
+                                        <note xml:id="ex-310" dur="32" oct="5" pname="c" stem.dir="down" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <staff n="2">
+                                <layer n="1">
+                                    <beam xml:id="ex-314">
+                                        <note xml:id="ex-313" dur="16" oct="3" pname="f" stem.dir="up" />
+                                        <note xml:id="ex-315" dur="16" oct="3" pname="g" stem.dir="up" />
+                                        <note xml:id="ex-316" dur="16" oct="3" pname="a" stem.dir="up" />
+                                        <note xml:id="ex-317" dur="16" oct="3" pname="b" stem.dir="up" accid.ges="f" />
+                                    </beam>
+                                    <beam xml:id="ex-320">
+                                        <note xml:id="ex-319" dur="16" oct="4" pname="c" stem.dir="down" />
+                                        <note xml:id="ex-321" dur="16" oct="3" pname="c" stem.dir="down" />
+                                        <note xml:id="ex-322" dur="16" oct="3" pname="e" stem.dir="down" />
+                                        <note xml:id="ex-323" dur="16" oct="3" pname="c" stem.dir="down" />
+                                    </beam>
+                                    <beam xml:id="ex-325">
+                                        <note xml:id="ex-324" dur="16" oct="3" pname="d" stem.dir="down" />
+                                        <note xml:id="ex-326" dur="16" oct="3" pname="e" stem.dir="down" />
+                                        <note xml:id="ex-327" dur="16" oct="3" pname="f" stem.dir="down" />
+                                        <note xml:id="ex-328" dur="16" oct="3" pname="g" stem.dir="down" />
+                                    </beam>
+                                    <beam xml:id="ex-330">
+                                        <note xml:id="ex-329" dur="16" oct="3" pname="a" stem.dir="up" />
+                                        <note xml:id="ex-331" dur="16" oct="2" pname="a" stem.dir="up" />
+                                        <note xml:id="ex-332" dur="16" oct="3" pname="c" stem.dir="up" />
+                                        <note xml:id="ex-333" dur="16" oct="2" pname="a" stem.dir="up" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                        </measure>
                     </section>
                 </score>
             </mdiv>

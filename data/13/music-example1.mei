@@ -1,15 +1,24 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="http://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<?xml-model href="http://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-CMN.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0" ?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
     <meiHead>
         <fileDesc>
             <titleStmt>
-                <composer>Johann Mattheson</composer>
-                <editor>Niels Pfeffer</editor>
+                <title></title>
+                <composer>
+                    <persName role="composer" auth.uri="http://d-nb.info/gnd/118578995" auth="GND">Johann Mattheson</persName>
+                </composer>
+                <respStmt>
+                    <resp>Edited by</resp>
+                    <persName role="editor" xml:id="pfeffer">Niels Pfeffer</persName>
+                    <persName role="editor" xml:id="rettinghaus">Klaus Rettinghaus</persName>
+                </respStmt>
             </titleStmt>
             <editionStmt>
-                <edition>First draft, <date>2019</date></edition>
+                <edition>
+                    First draft,
+                    <date>2019</date>
+                </edition>
             </editionStmt>
             <pubStmt>
                 <unpub />
@@ -21,45 +30,45 @@
         <body>
             <mdiv>
                 <score>
-                    <scoreDef key.mode="major" key.sig="2f" meter.count="9" meter.unit="16" >
+                    <scoreDef key.sig="2f" mnum.visible="false">
                         <staffGrp>
                             <staffDef clef.shape="C" clef.line="1" n="1" lines="5" />
                             <staffDef clef.shape="F" clef.line="4" n="2" lines="5" />
                         </staffGrp>
                     </scoreDef>
                     <section>
-                      <measure n="11">
-                          <staff n="1" visible="true">
-                              <layer n="1">
-                                  <beam>
-                                      <note dur="16" oct="5" pname="g" stem.dir="down" />
-                                      <note dur="16" oct="5" pname="f" stem.dir="down" />
-                                      <note dur="16" oct="5" pname="f" stem.dir="down" />
-                                  </beam>
-                                  <beam>
-                                      <note dur="16" oct="5" pname="g" stem.dir="down" />
-                                      <note dur="16" oct="5" pname="e" stem.dir="down" accid.ges="f" />
-                                      <note dur="16" oct="5" pname="e" stem.dir="down" accid.ges="f" />
-                                  </beam>
-                                  <beam>
-                                      <note dur="16" oct="5" pname="g" stem.dir="down" />
-                                      <note dur="16" oct="5" pname="d" stem.dir="down" />
-                                      <note dur="16" oct="5" pname="d" stem.dir="down" />
-                                  </beam>
-                              </layer>
-                          </staff>
-                      </measure>
-                      <measure metcon="false">
-                        <staff n="1">
-                          <layer n="1">
-                            <chord dur="4">
-                              <note dur="4" oct="4" pname="a" />
-                              <note dur="4" oct="5" pname="c" />
-                              <note dur="4" oct="5" pname="f" />
-                            </chord>
-                          </layer>
-                        </staff>
-                      </measure>
+                        <measure n="11">
+                            <staff n="1" visible="true">
+                                <layer n="1">
+                                    <beam>
+                                        <note dur="16" oct="5" pname="g" stem.dir="down" />
+                                        <note dur="16" oct="5" pname="f" stem.dir="down" />
+                                        <note dur="16" oct="5" pname="f" stem.dir="down" />
+                                    </beam>
+                                    <beam>
+                                        <note dur="16" oct="5" pname="g" stem.dir="down" />
+                                        <note dur="16" oct="5" pname="e" stem.dir="down" accid.ges="f" />
+                                        <note dur="16" oct="5" pname="e" stem.dir="down" accid.ges="f" />
+                                    </beam>
+                                    <beam>
+                                        <note dur="16" oct="5" pname="g" stem.dir="down" />
+                                        <note dur="16" oct="5" pname="d" stem.dir="down" />
+                                        <note dur="16" oct="5" pname="d" stem.dir="down" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                        </measure>
+                        <measure metcon="false">
+                            <staff n="1">
+                                <layer n="1">
+                                    <chord dur="4">
+                                        <note dur="4" oct="4" pname="a" />
+                                        <note dur="4" oct="5" pname="c" />
+                                        <note dur="4" oct="5" pname="f" />
+                                    </chord>
+                                </layer>
+                            </staff>
+                        </measure>
                     </section>
                 </score>
             </mdiv>

@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-CMN.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-CMN.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0" ?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
     <meiHead>
         <fileDesc>
             <titleStmt>
-                <title>
-                </title>
+                <title></title>
                 <composer>
                     <persName role="composer" auth.uri="http://d-nb.info/gnd/118578995" auth="GND">Johann Mattheson</persName>
                 </composer>
@@ -19,181 +18,295 @@
                 <edition>First draft, <date>2019</date></edition>
             </editionStmt>
             <pubStmt>
-                <unpub/>
+                <unpub />
             </pubStmt>
         </fileDesc>
     </meiHead>
-
     <music>
         <body>
             <mdiv>
                 <score>
-                    <scoreDef>
+                    <scoreDef mnum.visible="false">
                         <staffGrp>
-                            <staffDef clef.shape="C" clef.line="1" key.sig="2f" n="1" lines="5"/>
-                            <staffDef clef.shape="F" clef.line="4" key.sig="2f" n="2" lines="5"/>
+                            <staffDef clef.shape="C" clef.line="1" key.sig="2f" n="1" lines="5">
+                                <keySig sig="2f" />
+                            </staffDef>
+                            <staffDef clef.shape="F" clef.line="4" n="2" lines="5">
+                                <keySig sig="2f" type="supplied" />
+                            </staffDef>
                         </staffGrp>
                     </scoreDef>
                     <section>
-                        <measure n="1">
+                        <measure n="37">
                             <staff n="1">
                                 <layer n="1">
-                                  <beam>
-                                      <note dur="16" oct="5" pname="f"/>
-                                      <note dur="16" oct="5" pname="e"/>
-                                  </beam>
-                                  <beam>
-                                      <note dur="16" oct="5" pname="d"/>
-                                      <note dur="16" oct="5" pname="f"/>
-                                      <note dur="16" oct="5" pname="c"/>
-                                      <note dur="16" oct="5" pname="f"/>
-                                  </beam>
-                                  <beam>
-                                      <note dur="16" oct="4" pname="b"/>
-                                      <note dur="16" oct="5" pname="f"/>
-                                      <note dur="16" oct="4" pname="a" accid="f"/>
-                                      <note dur="16" oct="5" pname="f"/>
-                                  </beam>
-                              </layer>
+                                    <supplied resp="#rettinghaus">
+                                        <space dur="4" />
+                                        <space dur="8" />
+                                    </supplied>
+                                    <beam>
+                                        <note dur="16" oct="5" pname="f" />
+                                        <note dur="16" oct="5" pname="e" />
+                                    </beam>
+                                    <beam>
+                                        <note dur="16" oct="5" pname="d" />
+                                        <note dur="16" oct="5" pname="f" />
+                                        <note dur="16" oct="5" pname="c" />
+                                        <note dur="16" oct="5" pname="f" />
+                                    </beam>
+                                    <beam>
+                                        <note dur="16" oct="4" pname="b" />
+                                        <note dur="16" oct="5" pname="f" />
+                                        <note dur="16" oct="4" pname="a" accid="f" />
+                                        <note dur="16" oct="5" pname="f" />
+                                    </beam>
+                                </layer>
                             </staff>
                             <staff n="2">
-                              <layer n="1">
-                                <note dur="8" oct="4" pname="d"/>
-                                <beam>
-                                  <note dur="8" oct="4" pname="d"/>
-                                  <note dur="8" oct="4" pname="d"/>
-                                  <note dur="8" oct="4" pname="d"/>
-                                  <note dur="8" oct="4" pname="d"/>
-                                </beam>
-                              </layer>
+                                <layer n="1">
+                                    <supplied resp="#rettinghaus">
+                                        <note dur="4" oct="3" pname="d" />
+                                        <rest dur="8" />
+                                    </supplied>
+                                    <note dur="8" oct="4" pname="d" />
+                                    <beam>
+                                        <note dur="8" oct="4" pname="d" />
+                                        <note dur="8" oct="4" pname="d" />
+                                        <note dur="8" oct="4" pname="d" />
+                                        <note dur="8" oct="4" pname="d" />
+                                    </beam>
+                                </layer>
                             </staff>
+                            <harm place="above" staff="2" tstamp="3">
+                                <fb>
+                                    <f>8</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="3.5">
+                                <fb>
+                                    <f>7</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="4">
+                                <fb>
+                                    <f>6</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="4.5">
+                                <fb>
+                                    <f>5♭</f>
+                                </fb>
+                            </harm>
                         </measure>
-                        <measure n="2">
+                        <measure n="38">
                             <staff n="1">
                                 <layer n="1">
                                     <beam>
-                                        <note dur="16" oct="4" pname="g"/>
-                                        <note dur="16" oct="5" pname="f"/>
+                                        <note dur="16" oct="4" pname="g" />
+                                        <note dur="16" oct="5" pname="f" />
                                         <note dur="16" oct="5" pname="e">
-                                            <accid accid.ges="f"/>
+                                            <accid accid.ges="f" />
                                         </note>
-                                        <note dur="16" oct="5" pname="d"/>
+                                        <note dur="16" oct="5" pname="d" />
                                     </beam>
                                     <beam>
                                         <note dur="8" oct="5" pname="e">
-                                            <accid accid.ges="f"/>
+                                            <accid accid.ges="f" />
                                         </note>
-                                        <note dur="16" oct="5" pname="g"/>
-                                        <note dur="16" oct="5" pname="f"/>
+                                        <note dur="16" oct="5" pname="g" />
+                                        <note dur="16" oct="5" pname="f" />
                                     </beam>
                                     <beam>
                                         <note dur="16" oct="5" pname="e">
-                                            <accid accid="n"/>
+                                            <accid accid="n" />
                                         </note>
-                                        <note dur="16" oct="5" pname="g"/>
-                                        <note dur="16" oct="5" pname="d"/>
-                                        <note dur="16" oct="5" pname="g"/>
+                                        <note dur="16" oct="5" pname="g" />
+                                        <note dur="16" oct="5" pname="d" />
+                                        <note dur="16" oct="5" pname="g" />
                                     </beam>
                                     <beam>
-                                        <note dur="16" oct="5" pname="c"/>
-                                        <note dur="16" oct="5" pname="g"/>
+                                        <note dur="16" oct="5" pname="c" />
+                                        <note dur="16" oct="5" pname="g" />
                                         <note dur="16" oct="4" pname="b">
-                                            <accid accid.ges="f"/>
+                                            <accid accid.ges="f" />
                                         </note>
-                                        <note dur="16" oct="5" pname="g"/>
+                                        <note dur="16" oct="5" pname="g" />
                                     </beam>
                                 </layer>
                             </staff>
                             <staff n="2">
-                                <layer xml:id="ex-1280" n="1">
-                                    <clef shape="C" line="4"/>
-                                    <note dur="4" oct="4" pname="e"/>
-                                    <rest dur="8"/>
-                                    <note dur="8" oct="4" pname="e"/>
+                                <layer n="1">
+                                    <clef shape="C" line="4" />
+                                    <note dur="4" oct="4" pname="e">
+                                        <accid accid="f" />
+                                    </note>
+                                    <rest dur="8" />
+                                    <note dur="8" oct="4" pname="e" accid.ges="f" />
                                     <beam>
-                                        <note dur="8" oct="4" pname="e" accid="n"/>
-                                        <note dur="8" oct="4" pname="e"/>
-                                        <note dur="8" oct="4" pname="e"/>
-                                        <note dur="8" oct="4" pname="e"/>
+                                        <note dur="8" oct="4" pname="e">
+                                            <accid accid="n" />
+                                        </note>
+                                        <note dur="8" oct="4" pname="e" />
+                                        <note dur="8" oct="4" pname="e" />
+                                        <note dur="8" oct="4" pname="e" />
                                     </beam>
                                 </layer>
                             </staff>
+                            <harm place="above" staff="2" tstamp="1">
+                                <fb>
+                                    <f>9</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="1.5">
+                                <fb>
+                                    <f>8</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="3">
+                                <fb>
+                                    <f>8</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="3.5">
+                                <fb>
+                                    <f>7</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="4">
+                                <fb>
+                                    <f>6</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="4.5">
+                                <fb>
+                                    <f>5♭</f>
+                                </fb>
+                            </harm>
                         </measure>
-                        <measure n="3">
+                        <measure n="39">
                             <staff n="1">
                                 <layer n="1">
                                     <beam>
-                                        <note dur="16" oct="4" pname="a"/>
-                                        <note dur="16" oct="5" pname="g"/>
-                                        <note dur="16" oct="5" pname="f"/>
+                                        <note dur="16" oct="4" pname="a" />
+                                        <note dur="16" oct="5" pname="g" />
+                                        <note dur="16" oct="5" pname="f" />
                                         <note dur="16" oct="5" pname="e">
-                                            <accid accid="n"/>
+                                            <accid accid="n" />
                                         </note>
                                     </beam>
                                     <beam>
-                                        <note dur="8" oct="5" pname="f"/>
-                                        <note dur="16" oct="5" pname="a"/>
-                                        <note dur="16" oct="5" pname="g"/>
+                                        <note dur="8" oct="5" pname="f" />
+                                        <note dur="16" oct="5" pname="a" />
+                                        <note dur="16" oct="5" pname="g" />
                                     </beam>
                                     <beam>
                                         <note dur="16" oct="5" pname="f">
-                                            <accid accid="s"/>
+                                            <accid accid="s" />
                                         </note>
-                                        <note dur="16" oct="5" pname="a"/>
+                                        <note dur="16" oct="5" pname="a" />
                                         <note dur="16" oct="5" pname="e">
-                                            <accid accid="n"/>
+                                            <accid accid="n" />
                                         </note>
-                                        <note dur="16" oct="5" pname="a"/>
+                                        <note dur="16" oct="5" pname="a" />
                                     </beam>
                                     <beam>
-                                        <note dur="16" oct="5" pname="d"/>
-                                        <note dur="16" oct="5" pname="a"/>
-                                        <note dur="16" oct="5" pname="c"/>
-                                        <note dur="16" oct="5" pname="a"/>
+                                        <note dur="16" oct="5" pname="d" />
+                                        <note dur="16" oct="5" pname="a" />
+                                        <note dur="16" oct="5" pname="c" />
+                                        <note dur="16" oct="5" pname="a" />
                                     </beam>
                                 </layer>
                             </staff>
                             <staff n="2">
                                 <layer n="1">
-                                    <note dur="4" oct="4" pname="f"/>
-                                    <rest dur="8"/>
-                                    <note dur="8" oct="4" pname="f"/>
+                                    <note dur="4" oct="4" pname="f" />
+                                    <rest dur="8" />
+                                    <note dur="8" oct="4" pname="f" />
                                     <beam>
-                                        <note dur="8" oct="4" pname="f" accid="s"/>
-                                        <note dur="8" oct="4" pname="f"/>
-                                        <note dur="8" oct="4" pname="f"/>
-                                        <note dur="8" oct="4" pname="f"/>
+                                        <note dur="8" oct="4" pname="f">
+                                            <accid accid="s" />
+                                        </note>
+                                        <note dur="8" oct="4" pname="f" accid.ges="s" />
+                                        <note dur="8" oct="4" pname="f" accid.ges="s" />
+                                        <note dur="8" oct="4" pname="f" accid.ges="s" />
                                     </beam>
                                 </layer>
                             </staff>
+                            <harm place="above" staff="2" tstamp="1">
+                                <fb>
+                                    <f>9</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="1.5">
+                                <fb>
+                                    <f>8</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="2.5">
+                                <fb>
+                                    <f>♮</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="3">
+                                <fb>
+                                    <f>8</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="3.5">
+                                <fb>
+                                    <f>♮7</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="4">
+                                <fb>
+                                    <f>6♭</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="4.5">
+                                <fb>
+                                    <f>5</f>
+                                </fb>
+                            </harm>
                         </measure>
-                        <measure n="4">
+                        <measure n="40" right="invis" metcon="false">
                             <staff n="1">
                                 <layer n="1">
                                     <beam>
                                         <note dur="16" oct="4" pname="b">
-                                            <accid accid.ges="f"/>
+                                            <accid accid.ges="f" />
                                         </note>
-                                        <note dur="16" oct="5" pname="a"/>
-                                        <note dur="16" oct="5" pname="g"/>
+                                        <note dur="16" oct="5" pname="a" />
+                                        <note dur="16" oct="5" pname="g" />
                                         <note dur="16" oct="5" pname="f">
-                                            <accid xml:id="ex-1344" accid="s"/>
+                                            <accid accid="s" />
                                         </note>
                                     </beam>
                                     <beam>
-                                        <note dur="16" oct="5" pname="g"/>
-                                        <note dur="16" oct="5" pname="d"/>
-                                        <note dur="16" oct="5" pname="c"/>
-                                        <note dur="16" oct="5" pname="d"/>
+                                        <note dur="16" oct="5" pname="g" />
+                                        <note dur="16" oct="5" pname="d" />
+                                        <note dur="16" oct="5" pname="c" />
+                                        <note dur="16" oct="5" pname="d" />
                                     </beam>
+                                    <custos oct="4" pname="e" />
                                 </layer>
                             </staff>
                             <staff n="2">
                                 <layer n="1">
-                                    <note dur="4" dots="1" oct="4" pname="g"/>
-                                    <note dur="8" oct="3" pname="b"/>
+                                    <note dur="4" dots="1" oct="4" pname="g" />
+                                    <note dur="8" oct="3" pname="b" />
+                                    <custos oct="4" pname="c" />
                                 </layer>
                             </staff>
+                            <harm place="above" staff="2" tstamp="1">
+                                <fb>
+                                    <f>9</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="1.5">
+                                <fb>
+                                    <f>8</f>
+                                </fb>
+                            </harm>
                         </measure>
                     </section>
                 </score>
