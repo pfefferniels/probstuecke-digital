@@ -1,5 +1,5 @@
 const manifests = {
-  '1st': 'https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10527431/manifest',
+  '1st': 'https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10527430/manifest',
   'de': 'https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/manifest'
 }
 
