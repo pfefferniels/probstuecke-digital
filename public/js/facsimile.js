@@ -1,8 +1,13 @@
+const manifests = {
+  '1st': 'https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10527431/manifest',
+  'de': 'https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/manifest'
+}
+
 $(async function() {
   // collect all the affected canvas IDs from the AnnotationList
   let iiif;
   try {
-    iiif = await $.get("/iiif/" + number + "/list/" + "facsimile_de");
+    iiif = await $.get("/iiif/" + number + "/list/" + "facsimile_" + edition);
   } catch(e) {
     console.error("Could not load IIIF AnnotationList");
     return;
@@ -14,9 +19,8 @@ $(async function() {
     let target = r.resource['@id'];
 
     if (target.includes('pb')) {
-      console.log("canvasID will be set to" + canvasUri);
       windowObjects.push({
-        loadedManifest: "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/manifest",
+        loadedManifest: manifests[edition],
         canvasID: canvasUri,
         viewType: "ImageView",
         displayLayout: false,
@@ -37,7 +41,7 @@ $(async function() {
       show: false
     },
     "data": [
-      { "manifestUri": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/manifest", "location": "BSB"}
+      { "manifestUri": manifests[edition], "location": "BSB"}
     ],
     "windowObjects": windowObjects,
     "annotationEndpoint": { "name":"Local Storage", "module": "LocalStorageEndpoint" },
