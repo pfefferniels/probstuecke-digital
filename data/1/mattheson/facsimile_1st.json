@@ -5,11 +5,11 @@
     "resources": [
         {
             "@context": "http://iiif.io/api/presentation/2/context.json",
-            "@id": "https://probstuecke-digital.de/iiif/1/annotation/facsimile_de-page256",
+            "@id": "https://probstuecke-digital.de/iiif/1/annotation/facsimile_1st-page256",
             "@type": "oa:Annotation",
             "motivation": "sc:painting",
             "resource": {
-                "@id": "http://probstuecke-digital.de/iiif/2/score.mei#xpointer(//pb[n='102' and source='#secondEdition'])",
+                "@id": "http://probstuecke-digital.de/iiif/2/score.mei#xpointer(//pb[n='102' and source='#firstEdition'])",
                 "@type": "dctypes:Image",
                 "format": "application/mei+xml"
             },
@@ -17,11 +17,11 @@
         },
         {
             "@context": "http://iiif.io/api/presentation/2/context.json",
-            "@id": "https://probstuecke-digital.de/iiif/1/annotation/facsimile_de-page257",
+            "@id": "https://probstuecke-digital.de/iiif/1/annotation/facsimile_1st-page257",
             "@type": "oa:Annotation",
             "motivation": "sc:painting",
             "resource": {
-                "@id": "http://probstuecke-digital.de/iiif/2/score.mei#xpointer(//pb[n='103' and source='#secondEdition'])",
+                "@id": "http://probstuecke-digital.de/iiif/2/score.mei#xpointer(//pb[n='103' and source='#firstEdition'])",
                 "@type": "dctypes:Image",
                 "format": "application/mei+xml"
             },
@@ -29,11 +29,11 @@
         },
         {
             "@context": "http://iiif.io/api/presentation/2/context.json",
-            "@id": "https://probstuecke-digital.de/iiif/1/annotation/facsimile_de-page258",
+            "@id": "https://probstuecke-digital.de/iiif/1/annotation/facsimile_1st-page258",
             "@type": "oa:Annotation",
             "motivation": "sc:painting",
             "resource": {
-                "@id": "http://probstuecke-digital.de/iiif/2/score.mei#xpointer(//pb[n='104' and source='#secondEdition'])",
+                "@id": "http://probstuecke-digital.de/iiif/2/score.mei#xpointer(//pb[n='104' and source='#firstEdition'])",
                 "@type": "dctypes:Image",
                 "format": "application/mei+xml"
             },
@@ -41,11 +41,11 @@
         },
         {
             "@context": "http://iiif.io/api/presentation/2/context.json",
-            "@id": "https://probstuecke-digital.de/iiif/1/annotation/facsimile_de-page389",
+            "@id": "https://probstuecke-digital.de/iiif/1/annotation/facsimile_1st-page389",
             "@type": "oa:Annotation",
             "motivation": "sc:painting",
             "resource": {
-                "@id": "http://probstuecke-digital.de/iiif/2/score.mei#xpointer(//pb[n='105' and source='#secondEdition'])",
+                "@id": "http://probstuecke-digital.de/iiif/2/score.mei#xpointer(//pb[n='105' and source='#firstEdition'])",
                 "@type": "dctypes:Image",
                 "format": "application/mei+xml"
             },
@@ -53,11 +53,11 @@
         },
         {
             "@context": "http://iiif.io/api/presentation/2/context.json",
-            "@id": "https://probstuecke-digital.de/iiif/1/annotation/facsimile_de-page390",
+            "@id": "https://probstuecke-digital.de/iiif/1/annotation/facsimile_1st-page390",
             "@type": "oa:Annotation",
             "motivation": "sc:painting",
             "resource": {
-                "@id": "http://probstuecke-digital.de/iiif/2/score.mei#xpointer(//pb[n='106' and source='#secondEdition'])",
+                "@id": "http://probstuecke-digital.de/iiif/2/score.mei#xpointer(//pb[n='106' and source='#firstEdition'])",
                 "@type": "dctypes:Image",
                 "format": "application/mei+xml"
             },
@@ -65,15 +65,27 @@
         },
         {
             "@context": "http://iiif.io/api/presentation/2/context.json",
-            "@id": "https://probstuecke-digital.de/iiif/1/annotation/facsimile_de-page260",
+            "@id": "https://probstuecke-digital.de/iiif/1/annotation/facsimile_1st-page260",
             "@type": "oa:Annotation",
             "motivation": "sc:painting",
             "resource": {
-                "@id": "http://probstuecke-digital.de/iiif/2/score.mei#xpointer(//pb[n='107' and source='#secondEdition'])",
+                "@id": "http://probstuecke-digital.de/iiif/2/score.mei#xpointer(//pb[n='107' and source='#firstEdition'])",
                 "@type": "dctypes:Image",
                 "format": "application/mei+xml"
             },
             "on": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10527430/canvas/260"
+        },
+        {
+            "@context": "http://iiif.io/api/presentation/2/context.json",
+            "@id": "https://probstuecke-digital.de/iiif/1/annotation/facsimile_1st-page261",
+            "@type": "oa:Annotation",
+            "motivation": "sc:painting",
+            "resource": {
+                "@id": "http://probstuecke-digital.de/iiif/2/score.mei#xpointer(//pb[n='108' and source='#firstEdition'])",
+                "@type": "dctypes:Image",
+                "format": "application/mei+xml"
+            },
+            "on": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10527430/canvas/261"
         }
     ]
 }
