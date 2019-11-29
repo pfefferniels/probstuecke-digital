@@ -1,7 +1,7 @@
 const transcription = require('express').Router(),
       fs = require('fs'),
       path = require('path'),
-      vrvAdapter = require('./verovioAdapter.js');
+      vrvAdapter = require('../utils/verovioAdapter.js');
 
 const lookupTable = {
   secondEdition: 'comments_de.tei',
