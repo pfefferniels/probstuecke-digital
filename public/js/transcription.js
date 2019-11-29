@@ -26,10 +26,40 @@ function printInfo(message) {
   });
 }
 
-async function highlight(element) {
-  element.addClass("highlight");
-  await sleep(3000);
-  $(element).removeClass('highlight');
+function highlightSVG(svgElement) {
+  $("html,body").animate({
+    scrollTop: svgElement.rbox().y
+  }, 100, function() {
+    svgElement.animate(500).attr({fill: "#ffaa99"}).animate().attr({fill: "#ffe47a"});
+  });
+}
+
+function highlightText(element) {
+  $("html,body").animate({
+    scrollTop: element.offset().top-50
+  }, 100, async function() {
+    element.addClass("highlight");
+    await sleep(3000);
+    $(element).removeClass('highlight');
+  });
+}
+
+function drawSVGIndicator(targetAttr) {
+  let svg = SVG.get(targetAttr);
+  let bbox = svg.bbox();
+
+  // draw the box always into g.measure to make
+  // sure that it does not hide the staff lines.
+  if (!svg.hasClass("measure")) {
+    svg = svg.parent(".measure");
+  }
+
+  return svg.rect(bbox.width,bbox.height).
+             move(bbox.x,bbox.y).
+             fill("#ffe47a").
+             attr("class", "indicator").
+             attr("id", "indicate_" + targetAttr.substr(1)).
+             back();
 }
 
 function getSvgElementBoxAsCss(target) {
@@ -107,59 +137,20 @@ function connectTEIRefAndSVG(teiRef, targetAttr) {
     return;
   }
 
-  // highlight the target
-  let svg = SVG.get(targetAttr);
-  let bbox = svg.bbox();
-
-  // draw the box always into g.measure to make
-  // sure that it does not hide the staff lines.
-  if (!svg.hasClass("measure")) {
-    svg = svg.parent(".measure");
-  }
-
-  let rect = svg.rect(bbox.width,bbox.height).
-                 move(bbox.x,bbox.y).
-                 fill("#ffe47a").
-                 attr("class", "indicator").
-                 attr("id", "indicate_" + targetAttr.substr(1)).
-                 back();
+  let rect = drawSVGIndicator(targetAttr);
 
   // connect indicator with text
   rect.click(async function() {
     // TODO the same measure might be referenced multiple times. Make sure that in case of a click
     // they other indicators be triggered as well.
 
-
-    // scroll to reference point and then highlight it
-    // portrait mode
-    if(window.innerHeight > window.innerWidth) {
-      $("html,body").animate({
-        scrollTop: teiRef.offset().top-50
-      }, 100, function() {
-        highlight(teiRef);
-      });
-    }
-
-    // landscape mode
-    if(window.innerWidth > window.innerHeight){
-      var annotationView = $("#comments-view");
-      annotationView.animate({
-          scrollTop: teiRef.offset().top - annotationView.offset().top + annotationView.scrollTop()
-      }, 100, function() {
-        highlight(teiRef);
-      });
-    }
+    highlightText(teiRef);
   });
 
   // connect text with an indicator
   teiRef.find("a").on("click", function(e) {
     e.preventDefault();
-
-    if (window.innerHeight > window.innerWidth) {
-      $("html,body").animate({scrollTop: 0}, 100);
-    }
-
-    rect.animate(500).attr({fill: "#ffaa99"}).animate().attr({fill: "#ffe47a"});
+    highlightSVG(rect);
   });
 }
 
@@ -391,6 +382,18 @@ $(document).ready(async function() {
   await renderComments();
   reconnectCrossRefs();
   connectSignatureTooltips();
+
+  // highlighting the element that might be given in the URL
+  let hash = window.location.hash;
+  if (hash) {
+    let target = $('body').find(hash);
+    if (target.parents('svg').length != 0) {
+      let rect = drawSVGIndicator(hash);
+      highlightSVG(rect);
+    } else {
+      highlightText(target);
+    }
+  }
 });
 
 $(document).on("touchstart mousemove", function(e) {
