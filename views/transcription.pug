@@ -11,62 +11,70 @@ block headAdditions
     label = "#{label}";
     language = "#{language}";
     midi = "#{midi}";
-
+  
   script(type='text/javascript' src='/js/svg.min.js')
   script(type='text/javascript' src='/js/wildwebmidi.js')
   script(type='text/javascript' src='/js/midiplayer.js')
   script(type='text/javascript' src='/js/transcription.js')
 
-block controlsAdditions
+block options
+  a.btn(data-toggle="modal" data-target="#optionsModal")
+    i.fas.fa-lg.fa-wrench
 
-  #options-control.control options
-  
-  #options-table.controls-table
-    .controls-item
-      h1 facsimile
-      input#display-facsimile(type='checkbox' name='display-facsimile' autocomplete='off')
-      label(for='display-facsimile') display facsimile
-      p
-        small (moving the mouse on a measure or paragraph will display the according 
-          | facsimile region)
-      table
-        tr 
-          td 
-            label(for='facsimile-size') size 
-          td 
-            input#facsimile-size(type='range' name='facsimile-size' min='20' max='80')
-        tr
-          td 
-            label(for='facsimile-quality') quality
-          td 
-            select#facsimile-quality(name='facsimile-quality')
-              option color 
-              option gray 
-
-    .controls-item
-      h1 staves and clefs
-      ul
-        li 
-          input#staves-above(type='number' name='staves-above' min='0' max='10' value='0' autocomplete='off')
-          label(for='staves-above') above
-        
-        li
-         input#staves-below(type='number' name='staves-below' min='0' max='10' value='0' autocomplete='off')
-         label(for='staves-below') below
-
-        li
-          input#modern-clefs(type='checkbox' name='modern-clefs' autocomplete='off')
-          label(for='modern-clefs') modern clefs
-        
-        li
-          button#update-page update
-        
 block content
-  .left-half#score-view !{svgScore}
-  .right-half#comments-view !{teiComment}
+  #optionsModal.modal.fade(tabindex="-1" role="dialog" aria-labelledby="options-title" aria-hidden="true")
+    .modal-dialog(role="document")
+      .modal-content
+        .modal-header
+          h5.modal-title#options-title Options
+          button.close(type="button" data-dismiss="modal" aria-label="Close")
+            span(aria-hidden="true") &times;
+  
+        .modal-body 
+          h5 facsimile
+          input#display-facsimile(type='checkbox' name='display-facsimile' autocomplete='off')
+          label(for='display-facsimile') display facsimile
+          p
+            small (moving the mouse on a measure or paragraph will display the according 
+              | facsimile region)
+          table
+            tr 
+              td 
+                label(for='facsimile-size') size 
+              td 
+                input#facsimile-size(type='range' name='facsimile-size' min='20' max='80')
+            tr
+              td 
+                label(for='facsimile-quality') quality
+              td 
+                select#facsimile-quality(name='facsimile-quality')
+                  option color 
+                  option gray 
+  
+          h5 staves and clefs
+          ul.list-unstyled
+            li 
+              input#staves-above(type='number' name='staves-above' min='0' max='10' value='0' autocomplete='off')
+              label(for='staves-above') above
+            
+            li
+             input#staves-below(type='number' name='staves-below' min='0' max='10' value='0' autocomplete='off')
+             label(for='staves-below') below
+  
+            li
+              input#modern-clefs(type='checkbox' name='modern-clefs' autocomplete='off')
+              label(for='modern-clefs') modern clefs
+  
+        .modal-footer
+          button.btn.btn-secondary(type="button" data-dismiss="modal") Cancel
+          button#update-page.btn.btn-primary(type="button" data-dismiss="modal") Update view
+  
+  .row
+    .col-sm#score-view !{svgScore}
+    .col-sm#comments-view !{teiComment}
   
   #tooltips
   
-  #footer 
-    #player 
-    a.pdf-download 
+  #footer.fixed-bottom.d-flex.bg-light.rounded-top
+    #player.p-1
+    #pdf-download.p-1.fas.fa-file-pdf.fa-2x

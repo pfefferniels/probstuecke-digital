@@ -1,117 +1,12 @@
-a {
-  color: black;
-}
-
-.control {
-  padding-bottom: 0.3em;
-  font-family: sans-serif;
-  font-size: 0.9em;
-  font-weight: bold;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-
-.control:hover {
-  color: #991c00;
-}
-
-#controls {
-  position: fixed;
-  float: left;
-  margin-bottom: 5px;
-  z-index: 1000;
-}
-
-.controls-table {
-  display: inline-block;
-  float: left;
-  margin-right: 3em;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 500ms, visibility 500ms;
-  background-color: #f9fafc;
-  font-family: sans-serif;
-  font-size: 0.78em;
-  border: 1px solid black;
-  border-radius: 5px 5px 5px;
-  box-shadow: 4px 4px 8px 0px rgba(191,191,191,1);
-}
-
-@keyframes fade {
-  0% {
-      opacity: 0;
-  }
-
-  100% {
-      opacity: 1;
-  }
-}
-
-.controls-item {
-  padding-left: 0.5em;
-  padding-right: 0.5em;
-  clear: both;
-}
-
-.controls-item:last-child {
-  padding-bottom: 0.5em;
-}
-
-.controls-item h1 {
-  font-size: 1em;
-  font-weight: bold;
-}
-
-.controls-item ul {
-  list-style: none;
-}
-
-.parent {
-  cursor: pointer;
-}
-
-#contents-table .controls-item li {
-  white-space: nowrap;
-  word-break: keep-all;
-  padding-bottom: 0.5em;
-  padding-left: 1em;
-}
-
-#contents-table .controls-item li a {
-  text-decoration: underline;
-}
-
-.visible-table {
-  visibility: visible;
-  opacity: 1;
-  animation: fade 1s;
-}
-
 #copyright {
   position: fixed;
   right: 0;
   bottom: 0;
-  width: 100px;
-  font-family: sans-serif;
-  font-size: 0.8em;
-  background-color: #ededed;
-  text-align: left;
-  padding: 5px;
+}
+
+#options {
+  position: fixed;
+  top: 0;
+  right: 0;
   z-index: 999;
-  border-radius: 6px 6px 6px;
-}
-
-#content {
-  width: 80vw;
-}
-
-@media screen and (orientation:portrait) {
-  #controls {
-    margin-top: 0.5em;
-    transform: none;
-  }
-
-  .controls-table {
-    width: 80vw;
-  }
 }

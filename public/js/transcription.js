@@ -118,10 +118,10 @@ async function renderComments() {
     adjustToBBox(notatedmusic.find("svg"));
 
     // on smaller screen sizes, the svg might too wide.
-    var normalParagraph = notatedmusic.parent().find("tei-p");
-    if (notatedmusic.find("svg").width() > normalParagraph.width()) {
-      svg0.attr("width", normalParagraph.width());
-    }
+    // var normalParagraph = notatedmusic.parent().find("tei-p");
+    // if (notatedmusic.find("svg").width() > normalParagraph.width()) {
+    //   svg0.attr("width", normalParagraph.width());
+    // }
     dfd.resolve();
   });
 
@@ -365,18 +365,8 @@ $(document).ready(async function() {
     }
   });
 
-  $(".pdf-download").click(function() {
+  $("#pdf-download").click(function() {
     window.location += '/pdf';
-  });
-
-  $("#options-control").click(function() {
-    $("#contents-table").hide();
-    $("#options-table").addClass("visible-table").show();
-  });
-
-  $("#contents-control").click(function() {
-    $("#options-table").hide();
-    $("#contents-table").addClass("visible-table").show();
   });
 
   await renderComments();
@@ -394,14 +384,4 @@ $(document).ready(async function() {
       highlightText(target);
     }
   }
-});
-
-$(document).on("touchstart mousemove", function(e) {
-    const container = $("#controls");
-
-    // if the target of the click isn't the container nor a descendant of the container
-    if (!container.is(e.target) && container.has(e.target).length === 0)
-    {
-        $(".controls-table").hide();
-    }
 });

@@ -3,309 +3,487 @@ head
   meta( name='viewport', content='width=device-width, initial-scale=1' )
 
   link(rel='stylesheet' href='/css/layout.css')
+  link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css')
+  link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css')
 
   script(type='text/javascript' src='/js/jquery.min.js')
   script(type='text/javascript' src='/js/CETEI.js')
+  script(type='text/javascript' src='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js')
 
-  script.
-    // navigation
-    $(document).ready(function() {
-      $('.child').hide();
-      $('.parent').click(function() {
-        $(this).siblings('.parent').find('ul').slideUp();
-        $(this).find('ul').slideToggle();
-      });
-    });
-
-  
   block headAdditions
 
-#controls
-  #contents-control.control contents
+.d-flex
+  nav#sidebar.border-right.pt-1.pl-1.min-vh-100
+    .sidebar-header Contents
+    
+      ul.nav.flex-column.flex-nowrap.overflow-hidden
+        li.nav-item
+          a(href='#introduction' data-toggle='collapse' aria-expanded='false' class='dropdown-toggle') Introduction
+          ul.collapse.list-unstyled#introduction
+            li
+              a(href='/howto') How to use this edition
+            li
+              a(href='/guidelines') Edition guidelines
+            li
+              a(href='/Contributions') Contributions
   
-  #contents-table.controls-table.visible-table
-    .controls-item
-      h1 Introduction
-      ul
-        li
-          a(href='/howto') How to use this edition
-        li
-          a(href='/guidelines') Edition guidelines
-        li
-          a(href='/Contributions') Contributions
-      
-      h1 
-        a(href='/') Front page
-      
-      h1 Ober-Classe
-      ul
-        li.parent 1st Prob-Stück
-          ul.child Facsimile
-            li
-              a(href='/facsimile/1/firstEdition') 1st edition (1719)
-            li
-              a(href='/facsimile/1/secondEdition') 2nd edition (1731)
-          ul.child Transcription
-            li
-              a(href='/transcription/1/mattheson/firstEdition') 1st edition (1719)
-            li
-              a(href='/transcription/1/mattheson/secondEdition') 2nd edition (1731)
-            li
-              a(href='/transcription/1/mattheson/english') English translation
-          ul.child Analysis
-            li
-              a(href='/transcription/1/pfeffer/german') Basse Fondamentale
-
-        li.parent 2nd Prob-Stück
-          ul.child Facsimile
-            li
-              a(href='/facsimile/2/firstEdition') 1st edition (1719)
-            li
-              a(href='/facsimile/2/secondEdition') 2nd edition (1731)
-          ul.child Transcription
-            li
-              a(href='/transcription/2/mattheson/firstEdition') 1st edition (1719)
-            li
-              a(href='/transcription/2/mattheson/secondEdition') 2nd edition (1731)
-            li
-              a(href='/transcription/2/mattheson/english') English translation
-
-        li.parent 3rd Prob-Stück
-          ul.child Facsimile
-            li
-              a(href='/facsimile/3/firstEdition') 1st edition (1719)
-            li
-              a(href='/facsimile/3/secondEdition') 2nd edition (1731)
-          ul.child Transcription
-            li
-              a(href='/transcription/3/mattheson/firstEdition') 1st edition (1719)
-            li
-              a(href='/transcription/3/mattheson/secondEdition') 2nd edition (1731)
-            li
-              a(href='/transcription/3/mattheson/english') English translation
-          ul.child Lessons 
-            li
-              a(href='/transcription/3/hill/english') Robert Hill
-
-        li.parent 4th Prob-Stück
-          ul.child Facsimile
-            li
-              a(href='/facsimile/4/firstEdition') 1st edition (1719)
-            li
-              a(href='/facsimile/4/secondEdition') 2nd edition (1731)
-          ul.child Transcription
-            li
-              a(href='/transcription/4/mattheson/firstEdition') 1st edition (1719)
-            li
-              a(href='/transcription/4/mattheson/secondEdition') 2nd edition (1731)
-            li
-              a(href='/transcription/4/mattheson/english') English translation
-
-        li.parent 5th Prob-Stück
-          ul.child Facsimile
-            li
-              a(href='/facsimile/5/firstEdition') 1st edition (1719)
-            li
-              a(href='/facsimile/5/secondEdition') 2nd edition (1731)
-          ul.child Transcription
-            li
-              a(href='/transcription/5/mattheson/firstEdition') 1st edition (1719)
-            li
-              a(href='/transcription/5/mattheson/secondEdition') 2nd edition (1731)
-            li
-              a(href='/transcription/5/mattheson/english') English translation
-
-        li.parent 6th Prob-Stück
-          ul.child Facsimile
-            li
-              a(href='/facsimile/6/firstEdition') 1st edition (1719)
-            li
-              a(href='/facsimile/6/secondEdition') 2nd edition (1731)
-          ul.child Transcription
-            li
-              a(href='/transcription/6/mattheson/firstEdition') 1st edition (1719)
-            li
-              a(href='/transcription/6/mattheson/secondEdition') 2nd edition (1731)
-            li
-              a(href='/transcription/6/mattheson/english') English translation
-
-        li.parent 7th Prob-Stück
-          ul.child Facsimile
-            li
-              a(href='/facsimile/7/firstEdition') 1st edition (1719)
-            li
-              a(href='/facsimile/7/secondEdition') 2nd edition (1731)
-          ul.child Transcription
-            li
-              a(href='/transcription/7/mattheson/secondEdition') 2nd edition (1731)
-            li
-              a(href='/transcription/7/mattheson/english') English translation
-
-        li.parent 8th Prob-Stück
-          ul.child Facsimile
-            li
-              a(href='/facsimile/8/firstEdition') 1st edition (1719)
-            li
-              a(href='/facsimile/8/secondEdition') 2nd edition (1731)
-          ul.child Transcription
-            li
-              a(href='/transcription/8/mattheson/secondEdition') 2nd edition (1731)
-            li
-              a(href='/transcription/8/mattheson/english') English translation
-
-        li.parent 9th Prob-Stück
-          ul.child Facsimile
-            li
-              a(href='/facsimile/9/firstEdition') 1st edition (1719)
-            li
-              a(href='/facsimile/9/secondEdition') 2nd edition (1731)
-          ul.child Transcription
-            li
-              a(href='/transcription/9/mattheson/secondEdition') 2nd edition (1731)
-            li
-              a(href='/transcription/9/mattheson/english') English translation
-
-        li.parent 10th Prob-Stück
-          ul.child Facsimile
-            li
-              a(href='/facsimile/10/firstEdition') 1st edition (1719)
-            li
-              a(href='/facsimile/10/secondEdition') 2nd edition (1731)
-          ul.child Transcription
-            li
-              a(href='/transcription/10/mattheson/firstEdition') 1st edition (1719)
-            li
-              a(href='/transcription/10/mattheson/secondEdition') 2nd edition (1731)
-            li
-              a(href='/transcription/10/mattheson/english') English translation
-          ul.child Realizations
-            li
-              a(href='/transcription/10/pfeffer/german') Niels Pfeffer (2019)
-              
-        li.parent 11th Prob-Stück
-          ul.child Facsimile
-            li
-              a(href='/facsimile/11/firstEdition') 1st edition (1719)
-            li
-              a(href='/facsimile/11/secondEdition') 2nd edition (1731)
-          ul.child Transcription
-            li
-              a(href='/transcription/11/mattheson/secondEdition') 2nd edition (1731)
-            li
-              a(href='/transcription/11/mattheson/english') English translation
+        li.nav-item
+          a(href='/') Front page
         
-        li.parent 12th Prob-Stück
-          ul.child Facsimile
-            li
-              a(href='/facsimile/12/firstEdition') 1st edition (1719)
-            li
-              a(href='/facsimile/12/secondEdition') 2nd edition (1731)
-          ul.child Transcription
-            li
-              a(href='/transcription/12/mattheson/secondEdition') 2nd edition (1731)
-            li
-              a(href='/transcription/12/mattheson/english') English translation
+        li.nav-item.text-nowrap
+          a(href='#oberclasse' data-toggle='collapse' aria-expanded='true' class='dropdown-toggle') Ober-Classe
+  
+          ul.flex-column.pl-2.nav#oberclasse
+            li.nav-item
+              a.nav-link.collapsed.p-0.pl-1(href='#ps1' data-toggle='collapse' data-target='#ps-1') 1st Probstück
+              div.collapse#ps-1(aria-expanded='false')
+                ul.flex-column.nav.pl-2
+                  small 
+                    li.nav-item Facsimile
+                      ul.list-unstyled
+                        li.pl-1
+                          a(href='/facsimile/1/firstEdition') 1st edition (1719)
+                        li.pl-1
+                          a(href='/facsimile/1/secondEdition') 2nd edition (1731)
+                    li.nav-item Transcription
+                      ul.list-unstyled
+                        li.pl-1
+                          a(href='/transcription/1/mattheson/firstEdition') 1st edition (1719)
+                        li.pl-1
+                          a(href='/transcription/1/mattheson/secondEdition') 2nd edition (1731)
+                        li.pl-1
+                          a(href='/transcription/1/mattheson/english') English translation
+                    li.nav-item Analysis
+                      ul.list-unstyled 
+                        li.pl-1
+                          a(href='/transcription/1/pfeffer/german') Basse Fondamentale
+                  
+            li.nav-item
+              a.nav-link.collapsed.p-0.pl-1(href='#ps2' data-toggle='collapse' data-target='#ps-2') 2nd Probstück
+              div.collapse#ps-2(aria-expanded='false')
+                ul.flex-column.nav.pl-2
+                  small 
+                    li.nav-item Facsimile
+                      ul.list-unstyled
+                        li.pl-1
+                          a(href='/facsimile/2/firstEdition') 1st edition (1719)
+                        li.pl-1
+                          a(href='/facsimile/2/secondEdition') 2nd edition (1731)
+                    li.nav-item Transcription
+                      ul.list-unstyled
+                        li.pl-1
+                          a(href='/transcription/2/mattheson/firstEdition') 1st edition (1719)
+                        li.pl-1
+                          a(href='/transcription/2/mattheson/secondEdition') 2nd edition (1731)
+                        li.pl-1
+                          a(href='/transcription/2/mattheson/english') English translation
+                    li.nav-item Realizations
+                      ul.list-unstyled 
+                        li.pl-1
+                          a(href='/transcription/2/pfeffer/german') Niels Pfeffer (2019)
 
-        li.parent 13th Prob-Stück
-          ul.child Facsimile
-            li
-              a(href='/facsimile/13/firstEdition') 1st edition (1719)
-            li
-              a(href='/facsimile/13/secondEdition') 2nd edition (1731)
-          ul.child Transcription
-            li
-              a(href='/transcription/13/mattheson/secondEdition') 2nd edition (1731)
-            li
-              a(href='/transcription/13/mattheson/english') English translation
+            li.nav-item
+              a.nav-link.collapsed.p-0.pl-1(href='#ps3' data-toggle='collapse' data-target='#ps-3') 3rd Probstück
+              div.collapse#ps-3(aria-expanded='false')
+                ul.flex-column.nav.pl-2
+                  small 
+                    li.nav-item Facsimile
+                      ul.list-unstyled
+                        li.pl-1
+                          a(href='/facsimile/3/firstEdition') 1st edition (1719)
+                        li.pl-1
+                          a(href='/facsimile/3/secondEdition') 2nd edition (1731)
+                    li.nav-item Transcription
+                      ul.list-unstyled
+                        li.pl-1
+                          a(href='/transcription/3/mattheson/firstEdition') 1st edition (1719)
+                        li.pl-1
+                          a(href='/transcription/3/mattheson/secondEdition') 2nd edition (1731)
+                        li.pl-1
+                          a(href='/transcription/3/mattheson/english') English translation
+                    li.nav-item Lessons
+                      ul.list-unstyled 
+                        li.pl-1
+                          a(href='/transcription/3/hill/german') Robert Hill (2019)
+                  
+            li.nav-item
+              a.nav-link.collapsed.p-0.pl-1(href='#ps4' data-toggle='collapse' data-target='#ps-4') 4th Probstück
+              div.collapse#ps-4(aria-expanded='false')
+                ul.flex-column.nav.pl-2
+                  small 
+                    li.nav-item Facsimile
+                      ul.list-unstyled
+                        li.pl-1
+                          a(href='/facsimile/4/firstEdition') 1st edition (1719)
+                        li.pl-1
+                          a(href='/facsimile/4/secondEdition') 2nd edition (1731)
+                    li.nav-item Transcription
+                      ul.list-unstyled
+                        li.pl-1
+                          a(href='/transcription/4/mattheson/firstEdition') 1st edition (1719)
+                        li.pl-1
+                          a(href='/transcription/4/mattheson/secondEdition') 2nd edition (1731)
+                        li.pl-1
+                          a(href='/transcription/4/mattheson/english') English translation
+                    li.nav-item Analysis
+                      ul.list-unstyled 
+                        li.pl-1
+                          a(href='/transcription/4/pfeffer/german') Basse fondamentale
 
-        li.parent 14th Prob-Stück
-          ul.child Facsimile
-            li
-              a(href='/facsimile/14/firstEdition') 1st edition (1719)
-            li
-              a(href='/facsimile/14/secondEdition') 2nd edition (1731)
-          ul.child Transcription
-            li
-              a(href='/transcription/14/mattheson/secondEdition') 2nd edition (1731)
-            li
-              a(href='/transcription/14/mattheson/english') English translation
+            li.nav-item
+              a.nav-link.collapsed.p-0.pl-1(href='#ps5' data-toggle='collapse' data-target='#ps-5') 5th Probstück
+              div.collapse#ps-5(aria-expanded='false')
+                ul.flex-column.nav.pl-2
+                  small 
+                    li.nav-item Facsimile
+                      ul.list-unstyled
+                        li.pl-1
+                          a(href='/facsimile/5/firstEdition') 1st edition (1719)
+                        li.pl-1
+                          a(href='/facsimile/5/secondEdition') 2nd edition (1731)
+                    li.nav-item Transcription
+                      ul.list-unstyled
+                        li.pl-1
+                          a(href='/transcription/5/mattheson/firstEdition') 1st edition (1719)
+                        li.pl-1
+                          a(href='/transcription/5/mattheson/secondEdition') 2nd edition (1731)
+                        li.pl-1
+                          a(href='/transcription/5/mattheson/english') English translation
+                  
+            li.nav-item
+              a.nav-link.collapsed.p-0.pl-1(href='#ps6' data-toggle='collapse' data-target='#ps-6') 6th Probstück
+              div.collapse#ps-6(aria-expanded='false')
+                ul.flex-column.nav.pl-2
+                  small 
+                    li.nav-item Facsimile
+                      ul.list-unstyled
+                        li.pl-1
+                          a(href='/facsimile/6/firstEdition') 1st edition (1719)
+                        li.pl-1
+                          a(href='/facsimile/6/secondEdition') 2nd edition (1731)
+                    li.nav-item Transcription
+                      ul.list-unstyled
+                        li.pl-1
+                          a(href='/transcription/6/mattheson/firstEdition') 1st edition (1719)
+                        li.pl-1
+                          a(href='/transcription/6/mattheson/secondEdition') 2nd edition (1731)
+                        li.pl-1
+                          a(href='/transcription/6/mattheson/english') English translation
 
-        li.parent 15th Prob-Stück
-          ul.child Facsimile
-            li
-              a(href='/facsimile/15/firstEdition') 1st edition (1719)
-            li
-              a(href='/facsimile/15/secondEdition') 2nd edition (1731)
-          ul.child Transcription
-            li
-              a(href='/transcription/15/mattheson/secondEdition') 2nd edition (1731)
+            li.nav-item
+              a.nav-link.collapsed.p-0.pl-1(href='#ps7' data-toggle='collapse' data-target='#ps-7') 7th Probstück
+              div.collapse#ps-7(aria-expanded='false')
+                ul.flex-column.nav.pl-2
+                  small 
+                    li.nav-item Facsimile
+                      ul.list-unstyled
+                        li.pl-1
+                          a(href='/facsimile/7/firstEdition') 1st edition (1719)
+                        li.pl-1
+                          a(href='/facsimile/7/secondEdition') 2nd edition (1731)
+                    li.nav-item Transcription
+                      ul.list-unstyled
+                        li.pl-1
+                          a(href='/transcription/7/mattheson/firstEdition') 1st edition (1719)
+                        li.pl-1
+                          a(href='/transcription/7/mattheson/secondEdition') 2nd edition (1731)
+                        li.pl-1
+                          a(href='/transcription/7/mattheson/english') English translation
+                    li.nav-item Realizations
+                      ul.list-unstyled 
+                        li.pl-1
+                          a(href='/transcription/7/pfeffer/german') Niels Pfeffer (2019)
+                  
+            li.nav-item
+              a.nav-link.collapsed.p-0.pl-1(href='#ps8' data-toggle='collapse' data-target='#ps-8') 8th Probstück
+              div.collapse#ps-8(aria-expanded='false')
+                ul.flex-column.nav.pl-2
+                  small 
+                    li.nav-item Facsimile
+                      ul.list-unstyled
+                        li.pl-1
+                          a(href='/facsimile/8/firstEdition') 1st edition (1719)
+                        li.pl-1
+                          a(href='/facsimile/8/secondEdition') 2nd edition (1731)
+                    li.nav-item Transcription
+                      ul.list-unstyled
+                        li.pl-1
+                          a(href='/transcription/8/mattheson/firstEdition') 1st edition (1719)
+                        li.pl-1
+                          a(href='/transcription/8/mattheson/secondEdition') 2nd edition (1731)
+                        li.pl-1
+                          a(href='/transcription/8/mattheson/english') English translation
 
-        li.parent 16th Prob-Stück
-          ul.child Facsimile
-            li
-              a(href='/facsimile/16/firstEdition') 1st edition (1719)
-            li
-              a(href='/facsimile/16/secondEdition') 2nd edition (1731)
-          ul.child Transcription
-            li
-              a(href='/transcription/16/mattheson/secondEdition') 2nd edition (1731)
+            li.nav-item
+              a.nav-link.collapsed.p-0.pl-1(href='#ps9' data-toggle='collapse' data-target='#ps-9') 9th Probstück
+              div.collapse#ps-9(aria-expanded='false')
+                ul.flex-column.nav.pl-2
+                  small 
+                    li.nav-item Facsimile
+                      ul.list-unstyled
+                        li.pl-1
+                          a(href='/facsimile/9/firstEdition') 1st edition (1719)
+                        li.pl-1
+                          a(href='/facsimile/9/secondEdition') 2nd edition (1731)
+                    li.nav-item Transcription
+                      ul.list-unstyled
+                        li.pl-1
+                          a(href='/transcription/9/mattheson/firstEdition') 1st edition (1719)
+                        li.pl-1
+                          a(href='/transcription/9/mattheson/secondEdition') 2nd edition (1731)
+                        li.pl-1
+                          a(href='/transcription/9/mattheson/english') English translation
+                  
+            li.nav-item
+              a.nav-link.collapsed.p-0.pl-1(href='#ps10' data-toggle='collapse' data-target='#ps-10') 10th Probstück
+              div.collapse#ps-10(aria-expanded='false')
+                ul.flex-column.nav.pl-2
+                  small 
+                    li.nav-item Facsimile
+                      ul.list-unstyled
+                        li.pl-1
+                          a(href='/facsimile/10/firstEdition') 1st edition (1719)
+                        li.pl-1
+                          a(href='/facsimile/10/secondEdition') 2nd edition (1731)
+                    li.nav-item Transcription
+                      ul.list-unstyled
+                        li.pl-1
+                          a(href='/transcription/10/mattheson/firstEdition') 1st edition (1719)
+                        li.pl-1
+                          a(href='/transcription/10/mattheson/secondEdition') 2nd edition (1731)
+                        li.pl-1
+                          a(href='/transcription/10/mattheson/english') English translation
+                    li.nav-item Realizations
+                      ul.list-unstyled 
+                        li.pl-1
+                          a(href='/transcription/10/pfeffer/german') Niels Pfeffer (2019)
+
+            li.nav-item
+              a.nav-link.collapsed.p-0.pl-1(href='#ps11' data-toggle='collapse' data-target='#ps-11') 11th Probstück
+              div.collapse#ps-11(aria-expanded='false')
+                ul.flex-column.nav.pl-2
+                  small 
+                    li.nav-item Facsimile
+                      ul.list-unstyled
+                        li.pl-1
+                          a(href='/facsimile/11/firstEdition') 1st edition (1719)
+                        li.pl-1
+                          a(href='/facsimile/11/secondEdition') 2nd edition (1731)
+                    li.nav-item Transcription
+                      ul.list-unstyled
+                        li.pl-1
+                          a(href='/transcription/11/mattheson/firstEdition') 1st edition (1719)
+                        li.pl-1
+                          a(href='/transcription/11/mattheson/secondEdition') 2nd edition (1731)
+                        li.pl-1
+                          a(href='/transcription/11/mattheson/english') English translation
+                  
+            li.nav-item
+              a.nav-link.collapsed.p-0.pl-1(href='#ps12' data-toggle='collapse' data-target='#ps-12') 12th Probstück
+              div.collapse#ps-12(aria-expanded='false')
+                ul.flex-column.nav.pl-2
+                  small 
+                    li.nav-item Facsimile
+                      ul.list-unstyled
+                        li.pl-1
+                          a(href='/facsimile/12/firstEdition') 1st edition (1719)
+                        li.pl-1
+                          a(href='/facsimile/12/secondEdition') 2nd edition (1731)
+                    li.nav-item Transcription
+                      ul.list-unstyled
+                        li.pl-1
+                          a(href='/transcription/12/mattheson/firstEdition') 1st edition (1719)
+                        li.pl-1
+                          a(href='/transcription/12/mattheson/secondEdition') 2nd edition (1731)
+                        li.pl-1
+                          a(href='/transcription/12/mattheson/english') English translation
+
+            li.nav-item
+              a.nav-link.collapsed.p-0.pl-1(href='#ps13' data-toggle='collapse' data-target='#ps-13') 13th Probstück
+              div.collapse#ps-13(aria-expanded='false')
+                ul.flex-column.nav.pl-2
+                  small 
+                    li.nav-item Facsimile
+                      ul.list-unstyled
+                        li.pl-1
+                          a(href='/facsimile/13/firstEdition') 1st edition (1719)
+                        li.pl-1
+                          a(href='/facsimile/13/secondEdition') 2nd edition (1731)
+                    li.nav-item Transcription
+                      ul.list-unstyled
+                        li.pl-1
+                          a(href='/transcription/13/mattheson/firstEdition') 1st edition (1719)
+                        li.pl-1
+                          a(href='/transcription/13/mattheson/secondEdition') 2nd edition (1731)
+                        li.pl-1
+                          a(href='/transcription/13/mattheson/english') English translation
+                  
+            li.nav-item
+              a.nav-link.collapsed.p-0.pl-1(href='#ps14' data-toggle='collapse' data-target='#ps-14') 14th Probstück
+              div.collapse#ps-14(aria-expanded='false')
+                ul.flex-column.nav.pl-2
+                  small 
+                    li.nav-item Facsimile
+                      ul.list-unstyled
+                        li.pl-1
+                          a(href='/facsimile/14/firstEdition') 1st edition (1719)
+                        li.pl-1
+                          a(href='/facsimile/14/secondEdition') 2nd edition (1731)
+                    li.nav-item Transcription
+                      ul.list-unstyled
+                        li.pl-1
+                          a(href='/transcription/14/mattheson/firstEdition') 1st edition (1719)
+                        li.pl-1
+                          a(href='/transcription/14/mattheson/secondEdition') 2nd edition (1731)
+                        li.pl-1
+                          a(href='/transcription/14/mattheson/english') English translation
+
+            li.nav-item
+              a.nav-link.collapsed.p-0.p-0.pl-1(href='#ps15' data-toggle='collapse' data-target='#ps-15') 15th Probstück
+              div.collapse#ps-15(aria-expanded='false')
+                ul.flex-column.nav.pl-2
+                  small 
+                    li.nav-item Facsimile
+                      ul.list-unstyled
+                        li.pl-1
+                          a(href='/facsimile/15/firstEdition') 1st edition (1719)
+                        li.pl-1
+                          a(href='/facsimile/15/secondEdition') 2nd edition (1731)
+                    li.nav-item Transcription
+                      ul.list-unstyled
+                        li.pl-1
+                          a(href='/transcription/15/mattheson/firstEdition') 1st edition (1719)
+                        li.pl-1
+                          a(href='/transcription/15/mattheson/secondEdition') 2nd edition (1731)
+                        li.pl-1
+                          a(href='/transcription/15/mattheson/english') English translation
+
+            li.nav-item
+              a.nav-link.collapsed.p-0.p-0.pl-1(href='#ps16' data-toggle='collapse' data-target='#ps-16') 16th Probstück
+              div.collapse#ps-16(aria-expanded='false')
+                ul.flex-column.nav.pl-2
+                  small 
+                    li.nav-item Facsimile
+                      ul.list-unstyled
+                        li.pl-1
+                          a(href='/facsimile/16/firstEdition') 1st edition (1719)
+                        li.pl-1
+                          a(href='/facsimile/16/secondEdition') 2nd edition (1731)
+                    li.nav-item Transcription
+                      ul.list-unstyled
+                        li.pl-1
+                          a(href='/transcription/16/mattheson/firstEdition') 1st edition (1719)
+                        li.pl-1
+                          a(href='/transcription/16/mattheson/secondEdition') 2nd edition (1731)
+                        li.pl-1
+                          a(href='/transcription/16/mattheson/english') English translation
+
+            li.nav-item
+              a.nav-link.collapsed.p-0.pl-1(href='#ps17' data-toggle='collapse' data-target='#ps-17') 17th Probstück
+              div.collapse#ps-17(aria-expanded='false')
+                ul.flex-column.nav.pl-2
+                  small 
+                    li.nav-item Facsimile
+                      ul.list-unstyled
+                        li.pl-1
+                          a(href='/facsimile/17/firstEdition') 1st edition (1719)
+                        li.pl-1
+                          a(href='/facsimile/17/secondEdition') 2nd edition (1731)
+                    li.nav-item Transcription
+                      ul.list-unstyled
+                        li.pl-1
+                          a(href='/transcription/17/mattheson/firstEdition') 1st edition (1719)
+                        li.pl-1
+                          a(href='/transcription/17/mattheson/secondEdition') 2nd edition (1731)
+                        li.pl-1
+                          a(href='/transcription/17/mattheson/english') English translation
+
+            li.nav-item
+              a.nav-link.collapsed.p-0.pl-1(href='#ps18' data-toggle='collapse' data-target='#ps-18') 18th Probstück
+              div.collapse#ps-18(aria-expanded='false')
+                ul.flex-column.nav.pl-2
+                  small 
+                    li.nav-item Facsimile
+                      ul.list-unstyled
+                        li.pl-1
+                          a(href='/facsimile/18/firstEdition') 1st edition (1719)
+                        li.pl-1
+                          a(href='/facsimile/18/secondEdition') 2nd edition (1731)
+                    li.nav-item Transcription
+                      ul.list-unstyled
+                        li.pl-1
+                          a(href='/transcription/18/mattheson/firstEdition') 1st edition (1719)
+                        li.pl-1
+                          a(href='/transcription/18/mattheson/secondEdition') 2nd edition (1731)
+                        li.pl-1
+                          a(href='/transcription/18/mattheson/english') English translation
+                  
+            li.nav-item
+              a.nav-link.collapsed.p-0.pl-1(href='#ps19' data-toggle='collapse' data-target='#ps-19') 19th Probstück
+              div.collapse#ps-19(aria-expanded='false')
+                ul.flex-column.nav.pl-2
+                  small 
+                    li.nav-item Facsimile
+                      ul.list-unstyled
+                        li.pl-1
+                          a(href='/facsimile/19/firstEdition') 1st edition (1719)
+                        li.pl-1
+                          a(href='/facsimile/19/secondEdition') 2nd edition (1731)
+                    li.nav-item Transcription
+                      ul.list-unstyled
+                        li.pl-1
+                          a(href='/transcription/19/mattheson/firstEdition') 1st edition (1719)
+                        li.pl-1
+                          a(href='/transcription/19/mattheson/secondEdition') 2nd edition (1731)
+                        li.pl-1
+                          a(href='/transcription/19/mattheson/english') English translation
+
+            li.nav-item
+              a.nav-link.collapsed.p-0.pl-1(href='#ps20' data-toggle='collapse' data-target='#ps-20') 20th Probstück
+              div.collapse#ps-20(aria-expanded='false')
+                ul.flex-column.nav.pl-2
+                  small 
+                    li.nav-item Facsimile
+                      ul.list-unstyled
+                        li.pl-1
+                          a(href='/facsimile/20/firstEdition') 1st edition (1719)
+                        li.pl-1
+                          a(href='/facsimile/20/secondEdition') 2nd edition (1731)
+                    li.nav-item Transcription
+                      ul.list-unstyled
+                        li.pl-1
+                          a(href='/transcription/20/mattheson/firstEdition') 1st edition (1719)
+                        li.pl-1
+                          a(href='/transcription/20/mattheson/secondEdition') 2nd edition (1731)
+                        li.pl-1
+                          a(href='/transcription/20/mattheson/english') English translation
+                  
+            li.nav-item
+              a.nav-link.collapsed.p-0.pl-1(href='#ps21' data-toggle='collapse' data-target='#ps-21') 21th Probstück
+              div.collapse#ps-21(aria-expanded='false')
+                ul.flex-column.nav.pl-2
+                  small 
+                    li.nav-item Facsimile
+                      ul.list-unstyled
+                        li.pl-1
+                          a(href='/facsimile/21/firstEdition') 1st edition (1719)
+                        li.pl-1
+                          a(href='/facsimile/21/secondEdition') 2nd edition (1731)
+                    li.nav-item Transcription
+                      ul.list-unstyled
+                        li.pl-1
+                          a(href='/transcription/21/mattheson/firstEdition') 1st edition (1719)
+                        li.pl-1
+                          a(href='/transcription/21/mattheson/secondEdition') 2nd edition (1731)
+                        li.pl-1
+                          a(href='/transcription/21/mattheson/english') English translation
 
 
-        li.parent 17th Prob-Stück
-          ul.child Facsimile
-            li
-              a(href='/facsimile/17/firstEdition') 1st edition (1719)
-            li
-              a(href='/facsimile/17/secondEdition') 2nd edition (1731)
-          ul.child Transcription
-            li
-              a(href='/transcription/17/mattheson/secondEdition') 2nd edition (1731)
+  .mt-1#options
+    block options
+  
+  .container-fluid
+    block content
 
-        li.parent 18th Prob-Stück
-          ul.child Facsimile
-            li
-              a(href='/facsimile/18/firstEdition') 1st edition (1719)
-            li
-              a(href='/facsimile/18/secondEdition') 2nd edition (1731)
-          ul.child Transcription
-            li
-              a(href='/transcription/18/mattheson/secondEdition') 2nd edition (1731)
-
-        li.parent 19th Prob-Stück
-          ul.child Facsimile
-            li
-              a(href='/facsimile/19/firstEdition') 1st edition (1719)
-            li
-              a(href='/facsimile/19/secondEdition') 2nd edition (1731)
-          ul.child Transcription
-            li
-              a(href='/transcription/19/mattheson/secondEdition') 2nd edition (1731)
-
-
-        li.parent 20th Prob-Stück
-          ul.child Facsimile
-            li
-              a(href='/facsimile/20/firstEdition') 1st edition (1719)
-            li
-              a(href='/facsimile/20/secondEdition') 2nd edition (1731)
-          ul.child Transcription
-            li
-              a(href='/transcription/20/mattheson/secondEdition') 2nd edition (1731)
-
-        li.parent 21st Prob-Stück
-          ul.child Facsimile
-            li
-              a(href='/facsimile/21/firstEdition') 1st edition (1719)
-            li
-              a(href='/facsimile/21/secondEdition') 2nd edition (1731)
-          ul.child Transcription
-            li
-              a(href='/transcription/21/mattheson/secondEdition') 2nd edition (1731)
-
-  block controlsAdditions
-
-#content
-  block content
-
-#message
-#copyright &copy; Niels Pfeffer
+#message.d-none.fixed-top.text-center
+#copyright.bg-light.font-weight-light &copy; Niels Pfeffer

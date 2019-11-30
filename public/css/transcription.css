@@ -2,13 +2,6 @@
   box-sizing: border-box;
 }
 
-.controls-table {
-  display: none;
-  float: none;
-  position: absolute !important;
-  z-index: 1000;
-}
-
 svg {
   display: block;
   left: 0px;
@@ -31,14 +24,14 @@ svg {
 #tooltips {
   transform: scale(0.6);
   transform-origin: top left;
-  z-index: 900;
+  z-index: 1200;
 }
 
 .tooltip {
   float: left;
   border: 1px solid black;
   background-color: white;
-  z-index: 900;
+  z-index: 1200;
 }
 
 .tooltip-text {
@@ -50,40 +43,8 @@ svg {
   padding: 0.5rem;
 }
 
-.left-half {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  float: left;
-  left: 0px;
-  width: 50%;
-}
-
-.right-half {
-  position: absolute;
-  right: 0px;
-  width: 50%;
-}
-
 input[type="number"] {
   max-width: 4rem;
-}
-
-.change-page {
-  font-family: sans-serif;
-  font-size: 1.2rem;
-  cursor: pointer;
-}
-
-#score-view {
-  margin-left: 30px;
-  margin-right: 30px;
-}
-
-#annotations-view {
-  float: right;
-  height: 95vh;
-  overflow-y: scroll;
 }
 
 .supplied .text {
@@ -108,26 +69,6 @@ input[type="number"] {
 
 a {
   text-decoration: none;
-}
-
-.pdf-download:after {
-  width: 16px;
-  vertical-align: middle;
-  margin: 4px 0 2px 4px;
-  padding: 4px 0 1px 0px;
-  background-color: #fff;
-  color: red;
-  border: 1px solid red;
-  border-top-right-radius: 7px;
-  box-shadow: 1px 1px #ccc;
-  font-size: 7.7px;
-  font-weight: 700;
-  font-family: sans-serif;
-  line-height: 16px;
-  text-decoration: none;
-  display: inline-block;
-  box-sizing: content-box;
-  content: 'PDF';
 }
 
 tei-ref {
@@ -221,63 +162,4 @@ tei-rdg:last-child::after {
 
 tei-teiheader {
   display: none;
-}
-
-input[type="number"] {
-  width: 100px;
-}
-
-#message {
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 0.2rem 0.2rem 0.2rem;
-  text-align: center;
-  width: 20vw;
-  top: 0px;
-  display: none;
-}
-
-#footer {
-  display: flex;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  background-color: #ededed;
-  padding: 0.1rem;
-  z-index: 999;
-  border-radius: 0.2rem 0.2rem 0.2rem;
-}
-
-#footer > * {
-  padding: 0.3rem;
-}
-
-@media screen and (orientation:portrait) {
-  .left-half {
-    position: relative;
-    float: none;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  }
-
-  .right-half {
-    position: absolute;
-    right: auto;
-  }
-
-  #annotations-view {
-    float: none;
-    height: auto;
-    width: 95vw;
-  }
-
-  #annotations-view tei-p {
-    width: 100%;
-  }
-
-  #score-view {
-    margin: 0;
-    width: 90vw;
-  }
 }
