@@ -131,7 +131,8 @@ async function renderComments() {
 }
 
 function connectTEIRefAndSVG(teiRef, targetAttr) {
-  let target = $('#score-view').find(targetAttr);
+  // targets can be in all SVGs, not just in in the score view
+  let target = $('svg').find(targetAttr);
   if (target.length === 0) {
     console.log("corresponding SVG element not found.");
     return;
@@ -182,16 +183,9 @@ function positionAtMouse(el, e) {
   }
 }
 
-function cleanUpTooltips() {
-  $("#tooltips").empty();
-  $(".tooltip-overlay").remove();
-}
-
 // connecting key and meter signature with comments
 function connectSignatureTooltips() {
-  cleanUpTooltips();
-
-  var keySig = $("#score-view svg").find(".keySig");
+  let keySig = $("#score-view svg").find(".keySig");
   var signatureBox;
   if (keySig.length == 0) {
     // In that case we are probably dealing with a key without any signature, A minor or C major.
@@ -200,44 +194,33 @@ function connectSignatureTooltips() {
     signatureBox = getSvgElementBoxAsCss(keySig);
     signatureBox.left += signatureBox.width;
   } else {
-    signatureBox = getSvgElementBoxAsCss(keySig)
+    signatureBox = getSvgElementBoxAsCss(keySig);
   }
 
   if (keySig.length != 0) {
-    let annotation = $("tei-note[type='on-key-signature'] span[data-original='']");
+    let annotation = $("tei-note[type='on-key-signature'] span[data-original='']").removeAttr('hidden');
 
-    $("<div class='tooltip-overlay' />").appendTo("body").css(signatureBox).mouseenter(function(e) {
-      let tooltips = $("#tooltips");
-      $("<div class='tooltip tooltip-text' />").append(annotation.removeAttr("hidden")).appendTo("#tooltips");
-      positionAtMouse(tooltips, e);
-    }).mouseleave(function(e) {
-      $("#tooltips").empty();
+    $('#key-overlay').css(signatureBox).popover({
+        content: annotation,
+        trigger: 'hover',
+        html: true
     });
 
     annotation.parent().hide();
   }
 
-  var meterSig = $("#score-view svg").find(".meterSig");
+  let meterSig = $("#score-view svg").find(".meterSig");
   if (meterSig.length != 0) {
-    let annotation = $("tei-note[type='on-meter'] span[data-original='']");
+    signatureBox = getSvgElementBoxAsCss(meterSig);
+    let annotation = $("tei-note[type='on-meter'] span[data-original='']").removeAttr('hidden');
 
-    $("<div class='tooltip-overlay' />").appendTo("body").css(getSvgElementBoxAsCss(meterSig)).mouseenter(function(e) {
-      let tooltips = $("#tooltips");
-      $("<div class='tooltip tooltip-text' />").append(annotation.removeAttr("hidden")).appendTo("#tooltips");
-      positionAtMouse(tooltips, e);
-    }).mouseleave(function(e) {
-      $("#tooltips").empty();
+    $('#meter-overlay').css(signatureBox).popover({
+        content: annotation,
+        trigger: 'hover',
+        html: true
     });
 
     annotation.parent().hide();
-  }
-}
-
-var tooltipTargets = [];
-
-function disconnectFacsimileTooltips() {
-  for (let i=0; i<tooltipTargets.length; i++) {
-    tooltipTargets[i].off("mouseenter");
   }
 }
 
@@ -301,12 +284,21 @@ async function connectFacsimileTooltips() {
     let xmlId = targetMatch[1];
     if (xmlId) {
       let target = $("#" + xmlId);
-      tooltipTargets.push(target);
-      target.mouseenter(function(e) {
-        $("<img class='tooltip' src='" + imageApiUri + "' />").appendTo("#tooltips");
-        positionAtMouse($("#tooltips"), e);
-      }).mouseleave(function() {
-        $("#tooltips").empty();
+
+      // Often, measures and paragraphs are interrupted by system breaks or
+      // page breaks. This will be indicated by a ||-symbol in the tooltip.
+      let dataContent = target.attr('data-content');
+      if (dataContent) {
+        target.attr('data-content', dataContent +
+          '<i class="fas fa-grip-lines-vertical"></i>' +
+          '<img class="img-fluid" src="' + imageApiUri + '" />');
+      } else {
+        target.attr('data-content', '<img class="img-fluid" src="' + imageApiUri + '" />');
+      }
+
+      target.popover({
+        html: true,
+        trigger: 'hover'
       });
     }
   });

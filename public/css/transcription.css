@@ -14,33 +14,12 @@ svg {
   cursor: pointer;
 }
 
-.tooltip-overlay {
+.signature-overlay {
   position: absolute;
-  border: 1.5px solid #5f97fc;
-  background-color: #8cb5ff;
+  border: 0.1rem solid #ff5100;
+  border-radius: 0.15rem;
+  background-color: #ff9538;
   opacity: 0.3;
-}
-
-#tooltips {
-  transform: scale(0.6);
-  transform-origin: top left;
-  z-index: 1200;
-}
-
-.tooltip {
-  float: left;
-  border: 1px solid black;
-  background-color: white;
-  z-index: 1200;
-}
-
-.tooltip-text {
-  font-size: 1.2rem;
-  line-height: 1.5;
-  font-family: serif;
-  text-align: justify;
-  width: 400px;
-  padding: 0.5rem;
 }
 
 input[type="number"] {
