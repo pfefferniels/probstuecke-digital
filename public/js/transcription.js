@@ -39,7 +39,7 @@ function highlightText(element) {
 }
 
 function drawSVGIndicator(targetAttr) {
-  let svg = SVG.get(targetAttr);
+  let svg = SVG(targetAttr);
   let bbox = svg.bbox();
 
   // draw the box always into g.measure to make
