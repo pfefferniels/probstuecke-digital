@@ -39,15 +39,15 @@ block content
             input#display-facsimile.form-check-input(type='checkbox' name='display-facsimile' autocomplete='off')
             label.form-check-label(for='display-facsimile') display facsimile
           
-          .form-check
-            input#facsimile-size.form-check-input(type='range' name='facsimile-size' min='20' max='80')
-            label.form-check-label(for='facsimile-size') size 
+          .form-group
+            label.form-control-label(for='facsimile-size') size 
+            input#facsimile-size.form-control-range.custom-range(type='range' name='facsimile-size' min='20' max='80')
           
-          .form-check
-            select#facsimile-quality.form-check-select(name='facsimile-quality')
+          .form-group
+            label.form-control-label(for='facsimile-quality') quality 
+            select#facsimile-quality.form-control(name='facsimile-quality')
               option color 
               option gray 
-            label.form-check-label(for='facsimile-quality') quality 
           
           h5 staves and clefs
           .form-check.form-check-inline
