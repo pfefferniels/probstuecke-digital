@@ -72,18 +72,6 @@ function getSvgElementBoxAsCss(target) {
   };
 }
 
-function adjustToBBox(svgElement) {
-  const bb = svgElement[1].getBBox();
-  const bbw = bb.width;
-  const bbh = bb.height;
-  svgElement[1].setAttribute("viewBox", [bb.x,bb.y,bbw,bbh].join(" "));
-
-  svgElement.css({
-    width: (bbw/1000)*28.34 + "px",
-    height: (bbh/1000)*28.34 + "px"
-  });
-}
-
 // ------
 // MIDI player
 // ------
@@ -114,9 +102,6 @@ async function renderComments() {
       printError("failed loading embedded music example: " + error);
     }
     notatedmusic.find("tei-ptr").replaceWith(svg);
-
-    let embeddedSVG = notatedmusic.find('svg');
-    adjustToBBox(embeddedSVG);
 
     dfd.resolve();
   });
@@ -306,8 +291,6 @@ function reconnectFacsimileTooltips() {
 }
 
 $(document).ready(async function() {
-  adjustToBBox($('#score-view').find('svg'));
-
   $("#player").midiPlayer({
       onUpdate: midiUpdate
   });
