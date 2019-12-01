@@ -49,18 +49,20 @@ block content
               option color 
               option gray 
           
+          hline
           h5 staves and clefs
-          .form-check.form-check-inline
-            input#staves-above(type='number' name='staves-above' min='0' max='10' value='0' autocomplete='off')
-            label(for='staves-above') above
-          
-          .form-check.form-check-inline
-           input#staves-below(type='number' name='staves-below' min='0' max='10' value='0' autocomplete='off')
-           label(for='staves-below') below
+          form#options-form(method='get')
+            .form-check.form-check-inline
+              input#staves-above(type='number' name='above' min='0' max='10' value='0' autocomplete='off')
+              label(for='staves-above') above
+            
+            .form-check.form-check-inline
+             input#staves-below(type='number' name='below' min='0' max='10' value='0' autocomplete='off')
+             label(for='staves-below') below
   
-          .form-check
-            input#modern-clefs.form-check-input(type='checkbox' name='modern-clefs' autocomplete='off')
-            label.form-check-label(for='modern-clefs') modern clefs
+            .form-check
+              input#modern-clefs.form-check-input(type='checkbox' name='modernClefs' autocomplete='off')
+              label.form-check-label(for='modern-clefs') modern clefs
   
         .modal-footer
           button.btn.btn-secondary(type="button" data-dismiss="modal") Cancel

@@ -26,7 +26,10 @@ transcription.get('/:number/:label/:edition', function(req, res) {
     number: number,
     label: label,
     language: edition,
-    svgScore: vrvAdapter.renderSVG(number, label, 'score.mei', req.query.above, req.query.below, req.query.modernClefs),
+    svgScore: vrvAdapter.renderSVG(number, label, 'score.mei',
+                                   req.query.above,
+                                   req.query.below,
+                                   req.query.modernClefs == 'on'),
     teiComment: fs.readFileSync(teiPath),
     midi: vrvAdapter.renderMIDI(number, label, 'score.mei')
    });

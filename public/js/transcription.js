@@ -1,11 +1,5 @@
 const cetei = new CETEI();
 
-var currentParams = {};
-
-function updatePage() {
-  window.location.search = $.param(currentParams);
-}
-
 // ------
 // Helper functions
 // ------
@@ -97,7 +91,6 @@ async function renderComments() {
     let svg;
     try {
       svg = await $.get(['/render', number, label, $(this).find('tei-ptr').attr('target')].join('/'));
-      modernClefs: currentParams.modernClefs
     } catch (error) {
       printError("failed loading embedded music example: " + error);
     }
@@ -112,16 +105,8 @@ async function renderComments() {
 }
 
 function connectTEIRefAndSVG(teiRef, targetAttr) {
-  // targets can be in all SVGs, not just in in the score view
-  let target = $('svg').find(targetAttr);
-  if (target.length === 0) {
-    console.log("corresponding SVG element not found.");
-    return;
-  }
-
-  let rect = drawSVGIndicator(targetAttr);
-
   // connect indicator with text
+  let rect = drawSVGIndicator(targetAttr);
   rect.click(async function() {
     // TODO the same measure might be referenced multiple times. Make sure that in case of a click
     // they other indicators be triggered as well.
@@ -143,25 +128,6 @@ function reconnectCrossRefs() {
       connectTEIRefAndSVG($(this), targetAttrs[i]);
     }
   });
-}
-
-function positionAtMouse(el, e) {
-  el.css({
-    position: "absolute",
-    left: e.pageX+5,
-    top: e.pageY+5
-  });
-
-  if (e.pageX+el.width()*0.6 > $(window).width()) {
-    el.css({
-      left: e.pageX-el.width()*0.6-20
-    });
-  }
-  if (e.pageY+el.height()*0.6 > $(window).height()) {
-    el.css({
-      top: e.pageY-el.height()*0.6-20
-    });
-  }
 }
 
 // connecting key and meter signature with comments
@@ -302,19 +268,9 @@ $(document).ready(async function() {
   // view controls
   // ------
 
-  $("#staves-below").change(function() {
-    currentParams.below = $(this).val();
+  $("#update-page").click(function() {
+    $('#options-form').submit();
   });
-
-  $("#staves-above").change(function() {
-    currentParams.above = $(this).val();
-  });
-
-  $("#modern-clefs").change(function() {
-    currentParams.modernClefs = this.checked;
-  });
-
-  $("#update-page").click(updatePage);
 
   $("#display-facsimile").change(function() {
     if ($(this).is(':checked')) {
