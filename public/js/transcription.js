@@ -13,13 +13,6 @@ function printError(message) {
   });
 }
 
-function printInfo(message) {
-  $("#message").append(message).append("<br/>").css('background-color', 'rgba(200,200,200)');
-  $("#message").show().delay(2000).fadeOut("slow").queue(function() {
-    $(this).empty().dequeue();
-  });
-}
-
 function highlightSVG(svgElement) {
   $("html,body").animate({
     scrollTop: svgElement.rbox().y
@@ -256,10 +249,6 @@ $(document).ready(async function() {
   const piece = 'data:audio/midi;base64,' + midi;
   $("#player").show();
   $("#player").midiPlayer.load(piece);
-
-  // ------
-  // view controls
-  // ------
 
   $("#update-page").click(function() {
     $('#options-form').submit();
