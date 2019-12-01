@@ -115,13 +115,9 @@ async function renderComments() {
     }
     notatedmusic.find("tei-ptr").replaceWith(svg);
 
-    adjustToBBox(notatedmusic.find("svg"));
+    let embeddedSVG = notatedmusic.find('svg');
+    adjustToBBox(embeddedSVG);
 
-    // on smaller screen sizes, the svg might too wide.
-    // var normalParagraph = notatedmusic.parent().find("tei-p");
-    // if (notatedmusic.find("svg").width() > normalParagraph.width()) {
-    //   svg0.attr("width", normalParagraph.width());
-    // }
     dfd.resolve();
   });
 
