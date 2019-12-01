@@ -18,20 +18,48 @@ block headAdditions
   script(type='text/javascript' src='/js/transcription.js')
 
 block options
-  a.btn(data-toggle="modal" data-target="#optionsModal")
+  .p-2(data-toggle="modal" data-target="#optionsModal")
     i.fas.fa-lg.fa-wrench
-
+  
+  .p-2(data-toggle="modal" data-target="#facsimileModal")
+    i.far.fa-lg.fa-image
+    
 block content
   #optionsModal.modal.fade(tabindex="-1" role="dialog" aria-labelledby="options-title" aria-hidden="true")
     .modal-dialog(role="document")
       .modal-content
         .modal-header
-          h5.modal-title#options-title Options
+          h5.modal-title#options-title Staves and Clefs
+          button.close(type="button" data-dismiss="modal" aria-label="Close")
+            span(aria-hidden="true") &times;
+        
+        .modal-body
+          form#options-form(method='get')
+            .form-check.form-check-inline
+              input#staves-above(type='number' name='above' min='0' max='10' value='0' autocomplete='off')
+              label(for='staves-above') above
+            
+            .form-check.form-check-inline
+             input#staves-below(type='number' name='below' min='0' max='10' value='0' autocomplete='off')
+             label(for='staves-below') below
+  
+            .form-check
+              input#modern-clefs.form-check-input(type='checkbox' name='modernClefs' autocomplete='off')
+              label.form-check-label(for='modern-clefs') modern clefs
+  
+          .modal-footer
+            button.btn.btn-secondary(type="button" data-dismiss="modal") Cancel
+            button#update-page.btn.btn-primary(type="button" data-dismiss="modal") Update view
+
+  #facsimileModal.modal.fade(tabindex="-1" role="dialog" aria-labelledby="facsimile-title" aria-hidden="true")
+    .modal-dialog(role="document")
+      .modal-content
+        .modal-header
+          h5.modal-title#facsimile-title Facsimile Display
           button.close(type="button" data-dismiss="modal" aria-label="Close")
             span(aria-hidden="true") &times;
   
-        .modal-body 
-          h5 facsimile display
+        .modal-body
           small (moving the mouse on a measure or paragraph will display the according 
             | facsimile region)
           
@@ -48,26 +76,10 @@ block content
             select#facsimile-quality.form-control(name='facsimile-quality')
               option color 
               option gray 
-          
-          hline
-          h5 staves and clefs
-          form#options-form(method='get')
-            .form-check.form-check-inline
-              input#staves-above(type='number' name='above' min='0' max='10' value='0' autocomplete='off')
-              label(for='staves-above') above
-            
-            .form-check.form-check-inline
-             input#staves-below(type='number' name='below' min='0' max='10' value='0' autocomplete='off')
-             label(for='staves-below') below
-  
-            .form-check
-              input#modern-clefs.form-check-input(type='checkbox' name='modernClefs' autocomplete='off')
-              label.form-check-label(for='modern-clefs') modern clefs
   
         .modal-footer
           button.btn.btn-secondary(type="button" data-dismiss="modal") Cancel
-          button#update-page.btn.btn-primary(type="button" data-dismiss="modal") Update view
-  
+          button#update-facsimile.btn.btn-primary(type="button" data-dismiss="modal") Update view
   .row
     .col-sm#score-view !{svgScore}
     .col-sm#comments-view !{teiComment}

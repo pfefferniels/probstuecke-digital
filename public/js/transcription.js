@@ -172,10 +172,8 @@ function connectSignatureTooltips() {
 }
 
 // connecting transcription and facsimile
-async function connectFacsimileTooltips() {
-  if (!$("#display-facsimile").is(':checked')) {
-    return;
-  }
+async function reloadFacsimileTooltips() {
+  $('.facsimile-popover').removeAttr('data-content').popover('dispose');
 
   let iiif;
   try {
@@ -230,7 +228,7 @@ async function connectFacsimileTooltips() {
     let targetMatch = rTarget.match(/xml:id='(.+)'\]/);
     let xmlId = targetMatch[1];
     if (xmlId) {
-      let target = $("#" + xmlId);
+      let target = $("#" + xmlId).addClass('facsimile-popover');
 
       // Often, measures and paragraphs are interrupted by system breaks or
       // page breaks. This will be indicated by a ||-symbol in the tooltip.
@@ -246,14 +244,9 @@ async function connectFacsimileTooltips() {
       target.popover({
         html: true,
         trigger: 'hover'
-      });
+      }).popover('disable');
     }
   });
-}
-
-function reconnectFacsimileTooltips() {
-  disconnectFacsimileTooltips();
-  connectFacsimileTooltips();
 }
 
 $(document).ready(async function() {
@@ -272,23 +265,12 @@ $(document).ready(async function() {
     $('#options-form').submit();
   });
 
-  $("#display-facsimile").change(function() {
-    if ($(this).is(':checked')) {
-      connectFacsimileTooltips();
+  $('#update-facsimile').click(async function() {
+    if ($('#display-facsimile').is(':checked')) {
+      await reloadFacsimileTooltips();
+      $('.facsimile-popover').popover('enable');
     } else {
-      disconnectFacsimileTooltips();
-    }
-  });
-
-  $("#facsimile-size").change(function() {
-    if ($("#display-facsimile").is(':checked')) {
-      reconnectFacsimileTooltips();
-    }
-  });
-
-  $("#facsimile-quality").change(function() {
-    if ($("#display-facsimile").is(':checked')) {
-      reconnectFacsimileTooltips();
+      $('.facsimile-popover').popover('disable');
     }
   });
 
