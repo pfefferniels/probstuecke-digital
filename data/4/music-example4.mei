@@ -29,17 +29,15 @@
         <body>
             <mdiv>
                 <score>
-                    <scoreDef>
+                    <scoreDef mnum.visible="false">
                         <staffGrp>
-                            <staffDef clef.shape="C" clef.line="1" key.sig="1s" n="1" lines="5">
-                                <label></label>
-                            </staffDef>
+                            <staffDef clef.shape="C" clef.line="1" key.sig="1s" n="1" lines="5" meter.unit="8" />
                         </staffGrp>
                     </scoreDef>
                     <section>
                         <measure xml:id="ex-101" n="">
                             <staff n="1">
-                                <layer n="1">
+                                <layer>
                                     <beam xml:id="ex-1083">
                                         <note xml:id="ex-1081" dur="8" oct="5" pname="f" stem.dir="down" accid.ges="s" />
                                         <note xml:id="ex-1084" dur="8" oct="5" pname="d" stem.dir="down" />
@@ -50,6 +48,9 @@
                                         <note xml:id="ex-1088" dur="8" oct="4" pname="a" stem.dir="up" />
                                         <note xml:id="ex-1089" dur="8" oct="4" pname="a" stem.dir="up" />
                                     </beam>
+                                    <sic source="#firstEdition #secondEdition">
+                                        <barLine />
+                                    </sic>
                                     <beam>
                                         <note dur="8" oct="5" pname="f" stem.dir="down" accid.ges="s" />
                                         <note dur="8" oct="5" pname="d" stem.dir="down" />
@@ -60,10 +61,8 @@
                                         <note dur="8" oct="4" pname="a" stem.dir="up" />
                                         <note dur="8" oct="4" pname="a" stem.dir="up" />
                                     </beam>
-
                                 </layer>
                             </staff>
-
                         </measure>
                     </section>
                 </score>
