@@ -61,11 +61,13 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <harm place="above" staff="2" tstamp="4.0">
-                                <fb>
-                                    <f>6</f>
-                                </fb>
-                            </harm>
+                            <supplied resp="#pfeffer">
+                                <harm place="above" staff="2" tstamp="4.0">
+                                    <fb>
+                                        <f>6</f>
+                                    </fb>
+                                </harm>
+                            </supplied>
                         </measure>
                         <measure xml:id="ex-000815446036" n="38">
                             <staff n="1">
@@ -139,41 +141,43 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <harm place="above" staff="2" tstamp="1">
-                                <fb>
-                                    <f>6</f>
-                                </fb>
-                            </harm>
-                            <harm place="above" staff="2" tstamp="1.5">
-                                <fb>
-                                    <f>6</f>
-                                </fb>
-                            </harm>
-                            <harm place="above" staff="2" tstamp="2.5">
-                                <fb>
-                                    <f>6⃥</f>
-                                </fb>
-                            </harm>
-                            <harm place="above" staff="2" tstamp="3">
-                                <fb>
-                                    <f>6</f>
-                                </fb>
-                            </harm>
-                            <harm place="above" staff="2" tstamp="4">
-                                <fb>
-                                    <f>6</f>
-                                </fb>
-                            </harm>
+                            <supplied resp="#pfeffer">
+                                <harm place="above" staff="2" tstamp="1">
+                                    <fb>
+                                        <f>6</f>
+                                    </fb>
+                                </harm>
+                                <harm place="above" staff="2" tstamp="1.5">
+                                    <fb>
+                                        <f>6</f>
+                                    </fb>
+                                </harm>
+                                <harm place="above" staff="2" tstamp="2.5">
+                                    <fb>
+                                        <f>6⃥</f>
+                                    </fb>
+                                </harm>
+                                <harm place="above" staff="2" tstamp="3">
+                                    <fb>
+                                        <f>6</f>
+                                    </fb>
+                                </harm>
+                                <harm place="above" staff="2" tstamp="4">
+                                    <fb>
+                                        <f>6</f>
+                                    </fb>
+                                </harm>
+                            </supplied>
                         </measure>
                         <measure right="invis" metcon="false">
                             <staff n="1">
                                 <layer>
-                                    <custos oct="3" pname="g"/>
+                                    <custos oct="3" pname="g" />
                                 </layer>
                             </staff>
                             <staff n="2">
                                 <layer>
-                                    <custos oct="2" pname="g"/>
+                                    <custos oct="2" pname="g" />
                                 </layer>
                             </staff>
                         </measure>
