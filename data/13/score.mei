@@ -140,14 +140,15 @@
       </surface>
     </facsimile>
     <body>
-      <mdiv xml:id="mdiv-0000000036411671">
-        <score xml:id="score-0000002144924472">
-          <scoreDef xml:id="scoredef-0000000842437999">
-            <staffGrp xml:id="staffgrp-0000001062282894">
-              <staffDef xml:id="mattheson" clef.shape="G" clef.line="2" key.mode="major" key.sig="2f" meter.count="9" meter.unit="16" n="1" lines="5" ppq="256">
+      <mdiv>
+        <score>
+          <scoreDef key.pname="b" key.accid="f" key.mode="major">
+            <staffGrp>
+              <staffDef xml:id="mattheson" clef.shape="G" clef.line="2" key.sig="2f" meter.count="9" meter.unit="16" n="1" lines="5">
                 <label>Mattheson's annotations</label>
               </staffDef>
-              <staffDef xml:id="bass" clef.shape="F" clef.line="4" key.mode="major" key.sig="2f" meter.count="9" meter.unit="16" n="2" lines="5" ppq="256" />
+              <staffDef xml:id="bass" clef.shape="F" clef.line="4" key.sig="2f" meter.count="9" meter.unit="16" n="2" lines="5">
+              </staffDef>
             </staffGrp>
           </scoreDef>
           <section xml:id="section-0000001780414004">
@@ -943,6 +944,7 @@
               </staff>
               <tie xml:id="tie-0000000052058316" startid="#note-0000000342988351" endid="#note-0000001742548691" />
             </measure>
+            <sb source="#firstEdition #secondEdition" />
             <measure xml:id="measure-0000000130901804" left="rptstart" n="31">
               <staff xml:id="staff-0000000238153064" n="1">
                 <layer xml:id="layer-0000000659701381" n="1">
