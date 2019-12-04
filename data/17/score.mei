@@ -135,7 +135,7 @@
                 </staffDef>
               </staffGrp>
             </scoreDef>
-            <section xml:id="section-0000000606573409">
+            <section>
               <measure xml:id="measure-0000001591287003" n="1">
                 <staff xml:id="staff-0000000178160730" n="1">
                   <layer xml:id="layer-0000000615652000" n="1">
@@ -1212,8 +1212,10 @@
                     <f>3</f>
                   </fb>
                 </harm>
-                <fermata xml:id="fermata-0000000191215716" staff="2" startid="#note-0000001895962097" shape="curved"/>
+                <fermata place="above" staff="2" startid="#note-0000001895962097"/>
               </measure>
+            </section>
+            <section>
               <measure xml:id="measure-0000000175158426" n="26">
                 <staff xml:id="staff-0000001389413823" n="1">
                   <layer xml:id="layer-0000001655644565" n="1">
