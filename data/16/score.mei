@@ -10,7 +10,8 @@
         </composer>
         <respStmt>
           <resp>Edited by</resp>
-          <persName role="editor">Niels Pfeffer</persName>
+          <persName role="editor" xml:id="pfeffer">Niels Pfeffer</persName>
+          <persName role="editor" xml:id="rettinghaus">Klaus Rettinghaus</persName>
         </respStmt>
       </titleStmt>
       <pubStmt>
@@ -111,19 +112,21 @@
         </surface>
       </facsimile>
       <body>
-        <mdiv xml:id="mdiv-0000001090366215">
-          <score xml:id="score-0000001797838944">
-            <scoreDef xml:id="scoredef-0000001703296151">
-              <staffGrp xml:id="staffgrp-0000001234138275">
-                <staffDef xml:id="bass" clef.shape="F" clef.line="4" key.mode="minor" key.sig="7f" meter.count="4" meter.unit="4" meter.sym="common" n="1" lines="5"/>
+        <mdiv>
+          <score>
+            <scoreDef key.pname="a" key.accid="f" key.mode="minor">
+              <staffGrp>
+                <staffDef xml:id="bass" clef.shape="F" clef.line="4" meter.count="4" meter.unit="4" meter.sym="common" n="1" lines="5">
+                  <keySig sig="7f"/>
+                </staffDef>
               </staffGrp>
             </scoreDef>
-            <section xml:id="section-0000000058694225">
-              <measure xml:id="measure-0000002140611949" n="0">
+            <section>
+              <measure xml:id="measure-0000002140611949" metcon="false">
                 <staff xml:id="staff-0000001487026554" n="1" facs="#facsZone-staff-0000001487026554">
                   <layer xml:id="layer-0000000051396475" n="1">
                     <rest xml:id="rest-0000001216999709" dur="16"/>
-                    <beam xml:id="beam-0000001111785608">
+                    <beam>
                       <note xml:id="note-0000000023191432" dur="16" oct="3" pname="a" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001764960954" dur="16" oct="3" pname="b" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001868538823" dur="16" oct="4" pname="c" stem.dir="down" accid.ges="f"/>
@@ -134,39 +137,39 @@
               <measure xml:id="measure-0000000603725952" n="1">
                 <staff xml:id="staff-0000000469021128" n="1" facs="#facsZone-staff-0000000469021128">
                   <layer xml:id="layer-0000001836135225" n="1">
-                    <beam xml:id="beam-0000001376991140">
+                    <beam>
                       <note xml:id="note-0000001889373941" dur="8" oct="3" pname="b" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000084758558" dur="8" oct="3" pname="e" stem.dir="down" accid.ges="f"/>
                     </beam>
-                    <beam xml:id="beam-0000000627424675">
+                    <beam>
                       <note xml:id="note-0000000676222455" dur="16" oct="4" pname="e" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000157182975" dur="16" oct="4" pname="d" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000184068919" dur="16" oct="4" pname="c" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001521411122" dur="16" oct="3" pname="b" stem.dir="down" accid.ges="f"/>
                     </beam>
-                    <beam xml:id="beam-0000000466732767">
+                    <beam>
                       <note xml:id="note-0000001580139512" dur="8" oct="4" pname="c" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000115418433" dur="8" oct="3" pname="a" stem.dir="down" accid.ges="f"/>
                     </beam>
                     <rest xml:id="rest-0000001656253106" dur="16"/>
-                    <beam xml:id="beam-0000001155221430">
+                    <beam>
                       <note xml:id="note-0000000629997923" dur="16" oct="4" pname="c" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000027052147" dur="16" oct="4" pname="d" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001373308369" dur="16" oct="4" pname="e" stem.dir="down" accid.ges="f"/>
                     </beam>
                   </layer>
                 </staff>
-                <harm place="above" staff="1" tstamp="1.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="1">
                   <fb>
                     <f>6⃥</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="2.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="2">
                   <fb>
                     <f>♮</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="3.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="3">
                   <fb>
                     <f>6</f>
                   </fb>
@@ -175,23 +178,23 @@
               <measure xml:id="measure-0000001650746058" n="2">
                 <staff xml:id="staff-0000001370080221" n="1" facs="#facsZone-staff-0000001370080221 #facsZone-staff-0000001370080221-2">
                   <layer xml:id="layer-0000001828370645" n="1">
-                    <beam xml:id="beam-0000001815185276">
+                    <beam>
                       <note xml:id="note-0000000982511942" dur="8" oct="4" pname="d" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001078772382" dur="8" oct="3" pname="g" stem.dir="down" accid.ges="f"/>
                     </beam>
-                    <beam xml:id="beam-0000000266650188">
+                    <beam>
                       <note xml:id="note-0000001418363487" dur="16" oct="4" pname="g" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001082449347" dur="16" oct="4" pname="f" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000002012954130" dur="16" oct="4" pname="e" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000916580619" dur="16" oct="4" pname="d" stem.dir="down" accid.ges="f"/>
                     </beam>
-                    <beam xml:id="beam-0000000632218195">
+                    <beam>
                       <note xml:id="note-0000001477226865" dur="16" oct="4" pname="e" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001035601564" dur="16" oct="4" pname="c" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001952372227" dur="16" oct="4" pname="d" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001066672751" dur="16" oct="4" pname="e" stem.dir="down" accid.ges="f"/>
                     </beam>
-                    <beam xml:id="beam-0000000882012463">
+                    <beam>
                       <note xml:id="note-0000002088104268" dur="16" oct="4" pname="f" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001352705532" dur="16" oct="4" pname="e" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001819436219" dur="16" oct="4" pname="d" stem.dir="down" accid.ges="f"/>
@@ -199,12 +202,12 @@
                     </beam>
                   </layer>
                 </staff>
-                <harm place="above" staff="1" tstamp="3.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="3">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="4.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="4">
                   <fb>
                     <f>6</f>
                   </fb>
@@ -214,25 +217,25 @@
               <measure xml:id="measure-0000001345423292" n="3">
                 <staff xml:id="staff-0000000866920064" n="1" visible="true" facs="#facsZone-staff-0000000866920064">
                   <layer xml:id="layer-0000000886447243" n="1">
-                    <beam xml:id="beam-0000001008379888">
+                    <beam>
                       <note xml:id="note-0000001099750257" dur="16" oct="4" pname="d" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000116623957" dur="16" oct="3" pname="b" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001767548701" dur="16" oct="4" pname="c" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001419347664" dur="16" oct="4" pname="d" stem.dir="down" accid.ges="f"/>
                     </beam>
-                    <beam xml:id="beam-0000001547782643">
+                    <beam>
                       <note xml:id="note-0000001542208584" dur="16" oct="4" pname="e" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001663466205" dur="16" oct="4" pname="d" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000582635579" dur="16" oct="4" pname="c" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000971262521" dur="16" oct="3" pname="b" stem.dir="down" accid.ges="f"/>
                     </beam>
-                    <beam xml:id="beam-0000001124271962">
+                    <beam>
                       <note xml:id="note-0000000655302589" dur="16" oct="4" pname="c" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000224708063" dur="16" oct="3" pname="a" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000785212029" dur="16" oct="3" pname="b" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000341408437" dur="16" oct="4" pname="c" stem.dir="down" accid.ges="f"/>
                     </beam>
-                    <beam xml:id="beam-0000000566933187">
+                    <beam>
                       <note xml:id="note-0000000827057359" dur="16" oct="4" pname="d" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000018839672" dur="16" oct="4" pname="c" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001997280705" dur="16" oct="3" pname="b" stem.dir="down" accid.ges="f"/>
@@ -240,18 +243,18 @@
                     </beam>
                   </layer>
                 </staff>
-                <harm place="above" staff="1" tstamp="1.000000" vgrp="91">
+                <harm place="above" staff="1" tstamp="1">
                   <fb>
                     <f>6</f>
                     <f>5</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="2.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="2">
                   <fb>
                     <f>♮</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="3.000000" vgrp="91">
+                <harm place="above" staff="1" tstamp="3">
                   <fb>
                     <f>6</f>
                     <f>5</f>
@@ -268,36 +271,36 @@
                     <note xml:id="note-0000001879154912" dur="8" oct="3" pname="g" stem.dir="down">
                       <accid xml:id="accid-0000001391994724" accid="f" accid.ges="f"/>
                     </note>
-                    <beam xml:id="beam-0000000266985257">
+                    <beam>
                       <note xml:id="note-0000000233984521" dur="16" oct="3" pname="f" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001486217524" dur="16" oct="3" pname="e" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000099490922" dur="16" oct="3" pname="d" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000609210051" dur="16" oct="4" pname="f" stem.dir="down" accid.ges="f"/>
                     </beam>
-                    <beam xml:id="beam-0000001383379995">
+                    <beam>
                       <note xml:id="note-0000000586922364" dur="8" oct="4" pname="e" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000057606140" dur="8" oct="2" pname="e" stem.dir="down" accid.ges="f"/>
                     </beam>
                   </layer>
                 </staff>
-                <harm place="above" staff="1" tstamp="1.000000" vgrp="91">
+                <harm place="above" staff="1" tstamp="1">
                   <fb>
-                    <f>5♭</f>
-                    <f>7♭</f>
+                    <f>♭5</f>
+                    <f>♭7</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="3.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="3">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="4.000000" vgrp="91">
+                <harm place="above" staff="1" tstamp="4">
                   <fb>
                     <f>6</f>
                     <f>4</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="4.500000" vgrp="80">
+                <harm place="above" staff="1" tstamp="4.5">
                   <fb>
                     <f>♮</f>
                   </fb>
@@ -315,14 +318,14 @@
                     </note>
                   </layer>
                 </staff>
-                <harm place="above" staff="1" tstamp="3.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="3">
                   <fb>
                     <f>6</f>
                     <f>4</f>
                     <f>2</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="4.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="4">
                   <fb>
                     <f>6</f>
                   </fb>
@@ -338,19 +341,29 @@
                     <note xml:id="note-0000001191054297" dur="4" oct="3" pname="f" stem.dir="down" accid.ges="f"/>
                   </layer>
                 </staff>
-                <harm place="above" staff="1" tstamp="2.500000" vgrp="80">
+                <harm place="above" staff="1" tstamp="2.5">
                   <fb>
-                    <f>5♭</f>
+                    <f>♭5</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="4.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="3">
                   <fb>
-                    <f>43</f>
+                    <f>4</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="4.996094" vgrp="80">
+                <harm place="above" staff="1" tstamp="3.5">
                   <fb>
-                    <f>76</f>
+                    <f>3</f>
+                  </fb>
+                </harm>
+                <harm place="above" staff="1" tstamp="4">
+                  <fb>
+                    <f>7</f>
+                  </fb>
+                </harm>
+                <harm place="above" staff="1" tstamp="4.5">
+                  <fb>
+                    <f>6</f>
                   </fb>
                 </harm>
               </measure>
@@ -360,7 +373,7 @@
                   <layer xml:id="layer-0000001196809504" n="1">
                     <note xml:id="note-0000001913859374" dur="4" oct="3" pname="e" stem.dir="down" accid.ges="f"/>
                     <rest xml:id="rest-0000001384156908" dur="4"/>
-                    <beam xml:id="beam-0000000334058968">
+                    <beam>
                       <note xml:id="note-0000001772158613" dur="8" oct="3" pname="f" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000716494558" dur="8" oct="3" pname="e" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000002050231177" dur="8" oct="3" pname="d" stem.dir="down" accid.ges="f"/>
@@ -368,22 +381,22 @@
                     </beam>
                   </layer>
                 </staff>
-                <harm place="above" staff="1" tstamp="1.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="1">
                   <fb>
                     <f>♮</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="3.500000" vgrp="80">
+                <harm place="above" staff="1" tstamp="3.5">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="4.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="4">
                   <fb>
                     <f>7</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="4.500000" vgrp="80">
+                <harm place="above" staff="1" tstamp="4.5">
                   <fb>
                     <f>7</f>
                   </fb>
@@ -392,7 +405,7 @@
               <measure xml:id="measure-0000000243130112" n="8">
                 <staff xml:id="staff-0000000401169297" n="1" facs="#facsZone-staff-0000000401169297">
                   <layer xml:id="layer-0000001463339149" n="1">
-                    <beam xml:id="beam-0000001041171373">
+                    <beam>
                       <note xml:id="note-0000001939204931" dur="8" oct="3" pname="c" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000903061635" dur="8" oct="3" pname="d" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000002117983261" dur="8" oct="3" pname="e" stem.dir="down" accid.ges="f"/>
@@ -403,12 +416,12 @@
                     <note xml:id="note-0000001229434829" dur="8" oct="3" pname="e" stem.dir="down" accid.ges="f"/>
                   </layer>
                 </staff>
-                <harm place="above" staff="1" tstamp="2.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="2">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="4.500000" vgrp="80">
+                <harm place="above" staff="1" tstamp="4.5">
                   <fb>
                     <f>6</f>
                   </fb>
@@ -417,13 +430,13 @@
               <measure xml:id="measure-0000001015696442" n="9">
                 <staff xml:id="staff-0000001737688655" n="1" facs="#facsZone-staff-0000001737688655">
                   <layer xml:id="layer-0000000112322600" n="1">
-                    <beam xml:id="beam-0000000433331482">
+                    <beam>
                       <note xml:id="note-0000000536130663" dur="16" oct="3" pname="f" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000754608831" dur="16" oct="3" pname="g" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000002073219284" dur="16" oct="3" pname="a" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000427226541" dur="16" oct="3" pname="f" stem.dir="down" accid.ges="f"/>
                     </beam>
-                    <beam xml:id="beam-0000002117148309">
+                    <beam>
                       <note xml:id="note-0000001022385402" dur="8" oct="3" pname="g" stem.dir="up" accid.ges="f"/>
                       <note xml:id="note-0000001112396739" dur="8" oct="2" pname="g" stem.dir="up" accid.ges="f"/>
                     </beam>
@@ -432,18 +445,18 @@
                     <note xml:id="note-0000002077949929" dur="8" oct="4" pname="c" stem.dir="down" accid.ges="f"/>
                   </layer>
                 </staff>
-                <harm place="above" staff="1" tstamp="1.500000" vgrp="80">
+                <harm place="above" staff="1" tstamp="1.5">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="2.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="2">
                   <fb>
                     <f>6</f>
                     <f>4</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="2.500000" vgrp="80">
+                <harm place="above" staff="1" tstamp="2.5">
                   <fb>
                     <f>3</f>
                   </fb>
@@ -458,25 +471,25 @@
                     <note xml:id="note-0000000514705783" dur="4" oct="3" pname="a" stem.dir="down" accid.ges="f"/>
                   </layer>
                 </staff>
-                <harm place="above" staff="1" tstamp="1.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="1">
                   <fb>
                     <f>4</f>
                     <f>2</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="2.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="2">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
                 <tie xml:id="tie-0000001874628798" startid="#note-0000001746872956" endid="#note-0000001403962868"/>
-                <harm place="above" staff="1" tstamp="3.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="3">
                   <fb>
                     <f>4</f>
                     <f>2</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="4.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="4">
                   <fb>
                     <f>6</f>
                   </fb>
@@ -492,25 +505,25 @@
                     <note xml:id="note-0000001531951998" dur="4" oct="3" pname="f" stem.dir="down" accid.ges="f"/>
                   </layer>
                 </staff>
-                <harm place="above" staff="1" tstamp="1.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="1">
                   <fb>
                     <f>4</f>
                     <f>2</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="2.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="2">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
                 <tie xml:id="tie-0000001914424307" startid="#note-0000000364522415" endid="#note-0000001371205330"/>
-                <harm place="above" staff="1" tstamp="3.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="3">
                   <fb>
                     <f>4</f>
                     <f>2</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="4.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="4">
                   <fb>
                     <f>6</f>
                   </fb>
@@ -524,7 +537,7 @@
                     <note xml:id="note-0000002117579164" dur="4" oct="3" pname="f" stem.dir="down" accid.ges="f"/>
                     <rest xml:id="rest-0000002047014344" dur="8"/>
                     <note xml:id="note-0000001562317975" dur="8" oct="3" pname="e" stem.dir="down" accid.ges="f"/>
-                    <beam xml:id="beam-0000001174288757">
+                    <beam>
                       <note xml:id="note-0000000366476347" dur="8" oct="3" pname="d" stem.dir="up" accid.ges="f"/>
                       <note xml:id="note-0000001014450488" dur="8" oct="2" pname="b" stem.dir="up" accid.ges="f"/>
                       <note xml:id="note-0000000820112164" dur="8" oct="3" pname="c" stem.dir="up" accid.ges="f"/>
@@ -532,33 +545,33 @@
                     </beam>
                   </layer>
                 </staff>
-                <harm place="above" staff="1" tstamp="1.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="1">
                   <fb>
                     <f>4</f>
                     <f>2</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="2.500000" vgrp="80">
+                <harm place="above" staff="1" tstamp="2.5">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="3.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="3">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="3.500000" vgrp="80">
+                <harm place="above" staff="1" tstamp="3.5">
                   <fb>
                     <f>6⃥</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="4.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="4">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="4.500000" vgrp="80">
+                <harm place="above" staff="1" tstamp="4.5">
                   <fb>
                     <f>6</f>
                   </fb>
@@ -569,28 +582,33 @@
                   <layer xml:id="layer-0000001687740841" n="1">
                     <note xml:id="note-0000000639833415" dur="4" oct="3" pname="e" stem.dir="down" accid.ges="f"/>
                     <rest xml:id="rest-0000000270482212" dur="16"/>
-                    <beam xml:id="beam-0000000874669082">
+                    <beam>
                       <note xml:id="note-0000000854640025" dur="16" oct="4" pname="c" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000930404838" dur="16" oct="4" pname="d" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000002050786779" dur="16" oct="4" pname="e" stem.dir="down" accid.ges="f"/>
                     </beam>
                     <note xml:id="note-0000001408147140" dur="4" oct="3" pname="f" stem.dir="down" accid.ges="f"/>
                     <rest xml:id="rest-0000000768577375" dur="16"/>
-                    <beam xml:id="beam-0000000856242772">
+                    <beam>
                       <note xml:id="note-0000001881768469" dur="16" oct="3" pname="b" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001489516831" dur="16" oct="4" pname="c" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001024148975" dur="16" oct="4" pname="d" stem.dir="down" accid.ges="f"/>
                     </beam>
                   </layer>
                 </staff>
-                <harm place="above" staff="1" tstamp="1.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="1">
                   <fb>
                     <f>♮</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="4.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="3">
                   <fb>
-                    <f>76</f>
+                    <f>7</f>
+                  </fb>
+                </harm>
+                <harm place="above" staff="1" tstamp="3.5">
+                  <fb>
+                    <f>6</f>
                   </fb>
                 </harm>
               </measure>
@@ -599,12 +617,12 @@
                   <layer xml:id="layer-0000000336495209" n="1">
                     <note xml:id="note-0000000735608092" dur="4" oct="3" pname="e" stem.dir="down" accid.ges="f"/>
                     <rest xml:id="rest-0000002039584173" dur="16"/>
-                    <beam xml:id="beam-0000000724136713">
+                    <beam>
                       <note xml:id="note-0000001936250926" dur="16" oct="2" pname="a" stem.dir="up" accid.ges="f"/>
                       <note xml:id="note-0000000565742420" dur="16" oct="2" pname="b" stem.dir="up" accid.ges="f"/>
                       <note xml:id="note-0000000705831113" dur="16" oct="3" pname="c" stem.dir="up" accid.ges="f"/>
                     </beam>
-                    <beam xml:id="beam-0000000261184482">
+                    <beam>
                       <note xml:id="note-0000000625195356" dur="16" oct="3" pname="d" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000465272586" dur="16" oct="3" pname="d" stem.dir="down">
                         <accid xml:id="accid-0000000917934612" accid="n"/>
@@ -612,35 +630,35 @@
                       <note xml:id="note-0000001782862486" dur="16" oct="3" pname="e" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000414612624" dur="16" oct="3" pname="f" stem.dir="down" accid.ges="f"/>
                     </beam>
-                    <beam xml:id="beam-0000001988313511">
+                    <beam>
                       <note xml:id="note-0000001997803747" dur="8" oct="3" pname="e" stem.dir="up" accid.ges="f"/>
                       <note xml:id="note-0000000685358983" dur="8" oct="2" pname="e" stem.dir="up" accid.ges="f"/>
                     </beam>
                   </layer>
                 </staff>
-                <harm place="above" staff="1" tstamp="1.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="1">
                   <fb>
                     <f>7</f>
                     <f>♮</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="3.500000" vgrp="80">
+                <harm place="above" staff="1" tstamp="3.5">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="3.750000" vgrp="80">
+                <harm place="above" staff="1" tstamp="3.75">
                   <fb>
                     <f>6♮</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="4.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="4">
                   <fb>
                     <f>6</f>
                     <f>4</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="4.500000" vgrp="80">
+                <harm place="above" staff="1" tstamp="4.5">
                   <fb>
                     <f>♮</f>
                   </fb>
@@ -651,7 +669,7 @@
                   <layer xml:id="layer-0000001082387950" n="1">
                     <note xml:id="note-0000000584890355" dur="4" oct="2" pname="a" stem.dir="up" accid.ges="f"/>
                     <rest xml:id="rest-0000000892702269" dur="16"/>
-                    <beam xml:id="beam-0000000455645457">
+                    <beam>
                       <note xml:id="note-0000001464250098" dur="16" oct="4" pname="c" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000206322233" dur="16" oct="4" pname="d" stem.dir="down">
                         <accid xml:id="accid-0000001879706282" accid="f" accid.ges="f"/>
@@ -660,31 +678,36 @@
                     </beam>
                     <note xml:id="note-0000001492536126" dur="4" oct="3" pname="f" stem.dir="down" accid.ges="f"/>
                     <rest xml:id="rest-0000001914595172" dur="16"/>
-                    <beam xml:id="beam-0000001198858493">
+                    <beam>
                       <note xml:id="note-0000002086172837" dur="16" oct="3" pname="b" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000486482697" dur="16" oct="4" pname="c" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001209918279" dur="16" oct="4" pname="d" stem.dir="down" accid.ges="f"/>
                     </beam>
                   </layer>
                 </staff>
-                <harm place="above" staff="1" tstamp="4.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="3">
                   <fb>
-                    <f>76</f>
+                    <f>7</f>
+                  </fb>
+                </harm>
+                <harm place="above" staff="1" tstamp="3.5">
+                  <fb>
+                    <f>6</f>
                   </fb>
                 </harm>
               </measure>
-              <sb xml:id="sb-0000002053430031"/>
+              <sb source="#firstEdition #secondEdition"/>
               <measure xml:id="measure-0000001718459805" n="16">
                 <staff xml:id="staff-0000000257480050" n="1" visible="true" facs="#facsZone-staff-0000000257480050">
                   <layer xml:id="layer-0000001193317055" n="1">
                     <note xml:id="note-0000001673150262" dur="4" oct="3" pname="e" stem.dir="down" accid.ges="f"/>
                     <rest xml:id="rest-0000001617364699" dur="16"/>
-                    <beam xml:id="beam-0000001964615387">
+                    <beam>
                       <note xml:id="note-0000001155472721" dur="16" oct="2" pname="a" stem.dir="up" accid.ges="f"/>
                       <note xml:id="note-0000000524704133" dur="16" oct="2" pname="b" stem.dir="up" accid.ges="f"/>
                       <note xml:id="note-0000000627796479" dur="16" oct="3" pname="c" stem.dir="up" accid.ges="f"/>
                     </beam>
-                    <beam xml:id="beam-0000000506559438">
+                    <beam>
                       <note xml:id="note-0000000697859717" dur="16" oct="3" pname="d" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000002139897939" dur="16" oct="3" pname="d" stem.dir="down">
                         <accid xml:id="accid-0000001154916590" accid="n"/>
@@ -692,35 +715,35 @@
                       <note xml:id="note-0000000067104273" dur="16" oct="3" pname="e" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000800042168" dur="16" oct="3" pname="f" stem.dir="down" accid.ges="f"/>
                     </beam>
-                    <beam xml:id="beam-0000000314366537">
+                    <beam>
                       <note xml:id="note-0000000575794256" dur="8" oct="3" pname="e" stem.dir="up" accid.ges="f"/>
                       <note xml:id="note-0000000231665851" dur="8" oct="2" pname="e" stem.dir="up" accid.ges="f"/>
                     </beam>
                   </layer>
                 </staff>
-                <harm place="above" staff="1" tstamp="1.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="1">
                   <fb>
                     <f>7</f>
                     <f>♮</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="3.500000" vgrp="80">
+                <harm place="above" staff="1" tstamp="3.5">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="3.750000" vgrp="80">
+                <harm place="above" staff="1" tstamp="3.75">
                   <fb>
                     <f>6♮</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="4.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="4">
                   <fb>
                     <f>6</f>
                     <f>4</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="4.500000" vgrp="80">
+                <harm place="above" staff="1" tstamp="4.5">
                   <fb>
                     <f>3</f>
                   </fb>
@@ -731,7 +754,7 @@
                   <layer xml:id="layer-0000000746650452" n="1">
                     <note xml:id="note-0000001767192693" dur="4" oct="2" pname="a" stem.dir="up" accid.ges="f"/>
                     <rest xml:id="rest-0000000284784592" dur="8"/>
-                    <beam xml:id="beam-0000001094987421">
+                    <beam>
                       <note xml:id="note-0000001771487055" dur="16" oct="3" pname="a" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001061403259" dur="16" oct="3" pname="b" stem.dir="down" accid.ges="f"/>
                     </beam>
@@ -741,13 +764,13 @@
                     </note>
                   </layer>
                 </staff>
-                <fermata xml:id="fermata-0000000692534104" staff="1" startid="#note-0000001767192693" shape="curved"/>
-                <harm place="above" staff="1" tstamp="2.500000" vgrp="80">
+                <fermata place="above" staff="1" startid="#note-0000001767192693" />
+                <harm place="above" staff="1" tstamp="2.5">
                   <fb>
                     <f>♮</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="3.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="3">
                   <fb>
                     <f>6</f>
                   </fb>
@@ -760,28 +783,28 @@
                     <rest xml:id="rest-0000000554218317" dur="8"/>
                     <note xml:id="note-0000000495378306" dur="8" oct="3" pname="f" stem.dir="down" accid.ges="f"/>
                     <note xml:id="note-0000000818971496" dur="4" oct="3" pname="g" stem.dir="down" accid.ges="f"/>
-                    <beam xml:id="beam-0000001003880497">
+                    <beam>
                       <note xml:id="note-0000001939323947" dur="8" oct="3" pname="a" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000925888755" dur="8" oct="2" pname="a" stem.dir="down" accid.ges="f"/>
                     </beam>
                   </layer>
                 </staff>
-                <harm place="above" staff="1" tstamp="1.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="1">
                   <fb>
                     <f>♮</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="2.500000" vgrp="80">
+                <harm place="above" staff="1" tstamp="2.5">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="3.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="3">
                   <fb>
                     <f>♭</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="4.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="4">
                   <fb>
                     <f>♮</f>
                   </fb>
@@ -792,35 +815,35 @@
                   <layer xml:id="layer-0000000509132921" n="1">
                     <note xml:id="note-0000001742481399" dur="4" oct="3" pname="d" stem.dir="down" accid.ges="f"/>
                     <rest xml:id="rest-0000001836977535" dur="16"/>
-                    <beam xml:id="beam-0000000637744556">
+                    <beam>
                       <note xml:id="note-0000002082994402" dur="16" oct="4" pname="d" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000989423541" dur="16" oct="4" pname="c" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000556532461" dur="16" oct="4" pname="d" stem.dir="down" accid.ges="f"/>
                     </beam>
-                    <beam xml:id="beam-0000001203285549">
+                    <beam>
                       <note xml:id="note-0000001483058331" dur="16" oct="4" pname="e" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000002011566809" dur="16" oct="4" pname="d" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000274851239" dur="16" oct="4" pname="c" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000699561858" dur="16" oct="3" pname="b" stem.dir="down" accid.ges="f"/>
                     </beam>
-                    <beam xml:id="beam-0000001948039091">
+                    <beam>
                       <note xml:id="note-0000000526117921" dur="8" oct="3" pname="a" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001269813879" dur="16" oct="4" pname="d" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001915532450" dur="16" oct="4" pname="c" stem.dir="down" accid.ges="f"/>
                     </beam>
                   </layer>
                 </staff>
-                <harm place="above" staff="1" tstamp="1.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="1">
                   <fb>
                     <f>♮</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="3.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="3">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="4.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="4">
                   <fb>
                     <f>6</f>
                   </fb>
@@ -830,13 +853,13 @@
               <measure xml:id="measure-0000001622706455" n="20">
                 <staff xml:id="staff-0000002058571182" n="1" visible="true" facs="#facsZone-staff-0000002058571182">
                   <layer xml:id="layer-0000001071617417" n="1">
-                    <beam xml:id="beam-0000000972208420">
+                    <beam>
                       <note xml:id="note-0000001031469873" dur="8" oct="3" pname="b" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001070076721" dur="8" oct="3" pname="g" stem.dir="down" accid.ges="f"/>
                     </beam>
                     <rest xml:id="rest-0000000774027172" dur="8"/>
                     <note xml:id="note-0000001334711282" dur="8" oct="3" pname="e" stem.dir="down" accid.ges="f"/>
-                    <beam xml:id="beam-0000002107804327">
+                    <beam>
                       <note xml:id="note-0000001517523149" dur="8" oct="3" pname="a" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000470250870" dur="8" oct="3" pname="b" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000363441647" dur="8" oct="4" pname="c" stem.dir="down" accid.ges="f"/>
@@ -844,22 +867,22 @@
                     </beam>
                   </layer>
                 </staff>
-                <harm place="above" staff="1" tstamp="1.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="1">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="3.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="3">
                   <fb>
                     <f>6⃥</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="4.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="4">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="4.500000" vgrp="80">
+                <harm place="above" staff="1" tstamp="4.5">
                   <fb>
                     <f>6</f>
                   </fb>
@@ -870,18 +893,18 @@
                   <layer xml:id="layer-0000001547701829" n="1">
                     <note xml:id="note-0000001533872772" dur="4" oct="3" pname="a" stem.dir="down" accid.ges="f"/>
                     <rest xml:id="rest-0000000935787849" dur="16"/>
-                    <beam xml:id="beam-0000000190873706">
+                    <beam>
                       <note xml:id="note-0000000685550790" dur="16" oct="3" pname="g" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001659733602" dur="16" oct="3" pname="a" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001509431262" dur="16" oct="3" pname="b" stem.dir="down" accid.ges="f"/>
                     </beam>
-                    <beam xml:id="beam-0000001201203636">
+                    <beam>
                       <note xml:id="note-0000000463204014" dur="16" oct="4" pname="c" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001849667009" dur="16" oct="3" pname="b" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001081016195" dur="16" oct="3" pname="a" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001550196610" dur="16" oct="3" pname="g" stem.dir="down" accid.ges="f"/>
                     </beam>
-                    <beam xml:id="beam-0000000905714356">
+                    <beam>
                       <note xml:id="note-0000001405073043" dur="16" oct="3" pname="a" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000206390494" dur="16" oct="3" pname="f" stem.dir="down">
                         <accid xml:id="accid-0000001178857569" accid="n"/>
@@ -891,24 +914,24 @@
                     </beam>
                   </layer>
                 </staff>
-                <harm place="above" staff="1" tstamp="1.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="1">
                   <fb>
                     <f>6</f>
                     <f>4+</f>
                     <f>2</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="2.250000" vgrp="80">
+                <harm place="above" staff="1" tstamp="2.25">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="3.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="3">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="4.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="4">
                   <fb>
                     <f>6⃥</f>
                     <f>5</f>
@@ -918,7 +941,7 @@
               <measure xml:id="measure-0000000925434961" n="22">
                 <staff xml:id="staff-0000002106645499" n="1" facs="#facsZone-staff-0000002106645499">
                   <layer xml:id="layer-0000000279999892" n="1">
-                    <beam xml:id="beam-0000001675482495">
+                    <beam>
                       <note xml:id="note-0000000769958285" dur="16" oct="3" pname="b" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001536276495" dur="16" oct="3" pname="a" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001732634413" dur="16" oct="3" pname="g" stem.dir="down" accid.ges="f"/>
@@ -926,19 +949,19 @@
                         <accid xml:id="accid-0000001648380376" accid="n"/>
                       </note>
                     </beam>
-                    <beam xml:id="beam-0000001138857693">
+                    <beam>
                       <note xml:id="note-0000001708337218" dur="16" oct="3" pname="g" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000782143209" dur="16" oct="3" pname="e" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001149499907" dur="16" oct="3" pname="f" stem.dir="down"/>
                       <note xml:id="note-0000001132850103" dur="16" oct="3" pname="g" stem.dir="down" accid.ges="f"/>
                     </beam>
-                    <beam xml:id="beam-0000000849003942">
+                    <beam>
                       <note xml:id="note-0000000959499840" dur="16" oct="3" pname="a" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000898487433" dur="16" oct="3" pname="b" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001623643217" dur="16" oct="4" pname="c" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001889157339" dur="16" oct="3" pname="b" stem.dir="down" accid.ges="f"/>
                     </beam>
-                    <beam xml:id="beam-0000000854424273">
+                    <beam>
                       <note xml:id="note-0000001691314606" dur="16" oct="3" pname="a" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000992368692" dur="16" oct="3" pname="g" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001035163999" dur="16" oct="3" pname="f" stem.dir="down"/>
@@ -946,18 +969,18 @@
                     </beam>
                   </layer>
                 </staff>
-                <harm place="above" staff="1" tstamp="1.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="1">
                   <fb>
                     <f>♮</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="2.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="2">
                   <fb>
                     <f>6</f>
                     <f>5</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="3.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="3">
                   <fb>
                     <f>5</f>
                     <f>6</f>
@@ -972,7 +995,7 @@
                     </note>
                     <rest xml:id="rest-0000001885634320" dur="8"/>
                     <note xml:id="note-0000002122581506" dur="8" oct="3" pname="d" stem.dir="down"/>
-                    <beam xml:id="beam-0000001917277984">
+                    <beam>
                       <note xml:id="note-0000002012728876" dur="8" oct="3" pname="e" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000002106804250" dur="8" oct="3" pname="a" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001589147901" dur="8" oct="3" pname="b" stem.dir="down" accid.ges="f"/>
@@ -980,30 +1003,30 @@
                     </beam>
                   </layer>
                 </staff>
-                <harm place="above" staff="1" tstamp="1.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="1">
                   <fb>
-                    <f>7♭</f>
+                    <f>♭7</f>
                     <f>5</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="2.500000" vgrp="80">
+                <harm place="above" staff="1" tstamp="2.5">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="3.500000" vgrp="80">
+                <harm place="above" staff="1" tstamp="3.5">
                   <fb>
                     <f>7</f>
                     <f>5</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="4.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="4">
                   <fb>
                     <f>6</f>
                     <f>4</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="4.500000" vgrp="80">
+                <harm place="above" staff="1" tstamp="4.5">
                   <fb>
                     <f>♮</f>
                   </fb>
@@ -1013,25 +1036,25 @@
               <measure xml:id="measure-0000000820961734" n="24">
                 <staff xml:id="staff-0000001342003217" n="1" visible="true" facs="#facsZone-staff-0000001342003217 #facsZone-staff-0000001342003217-2">
                   <layer xml:id="layer-0000001248151214" n="1">
-                    <beam xml:id="beam-0000001630805013">
+                    <beam>
                       <note xml:id="note-0000001624233988" dur="16" oct="3" pname="e" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001106756345" dur="16" oct="4" pname="c" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001259130428" dur="16" oct="3" pname="b" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000794103988" dur="16" oct="3" pname="a" stem.dir="down" accid.ges="f"/>
                     </beam>
-                    <beam xml:id="beam-0000000441697899">
+                    <beam>
                       <note xml:id="note-0000000166600512" dur="16" oct="3" pname="g" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001663251990" dur="16" oct="3" pname="a" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000034286795" dur="16" oct="3" pname="g" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000421350328" dur="16" oct="3" pname="f" stem.dir="down" accid.ges="f"/>
                     </beam>
-                    <beam xml:id="beam-0000002079289338">
+                    <beam>
                       <note xml:id="note-0000000203118828" dur="16" oct="3" pname="e" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000478168600" dur="16" oct="4" pname="c" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000279728572" dur="16" oct="3" pname="b" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001449280645" dur="16" oct="3" pname="a" stem.dir="down" accid.ges="f"/>
                     </beam>
-                    <beam xml:id="beam-0000001927205213">
+                    <beam>
                       <note xml:id="note-0000002080320197" dur="16" oct="3" pname="g" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001156904340" dur="16" oct="3" pname="a" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000702665932" dur="16" oct="3" pname="g" stem.dir="down" accid.ges="f"/>
@@ -1041,42 +1064,42 @@
                     </beam>
                   </layer>
                 </staff>
-                <harm place="above" staff="1" tstamp="1.250000" vgrp="80">
+                <harm place="above" staff="1" tstamp="1.25">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="1.500000" vgrp="80">
+                <harm place="above" staff="1" tstamp="1.5">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="1.750000" vgrp="80">
+                <harm place="above" staff="1" tstamp="1.75">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="2.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="2">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="3.250000" vgrp="80">
+                <harm place="above" staff="1" tstamp="3.25">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="3.500000" vgrp="80">
+                <harm place="above" staff="1" tstamp="3.5">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="3.750000" vgrp="80">
+                <harm place="above" staff="1" tstamp="3.75">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="4.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="4">
                   <fb>
                     <f>6</f>
                   </fb>
@@ -1085,7 +1108,7 @@
               <measure xml:id="measure-0000000135127128" n="25">
                 <staff xml:id="staff-0000001359134029" n="1" facs="#facsZone-staff-0000001359134029">
                   <layer xml:id="layer-0000001484485311" n="1">
-                    <beam xml:id="beam-0000000306944165">
+                    <beam>
                       <note xml:id="note-0000000062469681" dur="8" oct="3" pname="e" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000120758770" dur="8" oct="3" pname="f" stem.dir="down">
                         <accid xml:id="accid-0000000249133108" accid="n"/>
@@ -1098,12 +1121,12 @@
                     <note xml:id="note-0000001453375408" dur="8" oct="3" pname="b" stem.dir="down" accid.ges="f"/>
                   </layer>
                 </staff>
-                <harm place="above" staff="1" tstamp="2.500000" vgrp="80">
+                <harm place="above" staff="1" tstamp="2.5">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="3.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="3">
                   <fb>
                     <f>♮</f>
                   </fb>
@@ -1124,24 +1147,24 @@
                     </note>
                   </layer>
                 </staff>
-                <harm place="above" staff="1" tstamp="1.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="1">
                   <fb>
                     <f>4</f>
                     <f>2</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="2.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="2">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="3.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="3">
                   <fb>
                     <f>4</f>
                     <f>2</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="4.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="4">
                   <fb>
                     <f>6</f>
                   </fb>
@@ -1162,25 +1185,25 @@
                     </note>
                   </layer>
                 </staff>
-                <harm place="above" staff="1" tstamp="1.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="1">
                   <fb>
-                    <f>4♭</f>
+                    <f>♭4</f>
                     <f>2</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="2.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="2">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
                 <tie xml:id="tie-0000001217270993" startid="#note-0000000124485137" endid="#note-0000000160041399"/>
-                <harm place="above" staff="1" tstamp="3.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="3">
                   <fb>
                     <f>4♮</f>
                     <f>2</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="4.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="4">
                   <fb>
                     <f>6</f>
                   </fb>
@@ -1203,18 +1226,18 @@
                     </note>
                   </layer>
                 </staff>
-                <harm place="above" staff="1" tstamp="1.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="1">
                   <fb>
                     <f>4+</f>
                     <f>2</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="2.500000" vgrp="80">
+                <harm place="above" staff="1" tstamp="2.5">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="4.500000" vgrp="80">
+                <harm place="above" staff="1" tstamp="4.5">
                   <fb>
                     <f>6</f>
                   </fb>
@@ -1229,7 +1252,7 @@
                     </note>
                     <rest xml:id="rest-0000001631892838" dur="8"/>
                     <note xml:id="note-0000001395099704" dur="8" oct="3" pname="b" stem.dir="down" accid.ges="f"/>
-                    <beam xml:id="beam-0000000977973535">
+                    <beam>
                       <note xml:id="note-0000001326535365" dur="8" oct="3" pname="a" stem.dir="down">
                         <accid xml:id="accid-0000001026777270" accid="n"/>
                       </note>
@@ -1241,22 +1264,22 @@
                     </beam>
                   </layer>
                 </staff>
-                <harm place="above" staff="1" tstamp="1.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="1">
                   <fb>
                     <f>♮</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="3.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="3">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="3.500000" vgrp="80">
+                <harm place="above" staff="1" tstamp="3.5">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="4.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="4">
                   <fb>
                     <f>6⃥</f>
                   </fb>
@@ -1270,7 +1293,7 @@
                     </note>
                     <rest xml:id="rest-0000001292309070" dur="8"/>
                     <note xml:id="note-0000000170303923" dur="8" oct="3" pname="a" stem.dir="down"/>
-                    <beam xml:id="beam-0000000814698760">
+                    <beam>
                       <note xml:id="note-0000000250717083" dur="8" oct="3" pname="b" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001534367305" dur="8" oct="3" pname="a" stem.dir="down"/>
                       <note xml:id="note-0000001479451616" dur="8" oct="3" pname="g" stem.dir="down" accid.ges="f"/>
@@ -1280,28 +1303,28 @@
                     </beam>
                   </layer>
                 </staff>
-                <harm place="above" staff="1" tstamp="1.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="1">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="2.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="2">
                   <fb>
-                    <f>7♭</f>
+                    <f>♭7</f>
                     <f>5</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="2.500000" vgrp="80">
+                <harm place="above" staff="1" tstamp="2.5">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="4.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="4">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="4.500000" vgrp="80">
+                <harm place="above" staff="1" tstamp="4.5">
                   <fb>
                     <f>6⃥</f>
                   </fb>
@@ -1311,7 +1334,7 @@
                 <staff xml:id="staff-0000001635909218" n="1" facs="#facsZone-staff-0000001635909218">
                   <layer xml:id="layer-0000001181093310" n="1">
                     <note xml:id="note-0000000538326994" dur="4" oct="3" pname="e" stem.dir="down" accid.ges="f"/>
-                    <beam xml:id="beam-0000001461615614">
+                    <beam>
                       <note xml:id="note-0000000598743100" dur="8" oct="3" pname="f" stem.dir="up">
                         <accid xml:id="accid-0000001015990453" accid="n"/>
                       </note>
@@ -1319,7 +1342,7 @@
                         <accid xml:id="accid-0000000370896454" accid="n"/>
                       </note>
                     </beam>
-                    <beam xml:id="beam-0000000762821392">
+                    <beam>
                       <note xml:id="note-0000001702062357" dur="8" oct="2" pname="g" stem.dir="up" accid.ges="f"/>
                       <note xml:id="note-0000000449724770" dur="8" oct="3" pname="g" stem.dir="up" accid.ges="f"/>
                     </beam>
@@ -1328,24 +1351,24 @@
                     </note>
                   </layer>
                 </staff>
-                <harm place="above" staff="1" tstamp="1.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="1">
                   <fb>
                     <f>6</f>
                     <f>5</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="2.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="2">
                   <fb>
                     <f>6</f>
                     <f>4</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="2.500000" vgrp="80">
+                <harm place="above" staff="1" tstamp="2.5">
                   <fb>
                     <f>♮</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="4.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="4">
                   <fb>
                     <f>6⃥</f>
                   </fb>
@@ -1362,19 +1385,19 @@
                     <note xml:id="note-0000002027304695" dur="8" oct="2" pname="b" stem.dir="up" accid.ges="f"/>
                   </layer>
                 </staff>
-                <harm place="above" staff="1" tstamp="2.500000" vgrp="80">
+                <harm place="above" staff="1" tstamp="2.5">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="3.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="3">
                   <fb>
                     <f>6</f>
                     <f>4+</f>
                     <f>2</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="4.500000" vgrp="80">
+                <harm place="above" staff="1" tstamp="4.5">
                   <fb>
                     <f>6</f>
                   </fb>
@@ -1384,7 +1407,7 @@
               <measure xml:id="measure-0000000206608091" n="33">
                 <staff xml:id="staff-0000000474150812" n="1" visible="true" facs="#facsZone-staff-0000000474150812">
                   <layer xml:id="layer-0000000539293781" n="1">
-                    <beam xml:id="beam-0000000359732167">
+                    <beam>
                       <note xml:id="note-0000000945272148" dur="16" oct="3" pname="c" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000516466635" dur="16" oct="3" pname="d" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001738036569" dur="16" oct="3" pname="e" stem.dir="down" accid.ges="f"/>
@@ -1392,13 +1415,13 @@
                         <accid xml:id="accid-0000001347053944" accid="n"/>
                       </note>
                     </beam>
-                    <beam xml:id="beam-0000000408997068">
+                    <beam>
                       <note xml:id="note-0000002052300600" dur="16" oct="3" pname="g" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000002132684660" dur="16" oct="3" pname="a" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000950285640" dur="16" oct="3" pname="b" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000141757912" dur="16" oct="4" pname="c" stem.dir="down" accid.ges="f"/>
                     </beam>
-                    <beam xml:id="beam-0000001205706502">
+                    <beam>
                       <note xml:id="note-0000000181642870" dur="8" oct="4" pname="d" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000326437671" dur="8" oct="4" pname="d" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001665985202" dur="8" oct="4" pname="d" stem.dir="down" accid.ges="f"/>
@@ -1406,23 +1429,23 @@
                     </beam>
                   </layer>
                 </staff>
-                <harm place="above" staff="1" tstamp="3.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="3">
                   <fb>
                     <f>5</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="3.500000" vgrp="80">
+                <harm place="above" staff="1" tstamp="3.5">
                   <fb>
                     <f>6</f>
                     <f>4</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="4.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="4">
                   <fb>
                     <f>5</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="4.500000" vgrp="80">
+                <harm place="above" staff="1" tstamp="4.5">
                   <fb>
                     <f>6</f>
                     <f>4</f>
@@ -1432,7 +1455,7 @@
               <measure xml:id="measure-0000001472920002" n="34">
                 <staff xml:id="staff-0000000382142317" n="1" facs="#facsZone-staff-0000000382142317">
                   <layer xml:id="layer-0000002104658428" n="1">
-                    <beam xml:id="beam-0000000405328161">
+                    <beam>
                       <note xml:id="note-0000000487895636" dur="8" oct="4" pname="d" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001575594127" dur="8" oct="4" pname="d" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001150392301" dur="8" oct="4" pname="d" stem.dir="down" accid.ges="f"/>
@@ -1445,68 +1468,71 @@
                     </note>
                   </layer>
                 </staff>
-                <harm place="above" staff="1" tstamp="1.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="1">
                   <fb>
                     <f>5</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="1.500000" vgrp="80">
+                <harm place="above" staff="1" tstamp="1.5">
                   <fb>
                     <f>6</f>
                     <f>4</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="2.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="2">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="2.500000" vgrp="80">
+                <harm place="above" staff="1" tstamp="2.5">
                   <fb>
                     <f>6</f>
                     <f>4</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="3.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="3">
                   <fb>
                     <f>7</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="4.500000" vgrp="80">
+                <harm place="above" staff="1" tstamp="4.5">
                   <fb>
                     <f>6</f>
                     <f>5</f>
                   </fb>
                 </harm>
               </measure>
-              <measure xml:id="measure-0000001432557791" right="end" n="35">
+              <measure xml:id="measure-0000001432557791" right="end" n="35" metcon="false">
                 <staff xml:id="staff-0000001239128073" n="1" facs="#facsZone-staff-0000001239128073">
                   <layer xml:id="layer-0000000667087917" n="1">
-                    <beam xml:id="beam-0000000236259213">
+                    <beam>
                       <note xml:id="note-0000001933505124" dur="8" oct="4" pname="e" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001459720981" dur="8" oct="3" pname="a" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000000919954151" dur="8" oct="3" pname="b" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001609917279" dur="8" oct="2" pname="b" stem.dir="down" accid.ges="f"/>
                     </beam>
-                    <note xml:id="note-0000000279657062" dur="2" oct="3" pname="e" stem.dir="down" accid.ges="f"/>
+                    <note xml:id="note-0000000279657062" dur="4" oct="3" pname="e" stem.dir="down" accid.ges="f"/>
                   </layer>
                 </staff>
-                <harm place="above" staff="1" tstamp="1.500000" vgrp="80">
+                <harm place="above" staff="1" tstamp="1.5">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="2.000000" vgrp="80">
+                <harm place="above" staff="1" tstamp="2">
                   <fb>
                     <f>6</f>
                     <f>4</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="1" tstamp="2.500000" vgrp="80">
+                <harm place="above" staff="1" tstamp="2.5">
                   <fb>
                     <f>♮</f>
                   </fb>
                 </harm>
+                <dir staff="2" tstamp="4" place="within">
+                  <rend fontstyle="normal">Da Capo<reg resp="#rettinghaus">.</reg></rend>
+                </dir>
               </measure>
             </section>
           </score>
