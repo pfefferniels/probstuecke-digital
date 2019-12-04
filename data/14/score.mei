@@ -124,15 +124,19 @@
         </surface>
       </facsimile>
       <body>
-        <mdiv xml:id="mdiv-0000000066816067">
-          <score xml:id="score-0000000446933555">
-            <scoreDef xml:id="scoredef-0000001209062199">
-              <staffGrp xml:id="staffgrp-0000002136832219">
-                <staffDef xml:id="mattheson" clef.shape="C" clef.line="1" key.mode="minor" key.sig="5f" meter.count="12" meter.unit="8" n="1" lines="5" label="Mattheson's annotations"/>
-                <staffDef xml:id="bass" clef.shape="F" clef.line="4" key.mode="minor" key.sig="5f" meter.count="12" meter.unit="8" n="2" lines="5" ppq="256"/>
-              </staffGrp>
-            </scoreDef>
-            <section xml:id="section-0000000840219442">
+          <mdiv>
+              <score>
+                <scoreDef key.pname="e" key.accid="f" key.mode="minor">
+                  <staffGrp>
+                    <staffDef xml:id="mattheson" clef.shape="C" clef.line="1" meter.count="12" meter.unit="8" n="1" lines="5" label="Mattheson's annotations">
+                      <keySig sig="5f"/>
+                    </staffDef>
+                    <staffDef xml:id="bass" clef.shape="F" clef.line="4" key.mode="minor" meter.count="12" meter.unit="8" n="2" lines="5">
+                      <keySig sig="5f"/>
+                    </staffDef>
+                  </staffGrp>
+                </scoreDef>
+              <section xml:id="section-0000000840219442">
               <measure xml:id="measure-0000001108999037" n="1">
                 <staff xml:id="staff-0000001794025928" n="1">
                   <layer xml:id="layer-0000000876030175" n="1">
