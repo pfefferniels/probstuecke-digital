@@ -140,13 +140,14 @@ function connectSignatureTooltips() {
   if (keySig.length != 0) {
     let annotation = $("tei-note[type='on-key-signature'] span[data-original='']").removeAttr('hidden');
 
-    $('#key-overlay').css(signatureBox).popover({
-        content: annotation,
-        trigger: 'hover',
-        html: true
-    });
-
-    annotation.parent().hide();
+    if (annotation.length != 0) {
+      $('#key-overlay').css(signatureBox).popover({
+          content: annotation,
+          trigger: 'hover',
+          html: true
+      });
+      annotation.parent().hide();
+    }
   }
 
   let meterSig = $("#score-view svg").find(".meterSig");
@@ -154,13 +155,14 @@ function connectSignatureTooltips() {
     signatureBox = getSvgElementBoxAsCss(meterSig);
     let annotation = $("tei-note[type='on-meter'] span[data-original='']").removeAttr('hidden');
 
-    $('#meter-overlay').css(signatureBox).popover({
-        content: annotation,
-        trigger: 'hover',
-        html: true
-    });
-
-    annotation.parent().hide();
+    if (annotation.length != 0) {
+      $('#meter-overlay').css(signatureBox).popover({
+          content: annotation,
+          trigger: 'hover',
+          html: true
+      });
+      annotation.parent().hide();
+    }
   }
 }
 
