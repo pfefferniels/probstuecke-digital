@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
+    <meiHead>
+        <fileDesc>
+            <titleStmt>
+                <title></title>
+                <respStmt />
+            </titleStmt>
+            <pubStmt></pubStmt>
+        </fileDesc>
+        <encodingDesc xml:id="encodingdesc-0000000471090957">
+            <appInfo xml:id="appinfo-0000001810320156">
+                <application xml:id="application-0000000841640257" isodate="2019-12-03T19:05:00" version="2.4.0-dev-6309d09">
+                    <name xml:id="name-0000000343207971">Verovio</name>
+                    <p xml:id="p-0000000666136038">Transcoded from MusicXML</p>
+                </application>
+            </appInfo>
+        </encodingDesc>
+    </meiHead>
+    <music>
+        <body>
+            <mdiv xml:id="mdiv-0000000437278367">
+                <score xml:id="score-0000000798470068">
+                    <scoreDef xml:id="scoredef-0000001515475074">
+                        <staffGrp xml:id="staffgrp-0000000008423202">
+                            <staffDef xml:id="staffdef-0000001283562661" n="1" lines="5" ppq="256" clef.shape="G" clef.line="2" meter.count="3" meter.unit="4">
+                                <keySig xml:id="keysig-0000000245228728" mode="major" sig="0" />
+                            </staffDef>
+                        </staffGrp>
+                    </scoreDef>
+                    <section xml:id="section-0000001690143300">
+                        <pb xml:id="pb-0000000960716083" />
+                        <pb xml:id="pb-0000001167554864" />
+                        <measure xml:id="measure-0000001297347614" n="1">
+                            <staff xml:id="staff-0000001184174557" n="1">
+                                <layer xml:id="layer-0000001452526931" n="1">
+                                    <chord xml:id="chord-0000001281097474" dur.ppq="256" dur="4" stem.dir="up">
+                                        <note xml:id="note-0000000466494020" oct="4" pname="c" color="#000000" />
+                                        <note xml:id="note-0000000175005097" oct="4" pname="e" color="#000000" />
+                                        <note xml:id="note-0000000815162354" oct="4" pname="a" color="#000000" />
+                                    </chord>
+                                    <chord xml:id="chord-0000001537316039" dur.ppq="256" dur="4" stem.dir="up">
+                                        <note xml:id="note-0000001408721896" oct="4" pname="e" color="#000000" />
+                                        <note xml:id="note-0000000058295686" oct="4" pname="a" color="#000000" />
+                                        <note xml:id="note-0000000497779338" oct="5" pname="c" color="#000000" />
+                                    </chord>
+                                    <chord xml:id="chord-0000000273084101" dur.ppq="256" dur="4" stem.dir="down">
+                                        <note xml:id="note-0000001141523324" oct="4" pname="a" color="#000000" />
+                                        <note xml:id="note-0000001223088145" oct="5" pname="c" color="#000000" />
+                                        <note xml:id="note-0000000665623573" oct="5" pname="e" color="#000000" />
+                                    </chord>
+                                </layer>
+                            </staff>
+                        </measure>
+                        <measure xml:id="measure-0000000350051930" n="2">
+                            <staff xml:id="staff-0000000531005951" n="1">
+                                <layer xml:id="layer-0000000225568310" n="1">
+                                    <chord xml:id="chord-0000000382427384" dur.ppq="256" dur="4" stem.dir="up">
+                                        <note xml:id="note-0000001936950192" oct="4" pname="e" color="#000000" />
+                                        <note xml:id="note-0000000204131790" oct="4" pname="g" color="#000000">
+                                            <accid xml:id="accid-0000000844341378" accid="s" accid.ges="s" />
+                                        </note>
+                                        <note xml:id="note-0000001702453693" oct="4" pname="b" color="#000000" />
+                                    </chord>
+                                    <chord xml:id="chord-0000002100283354" dur.ppq="256" dur="4" stem.dir="down">
+                                        <note xml:id="note-0000000623997424" oct="4" pname="g" color="#000000" accid.ges="s" />
+                                        <note xml:id="note-0000001506104084" oct="4" pname="b" color="#000000" />
+                                        <note xml:id="note-0000001459564207" oct="5" pname="e" color="#000000" />
+                                    </chord>
+                                    <chord xml:id="chord-0000000676389400" dur.ppq="256" dur="4" stem.dir="down">
+                                        <note xml:id="note-0000001839218565" oct="4" pname="b" color="#000000" />
+                                        <note xml:id="note-0000000470867527" oct="5" pname="e" color="#000000" />
+                                        <note xml:id="note-0000000131612709" oct="5" pname="g" color="#000000">
+                                            <accid xml:id="accid-0000001296972213" accid="s" accid.ges="s" />
+                                        </note>
+                                    </chord>
+                                </layer>
+                            </staff>
+                        </measure>
+                        <measure xml:id="measure-0000001852758365" right="invis" n="3">
+                            <staff xml:id="staff-0000001133504847" n="1">
+                                <layer xml:id="layer-0000000024257101" n="1">
+                                    <chord xml:id="chord-0000000044950356" dur.ppq="256" dur="4" stem.dir="up">
+                                        <note xml:id="note-0000000329146781" oct="4" pname="e" color="#000000" />
+                                        <note xml:id="note-0000000476972399" oct="4" pname="a" color="#000000" />
+                                        <note xml:id="note-0000000849207922" oct="5" pname="c" color="#000000" />
+                                    </chord>
+                                    <chord xml:id="chord-0000002031939369" dur.ppq="256" dur="4" stem.dir="down">
+                                        <note xml:id="note-0000002019978988" oct="4" pname="a" color="#000000" />
+                                        <note xml:id="note-0000001721352902" oct="5" pname="c" color="#000000" />
+                                        <note xml:id="note-0000001628238913" oct="5" pname="e" color="#000000" />
+                                    </chord>
+                                    <chord xml:id="chord-0000002018002001" dur.ppq="256" dur="4" stem.dir="down">
+                                        <note xml:id="note-0000000002477641" oct="5" pname="c" color="#000000" />
+                                        <note xml:id="note-0000000783237400" oct="5" pname="e" color="#000000" />
+                                        <note xml:id="note-0000001262723191" oct="5" pname="a" color="#000000" />
+                                    </chord>
+                                </layer>
+                            </staff>
+                            <dir xml:id="dir-0000001948114870" staff="1" tstamp="3.996094" vgrp="220">
+                                <rend xml:id="rend-0000000750760029" fontfam="Plantin MT Std" fontstyle="italic" fontweight="normal">etc.</rend>
+                            </dir>
+                        </measure>
+                    </section>
+                </score>
+            </mdiv>
+        </body>
+    </music>
+</mei>
