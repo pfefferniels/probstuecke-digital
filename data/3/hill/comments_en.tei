@@ -1,80 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
   <teiHeader>
-      <fileDesc>
-          <titleStmt>
-              <title type="part"></title>
-          </titleStmt>
-          <publicationStmt>
+    <fileDesc>
+      <titleStmt>
+        <title type="part">Lesson by R. Hill on Probstück 3</title>
+        <author>
+          <persName>
+            <surname>Hill</surname>
+            <forename>Robert</forename>
+          </persName>
+        </author>
+        <editor>
+          <persName>
+            <surname>Niels</surname>
+            <forename>Pfeffer</forename>
+          </persName>
+        </editor>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>
+          <persName>
+            <surname>Niels</surname>
+            <forename>Pfeffer</forename>
+          </persName>
+        </publisher>
+      </publicationStmt>
+      <sourceDesc>
+        <recordingStmt>
+          <recording type="audio">
             <respStmt>
-              <persName role="publisher">Niels Pfeffer</persName>
+              <resp>Teacher</resp>
+              <name>Robert Hill</name>
+
+              <resp>Student</resp>
+              <name>Niels Pfeffer</name>
             </respStmt>
-            <date>2019</date>
-          </publicationStmt>
-      </fileDesc>
+          </recording>
+        </recordingStmt>
+      </sourceDesc>
+    </fileDesc>
   </teiHeader>
   <text>
-      <body>
-        <p>
-          [The student plays:]
-        </p>
-        <notatedMusic>
-          <ptr target="beginning1.mei" />
-        </notatedMusic>
+    <body>
+      <title>Lesson on Prob-Stück 3</title>
+      given by Robert Hill, MH Freiburg, 05/17/2019
 
-        <p>
-          <foreign xml:lang="de">Mein persönlicher Geschmack geht dahin, etwas mehr auf die drei zu
-          spielen, sodass ein trochäischer Rhythmus — ◡ entsteht. Es gibt
-          zwar kaum Situationen, in denen etwas wichtiges auf der 3 vorkommt.
-          Aber auf der anderen Seite ändert sich die Figur selbst eben auf der
-          dritten Zählzeit.</foreign>
-        </p>
+      <p>
+        [The student plays:]
+      </p>
+      <notatedMusic>
+        <ptr target="beginning1.mei" />
+      </notatedMusic>
 
-        <p>
-          I think that in the beginning and in places that are like the beginning,
-          you should think of the right hand as the main hand and not as somehow
-          a harmonic accompaniment of the left hand. So I would change register
-          more in the right hand from the first beat to the third beat so that it
-          has more of a shape. Right now it is just an accompaniment. Something
-          like that:
-        </p>
+      <p>
+        <foreign xml:lang="de">R.H. Mein persönlicher Geschmack geht dahin,
+        etwas mehr auf die drei zu spielen, sodass ein trochäischer
+        Rhythmus — ◡ entsteht. Es gibt  zwar kaum Situationen, in denen
+        etwas wichtiges auf der 3 vorkommt. Aber auf der anderen Seite ändert
+        sich die Figur selbst eben auf der dritten Zählzeit.</foreign>
+      </p>
 
-        <notatedMusic>
-          <ptr target="beginning2.mei" />
-        </notatedMusic>
+      <p>
+        I think that
+        <ref target="#m-62">in the beginning</ref>
+        and in places that are like the beginning,
+        you should think of the right hand as the main hand and not as somehow
+        a harmonic accompaniment of the left hand. So I would change register
+        more in the right hand from the first beat to the third beat so that it
+        has more of a shape. Right now it is just an accompaniment. Something
+        like that:
+      </p>
 
-        <p>
-          And then a real contrast in the middle section, when you have the other
-          figuration – maybe even on the upper manual, so that it sounds like a concerto
-          structure.
-        </p>
+      <notatedMusic>
+        <ptr target="beginning2.mei" />
+      </notatedMusic>
 
-        <p>
-          If you are thinking of the upper part as more somehow representing what
-          an orchestra would do and the actual figuration that is written is more
-          a kind of, you could say textual embellishment of a transcription of an
-          orchestral concerto, why don’t we take that idea one step further?
-        </p>
+      <p>
+        And then a real contrast
+        <ref target="#m-420">in the middle section</ref>, when you have the other
+        figuration – maybe even on the upper manual, so that it sounds like a concerto
+        structure.
+      </p>
 
-        <notatedMusic>
-          <ptr target="beginning3.mei"></ptr>
-        </notatedMusic>
+      <p>
+        If you are thinking of the upper part as more somehow representing what
+        an orchestra would do and the actual figuration that is written is more
+        a kind of, you could say textual embellishment of a transcription of an
+        orchestral concerto, why don’t we take that idea one step further?
+      </p>
 
-        <p>
-          And then in bar 14 actually all three are accented, but they aren’t equal.
-        </p>
+      <notatedMusic>
+        <ptr target="beginning3.mei"></ptr>
+      </notatedMusic>
 
-        <notatedMusic>
-          <ptr target="middle-section1.mei"></ptr>
-        </notatedMusic>
+      <p>
+        And then in <ref target="#m-523">bar 14</ref> actually all three are
+        accented, but they aren’t equal.
+      </p>
 
-        <p>
-          And then something more like a two-voice texture.
-        </p>
+      <notatedMusic>
+        <ptr target="middle-section1.mei"></ptr>
+      </notatedMusic>
 
-        <notatedMusic>
-          <ptr target="middle-section2.mei"></ptr>
-        </notatedMusic>
-      </body>
+      <p>
+        And then something more like a two-voice texture.
+      </p>
+
+      <notatedMusic>
+        <ptr target="middle-section2.mei"></ptr>
+      </notatedMusic>
+    </body>
   </text>
 </TEI>
