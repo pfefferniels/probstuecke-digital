@@ -6,7 +6,7 @@
       <titleStmt>
         <title>Der Ober-Classe neunzehntes Prob-Stück.</title>
         <composer>
-          <persName role="composer" auth.uri="http://d-nb.info/gnd/118578995" auth="GND">Johann Mattheson</persName>
+          <persName role="composer" auth.uri="http://d-nb.info/gnd/118578995" auth="GND" xml:id="mattheson">Johann Mattheson</persName>
         </composer>
         <respStmt>
           <resp>Edited by</resp>
@@ -994,10 +994,14 @@
                       <note xml:id="note-0000001917590185" dur="8" oct="2" pname="b" stem.dir="down"/>
                       <note xml:id="note-0000000485916095" dur="8" oct="3" pname="b" stem.dir="down"/>
                     </beam>
-                    <beam>
-                      <note xml:id="note-0000001813849415" dur="8" oct="3" pname="b" grace="unknown" stem.dir="up"/>
-                      <note xml:id="note-0000001474638008" dur="8" oct="4" pname="c" grace="unknown" stem.dir="up" accid.ges="s"/>
-                    </beam>
+                    <add resp="#mattheson">
+                      <graceGrp xml:id="mattheson-schleuffer" attach="post" grace="unknown" >
+                        <beam>
+                          <note dur="8" oct="3" pname="b" stem.dir="up"/>
+                          <note dur="8" oct="4" pname="c" stem.dir="up" accid.ges="s"/>
+                        </beam>
+                      </graceGrp>
+                    </add>
                     <note xml:id="note-0000000356957356" dur="4" oct="4" pname="d" stem.dir="down"/>
                     <note xml:id="note-0000001037628121" dur="4" oct="3" pname="b" stem.dir="down"/>
                   </layer>
@@ -1012,7 +1016,6 @@
                     <f>6</f>
                   </fb>
                 </harm>
-                <slur xml:id="slur-0000002006870479" startid="#note-0000001813849415" endid="#note-0000000356957356"/>
               </measure>
               <measure xml:id="measure-0000001911034257" n="24">
                 <staff xml:id="staff-0000000109978372" n="1" facs="#facsZone-staff-0000000109978372">
