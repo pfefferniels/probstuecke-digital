@@ -38,9 +38,9 @@
                     <section>
                         <measure xml:id="ex-000724366583" n="1">
                             <staff n="1">
-                                <layer n="1">
+                                <layer>
                                     <supplied resp="#pfeffer">
-                                       <space dur="2" />
+                                        <space dur="2" />
                                     </supplied>
                                     <rest xml:id="ex-002101825947" dur="16" />
                                     <beam>
@@ -59,7 +59,7 @@
                                 </layer>
                             </staff>
                             <staff n="2">
-                                <layer n="1">
+                                <layer>
                                     <space xml:id="ex-000651214035" dur="2" />
                                     <note xml:id="ex-001772214075" dur="4" oct="2" pname="e" stem.dir="up">
                                         <accid xml:id="ex-001283924104" accid="s" accid.ges="s" />
@@ -74,13 +74,18 @@
                             </harm>
                             <harm place="above" staff="2" tstamp="4">
                                 <fb>
-                                    <f>56</f>
+                                    <f>5</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="4.5">
+                                <fb>
+                                    <f>6</f>
                                 </fb>
                             </harm>
                         </measure>
                         <measure xml:id="ex-000192134298" n="2">
                             <staff n="1">
-                                <layer n="1">
+                                <layer>
                                     <beam>
                                         <note xml:id="ex-001428383623" dur="16" oct="4" pname="b" stem.dir="down" />
                                         <note xml:id="ex-000631579513" dur="16" oct="5" pname="d" stem.dir="down" />
@@ -114,7 +119,7 @@
                                 </layer>
                             </staff>
                             <staff n="2">
-                                <layer n="1">
+                                <layer>
                                     <note xml:id="ex-000027657706" dur="4" oct="2" pname="g" stem.dir="up">
                                         <accid xml:id="ex-002068463145" accid="s" accid.ges="s" />
                                     </note>
@@ -125,28 +130,49 @@
                             </staff>
                             <harm place="above" staff="2" tstamp="1">
                                 <fb>
-                                    <f>b6</f>
+                                    <f>5</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="1.5">
+                                <fb>
+                                    <f>6</f>
                                 </fb>
                             </harm>
                             <harm place="above" staff="2" tstamp="2">
                                 <fb>
-                                    <f>56</f>
+                                    <f>5</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="2.5">
+                                <fb>
+                                    <f>6</f>
                                 </fb>
                             </harm>
                             <harm place="above" staff="2" tstamp="3">
                                 <fb>
-                                    <f>56</f>
+                                    <f>5</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="3.5">
+                                <fb>
+                                    <f>6</f>
                                 </fb>
                             </harm>
                             <harm place="above" staff="2" tstamp="4">
                                 <fb>
-                                    <f>56</f>
+                                    <f>5</f>
+                                    <f>♯</f>
+                                </fb>
+                            </harm>
+                            <harm place="above" staff="2" tstamp="4.5">
+                                <fb>
+                                    <f>6</f>
                                 </fb>
                             </harm>
                         </measure>
                         <measure xml:id="ex-001431789831" n="3">
-                            <staff n="1" visible="true">
-                                <layer n="1">
+                            <staff n="1">
+                                <layer>
                                     <beam>
                                         <note xml:id="ex-001876716371" dur="16" oct="5" pname="f" stem.dir="down" accid.ges="s" />
                                         <note xml:id="ex-001683783254" dur="16" oct="4" pname="a" stem.dir="down" />
@@ -177,8 +203,8 @@
                                     </beam>
                                 </layer>
                             </staff>
-                            <staff n="2" visible="true">
-                                <layer n="1">
+                            <staff n="2">
+                                <layer>
                                     <beam>
                                         <note xml:id="ex-001226210141" dur="8" oct="3" pname="d" stem.dir="up" />
                                         <note xml:id="ex-001251101357" dur="8" oct="2" pname="b" stem.dir="up" />
@@ -190,26 +216,29 @@
                                     <note xml:id="ex-001795105668" dur="8" oct="3" pname="f" stem.dir="down" accid.ges="s" />
                                 </layer>
                             </staff>
-                            <harm place="above" staff="2" tstamp="1">
-                                <fb>
-                                    <f>6</f>
-                                </fb>
-                            </harm>
-                            <harm place="above" staff="2" tstamp="2">
-                                <fb>
-                                    <f>6</f>
-                                    <f>4</f>
-                                </fb>
-                            </harm>
-                            <harm place="above" staff="2" tstamp="2">
-                                <fb>
-                                    <f>#</f>
-                                </fb>
-                            </harm>
+                            <supplied resp="#pfeffer">
+                                <harm place="above" staff="2" tstamp="1">
+                                    <fb>
+                                        <f>6</f>
+                                    </fb>
+                                </harm>
+                                <harm place="above" staff="2" tstamp="2">
+                                    <fb>
+                                        <f>6</f>
+                                        <f>4</f>
+                                    </fb>
+                                </harm>
+                                <harm place="above" staff="2" tstamp="2.5">
+                                    <fb>
+                                        <f />
+                                        <f>♯</f>
+                                    </fb>
+                                </harm>
+                            </supplied>
                         </measure>
                         <measure xml:id="ex-000877647432" n="4" right="invis" metcon="false">
                             <staff n="1">
-                                <layer n="1">
+                                <layer>
                                     <beam>
                                         <note xml:id="ex-000098981694" dur="16" oct="4" pname="b" stem.dir="down" />
                                         <note xml:id="ex-000220287103" dur="16" oct="5" pname="f" stem.dir="down" accid.ges="s" />
@@ -234,7 +263,7 @@
                                 </layer>
                             </staff>
                             <staff n="2">
-                                <layer n="1">
+                                <layer>
                                     <beam>
                                         <note xml:id="ex-000367576939" dur="8" oct="3" pname="d" stem.dir="up" />
                                         <note xml:id="ex-000234027403" dur="8" oct="2" pname="b" stem.dir="up" />
@@ -245,22 +274,31 @@
                                     <rest xml:id="ex-001110110023" dur="4" />
                                 </layer>
                             </staff>
-                            <harm place="above" staff="2" tstamp="1">
-                                <fb>
-                                    <f>6</f>
-                                </fb>
-                            </harm>
-                            <harm place="above" staff="2" tstamp="2">
-                                <fb>
-                                    <f>6</f>
-                                    <f>4</f>
-                                </fb>
-                            </harm>
-                            <harm place="above" staff="2" tstamp="2">
-                                <fb>
-                                    <f>#</f>
-                                </fb>
-                            </harm>
+                            <supplied resp="#pfeffer">
+                                <harm place="above" staff="2" tstamp="1">
+                                    <fb>
+                                        <f>6</f>
+                                    </fb>
+                                </harm>
+                                <harm place="above" staff="2" tstamp="2">
+                                    <fb>
+                                        <f>6</f>
+                                        <f>4</f>
+                                    </fb>
+                                </harm>
+                                <harm place="above" staff="2" tstamp="2.5">
+                                    <fb>
+                                        <f />
+                                        <f>♯</f>
+                                    </fb>
+                                </harm>
+                            </supplied>
+                            <dir staff="1" tstamp="5" place="within">
+                                <rend fontstyle="normal">Da Capo.</rend>
+                            </dir>
+                            <dir staff="2" tstamp="5" place="within">
+                                <rend fontstyle="normal">Da Capo.</rend>
+                            </dir>
                         </measure>
                     </section>
                 </score>

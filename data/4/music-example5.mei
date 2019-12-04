@@ -29,17 +29,15 @@
         <body>
             <mdiv>
                 <score>
-                    <scoreDef>
+                    <scoreDef mnum.visible="false">
                         <staffGrp>
-                            <staffDef clef.shape="C" clef.line="1" key.sig="1s" n="1" lines="5">
-                                <label></label>
-                            </staffDef>
+                            <staffDef clef.shape="C" clef.line="1" key.sig="1s" n="1" lines="5" meter.unit="8" />
                         </staffGrp>
                     </scoreDef>
                     <section>
                         <measure xml:id="ex-101" n="" metcon="false" right="invis">
                             <staff n="1">
-                                <layer n="1">
+                                <layer>
                                     <beam>
                                         <note xml:id="ex-1121" dur="32" oct="5" pname="f" stem.dir="down" accid.ges="s" />
                                         <note xml:id="ex-1124" dur="32" oct="5" pname="d" stem.dir="down" />

@@ -25,27 +25,24 @@
             </pubStmt>
         </fileDesc>
     </meiHead>
-    s
     <music>
         <body>
             <mdiv>
                 <score>
-                    <scoreDef>
+                    <scoreDef mnum.visible="false">
                         <staffGrp>
-                            <staffDef clef.shape="C" clef.line="1" key.sig="1s" n="1" lines="5">
-                                <label></label>
-                            </staffDef>
+                            <staffDef clef.shape="C" clef.line="1" key.sig="1s" n="1" lines="5" meter.unit="8" />
                         </staffGrp>
                     </scoreDef>
                     <section>
-                        <measure xml:id="ex-101" n="">
+                        <measure xml:id="ex-101">
                             <staff n="1">
-                                <layer n="1">
+                                <layer>
                                     <rest xml:id="ex-105" dur="16" />
                                     <beam xml:id="ex-107">
                                         <note xml:id="ex-106" dur="16" oct="4" pname="b" stem.dir="down" />
                                         <note xml:id="ex-108" dur="16" oct="4" pname="b" stem.dir="down" />
-                                        <note xml:id="ex-109" breaksec="1" dur="16" oct="4" pname="a" stem.dir="up" />
+                                        <note xml:id="ex-109" dur="16" oct="4" pname="a" stem.dir="up" />
                                         <note xml:id="ex-110" dur="32" oct="4" pname="g" stem.dir="up" />
                                         <note xml:id="ex-111" dur="32" oct="4" pname="a" stem.dir="up" />
                                         <note xml:id="ex-112" dur="32" oct="4" pname="f" stem.dir="up" accid.ges="s" />

@@ -29,58 +29,86 @@
         <body>
             <mdiv>
                 <score>
-                    <scoreDef>
+                    <scoreDef mnum.visible="false">
                         <staffGrp>
-                            <staffDef clef.shape="C" clef.line="4" key.sig="1f" n="1" lines="5">
-                                <label></label>
-                            </staffDef>
+                            <staffDef clef.shape="C" clef.line="4" key.sig="1f" n="1" lines="5" />
                         </staffGrp>
                     </scoreDef>
                     <section>
-                        <measure n="1">
+                        <measure>
                             <staff n="1">
-                                <layer n="1">
+                                <layer>
                                     <note dur="2" oct="3" pname="a" stem.dir="up" />
                                     <note dur="4" oct="3" pname="a" stem.dir="up" />
                                 </layer>
                             </staff>
+                            <harm place="above" staff="1" tstamp="1">
+                                <fb>
+                                    <f>6</f>
+                                </fb>
+                            </harm>
                         </measure>
-                        <measure n="2">
+                        <measure>
                             <staff n="1">
-                                <layer n="1">
+                                <layer>
                                     <note dots="1" dur="2" oct="3" pname="g" stem.dir="up" />
                                 </layer>
                             </staff>
+                            <harm place="above" staff="1" tstamp="1">
+                                <fb>
+                                    <f>7</f>
+                                </fb>
+                            </harm>
                         </measure>
-                        <measure n="3">
+                        <measure>
                             <staff n="1">
-                                <layer n="1">
+                                <layer>
                                     <note dur="2" oct="3" pname="g" stem.dir="up" />
                                     <note dur="4" oct="3" pname="g" stem.dir="up" />
                                 </layer>
                             </staff>
+                            <harm place="above" staff="1" tstamp="1">
+                                <fb>
+                                    <f>6</f>
+                                </fb>
+                            </harm>
                         </measure>
-                        <measure n="4">
+                        <measure>
                             <staff n="1">
-                                <layer n="1">
+                                <layer>
                                     <note dots="1" dur="2" oct="3" pname="f" stem.dir="up" />
                                 </layer>
                             </staff>
+                            <harm place="above" staff="1" tstamp="1">
+                                <fb>
+                                    <f>7</f>
+                                </fb>
+                            </harm>
                         </measure>
-                        <measure n="5">
+                        <measure>
                             <staff n="1">
-                                <layer n="1">
-                                    <note dur="2" oct="3" pname="e" stem.dir="up" />
-                                    <note dur="4" oct="3" pname="e" stem.dir="up" />
+                                <layer>
+                                    <note dur="2" oct="3" pname="f" stem.dir="up" />
+                                    <note dur="4" oct="3" pname="f" stem.dir="up" />
                                 </layer>
                             </staff>
+                            <harm place="above" staff="1" tstamp="1">
+                                <fb>
+                                    <f>6</f>
+                                </fb>
+                            </harm>
                         </measure>
-                        <measure n="6">
+                        <measure>
                             <staff n="1">
-                                <layer n="1">
-                                    <note dots="1" dur="2" oct="3" pname="d" stem.dir="up" />
+                                <layer>
+                                    <note dots="1" dur="2" oct="3" pname="e" stem.dir="up" />
                                 </layer>
                             </staff>
+                            <harm place="above" staff="1" tstamp="1">
+                                <fb>
+                                    <f>6</f>
+                                </fb>
+                            </harm>
                         </measure>
                     </section>
                 </score>
