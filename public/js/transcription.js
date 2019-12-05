@@ -69,7 +69,7 @@ const midiUpdate = function(time) {
 }
 
 async function renderComments() {
-  cetei.makeHTML5($("#comments-view").html(), function(html) {
+  cetei.makeHTML5(teiComments, function(html) {
       $("#comments-view").html(html);
       $("#comments-view tei-facsimile img").hide();
   });
