@@ -124,16 +124,18 @@
       <body>
         <mdiv>
           <score>
-            <scoreDef>
+            <scoreDef key.pname="d" key.mode="minor">
               <staffGrp>
-                <staffDef xml:id="mattheson" clef.shape="C" clef.line="1" key.mode="major" key.sig="1f" meter.sym="common" meter.count="4" meter.unit="4" n="1" lines="5">
+                <staffDef xml:id="mattheson" clef.shape="C" clef.line="1" meter.sym="common" meter.count="4" meter.unit="4" n="1" lines="5">
                   <label>Mattheson's annotations</label>
+                  <keySig sig="1f"/>
                 </staffDef>
-                <staffDef xml:id="bass" clef.shape="F" clef.line="4" key.mode="major" key.sig="1f" meter.sym="common" meter.count="4" meter.unit="4" n="2" lines="5">
-                  <label/>
+                <staffDef xml:id="bass" clef.shape="F" clef.line="4" meter.sym="common" meter.count="4" meter.unit="4" n="2" lines="5">
+                  <keySig sig="1f"/>
                 </staffDef>
-                <staffDef xml:id="basse-fondamentale" clef.shape="F" clef.line="4" key.mode="major" key.sig="1f" meter.sym="common" meter.count="4" meter.unit="4" n="3" lines="5">
+                <staffDef xml:id="basse-fondamentale" clef.shape="F" clef.line="4" meter.sym="common" meter.count="4" meter.unit="4" n="3" lines="5">
                   <label>basse fondamentale</label>
+                  <keySig sig="1f"/>
                 </staffDef>
               </staffGrp>
             </scoreDef>
