@@ -138,11 +138,17 @@
       <body xml:id="m-23">
         <mdiv xml:id="m-24">
           <score xml:id="m-25">
-            <scoreDef meter.count="3" meter.unit="4">
+            <scoreDef key.pname="f" key.mode="major">
               <staffGrp>
-                <staffDef xml:id="mattheson" clef.line="2" clef.shape="G" key.mode="major" key.sig="1f" lines="5" n="1"/>
-                <staffDef xml:id="bass" clef.line="4" clef.shape="F" key.mode="major" key.sig="1f" lines="5" n="2"/>
-                <staffDef xml:id="fundamental-notes" clef.line="4" clef.shape="F" key.mode="major" key.sig="1f" label="Grund-Noten (Mattheson)" lines="5" n="3"/>
+                <staffDef xml:id="mattheson" clef.line="2" clef.shape="G" lines="5" n="1" meter.count="3" meter.unit="4">
+                  <keySig sig="1f"/>
+                </staffDef>
+                <staffDef xml:id="bass" clef.line="4" clef.shape="F" lines="5" n="2" meter.count="3" meter.unit="4">
+                  <keySig sig="1f"/>
+                </staffDef>
+                <staffDef xml:id="fundamental-notes" clef.line="4" clef.shape="F" label="Grund-Noten (Mattheson)" lines="5" n="3" meter.count="3" meter.unit="4">
+                  <keySig sig="1f"/>
+                </staffDef>
               </staffGrp>
             </scoreDef>
             <section xml:id="m-40">
