@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="http://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<?xml-model href="http://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-CMN.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" xmlns:xlink="http://www.w3.org/1999/xlink" meiversion="4.0.0">
   <meiHead>
     <fileDesc>
@@ -76,7 +75,7 @@
           <zone ulx="123" uly="1637" lrx="1907" xml:id="facsZone-m-286"/>
           <zone ulx="729" uly="1631" lrx="1931" xml:id="facsZone-m-314"/>
           <zone ulx="1317" uly="1619" lrx="1943" xml:id="facsZone-m-345"/>
-          <zone ulx="117" uly="1937" lrx="2231" xml:id="facsZone-m-373-2"/>
+          <zone ulx="117" uly="1937" lrx="2231" xml:id="facsZone-m-373-1"/>
           <zone ulx="117" uly="1937" lrx="2231" xml:id="facsZone-m-373-2"/>
           <zone ulx="996" uly="1952" lrx="2231" xml:id="facsZone-m-403"/>
         </surface>
@@ -610,7 +609,7 @@
                     <mSpace />
                   </layer>
                 </staff>
-                <staff xml:id="m-373" n="2" facs="#facsZone-m-373 #facsZone-m-373-2 #facsZone-m-373-2">
+                <staff xml:id="m-373" n="2" facs="#facsZone-m-373 #facsZone-m-373-1 #facsZone-m-373-2">
                   <layer xml:id="m-374" n="1">
                     <beam xml:id="m-376">
                       <note xml:id="m-375" dur="32" oct="4" pname="c"/>
