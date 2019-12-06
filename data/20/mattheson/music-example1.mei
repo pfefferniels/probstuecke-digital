@@ -35,9 +35,9 @@
                         </staffGrp>
                     </scoreDef>
                     <section>
-                        <measure xml:id="ex-000028921587" n="15">
+                        <measure xml:id="ex-000028921587" n="5">
                             <staff n="1">
-                                <layer n="1">
+                                <layer>
                                     <supplied resp="#pfeffer">
                                         <space xml:id="ex-001107384863" dur="4" />
                                     </supplied>
@@ -58,21 +58,21 @@
                                         <note xml:id="ex-000895928818" dur="16" oct="5" pname="e" stem.dir="down" />
                                         <note xml:id="ex-001909631707" dur="16" oct="4" pname="b" stem.dir="down" />
                                         <app>
-                                          <lem source="#secondEdition">
-                                            <note xml:id="ex-001148130017" dur="16" oct="5" pname="d" stem.dir="down" />
-                                          </lem>
-                                          <rdg source="#firstEdition">
-                                            <note xml:id="ex-001183629950" dur="16" oct="5" pname="d" stem.dir="down" />
-                                          </rdg>
+                                            <lem source="#secondEdition">
+                                                <note xml:id="ex-001148130017" dur="16" oct="5" pname="d" stem.dir="down" />
+                                            </lem>
+                                            <rdg source="#firstEdition">
+                                                <note xml:id="ex-001183629950" dur="16" oct="5" pname="e" stem.dir="down" />
+                                            </rdg>
                                         </app>
                                     </beam>
                                 </layer>
                             </staff>
                             <dir place="below">Fünffter Tact.</dir>
                         </measure>
-                        <measure xml:id="ex-002019113602" n="16" right="invis">
+                        <measure xml:id="ex-002019113602" n="6" right="invis">
                             <staff n="1">
-                                <layer n="1">
+                                <layer>
                                     <beam>
                                         <note xml:id="ex-000096475921" dur="16" oct="5" pname="c" stem.dir="up" accid.ges="s" />
                                         <note xml:id="ex-000970493944" dur="16" oct="4" pname="g" stem.dir="up" />
@@ -82,6 +82,9 @@
                                     <custos xml:id="ex-001326895216" oct="4" pname="f" />
                                 </layer>
                             </staff>
+                            <dir staff="1" place="within" tstamp="3">
+                                <rend fontstyle="normal">&amp;c.</rend>
+                            </dir>
                         </measure>
                     </section>
                 </score>

@@ -38,7 +38,7 @@
                     <section>
                         <measure xml:id="ex-001570447245" n="1">
                             <staff n="1">
-                                <layer n="1">
+                                <layer>
                                     <space xml:id="ex-000352642876" dur="4" />
                                     <space xml:id="ex-000893190536" dur="4" />
                                     <rest xml:id="ex-002100951847" dur="16" />
@@ -56,7 +56,7 @@
                                 </layer>
                             </staff>
                             <staff n="2">
-                                <layer n="1">
+                                <layer>
                                     <space xml:id="ex-001793545118" dur="2" />
                                     <note xml:id="ex-000413724862" dur="4" oct="2" pname="g" stem.dir="up" />
                                     <note xml:id="ex-001713630028" dur="4" oct="3" pname="g" stem.dir="down" />
@@ -71,7 +71,7 @@
                         </measure>
                         <measure xml:id="ex-000607294325" n="2" right="invis" metcon="false">
                             <staff n="1">
-                                <layer n="1">
+                                <layer>
                                     <beam>
                                         <note xml:id="ex-000743584254" dur="16" oct="4" pname="c" stem.dir="up" accid.ges="s" />
                                         <note xml:id="ex-000814466664" dur="16" oct="3" pname="a" stem.dir="up" />
@@ -79,13 +79,14 @@
                                         <note xml:id="ex-000202253440" dur="16" oct="4" pname="e" stem.dir="up" />
                                     </beam>
                                     <custos oct="4" pname="a" />
+                                    <space dur="8" />
                                     <custos oct="4" pname="d" />
                                 </layer>
                             </staff>
                             <staff n="2">
-                                <layer n="1">
+                                <layer>
                                     <note xml:id="ex-001517531065" dur="4" oct="3" pname="g" stem.dir="down" />
-                                    <custos oct="3" pname="f" />
+                                    <custos oct="4" pname="f" />
                                 </layer>
                             </staff>
                             <harm place="above" staff="2" tstamp="1">

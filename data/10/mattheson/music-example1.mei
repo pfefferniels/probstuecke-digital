@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-CMN.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-CMN.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0" ?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
     <meiHead>
         <fileDesc>
             <titleStmt>
-                <title>
-                </title>
+                <title></title>
                 <composer>
                     <persName role="composer" auth.uri="http://d-nb.info/gnd/118578995" auth="GND">Johann Mattheson</persName>
                 </composer>
@@ -16,192 +15,197 @@
                 </respStmt>
             </titleStmt>
             <editionStmt>
-                <edition>First draft, <date>2019</date>
-            </edition>
-        </editionStmt>
-        <pubStmt>
-            <unpub />
-        </pubStmt>
-    </fileDesc>
-</meiHead>
-<music>
-    <body>
-        <mdiv>
-            <score>
-                <scoreDef mnum.visible="false">
-                    <staffGrp>
-                        <staffDef clef.shape="C" clef.line="1" key.sig="3f" n="1" lines="5" />
-                        <staffDef clef.shape="F" clef.line="4" key.sig="3f" n="2" lines="5" />
-                    </staffGrp>
-                </scoreDef>
-                <section>
-                    <measure xml:id="ex-1131" n="46">
-                        <staff n="1">
-                            <layer n="1">
-                                <chord xml:id="ex-1134" dots="1" dur="4">
-                                    <note xml:id="ex-1135" oct="4" pname="f" />
-                                    <note xml:id="ex-1136" oct="4" pname="a" />
-                                    <note xml:id="ex-1138" oct="5" pname="c" />
-                                    <note xml:id="ex-1139" oct="5" pname="f" />
-                                </chord>
-                                <beam xml:id="ex-1142">
-                                    <note xml:id="ex-1141" dur="16" oct="5" pname="f" />
-                                    <note xml:id="ex-1143" dur="16" oct="5" pname="f" />
-                                    <note xml:id="ex-1144" dur="16" oct="5" pname="e" />
-                                    <note xml:id="ex-1146" dur="16" oct="5" pname="e" />
-                                    <note xml:id="ex-1148" dur="16" oct="4" pname="b" />
-                                    <note xml:id="ex-1150" dur="16" oct="4" pname="b" />
-                                </beam>
-                            </layer>
-                        </staff>
-                        <staff n="2">
-                            <layer n="1">
-                                <beam xml:id="ex-1155">
-                                    <note xml:id="ex-1154" dur="16" oct="3" pname="f" />
-                                    <note xml:id="ex-1156" dur="16" oct="3" pname="f" />
-                                    <note xml:id="ex-1157" dur="16" oct="3" pname="c" />
-                                    <note xml:id="ex-1158" dur="16" oct="3" pname="c" />
-                                    <note xml:id="ex-1159" dur="16" oct="2" pname="a" />
-                                    <note xml:id="ex-1161" dur="16" oct="2" pname="a" />
-                                </beam>
-                                <note xml:id="ex-1163" dur="4" oct="2" pname="g" />
-                                <rest xml:id="ex-1164" dur="8" />
-                            </layer>
-                        </staff>
-                        <tie xml:id="ex-1140" startid="#ex-1139" endid="#ex-1141"/>
-                        <supplied resp="#rettinghaus">
-                            <harm place="above" staff="2" tstamp="4">
-                                <fb>
-                                    <f>7</f>
-                                </fb>
-                            </harm>
-                            <harm place="above" staff="2" tstamp="5">
-                                <fb>
-                                    <f>6</f>
-                                </fb>
-                            </harm>
-                        </supplied>
-                    </measure>
-                    <measure xml:id="ex-1165" n="47">
-                        <staff n="1">
-                            <layer n="1">
-                                <chord xml:id="ex-1169" dots="1" dur="4">
-                                    <note xml:id="ex-1170" oct="4" pname="e" />
-                                    <note xml:id="ex-1172" oct="4" pname="g" />
-                                    <note xml:id="ex-1173" oct="4" pname="b" />
-                                    <note xml:id="ex-1175" oct="5" pname="e" />
-                                </chord>
-                                <beam xml:id="ex-1180">
-                                    <note xml:id="ex-1178" dur="16" oct="5" pname="e" />
-                                    <note xml:id="ex-1181" dur="16" oct="5" pname="e" />
-                                    <note xml:id="ex-1183" dur="16" oct="5" pname="d">
-                                        <accid xml:id="ex-1184" accid="f" />
-                                    </note>
-                                    <note xml:id="ex-1185" dur="16" oct="5" pname="d" />
-                                    <note xml:id="ex-1187" dur="16" oct="4" pname="a" />
-                                    <note xml:id="ex-1189" dur="16" oct="4" pname="a" />
-                                </beam>
-                            </layer>
-                        </staff>
-                        <staff n="2">
-                            <layer n="1">
-                                <beam xml:id="ex-1195">
-                                    <note xml:id="ex-1193" dur="16" oct="3" pname="e" />
-                                    <note xml:id="ex-1196" dur="16" oct="3" pname="e" />
-                                    <note xml:id="ex-1198" dur="16" oct="2" pname="b" />
-                                    <note xml:id="ex-1200" dur="16" oct="2" pname="b" />
-                                    <note xml:id="ex-1202" dur="16" oct="2" pname="g" />
-                                    <note xml:id="ex-1203" dur="16" oct="2" pname="g" />
-                                </beam>
-                                <note xml:id="ex-1204" dur="4" oct="2" pname="f" />
-                                <rest xml:id="ex-1205" dur="8" />
-                            </layer>
-                        </staff>
-                        <tie xml:id="ex-1177" startid="#ex-1175" endid="#ex-1178" />
-                        <supplied resp="#rettinghaus">
-                            <harm place="above" staff="2" tstamp="4">
-                                <fb>
-                                    <f>7</f>
-                                </fb>
-                            </harm>
-                            <harm place="above" staff="2" tstamp="5">
-                                <fb>
-                                    <f>♭6</f>
-                                </fb>
-                            </harm>
-                        </supplied>
-                    </measure>
-                    <measure xml:id="ex-1206" n="48">
-                        <staff n="1">
-                            <layer n="1">
-                                <chord xml:id="ex-1209" dots="1" dur="4">
-                                    <note xml:id="ex-1210" oct="4" pname="d">
-                                        <accid xml:id="ex-1211" accid="f" />
-                                    </note>
-                                    <note xml:id="ex-1212" oct="4" pname="f" />
-                                    <note xml:id="ex-1213" oct="4" pname="a" />
-                                    <note xml:id="ex-1215" oct="5" pname="d">
-                                        <accid xml:id="ex-1216" accid="f" />
-                                    </note>
-                                </chord>
-                                <beam xml:id="ex-1220">
-                                    <note xml:id="ex-1218" dur="16" oct="5" pname="d" />
-                                    <note xml:id="ex-1221" dur="16" oct="5" pname="d" />
-                                    <note xml:id="ex-1223" dur="16" oct="5" pname="c" />
-                                    <note xml:id="ex-1224" dur="16" oct="5" pname="c" />
-                                    <note xml:id="ex-1225" dur="16" oct="4" pname="g" />
-                                    <note xml:id="ex-1226" dur="16" oct="4" pname="g" />
-                                </beam>
-                            </layer>
-                        </staff>
-                        <staff n="2">
-                            <layer n="1">
-                                <beam xml:id="ex-1231">
-                                    <note xml:id="ex-1229" dur="16" oct="3" pname="d">
-                                        <accid xml:id="ex-1230" accid="f" />
-                                    </note>
-                                    <note xml:id="ex-1232" dur="16" oct="3" pname="d" />
-                                    <note xml:id="ex-1234" dur="16" oct="2" pname="a" />
-                                    <note xml:id="ex-1236" dur="16" oct="2" pname="a" />
-                                    <note xml:id="ex-1238" dur="16" oct="2" pname="f" />
-                                    <note xml:id="ex-1239" dur="16" oct="2" pname="f" />
-                                </beam>
-                                <note xml:id="ex-1240" dur="4" oct="2" pname="e" />
-                                <rest xml:id="ex-1242" dur="8" />
-                            </layer>
-                        </staff>
-                        <tie xml:id="ex-1217" startid="#ex-1215" endid="#ex-1218" />
-                        <supplied resp="#rettinghaus">
-                            <harm place="above" staff="2" tstamp="4">
-                                <fb>
-                                    <f>7</f>
-                                </fb>
-                            </harm>
-                            <harm place="above" staff="2" tstamp="5">
-                                <fb>
-                                    <f>6</f>
-                                </fb>
-                            </harm>
-                        </supplied>
-                    </measure>
-                    <measure right="invis">
-                        <staff n="1">
-                            <layer n="1">
-                                <custos oct="5" pname="c" />
-                                <custos oct="4" pname="g" />
-                                <custos oct="4" pname="e" />
-                                <custos oct="4" pname="c" />
-                            </layer>
-                        </staff>
-                        <staff n="2">
-                            <layer n="1">
-                                <mSpace />
-                            </layer>
-                        </staff>
-                    </measure>
-                </section>
-            </score>
-        </mdiv>
-    </body>
-</music>
+                <edition>First draft, <date>2019</date></edition>
+            </editionStmt>
+            <pubStmt>
+                <unpub />
+            </pubStmt>
+        </fileDesc>
+    </meiHead>
+    <music>
+        <body>
+            <mdiv>
+                <score>
+                    <scoreDef mnum.visible="false">
+                        <staffGrp>
+                            <staffDef clef.shape="C" clef.line="1" key.sig="3f" n="1" lines="5" meter.unit="8" />
+                            <staffDef clef.shape="F" clef.line="4" key.sig="3f" n="2" lines="5" meter.unit="8" />
+                        </staffGrp>
+                    </scoreDef>
+                    <section>
+                        <measure xml:id="ex-1131" n="46">
+                            <staff n="1">
+                                <layer n="1">
+                                    <chord xml:id="ex-1134" dots="1" dur="4">
+                                        <note xml:id="ex-1135" oct="4" pname="f" />
+                                        <note xml:id="ex-1136" oct="4" pname="a" />
+                                        <note xml:id="ex-1138" oct="5" pname="c" />
+                                        <note xml:id="ex-1139" oct="5" pname="f" />
+                                    </chord>
+                                    <beam xml:id="ex-1142">
+                                        <note xml:id="ex-1141" dur="16" oct="5" pname="f" />
+                                        <note xml:id="ex-1143" dur="16" oct="5" pname="f" />
+                                        <note xml:id="ex-1144" dur="16" oct="5" pname="e" />
+                                        <note xml:id="ex-1146" dur="16" oct="5" pname="e" />
+                                        <note xml:id="ex-1148" dur="16" oct="4" pname="b" />
+                                        <note xml:id="ex-1150" dur="16" oct="4" pname="b" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <staff n="2">
+                                <layer n="1">
+                                    <beam xml:id="ex-1155">
+                                        <note xml:id="ex-1154" dur="16" oct="3" pname="f" />
+                                        <note xml:id="ex-1156" dur="16" oct="3" pname="f" />
+                                        <note xml:id="ex-1157" dur="16" oct="3" pname="c" />
+                                        <note xml:id="ex-1158" dur="16" oct="3" pname="c" />
+                                        <note xml:id="ex-1159" dur="16" oct="2" pname="a" />
+                                        <note xml:id="ex-1161" dur="16" oct="2" pname="a" />
+                                    </beam>
+                                    <note xml:id="ex-1163" dur="4" oct="2" pname="g" />
+                                    <rest xml:id="ex-1164" dur="8" />
+                                </layer>
+                            </staff>
+                            <tie xml:id="ex-1140" startid="#ex-1139" endid="#ex-1141" />
+                            <supplied resp="#rettinghaus">
+                                <harm place="above" staff="2" tstamp="4">
+                                    <fb>
+                                        <f>7</f>
+                                    </fb>
+                                </harm>
+                                <harm place="above" staff="2" tstamp="5">
+                                    <fb>
+                                        <f>6</f>
+                                    </fb>
+                                </harm>
+                            </supplied>
+                        </measure>
+                        <measure xml:id="ex-1165" n="47">
+                            <staff n="1">
+                                <layer n="1">
+                                    <chord xml:id="ex-1169" dots="1" dur="4">
+                                        <note xml:id="ex-1170" oct="4" pname="e" />
+                                        <note xml:id="ex-1172" oct="4" pname="g" />
+                                        <note xml:id="ex-1173" oct="4" pname="b" />
+                                        <note xml:id="ex-1175" oct="5" pname="e" />
+                                    </chord>
+                                    <beam xml:id="ex-1180">
+                                        <note xml:id="ex-1178" dur="16" oct="5" pname="e" />
+                                        <note xml:id="ex-1181" dur="16" oct="5" pname="e" />
+                                        <note xml:id="ex-1183" dur="16" oct="5" pname="d">
+                                            <accid xml:id="ex-1184" accid="f" />
+                                        </note>
+                                        <note xml:id="ex-1185" dur="16" oct="5" pname="d" />
+                                        <note xml:id="ex-1187" dur="16" oct="4" pname="a" />
+                                        <note xml:id="ex-1189" dur="16" oct="4" pname="a" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <staff n="2">
+                                <layer n="1">
+                                    <beam xml:id="ex-1195">
+                                        <note xml:id="ex-1193" dur="16" oct="3" pname="e" />
+                                        <note xml:id="ex-1196" dur="16" oct="3" pname="e" />
+                                        <note xml:id="ex-1198" dur="16" oct="2" pname="b" />
+                                        <note xml:id="ex-1200" dur="16" oct="2" pname="b" />
+                                        <note xml:id="ex-1202" dur="16" oct="2" pname="g" />
+                                        <note xml:id="ex-1203" dur="16" oct="2" pname="g" />
+                                    </beam>
+                                    <note xml:id="ex-1204" dur="4" oct="2" pname="f" />
+                                    <rest xml:id="ex-1205" dur="8" />
+                                </layer>
+                            </staff>
+                            <tie xml:id="ex-1177" startid="#ex-1175" endid="#ex-1178" />
+                            <supplied resp="#rettinghaus">
+                                <harm place="above" staff="2" tstamp="4">
+                                    <fb>
+                                        <f>7</f>
+                                    </fb>
+                                </harm>
+                                <harm place="above" staff="2" tstamp="5">
+                                    <fb>
+                                        <f>♭6</f>
+                                    </fb>
+                                </harm>
+                            </supplied>
+                        </measure>
+                        <measure xml:id="ex-1206" n="48">
+                            <staff n="1">
+                                <layer n="1">
+                                    <chord xml:id="ex-1209" dots="1" dur="4">
+                                        <note xml:id="ex-1210" oct="4" pname="d">
+                                            <accid xml:id="ex-1211" accid="f" />
+                                        </note>
+                                        <note xml:id="ex-1212" oct="4" pname="f" />
+                                        <note xml:id="ex-1213" oct="4" pname="a" />
+                                        <note xml:id="ex-1215" oct="5" pname="d">
+                                            <accid xml:id="ex-1216" accid="f" />
+                                        </note>
+                                    </chord>
+                                    <beam xml:id="ex-1220">
+                                        <note xml:id="ex-1218" dur="16" oct="5" pname="d" />
+                                        <note xml:id="ex-1221" dur="16" oct="5" pname="d" />
+                                        <note xml:id="ex-1223" dur="16" oct="5" pname="c" />
+                                        <note xml:id="ex-1224" dur="16" oct="5" pname="c" />
+                                        <note xml:id="ex-1225" dur="16" oct="4" pname="g" />
+                                        <note xml:id="ex-1226" dur="16" oct="4" pname="g" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <staff n="2">
+                                <layer n="1">
+                                    <beam xml:id="ex-1231">
+                                        <note xml:id="ex-1229" dur="16" oct="3" pname="d">
+                                            <accid xml:id="ex-1230" accid="f" />
+                                        </note>
+                                        <note xml:id="ex-1232" dur="16" oct="3" pname="d" />
+                                        <note xml:id="ex-1234" dur="16" oct="2" pname="a" />
+                                        <note xml:id="ex-1236" dur="16" oct="2" pname="a" />
+                                        <note xml:id="ex-1238" dur="16" oct="2" pname="f" />
+                                        <note xml:id="ex-1239" dur="16" oct="2" pname="f" />
+                                    </beam>
+                                    <note xml:id="ex-1240" dur="4" oct="2" pname="e" />
+                                    <rest xml:id="ex-1242" dur="8" />
+                                </layer>
+                            </staff>
+                            <tie xml:id="ex-1217" startid="#ex-1215" endid="#ex-1218" />
+                            <supplied resp="#rettinghaus">
+                                <harm place="above" staff="2" tstamp="4">
+                                    <fb>
+                                        <f>7</f>
+                                    </fb>
+                                </harm>
+                                <harm place="above" staff="2" tstamp="5">
+                                    <fb>
+                                        <f>6</f>
+                                    </fb>
+                                </harm>
+                            </supplied>
+                        </measure>
+                        <measure right="invis">
+                            <staff n="1">
+                                <layer n="1">
+                                    <custos oct="5" pname="c" />
+                                    <space dur="8" />
+                                    <custos oct="4" pname="g" />
+                                    <space dur="8" />
+                                    <custos oct="4" pname="e" />
+                                    <space dur="8" />
+                                    <custos oct="4" pname="c" />
+                                </layer>
+                            </staff>
+                            <staff n="2">
+                                <layer n="1">
+                                    <mSpace />
+                                </layer>
+                            </staff>
+                            <dir staff="2" place="within" tstamp="2">
+                                <rend fontstyle="normal">&amp;c.</rend>
+                            </dir>
+                        </measure>
+                    </section>
+                </score>
+            </mdiv>
+        </body>
+    </music>
 </mei>
