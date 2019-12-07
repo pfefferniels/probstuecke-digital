@@ -143,3 +143,19 @@ tei-rdg:last-child::after {
 tei-teiheader {
   display: none;
 }
+
+tei-front {
+  height: 90vh;
+  width: 90vw;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+tei-front * {
+  display: block;
+}
+
+tei-epigraph tei-persname {
+  font-style: italic;
+}
