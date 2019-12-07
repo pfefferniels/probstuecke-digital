@@ -4,13 +4,13 @@ const transcription = require('express').Router(),
       vrvAdapter = require('../utils/verovioAdapter.js');
 
 const lookupTable = {
-  secondEdition: 'comments_de.tei',
-  firstEdition: 'comments_1st.tei',
-  german: 'comments_de.tei',
-  english: 'comments_en.tei'
+  secondEdition: 'de',
+  german: 'de',
+  firstEdition: '1st',
+  english: 'en'
 };
 
-transcription.get('/:number/:label/:edition', function(req, res) {
+function getTranscription(req, res) {
   let number = req.params.number;
   let label = req.params.label;
   let edition = req.params.edition;
@@ -20,7 +20,7 @@ transcription.get('/:number/:label/:edition', function(req, res) {
     '/../data',
     number,
     label,
-    lookupTable[edition]);
+    'comments_' + lookupTable[edition] + '.tei');
 
   let viewParams = {
     number: number,
@@ -40,15 +40,39 @@ transcription.get('/:number/:label/:edition', function(req, res) {
   } catch (e) { }
 
   res.render('transcription', viewParams);
-});
+}
 
-// generate PDF
-transcription.get('/:number/:label/:edition/pdf', function(req, res) {
+function getFrontPage(req, res) {
+    let teiPath = path.join(
+    __dirname,
+    '/../data/frontpage',
+    'frontpage_' + lookupTable[req.params.edition] + '.tei');
+
+  let viewParams = {};
+  try {
+    res.render('transcription', {
+      teiComment: fs.readFileSync(teiPath)
+    });
+  } catch (err) {
+    res.status('404').end();
+  }
+
+}
+
+function getPDF(req, res) {
   let number = req.params.number;
   let label = req.params.label;
   let edition = req.params.edition;
 
-  vrvAdapter.streamPDF(res, number, label, 'score.mei', req.query.above, req.query.below, req.query.modernClefs);
-});
+  vrvAdapter.streamPDF(res,
+                       req.params.number,
+                       req.params.label,
+                       'score.mei',
+                       req.query.above, req.query.below, req.query.modernClefs);
+}
+
+transcription.get('/:number/:label/:edition', getTranscription);
+transcription.get('/frontpage/:edition', getFrontPage);
+transcription.get('/:number/:label/:edition/pdf', getPDF);
 
 module.exports = transcription;

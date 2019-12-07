@@ -27,10 +27,6 @@ app.get('/_annotate', function(req, res) {
 app.post('/annotateFile', annotate.annotateFile);
 app.get('/annotatedFile', annotate.annotatedFile);
 
-app.get('/', function(req, res) {
-  res.render('frontpage');
-});
-
 app.get('/howto', function(req, res) {
   res.render('howto');
 });
@@ -41,6 +37,10 @@ app.get('/guidelines', function(req, res) {
 
 app.get('/contributions', function(req, res) {
   res.render('contributions');
+});
+
+app.get('/', function(req, res) {
+  res.redirect('/transcription/frontpage/secondEdition');
 });
 
 app.listen(process.env.PORT || 3000, function() {
