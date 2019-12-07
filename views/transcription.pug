@@ -9,7 +9,6 @@ block headAdditions
   script.
     number = "#{number}";
     label = "#{label}";
-    language = "#{language}";
     midi = "#{midi}";
     teiComments = `!{teiComment}`;
   
@@ -82,8 +81,10 @@ block content
           button.btn.btn-secondary(type="button" data-dismiss="modal") Cancel
           button#update-facsimile.btn.btn-primary(type="button" data-dismiss="modal") Update view
   .row
-    .col-sm#score-view !{svgScore}
-    .col-sm#comments-view 
+    if svgScore
+      .col-sm#score-view !{svgScore}
+    if teiComment
+      .col-sm#comments-view 
   
   #meter-overlay.signature-overlay
   #key-overlay.signature-overlay

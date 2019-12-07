@@ -22,17 +22,24 @@ transcription.get('/:number/:label/:edition', function(req, res) {
     label,
     lookupTable[edition]);
 
-  res.render('transcription', {
+  let viewParams = {
     number: number,
-    label: label,
-    language: edition,
-    svgScore: vrvAdapter.renderSVG(number, label, 'score.mei',
+    label: label
+  }
+
+  try {
+    viewParams.svgScore = vrvAdapter.renderSVG(number, label, 'score.mei',
                                    req.query.above,
                                    req.query.below,
-                                   req.query.modernClefs == 'on'),
-    teiComment: fs.readFileSync(teiPath),
-    midi: vrvAdapter.renderMIDI(number, label, 'score.mei')
-   });
+                                   req.query.modernClefs == 'on');
+    viewParams.midi = vrvAdapter.renderMIDI(number, label, 'score.mei');
+  } catch (e) {  }
+
+  try {
+    viewParams.teiComment = fs.readFileSync(teiPath);
+  } catch (e) { }
+
+  res.render('transcription', viewParams);
 });
 
 // generate PDF

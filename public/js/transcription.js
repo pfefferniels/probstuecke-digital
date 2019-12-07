@@ -245,12 +245,20 @@ async function reloadFacsimileTooltips() {
 }
 
 $(document).ready(async function() {
-  $("#player").midiPlayer({
-      onUpdate: midiUpdate
-  });
-  const piece = 'data:audio/midi;base64,' + midi;
-  $("#player").show();
-  $("#player").midiPlayer.load(piece);
+  if (teiComments) {
+    await renderComments();
+    connectSignatureTooltips();
+    reconnectCrossRefs();
+  }
+
+  if (midi) {
+    $("#player").midiPlayer({
+        onUpdate: midiUpdate
+    });
+    const piece = 'data:audio/midi;base64,' + midi;
+    $("#player").show();
+    $("#player").midiPlayer.load(piece);
+  }
 
   $("#update-page").click(function() {
     $('#options-form').submit();
@@ -268,10 +276,6 @@ $(document).ready(async function() {
   $("#pdf-download").click(function() {
     window.location += '/pdf';
   });
-
-  await renderComments();
-  reconnectCrossRefs();
-  connectSignatureTooltips();
 
   // highlighting the element that might be given in the URL
   let hash = window.location.hash;
