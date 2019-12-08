@@ -1,0 +1,55 @@
+{
+    "@context": "http://iiif.io/api/presentation/2/context.json",
+    "@id": "https://probstuecke-digital.de/iiif/3/list/facsimile_1st",
+    "@type": "sc:AnnotationList",
+    "resources": [
+        {
+            "@context": "http://iiif.io/api/presentation/2/context.json",
+            "@id": "https://probstuecke-digital.de/iiif/3/annotation/facsimile_1st-page270",
+            "@type": "oa:Annotation",
+            "motivation": "sc:painting",
+            "resource": {
+                "@id": "http://probstuecke-digital.de/iiif/3/score.mei#xpointer(//pb[n='116' and source='#firstEdition'])",
+                "@type": "dctypes:Image",
+                "format": "application/mei+xml"
+            },
+            "on": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10527430/canvas/270"
+        },
+        {
+            "@context": "http://iiif.io/api/presentation/2/context.json",
+            "@id": "https://probstuecke-digital.de/iiif/3/annotation/facsimile_1st-page271",
+            "@type": "oa:Annotation",
+            "motivation": "sc:painting",
+            "resource": {
+                "@id": "http://probstuecke-digital.de/iiif/3/score.mei#xpointer(//pb[n='117' and source='#firstEdition'])",
+                "@type": "dctypes:Image",
+                "format": "application/mei+xml"
+            },
+            "on": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10527430/canvas/271"
+        },
+        {
+            "@context": "http://iiif.io/api/presentation/2/context.json",
+            "@id": "https://probstuecke-digital.de/iiif/3/annotation/facsimile_1st-page272",
+            "@type": "oa:Annotation",
+            "motivation": "sc:painting",
+            "resource": {
+                "@id": "http://probstuecke-digital.de/iiif/3/score.mei#xpointer(//pb[n='118' and source='#firstEdition'])",
+                "@type": "dctypes:Image",
+                "format": "application/mei+xml"
+            },
+            "on": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10527430/canvas/272"
+        },
+        {
+            "@context": "http://iiif.io/api/presentation/2/context.json",
+            "@id": "https://probstuecke-digital.de/iiif/3/annotation/facsimile_1st-page273",
+            "@type": "oa:Annotation",
+            "motivation": "sc:painting",
+            "resource": {
+                "@id": "http://probstuecke-digital.de/iiif/3/score.mei#xpointer(//pb[n='119' and source='#firstEdition'])",
+                "@type": "dctypes:Image",
+                "format": "application/mei+xml"
+            },
+            "on": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10527430/canvas/273"
+        }
+    ]
+}

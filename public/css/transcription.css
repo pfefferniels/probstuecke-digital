@@ -1,0 +1,161 @@
+* {
+  box-sizing: border-box;
+}
+
+svg {
+  display: block;
+  left: 0px;
+  top: 0px;
+  width: 100% !important;
+  height: auto !important;
+  z-index: 400;
+}
+
+.indicator {
+  cursor: pointer;
+}
+
+.signature-overlay {
+  position: absolute;
+  border: 0.1rem solid #ff5100;
+  border-radius: 0.15rem;
+  background-color: #ff9538;
+  opacity: 0.3;
+}
+
+input[type="number"] {
+  max-width: 4rem;
+}
+
+.supplied .text {
+  fill: lightslategray;
+}
+
+@keyframes highlight {
+  0% {
+    background: #f4a742;
+    opacity: 0.8;
+  }
+
+  100% {
+    background: none;
+    opacity: 0.3;
+  }
+}
+
+.highlight {
+  animation: highlight 4s;
+}
+
+a {
+  text-decoration: none;
+}
+
+tei-ref {
+  border: 0.1rem solid #f47141;
+  border-radius: 0.25rem;
+  padding-left: 0.1rem;
+  padding-right: 0.1rem;
+}
+
+tei-p {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  text-align: justify;
+  position: relative;
+  width: 90%;
+  line-height: 1.5;
+}
+
+tei:div:not(:first-of-type)>tei-p {
+  text-indent: 2rem;
+}
+
+tei-hi[rendition="#aq"] {
+  letter-spacing: 0.1rem;
+}
+
+tei-hi[rendition="#b"] {
+  font-weight: bold;
+}
+
+tei-hi[rendition="#c"] {
+  display: block;
+  text-align: center;
+}
+
+tei-hi[rendition="#i"] {
+  font-style: italic;
+}
+
+tei-hi[rendition="#in"] {
+  font-size: 150%;
+}
+
+tei-hi[rendition="#k"] {
+  font-variant: small-caps;
+}
+
+tei-head {
+  display: block;
+  font-family: Arvo, sans-serif;
+  font-weight: normal;
+  text-align: center;
+}
+
+tei-body>tei-head {
+  font-size: 1.5rem;
+  text-indent: -0.5rem;
+}
+
+tei-graphic>img {
+  width: 80%;
+}
+
+tei-foreign {
+}
+
+tei-note {
+  color: gray;
+}
+
+tei-note[n]::before {
+  content: attr(n);
+}
+
+tei-notatedmusic>svg {
+  margin: 1rem auto;
+}
+
+tei-rdg:last-child {
+  color: gray;
+}
+
+tei-rdg:last-child::before {
+  content: "[alternative reading: ";
+}
+
+tei-rdg:last-child::after {
+  content: "]";
+}
+
+tei-teiheader {
+  display: none;
+}
+
+tei-front {
+  height: 90vh;
+  width: 90vw;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+tei-front * {
+  display: block;
+}
+
+tei-epigraph tei-persname {
+  font-style: italic;
+}

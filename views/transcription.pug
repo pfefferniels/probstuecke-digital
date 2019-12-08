@@ -1,0 +1,94 @@
+extends layout.pug
+
+block headAdditions
+  title Mattheson, #{number}. Probstück
+
+  link(rel='stylesheet' href='/css/midiplayer.css')
+  link(rel='stylesheet' href='/css/transcription.css')
+
+  script.
+    number = "#{number}";
+    label = "#{label}";
+    midi = "#{midi}";
+    teiComments = `!{teiComment}`;
+  
+  script(type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/svg.js/3.0.13/svg.min.js')
+  script(type='text/javascript' src='/js/wildwebmidi.js')
+  script(type='text/javascript' src='/js/midiplayer.js')
+  script(type='text/javascript' src='/js/transcription.js')
+
+block options
+  .p-2(data-toggle="modal" data-target="#optionsModal")
+    i.fas.fa-lg.fa-wrench
+  
+  .p-2(data-toggle="modal" data-target="#facsimileModal")
+    i.far.fa-lg.fa-image
+    
+block content
+  #optionsModal.modal.fade(tabindex="-1" role="dialog" aria-labelledby="options-title" aria-hidden="true")
+    .modal-dialog(role="document")
+      .modal-content
+        .modal-header
+          h5.modal-title#options-title Staves and Clefs
+          button.close(type="button" data-dismiss="modal" aria-label="Close")
+            span(aria-hidden="true") &times;
+        
+        .modal-body
+          form#options-form(method='get')
+            .form-check.form-check-inline
+              input#staves-above(type='number' name='above' min='0' max='10' value='0' autocomplete='off')
+              label(for='staves-above') above
+            
+            .form-check.form-check-inline
+             input#staves-below(type='number' name='below' min='0' max='10' value='0' autocomplete='off')
+             label(for='staves-below') below
+  
+            .form-check
+              input#modern-clefs.form-check-input(type='checkbox' name='modernClefs' autocomplete='off')
+              label.form-check-label(for='modern-clefs') modern clefs
+  
+          .modal-footer
+            button.btn.btn-secondary(type="button" data-dismiss="modal") Cancel
+            button#update-page.btn.btn-primary(type="button" data-dismiss="modal") Update view
+
+  #facsimileModal.modal.fade(tabindex="-1" role="dialog" aria-labelledby="facsimile-title" aria-hidden="true")
+    .modal-dialog(role="document")
+      .modal-content
+        .modal-header
+          h5.modal-title#facsimile-title Facsimile Display
+          button.close(type="button" data-dismiss="modal" aria-label="Close")
+            span(aria-hidden="true") &times;
+  
+        .modal-body
+          small (moving the mouse on a measure or paragraph will display the according 
+            | facsimile region)
+          
+          .form-check
+            input#display-facsimile.form-check-input(type='checkbox' name='display-facsimile' autocomplete='off')
+            label.form-check-label(for='display-facsimile') display facsimile
+          
+          .form-group
+            label.form-control-label(for='facsimile-size') size 
+            input#facsimile-size.form-control-range.custom-range(type='range' name='facsimile-size' min='20' max='80')
+          
+          .form-group
+            label.form-control-label(for='facsimile-quality') quality 
+            select#facsimile-quality.form-control(name='facsimile-quality')
+              option color 
+              option gray 
+  
+        .modal-footer
+          button.btn.btn-secondary(type="button" data-dismiss="modal") Cancel
+          button#update-facsimile.btn.btn-primary(type="button" data-dismiss="modal") Update view
+  .row
+    if svgScore
+      .col-sm#score-view !{svgScore}
+    if teiComment
+      .col-sm#comments-view 
+  
+  #meter-overlay.signature-overlay
+  #key-overlay.signature-overlay
+    
+  #footer.fixed-bottom.d-flex.bg-light.rounded-top
+    #player.p-1
+    a#pdf-download.p-1.fas.fa-file-pdf.fa-2x
