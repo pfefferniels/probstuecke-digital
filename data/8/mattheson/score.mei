@@ -146,20 +146,23 @@
           <score>
             <scoreDef key.pname="g" key.mode="major">
               <staffGrp>
-                <staffDef xml:id="mattheson" clef.line="1" clef.shape="C" meter.count="3" meter.unit="4" lines="5" n="1">
-                  <label>Mattheson's realization</label>
+                <staffDef xml:id="mattheson" clef.line="1" clef.shape="C" lines="5" n="1">
                   <keySig sig="1s"/>
+                  <meterSig count="3" unit="4" form="num"/>
                 </staffDef>
-                <staffDef xml:id="bass" clef.line="4" clef.shape="F" meter.count="3" meter.unit="4" lines="5" n="2">
+                <staffDef xml:id="bass" clef.line="4" clef.shape="F" lines="5" n="2">
                   <keySig sig="1s"/>
+                  <meterSig count="3" unit="4" form="num"/>
                 </staffDef>
               </staffGrp>
             </scoreDef>
             <section xml:id="m-34">
+              <pb source="#firstEdition" n="136" />
+              <pb source="#secondEdition" n="340" />
               <measure xml:id="m-35" label="1" n="1">
                 <staff xml:id="m-37" n="1">
                   <layer xml:id="m-38" n="1">
-                    <mRest visible="false"/>
+                    <mRest />
                   </layer>
                 </staff>
                 <staff xml:id="m-40" n="2" facs="#facsZone-m-40">
@@ -182,7 +185,7 @@
               <measure xml:id="m-55" n="2">
                 <staff xml:id="m-56" n="1">
                   <layer xml:id="m-57" n="1">
-                    <mRest visible="false"/>
+                    <mRest />
                   </layer>
                 </staff>
                 <staff xml:id="m-59" n="2" facs="#facsZone-m-59">
@@ -209,7 +212,7 @@
               <measure xml:id="m-75" n="3">
                 <staff xml:id="m-76" n="1">
                   <layer xml:id="m-77" n="1">
-                    <mRest visible="false"/>
+                    <mRest />
                   </layer>
                 </staff>
                 <staff xml:id="m-79" n="2" facs="#facsZone-m-79">
@@ -236,7 +239,7 @@
               <measure xml:id="m-93" n="4">
                 <staff xml:id="m-94" n="1">
                   <layer xml:id="m-95" n="1">
-                    <mRest visible="false"/>
+                    <mRest />
                   </layer>
                 </staff>
                 <staff xml:id="m-97" n="2" facs="#facsZone-m-97">
@@ -266,10 +269,11 @@
                   </fb>
                 </harm>
               </measure>
+              <sb source="#firstEdition #secondEdition" />
               <measure xml:id="m-112" n="5">
                 <staff xml:id="m-113" n="1">
                   <layer xml:id="m-114" n="1">
-                    <mRest visible="false"/>
+                    <mRest />
                   </layer>
                 </staff>
                 <staff xml:id="m-116" n="2" facs="#facsZone-m-116">
@@ -297,7 +301,7 @@
               <measure xml:id="m-131" n="6">
                 <staff xml:id="m-133" n="1">
                   <layer xml:id="m-134" n="1">
-                    <mRest visible="false"/>
+                    <mRest />
                   </layer>
                 </staff>
                 <staff xml:id="m-136" n="2" facs="#facsZone-m-136">
@@ -319,7 +323,7 @@
               <measure xml:id="m-153" n="7">
                 <staff xml:id="m-154" n="1">
                   <layer xml:id="m-155" n="1">
-                    <mRest visible="false"/>
+                    <mRest />
                   </layer>
                 </staff>
                 <staff xml:id="m-157" n="2" facs="#facsZone-m-157">
@@ -392,6 +396,7 @@
                   </layer>
                 </staff>
               </measure>
+              <sb source="#firstEdition #secondEdition" />
               <measure xml:id="m-206" n="11">
                 <staff xml:id="m-207" n="1">
                   <layer xml:id="m-208" n="1">
@@ -508,7 +513,7 @@
                 </staff>
                 <staff xml:id="m-298" n="2">
                   <layer xml:id="m-299" n="1">
-                    <mRest visible="false"/>
+                    <mRest />
                   </layer>
                 </staff>
               </measure>
@@ -537,6 +542,7 @@
                 </staff>
                 <trill xml:id="m-307" layer="1" staff="1" tstamp="3" vo="4.575mm"/>
               </measure>
+              <sb source="#firstEdition #secondEdition" />
               <measure xml:id="m-323" n="17">
                 <staff xml:id="m-324" n="1">
                   <layer xml:id="m-325" n="1">
@@ -635,6 +641,8 @@
                   </layer>
                 </staff>
               </measure>
+              <pb source="#firstEdition" n="137" />
+              <pb source="#secondEdition" n="341" />
               <measure xml:id="m-411" n="21">
                 <staff xml:id="m-412" n="1">
                   <layer xml:id="m-413" n="1">
@@ -756,6 +764,7 @@
                   </layer>
                 </staff>
               </measure>
+              <sb source="#firstEdition #secondEdition" />
               <measure xml:id="m-512" n="26">
                 <staff xml:id="m-513" n="1">
                   <layer xml:id="m-514" n="1">
@@ -837,6 +846,7 @@
                   </layer>
                 </staff>
               </measure>
+              <sb source="#firstEdition #secondEdition" />
               <measure xml:id="m-580" n="29">
                 <staff xml:id="m-582" n="1">
                   <layer xml:id="m-583" n="1">
@@ -956,10 +966,11 @@
                   </layer>
                 </staff>
               </measure>
+              <sb source="#firstEdition #secondEdition" />
               <measure xml:id="m-677" n="33">
                 <staff xml:id="m-678" n="1">
                   <layer xml:id="m-679" n="1">
-                    <mRest visible="false"/>
+                    <mRest cutout="cutout" />
                   </layer>
                 </staff>
                 <staff xml:id="m-681" n="2" facs="#facsZone-m-681">
@@ -979,12 +990,12 @@
                     </beam>
                   </layer>
                 </staff>
-                <dir staff="2" startid="#m-683" place="above">accomp.</dir>
+                <dir staff="2" place="above" tstamp="0"><rend fontstyle="normal" fontsize="small">accomp.</rend></dir>
               </measure>
               <measure xml:id="m-697" n="34">
                 <staff xml:id="m-699" n="1">
                   <layer xml:id="m-700" n="1">
-                    <mRest visible="false"/>
+                    <mRest cutout="cutout" />
                   </layer>
                 </staff>
                 <staff xml:id="m-702" n="2" facs="#facsZone-m-702">
@@ -1015,7 +1026,7 @@
               <measure xml:id="m-719" n="35">
                 <staff xml:id="m-720" n="1">
                   <layer xml:id="m-721" n="1">
-                    <mRest visible="false"/>
+                    <mRest cutout="cutout" />
                   </layer>
                 </staff>
                 <staff xml:id="m-723" n="2" facs="#facsZone-m-723">
@@ -1042,7 +1053,7 @@
               <measure xml:id="m-740" n="36">
                 <staff xml:id="m-741" n="1">
                   <layer xml:id="m-742" n="1">
-                    <mRest visible="false"/>
+                    <mRest cutout="cutout" />
                   </layer>
                 </staff>
                 <staff xml:id="m-744" n="2" facs="#facsZone-m-744">
@@ -1077,7 +1088,7 @@
               <measure xml:id="m-760" n="37">
                 <staff xml:id="m-761" n="1">
                   <layer xml:id="m-762" n="1">
-                    <mRest visible="false"/>
+                    <mRest cutout="cutout" />
                   </layer>
                 </staff>
                 <staff xml:id="m-764" n="2" facs="#facsZone-m-764">
@@ -1112,7 +1123,7 @@
               <measure xml:id="m-781" n="38">
                 <staff xml:id="m-782" n="1">
                   <layer xml:id="m-783" n="1">
-                    <mRest visible="false"/>
+                    <mRest cutout="cutout" />
                   </layer>
                 </staff>
                 <staff xml:id="m-785" n="2" facs="#facsZone-m-785">
@@ -1147,7 +1158,7 @@
               <measure xml:id="m-802" n="39">
                 <staff xml:id="m-805" n="1">
                   <layer xml:id="m-806" n="1">
-                    <mRest visible="false"/>
+                    <mRest cutout="cutout" />
                   </layer>
                 </staff>
                 <staff xml:id="m-808" n="2" facs="#facsZone-m-808">
@@ -1180,7 +1191,7 @@
               <measure xml:id="m-816" n="40">
                 <staff xml:id="m-817" n="1">
                   <layer xml:id="m-818" n="1">
-                    <mRest visible="false"/>
+                    <mRest cutout="cutout" />
                   </layer>
                 </staff>
                 <staff xml:id="m-820" n="2" facs="#facsZone-m-820">
@@ -1191,6 +1202,8 @@
                   </layer>
                 </staff>
               </measure>
+              <pb source="#firstEdition" n="138" />
+              <pb source="#secondEdition" n="342" />
               <measure xml:id="m-825" n="41">
                 <staff xml:id="m-826" n="1">
                   <layer xml:id="m-827" n="1">
@@ -1324,6 +1337,7 @@
                 </staff>
                 <tie xml:id="m-911" endid="#m-912" startid="#m-910"/>
               </measure>
+              <sb source="#firstEdition #secondEdition" />
               <measure xml:id="m-936" n="46">
                 <staff xml:id="m-938" n="1">
                   <layer xml:id="m-939" n="1">
@@ -1424,6 +1438,7 @@
                 </staff>
                 <tie xml:id="m-1000" endid="#m-1001" startid="#m-999"/>
               </measure>
+              <sb source="#firstEdition #secondEdition" />
               <measure xml:id="m-1024" n="49">
                 <staff xml:id="m-1025" n="1">
                   <layer xml:id="m-1026" n="1">
@@ -1557,6 +1572,7 @@
                   </layer>
                 </staff>
               </measure>
+              <sb source="#firstEdition #secondEdition" />
               <measure xml:id="m-1132" n="54">
                 <staff xml:id="m-1133" n="1">
                   <layer xml:id="m-1134" n="1">
@@ -1684,6 +1700,8 @@
                   </layer>
                 </staff>
               </measure>
+              <pb source="#firstEdition" n="139" />
+              <pb source="#secondEdition" n="343" />
               <measure xml:id="m-1233" n="59">
                 <staff xml:id="m-1234" n="1">
                   <layer xml:id="m-1235" n="1">
@@ -1770,6 +1788,7 @@
                   </layer>
                 </staff>
               </measure>
+              <sb source="#firstEdition #secondEdition" />
               <measure xml:id="m-1299" n="62">
                 <staff xml:id="m-1301" n="1">
                   <layer xml:id="m-1302" n="1">
@@ -1870,6 +1889,7 @@
                   </layer>
                 </staff>
               </measure>
+              <sb source="#firstEdition #secondEdition" />
               <measure xml:id="m-1388" n="65">
                 <staff xml:id="m-1389" n="1">
                   <layer xml:id="m-1390" n="1">
