@@ -111,19 +111,27 @@
           <zone ulx="948" uly="1868" lrx="2201" xml:id="facsZone-m-659"/>
         </surface>
       </facsimile>
-      <body xml:id="m-23">
-        <mdiv xml:id="m-24">
-          <score xml:id="m-25">
-            <scoreDef xml:id="m-26">
-              <staffGrp xml:id="m-27">
-                <staffDef xml:id="mattheson" clef.line="2" clef.shape="G" key.mode="major" key.sig="0" lines="5" scale="75%" n="1"/>
-                <staffDef xml:id="bass" clef.line="4" clef.shape="F" key.mode="major" key.sig="0" label="" lines="5" n="2"/>
+      <body>
+        <mdiv>
+          <score>
+            <scoreDef key.pname="c" key.mode="major">
+              <staffGrp>
+                <staffDef xml:id="mattheson" clef.line="2" clef.shape="G" lines="5" n="1">
+                  <meterSig count="4" unit="4" sym="common" />
+                </staffDef>
+                <staffDef xml:id="bass" clef.line="4" clef.shape="F" lines="5" n="2">
+                  <meterSig count="4" unit="4" sym="common" />
+                </staffDef>
               </staffGrp>
             </scoreDef>
-            <section xml:id="m-34">
+            <section>
+              <pb source="#firstEdition" n="126" />
+              <pb source="#secondEdition" n="326" />
               <measure xml:id="m-35" label="1" n="1">
                 <staff xml:id="m-37" n="1">
-                  <layer xml:id="m-38" n="1"/>
+                  <layer n="1">
+                    <mSpace/>
+                  </layer>
                 </staff>
                 <staff xml:id="m-39" n="2" facs="#facsZone-m-39">
                   <layer xml:id="m-40" n="1">
@@ -154,30 +162,30 @@
                   </layer>
                 </staff>
                 <tempo startid="#m-41" place="above">Capriccio.</tempo>
-                <tempo startid="#m-41" place="below" xml:id="m-61">
-                  <rend fontweight="normal">Presto.</rend>
+                <tempo startid="#m-41" place="below">
+                  <rend fontweight="normal" fontsize="small">Presto.</rend>
                 </tempo>
-                <harm place="above" staff="2" startid="m-44">
+                <harm place="above" staff="2" tstamp="1.5">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="2" startid="m-46">
+                <harm place="above" staff="2" tstamp="2">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="2" startid="m-49">
+                <harm place="above" staff="2" tstamp="2.5">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="2" startid="m-54">
+                <harm place="above" staff="2" tstamp="3.5">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="2" startid="m-56">
+                <harm place="above" staff="2" tstamp="4">
                   <fb>
                     <f>6</f>
                   </fb>
@@ -215,32 +223,35 @@
                     </beam>
                   </layer>
                 </staff>
-                <harm place="above" staff="2" startid="m-68">
+                <harm place="above" staff="2" tstamp="1">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="2" startid="m-71">
+                <harm place="above" staff="2" tstamp="1.5">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="2" startid="m-78">
+                <harm place="above" staff="2" tstamp="3">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="2" startid="m-81">
+                <harm place="above" staff="2" tstamp="3.5">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
               </measure>
               <measure xml:id="m-88" n="3">
-                <staff xml:id="m-90" n="1"/>
+                <staff xml:id="m-90" n="1">
+                  <layer n="1">
+                    <mSpace/>
+                  </layer>
+                </staff>
                 <staff xml:id="m-91" n="2" facs="#facsZone-m-91">
                   <layer xml:id="m-92" n="1">
-                    <clef line="3" shape="C"/>
                     <beam xml:id="m-94">
                       <note xml:id="m-93" dur="16" oct="4" pname="a" stem.dir="up"/>
                       <note xml:id="m-95" dur="16" oct="4" pname="a" stem.dir="up"/>
@@ -265,32 +276,35 @@
                       <note xml:id="m-111" dur="16" oct="3" pname="g" stem.dir="up"/>
                       <note xml:id="m-112" dur="16" oct="3" pname="g" stem.dir="up"/>
                     </beam>
-                    <clef xml:id="m-113" line="4" shape="F" staff="2" tstamp="5"/>
                   </layer>
                 </staff>
-                <harm place="above" staff="2" startid="m-101">
+                <harm place="above" staff="2" tstamp="2.5">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="2" startid="m-108">
+                <harm place="above" staff="2" tstamp="4">
                   <fb>
                     <f>6</f>
                     <f>4</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="2" startid="m-111">
+                <harm place="above" staff="2" tstamp="4.5">
                   <fb>
+                    <f></f>
                     <f>3</f>
                   </fb>
                 </harm>
               </measure>
               <measure xml:id="m-114" n="4">
                 <staff xml:id="m-115" n="1">
-                  <layer xml:id="m-116" n="1"/>
+                  <layer xml:id="m-116" n="1">
+                    <mSpace/>
+                  </layer>
                 </staff>
                 <staff xml:id="m-117" n="2" facs="#facsZone-m-117">
                   <layer xml:id="m-118" n="1">
+                    <clef xml:id="m-113" line="4" shape="F" staff="2" tstamp="5"/>
                     <note xml:id="m-119" dur="4" oct="3" pname="c" stem.dir="up"/>
                     <note xml:id="m-121" dur="4" oct="3" pname="b" stem.dir="down"/>
                     <note xml:id="m-122" dur="4" oct="3" pname="a" stem.dir="down"/>
@@ -298,16 +312,16 @@
                   </layer>
                 </staff>
                 <tempo place="above" startid="#m-119">
-                  <rend fontweight="normal">adagio.</rend>
+                  <rend fontweight="normal" fontsize="small">adagio.</rend>
                 </tempo>
-                <dir place="below" startid="#m-119" xml:id="m-120">Si suona.</dir>
+                <dir place="below" startid="#m-119"><rend halign="center" fontstyle="normal" fontsize="small">Si suona.</rend></dir>
                 <fermata startid="#m-119" place="below"/>
-                <harm place="above" staff="2" startid="m-121">
+                <harm place="above" staff="2" tstamp="2">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="2" startid="m-123">
+                <harm place="above" staff="2" tstamp="4">
                   <fb>
                     <f>6</f>
                   </fb>
@@ -324,7 +338,7 @@
                     <note xml:id="m-132" dur="8" oct="2" pname="b" stem.dir="up"/>
                   </layer>
                 </staff>
-                <harm place="above" staff="2" startid="m-129">
+                <harm place="above" staff="2" tstamp="2">
                   <fb>
                     <f>7</f>
                   </fb>
@@ -346,7 +360,7 @@
                     <note xml:id="m-144" dur="4" oct="3" pname="g" stem.dir="down"/>
                   </layer>
                 </staff>
-                <harm place="above" staff="2" startid="m-140">
+                <harm place="above" staff="2" tstamp="1.5">
                   <fb>
                     <f>5♭</f>
                   </fb>
@@ -366,17 +380,17 @@
                     <note xml:id="m-156" dur="4" oct="2" pname="b" stem.dir="up"/>
                   </layer>
                 </staff>
-                <harm place="above" staff="2" startid="m-153">
+                <harm place="above" staff="2" tstamp="2">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="2" startid="m-155">
+                <harm place="above" staff="2" tstamp="3">
                   <fb>
                     <f>♯</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="2" startid="m-156">
+                <harm place="above" staff="2" tstamp="4">
                   <fb>
                     <f>6</f>
                   </fb>
@@ -398,7 +412,7 @@
                     </beam>
                   </layer>
                 </staff>
-                <harm place="above" staff="2" startid="m-162">
+                <harm place="above" staff="2" tstamp="2">
                   <fb>
                     <f>♯</f>
                   </fb>
@@ -422,24 +436,25 @@
                     </beam>
                   </layer>
                 </staff>
-                <harm place="above" staff="2" startid="m-176">
+                <harm place="above" staff="2" tstamp="2">
                   <fb>
                     <f>♯</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="2" startid="m-178">
+                <harm place="above" staff="2" tstamp="3">
                   <fb>
                     <f>6⃥</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="2" startid="m-181">
+                <harm place="above" staff="2" tstamp="4">
                   <fb>
                     <f>6</f>
                     <f>4</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="2" startid="m-182">
+                <harm place="above" staff="2" tstamp="4.5">
                   <fb>
+                    <f></f>
                     <f>♯</f>
                   </fb>
                 </harm>
@@ -479,25 +494,24 @@
                   </layer>
                 </staff>
                 <tempo place="below" startid="#m-188">
-                  <rend fontweight="normal">presto.</rend>
+                  <rend fontweight="normal" fontsize="small">presto.</rend>
                 </tempo>
-                <harm place="above" staff="2" startid="m-193">
+                <harm place="above" staff="2" tstamp="2">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="2" startid="m-201">
+                <harm place="above" staff="2" tstamp="3.5">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="2" startid="m-203">
+                <harm place="above" staff="2" tstamp="4">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
               </measure>
-              <sb xml:id="m-211"/>
               <measure xml:id="m-210" n="11">
                 <staff xml:id="m-212" n="1"/>
                 <staff xml:id="m-213" n="2" facs="#facsZone-m-213">
@@ -629,9 +643,9 @@
                   </layer>
                 </staff>
                 <tempo place="above" startid="#m-266">
-                  <rend fontweight="normal">adagio.</rend>
+                  <rend fontweight="normal" fontsize="small">adagio.</rend>
                 </tempo>
-                <dir place="below" startid="#m-266">Si suona.</dir>
+                <dir place="below" startid="#m-266"><rend halign="center" fontstyle="normal" fontsize="small">Si suona.</rend></dir>
               </measure>
               <measure xml:id="m-269" n="14">
                 <staff xml:id="m-270" n="1"/>
@@ -641,12 +655,17 @@
                     <note xml:id="m-274" dur="2" oct="3" pname="e" stem.dir="down"/>
                   </layer>
                 </staff>
-                <harm place="above" staff="2" startid="m-273">
+                <harm place="above" staff="2" tstamp="1">
                   <fb>
-                    <f>7 6</f>
+                    <f>7</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="2" startid="m-274">
+                <harm place="above" staff="2" tstamp="2">
+                  <fb>
+                    <f>6</f>
+                  </fb>
+                </harm>
+                <harm place="above" staff="2" tstamp="3">
                   <fb>
                     <f>7</f>
                     <f>♯</f>
@@ -781,7 +800,7 @@
                   </layer>
                 </staff>
                 <tempo place="above" startid="#m-332">
-                  <rend fontweight="normal">presto.</rend>
+                  <rend fontweight="normal" fontsize="small">presto.</rend>
                 </tempo>
                 <harm place="above" staff="2" startid="m-335">
                   <fb>
@@ -1026,8 +1045,8 @@
                     <note xml:id="m-468" dur="2" oct="3" pname="d" stem.dir="down"/>
                   </layer>
                 </staff>
-                <tempo startid="#m-466">
-                  <rend fontweight="normal">adagio.</rend>
+                <tempo place="above" startid="#m-466">
+                  <rend fontweight="normal" fontsize="small">adagio.</rend>
                 </tempo>
                 <harm place="above" staff="2" startid="m-466">
                   <fb>
@@ -1135,17 +1154,22 @@
                     </beam>
                   </layer>
                 </staff>
-                <harm place="above" staff="2" startid="m-502">
+                <harm place="above" staff="2" tstamp="1">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="2" startid="m-505">
+                <harm place="above" staff="2" tstamp="2">
                   <fb>
-                    <f>76</f>
+                    <f>7</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="2" startid="m-506">
+                <harm place="above" staff="2" tstamp="2.5">
+                  <fb>
+                    <f>6</f>
+                  </fb>
+                </harm>
+                <harm place="above" staff="2" tstamp="3">
                   <fb>
                     <f>♯</f>
                   </fb>
@@ -1451,19 +1475,20 @@
                     <note xml:id="m-656" dur="4" oct="3" pname="b" stem.dir="up"/>
                   </layer>
                 </staff>
-                <harm place="above" staff="2" startid="m-653">
+                <harm place="above" staff="2" tstamp="2">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
-                <harm place="above" staff="2" startid="m-656">
+                <harm place="above" staff="2" tstamp="4">
                   <fb>
                     <f>6</f>
                   </fb>
                 </harm>
                 <tempo place="above" startid="#m-652">
-                  <rend fontweight="normal">adagio.</rend>
+                  <rend fontweight="normal" fontsize="small">adagio.</rend>
                 </tempo>
+                <dir place="below" startid="#m-652"><rend halign="center" fontstyle="normal" fontsize="small">si suona.</rend></dir>
               </measure>
               <measure xml:id="m-657" n="37" right="end">
                 <staff xml:id="m-658" n="1"/>
@@ -1473,12 +1498,19 @@
                     <note xml:id="m-662" dur="2" oct="3" pname="g" stem.dir="up"/>
                   </layer>
                 </staff>
-                <harm place="above" staff="2" startid="m-661">
+                <harm place="above" staff="2" tstamp="1">
                   <fb>
-                    <f>7 6⃥</f>
+                    <f>7</f>
                   </fb>
                 </harm>
-                <dir place="below" startid="#m-662">Da Capo.</dir>
+                <harm place="above" staff="2" tstamp="2">
+                  <fb>
+                    <f>6⃥</f>
+                  </fb>
+                </harm>
+                <dir staff="2" tstamp="5" place="within">
+                    <rend fontstyle="normal">Da Capo.</rend>
+                </dir>
               </measure>
             </section>
           </score>
