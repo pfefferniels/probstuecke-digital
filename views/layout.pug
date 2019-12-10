@@ -28,8 +28,18 @@ head
             li
               a(href='/Contributions') Contributions
   
-        li.nav-item
-          a(href='/') Front page
+        li.nav-item.text-nowrap
+          a(href='#frontpage' data-toggle='collapse' class='dropdown-toggle') Front page
+          div.collapse#frontpage(aria-expanded='false')
+            small
+              ul.collapse.flex-column.pl-2.nav#frontpage
+                li.nav-item Transcription
+                  ul.list-unstyled
+                    li.pl-1
+                      a(href='/transcription/frontpage/mattheson/firstEdition') 1st edition (1719)
+                    li.pl-1
+                      a(href='/transcription/frontpage/mattheson/secondEdition') 2nd edition (1731)
+
         
         li.nav-item.text-nowrap
           a(href='#oberclasse' data-toggle='collapse' aria-expanded='true' class='dropdown-toggle') Ober-Classe

@@ -40,7 +40,7 @@ app.get('/contributions', function(req, res) {
 });
 
 app.get('/', function(req, res) {
-  res.redirect('/transcription/frontpage/secondEdition');
+  res.redirect('/transcription/frontpage/mattheson/secondEdition');
 });
 
 app.listen(process.env.PORT || 3000, function() {
