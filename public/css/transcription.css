@@ -27,7 +27,7 @@ input[type="number"] {
   max-width: 4rem;
 }
 
-.supplied .text {
+.supplied {
   fill: lightslategray;
 }
 
@@ -45,6 +45,10 @@ input[type="number"] {
 
 .highlight {
   animation: highlight 4s;
+}
+
+#score-view{
+  margin-bottom: 4rem;
 }
 
 tei-ref a, tei-ref a:hover {

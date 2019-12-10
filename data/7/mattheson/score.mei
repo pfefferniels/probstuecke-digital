@@ -123,20 +123,24 @@
           <score>
             <scoreDef key.pname="d" key.mode="major">
               <staffGrp>
-                <staffDef xml:id="mattheson" clef.shape="G" clef.line="2" key.sig="2s" meter.count="12" meter.unit="8" n="1" lines="5">
+                <staffDef xml:id="mattheson" clef.shape="G" clef.line="2" n="1" lines="5">
                   <label>Mattheson's annotations</label>
                   <keySig sig="2s"/>
+                  <meterSig count="12" unit="8" />
                 </staffDef>
-                <staffDef xml:id="pfeffer" clef.shape="G" clef.line="2" meter.count="12" meter.unit="8" n="41" lines="5">
+                <staffDef xml:id="pfeffer" clef.shape="G" clef.line="2" n="41" lines="5">
                   <label>realization (by Niels Pfeffer)</label>
                   <keySig sig="2s"/>
+                  <meterSig count="12" unit="8" />
                 </staffDef>
-                <staffDef xml:id="bass" clef.shape="F" clef.line="4" meter.count="12" meter.unit="8" n="2" lines="5">
+                <staffDef xml:id="bass" clef.shape="F" clef.line="4" n="2" lines="5">
                   <keySig sig="2s"/>
+                  <meterSig count="12" unit="8" />
                 </staffDef>
-                <staffDef xml:id="basse-fondamentale" clef.shape="F" clef.line="4" meter.count="12" meter.unit="8" n="31" lines="5">
+                <staffDef xml:id="basse-fondamentale" clef.shape="F" clef.line="4" n="31" lines="5">
                   <label>basse fondamentale</label>
                   <keySig sig="2s"/>
+                  <meterSig count="12" unit="8" />
                 </staffDef>
               </staffGrp>
             </scoreDef>
@@ -177,7 +181,7 @@
                     </beam>
                   </layer>
                 </staff>
-                <tempo xml:id="tempo-0000000597327698" staff="2" startid="#rest-0000000828025146" place="above">Prestissimo.</tempo>
+                <tempo xml:id="tempo-0000000597327698" staff="2" place="above" tstamp="1">Prestissimo.</tempo>
               </measure>
               <measure xml:id="measure-0000001820538875" n="1">
                 <staff xml:id="staff-variant-1-1" n="1">
@@ -3006,7 +3010,7 @@
                   </layer>
                 </staff>
               </measure>
-              <measure xml:id="measure-0000000216020788" right="end" n="39">
+              <measure xml:id="measure-0000000216020788" right="end" n="39" metcon="false">
                 <staff xml:id="staff-variant-1-39" n="1">
                   <layer n="1">
                     <mSpace/>
@@ -3036,7 +3040,6 @@
                   <layer n="1">
                     <note xml:id="note-0000000847506698" dots="1" dur="2" oct="2" pname="e"/>
                     <note xml:id="note-0000000488499091" dots="1" dur="4" oct="2" pname="e"/>
-                    <space xml:id="space-0000002090020256" dur="4"/>
                   </layer>
                 </staff>
                 <tie xml:id="tie-0000000441265820" startid="#note-0000000847506698" endid="#note-0000000488499091"/>
