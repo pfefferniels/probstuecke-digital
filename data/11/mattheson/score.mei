@@ -140,12 +140,16 @@
     <body>
       <mdiv>
         <score>
-          <scoreDef>
+          <scoreDef key.pname="e" key.accid="f" key.mode="major">
             <staffGrp>
-              <staffDef xml:id="mattheson" clef.shape="G" clef.line="2" key.mode="minor" key.sig="3f" meter.count="3" meter.unit="4" n="1" lines="5" ppq="256">
+              <staffDef xml:id="mattheson" clef.shape="G" clef.line="2" n="1" lines="5">
                 <label>Mattheson's annotations</label>
+                <keySig sig="3f" />
+                <meterSig count="3" unit="4" />
               </staffDef>
-              <staffDef xml:id="bass" clef.shape="C" clef.line="4" key.mode="minor" key.sig="3f" meter.count="3" meter.unit="4" n="2" lines="5" ppq="256">
+              <staffDef xml:id="bass" clef.shape="C" clef.line="4" n="2" lines="5">
+                <keySig sig="3f" />
+                <meterSig count="3" unit="4" />
                 <layerDef n="3" xml:id="layer-mattheson" />
               </staffDef>
             </staffGrp>
