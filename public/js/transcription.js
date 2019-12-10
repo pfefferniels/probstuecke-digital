@@ -168,7 +168,7 @@ function connectSignatureTooltips() {
 
 // connecting transcription and facsimile
 async function reloadFacsimileTooltips() {
-  $('.facsimile-popover').removeAttr('data-content').popover('dispose');
+  $('.has-facsimile-popover').removeAttr('data-content').popover('dispose');
 
   let iiif;
   try {
@@ -223,7 +223,7 @@ async function reloadFacsimileTooltips() {
     let targetMatch = rTarget.match(/xml:id='(.+)'\]/);
     let xmlId = targetMatch[1];
     if (xmlId) {
-      let target = $("#" + xmlId).addClass('facsimile-popover');
+      let target = $("#" + xmlId).addClass('has-facsimile-popover');
 
       // Often, measures and paragraphs are interrupted by system breaks or
       // page breaks. This will be indicated by a ||-symbol in the tooltip.
@@ -231,15 +231,16 @@ async function reloadFacsimileTooltips() {
       if (dataContent) {
         target.attr('data-content', dataContent +
           '<i class="fas fa-grip-lines-vertical"></i>' +
-          '<img class="img-fluid" src="' + imageApiUri + '" />');
+          '<img src="' + imageApiUri + '" />');
       } else {
-        target.attr('data-content', '<img class="img-fluid" src="' + imageApiUri + '" />');
+        target.attr('data-content', '<img src="' + imageApiUri + '" />');
       }
 
       target.popover({
         html: true,
-        trigger: 'hover'
-      }).popover('disable');
+        trigger: 'hover',
+        template: '<div class="popover facsimile-popover" role="tooltip"><div class="popover-body"/></div>'
+      });
     }
   });
 }
@@ -267,9 +268,9 @@ $(document).ready(async function() {
   $('#update-facsimile').click(async function() {
     if ($('#display-facsimile').is(':checked')) {
       await reloadFacsimileTooltips();
-      $('.facsimile-popover').popover('enable');
+      $('.has-facsimile-popover').popover('enable');
     } else {
-      $('.facsimile-popover').popover('disable');
+      $('.has-facsimile-popover').popover('disable');
     }
   });
 
