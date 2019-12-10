@@ -47,7 +47,7 @@ input[type="number"] {
   animation: highlight 4s;
 }
 
-a, a:hover {
+tei-ref a, tei-ref a:hover {
   color: initial;
   text-decoration: none;
 }
@@ -103,11 +103,6 @@ tei-head {
   font-family: Arvo, sans-serif;
   font-weight: normal;
   text-align: center;
-}
-
-tei-body>tei-head {
-  font-size: 1.5rem;
-  text-indent: -0.5rem;
 }
 
 tei-graphic>img {
