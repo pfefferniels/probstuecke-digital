@@ -673,7 +673,8 @@
                     </beam>
                   </layer>
                 </staff>
-                <fermata xml:id="fermata-0000000194000998" staff="2" startid="#note-0000000919810797" shape="curved"/>
+                <fermata staff="2" startid="#note-0000000919810797" place="above" shape="curved"/>
+                <fermata staff="2" startid="#note-0000000919810797" place="below" shape="curved"/>
                 <harm place="above" staff="2" tstamp="3">
                   <fb>
                     <f>6</f>
@@ -694,6 +695,8 @@
                       <note xml:id="note-0000001240152873" dur="8" oct="4" pname="e" stem.dir="down">
                         <accid accid="n"/>
                       </note>
+                    </beam>
+                    <beam>
                       <note xml:id="note-0000000614993082" dur="8" oct="4" pname="e" stem.dir="down">
                         <accid accid="f"/>
                       </note>
@@ -706,6 +709,8 @@
                         <accid accid="f"/>
                       </note>
                       <note xml:id="note-0000000690969487" dur="8" oct="4" pname="c" stem.dir="down"/>
+                    </beam>
+                    <beam>
                       <note xml:id="note-0000000362205903" dur="8" oct="4" pname="c" stem.dir="down"/>
                       <note xml:id="note-0000001806301735" dur="8" oct="3" pname="b" stem.dir="down">
                         <accid accid="n"/>
@@ -1205,6 +1210,8 @@
                       <note xml:id="note-0000000578062307" dur="8" oct="3" pname="b" stem.dir="down">
                         <accid accid="n"/>
                       </note>
+                    </beam>
+                    <beam>
                       <note xml:id="note-0000000675052940" dur="8" oct="3" pname="b" stem.dir="down">
                         <accid accid="f"/>
                       </note>
@@ -1217,6 +1224,8 @@
                         <accid accid="f"/>
                       </note>
                       <note xml:id="note-0000001002200674" dur="8" oct="3" pname="g" stem.dir="down"/>
+                    </beam>
+                    <beam>
                       <note xml:id="note-0000000724907880" dur="8" oct="3" pname="g" stem.dir="down"/>
                       <note xml:id="note-0000000517664508" dur="8" oct="3" pname="f" stem.dir="down">
                         <accid accid="s"/>
@@ -1762,7 +1771,7 @@
                     <f>♮</f>
                   </fb>
                 </harm>
-                <fermata xml:id="fermata-0000001366268012" staff="2" startid="#note-0000000626519199" shape="curved"/>
+                <fermata staff="2" startid="#note-0000000626519199" place="below" shape="curved"/>
               </measure>
               <measure xml:id="measure-0000001984106098" n="32">
                 <staff xml:id="staff-0000000732709973" n="1">
@@ -1776,6 +1785,8 @@
                     <beam>
                       <note xml:id="note-0000001984968153" dur="16" oct="3" pname="b" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001187683667" dur="16" oct="4" pname="c" stem.dir="down"/>
+                    </beam>
+                    <beam>
                       <note xml:id="note-0000001555247404" dur="16" oct="4" pname="d" stem.dir="down">
                         <accid accid="n"/>
                       </note>
@@ -1789,6 +1800,8 @@
                       <note xml:id="note-0000000099266810" dur="8" oct="4" pname="d" stem.dir="down">
                         <accid accid="n"/>
                       </note>
+                    </beam>
+                    <beam>
                       <note xml:id="note-0000001232649817" dur="8" oct="4" pname="d" stem.dir="down">
                         <accid accid="f"/>
                       </note>
@@ -1840,6 +1853,8 @@
                         <accid accid="f"/>
                       </note>
                       <note xml:id="note-0000001477846904" dur="8" oct="3" pname="b" stem.dir="down" accid.ges="f"/>
+                    </beam>
+                    <beam>
                       <note xml:id="note-0000002004532220" dur="8" oct="3" pname="b" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000002002238604" dur="8" oct="3" pname="a" stem.dir="down">
                         <accid accid="n"/>
