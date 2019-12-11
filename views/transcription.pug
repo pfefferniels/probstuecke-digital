@@ -1,7 +1,10 @@
 extends layout.pug
 
 block headAdditions
-  title Mattheson, #{number}. Probstück
+  if number == "frontpage"
+    title Mattheson, 24 Probstücke
+  else
+    title Mattheson, #{number}. Probstück
 
   link(rel='stylesheet' href='/css/midiplayer.css')
   link(rel='stylesheet' href='/css/transcription.css')
