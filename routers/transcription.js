@@ -42,23 +42,6 @@ function getTranscription(req, res) {
   res.render('transcription', viewParams);
 }
 
-function getFrontPage(req, res) {
-    let teiPath = path.join(
-    __dirname,
-    '/../data/frontpage',
-    'frontpage_' + lookupTable[req.params.edition] + '.tei');
-
-  let viewParams = {};
-  try {
-    res.render('transcription', {
-      teiComment: fs.readFileSync(teiPath)
-    });
-  } catch (err) {
-    res.status('404').end();
-  }
-
-}
-
 function getPDF(req, res) {
   let number = req.params.number;
   let label = req.params.label;
@@ -72,7 +55,6 @@ function getPDF(req, res) {
 }
 
 transcription.get('/:number/:label/:edition', getTranscription);
-transcription.get('/frontpage/:edition', getFrontPage);
 transcription.get('/:number/:label/:edition/pdf', getPDF);
 
 module.exports = transcription;

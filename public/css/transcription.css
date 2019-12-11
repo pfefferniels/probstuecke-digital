@@ -163,3 +163,8 @@ tei-front * {
 tei-epigraph tei-persname {
   font-style: italic;
 }
+
+/* overwrites the default max-width of bootstrap's popover */
+.facsimile-popover {
+  max-width: 100%;
+}
