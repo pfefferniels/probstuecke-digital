@@ -152,12 +152,25 @@ tei-front {
   text-align: center;
 }
 
-tei-front * {
+tei-lb {
   display: block;
 }
 
-tei-epigraph tei-persname {
-  font-style: italic;
+tei-titlepart[type="main"] {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+tei-titlepart[type="sub"] {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+tei-milestone[rendition="#hr"] {
+  display: block;
+  width: 50%;
+  border-bottom: 0.1rem solid black;
+  margin: 1rem auto;
 }
 
 /* overwrites the default max-width of bootstrap's popover */
