@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.deutschestextarchiv.de/basisformat.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0" ?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
   <teiHeader>
     <fileDesc>
@@ -67,22 +68,29 @@
     </fileDesc>
   </teiHeader>
   <text>
+    <pb facs="#facs-p255"/>
     <front>
-      <titlePage>
-        <docAuthor>Matthesons</docAuthor>
+      <titlePage type="main">
+        <docAuthor>Mattheſons</docAuthor>
         <docTitle>
           <titlePart type="main">
-            Organisten-Probe Im Articul vom General-Bass.
+            <lb/>Organiſten-Probe
+            <lb/>Im Articul
+            <lb/>Vom
+            <lb/><hi rendition="#aq">General-Baſs.</hi>
           </titlePart>
           <titlePart type="sub">
-            Anderer Theil.
+            <lb/>Anderer Theil.
           </titlePart>
         </docTitle>
       </titlePage>
+      <lb/><milestone unit="section" rendition="#hr"/>
       <epigraph>
-        <quote>Dies diem docet. Et posteriores cogitationes plerumque
-          sunt perfectiores prioribus.</quote>
+        <quote><lb/><hi rendition="#aq"><foreign xml:lang="lat">Dies diem docet.
+        Et poſteriores cogitationes plerumque <lb/>sunt perfectiores prioribus.</foreign></hi></quote>
       </epigraph>
+      <lb/><milestone unit="section" rendition="#hr"/>
     </front>
+    <body><p></p></body>
   </text>
 </TEI>
