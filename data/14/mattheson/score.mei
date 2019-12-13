@@ -128,15 +128,17 @@
         <score>
           <scoreDef key.pname="e" key.accid="f" key.mode="minor">
             <staffGrp>
-              <staffDef xml:id="mattheson" clef.shape="C" clef.line="1" meter.count="12" meter.unit="8" n="1" lines="5" label="Mattheson's annotations">
+              <staffDef xml:id="mattheson" clef.shape="C" clef.line="1" n="1" lines="5" label="Mattheson's annotations">
                 <keySig sig="5f" />
+                <meterSig count="12" unit="8" />
               </staffDef>
-              <staffDef xml:id="bass" clef.shape="F" clef.line="4" key.mode="minor" meter.count="12" meter.unit="8" n="2" lines="5">
+              <staffDef xml:id="bass" clef.shape="F" clef.line="4" n="2" lines="5">
                 <keySig sig="5f" />
+                <meterSig count="12" unit="8" />
               </staffDef>
             </staffGrp>
           </scoreDef>
-          <section xml:id="section-0000000840219442">
+          <section>
             <measure xml:id="measure-0000001108999037" n="1">
               <staff xml:id="staff-0000001794025928" n="1">
                 <layer xml:id="layer-0000000876030175" n="1">
