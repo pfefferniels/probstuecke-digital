@@ -1,17 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
     <teiHeader>
-        <fileDesc>
+      <fileDesc>
+        <titleStmt>
+          <title type="part">Mattheson: Der Ober-Classe Erstes Probstück</title>
+          <editor>
+            <persName>
+              <surname>Niels</surname>
+              <forename>Pfeffer</forename>
+            </persName>
+          </editor>
+          <editor>
+            <persName ref="https://d-nb.info/gnd/140541624">
+              <surname>Klaus</surname>
+              <forename>Rettinghaus</forename>
+            </persName>
+          </editor>
+        </titleStmt>
+        <publicationStmt>
+          <publisher>
+            <persName xml:id="pfeffer">
+              <surname>Niels</surname>
+              <forename>Pfeffer</forename>
+            </persName>
+          </publisher>
+        </publicationStmt>
+        <sourceDesc>
+          <bibl type="M">Mattheson, Johann: Grosse General-Baß-Schule. Hamburg, 1731.</bibl>
+          <biblFull>
             <titleStmt>
-                <title type="part">Mattheson: Der Ober-Classe Erstes Probstück</title>
+              <title level="m" type="main">Johann Matthesons Grosse General-Baß-Schule.</title>
+              <title level="m" type="sub">Oder: Der exemplarischen Organisten-Probe</title>
+              <title level="m" type="sub">Bestehend in dreien Classen, Als: In einer gründlichen Vorbereitung, In 24 leichten Exempeln, In 24 schwerern Prob-Stücken</title>
+              <author>
+                <persName ref="http://d-nb.info/gnd/118578995">
+                  <surname>Johann</surname>
+                  <forename>Mattheson</forename>
+                </persName>
+              </author>
             </titleStmt>
+            <editionStmt>
+              <edition n="2">Zweite/ verbesserte und vermehrte Auflage</edition>
+            </editionStmt>
             <publicationStmt>
-                <p>Niels Pfeffer</p>
+              <publisher>
+                <name>Kißner</name>
+              </publisher>
+              <pubPlace>Hamburg</pubPlace>
+              <date type="publication">1731</date>
             </publicationStmt>
-            <sourceDesc>
-                <p>Mattheson.</p>
-            </sourceDesc>
-        </fileDesc>
+          </biblFull>
+          <msDesc>
+            <msIdentifier>
+              <repository>Bayerische Staatsbibliothek</repository>
+              <idno>
+                <idno type="shelfmark">Bayerische Staatsbibliothek, Mus.th. 978 a</idno>
+                <idno type="URLCatalogue">https://opacplus.bsb-muenchen.de/search?oclcno=57052215</idno>
+                <idno type="URN">urn:nbn:de:bvb:12-bsb10598495-7</idno>
+              </idno>
+            </msIdentifier>
+            <physDesc>
+              <typeDesc>
+                <p>Fraktur</p>
+              </typeDesc>
+            </physDesc>
+          </msDesc>
+        </sourceDesc>
+      </fileDesc>
     </teiHeader>
     <facsimile decls="#secondEdition">
         <surface ulx="0" uly="0" lrx="1998" lry="2396" xml:id="facs-p389">
@@ -95,15 +150,14 @@
                         zu, da die rechte Hand der lincken nachahmet, und,
                         nach Maßgabung des Haupt-Satzes,
                         <ref target="#m-1019 #m-1051 #m-1060 #m-1075 #m-1083">zu den Vierteln</ref>
-                        moduliert. Wem es dunckel scheinet, der
-                        sehe diese Zeile an:<note type="footnote">Mattheson setzt im folgenden Auszug den Taktstrich um eine Viertel versetzt.</note>
+                        moduliert. Wem es dunckel scheinet, der sehe diese Zeile an:
                     </p>
-                    <ref type="editorialNote" xml:id="commented-extract" corresp="#extract-comment">
-                      <notatedMusic xml:id="music-example2" facs="#facsZone-music-example2">
+                    <notatedMusic xml:id="music-example2" facs="#facsZone-music-example2">
+                      <ref type="editorialNote" xml:id="commented-extract" corresp="#extract-comment">
                         <ptr target="music-example2.mei" />
-                      </notatedMusic>
-                    </ref>
-                    <note type="editorial" xml:id="extract-comment" corresp="#commented-extract">
+                      </ref>
+                    </notatedMusic>
+                    <note type="editorial" xml:id="extract-comment" corresp="#commented-extract" resp="#pfeffer">
                       Mattheson setzt im diesem Auszug den Taktstrich um eine Viertel versetzt.
                     </note>
                 </div>
