@@ -112,9 +112,14 @@
                         etwas mehr, als gewöhnlich, gespielet und syncopiret werde,
                         etwa auf folgende Manier:
                     </p>
-                    <notatedMusic xml:id="music-example3" facs="#facsZone-music-example3">
-                        <ptr target="music-example3.mei"/>
-                    </notatedMusic>
+                    <ref type="editorialNote" xml:id="commented-extract" corresp="#extract-comment">
+                      <notatedMusic>
+                        <ptr target="music-example2.mei" />
+                      </notatedMusic>
+                    </ref>
+                    <note type="editorial" xml:id="extract-comment" corresp="#commented-extract">
+                      Mattheson setzt im diesem Auszug den Taktstrich um eine Viertel versetzt.
+                    </note>
                     <p xml:id="p4-2" facs="#facsZone-p4-2">
                         Ferne wüßte ich, bey dieser Vorschrift, nichts mehr weder zu erinnern, noch zu erleichtern.
                     </p>
