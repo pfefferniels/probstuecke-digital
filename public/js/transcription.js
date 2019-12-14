@@ -5,10 +5,11 @@ cetei.addBehaviors({
     'persName': function(el) {
       return $('<a>').attr('href', el.getAttribute('ref')).html(el.innerHTML)[0];
     },
-    'facsimile': function(el) {
-      this.hideContent(el, false);
-    },
-    'note': [
+    'facsimile': [''],
+    'ref': [
+      ['[type="editorial-note"]', ['']]
+    ],
+   'note': [
       ['[type="editorial"]', function(el) {
         let note = $(el);
         let ref = $(note.attr('corresp'));
