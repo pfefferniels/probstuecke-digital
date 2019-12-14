@@ -28,12 +28,9 @@ function getTranscription(req, res) {
   }
 
   try {
-    viewParams.svgScore = vrvAdapter.renderSVG(number, label, 'score.mei',
-                                   req.query.above,
-                                   req.query.below,
-                                   req.query.modernClefs == 'on');
+    viewParams.svgScore = vrvAdapter.renderSVG(number, label, 'score.mei', req.query);
     viewParams.midi = vrvAdapter.renderMIDI(number, label, 'score.mei');
-  } catch (e) {  }
+  } catch (e) { }
 
   try {
     viewParams.teiComment = fs.readFileSync(teiPath);
@@ -51,7 +48,7 @@ function getPDF(req, res) {
                        req.params.number,
                        req.params.label,
                        'score.mei',
-                       req.query.above, req.query.below, req.query.modernClefs);
+                       req.query);
 }
 
 transcription.get('/:number/:label/:edition', getTranscription);

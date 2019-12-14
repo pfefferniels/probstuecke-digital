@@ -33,6 +33,10 @@ function highlightText(element) {
 
 function drawSVGIndicator(targetAttr) {
   let svg = SVG(targetAttr);
+  if (svg == null) {
+    console.log("corresponding SVG element for ", targetAttr, " not found");
+    return;
+  }
   let bbox = svg.bbox();
 
   // draw the box always into g.measure to make
@@ -97,9 +101,15 @@ async function renderComments() {
   await Promise.all(notatedMusicPromises);
 }
 
-function connectTEIRefAndSVG(teiRef, targetAttr) {
-  // connect indicator with text
+function connectTEIRefWithSVG(teiRef, targetAttr) {
   let rect = drawSVGIndicator(targetAttr);
+  if (!rect) {
+    // if no corresponding element exists in th SVG, gray it out and remove
+    // the link
+    teiRef.addClass('disabled-reference').find('a').contents().unwrap();
+    return;
+  }
+
   rect.click(async function() {
     // TODO the same measure might be referenced multiple times. Make sure that in case of a click
     // they other indicators be triggered as well.
@@ -118,7 +128,7 @@ function reconnectCrossRefs() {
   $("tei-ref").each(function() {
     let targetAttrs = $(this).attr("target").split(" ");
     for (let i=0; i<targetAttrs.length; i++) {
-      connectTEIRefAndSVG($(this), targetAttrs[i]);
+      connectTEIRefWithSVG($(this), targetAttrs[i]);
     }
   });
 }

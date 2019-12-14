@@ -39,16 +39,20 @@ block content
         .modal-body
           form#options-form(method='get')
             .form-check.form-check-inline
-              input#staves-above(type='number' name='above' min='0' max='10' value='0' autocomplete='off')
+              input#staves-above(type='number' name='above' min='0' max='10' value='0')
               label(for='staves-above') above
             
             .form-check.form-check-inline
-             input#staves-below(type='number' name='below' min='0' max='10' value='0' autocomplete='off')
+             input#staves-below(type='number' name='below' min='0' max='10' value='0')
              label(for='staves-below') below
   
             .form-check
-              input#modern-clefs.form-check-input(type='checkbox' name='modernClefs' autocomplete='off')
+              input#modern-clefs.form-check-input(type='checkbox' name='modernClefs')
               label.form-check-label(for='modern-clefs') modern clefs
+
+            .form-check
+              input#show-annotation-staff.form-check-input(type='checkbox' name='showAnnotationStaff')
+              label.form-check-label(for='show-annotation-staff') show additional staff with Mattheson's annotations
   
           .modal-footer
             button.btn.btn-secondary(type="button" data-dismiss="modal") Cancel
