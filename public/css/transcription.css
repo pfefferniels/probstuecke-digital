@@ -148,6 +148,10 @@ tei-rdg:last-child::after {
   content: "]";
 }
 
+tei-sic::after {
+  content: " [sic]";
+}
+
 tei-teiheader {
   display: none;
 }
