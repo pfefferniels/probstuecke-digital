@@ -148,6 +148,10 @@ tei-rdg:last-child::after {
   content: "]";
 }
 
+tei-sic::after {
+  content: " [sic]";
+}
+
 tei-teiheader {
   display: none;
 }
@@ -160,8 +164,9 @@ tei-front {
   text-align: center;
 }
 
-tei-lb {
-  display: block;
+tei-front tei-lb:before {
+  content: '\A';
+  white-space: pre;
 }
 
 tei-titlepart[type="main"] {
