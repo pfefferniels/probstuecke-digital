@@ -1,5 +1,28 @@
 const cetei = new CETEI();
 
+cetei.addBehaviors({
+  handlers: {
+    'persName': function(el) {
+      return $('<a>').attr('href', el.getAttribute('ref')).html(el.innerHTML)[0];
+    },
+    'facsimile': function(el) {
+      this.hideContent(el, false);
+    },
+    'note': [
+      ['[type="editorial"]', function(el) {
+        let note = $(el);
+        let ref = $(note.attr('corresp'));
+        ref.popover({
+            content: note.html(),
+            trigger: 'hover',
+            html: true
+        });
+        this.hideContent(el, false);
+      }]
+    ]
+  }
+});
+
 // ------
 // Helper functions
 // ------
@@ -75,7 +98,6 @@ const midiUpdate = function(time) {
 async function renderComments() {
   cetei.makeHTML5(teiComments, function(html) {
       $("#comments-view").html(html);
-      $("#comments-view tei-facsimile img").hide();
   });
 
   // load the music examples, if there are any
@@ -125,7 +147,7 @@ function connectTEIRefWithSVG(teiRef, targetAttr) {
 }
 
 function reconnectCrossRefs() {
-  $("tei-ref").each(function() {
+  $("tei-ref[target]").each(function() {
     let targetAttrs = $(this).attr("target").split(" ");
     for (let i=0; i<targetAttrs.length; i++) {
       connectTEIRefWithSVG($(this), targetAttrs[i]);
