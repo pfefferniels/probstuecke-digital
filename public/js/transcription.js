@@ -5,26 +5,78 @@ cetei.addBehaviors({
     'persName': function(el) {
       return $('<a>').attr('href', el.getAttribute('ref')).html(el.innerHTML)[0];
     },
+
     'facsimile': function(el) {
       this.hideContent(el, false);
     },
+
     'ref': [
+      ['[target]', function(el) {
+        let targetAttrs = el.getAttribute("target").split(" ");
+        for (let i=0; i<targetAttrs.length; i++) {
+          connectTEIRefWithSVG($(el), targetAttrs[i]);
+        }
+      }],
       ['[type="editorial-note"]', ['']]
     ],
+
    'note': [
       ['[type="editorial"]', function(el) {
         let note = $(el);
+        this.hideContent(el, false);
+
         let ref = $(note.attr('corresp'));
-        ref.popover({
-            content: note.html(),
+        if (ref.length != 0) {
+          ref.popover({
+              content: note.html(),
+              trigger: 'hover',
+              html: true
+          });
+        } else {
+          return $('<sup>editorial note</sup>').popover({
+              content: note.html(),
+              trigger: 'hover',
+              html: true
+          })[0];
+        }
+      }],
+
+      ['[type="on-key-signature"]', function(el) {
+        let keySig = $("#score-view svg").find(".keySig");
+        let signatureBox;
+        if (keySig.length == 0) {
+          // In that case we are probably dealing with a key without any signature, A minor or C major.
+          // Taking the first clef instead and shifting the box for some pixels to the right.
+          keySig = $("#score-view svg").find(".clef");
+          signatureBox = getSvgElementBoxAsCss(keySig);
+          signatureBox.left += signatureBox.width;
+        } else {
+          signatureBox = getSvgElementBoxAsCss(keySig);
+        }
+
+        $('#key-overlay').css(signatureBox).popover({
+            content: el.innerHTML,
             trigger: 'hover',
             html: true
         });
         this.hideContent(el, false);
+      }],
+      ['[type="on-meter"]', function(el) {
+        let meterSig = $("#score-view svg").find(".meterSig");
+        if (meterSig.length != 0) {
+          signatureBox = getSvgElementBoxAsCss(meterSig);
+          $('#meter-overlay').css(signatureBox).popover({
+              content: el.innerHTML,
+              trigger: 'hover',
+              html: true
+          });
+          this.hideContent(el, false);
+        }
       }]
     ]
   }
 });
+
 
 // ------
 // Helper functions
@@ -39,7 +91,7 @@ function printError(message) {
   });
 }
 
-function highlightSVG(svgElement) {
+async function highlightSVG(svgElement) {
   $("html,body").animate({
     scrollTop: svgElement.rbox().y
   }, 100, function() {
@@ -89,15 +141,6 @@ function getSvgElementBoxAsCss(target) {
   };
 }
 
-// ------
-// MIDI player
-// ------
-
-const midiUpdate = function(time) {
-  // TODO time and the tstamps from midiTimemap are not identical.
-  // An approximate lookup would be necessary.
-}
-
 async function renderComments() {
   cetei.makeHTML5(teiComments, function(html) {
       $("#comments-view").html(html);
@@ -143,62 +186,9 @@ function connectTEIRefWithSVG(teiRef, targetAttr) {
   });
 
   // connect text with an indicator
-  teiRef.find("a").on("click", function(e) {
-    e.preventDefault();
+  teiRef.on("click", function(e) {
     highlightSVG(rect);
   });
-}
-
-function reconnectCrossRefs() {
-  $("tei-ref[target]").each(function() {
-    let targetAttrs = $(this).attr("target").split(" ");
-    for (let i=0; i<targetAttrs.length; i++) {
-      connectTEIRefWithSVG($(this), targetAttrs[i]);
-    }
-  });
-}
-
-// connecting key and meter signature with comments
-function connectSignatureTooltips() {
-  let keySig = $("#score-view svg").find(".keySig");
-  var signatureBox;
-  if (keySig.length == 0) {
-    // In that case we are probably dealing with a key without any signature, A minor or C major.
-    // Taking the first clef instead and shifting the box for some pixels to the right.
-    keySig = $("#score-view svg").find(".clef");
-    signatureBox = getSvgElementBoxAsCss(keySig);
-    signatureBox.left += signatureBox.width;
-  } else {
-    signatureBox = getSvgElementBoxAsCss(keySig);
-  }
-
-  if (keySig.length != 0) {
-    let annotation = $("tei-note[type='on-key-signature'] span[data-original='']").removeAttr('hidden');
-
-    if (annotation.length != 0) {
-      $('#key-overlay').css(signatureBox).popover({
-          content: annotation,
-          trigger: 'hover',
-          html: true
-      });
-      annotation.parent().hide();
-    }
-  }
-
-  let meterSig = $("#score-view svg").find(".meterSig");
-  if (meterSig.length != 0) {
-    signatureBox = getSvgElementBoxAsCss(meterSig);
-    let annotation = $("tei-note[type='on-meter'] span[data-original='']").removeAttr('hidden');
-
-    if (annotation.length != 0) {
-      $('#meter-overlay').css(signatureBox).popover({
-          content: annotation,
-          trigger: 'hover',
-          html: true
-      });
-      annotation.parent().hide();
-    }
-  }
 }
 
 // connecting transcription and facsimile
@@ -283,14 +273,10 @@ async function reloadFacsimileTooltips() {
 $(document).ready(async function() {
   if (teiComments) {
     await renderComments();
-    connectSignatureTooltips();
-    reconnectCrossRefs();
   }
 
   if (midi) {
-    $("#player").midiPlayer({
-        onUpdate: midiUpdate
-    });
+    $("#player").midiPlayer();
     const piece = 'data:audio/midi;base64,' + midi;
     $("#player").show();
     $("#player").midiPlayer.load(piece);
