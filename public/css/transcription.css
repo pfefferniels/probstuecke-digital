@@ -60,14 +60,14 @@ tei-ref a, tei-ref a:hover {
   text-decoration: none;
 }
 
-tei-ref {
+tei-ref[target] {
   border: 0.1rem solid #f47141;
   border-radius: 0.25rem;
   padding-left: 0.1rem;
   padding-right: 0.1rem;
 }
 
-tei-ref.disabled-reference {
+tei-ref[target].disabled-reference {
   border: 0.1rem solid #e8e8e8;
 }
 

@@ -87,27 +87,55 @@ function insertStavesAbove(n, doc) {
   }
 }
 
-function prepareMEI(number, label, file, above, below, modernClefs) {
+function removeAnnotationStaff(doc) {
+  let n;
+  let staffDefs = doc.documentElement.getElementsByTagName("staffDef");
+  for (let i=0; i<staffDefs.length; i++) {
+    if (staffDefs[i].getAttribute("xml:id") === "mattheson") {
+      n = staffDefs[i].getAttribute("n");
+      staffDefs[i].parentNode.removeChild(staffDefs[i]);
+      i -= 1;
+    }
+  }
+
+  let staffs = doc.documentElement.getElementsByTagName("staff");
+  for (let i=0; i<staffs.length; i++) {
+    if (staffs[i].getAttribute("n") == n) {
+      staffs[i].parentNode.removeChild(staffs[i]);
+      i -= 1;
+    }
+  }
+}
+
+function prepareMEI(number, label, file, options) {
   let data = fs.readFileSync(path.join(__dirname, '../data', number, label, file));
   let doc = new DOMParser().parseFromString(data.toString(), 'text/xml');
 
-  if (modernClefs) {
+  if (options.modernClefs) {
+    console.log("modernize clefs for", file);
     modernizeClefs(doc);
   }
 
-  if (above) {
-    insertStavesAbove(above, doc);
+  if (!options.showAnnotationStaff) {
+    console.log("hide annotations for", file);
+    removeAnnotationStaff(doc);
   }
 
-  if (below) {
-    insertStavesBelow(below, doc);
+  if (options.above) {
+    console.log("inserting staves above", options.above);
+    insertStavesAbove(options.above, doc);
+  }
+
+  if (options.below) {
+    console.log("inserting staves below", options.below);
+    insertStavesBelow(options.below, doc);
   }
 
   return new xmldom.XMLSerializer().serializeToString(doc);
 }
 
-function renderSVG(number, label, file, above, below, modernClefs) {
-  let mei = prepareMEI(number, label, file, above, below, modernClefs);
+function renderSVG(number, label, file, options) {
+  let mei = prepareMEI(number, label, file, options);
 
   vrvToolkit.setOptions({
     pageHeight: 30000,
@@ -137,14 +165,14 @@ PDFDocument.prototype.addSVG = function(svg, x, y) {
   }), this;
 };
 
-function streamPDF(res, number, label, file, above, below, modernClefs) {
+function streamPDF(res, number, label, file, options) {
   const doc = new PDFDocument({
     size: "A4"
   });
   doc.info["Title"] = number + ". Probstück";
   doc.pipe(res);
 
-  let mei = prepareMEI(number, label, file, above, below, modernClefs);
+  let mei = prepareMEI(number, label, file, options);
 
   vrvToolkit.setOptions({
     pageHeight: 3200,
