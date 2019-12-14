@@ -5,7 +5,9 @@ cetei.addBehaviors({
     'persName': function(el) {
       return $('<a>').attr('href', el.getAttribute('ref')).html(el.innerHTML)[0];
     },
-    'facsimile': [''],
+    'facsimile': function(el) {
+      this.hideContent(el, false);
+    },
     'ref': [
       ['[type="editorial-note"]', ['']]
     ],
