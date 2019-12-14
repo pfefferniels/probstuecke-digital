@@ -133,15 +133,17 @@
         <score>
           <scoreDef key.mode="minor" key.pname="b">
             <staffGrp>
-              <staffDef xml:id="mattheson" n="1" lines="5" label="Mattheson's annotations" clef.shape="C" clef.line="1" meter.count="4" meter.unit="4" meter.sym="common">
+              <staffDef xml:id="mattheson" n="1" lines="5" label="Mattheson's annotations" clef.shape="C" clef.line="1">
                 <keySig sig="2s" />
+                <meterSig count="4" unit="4" sym="common" />
               </staffDef>
-              <staffDef xml:id="bass" n="2" lines="5" clef.shape="F" clef.line="4" meter.count="4" meter.unit="4" meter.sym="common">
+              <staffDef xml:id="bass" n="2" lines="5" clef.shape="F" clef.line="4">
                 <keySig sig="2s" />
-              </staffDef>
+                <meterSig count="4" unit="4" sym="common" />
+            </staffDef>
             </staffGrp>
           </scoreDef>
-          <section xml:id="section-0000000902224952">
+          <section>
             <measure xml:id="measure-0000001017587021" n="1">
               <staff xml:id="staff-0000000497456602" n="1">
                 <layer xml:id="layer-0000001171803892" n="1">

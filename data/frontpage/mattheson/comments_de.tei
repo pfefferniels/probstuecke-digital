@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.deutschestextarchiv.de/basisformat.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0" ?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
   <teiHeader>
     <fileDesc>
@@ -70,33 +71,33 @@
   </teiHeader>
   <text>
     <front>
-      <titlePage>
+      <pb facs="#facs-p385"/>
+      <titlePage type="main">
         <docTitle>
           <titlePart type="main">
-            Der<lb />
-            Grossen<lb />
-            General-Baß-Schule<lb />
-            oder<lb />
-            Organisten-Probe<lb />
-            Ober-Classe,<lb />
+            <lb/>Der
+            <lb/>Groſſen
+            <lb/>General-Baß-Schule
+            <lb/>oder
+            <lb/>Organiſten-Probe
           </titlePart>
           <titlePart type="sub">
-            bestehend<lb />
-            in<lb />
-            Vier und Zwantzig etwas schweren<lb />
-            Exempeln.
+            <lb/><hi rendition="#g">Ober-Claſſe/</hi>
+            <lb/>bestehend
+            <lb/>in
+            <lb/>Vier und Zwantzig etwas ſchweren
+            <lb/>Exempeln.
           </titlePart>
         </docTitle>
       </titlePage>
-      <milestone unit="section" rendition="#hr"/><lb/>
+      <lb/><milestone unit="section" rendition="#hr"/>
       <epigraph>
         <cit>
-          <quote>Divisum sic fiet opus.</quote>
-          <bibl>
-            <hi rendition="#i"><persName ref="http://d-nb.info/gnd/11857826X" full="abb">Mart.</persName></hi>
-          </bibl>
+          <quote><lb/><hi rendition="#aq"><foreign xml:lang="lat"><orig>Diuiſum ſic breue fiet opus.</orig></foreign></hi></quote>
+          <bibl><hi rendition="#aq #i"><persName ref="http://d-nb.info/gnd/11857826X"><abbr>Mart.</abbr></persName></hi></bibl>
         </cit>
       </epigraph>
     </front>
+    <body><p></p></body>
   </text>
 </TEI>

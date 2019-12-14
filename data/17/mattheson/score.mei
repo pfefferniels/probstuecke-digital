@@ -125,13 +125,15 @@
       <body>
         <mdiv>
           <score>
-            <scoreDef>
+            <scoreDef key.pname="a" key.mode="major">
               <staffGrp>
-                <staffDef xml:id="mattheson" n="1" lines="5" label="Mattheson's annotations" clef.shape="G" clef.line="2" meter.count="6" meter.unit="8">
+                <staffDef xml:id="mattheson" label="Mattheson's annotations" clef.shape="G" clef.line="2" n="1" lines="5">
                   <keySig sig="3s"/>
+                  <meterSig count="6" unit="8" />
                 </staffDef>
-                <staffDef xml:id="bass" n="2" lines="5" ppq="256" clef.shape="F" clef.line="4" meter.count="6" meter.unit="8">
+                <staffDef xml:id="bass" clef.shape="F" clef.line="4" n="2" lines="5">
                   <keySig sig="3s"/>
+                  <meterSig count="6" unit="8" />
                 </staffDef>
               </staffGrp>
             </scoreDef>
