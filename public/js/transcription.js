@@ -127,16 +127,6 @@ function drawSVGIndicator(targetAttr) {
              back();
 }
 
-function getSvgElementBoxAsCss(target) {
-  const bRect = target[0].getBoundingClientRect();
-  return {
-        top: bRect.top,
-        left: bRect.left,
-        width: bRect.width,
-        height: bRect.height
-  };
-}
-
 async function renderComments() {
   cetei.makeHTML5(teiComments, function(html) {
       $("#comments-view").html(html);
