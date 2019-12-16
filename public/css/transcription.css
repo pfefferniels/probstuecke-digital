@@ -16,11 +16,11 @@ svg {
 }
 
 .signature-overlay {
-  position: absolute;
-  border: 0.1rem solid #ff5100;
-  border-radius: 0.15rem;
-  background-color: #ff9538;
-  opacity: 0.3;
+  fill: #ff9538;
+  fill-opacity: 0.8;
+  stroke: #ff5100;
+  stroke-linecap: round;
+  stroke-width: 2rem;
 }
 
 input[type="number"] {
