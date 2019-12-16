@@ -55,7 +55,7 @@ cetei.addBehaviors({
         }
 
         $('#key-overlay').css(signatureBox).popover({
-            content: el.innerHTML,
+            content: el.textContent,
             trigger: 'hover',
             html: true
         });
@@ -66,7 +66,7 @@ cetei.addBehaviors({
         if (meterSig.length != 0) {
           signatureBox = getSvgElementBoxAsCss(meterSig);
           $('#meter-overlay').css(signatureBox).popover({
-              content: el.innerHTML,
+              content: el.textContent,
               trigger: 'hover',
               html: true
           });
