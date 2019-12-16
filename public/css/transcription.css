@@ -47,7 +47,7 @@ input[type="number"] {
   animation: highlight 4s;
 }
 
-#score-view{
+#score-view {
   margin-bottom: 4rem;
 }
 
@@ -165,7 +165,7 @@ tei-front {
   text-align: center;
 }
 
-tei-front tei-lb:before {
+tei-lb:before {
   content: '\A';
   white-space: pre;
 }
@@ -185,6 +185,21 @@ tei-milestone[rendition="#hr"] {
   width: 50%;
   border-bottom: 0.1rem solid black;
   margin: 1rem auto;
+}
+
+tei-pb {
+	display: block;
+}
+
+tei-pb[n]:after {
+	content: '[' attr(n)']\A';
+	color: gray;
+}
+
+tei-fw[type="catch"][place="bottom"] {
+    text-align:right;
+    display:block;
+    color:#666;
 }
 
 /* overwrites the default max-width of bootstrap's popover */
