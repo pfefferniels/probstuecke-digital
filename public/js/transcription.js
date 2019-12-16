@@ -42,36 +42,32 @@ cetei.addBehaviors({
       }],
 
       ['[type="on-key-signature"]', function(el) {
-        let keySig = $("#score-view svg").find(".keySig");
-        let signatureBox;
-        if (keySig.length == 0) {
-          // In that case we are probably dealing with a key without any signature, A minor or C major.
-          // Taking the first clef instead and shifting the box for some pixels to the right.
-          keySig = $("#score-view svg").find(".clef");
-          signatureBox = getSvgElementBoxAsCss(keySig);
-          signatureBox.left += signatureBox.width;
-        } else {
-          signatureBox = getSvgElementBoxAsCss(keySig);
+        let keySigIndicator = drawSVGIndicator('.keySig');
+        if (!keySigIndicator) {
+          // In that case we are probably dealing with a key without any signature.
+          // Taking the meter instead and shifting the box to the left.
+          keySigIndicator = drawSVGIndicator('.meterSig');
+          keySigIndicator.dx(-1.33*keySigIndicator.width());
         }
+        keySigIndicator.addClass('signature-overlay');
 
-        $('#key-overlay').css(signatureBox).popover({
-            content: el.innerHTML,
+        $(keySigIndicator.node).popover({
+            content: el.textContent,
+            trigger: 'hover',
+            html: true
+        });
+
+        this.hideContent(el, false);
+      }],
+      ['[type="on-meter"]', function(el) {
+        let meterSigOverlay = drawSVGIndicator('.meterSig');
+        meterSigOverlay.addClass('signature-overlay');
+        $(meterSigOverlay.node).popover({
+            content: el.textContent,
             trigger: 'hover',
             html: true
         });
         this.hideContent(el, false);
-      }],
-      ['[type="on-meter"]', function(el) {
-        let meterSig = $("#score-view svg").find(".meterSig");
-        if (meterSig.length != 0) {
-          signatureBox = getSvgElementBoxAsCss(meterSig);
-          $('#meter-overlay').css(signatureBox).popover({
-              content: el.innerHTML,
-              trigger: 'hover',
-              html: true
-          });
-          this.hideContent(el, false);
-        }
       }]
     ]
   }
@@ -129,16 +125,6 @@ function drawSVGIndicator(targetAttr) {
              attr("class", "indicator").
              attr("id", "indicate_" + targetAttr.substr(1)).
              back();
-}
-
-function getSvgElementBoxAsCss(target) {
-  const bRect = target[0].getBoundingClientRect();
-  return {
-        top: bRect.top,
-        left: bRect.left,
-        width: bRect.width,
-        height: bRect.height
-  };
 }
 
 async function renderComments() {
