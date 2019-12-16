@@ -21,8 +21,9 @@ block headAdditions
   script(type='text/javascript' src='/js/transcription.js')
 
 block options
-  .p-2(data-toggle="modal" data-target="#optionsModal")
-    i.fas.fa-lg.fa-wrench
+  if number != "frontpage"
+    .p-2(data-toggle="modal" data-target="#optionsModal")
+      i.fas.fa-lg.fa-wrench
   
   .p-2(data-toggle="modal" data-target="#facsimileModal")
     i.far.fa-lg.fa-image
