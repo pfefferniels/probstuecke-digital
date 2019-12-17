@@ -256,6 +256,20 @@ async function reloadFacsimileTooltips() {
   });
 }
 
+function normalizeOption(replace, orig, replacement) {
+  // dealing with the long s (s)
+  if (replace) {
+    findAndReplaceDOMText($('tei-body')[0], {
+      find: orig,
+      replace: replacement,
+      wrap: 'span',
+      wrapClass: 'replaced-by-' + replacement
+    });
+  } else {
+    $('.replaced-by-' + replacement).replaceWith(orig);
+  }
+}
+
 $(document).ready(async function() {
   if (teiComments) {
     await renderComments();
@@ -279,6 +293,15 @@ $(document).ready(async function() {
     } else {
       $('.has-facsimile-popover').popover('disable');
     }
+  });
+
+  $('#update-orthography').click(function() {
+    normalizeOption($('#normalize-s').is(':checked'), 'ſ', 's');
+    normalizeOption($('#normalize-umlaut').is(':checked'), 'aͤ', 'ä');
+    normalizeOption($('#normalize-umlaut').is(':checked'), 'oͤ', 'ö');
+    normalizeOption($('#normalize-umlaut').is(':checked'), 'uͤ', 'ü');
+
+    $('#ignore-lb').is(':checked') ? $('tei-lb').hide() : $('tei-lb').show();
   });
 
   $("#pdf-download").click(function() {

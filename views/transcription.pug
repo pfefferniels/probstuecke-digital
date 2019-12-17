@@ -16,6 +16,7 @@ block headAdditions
     teiComments = `!{teiComment}`;
   
   script(type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/svg.js/3.0.13/svg.min.js')
+  script(type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/findAndReplaceDOMText/0.4.6/findAndReplaceDOMText.min.js')
   script(type='text/javascript' src='/js/wildwebmidi.js')
   script(type='text/javascript' src='/js/midiplayer.js')
   script(type='text/javascript' src='/js/transcription.js')
@@ -28,6 +29,9 @@ block options
   .p-2(data-toggle="modal" data-target="#facsimileModal")
     i.far.fa-lg.fa-image
     
+  .p-2(data-toggle="modal" data-target="#orthographyModal")
+    i.fas.fa-lg.fa-font
+
 block content
   #optionsModal.modal.fade(tabindex="-1" role="dialog" aria-labelledby="options-title" aria-hidden="true")
     .modal-dialog(role="document")
@@ -89,6 +93,33 @@ block content
         .modal-footer
           button.btn.btn-secondary(type="button" data-dismiss="modal") Cancel
           button#update-facsimile.btn.btn-primary(type="button" data-dismiss="modal") Update view
+
+  #orthographyModal.modal.fade(tabindex="-1" role="dialog" aria-labelledby="orthography-title" aria-hidden="true")
+    .modal-dialog(role="document")
+      .modal-content
+        .modal-header
+          h5.modal-title#orthography-title Normalize Orthography
+          button.close(type="button" data-dismiss="modal" aria-label="Close")
+            span(aria-hidden="true") &times;
+  
+        .modal-body
+          .form-check
+            input#normalize-s.form-check-input(type='checkbox' name='normalize-s' autocomplete='off')
+            label.form-check-label(for='normalize-s') normalize the long s (ſ) to s
+
+          .form-check
+            input#normalize-umlaut.form-check-input(type='checkbox' name='normalize-umlaut' autocomplete='off')
+            label.form-check-label(for='normalize-umlaut') normalize the umlauts
+
+          .form-check
+            input#ignore-lb.form-check-input(type='checkbox' name='ignore-lb' autocomplete='off')
+            label.form-check-label(for='ignore-lb') ignore original line breaks
+          
+  
+        .modal-footer
+          button.btn.btn-secondary(type="button" data-dismiss="modal") Cancel
+          button#update-orthography.btn.btn-primary(type="button" data-dismiss="modal") Update
+
   .row
     if svgScore
       .col-sm#score-view !{svgScore}
