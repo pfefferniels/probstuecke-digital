@@ -110,8 +110,8 @@
     <body>
       <mdiv>
         <score>
-          <scoreDef>
-            <staffGrp pname="b" mode="major">
+          <scoreDef key.pname="b" key.mode="major">
+            <staffGrp>
               <staffDef xml:id="mattheson" n="1" lines="5" label="Mattheson's annotations" clef.shape="C" clef.line="1">
                 <keySig sig="4s" />
                 <meterSig count="6" unit="8" />
@@ -782,7 +782,9 @@
                       <accid accid="s" />
                     </note>
                     <note xml:id="note-0000001023785813" dur="8" oct="2" pname="a">
-                      <accid accid="s" />
+                      <reg resp="#pfeffer">
+                        <accid accid="s" />
+                      </reg>
                     </note>
                   </beam>
                   <rest xml:id="rest-0000000192437005" dur="8" />
@@ -869,7 +871,9 @@
                       <accid accid="s" />
                     </note>
                     <note xml:id="note-0000001831139393" dur="8" oct="2" pname="a">
-                      <accid accid="s" />
+                      <reg resp="#pfeffer">
+                        <accid accid="s" />
+                      </reg>
                     </note>
                   </beam>
                   <rest xml:id="rest-0000001778143770" dur="8" />
@@ -1014,7 +1018,9 @@
                       <accid accid="s" />
                     </note>
                     <note xml:id="note-0000001484208627" dur="8" oct="2" pname="a">
-                      <accid accid="s" />
+                      <reg resp="#pfeffer">
+                        <accid accid="s" />
+                      </reg>
                     </note>
                   </beam>
                   <rest xml:id="rest-0000000005756324" dur="8" />
@@ -1074,9 +1080,7 @@
                 <layer n="1">
                   <beam>
                     <note xml:id="note-0000000685170152" dur="8" oct="3" pname="d" accid.ges="s" />
-                    <note xml:id="note-0000001500144441" dur="8" oct="3" pname="c">
-                      <accid accid="s" />
-                    </note>
+                    <note xml:id="note-0000001500144441" dur="8" oct="3" pname="c" />
                     <note xml:id="note-0000002043791936" dur="8" oct="2" pname="b" />
                   </beam>
                   <note xml:id="note-0000000202057301" dur="4" oct="2" pname="a">
@@ -1364,7 +1368,9 @@
                       <accid accid="s" />
                     </note>
                     <note xml:id="note-0000000941731916" dur="8" oct="2" pname="a">
-                      <accid accid="s" />
+                      <reg resp="#pfeffer">
+                        <accid accid="s" />
+                      </reg>
                     </note>
                   </beam>
                   <rest xml:id="rest-0000001744552461" dur="8" />
@@ -1463,7 +1469,9 @@
                       <accid accid="s" />
                     </note>
                     <note xml:id="note-0000000283572793" dur="8" oct="2" pname="a">
-                      <accid accid="s" />
+                      <reg resp="#pfeffer">
+                        <accid accid="s" />
+                      </reg>
                     </note>
                   </beam>
                   <rest xml:id="rest-0000001080361597" dur="8" />
