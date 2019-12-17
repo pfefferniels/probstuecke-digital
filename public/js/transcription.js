@@ -295,18 +295,28 @@ $(document).ready(async function() {
   });
 
   $('#update-orthography').click(function() {
+    // normalizing long s and Umlaut
     normalizeOption($('#normalize-s').is(':checked'), 'ſ', 's');
     normalizeOption($('#normalize-umlaut').is(':checked'), 'aͤ', 'ä');
     normalizeOption($('#normalize-umlaut').is(':checked'), 'oͤ', 'ö');
     normalizeOption($('#normalize-umlaut').is(':checked'), 'uͤ', 'ü');
 
-    // Hiding linebreaks and normalizing hyphens at linebreaks.
+    // hiding linebreaks and normalizing hyphens at linebreaks.
     if ($('#ignore-lb').is(':checked')) {
       $('tei-lb').replaceWith('<wbr>');
       $('tei-body')[0].innerHTML = $('tei-body')[0].innerHTML.replace(/[-]<wbr>(\n|\s)+/g, '&shy;');
     } else {
       $('tei-body')[0].innerHTML = $('tei-body')[0].innerHTML.replace(/\u00AD/g, '-<wbr>');
-      $('tei-body')[0].innerHTML = $('tei-body')[0].innerHTML.replace(/<wbr>/g, '<tei-lb data-origname="lb" />');
+      $('wbr').replaceWith('<tei-lb data-origname="lb" />');
+    }
+
+    // ignore pagination
+    if ($('#ignore-pagination').is(':checked')) {
+      $('tei-fw[type="catch"]').hide();
+      $('tei-pb').hide();
+    } else {
+      $('tei-fw[type="catch"]').show();
+      $('tei-pb').show();
     }
   });
 
