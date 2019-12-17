@@ -258,7 +258,7 @@ async function reloadFacsimileTooltips() {
 
 function normalizeOption(replace, orig, replacement) {
   if (replace) {
-    findAndReplaceDOMText($('tei-body')[0], {
+    findAndReplaceDOMText($('tei-text')[0], {
       find: orig,
       replace: replacement,
       wrap: 'span',
@@ -304,9 +304,9 @@ $(document).ready(async function() {
     // hiding linebreaks and normalizing hyphens at linebreaks.
     if ($('#ignore-lb').is(':checked')) {
       $('tei-lb').replaceWith('<wbr>');
-      $('tei-body')[0].innerHTML = $('tei-body')[0].innerHTML.replace(/[-]<wbr>(\n|\s)+/g, '&shy;');
+      $('tei-text')[0].innerHTML = $('tei-text')[0].innerHTML.replace(/[-]<wbr>(\n|\s)+/g, '&shy;');
     } else {
-      $('tei-body')[0].innerHTML = $('tei-body')[0].innerHTML.replace(/\u00AD/g, '-<wbr>');
+      $('tei-text')[0].innerHTML = $('tei-text')[0].innerHTML.replace(/\u00AD/g, '-<wbr>');
       $('wbr').replaceWith('<tei-lb data-origname="lb" />');
     }
 
