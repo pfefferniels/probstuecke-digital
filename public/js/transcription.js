@@ -257,7 +257,6 @@ async function reloadFacsimileTooltips() {
 }
 
 function normalizeOption(replace, orig, replacement) {
-  // dealing with the long s (s)
   if (replace) {
     findAndReplaceDOMText($('tei-body')[0], {
       find: orig,
@@ -301,7 +300,14 @@ $(document).ready(async function() {
     normalizeOption($('#normalize-umlaut').is(':checked'), 'oͤ', 'ö');
     normalizeOption($('#normalize-umlaut').is(':checked'), 'uͤ', 'ü');
 
-    $('#ignore-lb').is(':checked') ? $('tei-lb').hide() : $('tei-lb').show();
+    // Hiding linebreaks and normalizing hyphens at linebreaks.
+    if ($('#ignore-lb').is(':checked')) {
+      $('tei-lb').replaceWith('<wbr>');
+      $('tei-body')[0].innerHTML = $('tei-body')[0].innerHTML.replace(/[-]<wbr>(\n|\s)+/g, '&shy;');
+    } else {
+      $('tei-body')[0].innerHTML = $('tei-body')[0].innerHTML.replace(/\u00AD/g, '-<wbr>');
+      $('tei-body')[0].innerHTML = $('tei-body')[0].innerHTML.replace(/<wbr>/g, '<tei-lb data-origname="lb" />');
+    }
   });
 
   $("#pdf-download").click(function() {
