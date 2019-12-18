@@ -14,18 +14,18 @@
                     <persName role="editor" xml:id="rettinghaus">Klaus Rettinghaus</persName>
                 </respStmt>
             </titleStmt>
-            <editionStmt>
-                <edition>
-                    First draft,
-                    <date>2019</date>
-                </edition>
-            </editionStmt>
-            <availability>
-                <useRestrict label="licence" auth="https://creativecommons.org/licenses/by/" codedval="4.0">
-                  <p>Creative Commons Attribution 4.0 International License</p>
-                </useRestrict>
+            <pubStmt>
+              <respStmt>
+                  <persName role="publisher">Niels Pfeffer</persName>
+              </respStmt>
+              <date>2019</date>
+              <availability>
+                  <useRestrict label="licence" auth="https://creativecommons.org/licenses/by/" codedval="4.0">
+                      <p>Creative Commons Attribution 4.0 International License</p>
+                  </useRestrict>
               </availability>
-      </fileDesc>
+            </pubStmt>
+        </fileDesc>
     </meiHead>
     <music>
         <body>
@@ -33,7 +33,7 @@
                 <score>
                     <scoreDef mnum.visible="false">
                         <staffGrp>
-                            <staffDef xml:id="mattheson" clef.shape="C" clef.line="1" n="1" lines="5" />
+                            <staffDef clef.shape="C" clef.line="1" n="1" lines="5" />
                             <staffDef xml:id="bass" clef.shape="F" clef.line="4" n="2" lines="5" />
                         </staffGrp>
                     </scoreDef>
