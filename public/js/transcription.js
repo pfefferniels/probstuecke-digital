@@ -11,68 +11,17 @@ cetei.addBehaviors({
     },
 
     'ref': [
-      ['[target]', function(el) {
-        let targetAttrs = el.getAttribute("target").split(" ");
-        for (let i=0; i<targetAttrs.length; i++) {
-          connectTEIRefWithSVG($(el), targetAttrs[i]);
-        }
-      }],
+      ['[target]', connectCrossRefs],
       ['[type="editorial-note"]', ['']]
     ],
 
    'note': [
-      ['[type="editorial"]', function(el) {
-        let note = $(el);
-        this.hideContent(el, false);
-
-        let ref = $(note.attr('corresp'));
-        if (ref.length != 0) {
-          ref.popover({
-              content: note.html(),
-              trigger: 'hover',
-              html: true
-          });
-        } else {
-          return $('<sup>editorial note</sup>').popover({
-              content: note.html(),
-              trigger: 'hover',
-              html: true
-          })[0];
-        }
-      }],
-
-      ['[type="on-key-signature"]', function(el) {
-        let keySigIndicator = drawSVGIndicator('.keySig');
-        if (!keySigIndicator) {
-          // In that case we are probably dealing with a key without any signature.
-          // Taking the meter instead and shifting the box to the left.
-          keySigIndicator = drawSVGIndicator('.meterSig');
-          keySigIndicator.dx(-1.33*keySigIndicator.width());
-        }
-        keySigIndicator.addClass('signature-overlay');
-
-        $(keySigIndicator.node).popover({
-            content: el.textContent,
-            trigger: 'hover',
-            html: true
-        });
-
-        this.hideContent(el, false);
-      }],
-      ['[type="on-meter"]', function(el) {
-        let meterSigOverlay = drawSVGIndicator('.meterSig');
-        meterSigOverlay.addClass('signature-overlay');
-        $(meterSigOverlay.node).popover({
-            content: el.textContent,
-            trigger: 'hover',
-            html: true
-        });
-        this.hideContent(el, false);
-      }]
+      ['[type="editorial"]', connectEditorialNote],
+      ['[type="on-key-signature"]', connectKeyOverlay],
+      ['[type="on-meter"]', connectMeterOverlay]
     ]
   }
 });
-
 
 // ------
 // Helper functions
@@ -153,6 +102,66 @@ async function renderComments() {
   // make sure that loading the comments is done only when all
   // the notatedMusic elements are resolved.
   await Promise.all(notatedMusicPromises);
+}
+
+function connectCrossRefs(el) {
+  let targetAttrs = el.getAttribute("target").split(" ");
+  for (let i=0; i<targetAttrs.length; i++) {
+    connectTEIRefWithSVG($(el), targetAttrs[i]);
+  }
+}
+
+function connectEditorialNote(el) {
+  let note = $(el);
+  this.hideContent(el, false);
+
+  let ref = $(note.attr('corresp'));
+  if (ref.length != 0) {
+    ref.popover({
+        content: note.html(),
+        trigger: 'hover',
+        html: true
+    });
+  } else {
+    return $('<sup>editorial note</sup>').popover({
+        content: note.html(),
+        trigger: 'hover',
+        html: true
+    })[0];
+  }
+}
+
+function connectKeyOverlay(el) {
+  let keySigIndicator = drawSVGIndicator('.keySig');
+  if (!keySigIndicator) {
+    // In that case we are probably dealing with a key without any signature.
+    // Taking the meter instead and shifting the box to the left.
+    keySigIndicator = drawSVGIndicator('.meterSig');
+    keySigIndicator.dx(-1.33*keySigIndicator.width());
+  }
+  keySigIndicator.addClass('signature-overlay');
+
+  $(keySigIndicator.node).popover({
+      content: el.textContent,
+      trigger: 'hover',
+      html: true
+  });
+  if (this.hideContent) {
+    this.hideContent(el, false);
+  }
+}
+
+function connectMeterOverlay(el) {
+  let meterSigOverlay = drawSVGIndicator('.meterSig');
+  meterSigOverlay.addClass('signature-overlay');
+  $(meterSigOverlay.node).popover({
+      content: el.textContent,
+      trigger: 'hover',
+      html: true
+  });
+  if (this.hideContent) {
+    this.hideContent(el, false);
+  }
 }
 
 function connectTEIRefWithSVG(teiRef, targetAttr) {
@@ -295,6 +304,8 @@ $(document).ready(async function() {
   });
 
   $('#update-orthography').click(function() {
+    $('.indicator').remove();
+
     // normalizing long s and Umlaut
     normalizeOption($('#normalize-s').is(':checked'), 'ſ', 's');
     normalizeOption($('#normalize-umlaut').is(':checked'), 'aͤ', 'ä');
@@ -318,6 +329,10 @@ $(document).ready(async function() {
       $('tei-fw[type="catch"]').show();
       $('tei-pb').show();
     }
+
+    // After having modified the innerHTML, all reference event listeners will be gone.
+    // Therefore, we reconnect them here.
+    Array.prototype.forEach.call($('tei-ref')[0], connectCrossRefs);
   });
 
   $("#pdf-download").click(function() {
