@@ -311,6 +311,8 @@ $(document).ready(async function() {
     normalizeOption($('#normalize-umlaut').is(':checked'), 'aͤ', 'ä');
     normalizeOption($('#normalize-umlaut').is(':checked'), 'oͤ', 'ö');
     normalizeOption($('#normalize-umlaut').is(':checked'), 'uͤ', 'ü');
+    normalizeOption($('#normalize-abbreviations').is(':checked'), 'm̃', 'mm');
+    normalizeOption($('#normalize-abbreviations').is(':checked'), 'ñ', 'nn');
 
     // hiding linebreaks and normalizing hyphens at linebreaks.
     if ($('#ignore-lb').is(':checked')) {
