@@ -18,9 +18,17 @@
                 <edition>First draft, <date>2019</date></edition>
             </editionStmt>
             <pubStmt>
-                <unpub />
-            </pubStmt>
-        </fileDesc>
+                <respStmt>
+                  <persName role="publisher">Niels Pfeffer</persName>
+                </respStmt>
+                <date>2019</date>
+                <availability>
+                  <useRestrict label="licence" auth="https://creativecommons.org/licenses/by/" codedval="4.0">
+                    <p>Creative Commons Attribution 4.0 International License</p>
+                  </useRestrict>
+                </availability>
+              </pubStmt>
+          </fileDesc>
     </meiHead>
     <music>
         <body>
@@ -42,7 +50,7 @@
                                         <note xml:id="ex-1138" oct="5" pname="c" />
                                         <note xml:id="ex-1139" oct="5" pname="f" />
                                     </chord>
-                                    <beam xml:id="ex-1142">
+                                    <beam>
                                         <note xml:id="ex-1141" dur="16" oct="5" pname="f" />
                                         <note xml:id="ex-1143" dur="16" oct="5" pname="f" />
                                         <note xml:id="ex-1144" dur="16" oct="5" pname="e" />
@@ -54,7 +62,7 @@
                             </staff>
                             <staff n="2">
                                 <layer n="1">
-                                    <beam xml:id="ex-1155">
+                                    <beam>
                                         <note xml:id="ex-1154" dur="16" oct="3" pname="f" />
                                         <note xml:id="ex-1156" dur="16" oct="3" pname="f" />
                                         <note xml:id="ex-1157" dur="16" oct="3" pname="c" />
@@ -66,7 +74,7 @@
                                     <rest xml:id="ex-1164" dur="8" />
                                 </layer>
                             </staff>
-                            <tie xml:id="ex-1140" startid="#ex-1139" endid="#ex-1141" />
+                            <tie startid="#ex-1139" endid="#ex-1141" />
                             <supplied resp="#rettinghaus">
                                 <harm place="above" staff="2" tstamp="4">
                                     <fb>
@@ -89,7 +97,7 @@
                                         <note xml:id="ex-1173" oct="4" pname="b" />
                                         <note xml:id="ex-1175" oct="5" pname="e" />
                                     </chord>
-                                    <beam xml:id="ex-1180">
+                                    <beam>
                                         <note xml:id="ex-1178" dur="16" oct="5" pname="e" />
                                         <note xml:id="ex-1181" dur="16" oct="5" pname="e" />
                                         <note xml:id="ex-1183" dur="16" oct="5" pname="d">
@@ -103,7 +111,7 @@
                             </staff>
                             <staff n="2">
                                 <layer n="1">
-                                    <beam xml:id="ex-1195">
+                                    <beam>
                                         <note xml:id="ex-1193" dur="16" oct="3" pname="e" />
                                         <note xml:id="ex-1196" dur="16" oct="3" pname="e" />
                                         <note xml:id="ex-1198" dur="16" oct="2" pname="b" />
@@ -115,7 +123,7 @@
                                     <rest xml:id="ex-1205" dur="8" />
                                 </layer>
                             </staff>
-                            <tie xml:id="ex-1177" startid="#ex-1175" endid="#ex-1178" />
+                            <tie startid="#ex-1175" endid="#ex-1178" />
                             <supplied resp="#rettinghaus">
                                 <harm place="above" staff="2" tstamp="4">
                                     <fb>
@@ -142,7 +150,7 @@
                                             <accid xml:id="ex-1216" accid="f" />
                                         </note>
                                     </chord>
-                                    <beam xml:id="ex-1220">
+                                    <beam>
                                         <note xml:id="ex-1218" dur="16" oct="5" pname="d" />
                                         <note xml:id="ex-1221" dur="16" oct="5" pname="d" />
                                         <note xml:id="ex-1223" dur="16" oct="5" pname="c" />
@@ -154,7 +162,7 @@
                             </staff>
                             <staff n="2">
                                 <layer n="1">
-                                    <beam xml:id="ex-1231">
+                                    <beam>
                                         <note xml:id="ex-1229" dur="16" oct="3" pname="d">
                                             <accid xml:id="ex-1230" accid="f" />
                                         </note>
@@ -168,7 +176,7 @@
                                     <rest xml:id="ex-1242" dur="8" />
                                 </layer>
                             </staff>
-                            <tie xml:id="ex-1217" startid="#ex-1215" endid="#ex-1218" />
+                            <tie startid="#ex-1215" endid="#ex-1218" />
                             <supplied resp="#rettinghaus">
                                 <harm place="above" staff="2" tstamp="4">
                                     <fb>

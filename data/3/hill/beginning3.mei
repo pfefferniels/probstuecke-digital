@@ -21,18 +21,14 @@
     </meiHead>
     <music>
         <body>
-            <mdiv xml:id="mdiv-0000000437278367">
-                <score xml:id="score-0000000798470068">
-                    <scoreDef xml:id="scoredef-0000001515475074">
-                        <staffGrp xml:id="staffgrp-0000000008423202">
-                            <staffDef xml:id="staffdef-0000001283562661" n="1" lines="5" ppq="256" clef.shape="G" clef.line="2" meter.count="3" meter.unit="4">
-                                <keySig xml:id="keysig-0000000245228728" mode="major" sig="0" />
-                            </staffDef>
+            <mdiv>
+                <score>
+                    <scoreDef>
+                        <staffGrp>
+                            <staffDef xml:id="staffdef-0000001283562661" n="1" lines="5" clef.shape="G" clef.line="2" meter.count="3" meter.unit="4" />
                         </staffGrp>
                     </scoreDef>
                     <section xml:id="section-0000001690143300">
-                        <pb xml:id="pb-0000000960716083" />
-                        <pb xml:id="pb-0000001167554864" />
                         <measure xml:id="measure-0000001297347614" n="1">
                             <staff xml:id="staff-0000001184174557" n="1">
                                 <layer xml:id="layer-0000001452526931" n="1">
@@ -60,7 +56,7 @@
                                     <chord xml:id="chord-0000000382427384" dur.ppq="256" dur="4" stem.dir="up">
                                         <note xml:id="note-0000001936950192" oct="4" pname="e" color="#000000" />
                                         <note xml:id="note-0000000204131790" oct="4" pname="g" color="#000000">
-                                            <accid xml:id="accid-0000000844341378" accid="s" accid.ges="s" />
+                                            <accid accid="s" />
                                         </note>
                                         <note xml:id="note-0000001702453693" oct="4" pname="b" color="#000000" />
                                     </chord>
@@ -73,7 +69,7 @@
                                         <note xml:id="note-0000001839218565" oct="4" pname="b" color="#000000" />
                                         <note xml:id="note-0000000470867527" oct="5" pname="e" color="#000000" />
                                         <note xml:id="note-0000000131612709" oct="5" pname="g" color="#000000">
-                                            <accid xml:id="accid-0000001296972213" accid="s" accid.ges="s" />
+                                            <accid accid="s" />
                                         </note>
                                     </chord>
                                 </layer>

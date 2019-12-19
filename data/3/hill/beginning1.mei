@@ -21,19 +21,15 @@
     </meiHead>
     <music>
         <body>
-            <mdiv xml:id="mdiv-0000001161390074">
-                <score xml:id="score-0000000301882995">
-                    <scoreDef xml:id="scoredef-0000000540363528">
-                        <staffGrp xml:id="staffgrp-0000000667251904">
-                            <staffDef xml:id="staffdef-0000000631211137" n="1" lines="5" ppq="256" clef.shape="G" clef.line="2" meter.count="3" meter.unit="4">
-                                <keySig xml:id="keysig-0000000280827106" mode="major" sig="0" />
-                            </staffDef>
-                            <staffDef xml:id="staffdef-0000001138298276" n="2" lines="5" ppq="256" clef.shape="F" clef.line="4" meter.count="3" meter.unit="4">
-                                <keySig xml:id="keysig-0000001389154513" mode="major" sig="0" />
-                            </staffDef>
+            <mdiv>
+                <score>
+                    <scoreDef>
+                        <staffGrp>
+                            <staffDef xml:id="staffdef-0000000631211137" n="1" lines="5" clef.shape="G" clef.line="2" meter.count="3" meter.unit="4" />
+                            <staffDef xml:id="staffdef-0000001138298276" n="2" lines="5" clef.shape="F" clef.line="4" meter.count="3" meter.unit="4" />
                         </staffGrp>
                     </scoreDef>
-                    <section xml:id="section-0000000630942460">
+                    <section>
                         <measure xml:id="measure-0000000951513447" n="1">
                             <staff xml:id="staff-0000001230099592" n="1">
                                 <layer xml:id="layer-0000000896713747" n="1">
@@ -47,18 +43,18 @@
                             <staff xml:id="staff-0000000831574943" n="2">
                                 <layer xml:id="layer-0000001768263795" n="1">
                                     <rest xml:id="rest-0000000459777043" dur="16" />
-                                    <beam xml:id="beam-0000000660560643">
+                                    <beam>
                                         <note xml:id="note-0000000943317548" dur="16" oct="3" pname="a" />
                                         <note xml:id="note-0000001272733975" dur="16" oct="3" pname="g" />
                                         <note xml:id="note-0000001309971853" dur="16" oct="3" pname="f" />
                                     </beam>
-                                    <beam xml:id="beam-0000001084255067">
+                                    <beam>
                                         <note xml:id="note-0000000852389746" dur="16" oct="3" pname="e" />
                                         <note xml:id="note-0000001335938397" dur="16" oct="3" pname="d" />
                                         <note xml:id="note-0000000451347765" dur="16" oct="3" pname="c" />
                                         <note xml:id="note-0000001423813811" dur="16" oct="2" pname="b" />
                                     </beam>
-                                    <beam xml:id="beam-0000001803220902">
+                                    <beam>
                                         <note xml:id="note-0000001359632849" dur="16" oct="2" pname="a" />
                                         <note xml:id="note-0000000837400811" dur="16" oct="2" pname="b" />
                                         <note xml:id="note-0000001783053157" dur="16" oct="3" pname="c" />
@@ -73,7 +69,7 @@
                                     <chord xml:id="chord-0000001479966333" dots="1" dur="2">
                                         <note xml:id="note-0000000826031281" oct="4" pname="e" />
                                         <note xml:id="note-0000000308848933" oct="4" pname="g">
-                                            <accid xml:id="accid-0000000536635293" accid="s" accid.ges="s" />
+                                            <accid accid="s" />
                                         </note>
                                         <note xml:id="note-0000001674530430" oct="4" pname="b" />
                                     </chord>
@@ -82,22 +78,22 @@
                             <staff xml:id="staff-0000000020577186" n="2">
                                 <layer xml:id="layer-0000001609141696" n="1">
                                     <rest xml:id="rest-0000000238476759" dur="16" />
-                                    <beam xml:id="beam-0000000830114455">
+                                    <beam>
                                         <note xml:id="note-0000000311705620" dur="16" oct="4" pname="e" />
                                         <note xml:id="note-0000000428790644" dur="16" oct="4" pname="d" />
                                         <note xml:id="note-0000001919386752" dur="16" oct="4" pname="c" />
                                     </beam>
-                                    <beam xml:id="beam-0000002052205848">
+                                    <beam>
                                         <note xml:id="note-0000000453470518" dur="16" oct="3" pname="b" />
                                         <note xml:id="note-0000000102770933" dur="16" oct="3" pname="a" />
                                         <note xml:id="note-0000002032326486" dur="16" oct="3" pname="g">
-                                            <accid xml:id="accid-0000000524318893" accid="s" accid.ges="s" />
+                                            <accid accid="s" />
                                         </note>
                                         <note xml:id="note-0000001695020044" dur="16" oct="3" pname="f">
-                                            <accid xml:id="accid-0000001069288712" accid="s" accid.ges="s" />
+                                            <accid accid="s" />
                                         </note>
                                     </beam>
-                                    <beam xml:id="beam-0000001383633921">
+                                    <beam>
                                         <note xml:id="note-0000001891148942" dur="16" oct="3" pname="e" />
                                         <note xml:id="note-0000000741728827" dur="16" oct="3" pname="f" accid.ges="s" />
                                         <note xml:id="note-0000000048447682" dur="16" oct="3" pname="g" accid.ges="s" />
@@ -119,22 +115,22 @@
                             <staff xml:id="staff-0000001046915691" n="2">
                                 <layer xml:id="layer-0000001369085237" n="1">
                                     <rest xml:id="rest-0000000347903494" dur="16" />
-                                    <beam xml:id="beam-0000002144623015">
+                                    <beam>
                                         <note xml:id="note-0000000055695973" dur="16" oct="3" pname="a" />
                                         <note xml:id="note-0000000513778570" dur="16" oct="3" pname="g">
-                                            <accid xml:id="accid-0000001375159531" accid="n" />
+                                            <accid accid="n" />
                                         </note>
                                         <note xml:id="note-0000000013851275" dur="16" oct="3" pname="f">
-                                            <accid xml:id="accid-0000001632012252" accid="n" />
+                                            <accid accid="n" />
                                         </note>
                                     </beam>
-                                    <beam xml:id="beam-0000001030298245">
+                                    <beam>
                                         <note xml:id="note-0000001143095688" dur="16" oct="3" pname="e" />
                                         <note xml:id="note-0000000061821813" dur="16" oct="3" pname="d" />
                                         <note xml:id="note-0000000249368306" dur="16" oct="3" pname="c" />
                                         <note xml:id="note-0000001206965854" dur="16" oct="2" pname="b" />
                                     </beam>
-                                    <beam xml:id="beam-0000001841602959">
+                                    <beam>
                                         <note xml:id="note-0000000534533678" dur="16" oct="2" pname="a" />
                                         <note xml:id="note-0000002139593622" dur="16" oct="2" pname="b" />
                                         <note xml:id="note-0000001476243117" dur="16" oct="3" pname="c" />
