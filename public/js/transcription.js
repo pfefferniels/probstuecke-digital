@@ -107,7 +107,7 @@ async function renderComments() {
 function connectCrossRefs(el) {
   let targetAttrs = el.getAttribute("target").split(" ");
   for (let i=0; i<targetAttrs.length; i++) {
-    connectTEIRefWithSVG($(el), targetAttrs[i]);
+    connectTEIRefWithTarget($(el), targetAttrs[i]);
   }
 }
 
@@ -164,26 +164,27 @@ function connectMeterOverlay(el) {
   }
 }
 
-function connectTEIRefWithSVG(teiRef, targetAttr) {
-  let rect = drawSVGIndicator(targetAttr);
-  if (!rect) {
-    // if no corresponding element exists in th SVG, gray it out and remove
-    // the link
+function connectTEIRefWithTarget(teiRef, target) {
+  if ($('svg').has(target).length != 0) {
+    // connecting with SVG element
+    let rect = drawSVGIndicator(target);
+
+    rect.click(async function() {
+      highlightText(teiRef);
+    });
+
+    teiRef.on('click', function() {
+      highlightSVG(rect);
+    });
+  } else if ($('tei-tei').has(target).length != 0) {
+    // connecting with TEI element
+    teiRef.on('click', function() {
+      highlightText($(target))
+    });
+  } else {
+    // if no corresponding element exists, gray it out and remove the link
     teiRef.addClass('disabled-reference').find('a').contents().unwrap();
-    return;
   }
-
-  rect.click(async function() {
-    // TODO the same measure might be referenced multiple times. Make sure that in case of a click
-    // they other indicators be triggered as well.
-
-    highlightText(teiRef);
-  });
-
-  // connect text with an indicator
-  teiRef.on("click", function(e) {
-    highlightSVG(rect);
-  });
 }
 
 // connecting transcription and facsimile
