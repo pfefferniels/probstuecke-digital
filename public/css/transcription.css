@@ -86,6 +86,10 @@ tei-div:not(:first-of-type)>tei-p {
   text-indent: 2rem;
 }
 
+tei-div:not(:first-of-type)>tei-notatedmusic+tei-p {
+    text-indent: 0;
+}
+
 tei-hi[rendition="#aq"] {
   letter-spacing: 0.1rem;
 }
