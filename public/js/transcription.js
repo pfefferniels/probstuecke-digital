@@ -11,7 +11,6 @@ cetei.addBehaviors({
     },
 
     'ref': [
-      ['[target]', connectCrossRefs],
       ['[type="editorial-note"]', ['']]
     ],
 
@@ -165,7 +164,7 @@ function connectMeterOverlay(el) {
 }
 
 function connectTEIRefWithTarget(teiRef, target) {
-  if ($('svg').has(target).length != 0) {
+  if ($(target).parents('svg').length != 0) {
     // connecting with SVG element
     let rect = drawSVGIndicator(target);
 
@@ -283,6 +282,10 @@ $(document).ready(async function() {
   if (teiComments) {
     await renderComments();
   }
+
+  $('tei-ref[target]').each(function() {
+    connectCrossRefs(this);
+  })
 
   if (midi) {
     $("#player").midiPlayer();
