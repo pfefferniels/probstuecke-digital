@@ -1,0 +1,73 @@
+tei-choice tei-sic {
+  display: none;
+}
+
+tei-unclear, tei-surplus, tei-vocal {
+  display: none;
+}
+
+tei-u {
+  display: block;
+}
+
+tei-pause::before {
+  content: '…';
+}
+
+tei-pause {
+  font-size: 0.5rem;
+  color: grey;
+}
+
+tei-q::before, tei-q::after {
+  content: '"';
+}
+
+tei-q[type='emph'] {
+  font-weight: bold;
+}
+
+*[rendition='#hidden'] {
+  display: none;
+}
+
+tei-incident {
+  display: block;
+  text-align: center;
+  font-style: italic;
+  margin: 1rem auto;
+  font-size: 0.8rem;
+}
+
+tei-supplied {
+  color: lightslategray;
+}
+
+tei-listPerson::before {
+  content: 'Persons';
+  text-decoration: underline;
+}
+
+tei-listPerson {
+  display: block;
+  text-align: center;
+  margin: 1rem auto;
+}
+
+tei-listPerson tei-person {
+  display: block;
+}
+
+
+tei-listPerson tei-person[role]::after {
+  content: ' (' attr(role) ')';
+}
+
+tei-title {
+  font-weight: bold;
+}
+
+tei-gap[reason='inaudible']::before {
+  content: '[inaudible]';
+  color: lightslategray;
+}
