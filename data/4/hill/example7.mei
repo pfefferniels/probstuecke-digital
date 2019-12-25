@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
+    <meiHead>
+        <fileDesc>
+            <titleStmt>
+                <title></title>
+                <respStmt />
+            </titleStmt>
+            <pubStmt></pubStmt>
+        </fileDesc>
+        <encodingDesc xml:id="encodingdesc-0000001263244995">
+            <appInfo xml:id="appinfo-0000001566033251">
+                <application xml:id="application-0000000896946263" isodate="2019-12-25T13:15:27" version="2.4.0-dev-0006299">
+                    <name xml:id="name-0000001505536725">Verovio</name>
+                    <p xml:id="p-0000000398861033">Transcoded from MusicXML</p>
+                </application>
+            </appInfo>
+        </encodingDesc>
+    </meiHead>
+    <music>
+        <body>
+            <mdiv xml:id="mdiv-0000001019514995">
+                <score xml:id="score-0000001771718427">
+                    <scoreDef xml:id="scoredef-0000002127465483">
+                        <staffGrp xml:id="staffgrp-0000001333478988">
+                            <staffDef xml:id="staffdef-0000001386920082" n="1" lines="5" ppq="256" clef.shape="G" clef.line="2" meter.count="12" meter.unit="8">
+                                <keySig xml:id="keysig-0000000013454065" mode="major" sig="1s" />
+                            </staffDef>
+                            <staffDef xml:id="staffdef-0000000739582248" n="2" lines="5" ppq="256" clef.shape="F" clef.line="4" meter.count="12" meter.unit="8">
+                                <keySig xml:id="keysig-0000000849224244" mode="major" sig="1s" />
+                            </staffDef>
+                        </staffGrp>
+                    </scoreDef>
+                    <section xml:id="section-0000000143611274">
+                        <pb xml:id="pb-0000001239183346" />
+                        <pb xml:id="pb-0000001664321467" />
+                        <measure xml:id="measure-0000002116022044" n="1">
+                            <staff xml:id="staff-0000001498087453" n="1">
+                                <layer xml:id="layer-0000001972401906" n="1">
+                                    <space xml:id="space-0000001404343008" dur="2" />
+                                    <space xml:id="space-0000001626575147" dur="2" />
+                                    <space xml:id="space-0000000517858547" dur="8" />
+                                    <rest xml:id="rest-0000001398081333" dur.ppq="64" dur="16" />
+                                    <beam xml:id="beam-0000000840843500">
+                                        <note xml:id="note-0000001029564733" dur.ppq="64" dur="16" oct="5" pname="d" color="#000000" stem.dir="down" />
+                                        <note xml:id="note-0000001883204288" dur.ppq="64" dur="16" oct="5" pname="d" color="#000000" stem.dir="down" />
+                                        <note xml:id="note-0000001259701963" dur.ppq="64" dur="16" oct="5" pname="c" color="#000000" stem.dir="down" />
+                                        <note xml:id="note-0000001157918758" dur.ppq="32" dur="32" oct="4" pname="b" color="#000000" stem.dir="down" />
+                                        <note xml:id="note-0000001216324106" dur.ppq="32" dur="32" oct="5" pname="c" color="#000000" stem.dir="down" />
+                                        <note xml:id="note-0000000510999021" dur.ppq="32" dur="32" oct="4" pname="a" color="#000000" stem.dir="down" />
+                                        <note xml:id="note-0000001430874647" dur.ppq="32" dur="32" oct="4" pname="b" color="#000000" stem.dir="down" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <staff xml:id="staff-0000000193635179" n="2">
+                                <layer xml:id="layer-0000001318571567" n="1">
+                                    <space xml:id="space-0000000177894171" dur="2" />
+                                    <space xml:id="space-0000001149037658" dur="2" />
+                                    <space xml:id="space-0000001542701279" dur="8" />
+                                    <beam xml:id="beam-0000001069955069">
+                                        <chord xml:id="chord-0000001650569578" dur.ppq="128" dur="8" stem.dir="up">
+                                            <note xml:id="note-0000001525562125" oct="2" pname="b" color="#000000" />
+                                            <note xml:id="note-0000000971505421" oct="3" pname="b" color="#000000" />
+                                        </chord>
+                                        <chord xml:id="chord-0000000995437586" dur.ppq="128" dur="8" stem.dir="up">
+                                            <note xml:id="note-0000000533110284" oct="2" pname="e" color="#000000" />
+                                            <note xml:id="note-0000001794478050" oct="3" pname="e" color="#000000" />
+                                        </chord>
+                                        <chord xml:id="chord-0000000405790466" dur.ppq="128" dur="8" stem.dir="up">
+                                            <note xml:id="note-0000000116234118" oct="2" pname="e" color="#000000" />
+                                            <note xml:id="note-0000001884282860" oct="3" pname="e" color="#000000" />
+                                        </chord>
+                                    </beam>
+                                </layer>
+                            </staff>
+                        </measure>
+                        <measure xml:id="measure-0000001118370334" right="end" n="2">
+                            <staff xml:id="staff-0000000685193990" n="1">
+                                <layer xml:id="layer-0000002058767946" n="1">
+                                    <beam xml:id="beam-0000002096157379">
+                                        <chord xml:id="chord-0000000898141852" dur.ppq="128" dur="8" stem.dir="up">
+                                            <note xml:id="note-0000000560771129" oct="4" pname="g" color="#000000" />
+                                            <note xml:id="note-0000000475353983" oct="4" pname="a" color="#000000" />
+                                            <note xml:id="note-0000002057953863" oct="5" pname="d" color="#000000" />
+                                        </chord>
+                                        <chord xml:id="chord-0000001596197946" dur.ppq="128" dur="8" stem.dir="up">
+                                            <note xml:id="note-0000001532723261" oct="4" pname="f" color="#000000" accid.ges="s" />
+                                            <note xml:id="note-0000000951312262" oct="4" pname="a" color="#000000" />
+                                            <note xml:id="note-0000001433449696" oct="5" pname="d" color="#000000" />
+                                        </chord>
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <staff xml:id="staff-0000001086508584" n="2">
+                                <layer xml:id="layer-0000000598325952" n="1">
+                                    <rest xml:id="rest-0000000636271300" dur.ppq="64" dur="16" />
+                                    <beam xml:id="beam-0000001236915262">
+                                        <note xml:id="note-0000000913221776" dur.ppq="64" dur="16" oct="4" pname="d" color="#000000" stem.dir="down" />
+                                        <note xml:id="note-0000001807311505" dur.ppq="64" dur="16" oct="4" pname="d" color="#000000" stem.dir="down" />
+                                        <note xml:id="note-0000001484451541" dur.ppq="64" dur="16" oct="4" pname="c" color="#000000" stem.dir="down" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                        </measure>
+                    </section>
+                </score>
+            </mdiv>
+        </body>
+    </music>
+</mei>
