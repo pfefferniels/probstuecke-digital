@@ -67,7 +67,7 @@
       </listPerson>
 
       <surplus reason="irrelevant">
-        <incident who="#np" rendition="#hidden">spielt</incident>
+        <incident who="#np">spielt</incident>
       </surplus>
 
       <u who="#rh">
@@ -85,7 +85,7 @@
         <supplied reason="omitted" resp="#pfeffer">schreibt.</supplied>
       </u>
       <surplus reason="irrelevant">
-        <u who="#np" rendition="#hidden">
+        <u who="#np">
           Ja, er schreibt einem ziemlich viel vor hier.
           <vocal><desc>Mm</desc></vocal>
         </u>
@@ -121,7 +121,9 @@
          denke ich<surplus reason="irrelevant"> mal</surplus>.
       </u>
 
-      <u who="#np" rendition="#hidden" trans="overlap">Okay, ja.</u>
+      <surplus reason="irrelevant">
+        <u who="#np" trans="overlap">Okay, ja.</u>
+      </surplus>
 
       <u who="#">Aber<pause/>
         <unclear>, weiß nicht,</unclear>
@@ -142,16 +144,19 @@
         wie voll ist <q type="written">voll</q>?
       </u>
 
-
-      <u who="#np" rendition="#hidden">
-        Nach Mattheson eher
-      </u>
-      <incident who="#np" rendition="#hidden"><desc>spielt T. 1 mit Oktaven links.</desc></incident>
+      <surplus reason="irrelevant">
+        <u who="#np">
+          Nach Mattheson eher
+        </u>
+        <incident who="#np"><desc>spielt T. 1 mit Oktaven links.</desc></incident>
+      </surplus>
 
       <u who="#rh">
         Kannst du es so spielen, dass es noch mehr klingt wie ein Barockorchester so etwas tun würde?
       </u>
-      <u who="#np" rendition="#hidden">Nämlich?</u>
+      <surplus reason="irrelevant">
+        <u who="#np">Nämlich?</u>
+      </surplus>
       <u who="#rh"><surplus reason="irrelevant">Ich weiß es nicht. </surplus>
       <surplus reason="falseStart">Also es klingt</surplus>
       Es scheint mir sehr orchesterhaft zu sein, wie
@@ -161,7 +166,9 @@
       </choice>
       Anfang von einem italienischen Concerto.</u>
 
-      <incident who="#np" rendition="#hidden"><desc>spielt</desc></incident>
+      <surplus reason="irrelevant">
+        <incident who="#np"><desc>spielt</desc></incident>
+      </surplus>
 
       <u who="#rh">
         Ich würde nicht in eine tiefere Lage
@@ -188,11 +195,12 @@
         <ptr target="example2-1.mei" />
       </notatedMusic>
       <media mimeType="audio/ogg" url="example2-1.ogg"></media>
-      <incident who="#np" rendition="#hidden"><desc>spielt T. 1–3</desc></incident>
-
-      <u who="#np" rendition="#hidden">
-        <vocal><desc>Mm</desc></vocal>
-      </u>
+      <surplus reason="irrelevant">
+        <incident who="#np"><desc>spielt T. 1–3</desc></incident>
+        <u who="#np">
+          <vocal><desc>Mm</desc></vocal>
+        </u>
+      </surplus>
 
       <u who="#rh">
         Die <ref target="#m-50">Akkordangebung am Anfang vom zweiten Takt</ref>
@@ -204,7 +212,9 @@
         den Charakter schon wechselt.
       </u>
 
-      <incident who="#np" rendition="#hidden"><desc>spielt T. 2</desc></incident>
+      <surplus reason="irrelevant">
+        <incident who="#np"><desc>spielt T. 2</desc></incident>
+      </surplus>
 
       <u who="#rh">
         <surplus reason="irrelevant">
@@ -215,7 +225,9 @@
         jetzt, Takt 3.
       </u>
 
-      <incident who="#np" rendition="#hidden"><desc>spielt</desc></incident>
+      <surplus reason="irrelevant">
+        <incident who="#np"><desc>spielt T. 3</desc></incident>
+      </surplus>
 
       <u who="#rh">
         Ja, also ich finde <surplus reason="irrelevant" resp="#pfeffer">teilweise</surplus> das Problem liegt
@@ -233,9 +245,12 @@
         Also, <q type="written">verlangt einen besonderen Diskant</q>. Was will er damit sagen?
       </u>
 
-      <u who="#np" rendition="#hidden">
-        Ich nehme an, dass er ausgeziert sein soll.
-      </u>
+      <surplus reason="irrelevant">
+        <u who="#np">
+          Ich nehme an, dass er ausgeziert sein soll.
+        </u>
+      </surplus>
+
 
       <u who="#rh">
         <surplus reason="falseStart">Das ist,<pause/> weil er nach so viele <pause />und dann</surplus>
@@ -321,16 +336,18 @@
         <ptr target="example5.mei" />
       </notatedMusic>
 
-      <u who="#rh" rendition="#hidden">
-        Und diese Oktaven<note type="editorial">bezieht sich auf in vorliegender Ausgabe in Stichnoten eingefügte Oktaven.</note> sind von ihm?
-      </u>
-      <u who="#np" rendition="#hidden">Ja.</u>
-      <u who="#rh" rendition="#hidden">Und das ist auch von ihm.</u>
-      <u who="#np" rendition="#hidden">Ja.</u>
-      <u who="#rh" rendition="#hidden">genau in diese Form?</u>
-      <u who="#np" rendition="#hidden">
-        mit dem Akkord dahinten? Aber den Akkord hat er <pause/> Ja doch, mit dem Akkord.
-      </u>
+      <surplus reason="irrelevant">
+        <u who="#rh">
+          Und diese Oktaven<note type="editorial">bezieht sich auf in vorliegender Ausgabe in Stichnoten eingefügte Oktaven.</note> sind von ihm?
+        </u>
+        <u who="#np">Ja.</u>
+        <u who="#rh">Und das ist auch von ihm.</u>
+        <u who="#np">Ja.</u>
+        <u who="#rh">genau in diese Form?</u>
+        <u who="#np">
+          mit dem Akkord dahinten? Aber den Akkord hat er <pause/> Ja doch, mit dem Akkord.
+        </u>
+      </surplus>
 
       <incident who="#rh"><desc>spielt erneut T. 3, nur rechte Hand, arpeggiando.</desc></incident>
       <u who="#rh" trans="latching"><foreign xml:lang="eng">It sounds so loud.</foreign></u>
@@ -430,9 +447,11 @@
       <u who="rh">
         Mit Zäsur würde <ref target="#example7">das</ref> gehen.
       </u>
-      <u who="#np" rendition="#hidden">
-        Vielleicht ist es einfach die Idee, dass es harsch klingt?
-      </u>
+      <surplus reason="irrelevant">
+        <u who="#np">
+          Vielleicht ist es einfach die Idee, dass es harsch klingt?
+        </u>
+      </surplus>
       <u who="#rh">
         Es ist besser, wenn du aus dem Obermanual zurückkommst,
         <note type="editorial">i.e. auf Takt 6 Schlag 1</note> dann ist es plausibler.
