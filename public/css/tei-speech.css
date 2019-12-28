@@ -2,17 +2,12 @@ tei-choice tei-sic {
   display: none;
 }
 
-tei-unclear, tei-surplus, tei-vocal {
+tei-unclear, tei-surplus, tei-vocal, tei-pause {
   display: none;
 }
 
-tei-pause::before {
-  content: '…';
-}
-
-tei-pause {
-  font-size: 0.5rem;
-  color: grey;
+tei-ptr[type='transposition-origin'] {
+  display: none;
 }
 
 tei-q::before, tei-q::after {
