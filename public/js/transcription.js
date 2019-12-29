@@ -13,6 +13,14 @@ cetei.addBehaviors({
       this.hideContent(el, false);
     },
 
+    'expan': function(el) {
+      return $('<sup>expansion</sup>').popover({
+          content: el.innerHTML,
+          trigger: 'hover',
+          html: true
+      })[0];
+    },
+
     'ref': [
       ['[type="editorial-note"]', ['']]
     ],
