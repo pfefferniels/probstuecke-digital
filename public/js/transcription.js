@@ -1,13 +1,14 @@
 const cetei = new CETEI();
 
-function teiRefToHref(el) {
+function refToHref(el) {
   return $('<a>').attr('href', el.getAttribute('ref')).html(el.innerHTML)[0];
 }
 
 cetei.addBehaviors({
   handlers: {
-    'persName': teiRefToHref,
-    'placeName': teiRefToHref,
+    'persName': refToHref,
+    'placeName': refToHref,
+    'name': refToHref,
 
     'facsimile': function(el) {
       this.hideContent(el, false);
