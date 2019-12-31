@@ -153,8 +153,8 @@ function connectKeyOverlay(el) {
   keySigIndicator.addClass('signature-overlay');
 
   $(keySigIndicator.node).popover({
-      content: el.textContent,
-      trigger: 'hover',
+      content: $('<p>' + el.innerHTML + '</p>'),
+      trigger: 'click',
       html: true
   });
   if (this.hideContent) {
@@ -166,8 +166,8 @@ function connectMeterOverlay(el) {
   let meterSigOverlay = drawSVGIndicator('.meterSig');
   meterSigOverlay.addClass('signature-overlay');
   $(meterSigOverlay.node).popover({
-      content: el.textContent,
-      trigger: 'hover',
+    content: $('<p>' + el.innerHTML + '</p>'),
+      trigger: 'click',
       html: true
   });
   if (this.hideContent) {
