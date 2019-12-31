@@ -4,7 +4,7 @@
     <fileDesc>
       <titleStmt>
         <title type="part">Mattheson: Der Ober-Classe Neuntes Probstück</title>
-        <editor>
+        <editor xml:id="pfeffer">
           <persName>
             <surname>Niels</surname>
             <forename>Pfeffer</forename>
@@ -196,30 +196,63 @@
           </p>
         </div>
 
+        <!-- Das neu-eröffnete Orchestre, p. 244f. -->
         <note type="on-key-signature">
-          C.moll. (der neunte) ist ein <hi rendition="#b">u&#x0364;beraus lieblicher dabey auch <foreign>trister</foreign> Tohn</hi>,
-          weil aber die erste <foreign>Qualité</foreign> gar zu sehr bey ihm <foreign>prævaliren</foreign> will,
-          und man auch des su&#x0364;ssen leicht u&#x0364;berdru&#x0364;ßig werden kan, so ist nicht u&#x0364;bel gethan, wenn man dieselbe
-          durch ein etwas munteres oder ebentra&#x0364;chtiges <foreign>Mouvement</foreign> ein wenig mehr zu beleben
-          trachtet, sonst mo&#x0364;gte einer bey seiner <hi rendition="#b">Gelindigkeit</hi> leicht schla&#x0364;ffrich werden. Soll
-          es aber eine <foreign>Pieçe</foreign> seyn, die den Schlaff befo&#x0364;rdern muß, so kan man diese
-          <foreign>Remarque</foreign> sparen, und natu&#x0364;rlicher bald zum Zweck gelangen. (<foreign>cæteris paribus</foreign>).
-          <persName ref="http://d-nb.info/gnd/118562347">Kircherus</persName> <hi rendition="#b">nennt diesen Thon:</hi> <foreign>accidentaliter mollem</foreign>. <foreign>Moll</foreign>
-          oder weich von ungefehr, welches recht <foreign>ridicul</foreign> lautet. Er erinnert u&#x0364;brigens wegen
-          seiner Eigenschafft nicht ein eintziges Wo&#x0364;rtchen. Es wa&#x0364;re keine schlechte <foreign>Curiosité</foreign>, zu
-          erforschen, ob <foreign>crasso errore</foreign> oder <foreign>profundissimâ ignorantiâ</foreign> dieser
-          so <hi rendition="#b">liebe Tohn</hi> keine Stelle, weder in <foreign>Modis Authenticis, Pagalibus
-          sive Transpositis</foreign>, noch auch in <foreign>Tonis Ecclesiasticis</foreign> oder <foreign>Gregorianis</foreign>,
-          <foreign>meriti</foreign>ret habe? die <foreign>antique</foreign> Dummheit ist fast nicht zu begreiffen,
-            vielweniger zu <foreign>excusiren</foreign>.
-          </note>
+          <hi rendition="#aq">C.moll.</hi> (der neunte) iſt ein <hi rendition="#b">u&#x0364;beraus lieb-
+          <lb />licher dabey auch <hi rendition="#aq"><foreign xml:lang="fra">triſter</foreign></hi> Tohn</hi>, weil
+          <lb />aber die erste <hi rendition="#aq"><foreign xml:lang="fra">Qualité</foreign></hi>
+          gar zu ſehr bey ihm <hi rendition="#aq"><foreign xml:lang="lat">præ-
+          <lb />valiren</foreign></hi> will, und man auch des su&#x0364;ſſen leicht u&#x0364;-
+          <lb />berdru&#x0364;ßig werden kan, so ist nicht u&#x0364;bel gethan,
+          <lb />wenn man dieſelbe durch ein etwas munteres oder
+          <lb />ebentra&#x0364;chtiges <hi rendition="#aq"><foreign xml:lang="fra">Mouvement</foreign></hi>
+          ein wenig mehr
+          <lb />zu beleben trachtet, ſonſt mo&#x0364;gte einer bey ſeiner
+          <lb /><hi rendition="#b">Gelindigkeit</hi> leicht ſchla&#x0364;ffrich werden. Soll
+          <lb />es aber eine <hi rendition="#aq"><foreign xml:lang="fra">Pieçe</foreign></hi>
+          ſeyn, die den Schlaff be-
+          <lb />fo&#x0364;rdern muß, ſo kan man dieſe <hi rendition="#aq"><foreign>Remarque</foreign></hi>
+          <lb />ſparen, und natu&#x0364;rlicher bald zum Zweck
+          <lb />gelangen. (<hi rendition="#aq"><foreign xml:lang="lat">cæteris paribus</foreign></hi>).
+          <persName ref="http://d-nb.info/gnd/118562347">Kircherus</persName>
+          <lb /><hi rendition="#b">nennt diesen Thon:</hi>
+          <quote xml:id="kirch-quote" corresp="#kirch-quote-trans">
+            <hi rendition="#aq"><foreign xml:lang="lat">accidentaliter mol-
+            <lb />lem</foreign></hi>.
+          </quote>
+          <quote type="translation" xml:id="kirch-quote-trans" corresp="#kirch-quote">
+            <hi rendition="#aq">Moll</hi> oder weich von ungefehr
+          </quote>,
+          wel-
+          <lb />ches recht <hi rendition="#aq"><foreign xml:lang="fra">ridicul</foreign></hi> lautet;
+          er erinnert u&#x0364;brigens we-
+          <fw place="bottom" type="catch">gen</fw>
+          <pb n="245" />
+          gen ſeiner Eigenschafft nicht ein eintziges Wo&#x0364;rt-
+          <lb />chen. Es wa&#x0364;re keine ſchlechte <hi rendition="#aq"><foreign xml:lang="fra">Curiosité</foreign></hi>, zu
+          <lb />erforschen, ob <hi rendition="#aq"><foreign xml:lang="lat">crasso errore</foreign></hi>
+          oder <hi rendition="#aq"><foreign xml:lang="lat">profundiſ-
+          <lb />ſimâ ignorantiâ</foreign></hi> dieſer ſo <hi rendition="#b">liebe Tohn</hi> keine
+          <lb />Stelle, weder in <hi rendition="#aq"><foreign xml:lang="lat">Modis Authenticis,
+          <choice resp="#pfeffer">
+            <sic>Paga-<lb/>libus</sic>
+            <corr>Plaga-<lb/>libus</corr>
+          </choice>
+          ſive Tranſpositis</foreign></hi>, noch auch in <hi rendition="#aq"><foreign xml:lang="lat">Tonis
+          <lb />Ecclesiaſticis</foreign></hi> oder <hi rendition="#aq"><foreign xml:lang="lat">Gregorianis</foreign></hi>,
+          <hi rendition="#aq"><foreign xml:lang="lat">meriti</foreign></hi>ret
+          <lb />habe? die <hi rendition="#aq"><foreign xml:lang="fra">antique</foreign></hi> Dummheit ist faſt nicht zu
+          <lb />begreiffen,
+          vielweniger zu <hi rendition="#aq"><foreign xml:lang="lat">excuſi</foreign></hi>ren.
+        </note>
 
-          <note type="on-meter">
-            Johann Mattheson, <hi rendition="#i">Das Neu-ero&#x0364;ffnete Orchester</hi>, Hamburg 1713, S. 79: C. Bedeutet,
-            daß die Mensur 4. <hi rendition="#aq">
-            <foreign xml:lang="lat">Subdivisiones</foreign>
-          </hi> und vier viertel habe, deren zwey im Nieder- und zwey im Aufschlage gehen.
-          Jhr gebrauch ist groß in Arien, Allemanden, Bouréen <abbr>&#xA75B;c.</abbr> und fast durchgehends die gewo&#x0364;hnliche, deswegen sie auch der schlechte Tact genannt wird.
+        <!-- Das neu-eröffnete Orchestre, S. 79 -->
+        <note type="on-meter">
+          C. Bedeutet,
+          daß die Mensur 4. <hi rendition="#aq"><foreign xml:lang="lat">Subdivisiones</foreign></hi>
+          und vier viertel habe, deren zwey im Nieder- und zwey im Aufſchlage gehen.
+          Jhr gebrauch iſt groß in Arien, Allemanden, Bouréen <abbr>&#xA75B;c.</abbr> und fast durchgehends
+          die gewo&#x0364;hnliche, deswegen sie auch der ſchlechte Tact genannt wird.
         </note>
       </div>
     </body>
