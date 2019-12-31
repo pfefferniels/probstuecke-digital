@@ -333,7 +333,12 @@ $(document).ready(async function() {
     // hiding linebreaks and normalizing hyphens at linebreaks.
     if ($('#ignore-lb').is(':checked')) {
       $('tei-lb').replaceWith('<wbr>');
+      // in case of following the DTA-Bf rules strictily,
+      // <lb />s are found at the end of lines
       $('tei-text')[0].innerHTML = $('tei-text')[0].innerHTML.replace(/[-]<wbr>(\n|\s)+/g, '&shy;');
+      // in case of following the TEI Guidelines, <lb />s are
+      // found in the beginning of lines
+      $('tei-text')[0].innerHTML = $('tei-text')[0].innerHTML.replace(/[-](\n|\s)+<wbr>/g, '&shy;');
     } else {
       $('tei-text')[0].innerHTML = $('tei-text')[0].innerHTML.replace(/\u00AD/g, '-<wbr>');
       $('wbr').replaceWith('<tei-lb data-origname="lb" />');
