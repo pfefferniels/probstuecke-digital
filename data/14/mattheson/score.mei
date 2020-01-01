@@ -160,7 +160,7 @@
                   <note xml:id="note-0000001299653443" dots="1" dur="4" oct="3" pname="b" stem.dir="down" accid.ges="f" />
                 </layer>
               </staff>
-              <tempo place="above" staff="2" tstamp="1">Discretamente.</tempo>
+              <tempo xml:id="tempo-001" place="above" staff="2" tstamp="1">Diſcretamente.</tempo>
               <harm place="above" staff="2" tstamp="7">
                 <fb>
                   <f>7</f>
@@ -581,7 +581,7 @@
                 </fb>
               </harm>
               <harm place="above" staff="2" tstamp="7">
-                <fb>
+                <fb xml:id="fb-001">
                   <f>7</f>
                 </fb>
               </harm>
@@ -591,7 +591,7 @@
                 </fb>
               </harm>
               <harm place="above" staff="2" tstamp="10">
-                <fb>
+                <fb xml:id="fb-002">
                   <f>7</f>
                 </fb>
               </harm>
@@ -621,7 +621,7 @@
                 </layer>
               </staff>
               <harm place="above" staff="2" tstamp="1">
-                <fb>
+                <fb xml:id="fb-003">
                   <f>7</f>
                 </fb>
               </harm>
@@ -631,7 +631,7 @@
                 </fb>
               </harm>
               <harm place="above" staff="2" tstamp="4">
-                <fb>
+                <fb xml:id="fb-004">
                   <f>7</f>
                 </fb>
               </harm>
@@ -641,12 +641,12 @@
                 </fb>
               </harm>
               <harm place="above" staff="2" tstamp="7">
-                <fb>
+                <fb xml:id="fb-005">
                   <f>7</f>
                 </fb>
               </harm>
               <harm place="above" staff="2" tstamp="10">
-                <fb>
+                <fb xml:id="fb-006">
                   <f>7</f>
                   <f>♭</f>
                 </fb>
@@ -1124,6 +1124,7 @@
               </staff>
               <tie xml:id="tie-0000001528710827" startid="#note-0000001294422392" endid="#note-0000001900592719" />
             </measure>
+
             <scoreDef key.mode="minor" key.sig="6s" />
             <measure xml:id="measure-0000000161042882" n="25">
               <staff xml:id="staff-0000001574212770" n="1">
