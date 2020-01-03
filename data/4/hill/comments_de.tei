@@ -81,8 +81,8 @@
           <sic>weil</sic>
           <corr resp="#pfeffer">dass</corr>
         </choice>
-        er das so homogen
-        <supplied reason="omitted" resp="#pfeffer">schreibt.</supplied>
+        er das <supplied reason="clarification" resp="#pfeffer">Probstück</supplied> so homogen
+        <supplied reason="ommitted" resp="#pfeffer">schreibt.</supplied>
       </u>
       <surplus reason="irrelevant">
         <u who="#np">
@@ -93,10 +93,7 @@
       <u who="#rh">
         <surplus reason="irrelevant">Ja. Also</surplus> Es gibt nicht so
         viel<supplied reason="ommitted" resp="#pfeffer">e</supplied> Möglichkeiten,
-        <choice>
-          <sic>anders</sic>
-          <corr>etwas anderes</corr>
-        </choice>
+        <supplied reason="ommitted">etwas anders</supplied>
         zu tun, als er vorschreibt.
         <surplus reason="repeated"><vocal><desc>Ähm.</desc></vocal></surplus><vocal><desc>Ähm.</desc></vocal>
       </u>
@@ -136,11 +133,8 @@
           <sic>irgendwas</sic>
           <corr>etwas</corr>
         </choice><pause />
-        mehr in diese Richtung als in die
-        <choice>
-          <sic>anderen</sic>
-          <corr>andere</corr>
-        </choice><surplus reason="irrelevant" resp="#pfeffer">, finde ich</surplus>.<vocal><desc>Ähm.</desc></vocal>
+        mehr in diese Richtung als in die anderen.
+        <surplus reason="irrelevant" resp="#pfeffer">, finde ich</surplus>.<vocal><desc>Ähm.</desc></vocal>
         <surplus reason="falseStart">Also und auch nicht</surplus>
         Ich würde es nicht arpeggieren<unclear><foreign xml:lang="eng">, no?</foreign></unclear>.
         <surplus reason="irrelevant">
@@ -186,13 +180,13 @@
       <incident who="#rh"><desc>spielt Takt 1</desc></incident>
       <media mimeType="audio/ogg" url="example1.ogg" ></media>
 
-      <u who="#rh">Also was ich jetzt hier tue, ist <pause/></u>
+      <u who="#rh">Also was ich jetzt hier tue, ist: <pause/></u>
       <incident who="#rh">
         <desc>spielt die <ref target="#m-41 #m-42">ersten zwei Akkorde mit etwas übergehaltenen Außenstimmen.</ref></desc>
       </incident>
       <media mimeType="audio/ogg" url="example2.ogg" ></media>
       <u who="#rh">
-      sodass die Außenstimmen länger resonieren können.</u>
+      – sodass die Außenstimmen länger resonieren können.</u>
 
       <incident who="#rh">
         <desc>
@@ -279,18 +273,18 @@
         Kannst du <surplus reason="falseStart">noch</surplus>nur die rechte Hand spielen ab Takt 3?
       </u>
 
-      <incident who="#np"><desc>Student spielt nur rechte Hand</desc></incident>
+      <incident who="#np"><desc>Student spielt nur mit rechter Hand.</desc></incident>
 
       <u who="#rh">
         <vocal><desc>Mhm.</desc></vocal>
-        Und wenn das mehr <surplus reason="repeated">eine</surplus>
+        Und wenn das <seg xml:id="transposed-000">etwas</seg> mehr <surplus reason="repeated">eine</surplus>
         <pause /> eine<supplied resp="#pfeffer">n</supplied>
-        etwas
+        <ptr type="transposition-origin" target="transposed-000" />
         <choice>
-          <sic>sostenutoeren</sic>
-          <corr>sostenuto-</corr>
+          <sic>sostenutoeren Charakter</sic>
+          <corr>sostenuto-Charakter</corr>
         </choice>
-        Charakter hätte? Und mehr tanzend. Quasi
+        hätte? Und mehr tanzend. Quasi
         etwas mehr aus dem 12/8 herausholen.
 
         <surplus reason="editorial">
@@ -321,7 +315,7 @@
       <media mimeType="audio/ogg" url="example3.ogg" ></media>
       <incident who="#rh">
         <desc>
-          spielt mit gleicher agogischen Gestalt nur linke Hand.
+          spielt mit gleicher agogischer Gestalt nur linke Hand.
         </desc>
       </incident>
 
@@ -330,8 +324,8 @@
       </u>
       <incident who="#rh">
         <desc>
-          spielt ab T. 3, zunächst nur linke Hand,
-          dann mit rechter Hand, jeden Akkord arpeggiando, bis T. 4 Mitte.
+          spielt ab T. 3 zunächst nur linke Hand,
+          dann mit rechter Hand jeden Akkord arpeggiando bis T. 4 Mitte.
         </desc>
       </incident>
       <notatedMusic>
@@ -476,7 +470,7 @@
 
       <u who="#np">Und an der Stelle:</u>
       <incident who="np">
-        <desc>wechselt <ref target="#m-298">auf 1 von Takt 7</ref> ins Obermanual.</desc>
+        <desc>wechselt <ref target="#m-298">auf der 1 von Takt 7</ref> ins Obermanual.</desc>
       </incident>
 
       <u who="#rh">
@@ -521,12 +515,15 @@
       </u>
       <incident who="#rh">
         <desc>
-          spielt ab <ref target="#m-512">T. 12</ref> auf zwei Manualen,
-          <ref target="#m-637">T. 14 Schlag 4</ref> auf Obermanual als Echo.</desc>
+          spielt ab <ref target="#m-512">T. 12</ref> auf zwei Manualen:
+        </desc>
       </incident>
       <notatedMusic>
         <ptr target="example11.mei" />
       </notatedMusic>
+      <incident who="#rh">
+        <desc><ref target="#m-637">spielt T. 14 Schlag 4</ref> auf Obermanual als Echo.</desc>
+      </incident>
 
 
       <u who="#rh">
@@ -554,7 +551,7 @@
       <incident who="#rh">
         <desc>
           spielt <ref target="#m-932 #m-947">T. 21f.</ref>, ab
-          <ref target="#ex9-001">G</ref> auf Obermanual.
+          <ref target="#ex9-001">G</ref> auf Obermanual:
         </desc>
       </incident>
       <notatedMusic>
@@ -578,7 +575,7 @@
         das hier laut und das leise?
         Dass <surplus reason="falseStart">die unteren</surplus> die rechte Hand oben
         <supplied resp="#pfeffer">ist</supplied>
-        an <ref target="#m-1032">dieser Stelle.</ref> Und etwas vergleichbares hier. Das hier unten, <ref target="#m-1007">das</ref> oben.
+        an <ref target="#m-1032">dieser Stelle.</ref> Und etwas Vergleichbares hier. Das hier unten, <ref target="#m-1007">das</ref> oben.
       </u>
       <incident who="#rh">
         spielt in T. 23 linke Hand auf Ober- und rechte Hand auf Untermanual
@@ -597,35 +594,31 @@
         die linke Hand immer noch ein bisschen trocken<supplied reason="omitted" resp="#np"> spielen</supplied>.
       </u>
       <incident who="#np">
-        <desc>spielt ab T. 25 Mitte, linke Hand mit "trockenen" Arpeggi.</desc>
+        <desc>spielt ab T. 25 Mitte linke Hand mit "trockenen" Arpeggi.</desc>
       </incident>
 
       <gap reason="editorial" resp="#pfeffer"></gap>
 
       <u who="#rh">
-        Ich habe überlegt, ob mittlerweise die linke Hand könnte nicht umgeschrieben
-        werden bei <ref target="#m-1182">dieser Stelle</ref>, weil es
+        Ich habe überlegt, ob mittlerweise die linke Hand <ptr type="transposition" target="#transposed-002"/>nicht umgeschrieben
+        werden <seg xml:id="transposed-002">könnte</seg> bei <ref target="#m-1182">dieser Stelle</ref>, weil es
         <choice>
           <sic>ist so häufig wiederholt.</sic>
           <corr>so häufig wiederholt wird.</corr>
         </choice>
       </u>
+      <incident who="#rh">
+        <desc>spielt ab T. 26 Mitte mit Bassvariation:</desc>
+      </incident>
       <notatedMusic>
         <ptr target="example12.mei" />
       </notatedMusic>
-      <incident who="#rh">
-        <desc>spielt ab T. 27 Mitte mit Bassvariation.</desc>
-      </incident>
 
       <u who="#rh">
-        <foreign xml:lang="eng">something, that seems to have another variation character on the bass and
+        <foreign xml:lang="eng">Something that seems to have another variation character on the bass and
         also sustains this basic idea of a <gap reason='inaudible'>singing</gap>,
         actually quite</foreign> lieblich.
         Nicht so grob und schroff, sondern eher freundlich.
-      </u>
-
-      <u who="#rh">
-        ...
       </u>
     </body>
   </text>
