@@ -1,11 +1,80 @@
 const fs = require('fs'),
       verovio = require('verovio'),
-      vrvToolkit = new verovio.toolkit(),
       xmldom = require('xmldom'),
       path = require('path'),
       DOMParser = xmldom.DOMParser,
       PDFDocument = require('pdfkit'),
       SVGtoPDF = require('svg-to-pdfkit');
+
+// pdfkit setup
+PDFDocument.prototype.addSVG = function(svg, x, y) {
+  return SVGtoPDF(this, svg, x, y, {
+    // in the exported PDF use Times Roman as standard font for SVGs
+    fontCallback: function(family, bold, italic, options) {
+      if (bold) {
+        return "Times-Bold";
+      }
+      return "Times-Roman";
+    }
+  }), this;
+};
+
+var VerovioAdapter = function() {
+  this.renderSVG = function(number, label, file, options) {
+    let mei = prepareMEI(number, label, file, options);
+
+    this.vrvToolkit.setOptions({
+      pageHeight: 30000,
+      adjustPageHeight: 1,
+      noFooter: 1
+    });
+    this.vrvToolkit.loadData(mei.toString());
+    return this.vrvToolkit.renderToSVG(1, {});
+  };
+
+  this.renderMIDI = function(number, label, file) {
+    let data = fs.readFileSync(path.join(__dirname, '../data', number, label, file));
+    this.vrvToolkit.loadData(data.toString());
+    return this.vrvToolkit.renderToMIDI();
+  };
+
+  this.streamPDF = function(res, number, label, file, options) {
+    const doc = new PDFDocument({
+      size: "A4"
+    });
+    doc.info["Title"] = number + ". Probstück";
+    doc.pipe(res);
+
+    let mei = prepareMEI(number, label, file, options);
+
+    this.vrvToolkit.setOptions({
+      pageHeight: 3200,
+      adjustPageHeight: 0,
+      noFooter: 1,
+      scale: 33
+    });
+    this.vrvToolkit.loadData(mei.toString());
+
+    let pageCount = this.vrvToolkit.getPageCount();
+    for (let i=1; i<=pageCount; ++i) {
+      doc.addSVG(this.vrvToolkit.renderToSVG(i, {}), 30, 30);
+      if (i != pageCount) { // do not add a page after the last
+        doc.addPage();
+      }
+    }
+
+    doc.end();
+  };
+
+  this.init();
+};
+
+VerovioAdapter.prototype.init = function() {
+  var adapter = this;
+  verovio.module.onRuntimeInitialized = function() {
+    adapter.vrvToolkit = new verovio.toolkit();
+  }
+}
 
 // takes a DOM object and replaces all <clef>s and <staffDef>s with
 // modern clefs
@@ -112,87 +181,23 @@ function prepareMEI(number, label, file, options) {
   let doc = new DOMParser().parseFromString(data.toString(), 'text/xml');
 
   if (options.modernClefs) {
-    console.log("modernize clefs for", file);
     modernizeClefs(doc);
   }
 
   if (!options.showAnnotationStaff) {
-    console.log("hide annotations for", file);
     removeAnnotationStaff(doc);
   }
 
   if (options.above) {
-    console.log("inserting staves above", options.above);
     insertStavesAbove(options.above, doc);
   }
 
   if (options.below) {
-    console.log("inserting staves below", options.below);
     insertStavesBelow(options.below, doc);
   }
 
   return new xmldom.XMLSerializer().serializeToString(doc);
 }
 
-function renderSVG(number, label, file, options) {
-  let mei = prepareMEI(number, label, file, options);
 
-  vrvToolkit.setOptions({
-    pageHeight: 30000,
-    adjustPageHeight: 1,
-    noFooter: 1
-  });
-  vrvToolkit.loadData(mei.toString());
-  return vrvToolkit.renderToSVG(1, {});
-}
-
-function renderMIDI(number, label, file) {
-  let data = fs.readFileSync(path.join(__dirname, '../data', number, label, file));
-  vrvToolkit.loadData(data.toString());
-  return vrvToolkit.renderToMIDI();
-}
-
-// pdfkit setup
-PDFDocument.prototype.addSVG = function(svg, x, y) {
-  return SVGtoPDF(this, svg, x, y, {
-    // in the exported PDF use Times Roman as standard font for SVGs
-    fontCallback: function(family, bold, italic, options) {
-      if (bold) {
-        return "Times-Bold";
-      }
-      return "Times-Roman";
-    }
-  }), this;
-};
-
-function streamPDF(res, number, label, file, options) {
-  const doc = new PDFDocument({
-    size: "A4"
-  });
-  doc.info["Title"] = number + ". Probstück";
-  doc.pipe(res);
-
-  let mei = prepareMEI(number, label, file, options);
-
-  vrvToolkit.setOptions({
-    pageHeight: 3200,
-    adjustPageHeight: 0,
-    noFooter: 1,
-    scale: 33
-  });
-  vrvToolkit.loadData(mei.toString());
-
-  let pageCount = vrvToolkit.getPageCount();
-  for (let i=1; i<=pageCount; ++i) {
-    doc.addSVG(vrvToolkit.renderToSVG(i, {}), 30, 30);
-    if (i != pageCount) { // do not add a page after the last
-      doc.addPage();
-    }
-  }
-
-  doc.end();
-}
-
-module.exports.renderSVG = renderSVG;
-module.exports.renderMIDI = renderMIDI;
-module.exports.streamPDF = streamPDF;
+module.exports = new VerovioAdapter();
