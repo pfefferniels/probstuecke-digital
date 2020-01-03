@@ -26,7 +26,7 @@ var VerovioAdapter = function() {
     this.vrvToolkit.setOptions({
       pageHeight: 30000,
       adjustPageHeight: 1,
-      noFooter: 1
+      footer: "none"
     });
     this.vrvToolkit.loadData(mei.toString());
     return this.vrvToolkit.renderToSVG(1, {});
@@ -50,7 +50,7 @@ var VerovioAdapter = function() {
     this.vrvToolkit.setOptions({
       pageHeight: 3200,
       adjustPageHeight: 0,
-      noFooter: 1,
+      footer: "none",
       scale: 33
     });
     this.vrvToolkit.loadData(mei.toString());
