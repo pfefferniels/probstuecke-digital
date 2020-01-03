@@ -175,6 +175,7 @@ tei-lb:not(:first-child)::before {
 }
 
 tei-titlepart[type="main"] {
+  display: block;
   font-size: 2rem;
   font-weight: bold;
 }
@@ -189,6 +190,10 @@ tei-milestone[rendition="#hr"] {
   width: 50%;
   border-bottom: 0.1rem solid black;
   margin: 1rem auto;
+}
+
+tei-epigraph{
+  display: block;
 }
 
 tei-pb {
