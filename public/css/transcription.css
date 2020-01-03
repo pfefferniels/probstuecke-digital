@@ -169,7 +169,7 @@ tei-front {
   text-align: center;
 }
 
-tei-lb:before {
+tei-lb:not(:first-child)::before {
   content: '\A';
   white-space: pre;
 }
