@@ -32,6 +32,9 @@ block options
     
   .p-2(data-toggle="modal" data-target="#orthographyModal")
     i.fas.fa-lg.fa-font
+  
+  .p-2(data-toggle="modal" data-target="#infoModal")
+    i.fas.fa-lg.fa-info-circle
 
 block content
   #optionsModal.modal.fade(tabindex="-1" role="dialog" aria-labelledby="options-title" aria-hidden="true")
@@ -127,6 +130,18 @@ block content
         .modal-footer
           button.btn.btn-secondary(type="button" data-dismiss="modal") Cancel
           button#update-orthography.btn.btn-primary(type="button" data-dismiss="modal") Update
+
+  #infoModal.modal.fade(tabindex="-1" role="dialog" aria-labelledby="info-title" aria-hidden="true")
+    .modal-dialog(role="document").modal-lg
+      .modal-content
+        .modal-header
+          h5.modal-title#info-title Meta information
+          button.close(type="button" data-dismiss="modal" aria-label="Close")
+            span(aria-hidden="true") &times;
+  
+        .modal-body#transcript-info
+        .modal-footer
+          button.btn.btn-secondary(type="button" data-dismiss="modal") Close
 
   .row
     if svgScore

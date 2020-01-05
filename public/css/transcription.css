@@ -55,6 +55,69 @@ input[type="number"] {
   margin-bottom: 2rem;
 }
 
+tei-licence>tei-p::before {
+  content: 'Licence: ';
+}
+
+tei-editor, tei-publisher, tei-licence, tei-pubplace, tei-physdesc,
+  tei-idno, tei-repository, tei-sourcedesc tei-editionstmt {
+  display: block;
+}
+
+tei-editor::before {
+  content: 'Editor: ';
+}
+
+tei-publisher::before {
+  content: 'Publisher: ';
+}
+
+tei-sourcedesc::before {
+  content: 'Source description';
+  font-weight: bold;
+}
+
+tei-sourcedesc>tei-bibl, tei-physdesc {
+  display: none;
+}
+
+tei-sourcedesc tei-titlestmt {
+  display: block;
+}
+
+tei-sourcedesc tei-title {
+  display: block;
+  font-weight: normal;
+}
+
+tei-sourcedesc tei-title::before {
+  content: 'Title: ';
+}
+
+tei-sourcedesc tei-author::before {
+  content: 'Author: ';
+}
+
+tei-sourcedesc tei-editionstmt::before {
+  content: 'Edition: ';
+}
+
+tei-sourcedesc tei-date::before {
+  content: 'Date: ';
+}
+
+tei-pubplace::before {
+  content: 'Place: ';
+}
+
+tei-repository::before {
+  content: 'Library: ';
+}
+
+tei-idno[type]::before {
+  content: attr(type) ': ';
+}
+
 tei-ref a, tei-ref a:hover {
   color: initial;
   text-decoration: none;
@@ -155,10 +218,6 @@ tei-rdg:last-child::after {
 
 tei-sic::after {
   content: " [sic]";
-}
-
-tei-teiheader {
-  display: none;
 }
 
 tei-front {

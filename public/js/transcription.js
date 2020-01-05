@@ -10,8 +10,9 @@ cetei.addBehaviors({
     'placeName': refToHref,
     'name': refToHref,
 
-    'licence': function(el) {
-      $('<a>').attr('href', el.getAttribute('target')).html(el.innerHTML).appendTo('#comments-view');
+    'teiHeader': function(el) {
+      $('#transcript-info').html(el.innerHTML);
+      this.hideContent(el, false);
     },
 
     'facsimile': function(el) {
