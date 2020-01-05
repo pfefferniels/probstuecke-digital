@@ -60,8 +60,18 @@ tei-licence>tei-p::before {
 }
 
 tei-editor, tei-publisher, tei-licence, tei-pubplace, tei-physdesc,
-  tei-idno, tei-repository, tei-sourcedesc tei-editionstmt {
+  tei-particdesc, tei-settingdesc, tei-sourcedesc tei-editionstmt,
+  tei-sourcedesc tei-titlestmt, tei-idno, tei-repository {
   display: block;
+}
+
+tei-sourcedesc>tei-bibl, tei-physdesc, tei-sourcedesc tei-respstmt {
+  display: none;
+}
+
+tei-sourcedesc tei-title {
+  display: block;
+  font-weight: normal;
 }
 
 tei-editor::before {
@@ -75,19 +85,6 @@ tei-publisher::before {
 tei-sourcedesc::before {
   content: 'Source description';
   font-weight: bold;
-}
-
-tei-sourcedesc>tei-bibl, tei-physdesc {
-  display: none;
-}
-
-tei-sourcedesc tei-titlestmt {
-  display: block;
-}
-
-tei-sourcedesc tei-title {
-  display: block;
-  font-weight: normal;
 }
 
 tei-sourcedesc tei-title::before {
@@ -112,6 +109,23 @@ tei-pubplace::before {
 
 tei-repository::before {
   content: 'Library: ';
+}
+
+tei-sourcedesc tei-recording[type]::before {
+  content: 'Recording (' attr(type) ')';
+  display: block;
+}
+
+tei-langusage::before {
+  content: 'Languages: ';
+}
+
+tei-particdesc::before {
+  content: 'Participants: ';
+}
+
+tei-settingdesc::before {
+  content: 'Setting: ';
 }
 
 tei-idno[type]::before {
