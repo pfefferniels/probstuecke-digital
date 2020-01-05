@@ -4,14 +4,8 @@
     <fileDesc>
       <titleStmt>
         <title type="part">Lesson by R. Hill on Probstück 3</title>
-        <author>
-          <persName>
-            <surname>Hill</surname>
-            <forename>Robert</forename>
-          </persName>
-        </author>
         <editor>
-          <persName>
+          <persName xml:id="pfeffer">
             <surname>Niels</surname>
             <forename>Pfeffer</forename>
           </persName>
@@ -24,21 +18,39 @@
             <forename>Pfeffer</forename>
           </persName>
         </publisher>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by/4.0">
+            <p>Creative Commons Attribution 4.0 International License</p>
+          </licence>
+        </availability>
       </publicationStmt>
       <sourceDesc>
         <recordingStmt>
           <recording type="audio">
             <respStmt>
-              <resp>Teacher</resp>
-              <name>Robert Hill</name>
-
-              <resp>Student</resp>
-              <name>Niels Pfeffer</name>
+              <persName>Niels Pfeffer</persName>
             </respStmt>
           </recording>
         </recordingStmt>
       </sourceDesc>
     </fileDesc>
+    <profileDesc>
+			<particDesc>
+				<person>
+					<persName ref="http://d-nb.info/gnd/12461261X">Robert Hill</persName>
+				</person>
+				<person>
+					<persName>Niels Pfeffer</persName>
+				</person>
+			</particDesc>
+			<settingDesc>
+				<setting>
+					<date value="2019-05-17">17 May 2019</date>
+					<name type="place">Hochschule für Musik</name>
+					<name type="city">Freiburg im Breisgau, Germany</name>
+				</setting>
+			</settingDesc>
+		</profileDesc>
   </teiHeader>
   <text>
     <body>
