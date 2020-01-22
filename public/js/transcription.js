@@ -2,6 +2,10 @@ const cetei = new CETEI();
 
 function refToHref(el) {
   let ref = el.getAttribute('ref');
+  if (!ref) {
+    return $(el.innerHTML)[0];
+  }
+
   let newRef = ref.replace('d-nb.info', 'lobid.org');
   return $('<a>').attr('href', ref).html(el.innerHTML).popover({
     content: function() {
