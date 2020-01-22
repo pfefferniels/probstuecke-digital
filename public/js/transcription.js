@@ -310,6 +310,45 @@ function normalizeOption(replace, orig, replacement) {
   }
 }
 
+function normalizeOrthography() {
+  $('.indicator').remove();
+
+  // normalizing long s and Umlaut
+  normalizeOption($('#normalize-s').is(':checked'), 'ſ', 's');
+  normalizeOption($('#normalize-umlaut').is(':checked'), 'aͤ', 'ä');
+  normalizeOption($('#normalize-umlaut').is(':checked'), 'oͤ', 'ö');
+  normalizeOption($('#normalize-umlaut').is(':checked'), 'uͤ', 'ü');
+  normalizeOption($('#normalize-abbreviations').is(':checked'), 'm̃', 'mm');
+  normalizeOption($('#normalize-abbreviations').is(':checked'), 'ñ', 'nn');
+
+  // hiding linebreaks and normalizing hyphens at linebreaks.
+  if ($('#ignore-lb').is(':checked')) {
+    $('tei-lb').replaceWith('<wbr>');
+    // in case of following the DTA-Bf rules strictily,
+    // <lb />s are found at the end of lines
+    $('tei-text')[0].innerHTML = $('tei-text')[0].innerHTML.replace(/[-]<wbr>(\n|\s)+/g, '&shy;');
+    // in case of following the TEI Guidelines, <lb />s are
+    // found in the beginning of lines
+    $('tei-text')[0].innerHTML = $('tei-text')[0].innerHTML.replace(/[-](\n|\s)+<wbr>/g, '&shy;');
+  } else {
+    $('tei-text')[0].innerHTML = $('tei-text')[0].innerHTML.replace(/\u00AD/g, '-<wbr>');
+    $('wbr').replaceWith('<tei-lb data-origname="lb" />');
+  }
+
+  // ignore pagination
+  if ($('#ignore-pagination').is(':checked')) {
+    $('tei-fw[type="catch"]').hide();
+    $('tei-pb').hide();
+  } else {
+    $('tei-fw[type="catch"]').show();
+    $('tei-pb').show();
+  }
+
+  // After having modified the innerHTML, all reference event listeners will be gone.
+  // Therefore, we reconnect them here.
+  Array.prototype.forEach.call($('tei-ref')[0], connectCrossRefs);
+}
+
 $(document).ready(async function() {
   if (teiComments) {
     await renderComments();
@@ -317,7 +356,9 @@ $(document).ready(async function() {
 
   $('tei-ref[target]').each(function() {
     connectCrossRefs(this);
-  })
+  });
+
+  normalizeOrthography();
 
   if (midi) {
     $("#player").midiPlayer();
@@ -326,11 +367,11 @@ $(document).ready(async function() {
     $("#player").midiPlayer.load(piece);
   }
 
-  $("#update-page").click(function() {
+  $("#update-page").on('click', function() {
     $('#options-form').submit();
   });
 
-  $('#update-facsimile').click(async function() {
+  $('#update-facsimile').on('click', async function() {
     if ($('#display-facsimile').is(':checked')) {
       await reloadFacsimileTooltips();
       $('.has-facsimile-popover').popover('enable');
@@ -339,46 +380,9 @@ $(document).ready(async function() {
     }
   });
 
-  $('#update-orthography').click(function() {
-    $('.indicator').remove();
+  $('#update-orthography').on('click', normalizeOrthography);
 
-    // normalizing long s and Umlaut
-    normalizeOption($('#normalize-s').is(':checked'), 'ſ', 's');
-    normalizeOption($('#normalize-umlaut').is(':checked'), 'aͤ', 'ä');
-    normalizeOption($('#normalize-umlaut').is(':checked'), 'oͤ', 'ö');
-    normalizeOption($('#normalize-umlaut').is(':checked'), 'uͤ', 'ü');
-    normalizeOption($('#normalize-abbreviations').is(':checked'), 'm̃', 'mm');
-    normalizeOption($('#normalize-abbreviations').is(':checked'), 'ñ', 'nn');
-
-    // hiding linebreaks and normalizing hyphens at linebreaks.
-    if ($('#ignore-lb').is(':checked')) {
-      $('tei-lb').replaceWith('<wbr>');
-      // in case of following the DTA-Bf rules strictily,
-      // <lb />s are found at the end of lines
-      $('tei-text')[0].innerHTML = $('tei-text')[0].innerHTML.replace(/[-]<wbr>(\n|\s)+/g, '&shy;');
-      // in case of following the TEI Guidelines, <lb />s are
-      // found in the beginning of lines
-      $('tei-text')[0].innerHTML = $('tei-text')[0].innerHTML.replace(/[-](\n|\s)+<wbr>/g, '&shy;');
-    } else {
-      $('tei-text')[0].innerHTML = $('tei-text')[0].innerHTML.replace(/\u00AD/g, '-<wbr>');
-      $('wbr').replaceWith('<tei-lb data-origname="lb" />');
-    }
-
-    // ignore pagination
-    if ($('#ignore-pagination').is(':checked')) {
-      $('tei-fw[type="catch"]').hide();
-      $('tei-pb').hide();
-    } else {
-      $('tei-fw[type="catch"]').show();
-      $('tei-pb').show();
-    }
-
-    // After having modified the innerHTML, all reference event listeners will be gone.
-    // Therefore, we reconnect them here.
-    Array.prototype.forEach.call($('tei-ref')[0], connectCrossRefs);
-  });
-
-  $("#pdf-download").click(function() {
+  $("#pdf-download").on('click', function() {
     window.location += '/pdf';
   });
 
