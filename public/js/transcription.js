@@ -2,6 +2,10 @@ const cetei = new CETEI();
 
 function refToHref(el) {
   let ref = el.getAttribute('ref');
+  if (!ref) {
+    return $(el.innerHTML)[0];
+  }
+
   let newRef = ref.replace('d-nb.info', 'lobid.org');
   return $('<a>').attr('href', ref).html(el.innerHTML).popover({
     content: function() {
@@ -173,7 +177,9 @@ function connectKeyOverlay(el) {
   keySigIndicator.addClass('signature-overlay');
 
   $(keySigIndicator.node).popover({
-      content: $('<p>' + el.innerHTML + '</p>'),
+      content: function() {
+        return $(el).find('span[hidden]').removeAttr('hidden')[0];
+      },
       trigger: 'click',
       html: true
   });
@@ -186,7 +192,9 @@ function connectMeterOverlay(el) {
   let meterSigOverlay = drawSVGIndicator('.meterSig');
   meterSigOverlay.addClass('signature-overlay');
   $(meterSigOverlay.node).popover({
-    content: $('<p>' + el.innerHTML + '</p>'),
+      content: function() {
+        return $(el).find('span[hidden]').removeAttr('hidden')[0];
+      },
       trigger: 'click',
       html: true
   });
