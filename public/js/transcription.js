@@ -166,6 +166,12 @@ function connectEditorialNote(el) {
   }
 }
 
+function visibleContentOfTEINote(el) {
+  let content = $(el);
+  content.find('span[hidden]').removeAttr('hidden');
+  return content.find('span')[0];
+}
+
 function connectKeyOverlay(el) {
   let keySigIndicator = drawSVGIndicator('.keySig');
   if (!keySigIndicator) {
@@ -178,7 +184,7 @@ function connectKeyOverlay(el) {
 
   $(keySigIndicator.node).popover({
       content: function() {
-        return $(el).find('span[hidden]').removeAttr('hidden')[0];
+        return visibleContentOfTEINote(el);
       },
       trigger: 'click',
       html: true
@@ -191,9 +197,10 @@ function connectKeyOverlay(el) {
 function connectMeterOverlay(el) {
   let meterSigOverlay = drawSVGIndicator('.meterSig');
   meterSigOverlay.addClass('signature-overlay');
+
   $(meterSigOverlay.node).popover({
       content: function() {
-        return $(el).find('span[hidden]').removeAttr('hidden')[0];
+        return visibleContentOfTEINote(el);
       },
       trigger: 'click',
       html: true
