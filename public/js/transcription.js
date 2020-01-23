@@ -253,7 +253,7 @@ async function reloadFacsimileTooltips() {
 
     // extract the X, Y, width and height from the annotation
     // if no region is given, we are dealing with full page annotation on a <pb>
-    let xywhParam = "";
+    let xywhParam = 'full';
     let xywhMatch = canvasUri.match(/#xywh=((\d)+,(\d)+,(\d)+,(\d)+)/);
     if (xywhMatch) {
       xywhParam = xywhMatch[1];
@@ -267,7 +267,7 @@ async function reloadFacsimileTooltips() {
     let identifier = idMatch[1];
 
     // extract scan number
-    let scanMatch = canvasUri.match(/canvas\/((\d)+)#/);
+    let scanMatch = canvasUri.match(/canvas\/((\d)+)/);
     if (!scanMatch) {
       return;
     }
@@ -286,28 +286,44 @@ async function reloadFacsimileTooltips() {
     // extract what is actually annotating the canvas region
     let rTarget = r.resource["@id"];
 
-    // presuming that the XPath inside xpointer() is always following the same scheme
+    // presuming that the XPath inside xpointer() is always following
+    // the same scheme
     let targetMatch = rTarget.match(/xml:id='(.+)'\]/);
-    let xmlId = targetMatch[1];
-    if (xmlId) {
-      let target = $("#" + xmlId).addClass('has-facsimile-popover');
+    if (targetMatch) {
+      let xmlId = targetMatch[1];
+      if (xmlId) {
+        let target = $("#" + xmlId).addClass('has-facsimile-popover');
 
-      // Often, measures and paragraphs are interrupted by system breaks or
-      // page breaks. This will be indicated by a ||-symbol in the tooltip.
-      let dataContent = target.attr('data-content');
-      if (dataContent) {
-        target.attr('data-content', dataContent +
-          '<i class="fas fa-grip-lines-vertical"></i>' +
-          '<img src="' + imageApiUri + '" />');
-      } else {
-        target.attr('data-content', '<img src="' + imageApiUri + '" />');
+        // Often, measures and paragraphs are interrupted by system breaks or
+        // page breaks. This will be indicated by a ||-symbol in the tooltip.
+        let dataContent = target.attr('data-content');
+        if (dataContent) {
+          target.attr('data-content', dataContent +
+            '<i class="fas fa-grip-lines-vertical"></i>' +
+            '<img src="' + imageApiUri + '" />');
+        } else {
+          target.attr('data-content', '<img src="' + imageApiUri + '" />');
+        }
+
+        target.popover({
+          html: true,
+          trigger: 'hover',
+          template: '<div class="popover facsimile-popover" role="tooltip"><div class="popover-body"/></div>'
+        });
       }
+    }
 
-      target.popover({
-        html: true,
-        trigger: 'hover',
-        template: '<div class="popover facsimile-popover" role="tooltip"><div class="popover-body"/></div>'
-      });
+    // Matching page breaks.
+    targetMatch = rTarget.match(/pb\[n='((\d)+?)'/);
+    if (targetMatch) {
+      let pbNumber = targetMatch[1];
+      if (pbNumber) {
+        $('tei-pb[n=' + pbNumber + ']').popover({
+          content: '<img src="' + imageApiUri + '" />',
+          html: true,
+          trigger: 'hover'
+        }).addClass('has-facsimile-popover');
+      }
     }
   });
 }
