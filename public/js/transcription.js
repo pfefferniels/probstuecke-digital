@@ -146,6 +146,12 @@ function connectCrossRefs(el) {
   }
 }
 
+function reconnectCrossRefs() {
+  $('tei-ref[target]').each(function() {
+    connectCrossRefs(this);
+  });
+}
+
 function connectEditorialNote(el) {
   let note = $(el);
   this.hideContent(el, false);
@@ -377,17 +383,13 @@ function normalizeOrthography() {
 
   // After having modified the innerHTML, all reference event listeners will be gone.
   // Therefore, we reconnect them here.
-  Array.prototype.forEach.call($('tei-ref')[0], connectCrossRefs);
+  reconnectCrossRefs();
 }
 
 $(document).ready(async function() {
   if (teiComments) {
     await renderComments();
   }
-
-  $('tei-ref[target]').each(function() {
-    connectCrossRefs(this);
-  });
 
   normalizeOrthography();
 
