@@ -1861,10 +1861,22 @@
                             </fb></harm>
                         </measure>
                       </section>
+                    </score>
+                    </mdiv>
+                    <mdiv>
+                      <score>
                       <section>
-                        <scoreDef xml:id="scoredef-0000000255279287" key.mode="major" key.sig="7s" />
+                        <scoreDef key.pname="c" key.accid="s" key.mode="major">
+                            <staffGrp>
+                                <staffDef n='1' lines='5' clef.shape="F" clef.line="4">
+                                    <keySig mode="major" sig="7s" />
+                                    <meterSig count="4" unit="4" sym="common" />
+                                </staffDef>
+                            </staffGrp>
+                        </scoreDef>
+                        <section>
                         <measure xml:id="measure-0000000764616467" n="1">
-                            <staff xml:id="staff-0000000744224883" n="1" visible="true">
+                            <staff xml:id="staff-0000000744224883" n="1">
                                 <layer n="1">
                                     <beam>
                                         <note xml:id="note-0000000884058691" dots="1" dur="8" oct="3" pname="c" accid.ges="s" />
