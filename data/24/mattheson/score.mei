@@ -1343,13 +1343,13 @@
                                 </fb>
                             </harm>
                             <choice>
-                              <corr>
-                                  <harm place="above" staff="1" tstamp="4">
-                                      <fb>
-                                          <f>6</f>
-                                      </fb>
-                                  </harm>
-                              </corr>
+                                <corr resp="#rettinghaus">
+                                    <harm place="above" staff="1" tstamp="4">
+                                        <fb>
+                                            <f>6</f>
+                                        </fb>
+                                    </harm>
+                                </corr>
                                 <sic>
                                     <harm place="above" staff="1" tstamp="3.75">
                                         <fb>
@@ -1494,11 +1494,22 @@
                                     <f>7</f>
                                 </fb>
                             </harm>
-                            <harm place="above" staff="1" tstamp="2.75">
-                                <fb>
-                                    <f>6</f>
-                                </fb>
-                            </harm>
+                            <choice>
+                                <corr resp="#rettinghaus">
+                                    <harm place="above" staff="1" tstamp="2">
+                                        <fb>
+                                            <f>6</f>
+                                        </fb>
+                                    </harm>
+                                </corr>
+                                <sic>
+                                    <harm place="above" staff="1" tstamp="2.75">
+                                        <fb>
+                                            <f>6</f>
+                                        </fb>
+                                    </harm>
+                                </sic>
+                            </choice>
                             <harm place="above" staff="1" tstamp="3">
                                 <fb>
                                     <f>7</f>
