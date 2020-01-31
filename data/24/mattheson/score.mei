@@ -64,10 +64,11 @@
         <body>
             <mdiv>
                 <score>
-                    <scoreDef>
+                    <scoreDef key.pname="d" key.accid="f" key.mode="major">
                         <staffGrp>
-                            <staffDef n='1' lines='5' clef.shape="F" clef.line="4" meter.count="4" meter.unit="4" meter.sym="common">
+                            <staffDef n='1' lines='5' clef.shape="F" clef.line="4">
                                 <keySig mode="major" sig="4f" />
+                                <meterSig count="4" unit="4" sym="common" />
                             </staffDef>
                         </staffGrp>
                     </scoreDef>
