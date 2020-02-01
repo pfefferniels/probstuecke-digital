@@ -1241,6 +1241,13 @@
                                     <f>6</f>
                                 </fb>
                             </harm>
+                            <supplied resp="#rettinghaus">
+                                <harm place="above" staff="1" tstamp="3">
+                                    <fb>
+                                        <f>6</f>
+                                    </fb>
+                                </harm>
+                            </supplied>
                         </measure>
                         <measure xml:id="measure-0000000493740974" n="36">
                             <staff xml:id="staff-0000000189812959" n="1">
@@ -1521,7 +1528,9 @@
                                 <layer n="1">
                                     <note xml:id="note-0000002067369048" dur="4" oct="3" pname="a" accid.ges="f" />
                                     <note xml:id="note-0000001694250206" dur="4" oct="2" pname="a" accid.ges="f" />
-                                    <rest xml:id="rest-0000001170724136" dur="4" />
+                                    <supplied resp="#pfeffer" corresp="#rest-0000000055185116">
+                                        <rest xml:id="rest-0000001170724136" dur="4" />
+                                    </supplied>
                                     <beam>
                                         <note xml:id="note-0000002097349952" dots="1" dur="8" oct="4" pname="d" accid.ges="f" />
                                         <note xml:id="note-0000001595936764" dur="16" oct="3" pname="d" accid.ges="f" />
