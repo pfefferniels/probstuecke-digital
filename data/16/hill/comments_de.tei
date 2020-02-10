@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title type="part">Lesson by R. Hill on Probstück 16</title>
+        <editor>
+          <persName xml:id="pfeffer">
+            <surname>Niels</surname>
+            <forename>Pfeffer</forename>
+          </persName>
+        </editor>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>
+          <persName>
+            <surname>Niels</surname>
+            <forename>Pfeffer</forename>
+          </persName>
+        </publisher>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by/4.0">
+            <p>Creative Commons Attribution 4.0 International License</p>
+          </licence>
+        </availability>
+      </publicationStmt>
+      <sourceDesc>
+        <recordingStmt>
+          <recording type="audio">
+            <respStmt>
+              <persName>Niels Pfeffer</persName>
+            </respStmt>
+          </recording>
+        </recordingStmt>
+      </sourceDesc>
+    </fileDesc>
+    <profileDesc>
+      <langUsage>
+       <language>German</language>
+       <language>English</language>
+      </langUsage>
+			<particDesc>
+				<person>
+					<persName ref="http://d-nb.info/gnd/12461261X">Robert Hill</persName>
+				</person>
+				<person>
+					<persName>Niels Pfeffer</persName>
+				</person>
+			</particDesc>
+			<settingDesc>
+				<setting>
+					<date value="2019-06-03">3rd of June 2019</date>
+					<name type="place">Hochschule für Musik</name>
+					<name type="city">Freiburg im Breisgau, Germany</name>
+				</setting>
+			</settingDesc>
+		</profileDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <title type="full">
+       <title type="main">
+         Lesson on Prob-Stück 16
+       </title>
+       <title type="sub">
+         <name type="place">MH Freiburg</name>,
+         <date when="2019-06-03">03/06/2019</date>
+       </title>
+      </title>
+
+      <listPerson>
+        <person xml:id="rh" role="teacher">
+          <persName ref="http://d-nb.info/gnd/12461261X">Robert Hill</persName>
+        </person>
+        <person xml:id="np" role="student">
+          <persName>Niels Pfeffer</persName>
+        </person>
+      </listPerson>
+
+      <surplus reason="irrelevant">
+        <incident who="#np">spielt</incident>
+      </surplus>
+
+      <u who="#rh">
+        Wie wäre es, wenn du das zunächst in eine anderen Tonart, zum Beispiel nach
+        a-Moll, transponierst und dir die ganze Ausarbeitung in a-Moll ausdenkst
+        und das wieder nach as-Moll transponierst?
+
+        Die Wahrscheinlichkeit ist sehr hoch, dass bei Bach zumindest sehr viel von
+        seinen Präludien und Fugen, die in abgelegenen Tonarten sind, ursprünglich
+        einen halben Ton höher oder tiefer komponiert wurden.
+
+        Ich versuche einmal das Stück in a-Moll zu lesen, und wir schauen, was passiert.
+      </u>
+
+      <incident who="#rh">
+        plays
+        <notatedMusic></notatedMusic>
+      </incident>
+
+      <u who="#rh">
+        Ich glaube, dass es sich lohnen würde, es in gis-Moll oder
+        in a-Moll zu notieren, denn es ist zermürbend mit einem fes in den
+        Vorzeichen zu arbeiten. Wir haben keine Erfahrung damit. Ich würde es
+        in eine naheliegende, aber leichter zu manipulierende Tonart transponieren.
+        Er tut das absichtlich, er will konsequent sein und will quasi den
+        Endverbraucher an den Rande seines Geübten bringen. Aber das heißt nicht,
+        dass wir mitmachen müssen.
+      </u>
+    </body>
+  </text>
+</TEI>
