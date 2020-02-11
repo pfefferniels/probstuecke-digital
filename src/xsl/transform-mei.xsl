@@ -19,29 +19,36 @@
                 <staffDef n="{$i+10}" lines="5" />
             </xsl:for-each>
             <xsl:copy-of select="./*" />
+            <xsl:for-each select="1 to $stavesBelow">
+                <xsl:variable name="i" select="." />
+                <staffDef n="{$i+20}" lines="5" />
+            </xsl:for-each>
         </xsl:copy>
     </xsl:template>
 
     <xsl:template match="mei:measure">
         <xsl:copy>
             <xsl:for-each select="1 to $stavesAbove">
-                <xsl:variable name="j" select="."/>
-                <staff n="{$j+10}">
+                <xsl:variable name="i" select="."/>
+                <staff n="{$i+10}">
                     <layer n="1">
                         <mSpace />
                     </layer>
                 </staff>
             </xsl:for-each>
-
             <xsl:copy-of select="./*" />
+            <xsl:for-each select="1 to $stavesBelow">
+                <xsl:variable name="i" select="."/>
+                <staff n="{$i+20}">
+                    <layer n="1">
+                        <mSpace />
+                    </layer>
+                </staff>
+            </xsl:for-each>
         </xsl:copy>
     </xsl:template>
-
-    <!-- adding staves below -->
 
     <!-- removing annotation staff -->
 
     <!-- exchanging clefs -->
-
-
 </xsl:stylesheet>
