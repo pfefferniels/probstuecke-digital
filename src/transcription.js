@@ -2,7 +2,7 @@ const transcription = require('express').Router(),
       exist = require('@existdb/node-exist'),
       existConfig = require('../existConfig.json'),
       db = exist.connect(existConfig);
-      vrvAdapter = require('../utils/verovioAdapter.js');
+      vrvAdapter = require('../src/parseMEI.js');
 
 const lookupTable = {
   secondEdition: 'de',

@@ -176,5 +176,4 @@ function streamPDF(res, number, label, file, options) {
 }
 
 module.exports.parseMEI = parseMEI;
-module.exports.renderMIDI = renderMIDI;
 module.exports.streamPDF = streamPDF;

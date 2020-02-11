@@ -1,10 +1,10 @@
 const express = require('express'),
       bodyParser = require('body-parser'),
-      renderRouter = require('./routers/render.js'),
-      iiifRouter = require('./routers/iiif.js'),
-      facsimileRouter = require('./routers/facsimile.js'),
-      transcriptionRouter = require('./routers/transcription.js'),
-      personsRouter = require('./routers/persons.js');
+      renderRouter = require('./src/render.js'),
+      iiifRouter = require('./src/iiif.js'),
+      facsimileRouter = require('./src/facsimile.js'),
+      transcriptionRouter = require('./src/transcription.js'),
+      personsRouter = require('./src/persons.js');
 
 // express.js setup
 const app = express();

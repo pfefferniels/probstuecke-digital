@@ -1,5 +1,5 @@
 const render = require('express').Router(),
-      vrvAdapter = require('../utils/verovioAdapter.js');
+      vrvAdapter = require('../src/parseMEI.js');
 
 render.get('/:number/:label/:file', function(req, res) {
   vrvAdapter.parseMEI(req.params.number,
