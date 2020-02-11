@@ -11,11 +11,12 @@ block headAdditions
   link(rel='stylesheet' href='/css/tei-speech.css')
 
   script.
+    mei = `!{mei}`;
+    teiComments = `!{teiComment}`;
     number = "#{number}";
     label = "#{label}";
-    midi = "#{midi}";
-    teiComments = `!{teiComment}`;
   
+  script(type='text/javascript' src='https://www.verovio.org/javascript/develop/verovio-toolkit.js')
   script(type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/svg.js/3.0.13/svg.min.js')
   script(type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/findAndReplaceDOMText/0.4.6/findAndReplaceDOMText.min.js')
   script(type='text/javascript' src='/js/wildwebmidi.js')
@@ -144,8 +145,8 @@ block content
           button.btn.btn-secondary(type="button" data-dismiss="modal") Close
 
   .row
-    if svgScore
-      .col-sm#score-view !{svgScore}
+    if mei
+      .col-sm#score-view
     if teiComment
       .col-sm#comments-view 
   

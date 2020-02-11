@@ -27,21 +27,19 @@ function getTranscription(req, res) {
     label: label
   }
 
-  try {
-    viewParams.svgScore = vrvAdapter.renderSVG(number, label, 'score.xml', req.query);
-    viewParams.midi = vrvAdapter.renderMIDI(number, label, 'score.xml');
-  } catch (e) { }
-
-  db.documents.read(teiPath, {})
-              .then(function (result) {
-                viewParams.teiComment = result.toString();
-              })
-              .catch(function (e) {
-                console.error(e);
-              })
-              .then(function () {
-                res.render('transcription', viewParams);
-              });
+  vrvAdapter.parseMEI(number, label, 'score.xml', req.query).then(function(result) {
+    viewParams.mei = Buffer.concat(result.pages).toString();
+  }).catch(function (e) {
+    console.error(e);
+  }).then(() => {
+    return db.documents.read(teiPath, {})
+  }).then(function (result) {
+      viewParams.teiComment = result.toString();
+  }).catch(function (e) {
+      console.error(e);
+  }).then(function () {
+      res.render('transcription', viewParams);
+  });
 }
 
 function getPDF(req, res) {

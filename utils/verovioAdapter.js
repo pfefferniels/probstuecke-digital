@@ -1,4 +1,7 @@
 const fs = require('fs'),
+      exist = require('@existdb/node-exist'),
+      existConfig = require('../existConfig.json'),
+      db = exist.connect(existConfig),
       verovio = require('verovio'),
       vrvToolkit = new verovio.toolkit(),
       xmldom = require('xmldom'),
@@ -107,45 +110,28 @@ function removeAnnotationStaff(doc) {
   }
 }
 
-function prepareMEI(number, label, file, options) {
-  let data = fs.readFileSync(path.join(__dirname, '../data', number, label, file));
-  let doc = new DOMParser().parseFromString(data.toString(), 'text/xml');
-
-  if (options.modernClefs) {
-    modernizeClefs(doc);
+function parseMEI(number, label, file, options) {
+  let queryParams = {
+    variables: {
+      input: ['/db/apps/probstuecke-digital', number, label, file].join('/'),
+      stavesAbove: options.above,
+      stavesBelow: options.below,
+      modernClefs: options.modernClefs,
+      removeAnnotationStaff: !options.showAnnotationStaff
+    }
   }
 
-  if (!options.showAnnotationStaff) {
-    removeAnnotationStaff(doc);
-  }
-
-  if (options.above) {
-    insertStavesAbove(options.above, doc);
-  }
-
-  if (options.below) {
-    insertStavesBelow(options.below, doc);
-  }
-
-  return new xmldom.XMLSerializer().serializeToString(doc);
-}
-
-function renderSVG(number, label, file, options) {
-  let mei = prepareMEI(number, label, file, options);
-
-  vrvToolkit.setOptions({
-    pageHeight: 30000,
-    adjustPageHeight: 1,
-    noFooter: 1
-  });
-  vrvToolkit.loadData(mei.toString());
-  return vrvToolkit.renderToSVG(1, {});
-}
-
-function renderMIDI(number, label, file) {
-  let data = fs.readFileSync(path.join(__dirname, '../data', number, label, file));
-  vrvToolkit.loadData(data.toString());
-  return vrvToolkit.renderToMIDI();
+  return db.queries.readAll(`
+    xquery version "3.1";
+    declare namespace transform="http://exist-db.org/xquery/transform";
+    let $xsl := doc('/db/styles/transform-mei.xsl')
+    return transform:transform(doc($input), $xsl,
+        <paramaters>
+            <param name="stavesAbove" value="{$stavesAbove}" />
+            <param name="stavesBelow" value="{$stavesBelow}" />
+            <param name="modernClefs" value="{$modernClefs}" />
+            <param name="removeAnnotationStaff" value="{$removeAnnotationStaff}" />
+        </paramaters>)`, queryParams);
 }
 
 // pdfkit setup
@@ -189,6 +175,6 @@ function streamPDF(res, number, label, file, options) {
   doc.end();
 }
 
-module.exports.renderSVG = renderSVG;
+module.exports.parseMEI = parseMEI;
 module.exports.renderMIDI = renderMIDI;
 module.exports.streamPDF = streamPDF;

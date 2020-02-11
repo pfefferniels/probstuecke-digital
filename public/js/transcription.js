@@ -1,4 +1,5 @@
 const cetei = new CETEI();
+let vrvToolkit = new verovio.toolkit();
 
 function refToHref(el) {
   let ref = el.getAttribute('ref');
@@ -387,6 +388,14 @@ function normalizeOrthography() {
 }
 
 $(document).ready(async function() {
+  let svg = vrvToolkit.renderData(mei, {
+    pageHeight: 30000,
+    adjustPageHeight: 1,
+    footer: "none"
+  });
+  $("#score-view").html(svg);
+
+
   if (teiComments) {
     await renderComments();
   }
