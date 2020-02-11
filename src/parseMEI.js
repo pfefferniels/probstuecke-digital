@@ -1,11 +1,9 @@
-const fs = require('fs'),
-      exist = require('@existdb/node-exist'),
+const exist = require('@existdb/node-exist'),
       existConfig = require('../existConfig.json'),
       db = exist.connect(existConfig),
       verovio = require('verovio'),
       vrvToolkit = new verovio.toolkit(),
       xmldom = require('xmldom'),
-      path = require('path'),
       DOMParser = xmldom.DOMParser,
       PDFDocument = require('pdfkit'),
       SVGtoPDF = require('svg-to-pdfkit');
@@ -69,27 +67,6 @@ function insertStavesBelow(n, doc) {
   }
 }
 
-// staff nu<bering: the range from 10–19 is reserved for staff lines above
-function insertStavesAbove(n, doc) {
-  for (let i=0; i<n; i++) {
-    let staffGrp = doc.documentElement.getElementsByTagName("staffGrp")[0];
-    let newStaffDef = doc.createElement("staffDef");
-    newStaffDef.setAttribute("n", i+10);
-    newStaffDef.setAttribute("lines", 5);
-    staffGrp.insertBefore(newStaffDef, staffGrp.getElementsByTagName("staffDef")[0]);
-    let measures = doc.documentElement.getElementsByTagName("measure");
-    for (let j=0; j<measures.length; j++) {
-      let staff = doc.createElement("staff");
-      let layer = doc.createElement("layer");
-      let empty = doc.createElement("empty");
-      staff.setAttribute("n", i+10);
-      layer.setAttribute("n", 1);
-      empty.setAttribute("dur", 1)
-      measures[j].insertBefore(staff, measures[j].getElementsByTagName("staff")[0]);
-    }
-  }
-}
-
 function removeAnnotationStaff(doc) {
   let n;
   let staffDefs = doc.documentElement.getElementsByTagName("staffDef");
@@ -114,24 +91,32 @@ function parseMEI(number, label, file, options) {
   let queryParams = {
     variables: {
       input: ['/db/apps/probstuecke-digital', number, label, file].join('/'),
-      stavesAbove: options.above,
-      stavesBelow: options.below,
+      stavesAbove: 0,
+      stavesBelow: 0,
       modernClefs: options.modernClefs,
       removeAnnotationStaff: !options.showAnnotationStaff
     }
   }
 
+  if (options.above) {
+    queryParams.variables.stavesAbove = options.above;
+  }
+
+  if (options.below) {
+    queryParams.variables.stavesBelow = options.below;
+  }
+
   return db.queries.readAll(`
-    xquery version "3.1";
-    declare namespace transform="http://exist-db.org/xquery/transform";
-    let $xsl := doc('/db/styles/transform-mei.xsl')
-    return transform:transform(doc($input), $xsl,
-        <paramaters>
-            <param name="stavesAbove" value="{$stavesAbove}" />
-            <param name="stavesBelow" value="{$stavesBelow}" />
-            <param name="modernClefs" value="{$modernClefs}" />
-            <param name="removeAnnotationStaff" value="{$removeAnnotationStaff}" />
-        </paramaters>)`, queryParams);
+      xquery version "3.1";
+      declare namespace transform="http://exist-db.org/xquery/transform";
+
+      let $xsl := doc('/db/styles/transform-mei.xsl')
+      let $transformed := transform:transform(doc($input), $xsl, <parameters>
+        <param name="stavesAbove" value="{$stavesAbove}" />
+        <param name="stavesBelow" value="{$stavesBelow}" />
+      </parameters>)
+
+      return $transformed`, queryParams);
 }
 
 // pdfkit setup
