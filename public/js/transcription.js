@@ -124,12 +124,17 @@ async function renderComments() {
     notatedMusicPromises.push(dfd);
 
     var notatedmusic = $(this);
-    let svg;
+    let exampleMEI;
     try {
-      svg = await $.get(['/render', number, label, $(this).find('tei-ptr').attr('target')].join('/'));
+      exampleMEI = await $.get(['/render', number, label, $(this).find('tei-ptr').attr('target')].join('/'));
     } catch (error) {
       printError("failed loading embedded music example: " + error);
     }
+    let svg = vrvToolkit.renderData(exampleMEI, {
+      pageHeight: 30000,
+      adjustPageHeight: 1,
+      footer: "none"
+    });
     notatedmusic.find("tei-ptr").replaceWith(svg);
 
     dfd.resolve();

@@ -6,7 +6,7 @@ render.get('/:number/:label/:file', function(req, res) {
            req.params.label,
            req.params.file,
            req.query).then(function(result) {
-             res.send(result.toString());
+             res.send(Buffer.concat(result.pages).toString());
            }).catch(function (e) {
              console.error(e);
            });
