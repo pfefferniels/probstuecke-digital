@@ -1,6 +1,7 @@
 const transcription = require('express').Router(),
-      fs = require('fs'),
-      path = require('path'),
+      exist = require('@existdb/node-exist'),
+      existConfig = require('../existConfig.json'),
+      db = exist.connect(existConfig);
       vrvAdapter = require('../utils/verovioAdapter.js');
 
 const lookupTable = {
@@ -15,12 +16,11 @@ function getTranscription(req, res) {
   let label = req.params.label;
   let edition = req.params.edition;
 
-  let teiPath = path.join(
-    __dirname,
-    '/../data',
+  let teiPath = [
+    '/db/apps/probstuecke-digital',
     number,
     label,
-    'comments_' + lookupTable[edition] + '.tei');
+    'comments_' + lookupTable[edition] + '.xml'].join('/');
 
   let viewParams = {
     number: number,
@@ -28,15 +28,20 @@ function getTranscription(req, res) {
   }
 
   try {
-    viewParams.svgScore = vrvAdapter.renderSVG(number, label, 'score.mei', req.query);
-    viewParams.midi = vrvAdapter.renderMIDI(number, label, 'score.mei');
+    viewParams.svgScore = vrvAdapter.renderSVG(number, label, 'score.xml', req.query);
+    viewParams.midi = vrvAdapter.renderMIDI(number, label, 'score.xml');
   } catch (e) { }
 
-  try {
-    viewParams.teiComment = fs.readFileSync(teiPath);
-  } catch (e) { }
-
-  res.render('transcription', viewParams);
+  db.documents.read(teiPath, {})
+              .then(function (result) {
+                viewParams.teiComment = result.toString();
+              })
+              .catch(function (e) {
+                console.error(e);
+              })
+              .then(function () {
+                res.render('transcription', viewParams);
+              });
 }
 
 function getPDF(req, res) {
@@ -47,7 +52,7 @@ function getPDF(req, res) {
   vrvAdapter.streamPDF(res,
                        req.params.number,
                        req.params.label,
-                       'score.mei',
+                       'score.xml',
                        req.query);
 }
 
