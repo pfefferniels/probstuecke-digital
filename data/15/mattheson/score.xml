@@ -165,13 +165,13 @@
         <score>
           <scoreDef key.pname="b" key.accid="f" key.mode="minor">
             <staffGrp>
-              <staffDef xml:id="mattheson" clef.shape="G" clef.line="2" n="1" lines="5" label="Mattheson's annotations" />
-              <keySig sig="4f" />
-              <meterSig count="2" unit="4" />
+              <staffDef xml:id="mattheson" clef.shape="G" clef.line="2" n="1" lines="5" label="Mattheson's annotations">
+                <keySig sig="4f" />
+                <meterSig count="2" unit="4" />
               </staffDef>
-              <staffDef xml:id="bass" clef.shape="F" clef.line="4" n="2" lines="5" />
-              <keySig sig="4f" />
-              <meterSig count="2" unit="4" />
+              <staffDef xml:id="bass" clef.shape="F" clef.line="4" n="2" lines="5">
+                <keySig sig="4f" />
+                <meterSig count="2" unit="4" />
               </staffDef>
             </staffGrp>
           </scoreDef>

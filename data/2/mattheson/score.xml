@@ -23,43 +23,44 @@
           <useRestrict label="licence" auth="https://creativecommons.org/licenses/by/" codedval="4.0">
               <p>Creative Commons Attribution 4.0 International License</p>
           </useRestrict>
-        </pubStmt>
-        <sourceDesc>
-          <source n="1" xml:id="firstEdition">
-            <bibl>
-              <identifier type="URI">http://mdz-nbn-resolving.de/urn:nbn:de:bvb:12-bsb10527431-0</identifier>
-              <title type="uniform">Exemplarische Organisten-Probe</title>
-              <persName role="composer" auth.uri="http://d-nb.info/gnd/118578995" auth="GND">Johann Mattheson</persName>
-              <corpName role="publisher">Schiller &amp; Kißner</corpName>
-              <pubPlace>Hamburg</pubPlace>
-              <date>1719</date>
-            </bibl>
-          </source>
-          <source n="2" xml:id="secondEdition">
-            <bibl>
-              <title type="uniform">Grosse General-Baß-Schule</title>
-              <persName role="composer" auth.uri="http://d-nb.info/gnd/118578995" auth="GND">Johann Mattheson</persName>
-              <corpName role="publisher">Kißner</corpName>
-              <pubPlace>Hamburg</pubPlace>
-              <date>1731</date>
-              <identifier type="URI">http://mdz-nbn-resolving.de/urn:nbn:de:bvb:12-bsb10598495-7</identifier>
-            </bibl>
-          </source>
-        </sourceDesc>
-      </fileDesc>
-      <encodingDesc>
-        <appInfo>
-          <application xml:id="sibelius" version="8300">
-            <name type="operating-system">macOS</name>
-          </application>
-          <application xml:id="sibmei" type="plugin" version="2.1.0">
-            <name>Sibelius to MEI Exporter (2.1.0)</name>
-          </application>
-        </appInfo>
-      </encodingDesc>
-    </meiHead>
-    <music>
-      <facsimile decls="#secondEdition">
+        </availability>
+      </pubStmt>
+      <sourceDesc>
+        <source n="1" xml:id="firstEdition">
+          <bibl>
+            <identifier type="URI">http://mdz-nbn-resolving.de/urn:nbn:de:bvb:12-bsb10527431-0</identifier>
+            <title type="uniform">Exemplarische Organisten-Probe</title>
+            <persName role="composer" auth.uri="http://d-nb.info/gnd/118578995" auth="GND">Johann Mattheson</persName>
+            <corpName role="publisher">Schiller &amp; Kißner</corpName>
+            <pubPlace>Hamburg</pubPlace>
+            <date>1719</date>
+          </bibl>
+        </source>
+        <source n="2" xml:id="secondEdition">
+          <bibl>
+            <title type="uniform">Grosse General-Baß-Schule</title>
+            <persName role="composer" auth.uri="http://d-nb.info/gnd/118578995" auth="GND">Johann Mattheson</persName>
+            <corpName role="publisher">Kißner</corpName>
+            <pubPlace>Hamburg</pubPlace>
+            <date>1731</date>
+            <identifier type="URI">http://mdz-nbn-resolving.de/urn:nbn:de:bvb:12-bsb10598495-7</identifier>
+          </bibl>
+        </source>
+      </sourceDesc>
+    </fileDesc>
+    <encodingDesc>
+      <appInfo>
+        <application xml:id="sibelius" version="8300">
+          <name type="operating-system">macOS</name>
+        </application>
+        <application xml:id="sibmei" type="plugin" version="2.1.0">
+          <name>Sibelius to MEI Exporter (2.1.0)</name>
+        </application>
+      </appInfo>
+    </encodingDesc>
+  </meiHead>
+  <music>
+    <facsimile decls="#secondEdition">
         <surface ulx="0" uly="0" lrx="1998" lry="2396" xml:id="facs-p392">
           <graphic width="1998" height="2396" target="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/392"/>
           <zone ulx="108" uly="278" lrx="584" xml:id="facsZone-m-62"/>
