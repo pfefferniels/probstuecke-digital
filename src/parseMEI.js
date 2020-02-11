@@ -46,27 +46,6 @@ function modernizeClefs(doc) {
   }
 }
 
-// staff numbering: the range from 20–29 is reserved for staff lines below.
-function insertStavesBelow(n, doc) {
-  for (let i=0; i<n; i++) {
-    let staffGrp = doc.documentElement.getElementsByTagName("staffGrp")[0];
-    let newStaffDef = doc.createElement("staffDef");
-    newStaffDef.setAttribute("n", i+20);
-    newStaffDef.setAttribute("lines", 5);
-    staffGrp.appendChild(newStaffDef);
-    let measures = doc.documentElement.getElementsByTagName("measure");
-    for (let j=0; j<measures.length; j++) {
-      let staff = doc.createElement("staff");
-      let layer = doc.createElement("layer");
-      let empty = doc.createElement("empty");
-      staff.setAttribute("n", i+20);
-      layer.setAttribute("n", 1);
-      empty.setAttribute("dur", 1)
-      measures[j].appendChild(staff);
-    }
-  }
-}
-
 function removeAnnotationStaff(doc) {
   let n;
   let staffDefs = doc.documentElement.getElementsByTagName("staffDef");
