@@ -483,6 +483,11 @@ $(document).ready(async function() {
     generatePDF();
   });
 
+  $('#mei-download').on('click', function() {
+    saveAs(new Blob([mei], {type: "text/xml;charset=utf-8"}),
+      `probstueck_${number}.xml`);
+  });
+
   // highlighting the element that might be given in the URL
   let hash = window.location.hash;
   if (hash) {
