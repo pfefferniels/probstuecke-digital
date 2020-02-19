@@ -393,26 +393,25 @@ function normalizeOrthography() {
 }
 
 $(document).ready(async function() {
-  let svg = vrvToolkit.renderData(mei, {
-    pageHeight: 30000,
-    adjustPageHeight: 1,
-    footer: "none"
-  });
-  $("#score-view").html(svg);
+  if (mei) {
+    let svg = vrvToolkit.renderData(mei, {
+      pageHeight: 30000,
+      adjustPageHeight: 1,
+      footer: "none"
+    });
+    $("#score-view").html(svg);
 
+    $("#player").midiPlayer();
+    const piece = 'data:audio/midi;base64,' + vrvToolkit.renderToMIDI();
+    $("#player").show();
+    $("#player").midiPlayer.load(piece);
+  }
 
   if (teiComments) {
     await renderComments();
   }
 
   normalizeOrthography();
-
-  if (midi) {
-    $("#player").midiPlayer();
-    const piece = 'data:audio/midi;base64,' + midi;
-    $("#player").show();
-    $("#player").midiPlayer.load(piece);
-  }
 
   $("#update-page").on('click', function() {
     $('#options-form').submit();
