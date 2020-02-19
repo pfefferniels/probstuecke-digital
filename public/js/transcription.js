@@ -443,12 +443,13 @@ function normalizeOrthography() {
 
 $(document).ready(async function() {
   if (mei) {
-    vrvToolkit.loadData(mei);
-    let svg = vrvToolkit.renderToSVG(1, {
+    vrvToolkit.setOptions({
       pageHeight: 30000,
-      adjustPageHeight: 1,
-      footer: "none"
+      adjustPageHeight: true,
+      footer: 'none'
     });
+    vrvToolkit.loadData(mei);
+    let svg = vrvToolkit.renderToSVG(1, {});
     $("#score-view").html(svg);
 
     $("#player").midiPlayer();
