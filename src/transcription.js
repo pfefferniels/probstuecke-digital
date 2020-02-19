@@ -42,19 +42,6 @@ function getTranscription(req, res) {
   });
 }
 
-function getPDF(req, res) {
-  let number = req.params.number;
-  let label = req.params.label;
-  let edition = req.params.edition;
-
-  vrvAdapter.streamPDF(res,
-                       req.params.number,
-                       req.params.label,
-                       'score.xml',
-                       req.query);
-}
-
 transcription.get('/:number/:label/:edition', getTranscription);
-transcription.get('/:number/:label/:edition/pdf', getPDF);
 
 module.exports = transcription;
