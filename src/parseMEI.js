@@ -72,8 +72,8 @@ function parseMEI(number, label, file, options) {
       input: ['/db/apps/probstuecke-digital', number, label, file].join('/'),
       stavesAbove: 0,
       stavesBelow: 0,
-      modernClefs: options.modernClefs,
-      removeAnnotationStaff: !options.showAnnotationStaff
+      modernClefs: false,
+      removeAnnotationStaff: true
     }
   }
 
@@ -85,17 +85,26 @@ function parseMEI(number, label, file, options) {
     queryParams.variables.stavesBelow = options.below;
   }
 
+  if (options.showAnnotationStaff) {
+    queryParams.variables.removeAnnotationStaff = !options.showAnnotationStaff;
+  }
+
+  if (options.modernClefs) {
+    queryParams.variables.modernClefs = options.modernClefs;
+  }
+
   return db.queries.readAll(`
       xquery version "3.1";
       declare namespace transform="http://exist-db.org/xquery/transform";
 
-      let $xsl := doc('/db/styles/transform-mei.xsl')
-      let $transformed := transform:transform(doc($input), $xsl, <parameters>
+      let $xsl := doc('/db/apps/probstuecke-digital/transform-mei.xsl')
+      return transform:transform(doc($input), $xsl,
+      <parameters>
         <param name="stavesAbove" value="{$stavesAbove}" />
         <param name="stavesBelow" value="{$stavesBelow}" />
-      </parameters>)
-
-      return $transformed`, queryParams);
+        <param name="modernClefs" value="{$modernClefs}" />
+        <param name="removeAnnotationStaff" value="{$removeAnnotationStaff}" />
+      </parameters>)`, queryParams);
 }
 
 // pdfkit setup
@@ -118,7 +127,7 @@ function streamPDF(res, number, label, file, options) {
   doc.info["Title"] = number + ". Probstück";
   doc.pipe(res);
 
-  let mei = prepareMEI(number, label, file, options);
+  let mei = parseMEI(number, label, file, options);
 
   vrvToolkit.setOptions({
     pageHeight: 3200,
