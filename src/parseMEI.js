@@ -46,26 +46,6 @@ function modernizeClefs(doc) {
   }
 }
 
-function removeAnnotationStaff(doc) {
-  let n;
-  let staffDefs = doc.documentElement.getElementsByTagName("staffDef");
-  for (let i=0; i<staffDefs.length; i++) {
-    if (staffDefs[i].getAttribute("xml:id") === "mattheson") {
-      n = staffDefs[i].getAttribute("n");
-      staffDefs[i].parentNode.removeChild(staffDefs[i]);
-      i -= 1;
-    }
-  }
-
-  let staffs = doc.documentElement.getElementsByTagName("staff");
-  for (let i=0; i<staffs.length; i++) {
-    if (staffs[i].getAttribute("n") == n) {
-      staffs[i].parentNode.removeChild(staffs[i]);
-      i -= 1;
-    }
-  }
-}
-
 function parseMEI(number, label, file, options) {
   let queryParams = {
     variables: {
