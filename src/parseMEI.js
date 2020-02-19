@@ -3,8 +3,6 @@ const exist = require('@existdb/node-exist'),
       db = exist.connect(existConfig),
       verovio = require('verovio'),
       vrvToolkit = new verovio.toolkit(),
-      xmldom = require('xmldom'),
-      DOMParser = xmldom.DOMParser,
       PDFDocument = require('pdfkit'),
       SVGtoPDF = require('svg-to-pdfkit');
 
