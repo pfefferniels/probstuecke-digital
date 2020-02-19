@@ -1,5 +1,5 @@
 const render = require('express').Router(),
-      vrvAdapter = require('../src/parseMEI.js');
+      vrvAdapter = require('./parseMEI.js');
 
 render.get('/:number/:label/:file', function(req, res) {
   vrvAdapter.parseMEI(req.params.number,
