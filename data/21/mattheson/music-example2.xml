@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-CMN.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0" ?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
+    <meiHead>
+        <fileDesc>
+            <titleStmt>
+                <title></title>
+                <composer>
+                    <persName role="composer" auth.uri="http://d-nb.info/gnd/118578995" auth="GND">Johann Mattheson</persName>
+                </composer>
+                <respStmt>
+                    <resp>Edited by</resp>
+                    <persName role="editor" xml:id="pfeffer">Niels Pfeffer</persName>
+                    <persName role="editor" xml:id="rettinghaus">Klaus Rettinghaus</persName>
+                </respStmt>
+            </titleStmt>
+            <editionStmt>
+                <edition>
+                    First draft,
+                    <date>2019</date>
+                </edition>
+            </editionStmt>
+            <pubStmt>
+              <respStmt>
+                <persName role="publisher">Niels Pfeffer</persName>
+              </respStmt>
+              <date>2019</date>
+              <availability>
+                <useRestrict label="licence" auth="https://creativecommons.org/licenses/by/" codedval="4.0">
+                  <p>Creative Commons Attribution 4.0 International License</p>
+                </useRestrict>
+              </availability>
+            </pubStmt>
+        </fileDesc>
+    </meiHead>
+    <music>
+        <body>
+            <mdiv>
+                <score>
+                    <scoreDef mnum.visible="false">
+                        <staffGrp>
+                            <staffDef n="1" lines="5" clef.shape="C" clef.line="1" key.sig="4s" />
+                        </staffGrp>
+                    </scoreDef>
+                    <section>
+                        <measure xml:id="measure-0000000029357349" n="1">
+                            <staff n="1">
+                                <layer n="1">
+                                    <beam>
+                                        <note xml:id="note-0000001746231187" dur="16" oct="4" pname="d" accid.ges="s" />
+                                        <note xml:id="note-0000001037398814" dur="16" oct="4" pname="f" accid.ges="s" />
+                                        <note xml:id="note-0000001203120448" dur="16" oct="4" pname="d" accid.ges="s" />
+                                        <note xml:id="note-0000001376848333" dur="16" oct="4" pname="f" accid.ges="s" />
+                                        <note xml:id="note-0000000360206380" dur="16" oct="4" pname="d" accid.ges="s" />
+                                        <note xml:id="note-0000000221004225" dur="16" oct="4" pname="f" accid.ges="s" />
+                                    </beam>
+                                    <beam>
+                                        <note xml:id="note-0000000334469424" dur="16" oct="4" pname="c" accid.ges="s" />
+                                        <note xml:id="note-0000000779607387" dur="16" oct="4" pname="f" accid.ges="s" />
+                                        <note xml:id="note-0000000012025276" dur="16" oct="4" pname="c" accid.ges="s" />
+                                        <note xml:id="note-0000000530469942" dur="16" oct="4" pname="f" accid.ges="s" />
+                                        <note xml:id="note-0000000201600285" dur="16" oct="4" pname="c" accid.ges="s" />
+                                        <note xml:id="note-0000000482020780" dur="16" oct="4" pname="f" accid.ges="s" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                        </measure>
+                    </section>
+                </score>
+            </mdiv>
+        </body>
+    </music>
+</mei>

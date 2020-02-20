@@ -1,10 +1,10 @@
 const express = require('express'),
       bodyParser = require('body-parser'),
-      annotate = require('./routers/annotate.js'),
-      renderRouter = require('./routers/render.js'),
-      iiifRouter = require('./routers/iiif.js'),
-      facsimileRouter = require('./routers/facsimile.js'),
-      transcriptionRouter = require('./routers/transcription.js');
+      renderRouter = require('./src/render.js'),
+      iiifRouter = require('./src/iiif.js'),
+      facsimileRouter = require('./src/facsimile.js'),
+      transcriptionRouter = require('./src/transcription.js'),
+      personsRouter = require('./src/persons.js');
 
 // express.js setup
 const app = express();
@@ -20,12 +20,7 @@ app.use('/render', renderRouter);
 app.use('/facsimile', facsimileRouter);
 app.use('/transcription', transcriptionRouter);
 app.use('/iiif', iiifRouter);
-
-app.get('/_annotate', function(req, res) {
-  res.render('annotateFacsimile');
-});
-app.post('/annotateFile', annotate.annotateFile);
-app.get('/annotatedFile', annotate.annotatedFile);
+app.use('/persons', personsRouter);
 
 app.get('/howto', function(req, res) {
   res.render('howto');

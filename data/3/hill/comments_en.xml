@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title type="part">Lesson by R. Hill on Probstück 3</title>
+        <editor>
+          <persName xml:id="pfeffer">
+            <surname>Niels</surname>
+            <forename>Pfeffer</forename>
+          </persName>
+        </editor>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>
+          <persName>
+            <surname>Niels</surname>
+            <forename>Pfeffer</forename>
+          </persName>
+        </publisher>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by/4.0">
+            <p>Creative Commons Attribution 4.0 International License</p>
+          </licence>
+        </availability>
+      </publicationStmt>
+      <sourceDesc>
+        <recordingStmt>
+          <recording type="audio">
+            <respStmt>
+              <persName>Niels Pfeffer</persName>
+            </respStmt>
+          </recording>
+        </recordingStmt>
+      </sourceDesc>
+    </fileDesc>
+    <profileDesc>
+			<particDesc>
+				<person>
+					<persName ref="http://d-nb.info/gnd/12461261X">Robert Hill</persName>
+				</person>
+				<person>
+					<persName>Niels Pfeffer</persName>
+				</person>
+			</particDesc>
+			<settingDesc>
+				<setting>
+					<date value="2019-05-17">17 May 2019</date>
+					<name type="place">Hochschule für Musik</name>
+					<name type="city">Freiburg im Breisgau, Germany</name>
+				</setting>
+			</settingDesc>
+		</profileDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <title type="full">
+       <title type="main">
+         Lesson on Prob-Stück 3
+       </title>
+       <title type="sub">
+         given by
+         <name role="teacher" type="person">Robert Hill</name>,
+         <name type="place">MH Freiburg</name>,
+         <date when="2019-05-17">05/17/2019</date>
+       </title>
+      </title>
+
+      <p>
+        [The student plays:]
+      </p>
+      <notatedMusic>
+        <ptr target="beginning1.xml" />
+      </notatedMusic>
+
+      <p>
+        <foreign xml:lang="de">R.H. Mein persönlicher Geschmack geht dahin,
+        etwas mehr auf die drei zu spielen, sodass ein trochäischer
+        Rhythmus — ◡ entsteht. Es gibt  zwar kaum Situationen, in denen
+        etwas wichtiges auf der 3 vorkommt. Aber auf der anderen Seite ändert
+        sich die Figur selbst eben auf der dritten Zählzeit.</foreign>
+      </p>
+
+      <p>
+        I think that
+        <ref target="#m-62">in the beginning</ref>
+        and in places that are like the beginning,
+        you should think of the right hand as the main hand and not as somehow
+        a harmonic accompaniment of the left hand. So I would change register
+        more in the right hand from the first beat to the third beat so that it
+        has more of a shape. Right now it is just an accompaniment. Something
+        like that:
+      </p>
+
+      <notatedMusic>
+        <ptr target="beginning2.xml" />
+      </notatedMusic>
+
+      <p>
+        And then a real contrast
+        <ref target="#m-420">in the middle section</ref>, when you have the other
+        figuration – maybe even on the upper manual, so that it sounds like a concerto
+        structure.
+      </p>
+
+      <p>
+        If you are thinking of the upper part as more somehow representing what
+        an orchestra would do and the actual figuration that is written is more
+        a kind of, you could say textual embellishment of a transcription of an
+        orchestral concerto, why don’t we take that idea one step further?
+      </p>
+
+      <notatedMusic>
+        <ptr target="beginning3.xml"></ptr>
+      </notatedMusic>
+
+      <p>
+        And then in <ref target="#m-523">bar 14</ref> actually all three are
+        accented, but they aren’t equal.
+      </p>
+
+      <notatedMusic>
+        <ptr target="middle-section1.xml"></ptr>
+      </notatedMusic>
+
+      <p>
+        And then something more like a two-voice texture.
+      </p>
+
+      <notatedMusic>
+        <ptr target="middle-section2.xml"></ptr>
+      </notatedMusic>
+    </body>
+  </text>
+</TEI>

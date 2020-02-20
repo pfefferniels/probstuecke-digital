@@ -1,4 +1,54 @@
 const cetei = new CETEI();
+let vrvToolkit = new verovio.toolkit();
+
+function generatePDF() {
+  let options = {
+    fontCallback: function(family, bold, italic, fontOptions) {
+      if (family == "VerovioText") {
+        return family;
+      }
+      if (family.match(/(?:^|,)\s*sans-serif\s*$/) || true) {
+        if (bold && italic) {return 'Times-BoldItalic';}
+        if (bold && !italic) {return 'Times-Bold';}
+        if (!bold && italic) {return 'Times-Italic';}
+        if (!bold && !italic) {return 'Times-Roman';}
+      }
+    }
+  };
+
+  var doc = new PDFDocument({
+    size: 'A4',
+    useCSS: true,
+    compress: true,
+    autoFirstPage: false});
+  doc.info['Title'] = number + '. Probstück';
+
+  var stream = doc.pipe(blobStream());
+  stream.on('finish', function() {
+      var blob = stream.toBlob('application/pdf');
+      saveAs(blob, 'probstueck_' + number + '.pdf');
+  });
+
+  var buffer = Uint8Array.from(atob(vrvTTF), c => c.charCodeAt(0));
+  doc.registerFont('VerovioText', buffer);
+
+  vrvToolkit.setOptions({
+    adjustPageHeight: false,
+    breaks: "auto",
+    mmOutput: true,
+    footer: "none",
+    pageHeight: 2970,
+    pageWidth: 2100,
+    scale: 100
+  });
+  vrvToolkit.loadData(mei);
+  for (let i=0; i<vrvToolkit.getPageCount(); i++) {
+      doc.addPage();
+      SVGtoPDF(doc, vrvToolkit.renderToSVG(i+1, {}), 0, 0, options);
+  }
+
+  doc.end();
+}
 
 function refToHref(el) {
   let ref = el.getAttribute('ref');
@@ -123,12 +173,17 @@ async function renderComments() {
     notatedMusicPromises.push(dfd);
 
     var notatedmusic = $(this);
-    let svg;
+    let exampleMEI;
     try {
-      svg = await $.get(['/render', number, label, $(this).find('tei-ptr').attr('target')].join('/'));
+      exampleMEI = await $.get(['/render', number, label, $(this).find('tei-ptr').attr('target')].join('/'));
     } catch (error) {
       printError("failed loading embedded music example: " + error);
     }
+    let svg = vrvToolkit.renderData(exampleMEI, {
+      pageHeight: 30000,
+      adjustPageHeight: 1,
+      footer: "none"
+    });
     notatedmusic.find("tei-ptr").replaceWith(svg);
 
     dfd.resolve();
@@ -387,18 +442,27 @@ function normalizeOrthography() {
 }
 
 $(document).ready(async function() {
+  if (mei) {
+    vrvToolkit.setOptions({
+      pageHeight: 30000,
+      adjustPageHeight: true,
+      footer: 'none'
+    });
+    vrvToolkit.loadData(mei);
+    let svg = vrvToolkit.renderToSVG(1, {});
+    $("#score-view").html(svg);
+
+    $("#player").midiPlayer();
+    const piece = 'data:audio/midi;base64,' + vrvToolkit.renderToMIDI();
+    $("#player").show();
+    $("#player").midiPlayer.load(piece);
+  }
+
   if (teiComments) {
     await renderComments();
   }
 
   normalizeOrthography();
-
-  if (midi) {
-    $("#player").midiPlayer();
-    const piece = 'data:audio/midi;base64,' + midi;
-    $("#player").show();
-    $("#player").midiPlayer.load(piece);
-  }
 
   $("#update-page").on('click', function() {
     $('#options-form').submit();
@@ -416,7 +480,12 @@ $(document).ready(async function() {
   $('#update-orthography').on('click', normalizeOrthography);
 
   $("#pdf-download").on('click', function() {
-    window.location += '/pdf';
+    generatePDF();
+  });
+
+  $('#mei-download').on('click', function() {
+    saveAs(new Blob([mei], {type: "text/xml;charset=utf-8"}),
+      `probstueck_${number}.xml`);
   });
 
   // highlighting the element that might be given in the URL

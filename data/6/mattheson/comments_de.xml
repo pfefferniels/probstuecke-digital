@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title type="part">Mattheson: Der Ober-Classe Sechstes Probstück</title>
+        <editor>
+          <persName xml:id="pfeffer">
+            <surname>Niels</surname>
+            <forename>Pfeffer</forename>
+          </persName>
+        </editor>
+        <editor>
+          <persName xml:id="rettinghaus" ref="https://d-nb.info/gnd/140541624">
+            <surname>Klaus</surname>
+            <forename>Rettinghaus</forename>
+          </persName>
+        </editor>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>
+          <persName>
+            <surname>Niels</surname>
+            <forename>Pfeffer</forename>
+          </persName>
+        </publisher>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by/4.0">
+            <p>Creative Commons Attribution 4.0 International License</p>
+          </licence>
+        </availability>
+      </publicationStmt>
+      <sourceDesc>
+        <bibl type="M">Mattheson, Johann: Grosse General-Baß-Schule. Hamburg, 1731.</bibl>
+        <biblFull>
+          <titleStmt>
+            <title level="m" type="main">Johann Matthesons Grosse General-Baß-Schule.</title>
+            <title level="m" type="sub">Oder: Der exemplarischen Organisten-Probe</title>
+            <title level="m" type="sub">Bestehend in dreien Classen, Als: In einer gru&#x0364;ndlichen Vorbereitung, In 24 leichten Exempeln, In 24 schwerern Prob-Stu&#x0364;cken</title>
+            <author>
+              <persName ref="http://d-nb.info/gnd/118578995">
+                <surname>Johann</surname>
+                <forename>Mattheson</forename>
+              </persName>
+            </author>
+          </titleStmt>
+          <editionStmt>
+            <edition n="2">Zweite/ verbesserte und vermehrte Auflage</edition>
+          </editionStmt>
+          <publicationStmt>
+            <publisher>
+              <name>Kißner</name>
+            </publisher>
+            <pubPlace>Hamburg</pubPlace>
+            <date type="publication">1731</date>
+          </publicationStmt>
+        </biblFull>
+        <msDesc>
+          <msIdentifier>
+            <repository>Bayerische Staatsbibliothek</repository>
+            <idno>
+              <idno type="shelfmark">Bayerische Staatsbibliothek, Mus.th. 978 a</idno>
+              <idno type="URLCatalogue">https://opacplus.bsb-muenchen.de/search?oclcno=57052215</idno>
+              <idno type="URLIIIF">https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/manifest</idno>
+              <idno type="URN">urn:nbn:de:bvb:12-bsb10598495-7</idno>
+            </idno>
+          </msIdentifier>
+          <physDesc>
+            <typeDesc>
+              <p>Fraktur</p>
+            </typeDesc>
+          </physDesc>
+        </msDesc>
+      </sourceDesc>
+    </fileDesc>
+  </teiHeader>
+  <facsimile decls="#secondEdition">
+    <surface ulx="0" uly="0" lrx="1998" lry="2396" xml:id="facs-p417">
+      <graphic width="1998px" height="2396px" url="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/417"/>
+      <zone ulx="60" uly="302" lrx="1655" xml:id="facsZone-p1-1"/>
+      <zone ulx="54" uly="1643" lrx="2195" xml:id="facsZone-p2-1"/>
+    </surface>
+    <surface ulx="0" uly="0" lrx="1998" lry="2396" xml:id="facs-p418">
+      <graphic width="1998px" height="2396px" url="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/418"/>
+      <zone ulx="132" uly="137" lrx="614" xml:id="facsZone-p2-1-2"/>
+      <zone ulx="125" uly="626" lrx="1280" xml:id="facsZone-p3-1"/>
+      <zone ulx="372" uly="1259" lrx="1547" xml:id="facsZone-music-example1"/>
+      <zone ulx="132" uly="1535" lrx="1658" xml:id="facsZone-p3-2"/>
+      <zone ulx="129" uly="1634" lrx="2213" xml:id="facsZone-p4-1"/>
+    </surface>
+    <surface ulx="0" uly="0" lrx="1998" lry="2396" xml:id="facs-p419">
+      <graphic width="1998px" height="2396px" url="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/419"/>
+      <zone ulx="48" uly="173" lrx="677" xml:id="facsZone-p4-1-2"/>
+      <zone ulx="51" uly="659" lrx="1250" xml:id="facsZone-music-example2"/>
+      <zone ulx="54" uly="1193" lrx="1829" xml:id="facsZone-p5-1"/>
+      <zone ulx="57" uly="1802" lrx="2234" xml:id="facsZone-p6-1"/>
+    </surface>
+  </facsimile>
+  <text>
+    <body>
+      <pb n="333" facs="#facs-p417" />
+      <div n="0" type="chapter">
+        <head>Erla&#x0364;uterung.</head>
+        <div n="1" type="section">
+          <lb/><head>§. 1.</head>
+          <lb/><p xml:id="p1-1" facs="#facsZone-p1-1">
+            <hi rendition="#in">E</hi>S iſt ſchon zuvor erinnert worden, daß alles, was man in dieſen Exempeln
+            <lb/>der rechten Hand gerne beilegen wollte, ſich entweder vor oder hernach im
+            <lb/>Baß dergeſtalt befindet, daß es nur darff hervorgeſuchet oder auch nach-
+            <lb/>geahmet werden. Hier mo&#x0364;gte man nun gerne wiſſen, ob einer ſo viel Nachden-
+            <lb/>cken ha&#x0364;tte, mittelſst dieſer Anweiſung gegenwa&#x0364;rtiges Stu&#x0364;ck zu behandeln; oder ob
+            <lb/>ihm alles Haar-klein vorgeſchrieben werden mu&#x0364;sse? Wer die Probe anſtellen will,
+            <lb/>der laſſe dieſe Erla&#x0364;uterung ſo lange zuru&#x0364;ck bleiben, bis er mercket, ob sein Or-
+            <lb/>ganiſt das rechte Fleckgen getroffen habe, oder nicht. Trifft ers; ſo wu&#x0364;nschet ihm
+            <lb/>Glu&#x0364;ck. Verfehlt ers; ſo wird ers mu&#x0364;ſſen geben laſſen, und ſich nach ein-
+            <lb/>genommenem Unterricht weidlich wundern, daß er den Lunten nicht ſelber riechen
+            <lb/>ko&#x0364;nnen. Mancher wird hiebey eben ſo eine Nase auffwerffen, als
+            <hi rendition="#b"><persName ref="http://d-nb.info/gnd/118575449">Luthers</persName></hi> Ge-
+            <lb/>sellschafft, wie er ihr das Ey ſtehend machte, und ſagen: <hi rendition="#b">O!</hi> iſt es nichts an-
+            <lb/>ders als das? ich dachte Wunder, was es ſeyn wu&#x0364;rde. Mit ſolchen Anwei-
+            <lb/>ſungen gemahnet michs faſt eben, wie mit Artzneyen, die man ſehnlich verlan-
+            <lb/>get, und, wenn ſie geholffen, gerne wiſſen wolte, woraus ſie beſtanden. Erfa&#x0364;h-
+            <lb/>ret man denn, daß es lauter gemeine Kra&#x0364;uter und Gewa&#x0364;chſe geweſen, so verliehrt
+            <lb/>man ſchon die Hochachtung dafu&#x0364;r, ob das Mittel gleich noch ſo gute Wirckung
+            <lb/>gehabt ha&#x0364;tte. Das ſind lauter vorgefaßte Meynungen; ich bitte darum, man lasse die-
+            <lb/>ſelbe, ſonderlich in der Musik, fahren, und beurtheile die Sachen, gewiſſer maſſen, nach
+            <lb/>keinen anderen Gru&#x0364;nden, als nach dem Wol- oder Uebellaut, die Einrichtung mag
+            <lb/>ku&#x0364;nſtlich, oder ſchlecht, bunt, oder einfa&#x0364;ltig gerathen; gnug, wenn es gut klingt.
+          </p>
+        </div>
+        <div n="2" type="section">
+          <lb/><head>§. 2.</head>
+          <lb/><p xml:id="p2-1" facs="#facsZone-p2-1 #facsZone-p2-1-2">
+            Geſcha&#x0364;he es nicht, ehrlichen Leuten zu gefallen, die ſich dieſes Werck-
+            <lb/>leins auch bedienen mo&#x0364;gen, ich kann verſichern, meine gute Organiſten und ihre
+            <lb/>Burſchen ſollten noch ein Weilgen zappeln, ehe ſie erfu&#x0364;hren, wo Bartold hier den
+            <lb/>Moſt holet; Jch wu&#x0364;rde Anſtand nehmen, ihnen ſogleich zu ſagen: daß die vier-
+            <lb/>zehn Ta&#x0364;cte, welche der Baß vorher ſpielet, Note vor Note, in der rechten Hand
+            <lb/><ref target="#m-456">zu den folgenden dreyzehen Ta&#x0364;cten nachgeholet</ref>,
+            und nur zum <ref target="#m-903">vierzehnten</ref> und
+            <fw place="bottom" type="catch">funff</fw>
+            <pb n="334" facs="facs-p418" />
+
+            <ref target="#m-920">fu&#x0364;nffzehnten</ref> ein wenig vera&#x0364;ndert werden ko&#x0364;nnen.
+            Nun wird mein Organiſte den-
+            <lb/>cken, iſt das das ſcho&#x0364;ne Geheimniß? Das iſt ja was schlechtes! Habe ichs nicht
+            <lb/>geſagt, es wu&#x0364;rde so kommen? Doch ſinge noch kein Sieges-Lied, mein guter Held, ehe
+            <lb/>der Triumph da iſt; laß ho&#x0364;ren, wie klingt es? Zo&#x0364;gere nicht, fahre fort, ey lieber,
+            <lb/>fahre fort; bedencke die lincke Hand dabey; laß den Baß nicht ſo kahl daher tre-
+            <lb/>ten; kanſt du die Vollſtimmigkeit nicht ſo geſchwinde finden, ſo muſt du wenig-
+            <lb/>ſtens Octaven-Weiſe damit verfahren, bis endlich zum Schluß ins <hi rendition="#b">c</hi> mit Ehren
+            <lb/>gelanget ſeyn wird.
+          </p>
+        </div>
+
+        <div n="3" type="section">
+          <lb/><head>§. 3.</head>
+          <lb/><p xml:id="p3-1" facs="#facsZone-p3-1">
+            Die gewo&#x0364;hnlichen Gru&#x0364;nde der Baß-Vera&#x0364;nderungen ſind ſonſt diese, daß
+            <lb/>die Haupt-Noten vorher, die zufa&#x0364;lligen aber hintennach anſchlagen: doch bey
+            <lb/>heutiger Art zu ſpielen, abſonderlich, wenn ſich das Clavier allein ho&#x0364;ren la&#x0364;ßt,
+            <lb/>kehrt man es offt um, und macht es wie mit den Conſonanzen und Diſſonantzen,
+            <lb/>welche auch ihre
+            <hi rendition="#aq"><foreign xml:lang="ita">Note cambiate</foreign></hi> oder Wechsel-Noten
+            zulaſſen: ob es gleich ſonſt
+            <lb/>ſtarck wieder den Compositions-Bocks-Beutel la&#x0364;ufft. Doch mu&#x0364;ſſen die Haupt-
+            <lb/>Noten, wenn ſie nachſchlagen, in der Tiefe, die Brechungen aber in der Ho&#x0364;he
+            <lb/>vorgenommen werden. Und ſolchemnach ſind die Grund-Noten im
+            <ref target="#m-282">9.</ref> <ref target="#m-310">10.</ref> <ref target="#m-340">11.</ref>
+            <lb/><ref target="#m-369">12.</ref>
+            <ref target="#m-399">&#xA75B;c.</ref> Tact des vorhabenden Exempels dieſe:
+          </p>
+          <notatedMusic xml:id="music-example1" facs="#facsZone-music-example1">
+            <ptr target="music-example1.xml"/>
+          </notatedMusic>
+          <p xml:id="p3-2" facs="#facsZone-p3-2">
+            Ob was legalers, grundrichtigers und deutlichers ſeyn ko&#x0364;nne, weiß ich nicht.
+          </p>
+        </div>
+
+        <div n="4" type="section">
+          <lb/><head>§. 4.</head>
+          <lb/><p xml:id="p4-1" facs="#facsZone-p4-1 #facsZone-p4-1-2">
+            Nun folgen neun biß zehn bunte Ta&#x0364;cte im Baſſe; und obgleich hin und wieder
+            <lb/>eine Zieffer ausgelassen wa&#x0364;re, ſo wird man doch wol urtheilen, wohin etwan
+            <lb/>eine Sexte oder ♭5 geho&#x0364;re. Wer auch gerne wiſſen will, was bey dieſen sogenann-
+            <lb/>ten bunten Ta&#x0364;cten die eigentlichen Grund-Noten ſind, darauf ſich die Vera&#x0364;nderun-
+            <lb/>gen oder Brechungen beziehen, dem will ich ſie hier vor Augen legen, zumahl da
+            <lb/>nicht immer die erſten Noten im Tact die vornehmsten ſind, ſondern gar offt nur als
+            <lb/>Fu&#x0364;ll-Stimme da ſtehen. Jch habe geſagt, es wa&#x0364;ren neun bis zehn Ta&#x0364;cte; in den vier
+            <fw place="bottom" type="catch">er-</fw>
+            <pb n="334" facs="#facs-p419" />
+
+            erſten melden ſich zwar die Grund-Noten gleich bey dem Niederſchlage und Anfange
+            <lb/>eines jeden Viertels; im fu&#x0364;nfften aber iſt es anders beſchaffen, und in den vier folgen-
+            <lb/>den mo&#x0364;gte mancher auch zweiffeln, ob er ſie oben oder unten ſuchen ſollte. Weil
+            <lb/>denn nun ſehr viel an dieſem Unterricht von den Grund-Noten, bey dergleichen
+            <lb/>Vera&#x0364;nderungen oder Variationen, gelegen iſt, wird ſich ein Lehrbegieriger desfalls
+            <lb/>allhier Raths erhohlen ko&#x0364;nnen, und gegenwa&#x0364;rtige Vorfa&#x0364;lle, ſamt ihrer Erla&#x0364;uterung,
+            <lb/>gleichfalls auf andre Gelegenheiten anwenden lernen.
+            <hi rendition="#b">Anschlagende Haupt-Ga&#x0364;nge</hi>, <ref target="#m-954">
+              <hi rendition="#aq">pag. 331. lin. 3. tactu. 5.</hi>
+            </ref>
+            <note type="footnote">i.e. T. 31.</note>
+            <hi rendition="#b">u.s.w. bis zu Ende
+            <lb/>der Seite.</hi>
+          </p>
+          <notatedMusic xml:id="music-example2" facs="#facsZone-music-example2">
+            <ptr target="music-example2.xml"/>
+          </notatedMusic>
+        </div>
+
+        <div n="5" type="section">
+          <head>§. 5.</head>
+          <p xml:id="p5-1" facs="#facsZone-p5-1">
+            Aber weiter im Text. Was ſchla&#x0364;gſt du denn zu dieſem letzten <ref target="#m-1245">
+            <hi rendition="#b">d</hi> und dessen zwo
+            <lb/>Viertel-Pausen?</ref> Ja, was zu den <ref target="#m-1265">folgenden</ref>
+            fu&#x0364;nff oder ſechs Ta&#x0364;cten? Nimm dirs
+            <lb/>aus dem vorhergehenden, jedoch dißmahl nicht Note vor Note; ſtolpere auch
+            <lb/>nicht, ich rathe dirs. Du ſieheſt wohl, daß in den neun biß zehn Ta&#x0364;cten, die ich
+            <lb/>(<hi rendition="#b"><persName>Apollo</persName></hi> verzeih
+            mirs) bunt genennet habe, <ref target="#m-1110">nach dem ſechſten Tact</ref> die Ga&#x0364;n-
+            <lb/>ge ſich etwas weniges umkehren; solches wird man auch belieben nachzuma-
+            <lb/>chen, wenn er an
+            <ref target="#m-1310">den fu&#x0364;nfften Tact der sogenannten ſchlechten Noten ko&#x0364;mmt</ref>.
+            <lb/>Kann einer nach dieſem die letzten zwo&#x0364;lff Ta&#x0364;cte in der rechten Hand, bey guter
+            <lb/>Einrichtung, Tertzen- und Sexten-Weise mitnehmen, ſo wird es zu loben ſeyn,
+            <lb/>und von ihm heiſſen ko&#x0364;nnen: <hi rendition="#b">Er hat
+            ſeine Sache ſchon recht gethan.</hi>
+            </p>
+          </div>
+
+          <div n="6" type="section">
+            <lb/><head>§. 6.</head>
+            <lb/><p xml:id="p6-1" facs="#facsZone-p6-1">
+              Es iſt bereits, wegen der Sexten und Quarten, das no&#x0364;thige mehrmahlen erinnert
+              <lb/>worden; wem ſie aber ſo, wie ich ſie hier gerne haben wollte, nicht anſtehen, der kann
+              <lb/>im  <ref target="#m-41">erſten</ref> und <ref target="#m-100">dritten</ref> Tact
+              dieſes Exempels lieber den Accord dafu&#x0364;r nehmen, und
+              <lb/>zweimahl auf einem Viertel weghacken. Das wird legal ſeyn, und wunderſcho&#x0364;n
+              <lb/>heraus kommen.
+            </p>
+
+            <fw place="bottom" type="catch">Sie-</fw>
+          </div>
+
+          <!-- Das neu-eröffnete Orchestre, p. 241 f. -->
+          <note type="on-key-signature">
+            <hi rendition="#aq">F. dur (<foreign xml:lang="lat">Jonius tranſpoſitus</foreign>)</hi>
+            der ſechſte
+            <lb />Thon, <hi rendition="#b">iſt</hi> <hi rendition="#aq"><foreign xml:lang="fra">capable</foreign></hi>
+            <hi rendition="#b">die ſchönſten</hi> <hi rendition="#aq"><foreign xml:lang="fra">Sen-
+            <lb />timents</foreign></hi> <hi rendition="#b">von der Welt zu</hi>
+            <hi rendition="#aq"><foreign xml:lang="lat">exprimiren</foreign></hi>,
+            <lb />es ſey nun Großmuth, Standthafftigkeit, Lie-
+            <lb />be, oder was ſonſt in dem Tugend-Regiſter
+            <lb />oben an ſtehet, und ſolches alles mit einer der
+            <lb />maſſen natürlichen Art und unvergleichlichen
+            <lb /><hi rendition="#aq"><foreign xml:lang="fra">Facilité</foreign></hi>, daß gar kein Zwang dabey vonnö-
+            <lb />then iſt. Ja, die Artigkeit und <hi rendition="#aq"><foreign xml:lang="fra">Adreſſe</foreign></hi> dieſes
+            <lb />Thons iſt nicht beſſer zu beschreiben, als in
+            <lb />Vergleichung mit einem hübschen Menſchen,
+            <lb />dem alles, was er thut, es ſey ſo gering es im-
+            <lb />mer wolle, <hi rendition="#aq"><foreign xml:lang="lat">perfect</foreign></hi> gut anſtehet, und der, wie
+            <lb />die Frantzosen reden, <hi rendition="#aq"><foreign xml:lang="fra">bonne grace</foreign></hi> hat.
+            <lb /><persName ref="http://d-nb.info/gnd/118562347">Kircherus</persName> <hi rendition="#b">ſpricht:</hi> Er habe,
+            <quote xml:id="kirch-quote" corresp="#kirch-quote-trans">
+              <foreign xml:lang="lat">
+                neſcio
+                <fw place="bottom" type="catch">quid</fw>
+                <pb n="242" />
+                quid ſeveriſſimae hilaritatis &amp; bellicae in-
+                <lb />citationis;
+              </foreign>
+            </quote>
+            <quote type="translation" xml:id="kirch-quote-trans" corres="#kirch-quote">
+              eine gewiſſe ſtrenge Fröligkeit
+              <lb />und kriegeriſche Aufmenterung;
+            </quote>
+            welches ſich
+            <lb />aber nicht allerdings reimen will. Was an-
+            <lb />dere davon melden, iſt ſo mal <hi rendition="#aq"><foreign xml:lang="fra">à propos</foreign></hi> und
+            verwirrt, daß dem Leſer damit nicht beſchwer-
+            <lb />lich fallen will, nur ſtehet anzumercken, daß ſich
+            <lb />hiebey wiederum das übrige der obangeregten
+            <lb />irrigen Meynung, ſo wol der <hi rendition="#aq">Tertie</hi> als des
+            <lb /><hi rendition="#aq">b.</hi> wegen, widerleget. Denn erſtlich hat die-
+            <lb />ſer Thon <hi rendition="#aq">Tertiam majorem</hi>, iſt folglich <hi rendition="#aq">dur</hi>,
+            <lb />und mag dem ungeachtet die allerzärtlichſten
+            <lb />Sachen ausdrücken; vors andere iſt er mit dem
+            <lb /><hi rendition="#aq">b.</hi> bezeichnet, in der <hi rendition="#aq">Quarte</hi> nemlich, und ſol-
+            <lb />ches hindert keines weges, daß man nicht aller-
+            <lb />hand luſtige und friſche <hi rendition="#aq"><foreign xml:lang="fra">Pieçen</foreign></hi> daraus ſetzen
+            <lb />könne. Im folgenden wird ſich, gleichwie
+            <lb />ſchon im vorhergehenden <hi rendition="#aq">§. 11. &amp; § 12.</hi> alſo
+            <lb /><hi rendition="#aq">§. 15. &amp; § 16.</hi> weiſen, daß es nicht angehe, nach
+            <lb />ſolchen <hi rendition="#aq"><foreign xml:lang="lat">Principiis</foreign></hi> zu urtheilen.
+          </note>
+
+          <!-- Das neu-eröffnete Orchestre 1713, p. 86 -->
+          <note type="on-meter">
+            Drey-viertel. Ist die allergebra&#x0364;uchlich-
+            <lb/>ſte unter den Triplen,  und la&#x0364;ſt sich zu vielen,
+            <lb/>doch mehrenteils luſtigen Sachen <hi rendition="#aq">appliciren</hi>,
+            <lb/>darunter die <hi rendition="#aq">Menuetten</hi> den gro&#x0364;ſten Theil aus-
+            <lb/>machen.
+          </note>
+        </div>
+      </body>
+    </text>
+  </TEI>

@@ -1,0 +1,636 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title type="part">Lesson by R. Hill on Probstück 4</title>
+        <editor>
+          <persName xml:id="pfeffer">
+            <surname>Niels</surname>
+            <forename>Pfeffer</forename>
+          </persName>
+        </editor>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>
+          <persName>
+            <surname>Niels</surname>
+            <forename>Pfeffer</forename>
+          </persName>
+        </publisher>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by/4.0">
+            <p>Creative Commons Attribution 4.0 International License</p>
+          </licence>
+        </availability>
+      </publicationStmt>
+      <sourceDesc>
+        <recordingStmt>
+          <recording type="audio">
+            <respStmt>
+              <persName>Niels Pfeffer</persName>
+            </respStmt>
+          </recording>
+        </recordingStmt>
+      </sourceDesc>
+    </fileDesc>
+    <profileDesc>
+      <langUsage>
+       <language>German</language>
+       <language>English</language>
+      </langUsage>
+			<particDesc>
+				<person>
+					<persName ref="http://d-nb.info/gnd/12461261X">Robert Hill</persName>
+				</person>
+				<person>
+					<persName>Niels Pfeffer</persName>
+				</person>
+			</particDesc>
+			<settingDesc>
+				<setting>
+					<date value="2019-05-17">17 May 2019</date>
+					<name type="place">Hochschule für Musik</name>
+					<name type="city">Freiburg im Breisgau, Germany</name>
+				</setting>
+			</settingDesc>
+		</profileDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <title type="full">
+       <title type="main">
+         Lesson on Prob-Stück 4
+       </title>
+       <title type="sub">
+         <name type="place">MH Freiburg</name>,
+         <date when="2019-05-17">05/17/2019</date>
+       </title>
+      </title>
+
+      <listPerson>
+        <person xml:id="rh" role="teacher">
+          <persName ref="http://d-nb.info/gnd/12461261X">Robert Hill</persName>
+        </person>
+        <person xml:id="np" role="student">
+          <persName>Niels Pfeffer</persName>
+        </person>
+      </listPerson>
+
+      <surplus reason="irrelevant">
+        <incident who="#np">spielt</incident>
+      </surplus>
+
+      <u who="#rh">
+        <vocal><desc>Mhm</desc></vocal> <vocal><desc>cough</desc></vocal>
+        <pause />Teilweise
+        <choice>
+          <sic>das Problem ist</sic>
+          <corr>ist das Problem</corr>
+        </choice>,
+        <choice>
+          <sic>weil</sic>
+          <corr resp="#pfeffer">dass</corr>
+        </choice>
+        er das <supplied reason="clarification" resp="#pfeffer">Probstück</supplied> so homogen
+        <supplied reason="ommitted" resp="#pfeffer">schreibt.</supplied>
+      </u>
+      <surplus reason="irrelevant">
+        <u who="#np">
+          Ja, er schreibt einem ziemlich viel vor hier.
+          <vocal><desc>Mm</desc></vocal>
+        </u>
+      </surplus>
+      <u who="#rh">
+        <surplus reason="irrelevant">Ja. Also</surplus> Es gibt nicht so
+        viel<supplied reason="ommitted" resp="#pfeffer">e</supplied> Möglichkeiten,
+        <supplied reason="ommitted">etwas anders</supplied>
+        zu tun, als er vorschreibt.
+        <surplus reason="repeated"><vocal><desc>Ähm.</desc></vocal></surplus><vocal><desc>Ähm.</desc></vocal>
+      </u>
+
+      <surplus reason="irrelevant">
+        <u who="#rh">
+          Was hast du am Anfang <surplus reason="irrelevant">nochmal</surplus> gemacht?
+        </u>
+
+        <incident who="#np">spielt</incident>
+      </surplus>
+
+      <u who="#rh">
+        Wenn er sagt <q type="written"><supplied>mit</supplied> kurzen Schlägen</q>,<pause />
+      </u>
+      <surplus reason="irrelevant">
+        <u who="#np" trans="latching">Ja, und <q type="written">ungebrochen</q>.</u>
+      </surplus>
+      <u who="#rh" trans="overlap">
+         mach
+         <choice>
+           <sic>das</sic>
+           <corr>es</corr>
+         </choice> kurz.
+         <q type="written">Ungebrochen</q> heißt <q type="soCalled">unverziert</q>,
+         <pause />
+         denke ich<surplus reason="irrelevant"> mal</surplus>.
+      </u>
+
+      <surplus reason="irrelevant">
+        <u who="#np" trans="overlap">Okay, ja.</u>
+      </surplus>
+
+      <u who="#">Aber<pause/>
+        <unclear>, weiß nicht,</unclear>
+        <choice>
+          <sic>irgendwas</sic>
+          <corr>etwas</corr>
+        </choice><pause />
+        mehr in diese Richtung als in die anderen.
+        <surplus reason="irrelevant" resp="#pfeffer">, finde ich.</surplus><vocal><desc>Ähm.</desc></vocal>
+        <surplus reason="falseStart">Also und auch nicht</surplus>
+        Ich würde es nicht arpeggieren<unclear><foreign xml:lang="eng">, no?</foreign></unclear>.
+        <surplus reason="irrelevant">
+          Sondern
+          <vocal><desc>ähm</desc></vocal><pause/>
+          was heißt <supplied reason="ommitted" resp="#pfeffer">das?</supplied>
+        </surplus>
+        <pause/>
+        Wie voll ist <q type="written">voll</q>?
+      </u>
+
+      <surplus reason="irrelevant">
+        <u who="#np">
+          Nach Mattheson eher
+        </u>
+        <incident who="#np"><desc>spielt T. 1 mit Oktaven links.</desc></incident>
+      </surplus>
+
+      <u who="#rh">
+        Kannst du es so spielen, dass es noch mehr klingt wie ein Barockorchester so etwas tun würde?
+      </u>
+      <surplus reason="irrelevant">
+        <u who="#np">Nämlich?</u>
+      </surplus>
+      <u who="#rh"><surplus reason="irrelevant">Ich weiß es nicht. </surplus>
+      <surplus reason="falseStart">Also es klingt</surplus>
+      Es scheint mir sehr orchesterhaft zu sein, wie
+      <choice>
+        <sic>irgendeine</sic>
+        <corr>irgendein</corr>
+      </choice>
+      Anfang von einem italienischen Concerto.</u>
+
+      <surplus reason="irrelevant">
+        <incident who="#np"><desc>spielt</desc></incident>
+      </surplus>
+
+      <u who="#rh">
+        Ich würde nicht in eine tiefere Lage
+        <supplied reason="ommitted" resp="#pfeffer">gehen</supplied>.
+      </u>
+
+      <incident who="#rh"><desc>spielt Takt 1</desc></incident>
+      <media mimeType="audio/ogg" url="example1.ogg" ></media>
+
+      <u who="#rh">Also was ich jetzt hier tue, ist: <pause/></u>
+      <incident who="#rh">
+        <desc>spielt die <ref target="#m-41 #m-42">ersten zwei Akkorde mit etwas übergehaltenen Außenstimmen.</ref></desc>
+      </incident>
+      <media mimeType="audio/ogg" url="example2.ogg" ></media>
+      <u who="#rh">
+      – sodass die Außenstimmen länger resonieren können.</u>
+
+      <incident who="#rh">
+        <desc>
+          spielt Takte 1–3. Takt 2 im ritardando, Takt 3 a tempo.
+        </desc>
+      </incident>
+      <notatedMusic>
+        <ptr target="example2-1.xml" />
+      </notatedMusic>
+      <media mimeType="audio/ogg" url="example2-1.ogg"></media>
+      <surplus reason="irrelevant">
+        <incident who="#np"><desc>spielt T. 1–3</desc></incident>
+        <u who="#np">
+          <vocal><desc>Mm</desc></vocal>
+        </u>
+      </surplus>
+
+      <u who="#rh">
+        Die <ref target="#m-50">Akkordangebung am Anfang vom zweiten Takt</ref>
+        <choice>
+          <sic>ich würde</sic>
+          <corr>würde ich</corr>
+        </choice>
+        etwas weicher<supplied reason="ommitted" resp="#pfeffer"> gestalten</supplied>. Dass es
+        den Charakter schon wechselt.
+      </u>
+
+      <surplus reason="irrelevant">
+        <incident who="#np"><desc>spielt T. 2</desc></incident>
+      </surplus>
+
+      <u who="#rh">
+        <surplus reason="irrelevant">
+          Ja, <vocal><desc>Mhm,</desc></vocal> das ist, finde ich, mehr in seinem Sinne,<pause/>
+          als tiefer und dicker.
+        </surplus>
+        Und <surplus reason="falseStart">dann <vocal><desc>ähm</desc></vocal></surplus>
+        jetzt, Takt 3.
+      </u>
+
+      <surplus reason="irrelevant">
+        <incident who="#np"><desc>spielt T. 3</desc></incident>
+      </surplus>
+
+      <u who="#rh">
+        <surplus reason="irrelevant" resp="#pfeffer">Ja, also ich finde teilweise</surplus>
+        Das Problem liegt
+        <choice>
+          <sic>daran</sic>
+          <corr>darin</corr>
+        </choice>, wie<ptr type="transposition-origin" target="transposed-001"/> man
+        <surplus reason="falseStart">die Akkorde,</surplus>
+        <choice>
+          <sic>den</sic>
+          <corr resp="#pfeffer">dem</corr>
+        </choice>
+        Akkordsatz einen besonderen Charakter geben <seg xml:id="transposed-001">kann</seg>.
+        <surplus reason="irrelevant">
+          Spricht er das nicht das auch an?
+          <surplus reason="falseStart">In der zwei.<pause/></surplus>
+          Also,
+        </surplus>
+        <q type="written">Verlangt einen besonderen Diskant</q>. Was will er damit sagen?
+      </u>
+
+      <surplus reason="irrelevant">
+        <u who="#np">
+          Ich nehme an, dass er ausgeziert sein soll.
+        </u>
+      </surplus>
+
+
+      <u who="#rh">
+        <surplus reason="falseStart">Das ist,<pause/> weil er nach so viele <pause />und dann</surplus>
+        <q type="written">so stark wie möglich</q>
+        <supplied reason="ommitted" resp="#pfeffer">ist</supplied> als Kontrast zu
+        <q type="written">besonderen Diskant</q>
+        <supplied reason="ommitted" resp="#pfeffer">gedacht</supplied>,
+        <choice>
+          <sic>gehe ich davon aus.</sic>
+          <corr resp="#pfeffer">davon gehe ich aus.</corr>
+        </choice>
+        <surplus reason="falseStart">Sodass<vocal><desc>ähm</desc></vocal> wenn es,<pause /></surplus>
+        Kannst du <surplus reason="falseStart">noch</surplus>nur die rechte Hand spielen ab Takt 3?
+      </u>
+
+      <incident who="#np"><desc>Student spielt nur mit rechter Hand.</desc></incident>
+
+      <u who="#rh">
+        <vocal><desc>Mhm.</desc></vocal>
+        Und wenn das <seg xml:id="transposed-000">etwas</seg> mehr <surplus reason="repeated">eine</surplus>
+        <pause /> eine<supplied resp="#pfeffer">n</supplied>
+        <ptr type="transposition-origin" target="transposed-000" />
+        <choice>
+          <sic>sostenutoeren Charakter</sic>
+          <corr>sostenuto-Charakter</corr>
+        </choice>
+        hätte? Und mehr tanzend. Quasi
+        etwas mehr aus dem 12/8 herausholen.
+
+        <surplus reason="editorial">
+          Und, <vocal><desc>äh,</desc></vocal> die,
+          <vocal><desc>ähm</desc></vocal>
+        </surplus>
+      </u>
+
+      <incident who="#rh">
+        <desc>spielt T. 3 erstes Viertel</desc>
+      </incident>
+      <incident who="#rh">
+        <desc>spielt T. 3 erstes Viertel erneut, <ref target="#m-61 #m-62">e-fis</ref> überlegato</desc>
+      </incident>
+      <incident who="#rh">
+        <desc>spielt T. 3 erstes Viertel in Oktaven.</desc>
+      </incident>
+      <incident who="#rh">
+        <desc>
+          spielt erneut T. 3 erste zwei Viertel in Oktaven,
+          verdoppelte Noten (
+          <ref target="#m-59 #m-61">e-e</ref>,
+          <ref target="#m-70 #m-71">d-d</ref> etc.) legato,
+          quantitativer Akzent <ref target="#m-68 #m-78">auf den höchsten Tönen</ref>
+          und agogischer Verkürzung der <ref target="#m-64 #m-65 #m-66 #m-67">32stel-Noten</ref>.
+        </desc>
+      </incident>
+      <media mimeType="audio/ogg" url="example3.ogg" ></media>
+      <incident who="#rh">
+        <desc>
+          spielt mit gleicher agogischer Gestalt nur linke Hand.
+        </desc>
+      </incident>
+
+      <u who="#rh" trans="latching">
+        Etwas mehr gesanglich.
+      </u>
+      <incident who="#rh">
+        <desc>
+          spielt ab T. 3 zunächst nur linke Hand,
+          dann mit rechter Hand jeden Akkord arpeggiando bis T. 4 Mitte.
+        </desc>
+      </incident>
+      <notatedMusic>
+        <ptr target="example4.xml" />
+      </notatedMusic>
+      <media mimeType="audio/ogg" url="example4.ogg"></media>
+
+      <surplus reason="irrelevant">
+        <u who="#rh">
+          Die<note type="editorial">bezieht sich auf Notenhälse in Takt 4 der vorliegenden Druckausgabe, die
+          einen Sechzehntelrhythmus anzeigen.</note>
+          sind von ihm, oder von dir?</u>
+        <u who="#np">Also er sagt, man soll <ref target="#m-157">da</ref> Sechzehntelschläge spielen.</u>
+        <u who="#rh"><vocal><desc>Ah</desc></vocal></u>
+      </surplus>
+
+      <incident who="#rh"><desc>spielt T. 4 zweite Hälfte.</desc></incident>
+      <notatedMusic>
+        <ptr target="example5.xml" />
+      </notatedMusic>
+
+      <surplus reason="irrelevant">
+        <u who="#rh">
+          Und diese Oktaven<note type="editorial">bezieht sich auf in vorliegender Ausgabe in Stichnoten eingefügte Oktaven.</note> sind von ihm?
+        </u>
+        <u who="#np">Ja.</u>
+        <u who="#rh">Und das ist auch von ihm.</u>
+        <u who="#np">Ja.</u>
+        <u who="#rh">genau in diese Form?</u>
+        <u who="#np">
+          mit dem Akkord dahinten? Aber den Akkord hat er <pause/> Ja doch, mit dem Akkord.
+        </u>
+      </surplus>
+
+      <incident who="#rh"><desc>spielt erneut T. 3, nur rechte Hand, arpeggiando.</desc></incident>
+      <u who="#rh" trans="latching"><foreign xml:lang="eng">It sounds so loud.</foreign></u>
+      <incident who="#rh" desc="overlap"><desc>spielt T. 3 nur rechte Hand mit mehr Bindungen:</desc></incident>
+      <notatedMusic>
+        <ptr target="example6.xml" />
+      </notatedMusic>
+      <media mimeType="audio/ogg" url="example6.ogg"></media>
+
+      <u who="#rh" trans="latching"><surplus reason="irrelevant">So,</surplus> das ist lieblicher.</u>
+      <incident who="#rh"><desc>spielt</desc></incident>
+
+      <u who="#rh">
+        Und wie ist die harmonische Verbindung zwischen
+        <ref target="#m-227">
+          <choice>
+            <sic>dem</sic>
+            <corr>hier</corr>
+          </choice>
+        </ref>
+        und <ref target="#m-251">da</ref>?
+
+        <gap reason='inaudible' />
+      </u>
+
+      <surplus reason="irrelevant">
+        <u who="#np">
+          <surplus reason="irrelevant">Ich glaube, </surplus>
+          er macht das ziemlich oft, dass es einfach parallel rückt, nach oben, <pause/>
+          parallel.
+        </u>
+
+        <u who="#rh" trans="overlap">
+          Ok, aber es muss trotzdem eine harmonische Verbindung haben.
+        </u>
+        <incident who="#rh"><desc>spielt</desc></incident>
+        <u who="#rh">
+          Und wenn man das irgendwie fortsetzt? Die Idee hier, dass man<pause/>
+        </u>
+        <incident who="#rh"><desc>spielt h-d-e-g</desc></incident>
+
+        <u who="#np">
+          <surplus reason="falseStart">Oder wenn man einfach …</surplus>
+          Wenn man in den Sekundakkord geht? Mit hoher vier?
+        </u>
+
+        <u who="#rh">Diese Harmonie steht dann, was komisch ist.</u>
+        <u who="#np">Oder vermindert?</u>
+        <u who="#rh">Ja es ist besser.</u>
+        <incident who="#rh"><desc>spielt</desc></incident>
+        <u who="#rh">aber dann hat man hier, also <pause/> Ich versteh es nicht?</u>
+        <u who="#np">damit meint er hier</u>
+        <u who="#rh">
+          Es wäre nicht schlecht, einfach eine Echo-Effekt.
+        </u>
+        <incident who="#rh"><desc>spielt</desc></incident>
+        <u who="#rh">
+          Es muss irgendetwas neues
+        </u>
+        <u who="#np">Und wenn man g chromatisch abwärts führt?</u>
+        <u who="#rh">Also sequenzartig.</u>
+      </surplus>
+      <incident who="#rh"><desc>spielt eine Partimentoreduktion</desc></incident>
+
+      <u who="rh">
+        <surplus reason="irrelevant">
+          das ist am wahrscheinlichsten.
+          Oder das! Ah.
+          Aber dann hat man das Problem hier.
+          Ah, jetzt verstehe ich es.
+        </surplus> Man darf das
+        <ref target="#m-253">d</ref> nicht als Instanz nehmen.
+        Sondern das <ref target="#m-254">c</ref>
+        <choice>
+          <sic>als</sic>
+          <corr>ist die</corr>
+        </choice> Instanz.
+        <surplus reason="irrelevant">
+          Ja, <foreign xml:lang="en">that sounds like proper for my taste.</foreign>
+          Ah, oder musst eventuell hier
+        </surplus>
+      </u>
+      <incident who="#rh"><desc>spielt Übergang von Takt 5 auf 6.</desc></incident>
+
+      <surplus reason="irrelevant">
+        <u who="#rh">
+          <foreign xml:lang="en">some sort of transition</foreign>
+        </u>
+      </surplus>
+
+      <incident who="#np">
+        <desc>spielt erneut den Übergang, aber Takt 6 harmonisch verändert:</desc>
+      </incident>
+      <notatedMusic xml:id="example7">
+        <ptr target="example7.xml" />
+      </notatedMusic>
+      <u who="rh">
+        Mit Zäsur würde <ref target="#example7">das</ref> gehen.
+      </u>
+      <surplus reason="irrelevant">
+        <u who="#np">
+          Vielleicht ist es einfach die Idee, dass es harsch klingt?
+        </u>
+      </surplus>
+      <u who="#rh">
+        Es ist besser, wenn du aus dem Obermanual zurückkommst,
+        <note type="editorial">i.e. auf Takt 6 Schlag 1</note> dann ist es plausibler.
+      </u>
+
+      <u who="#np">Und an der Stelle:</u>
+      <incident who="np">
+        <desc>wechselt <ref target="#m-298">auf der 1 von Takt 7</ref> ins Obermanual.</desc>
+      </incident>
+
+      <u who="#rh">
+        Ja, ich würde das in den Bass nehmen, <surplus reason="falseStart">und dann,</surplus>
+        weil es so häufig in dieser  Lage gewesen ist.
+      </u>
+      <incident who="#rh">
+        <desc>
+          spielt <ref target="#m-370">Takt 8</ref> und nimmt die von Mattheson vorgesehene
+          Figuration in den Bass:</desc>
+      </incident>
+      <notatedMusic>
+        <ptr target="example8.xml" />
+      </notatedMusic>
+
+      <u who="#rh">
+        Diese<supplied reason="ommitted" resp="#pfeffer">s</supplied> B-Dur-Prelude kennst du, oder?
+        <note type="editorial">
+          bezieht sich auf das Prelude der Suite B-Dur von
+          <persName ref="http://d-nb.info/gnd/121343510">Georg Friedrich Händel</persName>
+        </note>
+      </u>
+      <surplus reason="irrelevant">
+        <incident who="#rh">
+          <desc>spielt den Anfang des B-Dur-Preludes</desc>
+        </incident>
+      </surplus>
+      <incident who="#rh">
+        <desc>spielt <ref target="#m-417">T. 10.</ref></desc>
+      </incident>
+      <notatedMusic>
+        <ptr target="example10.xml" />
+      </notatedMusic>
+      <media mimeType="audio/ogg" url="example10.ogg" ></media>
+
+      <incident who="#np">
+        <desc>spielt bis T. 12</desc>
+      </incident>
+      <u who="#rh">
+        Und hier die rechte Hand eine Oktave tiefer und die linke Hand bleibt. Die rechte
+        Hand als tiefe Solostimme<supplied resp="#pfeffer"> gedacht</supplied>.
+      </u>
+      <incident who="#rh">
+        <desc>
+          spielt ab <ref target="#m-512">T. 12</ref> auf zwei Manualen:
+        </desc>
+      </incident>
+      <notatedMusic>
+        <ptr target="example11.xml" />
+      </notatedMusic>
+      <incident who="#rh">
+        <desc><ref target="#m-637">spielt T. 14 Schlag 4</ref> auf Obermanual als Echo.</desc>
+      </incident>
+
+
+      <u who="#rh">
+        <foreign xml:lang="eng">
+          I think, the more you take it as a sketch, the happier you'll be. Apparently because
+          it's just too crude, it's not worked out, it's not even an attempt to really
+          work it out.
+          You could say it's a set of ideas, and he writes them down and he does not
+          really care what you do with them, as long as it
+          is in the <distinct xml:lang="ger">Sinne</distinct> of the piece which is –
+          it is a platform of your imagination. I think the more you look at it like that the
+          happier you'll be.
+          <pause />
+          <surplus reason="irrelevant">So let's look at this again, because I kind of like this.</surplus>
+        </foreign>
+      </u>
+
+      <surplus reason="irrelevant">
+        <incident who="#np"><desc>spielt mit rechter Hand unter linker</desc></incident>
+      </surplus>
+
+      <u who="#rh">
+        Here are arpeggios <gap reason='inaudible' />
+      </u>
+      <incident who="#rh">
+        <desc>
+          spielt <ref target="#m-932 #m-947">T. 21f.</ref>, ab
+          <ref target="#ex9-001">G</ref> auf Obermanual:
+        </desc>
+      </incident>
+      <notatedMusic>
+        <ptr target="example9.xml" />
+      </notatedMusic>
+      <surplus reason="irrelevant">
+        <incident who="#np">
+          <desc>spielt T. 21f.</desc>
+        </incident>
+      </surplus>
+
+      <gap reason="irrelevant" />
+
+      <incident who="#np">
+        <desc>spielt T. 21–24</desc>
+      </incident>
+
+      <u who="#rh">
+        Vielleicht
+        <vocal><desc>ähm</desc></vocal>
+        das hier laut und das leise?
+        Dass <surplus reason="falseStart">die unteren</surplus> die rechte Hand oben
+        <supplied resp="#pfeffer">ist</supplied>
+        an <ref target="#m-1032">dieser Stelle.</ref> Und etwas Vergleichbares hier. Das hier unten, <ref target="#m-1007">das</ref> oben.
+      </u>
+      <incident who="#rh">
+        spielt in T. 23 linke Hand auf Ober- und rechte Hand auf Untermanual
+        und in T. 24 umgekehrt.
+      </incident>
+      <surplus reason="editorial">
+        <incident who="#np">
+          <desc>wiederholt</desc>
+        </incident>
+      </surplus>
+
+      <u who="#rh">
+        <surplus reason="irrelevant">Ah, </surplus>
+        <ref target="#m-1114 #m-1115 #m-1179 #m-1180">Das</ref> ist die Variation auf
+        diese<supplied reason="omitted" resp="#pfeffer">n</supplied> ersten Anfang. Vielleicht muss man
+        die linke Hand immer noch ein bisschen trocken<supplied reason="omitted" resp="#np"> spielen</supplied>.
+      </u>
+      <incident who="#np">
+        <desc>spielt ab T. 25 Mitte linke Hand mit "trockenen" Arpeggi.</desc>
+      </incident>
+
+      <gap reason="editorial" resp="#pfeffer"></gap>
+
+      <u who="#rh">
+        Ich habe überlegt, ob mittlerweise die linke Hand <ptr type="transposition-origin" target="#transposed-002"/>nicht umgeschrieben
+        werden <seg xml:id="transposed-002">könnte</seg> bei <ref target="#m-1182">dieser Stelle</ref>, weil es
+        <choice>
+          <sic>ist so häufig wiederholt.</sic>
+          <corr>so häufig wiederholt wird.</corr>
+        </choice>
+      </u>
+      <incident who="#rh">
+        <desc>spielt ab T. 26 Mitte mit Bassvariation:</desc>
+      </incident>
+      <notatedMusic>
+        <ptr target="example12.xml" />
+      </notatedMusic>
+
+      <u who="#rh">
+        <foreign xml:lang="eng">Something that seems to have another variation character on the bass and
+        also sustains this basic idea of a <gap reason='inaudible'>singing</gap>,
+        actually quite</foreign> lieblich.
+        Nicht so grob und schroff, sondern eher freundlich.
+      </u>
+    </body>
+  </text>
+</TEI>

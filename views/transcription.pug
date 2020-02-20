@@ -11,13 +11,19 @@ block headAdditions
   link(rel='stylesheet' href='/css/tei-speech.css')
 
   script.
+    mei = `!{mei}`;
+    teiComments = `!{teiComment}`;
     number = "#{number}";
     label = "#{label}";
-    midi = "#{midi}";
-    teiComments = `!{teiComment}`;
   
   script(type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/svg.js/3.0.13/svg.min.js')
   script(type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/findAndReplaceDOMText/0.4.6/findAndReplaceDOMText.min.js')
+  script(type='text/javascript' src="https://cdn.jsdelivr.net/npm/file-saver@2.0.2/dist/FileSaver.min.js")
+  script(type='text/javascript' src="https://cdn.jsdelivr.net/npm/pdfkit@0.11.0/js/pdfkit.standalone.js")
+  script(type='text/javascript' src="https://cdn.jsdelivr.net/npm/svg-to-pdfkit@0.1.8/source.min.js")
+  script(type='text/javascript' src='/js/verovio-toolkit.js')
+  script(type='text/javascript' src="/js/blobstream.js")
+  script(type='text/javascript' src="/js/vrv-ttf.js")
   script(type='text/javascript' src='/js/wildwebmidi.js')
   script(type='text/javascript' src='/js/midiplayer.js')
   script(type='text/javascript' src='/js/transcription.js')
@@ -144,11 +150,12 @@ block content
           button.btn.btn-secondary(type="button" data-dismiss="modal") Close
 
   .row
-    if svgScore
-      .col-sm#score-view !{svgScore}
+    if mei
+      .col-sm#score-view
     if teiComment
       .col-sm#comments-view 
   
   #footer.fixed-bottom.d-flex.bg-light.rounded-top
     #player.p-1
     a#pdf-download.p-1.fas.fa-file-pdf.fa-2x
+    a#mei-download.p-1.fas.fa-download.fa-2x
