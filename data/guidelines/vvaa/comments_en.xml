@@ -1,0 +1,91 @@
+<?xml-model href="http://www.deutschestextarchiv.de/basisformat.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0" ?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title level="a">Editorial Guidelines</title>
+        <author>Niels Pfeffer</author>
+        <author>Klaus Rettinghaus</author>
+      </titleStmt>
+      <editionStmt>
+        <p>Preliminary Version</p>
+      </editionStmt>
+      <publicationStmt>
+        <publisher>
+          <persName>
+            <surname>Niels</surname>
+            <forename>Pfeffer</forename>
+          </persName>
+        </publisher>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by/4.0">
+            <p>Creative Commons Attribution 4.0 International License</p>
+          </licence>
+        </availability>
+      </publicationStmt>
+      <sourceDesc>
+        <p>No source: This is an original work.</p>
+      </sourceDesc>
+    </fileDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <div>
+        <head><hi rendition="#b">Preamble</hi></head>
+
+        <p>
+          <hi rendition="#i">Probstuecke Digital</hi> is a digital edition.
+          All musical and textual parts are encoded in XML. This encoding follows
+          the standards of the Music Encoding Initiative (MEI) and of the
+          Text Encoding Initiative (TEI) and builds the core of the edition,
+          which then can be visualised with appropriate software.
+          Due to its nature of a digital edition, these edition guidelines
+          are partially encoding guidelines as well.
+        </p>
+      </div>
+      <div>
+        <head><hi rendition="#b">Music</hi></head>
+
+        <p>
+          All the original clefs are encoded.
+        </p>
+
+        <p>
+          Accidentals are adapted to modern practice.
+        </p>
+
+        <p>
+          Original double bar lines at the end of a piece are adapted to the
+          modern practice.
+        </p>
+
+        <p>
+          Obvious and clear mistakes are corrected.
+        </p>
+
+        <p>
+          Editorial additions are marked as <code>&lt;supplied&gt;</code>.
+        </p>
+      </div>
+
+      <div>
+        <head><hi rendition="#b">Text</hi></head>
+        <p>
+          All textes are provided as a diplomatic transcription, preserving
+          original linebreaks, orthography, mistakes and other idiosyncrasies.
+          Text portions of this edition follow the guidelines of the
+          <hi rendition="#b">DTA ›Base Format‹ (DTABf)</hi>.
+        </p>
+        <p>
+          For the sake of easier
+          readability all slashes (<hi rendition="#b">/</hi>) are replaced by
+          commata (<hi rendition="#b">,</hi>).
+        </p>
+        <p>
+          Linebreaks are preserved (this is not yet encoded in all documents).
+          Musical meters in the text are encoded using a <hi rendition="#b">/</hi>.
+        </p>
+      </div>
+    </body>
+  </text>
+</TEI>

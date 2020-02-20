@@ -279,9 +279,13 @@ tei-pb[n]:after {
 }
 
 tei-fw[type="catch"][place="bottom"] {
-    text-align:right;
-    display:block;
-    color:#666;
+  text-align: right;
+  display: block;
+  color: #666;
+}
+
+tei-code {
+  font-family: monospace;
 }
 
 /* overwrites the default max-width of bootstrap's popover */
