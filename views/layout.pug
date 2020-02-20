@@ -10,7 +10,7 @@ head
   script(type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js')
   script(type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js')
   script(type='text/javascript' src='/js/CETEI.js')
-
+  
   block headAdditions
 
 mixin menu(title)
@@ -192,6 +192,9 @@ mixin subitem(title)
               +submenu('Transcription')
                 +subitem('1st edition (1619)')(href='/transcription/21/mattheson/firstEdition')
                 +subitem('2nd edition (1731)')(href='/transcription/21/mattheson/secondEdition')
+
+        +menu('Appendix')(id='appendix')
+          +subitem('Index of Persons')(href='/persons')
 
   .mt-1#options
     block options
