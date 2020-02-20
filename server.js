@@ -26,10 +26,6 @@ app.get('/howto', function(req, res) {
   res.render('howto');
 });
 
-app.get('/guidelines', function(req, res) {
-  res.render('guidelines');
-});
-
 app.get('/contributions', function(req, res) {
   res.render('contributions');
 });
