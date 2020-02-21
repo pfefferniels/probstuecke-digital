@@ -11,6 +11,7 @@ Installation
 ------------
 
 1. `git clone https://github.com/pfefferniels/probstuecke-digital`
-2. `gulp deploy`
-3. `npm install`
-4. `npm start` and open `localhost:3000` in the browser.
+2. Adapt `existConfig.json.template` to your eXist-db configuration and rename it to `existConfig.json`
+3. `gulp deploy`
+4. `npm install`
+5. `npm start` and open `localhost:3000` in the browser.
