@@ -29,15 +29,16 @@ block headAdditions
   script(type='text/javascript' src='/js/transcription.js')
 
 block options
-  if number != "frontpage"
+  if mei
     .p-2(data-toggle="modal" data-target="#optionsModal")
       i.fas.fa-lg.fa-wrench
   
-  .p-2(data-toggle="modal" data-target="#facsimileModal")
-    i.far.fa-lg.fa-image
-    
-  .p-2(data-toggle="modal" data-target="#orthographyModal")
-    i.fas.fa-lg.fa-font
+  if label == 'mattheson'
+    .p-2(data-toggle="modal" data-target="#facsimileModal")
+      i.far.fa-lg.fa-image
+  
+    .p-2(data-toggle="modal" data-target="#orthographyModal")
+      i.fas.fa-lg.fa-font
   
   .p-2(data-toggle="modal" data-target="#infoModal")
     i.fas.fa-lg.fa-info-circle
