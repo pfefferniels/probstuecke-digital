@@ -202,8 +202,14 @@ function connectCrossRefs(el) {
 }
 
 function reconnectCrossRefs() {
+  const uriRegex = /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/;
   $('tei-ref[target]').each(function() {
-    connectCrossRefs(this);
+    let target = $(this).attr('target');
+    if (target.match(uriRegex)) {
+      $(this).wrap(`<a href="${target}" />`);
+    } else {
+      connectCrossRefs(this);
+    }
   });
 }
 
