@@ -121,18 +121,19 @@
       <mdiv>
         <score>
           <scoreDef key.pname="d" key.mode="major">
+            <pgHead>
+              <rend halign="center" fontsize="large">Siebendes Prob-Stück.</rend>
+            </pgHead>
             <staffGrp>
               <staffDef xml:id="mattheson" clef.shape="G" clef.line="2" n="1" lines="5">
                 <label>Mattheson's annotations</label>
                 <keySig sig="2s"/>
                 <meterSig count="12" unit="8"/>
               </staffDef>
-
               <staffDef xml:id="bass" clef.shape="F" clef.line="4" n="2" lines="5">
                 <keySig sig="2s"/>
                 <meterSig count="12" unit="8"/>
               </staffDef>
-
             </staffGrp>
           </scoreDef>
           <section>
@@ -145,7 +146,6 @@
                   <note xml:id="note-0000000659257985" dur="8" oct="5" pname="e"/>
                 </layer>
               </staff>
-
               <staff xml:id="staff-0000001077379416" n="2" facs="#facsZone-staff-0000001077379416">
                 <layer n="1">
                   <rest xml:id="rest-0000000828025146" dur="8"/>
@@ -155,7 +155,6 @@
                   </beam>
                 </layer>
               </staff>
-
               <tempo xml:id="tempo-0000000597327698" staff="2" place="above" tstamp="1">Preſtiſſimo.</tempo>
             </measure>
             <measure xml:id="measure-0000001820538875" n="1">
@@ -175,7 +174,6 @@
                   <space xml:id="space-0000001463201012" dur="8"/>
                 </layer>
               </staff>
-
               <staff xml:id="staff-0000001423059601" n="2" facs="#facsZone-staff-0000001423059601">
                 <layer n="1">
                   <beam>
@@ -200,7 +198,6 @@
                   </beam>
                 </layer>
               </staff>
-
               <harm place="above" staff="2" startid="#note-0000000879171957">
                 <fb>
                   <f>6</f>
@@ -214,7 +211,6 @@
                   <mSpace/>
                 </layer>
               </staff>
-
               <staff xml:id="staff-0000000002981419" n="2" facs="#facsZone-staff-0000000002981419">
                 <layer n="1">
                   <beam>
@@ -239,7 +235,6 @@
                   </beam>
                 </layer>
               </staff>
-
             </measure>
             <measure xml:id="measure-0000000504180225" n="3">
               <staff n="1">
@@ -247,7 +242,6 @@
                   <mSpace/>
                 </layer>
               </staff>
-
               <staff xml:id="staff-0000000743842165" n="2" facs="#facsZone-staff-0000000743842165 #facsZone-staff-0000000743842165-2">
                 <layer n="1">
                   <beam>
@@ -275,7 +269,6 @@
                   </beam>
                 </layer>
               </staff>
-
               <harm place="above" staff="2" startid="#note-0000000284444524">
                 <fb>
                   <f>6</f>
@@ -294,7 +287,6 @@
                   <mSpace/>
                 </layer>
               </staff>
-
               <staff xml:id="staff-0000000841173304" n="2" facs="#facsZone-staff-0000000841173304">
                 <layer n="1">
                   <beam>
@@ -321,7 +313,6 @@
                   </beam>
                 </layer>
               </staff>
-
             </measure>
             <measure xml:id="measure-0000000974485298" n="5">
               <staff n="1">
@@ -329,7 +320,6 @@
                   <mSpace/>
                 </layer>
               </staff>
-
               <staff xml:id="staff-0000000499796290" n="2" facs="#facsZone-staff-0000000499796290">
                 <layer n="1">
                   <beam>
@@ -354,7 +344,6 @@
                   </beam>
                 </layer>
               </staff>
-
             </measure>
             <measure xml:id="measure-0000000373405161" n="6">
               <staff n="1">
@@ -362,7 +351,6 @@
                   <mSpace/>
                 </layer>
               </staff>
-
               <staff xml:id="staff-0000000149050808" n="2" facs="#facsZone-staff-0000000149050808">
                 <layer n="1">
                   <beam>
@@ -387,7 +375,6 @@
                   </beam>
                 </layer>
               </staff>
-
             </measure>
             <measure xml:id="measure-0000000459506537" n="7">
               <staff n="1">
@@ -395,7 +382,6 @@
                   <mSpace/>
                 </layer>
               </staff>
-
               <staff xml:id="staff-0000000730792583" n="2" facs="#facsZone-staff-0000000730792583">
                 <layer n="1">
                   <beam>
@@ -420,7 +406,6 @@
                   </beam>
                 </layer>
               </staff>
-
             </measure>
             <measure xml:id="measure-0000000648236806" n="8">
               <staff n="1">
@@ -428,7 +413,6 @@
                   <mSpace/>
                 </layer>
               </staff>
-
               <staff xml:id="staff-0000000427426924" n="2" facs="#facsZone-staff-0000000427426924">
                 <layer n="1">
                   <beam>
@@ -453,7 +437,6 @@
                   </beam>
                 </layer>
               </staff>
-
             </measure>
             <measure xml:id="measure-0000001262260004" n="9">
               <staff n="1">
@@ -461,7 +444,6 @@
                   <mSpace/>
                 </layer>
               </staff>
-
               <staff xml:id="staff-0000000692493857" n="2" facs="#facsZone-staff-0000000692493857">
                 <layer n="1">
                   <beam>
@@ -487,7 +469,6 @@
                   </beam>
                 </layer>
               </staff>
-
             </measure>
             <measure xml:id="measure-0000001946777136" n="10">
               <staff n="1">
@@ -495,7 +476,6 @@
                   <mSpace/>
                 </layer>
               </staff>
-
               <staff xml:id="staff-0000001032274837" n="2" facs="#facsZone-staff-0000001032274837">
                 <layer n="1">
                   <beam>
@@ -520,7 +500,6 @@
                   </beam>
                 </layer>
               </staff>
-
             </measure>
             <measure xml:id="measure-0000001559766408" n="11">
               <staff n="1">
@@ -528,7 +507,6 @@
                   <mSpace/>
                 </layer>
               </staff>
-
               <staff xml:id="staff-0000000352572094" n="2" facs="#facsZone-staff-0000000352572094 #facsZone-staff-0000000352572094-2">
                 <layer n="1">
                   <beam>
@@ -553,7 +531,6 @@
                   </beam>
                 </layer>
               </staff>
-
             </measure>
             <measure xml:id="measure-0000001887781985" n="12">
               <staff n="1">
@@ -561,7 +538,6 @@
                   <mSpace/>
                 </layer>
               </staff>
-
               <staff xml:id="staff-0000000148399113" n="2" facs="#facsZone-staff-0000000148399113">
                 <layer n="1">
                   <beam>
@@ -580,7 +556,6 @@
                   <note xml:id="note-0000000678815197" dur="8" oct="3" pname="a"/>
                 </layer>
               </staff>
-
             </measure>
             <measure xml:id="measure-0000001187858088" n="13">
               <staff n="1">
@@ -588,7 +563,6 @@
                   <mSpace/>
                 </layer>
               </staff>
-
               <staff xml:id="staff-0000000004778120" n="2" facs="#facsZone-staff-0000000004778120">
                 <layer n="1">
                   <beam>
@@ -628,7 +602,6 @@
                   <f>♮</f>
                 </fb>
               </harm>
-
             </measure>
             <measure xml:id="measure-0000000942980197" n="14">
               <staff n="1">
@@ -636,7 +609,6 @@
                   <mSpace/>
                 </layer>
               </staff>
-
               <staff xml:id="staff-0000000488093692" n="2" facs="#facsZone-staff-0000000488093692">
                 <layer n="1">
                   <beam>
@@ -664,7 +636,6 @@
                   <f>♯</f>
                 </fb>
               </harm>
-
               <fermata staff="2" startid="#note-0000001377258982" shape="curved" place="below"/>
               <tie staff="2" startid="#note-0000001377258982" endid="#note-0000000646000382"/>
             </measure>
@@ -689,7 +660,6 @@
                   <note xml:id="note-0000000988481560" dur="8" oct="4" pname="f" accid.ges="s"/>
                 </layer>
               </staff>
-
               <staff xml:id="staff-0000001305884217" n="2" facs="#facsZone-staff-0000001305884217">
                 <layer n="1">
                   <beam>
@@ -729,7 +699,6 @@
                   <f>♯</f>
                 </fb>
               </harm>
-
             </measure>
             <measure xml:id="measure-0000000112652792" n="16">
               <staff n="1">
@@ -737,7 +706,6 @@
                   <mSpace/>
                 </layer>
               </staff>
-
               <staff xml:id="staff-0000000409558870" n="2" facs="#facsZone-staff-0000000409558870">
                 <layer n="1">
                   <beam>
@@ -766,7 +734,6 @@
                   </beam>
                 </layer>
               </staff>
-
             </measure>
             <measure xml:id="measure-0000001610291690" n="17">
               <staff n="1">
@@ -774,7 +741,6 @@
                   <mSpace/>
                 </layer>
               </staff>
-
               <staff xml:id="staff-0000001099579548" n="2" facs="#facsZone-staff-0000001099579548 #facsZone-staff-0000001099579548-2">
                 <layer n="1">
                   <clef shape="F" line="4"/>
@@ -824,7 +790,6 @@
                   <f>6</f>
                 </fb>
               </harm>
-
             </measure>
             <measure xml:id="measure-0000001884094866" n="18">
               <staff n="1">
@@ -832,7 +797,6 @@
                   <mSpace/>
                 </layer>
               </staff>
-
               <staff xml:id="staff-0000001417510840" n="2" facs="#facsZone-staff-0000001417510840">
                 <layer n="1">
                   <beam>
@@ -889,7 +853,6 @@
                   <f>6</f>
                 </fb>
               </harm>
-
             </measure>
             <measure xml:id="measure-0000001661964557" n="19">
               <staff n="1">
@@ -897,7 +860,6 @@
                   <mSpace/>
                 </layer>
               </staff>
-
               <staff xml:id="staff-0000000017305758" n="2" facs="#facsZone-staff-0000000017305758">
                 <layer n="1">
                   <beam>
@@ -934,7 +896,6 @@
                   <f>6</f>
                 </fb>
               </harm>
-
             </measure>
             <pb source="#secondEdition" n="337" facs="#facs-p421"/>
             <measure xml:id="measure-0000001338299755" n="20">
@@ -943,7 +904,6 @@
                   <mSpace/>
                 </layer>
               </staff>
-
               <staff xml:id="staff-0000001399965698" n="2" facs="#facsZone-staff-0000001399965698">
                 <layer n="1">
                   <beam>
@@ -977,7 +937,6 @@
                   <f>6</f>
                 </fb>
               </harm>
-
             </measure>
             <measure xml:id="measure-0000000673809557" n="21">
               <staff n="1">
@@ -985,7 +944,6 @@
                   <mSpace/>
                 </layer>
               </staff>
-
               <staff xml:id="staff-0000001826190047" n="2" facs="#facsZone-staff-0000001826190047">
                 <layer n="1">
                   <beam>
@@ -1017,7 +975,6 @@
                   <f>6</f>
                 </fb>
               </harm>
-
             </measure>
             <measure xml:id="measure-0000001599262070" n="22">
               <staff n="1">
@@ -1025,7 +982,6 @@
                   <mSpace/>
                 </layer>
               </staff>
-
               <staff xml:id="staff-0000000498602132" n="2" facs="#facsZone-staff-0000000498602132 #facsZone-staff-0000000498602132-2">
                 <layer n="1">
                   <beam>
@@ -1052,7 +1008,6 @@
                   </beam>
                 </layer>
               </staff>
-
             </measure>
             <measure xml:id="measure-0000001237061831" n="23">
               <staff n="1">
@@ -1060,7 +1015,6 @@
                   <mSpace/>
                 </layer>
               </staff>
-
               <staff xml:id="staff-0000001467622024" n="2" facs="#facsZone-staff-0000001467622024">
                 <layer n="1">
                   <beam>
@@ -1105,7 +1059,6 @@
                   <f>6</f>
                 </fb>
               </harm>
-
             </measure>
             <measure xml:id="measure-0000000541047015" n="24">
               <staff n="1">
@@ -1113,7 +1066,6 @@
                   <mSpace/>
                 </layer>
               </staff>
-
               <staff xml:id="staff-0000001181018414" n="2" facs="#facsZone-staff-0000001181018414">
                 <layer n="1">
                   <beam>
@@ -1152,7 +1104,6 @@
                   <f>6</f>
                 </fb>
               </harm>
-
             </measure>
             <measure xml:id="measure-0000001658848286" n="25">
               <staff n="1">
@@ -1160,7 +1111,6 @@
                   <mSpace/>
                 </layer>
               </staff>
-
               <staff xml:id="staff-0000001949666436" n="2" facs="#facsZone-staff-0000001949666436">
                 <layer n="1">
                   <beam>
@@ -1205,7 +1155,6 @@
                   <f>4</f>
                 </fb>
               </harm>
-
             </measure>
             <measure xml:id="measure-0000000015843928" n="26">
               <staff n="1">
@@ -1213,7 +1162,6 @@
                   <mSpace/>
                 </layer>
               </staff>
-
               <staff xml:id="staff-0000000260134391" n="2" facs="#facsZone-staff-0000000260134391">
                 <layer n="1">
                   <beam>
@@ -1245,7 +1193,6 @@
                   <f>6</f>
                 </fb>
               </harm>
-
             </measure>
             <measure xml:id="measure-0000001197020314" n="27">
               <staff n="1">
@@ -1253,7 +1200,6 @@
                   <mSpace/>
                 </layer>
               </staff>
-
               <staff xml:id="staff-0000000966524630" n="2" facs="#facsZone-staff-0000000966524630 #facsZone-staff-0000000966524630-2">
                 <layer n="1">
                   <beam>
@@ -1291,7 +1237,6 @@
                   <f>5</f>
                 </fb>
               </harm>
-
             </measure>
             <measure xml:id="measure-0000001591760315" n="28">
               <staff n="1">
@@ -1299,7 +1244,6 @@
                   <mSpace/>
                 </layer>
               </staff>
-
               <staff xml:id="staff-0000002042412293" n="2" facs="#facsZone-staff-0000002042412293">
                 <layer n="1">
                   <beam>
@@ -1348,7 +1292,6 @@
                   <f>♯</f>
                 </fb>
               </harm>
-
             </measure>
             <measure xml:id="measure-0000001876325973" n="29">
               <staff n="1">
@@ -1356,7 +1299,6 @@
                   <mSpace/>
                 </layer>
               </staff>
-
               <staff xml:id="staff-0000000306746203" n="2" facs="#facsZone-staff-0000000306746203 #facsZone-staff-0000000306746203-2">
                 <layer n="1">
                   <clef shape="C" line="3"/>
@@ -1396,7 +1338,6 @@
                   <f>6</f>
                 </fb>
               </harm>
-
             </measure>
             <measure xml:id="measure-0000000707697492">
               <staff n="1">
@@ -1404,7 +1345,6 @@
                   <mSpace/>
                 </layer>
               </staff>
-
               <staff xml:id="staff-0000001159992497" n="2" facs="#facsZone-staff-0000001159992497">
                 <layer n="1">
                   <beam>
@@ -1435,7 +1375,6 @@
                   </beam>
                 </layer>
               </staff>
-
             </measure>
             <measure xml:id="measure-0000000192907198" n="31">
               <staff n="1">
@@ -1443,7 +1382,6 @@
                   <mSpace/>
                 </layer>
               </staff>
-
               <staff xml:id="staff-0000000205526610" n="2" facs="#facsZone-staff-0000000205526610 #facsZone-staff-0000000205526610-2">
                 <layer n="1">
                   <clef shape="C" line="4"/>
@@ -1471,7 +1409,6 @@
                   </beam>
                 </layer>
               </staff>
-
             </measure>
             <measure xml:id="measure-0000000329629518" n="32">
               <staff n="1">
@@ -1479,7 +1416,6 @@
                   <mSpace/>
                 </layer>
               </staff>
-
               <staff xml:id="staff-0000000503347429" n="2" facs="#facsZone-staff-0000000503347429">
                 <layer n="1">
                   <beam>
@@ -1504,7 +1440,6 @@
                   </beam>
                 </layer>
               </staff>
-
             </measure>
             <measure xml:id="measure-0000001969756795" n="33">
               <staff n="1">
@@ -1512,7 +1447,6 @@
                   <mSpace/>
                 </layer>
               </staff>
-
               <staff xml:id="staff-0000000256603721" n="2" facs="#facsZone-staff-0000000256603721">
                 <layer n="1">
                   <beam>
@@ -1552,7 +1486,6 @@
                   <f>6</f>
                 </fb>
               </harm>
-
             </measure>
             <measure xml:id="measure-0000001228752939" n="34">
               <staff n="1">
@@ -1560,7 +1493,6 @@
                   <mSpace/>
                 </layer>
               </staff>
-
               <staff xml:id="staff-0000002063148249" n="2" facs="#facsZone-staff-0000002063148249 #facsZone-staff-0000002063148249-2">
                 <layer n="1">
                   <beam>
@@ -1603,7 +1535,6 @@
                   <f>5</f>
                 </fb>
               </harm>
-
             </measure>
             <measure xml:id="measure-0000002129576251" n="35">
               <staff n="1">
@@ -1611,7 +1542,6 @@
                   <mSpace/>
                 </layer>
               </staff>
-
               <staff xml:id="staff-0000000623707715" n="2" facs="#facsZone-staff-0000000623707715">
                 <layer n="1">
                   <beam>
@@ -1654,7 +1584,6 @@
                   <f>6</f>
                 </fb>
               </harm>
-
             </measure>
             <measure xml:id="measure-0000001110836720" n="36">
               <staff n="1">
@@ -1662,7 +1591,6 @@
                   <mSpace/>
                 </layer>
               </staff>
-
               <staff xml:id="staff-0000001424441086" n="2" facs="#facsZone-staff-0000001424441086">
                 <layer n="1">
                   <beam>
@@ -1698,7 +1626,6 @@
                   <f>♯</f>
                 </fb>
               </harm>
-
             </measure>
             <measure xml:id="measure-0000001119193796" n="37">
               <staff n="1">
@@ -1706,7 +1633,6 @@
                   <mSpace/>
                 </layer>
               </staff>
-
               <tie endid="#m-918" startid="#m-916"/>
               <staff xml:id="staff-0000001474037539" n="2" facs="#facsZone-staff-0000001474037539">
                 <layer n="1">
@@ -1745,7 +1671,6 @@
                   <f>6</f>
                 </fb>
               </harm>
-
             </measure>
             <measure xml:id="measure-0000002141231202" n="38">
               <staff n="1">
@@ -1753,7 +1678,6 @@
                   <mSpace/>
                 </layer>
               </staff>
-
               <staff xml:id="staff-0000000875947902" n="2" facs="#facsZone-staff-0000000875947902">
                 <layer n="1">
                   <beam>
@@ -1792,7 +1716,6 @@
                   <f>♯</f>
                 </fb>
               </harm>
-
             </measure>
             <measure xml:id="measure-0000000216020788" right="end" n="39" metcon="false">
               <staff n="1">
@@ -1800,7 +1723,6 @@
                   <mSpace/>
                 </layer>
               </staff>
-
               <staff xml:id="staff-0000002012839886" n="2" facs="#facsZone-staff-0000002012839886">
                 <layer n="1">
                   <note xml:id="note-0000000847506698" dots="1" dur="2" oct="2" pname="e"/>
@@ -1811,7 +1733,6 @@
               <dir staff="2" tstamp="10" place="within">
                 <rend fontstyle="normal">Da Capo.</rend>
               </dir>
-
             </measure>
           </section>
         </score>
