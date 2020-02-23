@@ -143,6 +143,9 @@
       <mdiv>
         <score>
           <scoreDef key.pname="b" key.accid="f" key.mode="major">
+            <pgHead>
+              <rend halign="center" fontsize="large">Dreizehntes Prob-Stück.</rend>
+            </pgHead>
             <staffGrp>
               <staffDef xml:id="mattheson" clef.shape="G" clef.line="2" key.sig="2f" meter.count="9" meter.unit="16" n="1" lines="5">
                 <label>Mattheson's annotations</label>
@@ -177,7 +180,7 @@
                   </beam>
                 </layer>
               </staff>
-              <tempo staff="2" startid="#note-0000001326230254">Con Spirito</tempo>
+              <tempo staff="2" tstamp="1" place="above">Con Spirito</tempo>
             </measure>
             <measure xml:id="measure-0000001880145409" n="2">
               <staff xml:id="staff-0000000263804474" n="1">

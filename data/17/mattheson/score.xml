@@ -126,6 +126,9 @@
         <mdiv>
           <score>
             <scoreDef key.pname="a" key.mode="major">
+              <pgHead>
+                <rend halign="center" fontsize="large">Siebenzehntes Prob-Stück.</rend>
+              </pgHead>
               <staffGrp>
                 <staffDef xml:id="mattheson" label="Mattheson's annotations" clef.shape="G" clef.line="2" n="1" lines="5">
                   <keySig sig="3s"/>
@@ -169,7 +172,7 @@
                     <f>6⃥</f>
                   </fb>
                 </harm>
-                <tempo startid="#rest-0000001788744701" place="above">A giusto tempo.</tempo>
+                <tempo staff="2" tstamp="1" place="above">A giusto tempo.</tempo>
               </measure>
               <measure xml:id="measure-0000000183024625" n="2">
                 <staff xml:id="staff-0000000854220101" n="1">
