@@ -53,7 +53,7 @@ function generatePDF() {
 function refToHref(el) {
   let ref = el.getAttribute('ref');
   if (!ref) {
-    return $(el.innerHTML)[0];
+    return $('<span/>').html(el.innerHTML)[0];
   }
 
   let newRef = ref.replace('d-nb.info', 'lobid.org');
@@ -408,7 +408,7 @@ function normalizeOption(replace, orig, replacement) {
   }
 }
 
-function normalizeOrthography() {
+async function normalizeOrthography() {
   $('.indicator').remove();
 
   // normalizing long s and Umlaut
@@ -421,17 +421,20 @@ function normalizeOrthography() {
 
   // hiding linebreaks and normalizing hyphens at linebreaks.
   if ($('#ignore-lb').is(':checked')) {
-    $('tei-lb').replaceWith('<wbr>');
-    // in case of following the DTA-Bf rules strictily,
-    // <lb />s are found at the end of lines
-    $('tei-text')[0].innerHTML = $('tei-text')[0].innerHTML.replace(/[-]<wbr>(\n|\s)+/g, '&shy;');
-    // in case of following the TEI Guidelines, <lb />s are
-    // found in the beginning of lines
-    $('tei-text')[0].innerHTML = $('tei-text')[0].innerHTML.replace(/[-](\n|\s)+<wbr>/g, '&shy;');
+    // T5 Guidelines has <lb>s in the beginning of lines.
+    teiComments = teiComments.replace(/\-(\n|\s)*<lb(\s)*\/>([a-z])/g, '$3&#xAD;');
+    // DTA-Bf recommends <lb>s in the end of lines.
+    teiComments = teiComments.replace(/\-<lb(\s)*\/>(\n|\s)*([a-z])/g, '$3&#xAD;');
+
+    await renderComments();
+    $('tei-lb').hide();
   } else {
-    $('tei-text')[0].innerHTML = $('tei-text')[0].innerHTML.replace(/\u00AD/g, '-<wbr>');
-    $('wbr').replaceWith('<tei-lb data-origname="lb" />');
+    teiComments = teiComments.replace(/\&#xAD;/g, '-<lb/>');
+
+    await renderComments();
+    $('tei-lb').show();
   }
+  reconnectCrossRefs();
 
   // ignore pagination
   if ($('#ignore-pagination').is(':checked')) {
@@ -441,10 +444,6 @@ function normalizeOrthography() {
     $('tei-fw[type="catch"]').show();
     $('tei-pb').show();
   }
-
-  // After having modified the innerHTML, all reference event listeners will be gone.
-  // Therefore, we reconnect them here.
-  reconnectCrossRefs();
 }
 
 $(document).ready(async function() {
