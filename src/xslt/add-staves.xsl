@@ -20,6 +20,7 @@
 
     <xsl:template match="mei:measure">
         <xsl:copy>
+            <xsl:copy-of select="@*" />
             <xsl:for-each select="1 to $stavesAbove">
                 <xsl:variable name="i" select="."/>
                 <staff n="{$i+10}">
