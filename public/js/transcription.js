@@ -175,7 +175,12 @@ async function renderComments() {
     var notatedmusic = $(this);
     let exampleMEI;
     try {
-      exampleMEI = await $.get(['/render', number, label, $(this).find('tei-ptr').attr('target')].join('/'));
+      exampleMEI = await $.get(
+        ['/render',
+         number,
+         label,
+         $(this).find('tei-ptr').attr('target')].join('/')
+        + window.location.search);
     } catch (error) {
       printError("failed loading embedded music example: " + error);
     }

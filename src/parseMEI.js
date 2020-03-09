@@ -21,9 +21,9 @@ function parseMEI(number, label, file, options) {
     queryParams.variables.stavesBelow = options.below;
   }
 
-  if (options.showAnnotationStaff) {
-    queryParams.variables.removeAnnotationStaff = !options.showAnnotationStaff;
-  }
+  options.showAnnotationStaff == 'on' ?
+    queryParams.variables.removeAnnotationStaff = 'off' :
+    queryParams.variables.removeAnnotationStaff = 'on';
 
   if (options.modernClefs) {
     queryParams.variables.modernClefs = options.modernClefs;

@@ -1,8 +1,6 @@
 <xsl:stylesheet xmlns:mei="http://www.music-encoding.org/ns/mei" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
     <!-- adding staves above -->
-    <xsl:template match="meiStaffGrp/mei:staffDef[@n='1']" />
-
     <xsl:template match="mei:staffGrp">
         <xsl:apply-templates select="@*" />
         <xsl:copy>
