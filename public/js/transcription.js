@@ -408,16 +408,8 @@ function normalizeOption(replace, orig, replacement) {
   }
 }
 
-async function normalizeOrthography() {
+async function renderWithNormalizedOrthography() {
   $('.indicator').remove();
-
-  // normalizing long s and Umlaut
-  normalizeOption($('#normalize-s').is(':checked'), 'ſ', 's');
-  normalizeOption($('#normalize-umlaut').is(':checked'), 'aͤ', 'ä');
-  normalizeOption($('#normalize-umlaut').is(':checked'), 'oͤ', 'ö');
-  normalizeOption($('#normalize-umlaut').is(':checked'), 'uͤ', 'ü');
-  normalizeOption($('#normalize-abbreviations').is(':checked'), 'm̃', 'mm');
-  normalizeOption($('#normalize-abbreviations').is(':checked'), 'ñ', 'nn');
 
   // hiding linebreaks and normalizing hyphens at linebreaks.
   if ($('#ignore-lb').is(':checked')) {
@@ -435,6 +427,14 @@ async function normalizeOrthography() {
     $('tei-lb').show();
   }
   reconnectCrossRefs();
+
+  // normalizing long s and Umlaut
+  normalizeOption($('#normalize-s').is(':checked'), 'ſ', 's');
+  normalizeOption($('#normalize-umlaut').is(':checked'), 'aͤ', 'ä');
+  normalizeOption($('#normalize-umlaut').is(':checked'), 'oͤ', 'ö');
+  normalizeOption($('#normalize-umlaut').is(':checked'), 'uͤ', 'ü');
+  normalizeOption($('#normalize-abbreviations').is(':checked'), 'm̃', 'mm');
+  normalizeOption($('#normalize-abbreviations').is(':checked'), 'ñ', 'nn');
 
   // ignore pagination
   if ($('#ignore-pagination').is(':checked')) {
@@ -464,10 +464,8 @@ $(document).ready(async function() {
   }
 
   if (teiComments) {
-    await renderComments();
+    renderWithNormalizedOrthography();
   }
-
-  normalizeOrthography();
 
   $("#update-page").on('click', function() {
     $('#options-form').submit();
@@ -482,7 +480,7 @@ $(document).ready(async function() {
     }
   });
 
-  $('#update-orthography').on('click', normalizeOrthography);
+  $('#update-orthography').on('click', renderWithNormalizedOrthography);
 
   $("#pdf-download").on('click', function() {
     generatePDF();
