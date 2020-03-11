@@ -219,19 +219,18 @@ function reconnectCrossRefs() {
 }
 
 function connectEditorialNote(el) {
-  let note = $(el);
   this.hideContent(el, false);
 
-  let ref = $(note.attr('corresp'));
+  let ref = $(el.getAttribute('corresp'));
   if (ref.length != 0) {
     ref.popover({
-        content: note.html(),
+        content: visibleContentOfTEINote(el),
         trigger: 'hover',
         html: true
     });
   } else {
     return $('<sup>editorial note</sup>').popover({
-        content: note.html(),
+        content: visibleContentOfTEINote(el),
         trigger: 'hover',
         html: true
     })[0];
@@ -239,9 +238,7 @@ function connectEditorialNote(el) {
 }
 
 function visibleContentOfTEINote(el) {
-  let content = $(el);
-  content.find('span[hidden]').removeAttr('hidden');
-  return content.find('span')[0];
+  return $(el).find('span').first().removeAttr('hidden')[0];
 }
 
 function connectKeyOverlay(el) {
