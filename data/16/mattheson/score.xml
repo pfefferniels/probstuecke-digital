@@ -761,7 +761,16 @@
                       <note xml:id="note-0000001771487055" dur="16" oct="3" pname="a" stem.dir="down" accid.ges="f"/>
                       <note xml:id="note-0000001061403259" dur="16" oct="3" pname="b" stem.dir="down" accid.ges="f"/>
                     </beam>
-                    <note xml:id="note-0000001289419574" dur="4" oct="4" pname="c" stem.dir="down" accid.ges="f"/>
+                    <note xml:id="note-0000001289419574" dur="4" oct="4" pname="c" stem.dir="down">
+                      <choice>
+                        <sic>
+                          <accid accid.ges="f" />
+                        </sic>
+                        <corr type="corrigenda">
+                          <accid accid="n" />
+                        </corr>
+                      </choice>
+                    </note>
                     <note xml:id="note-0000001237163418" dur="4" oct="4" pname="d" stem.dir="down">
                       <accid accid="f"/>
                     </note>
