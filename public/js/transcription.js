@@ -490,7 +490,12 @@ $(document).ready(async function() {
 
   $('#mei-download').on('click', function() {
     saveAs(new Blob([mei], {type: "text/xml;charset=utf-8"}),
-      `probstueck_${number}.xml`);
+      `probstueck_${number}_score.xml`);
+  });
+
+  $('#tei-download').on('click', function() {
+    saveAs(new Blob([teiComments], {type: "text/xml;charset=utf-8"}),
+      `probstueck_${number}_comment.xml`);
   });
 
   // highlighting the element that might be given in the URL

@@ -162,4 +162,10 @@ block content
     if mei
       #player.p-1
       a#pdf-download.p-1.fas.fa-file-pdf.fa-2x
-      a#mei-download.p-1.fas.fa-download.fa-2x
+      .dropdown.p-1
+        #xmlDownload.far.fa-file-code.fa-2x(data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
+        div(aria-labelledby="xmlDownload").dropdown-menu
+          a.dropdown-item#mei-download(href="#") MEI
+          a.dropdown-item#tei-download(href="#") TEI
+        </div>
+      </div>
