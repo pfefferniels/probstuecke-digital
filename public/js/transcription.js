@@ -450,6 +450,10 @@ async function renderWithNormalizedOrthography() {
 }
 
 $(document).ready(async function() {
+  $('[data-toggle="popover"]').popover({
+    trigger: 'hover'
+  });
+
   if (mei) {
     scoreToolkit.setOptions({
       pageHeight: 30000,

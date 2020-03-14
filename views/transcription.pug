@@ -31,17 +31,25 @@ block headAdditions
 block options
   if mei
     .p-2(data-toggle="modal" data-target="#optionsModal")
-      i.fas.fa-lg.fa-wrench
+      i.fas.fa-lg.fa-wrench(
+        data-toggle="popover"
+        data-content="Add staves, change clefs")
   
   if label == 'mattheson'
     .p-2(data-toggle="modal" data-target="#facsimileModal")
-      i.far.fa-lg.fa-image
+      i.far.fa-lg.fa-image(
+        data-toggle="popover"
+        data-content="Options for displaying facsimile")
   
     .p-2(data-toggle="modal" data-target="#orthographyModal")
-      i.fas.fa-lg.fa-font
+      i.fas.fa-lg.fa-font(
+        data-toggle="popover"
+        data-content="Normalize orthography")
   
   .p-2(data-toggle="modal" data-target="#infoModal")
-    i.fas.fa-lg.fa-info-circle
+    i.fas.fa-lg.fa-info-circle(
+      data-toggle="popover"
+      data-content="Retrieve meta information")
 
 block content
   #optionsModal.modal.fade(tabindex="-1" role="dialog" aria-labelledby="options-title" aria-hidden="true")
@@ -69,7 +77,7 @@ block content
             .form-check
               input#show-annotation-staff.form-check-input(type='checkbox' name='showAnnotationStaff')
               label.form-check-label(for='show-annotation-staff') show additional staff with Mattheson's annotations
-  
+          
           .modal-footer
             button.btn.btn-secondary(type="button" data-dismiss="modal") Cancel
             button#update-page.btn.btn-primary(type="button" data-dismiss="modal") Update view
@@ -161,9 +169,18 @@ block content
   #footer.fixed-bottom.d-flex.bg-light.rounded-top
     if mei
       #player.p-1
-      a#pdf-download.p-1.fas.fa-file-pdf.fa-2x
+      
+      a#pdf-download.p-1.fas.fa-file-pdf.fa-2x(
+        data-toggle="popover"
+        data-placement="top"
+        data-content="Download score as PDF (Might take some seconds)")
+      
       .dropdown.p-1
-        #xmlDownload.far.fa-file-code.fa-2x(data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
+        #xmlDownload(data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
+          i.far.fa-file-code.fa-2x(
+            data-toggle="popover"
+            data-placement="top"
+            data-content="Download XML of the score encoded as MEI or of the text encoded as TEI")
         div(aria-labelledby="xmlDownload").dropdown-menu
           a.dropdown-item#mei-download(href="#") MEI
           a.dropdown-item#tei-download(href="#") TEI
