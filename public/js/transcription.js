@@ -1,4 +1,5 @@
 const cetei = new CETEI();
+let scoreToolkit = new verovio.toolkit();
 let vrvToolkit = new verovio.toolkit();
 
 function generatePDF() {
@@ -450,17 +451,19 @@ async function renderWithNormalizedOrthography() {
 
 $(document).ready(async function() {
   if (mei) {
-    vrvToolkit.setOptions({
+    scoreToolkit.setOptions({
       pageHeight: 30000,
       adjustPageHeight: true,
       footer: 'none'
     });
-    vrvToolkit.loadData(mei);
-    let svg = vrvToolkit.renderToSVG(1, {});
+    scoreToolkit.loadData(mei);
+    let svg = scoreToolkit.renderToSVG(1, {});
     $("#score-view").html(svg);
 
-    $("#player").midiPlayer();
-    const piece = 'data:audio/midi;base64,' + vrvToolkit.renderToMIDI();
+    $("#player").midiPlayer({
+      onUpdate: midiUpdate
+    });
+    const piece = 'data:audio/midi;base64,' + scoreToolkit.renderToMIDI();
     $("#player").show();
     $("#player").midiPlayer.load(piece);
   }
@@ -510,3 +513,23 @@ $(document).ready(async function() {
     }
   }
 });
+
+let midiUpdate = function(time) {
+  let vrvTime = Math.max(0, time - 800);
+  let elements = scoreToolkit.getElementsAtTime(vrvTime);
+  let notes = elements.notes;
+
+  if (elements.page == 0 || notes.length == 0) {
+    return;
+  }
+
+  for (let i=0; i<notes.length; i++) {
+    console.log(notes[i]);
+    let svg = SVG('#' + notes[i]);
+    if (svg != null) {
+      svg.opacity(0.1).animate().opacity(1);
+    } else {
+      console.warn('no corresponding element', notes[i]);
+    }
+  }
+}
