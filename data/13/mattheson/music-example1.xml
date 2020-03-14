@@ -41,19 +41,19 @@
                             <staff n="1" visible="true">
                                 <layer n="1">
                                     <beam>
-                                        <note dur="16" oct="5" pname="g" stem.dir="down" />
-                                        <note dur="16" oct="5" pname="f" stem.dir="down" />
-                                        <note dur="16" oct="5" pname="f" stem.dir="down" />
+                                        <note dur="16" oct="5" pname="g" />
+                                        <note dur="16" oct="5" pname="f" />
+                                        <note dur="16" oct="5" pname="f" />
                                     </beam>
                                     <beam>
-                                        <note dur="16" oct="5" pname="g" stem.dir="down" />
-                                        <note dur="16" oct="5" pname="e" stem.dir="down" accid.ges="f" />
-                                        <note dur="16" oct="5" pname="e" stem.dir="down" accid.ges="f" />
+                                        <note dur="16" oct="5" pname="g" />
+                                        <note dur="16" oct="5" pname="e" accid.ges="f" />
+                                        <note dur="16" oct="5" pname="e" accid.ges="f" />
                                     </beam>
                                     <beam>
-                                        <note dur="16" oct="5" pname="g" stem.dir="down" />
-                                        <note dur="16" oct="5" pname="d" stem.dir="down" />
-                                        <note dur="16" oct="5" pname="d" stem.dir="down" />
+                                        <note dur="16" oct="5" pname="g" />
+                                        <note dur="16" oct="5" pname="d" />
+                                        <note dur="16" oct="5" pname="d" />
                                     </beam>
                                 </layer>
                             </staff>
@@ -68,6 +68,7 @@
                                     </chord>
                                 </layer>
                             </staff>
+                            <dir place="within" staff="1" tstamp="2"><rend fontstyle="normal">&amp;c.</rend></dir>
                         </measure>
                     </section>
                 </score>
