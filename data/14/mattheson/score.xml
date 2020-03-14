@@ -1127,8 +1127,34 @@
               </staff>
               <tie xml:id="tie-0000001528710827" startid="#note-0000001294422392" endid="#note-0000001900592719" />
             </measure>
-
-            <scoreDef key.mode="minor" key.sig="6s" />
+          </section>
+        </score>
+      </mdiv>
+      <mdiv>
+        <score>
+          <scoreDef key.pname="e" key.accid="f" key.mode="minor">
+            <pgHead>
+              <app>
+                <lem>
+                  <rend halign="center" fontsize="large">Alio modo.</rend>
+                </lem>
+                <rdg source="#firstEdition">
+                  <rend halign="center" fontsize="large">Auf andre Art notiret.</rend>
+                </rdg>
+              </app>
+            </pgHead>
+            <staffGrp>
+              <staffDef clef.shape="C" clef.line="1" n="1" lines="5" label="Mattheson's annotations">
+                <keySig sig="6s" />
+                <meterSig count="12" unit="8" />
+              </staffDef>
+              <staffDef clef.shape="F" clef.line="4" n="2" lines="5">
+                <keySig sig="6s" />
+                <meterSig count="12" unit="8" />
+              </staffDef>
+            </staffGrp>
+          </scoreDef>
+          <section>
             <measure xml:id="measure-0000000161042882" n="25">
               <staff xml:id="staff-0000001574212770" n="1">
                 <layer xml:id="layer-0000001686419214" n="1">
