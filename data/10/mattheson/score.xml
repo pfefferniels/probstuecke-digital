@@ -147,7 +147,7 @@
       <body>
         <mdiv>
           <score>
-            <scoreDef key.pname="f" key.mode="minor">
+            <scoreDef key.pname="f" key.mode="minor" midi.bpm="100">
               <pgHead>
                 <rend halign="center" fontsize="large">Zehntes Prob-Stück.</rend>
               </pgHead>
@@ -181,13 +181,6 @@
                     <note xml:id="m-53" dur="4" oct="3" pname="g" stem.dir="down"/>
                     <rest xml:id="m-55" dur="8"/>
                   </layer>
-                  <layer xml:id="m-44" n="2">
-                    <note xml:id="m-45" dur="8" oct="3" pname="f" stem.len="0" color="rgb(200,100,100)"/>
-                    <note xml:id="m-48" dur="8" oct="3" pname="c" stem.len="0" color="rgb(200,100,100)"/>
-                    <note xml:id="m-51" dur="8" oct="2" pname="a" stem.len="0" color="rgb(200,100,100)"/>
-                    <note xml:id="m-54" dur="4" oct="2" pname="g" stem.len="0" color="rgb(200,100,100)"/>
-                    <space xml:id="m-56" dur="8"/>
-                  </layer>
                 </staff>
                 <harm place="above" staff="2" tstamp="4" xml:id="fb-01-01">
                   <fb>
@@ -216,13 +209,6 @@
                     <note xml:id="m-76" dur="4" oct="3" pname="f" stem.dir="down"/>
                     <rest xml:id="m-78" dur="8"/>
                   </layer>
-                  <layer xml:id="m-66" n="2">
-                    <note xml:id="m-67" dur="8" oct="3" pname="e" stem.len="0" color="rgb(200,100,100)"/>
-                    <note xml:id="m-72" dur="8" oct="2" pname="b" accid.ges="f" stem.len="0" color="rgb(200,100,100)"/>
-                    <note xml:id="m-75" dur="8" oct="2" pname="g" stem.len="0" color="rgb(200,100,100)"/>
-                    <note xml:id="m-77" dur="4" oct="2" pname="f" stem.len="0" color="rgb(200,100,100)"/>
-                    <space xml:id="m-79" dur="8"/>
-                  </layer>
                 </staff>
                 <harm place="above" staff="2" tstamp="4" xml:id="fb-02-01">
                   <fb>
@@ -250,13 +236,6 @@
                     </beam>
                     <note xml:id="m-99" dur="4" oct="3" pname="e" stem.dir="down"/>
                     <rest xml:id="m-103" dur="8"/>
-                  </layer>
-                  <layer xml:id="m-89" n="2">
-                    <note xml:id="m-90" dur="8" oct="3" pname="d" stem.len="0" color="rgb(200,100,100)" accid="f"/>
-                    <note xml:id="m-95" dur="8" oct="2" pname="b" accid.ges="f" stem.len="0" color="rgb(200,100,100)"/>
-                    <note xml:id="m-98" dur="8" oct="2" pname="f" stem.len="0" color="rgb(200,100,100)"/>
-                    <note xml:id="m-101" dur="4" oct="2" pname="e" stem.len="0" color="rgb(200,100,100)"/>
-                    <space xml:id="m-104" dur="8"/>
                   </layer>
                 </staff>
                 <harm place="above" staff="2" tstamp="4" xml:id="fb-03-01">
@@ -288,15 +267,6 @@
                     </note>
                     <rest xml:id="m-126" dur="8"/>
                   </layer>
-                  <layer xml:id="m-113" n="2">
-                    <note xml:id="m-114" dur="8" oct="3" pname="c" stem.len="0" color="rgb(200,100,100)"/>
-                    <note xml:id="m-117" dur="8" oct="2" pname="g" stem.len="0" color="rgb(200,100,100)"/>
-                    <note xml:id="m-120" dur="8" oct="2" pname="e" stem.len="0" color="rgb(200,100,100)"/>
-                    <note xml:id="m-124" dur="4" oct="2" pname="d" stem.len="0" color="rgb(200,100,100)">
-                      <accid accid="f"/>
-                    </note>
-                    <space xml:id="m-127" dur="8"/>
-                  </layer>
                 </staff>
                 <harm place="above" staff="2" tstamp="4" xml:id="fb-04-01">
                   <fb>
@@ -327,14 +297,6 @@
                     </beam>
                     <note xml:id="m-147" dur="4" oct="3" pname="c" stem.dir="down"/>
                     <rest xml:id="m-149" dur="8"/>
-                  </layer>
-                  <layer xml:id="m-137" n="2">
-                    <clef shape="F" line="4"/>
-                    <note xml:id="m-138" dur="8" oct="2" pname="b" accid.ges="f" stem.len="0" color="rgb(200,100,100)"/>
-                    <note xml:id="m-142" dur="8" oct="2" pname="f" stem.len="0" color="rgb(200,100,100)"/>
-                    <note xml:id="m-145" dur="8" oct="2" pname="d" stem.len="0" color="rgb(200,100,100)" accid="f"/>
-                    <note xml:id="m-148" dur="4" oct="2" pname="c" stem.len="0" color="rgb(200,100,100)"/>
-                    <space xml:id="m-150" dur="8"/>
                   </layer>
                 </staff>
                 <harm place="above" staff="2" tstamp="1" xml:id="fb-05-01">
