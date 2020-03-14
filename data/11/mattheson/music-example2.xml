@@ -43,8 +43,8 @@
                                         <note dur="16" oct="4" pname="c" stem.dir="up" />
                                     </beam>
                                     <beam>
-                                        <note dur="16" oct="4" pname="e" stem.dir="up" accid.ges="f" />
-                                        <note dur="16" oct="4" pname="g" stem.dir="up" />
+                                        <note dur="16" oct="4" pname="e" stem.dir="down" accid.ges="f" />
+                                        <note dur="16" oct="4" pname="g" stem.dir="down" />
                                         <note dur="16" oct="5" pname="c" stem.dir="down" />
                                         <note dur="16" oct="5" pname="e" stem.dir="down" accid.ges="f" />
                                     </beam>
@@ -108,12 +108,12 @@
                                 <layer n="1">
                                     <beam>
                                         <note dur="16" oct="5" pname="c" stem.dir="down" />
-                                        <note dur="16" oct="3" pname="g" stem.dir="up" />
+                                        <note dur="16" oct="3" pname="g" stem.dir="up" staff="2" />
                                         <note dur="16" oct="4" pname="c" stem.dir="up" />
                                         <note dur="16" oct="4" pname="e" stem.dir="up" accid.ges="f" />
                                     </beam>
                                     <beam>
-                                        <note dur="16" oct="4" pname="g" stem.dir="up" />
+                                        <note dur="16" oct="4" pname="g" stem.dir="down" />
                                         <note dur="16" oct="5" pname="c" stem.dir="down" />
                                         <note dur="16" oct="5" pname="e" stem.dir="down" accid.ges="f" />
                                         <note dur="16" oct="5" pname="g" stem.dir="down" />
@@ -161,6 +161,20 @@
                                     </fb>
                                 </harm>
                             </supplied>
+                        </measure>
+                        <measure right="invis">
+                            <staff n="1">
+                                <layer n="1">
+                                    <custos oct="5" pname="e" />
+                                </layer>
+                            </staff>
+                            <staff n="2">
+                                <layer n="2">
+                                    <custos oct="5" pname="c" />
+                                </layer>
+                            </staff>
+                            <!-- dir should be placed between staves -->
+                            <dir place="above" staff="2" tstamp="1"><rend fontstyle="normal">&amp;c.</rend></dir>
                         </measure>
                     </section>
                 </score>
