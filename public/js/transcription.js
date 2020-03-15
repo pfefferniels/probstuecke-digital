@@ -417,9 +417,9 @@ async function renderWithNormalizedOrthography() {
   // hiding linebreaks and normalizing hyphens at linebreaks.
   if ($('#ignore-lb').is(':checked')) {
     // T5 Guidelines has <lb>s in the beginning of lines.
-    teiComments = teiComments.replace(/\-(\n|\s)*<lb(\s)*\/>([a-z])/g, '$3&#xAD;');
+    teiComments = teiComments.replace(/\-(\n|\s)*<lb(\s)*\/>([a-z]|ſ)/g, '$3&#xAD;');
     // DTA-Bf recommends <lb>s in the end of lines.
-    teiComments = teiComments.replace(/\-<lb(\s)*\/>(\n|\s)*([a-z])/g, '$3&#xAD;');
+    teiComments = teiComments.replace(/\-<lb(\s)*\/>(\n|\s)*([a-z]|ſ)/g, '$3&#xAD;');
 
     await renderComments();
     $('tei-lb').hide();
