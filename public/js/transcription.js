@@ -51,7 +51,7 @@ function generatePDF() {
   doc.end();
 }
 
-function refToHref(el) {
+function gndReference(el) {
   let ref = el.getAttribute('ref');
   if (!ref) {
     return $('<span/>').html(el.innerHTML)[0];
@@ -74,11 +74,55 @@ function refToHref(el) {
   })[0];
 }
 
+function geoReference(el) {
+  let ref = el.getAttribute('ref');
+  if (!ref) {
+    return $('<span/>').html(el.innerHTML)[0];
+  }
+
+  return $('<a>').attr('href', ref).html(el.innerHTML).popover({
+    content: function() {
+      let mapDiv = $('<div class="popover-map" />');
+
+      $.when($.get(ref + '/about.rdf'), $.getJSON('/maps/europe.geo.json'))
+       .done(function(rdfResponse, mapResponse) {
+         let rdf = $(rdfResponse[0]);
+         let mapData = mapResponse[0];
+
+         // extract latitude and longitude
+         let lat = rdf.find('wgs84_pos\\:lat').text();
+         let long = rdf.find('wgs84_pos\\:long').text();
+
+         let map = L.map(mapDiv[0]).setView([48.8, 2.6], 4);
+         L.geoJson(mapData, {
+             clickable: false,
+             style: {
+               fillColor: '#fff5c7',
+               weight: 2,
+               opacity: 1,
+               color: '#ffffff',
+               fillOpacity: 0.7
+             }
+         }).addTo(map);
+         L.marker([lat, long]).addTo(map);
+       })
+       .fail(function(e) {
+         console.log(e);
+       });
+
+      return mapDiv;
+    },
+    trigger: 'hover',
+    template: '<div class="popover expandable-popover" role="tooltip"><div class="popover-body"/></div>',
+    html: true
+  })[0];
+}
+
 cetei.addBehaviors({
   handlers: {
-    'persName': refToHref,
-    'placeName': refToHref,
-    'name': refToHref,
+    'persName': gndReference,
+    'placeName': geoReference,
+    'name': gndReference,
 
     'teiHeader': function(el) {
       $('#transcript-info').html(el.innerHTML);
@@ -378,7 +422,7 @@ async function reloadFacsimileTooltips() {
         target.popover({
           html: true,
           trigger: 'hover',
-          template: '<div class="popover facsimile-popover" role="tooltip"><div class="popover-body"/></div>'
+          template: '<div class="popover expandable-popover" role="tooltip"><div class="popover-body"/></div>'
         });
       }
     }

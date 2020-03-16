@@ -8,6 +8,11 @@
   height: auto !important;
 }
 
+.popover-map {
+  width: 35vw;
+  height: 60vh;
+}
+
 .indicator {
   cursor: pointer;
 }
@@ -290,6 +295,6 @@ tei-code {
 }
 
 /* overwrites the default max-width of bootstrap's popover */
-.facsimile-popover {
+.expandable-popover {
   max-width: 100%;
 }
