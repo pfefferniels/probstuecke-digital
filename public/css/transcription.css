@@ -2,13 +2,15 @@
   box-sizing: border-box;
 }
 
-svg {
+#score-view svg, tei-notatedmusic svg {
   display: block;
-  left: 0px;
-  top: 0px;
-  width: 100% !important;
+  width: 100%;
   height: auto !important;
-  z-index: 400;
+}
+
+.popover-map {
+  width: 35vw;
+  height: 60vh;
 }
 
 .indicator {
@@ -192,6 +194,11 @@ tei-hi[rendition="#k"] {
   font-variant: small-caps;
 }
 
+tei-hi[rendition="#sup"] {
+  vertical-align: super;
+  font-size: .7em;
+}
+
 tei-head {
   display: block;
   font-family: Arvo, sans-serif;
@@ -293,6 +300,6 @@ tei-code {
 }
 
 /* overwrites the default max-width of bootstrap's popover */
-.facsimile-popover {
+.expandable-popover {
   max-width: 100%;
 }
