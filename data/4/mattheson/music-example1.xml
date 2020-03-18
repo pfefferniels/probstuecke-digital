@@ -29,7 +29,7 @@
         <body>
             <mdiv>
                 <score>
-                    <scoreDef mnum.visible="false">
+                    <scoreDef key.pname="e" key.accid="n" key.mode="minor" midi.bpm="85" mnum.visible="false">
                         <staffGrp>
                             <staffDef clef.shape="C" clef.line="1" key.sig="1s" n="1" lines="5" meter.unit="8" />
                         </staffGrp>
@@ -40,15 +40,15 @@
                                 <layer>
                                     <rest xml:id="ex-105" dur="16" />
                                     <beam xml:id="ex-107">
-                                        <note xml:id="ex-106" dur="16" oct="4" pname="b" stem.dir="down" />
-                                        <note xml:id="ex-108" dur="16" oct="4" pname="b" stem.dir="down" />
-                                        <note xml:id="ex-109" dur="16" oct="4" pname="a" stem.dir="down" />
-                                        <note xml:id="ex-110" dur="32" oct="4" pname="g" stem.dir="down" />
-                                        <note xml:id="ex-111" dur="32" oct="4" pname="a" stem.dir="down" />
-                                        <note xml:id="ex-112" dur="32" oct="4" pname="f" stem.dir="down" accid.ges="s" />
-                                        <note xml:id="ex-114" dur="32" oct="4" pname="g" stem.dir="down" />
+                                        <note xml:id="ex-106" dur="16" oct="4" pname="b" />
+                                        <note xml:id="ex-108" dur="16" oct="4" pname="b" />
+                                        <note xml:id="ex-109" dur="16" oct="4" pname="a" />
+                                        <note xml:id="ex-110" dur="32" oct="4" pname="g" />
+                                        <note xml:id="ex-111" dur="32" oct="4" pname="a" />
+                                        <note xml:id="ex-112" dur="32" oct="4" pname="f" accid.ges="s" />
+                                        <note xml:id="ex-114" dur="32" oct="4" pname="g" />
                                     </beam>
-                                    <chord xml:id="ex-115" dots="1" dur="4" stem.dir="down">
+                                    <chord xml:id="ex-115" dots="1" dur="4">
                                         <note xml:id="ex-116" dur="4" oct="4" pname="d" pnum="63">
                                             <accid accid="s" />
                                         </note>
