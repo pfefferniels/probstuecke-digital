@@ -152,13 +152,13 @@
                 <rend halign="center" fontsize="large">Zehntes Prob-Stück.</rend>
               </pgHead>
               <staffGrp>
-                <staffDef xml:id="mattheson" clef.line="2" clef.shape="G" lines="5" n="1">
+                <staffDef type="embeddedAnnotation" clef.line="2" clef.shape="G" lines="5" n="1">
                   <label>Mattheson's annotations</label>
                   <keySig sig="3f" />
                   <meterSig count="6" unit="8" />
                 </staffDef>
                 <staffDef xml:id="bass" clef.line="4" clef.shape="C" lines="5" n="2">
-                  <layerDef n="2" xml:id="layer-mattheson"/>
+                  <layerDef n="2" type="embeddedAnnotation"/>
                   <keySig sig="3f" />
                   <meterSig count="6" unit="8" />
                 </staffDef>
