@@ -64,7 +64,9 @@
                                         <note xml:id="ex-515" dur="16" oct="5" pname="f" stem.dir="down" />
                                         <note xml:id="ex-516" dur="32" oct="5" pname="c" stem.dir="down" />
                                         <note xml:id="ex-517" dur="32" oct="5" pname="d" stem.dir="down" />
-                                        <note xml:id="ex-518" dur="16" oct="5" pname="e" stem.dir="down" accid.ges="f" />
+                                        <note xml:id="ex-518" dur="16" oct="5" pname="e" stem.dir="down">
+                                            <accid xml:id="ex-519" accid="f" />
+                                        </note>
                                     </beam>
                                     <beam>
                                         <note xml:id="ex-520" dur="16" oct="5" pname="d" stem.dir="down" />
@@ -137,7 +139,7 @@
                                     <beam>
                                         <note xml:id="ex-555" dur="16" oct="5" pname="e" stem.dir="down">
                                             <supplied resp="#pfeffer">
-                                                <accid xml:id="ex-556" accid="n" func="caution" />
+                                                <accid xml:id="ex-556" accid="n" func="caution" enclose="brack" />
                                             </supplied>
                                         </note>
                                         <note xml:id="ex-558" dur="16" oct="5" pname="a" stem.dir="down" />
@@ -222,7 +224,7 @@
                                 <layer n="1">
                                     <beam>
                                         <note xml:id="ex-608" dur="32" oct="4" pname="g" stem.dir="up">
-                                            <accid xml:id="ex-609" accid="s" />
+                                            <accid xml:id="ex-609" accid="s" func="caution" />
                                         </note>
                                         <note xml:id="ex-611" dur="32" oct="4" pname="e" stem.dir="up" />
                                         <note xml:id="ex-612" dur="32" oct="4" pname="g" stem.dir="up" accid.ges="s" />
@@ -242,11 +244,11 @@
                                         <note xml:id="ex-627" dur="32" oct="4" pname="g" stem.dir="up">
                                             <accid xml:id="ex-628" accid="s" />
                                         </note>
-                                        <note xml:id="ex-629" dur="32" oct="4" pname="e" stem.dir="up" />
+                                        <note xml:id="ex-629" dur="32" oct="4" pname="d" stem.dir="up" />
                                         <note xml:id="ex-630" dur="32" oct="4" pname="g" stem.dir="up" accid.ges="s" />
-                                        <note xml:id="ex-632" dur="32" oct="4" pname="e" stem.dir="up" />
+                                        <note xml:id="ex-632" dur="32" oct="4" pname="d" stem.dir="up" />
                                     </beam>
-                                    <custos oct="5" pname="e" />
+                                    <custos oct="5" pname="c" />
                                 </layer>
                             </staff>
                             <staff n="2">
