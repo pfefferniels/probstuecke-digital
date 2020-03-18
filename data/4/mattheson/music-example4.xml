@@ -29,7 +29,7 @@
         <body>
             <mdiv>
                 <score>
-                    <scoreDef mnum.visible="false">
+                    <scoreDef key.pname="e" key.accid="n" key.mode="minor" midi.bpm="85" mnum.visible="false">
                         <staffGrp>
                             <staffDef clef.shape="C" clef.line="1" key.sig="1s" n="1" lines="5" meter.unit="8" />
                         </staffGrp>
@@ -39,27 +39,27 @@
                             <staff n="1">
                                 <layer>
                                     <beam>
-                                        <note xml:id="ex-1081" dur="8" oct="5" pname="f" stem.dir="down" accid.ges="s" />
-                                        <note xml:id="ex-1084" dur="8" oct="5" pname="d" stem.dir="down" />
-                                        <note xml:id="ex-1085" dur="8" oct="5" pname="d" stem.dir="down" />
+                                        <note xml:id="ex-1081" dur="8" oct="5" pname="f" accid.ges="s" />
+                                        <note xml:id="ex-1084" dur="8" oct="5" pname="d" />
+                                        <note xml:id="ex-1085" dur="8" oct="5" pname="d" />
                                     </beam>
                                     <beam>
-                                        <note xml:id="ex-1086" dur="8" oct="5" pname="e" stem.dir="down" />
-                                        <note xml:id="ex-1088" dur="8" oct="4" pname="a" stem.dir="down" />
-                                        <note xml:id="ex-1089" dur="8" oct="4" pname="a" stem.dir="down" />
+                                        <note xml:id="ex-1086" dur="8" oct="5" pname="e" />
+                                        <note xml:id="ex-1088" dur="8" oct="4" pname="a" />
+                                        <note xml:id="ex-1089" dur="8" oct="4" pname="a" />
                                     </beam>
                                     <sic source="#firstEdition #secondEdition">
                                         <barLine />
                                     </sic>
                                     <beam>
-                                        <note dur="8" oct="5" pname="f" stem.dir="down" accid.ges="s" />
-                                        <note dur="8" oct="5" pname="d" stem.dir="down" />
-                                        <note dur="8" oct="5" pname="d" stem.dir="down" />
+                                        <note dur="8" oct="5" pname="f" accid.ges="s" />
+                                        <note dur="8" oct="5" pname="d" />
+                                        <note dur="8" oct="5" pname="d" />
                                     </beam>
                                     <beam>
-                                        <note dur="8" oct="5" pname="e" stem.dir="down" />
-                                        <note dur="8" oct="4" pname="a" stem.dir="down" />
-                                        <note dur="8" oct="4" pname="a" stem.dir="down" />
+                                        <note dur="8" oct="5" pname="e" />
+                                        <note dur="8" oct="4" pname="a" />
+                                        <note dur="8" oct="4" pname="a" />
                                     </beam>
                                 </layer>
                             </staff>
