@@ -2,7 +2,7 @@
     <xsl:variable name="nOfAnnotationStaff">
         <xsl:choose>
             <xsl:when test="$removeAnnotationStaff = 'on'">
-                <xsl:value-of select="string(//mei:staffGrp/mei:staffDef[@xml:id='mattheson']/@n)"/>
+                <xsl:value-of select="string(//mei:staffGrp/mei:staffDef[@type='embeddedAnnotation']/@n)"/>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="-1"/>
@@ -13,7 +13,7 @@
     <xsl:variable name="nOfAnnotationLayer">
         <xsl:choose>
             <xsl:when test="$removeAnnotationStaff = 'on'">
-                <xsl:value-of select="string(//mei:layerDef[@xml:id='layer-mattheson']/@n)"/>
+                <xsl:value-of select="string(//mei:layerDef[@type='embeddedAnnotation']/@n)"/>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="-1"/>
@@ -22,8 +22,8 @@
     </xsl:variable>
 
 
-    <xsl:template match="//mei:staffDef[@n=$nOfAnnotationStaff]"/>
-    <xsl:template match="//mei:layerDef[@n=$nOfAnnotationLayer]"/>
+    <xsl:template match="mei:staffDef[@n=$nOfAnnotationStaff]"/>
+    <xsl:template match="mei:layerDef[@n=$nOfAnnotationLayer]"/>
     <xsl:template match="mei:staff[@n=$nOfAnnotationStaff]"/>
     <xsl:template match="mei:layer[@n=$nOfAnnotationLayer]"/>
 
