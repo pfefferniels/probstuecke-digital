@@ -211,6 +211,25 @@ async function renderComments() {
       $("#comments-view").html(html);
   });
 
+  $('tei-rdg[source="#firstEdition"]').popover({
+    content: '1st edition (1719)',
+    trigger: 'hover'
+  });
+
+  $('tei-rdg[source="#secondEdition"]').popover({
+    content: '2nd edition (1719)',
+    trigger: 'hover'
+  });
+
+  $('tei-rdg[source="#secondEdition"][type]').each(function() {
+    let type = $(this).attr('type');
+    console.log(type);
+    $(this).popover({
+      content: '2nd edition (1731). Type: ' + type,
+      trigger: 'hover'
+    });
+  });
+
   // load the music examples, if there are any
   var notatedMusicPromises = [];
   $("tei-notatedmusic").each(async function() {

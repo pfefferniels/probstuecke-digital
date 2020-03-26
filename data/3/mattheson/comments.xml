@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title type="part">Mattheson: Der Ober-Classe Drittes Probstück</title>
+                <editor>
+                    <persName xml:id="pfeffer">
+                        <surname>Niels</surname>
+                        <forename>Pfeffer</forename>
+                    </persName>
+                </editor>
+                <editor>
+                    <persName xml:id="rettinghaus" ref="https://d-nb.info/gnd/140541624">
+                        <surname>Klaus</surname>
+                        <forename>Rettinghaus</forename>
+                    </persName>
+                </editor>
+            </titleStmt>
+            <publicationStmt>
+                <publisher>
+                    <persName>
+                        <surname>Niels</surname>
+                        <forename>Pfeffer</forename>
+                    </persName>
+                </publisher>
+                <availability>
+                    <licence target="https://creativecommons.org/licenses/by/4.0">
+                        <p>Creative Commons Attribution 4.0 International License</p>
+                    </licence>
+                </availability>
+            </publicationStmt>
+            <sourceDesc>
+                <listBibl>
+                    <biblFull xml:id="firstEdition">
+                        <titleStmt>
+                            <title level="m" type="main">Matthsons Exemplarische Organisten-Probe im Artkel vom Generalbass.</title>
+                            <author>
+                                <persName ref="http://d-nb.info/gnd/118578995">
+                                    <surname>Johann</surname>
+                                    <forename>Mattheson</forename>
+                                </persName>
+                            </author>
+                        </titleStmt>
+                        <editionStmt>
+                            <edition n="1" />
+                        </editionStmt>
+                        <publicationStmt>
+                            <publisher>
+                                <name>Schiller und Kißner</name>
+                            </publisher>
+                            <pubPlace>Hamburg</pubPlace>
+                            <date type="publication">1719</date>
+                        </publicationStmt>
+                    </biblFull>
+                    <biblFull xml:id="secondEdition">
+                      <titleStmt>
+                        <title level="m" type="main">Johann Matthesons Grosse General-Baß-Schule.</title>
+                        <title level="m" type="sub">Oder: Der exemplarischen Organisten-Probe</title>
+                        <title level="m" type="sub">Bestehend in dreien Classen, Als: In einer gru&#x0364;ndlichen Vorbereitung, In 24 leichten Exempeln, In 24 schwerern Prob-Stu&#x0364;cken</title>
+                        <author>
+                          <persName ref="http://d-nb.info/gnd/118578995">
+                            <surname>Johann</surname>
+                            <forename>Mattheson</forename>
+                          </persName>
+                        </author>
+                      </titleStmt>
+                      <editionStmt>
+                        <edition n="2">Zweite/ verbesserte und vermehrte Auflage</edition>
+                      </editionStmt>
+                      <publicationStmt>
+                        <publisher>
+                          <name>Kißner</name>
+                        </publisher>
+                        <pubPlace>Hamburg</pubPlace>
+                        <date type="publication">1731</date>
+                      </publicationStmt>
+                    </biblFull>
+                </listBibl>
+            </sourceDesc>
+        </fileDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div n="0" type="chapter">
+                <pb n="118" />
+                <head>Erla&#x0364;uterung.</head>
+                <div n="1" type="section">
+                    <lb source="#firstEdition" /><head>§. 1.</head>
+                    <p xml:id="p1-1">
+                        <lb source="#firstEdition" /><hi rendition="#in">D</hi>A iſt gut
+                        <app>
+                            <rdg source="#firstEdition"><hi rendition="#aq">General-Baſs</hi></rdg>
+                            <rdg source="#secondEdition">General-Baß</rdg>
+                        </app>
+                        ſpielen, wenn
+                        <app>
+                            <rdg source="#firstEdition">die Ba&#x0364;ſſe nicht mehr Ziffern haben</rdg>
+                            <rdg source="#secondEdition">nicht mehr Ziffern vorkom&#x0303;en</rdg>
+                        </app>, als
+                        <app>
+                            <rdg source="#firstEdition"><lb source="#firstEdition"/>dieſer;</rdg>
+                            <rdg source="#secondEdition">als in<lb source="#secondEdition"/>dieſem Exempel.</rdg>
+                        </app>
+                        <app>
+                            <rdg source="#firstEdition">ey!</rdg>
+                            <rdg source="#secondEdition">Ey!</rdg>
+                        </app> wie wird ſich mancher freuen, daß
+                        <app>
+                            <rdg source="#firstEdition">ſie</rdg>
+                            <rdg source="#secondEdition">die Zahlen</rdg>
+                        </app>
+                        so
+                        du&#x0364;n<pc force="weak" source="#secondEdition">-</pc><lb source="#secondEdition" />ne
+                        geſa&#x0364;et sind. Die
+                        <lb source="#firstEdition" />Warheit zu geſtehen, ich muß den guten Leuten <lb source="#secondEdition" />
+                        auch dann und wann go&#x0364;n<pc force="weak" source="#firstEdition">-</pc>
+                        <lb source="#firstEdition" />nen, daß ſie Athem ſcho&#x0364;pffen; ſonſt wu&#x0364;rde es ihnen
+                        <app>
+                            <rdg source="#firstEdition">alzu</rdg>
+                            <rdg source="#secondEdition">all<pc force="weak">-</pc><lb />zu</rdg>
+                        </app> ſauer. Es ko&#x0364;nnte aber doch
+                        <lb source="#firstEdition" />
+                        <app>
+                            <rdg source="#firstEdition">wohl</rdg>
+                            <rdg source="#secondEdition">wol</rdg>
+                        </app> ſeyn, daß in
+                        <app>
+                            <rdg source="#firstEdition">betrachtung der <hi rendition="#aq">Avantage</hi></rdg>
+                            <rdg source="#secondEdition">Betrachtung des Vortheils</rdg>
+                        </app>,<lb source="#secondEdition" /> den wir nun vermeynen zu haben, indem ich
+                        <lb source="#firstEdition" />in
+                        <app>
+                            <rdg source="#firstEdition">dieſem Theile</rdg>
+                            <rdg source="#secondEdition">dieſer Classe</rdg>
+                        </app> keine Lehrlinge mehr,<lb source="#secondEdition" /> ſondern lauter Alt-Gesellen erkenne, eine oder
+                        <lb source="#firstEdition" />die andere
+                        <app>
+                            <rdg source="#firstEdition"><hi rendition="#aq">Species</hi></rdg>
+                            <rdg source="#secondEdition">Signatur</rdg>
+                        </app> nicht eben ſo<lb source="#secondEdition" /> genau u&#x0364;bergeſchrieben
+                        <app>
+                            <rdg source="#firstEdition">und</rdg>
+                            <rdg source="#secondEdition">ſondern</rdg>
+                        </app>
+                        <app>
+                            <rdg source="#firstEdition"><hi rendition="#aq">expreſs</hi></rdg>
+                            <rdg source="#secondEdition" type="germanization">mit Fleiß</rdg>
+                        </app> weggelassen
+                        <app>
+                            <rdg source="#firstEdition">ſeyn <lb source="#firstEdition" />mo&#x0364;chte,</rdg>
+                            <rdg source="#secondEdition">worden wa&#x0364;re:</rdg>
+                        </app> damit auch
+                        <app>
+                            <rdg source="#firstEdition">einer</rdg>
+                            <rdg source="#secondEdition">der <lb />Spieler</rdg>
+                        </app> ſein
+                        <app>
+                            <rdg source="#firstEdition"><hi rendition="#aq">Judicum</hi></rdg>
+                            <rdg source="#secondEdition" type="germanization">eignes Urtheil</rdg>
+                        </app>
+                        ſcha&#x0364;rffen, und ohne Stock gehen lerne.
+                    </p>
+                </div>
+
+                <div n="2" type="section">
+                    <lb source="#firstEdition" /><head>§. 2.</head>
+                    <p xml:id="p2-1">
+                        <lb source="#firstEdition" />Sonst
+                        <app>
+                            <rdg source="#firstEdition">kan&#x0303;</rdg>
+                            <rdg source="#secondEdition">kann</rdg>
+                        </app>
+                        wol ſagen, daß in gegenwa&#x0364;rtiger
+                        <app>
+                          <rdg source="#firstEdition"><hi rendition="#aq">Pieçe</hi></rdg>
+                          <rdg source="#secondEdition" type="germanization">Vorſchrifft</rdg>
+                        </app> mehrentheils<lb source="#secondEdition" /> auf die ſo
+                        <lb source="#firstEdition" />nu&#x0364;tzliche
+                        <app>
+                          <rdg source="#firstEdition">Beforderung</rdg>
+                          <rdg source="#secondEdition">Befo&#x0364;rderung</rdg>
+                        </app> einer guten
+                        <app>
+                          <rdg source="#firstEdition"><hi rendition="#aq">Application</hi></rdg>
+                          <rdg source="#secondEdition" type="germanization">Ordnung</rdg>
+                        </app> der lauffenden Finger geſe<pc force="weak" source="#secondEdition">-</pc><lb source="#secondEdition" />hen wor<pc force="weak" source="#firstEdition">-</pc>
+                        <lb source="#firstEdition" />den; maſſen man ſich, bey vorfallender Gelegenheit, ſonderlich, wenn <lb source="#secondEdition" />der
+                        <app>
+                          <rdg source="#firstEdition">Baſs</rdg>
+                          <rdg source="#secondEdition" type="orthographic">Baß</rdg>
+                        </app> viel
+                        <lb source="#firstEdition" />unterwerts la&#x0364;ufft, nicht genug u&#x0364;ber das garſtige <hi rendition="#b">Stolpern</hi> etlicher
+                        <lb source="#secondEdition" /><sic>Bursche</sic> ver<pc force="weak" source="#firstEdition">-</pc>
+                        <lb source="#firstEdition" />wundern kann; welches aber eintzig und allein daher ru&#x0364;hret, daß ih<pc force="weak" source="#secondEdition">-</pc><lb source="#secondEdition" />re
+                        Finger keine ge<pc force="weak" source="#firstEdition">-</pc>
+                        <lb source="#firstEdition" />wiſſe
+                        <app>
+                          <rdg source="#firstEdition"><hi rendition="#aq">Application</hi></rdg>
+                          <rdg source="#secondEdition" type="germanization">Ordnung halten,</rdg>
+                        </app>
+                        <app>
+                          <rdg source="#firstEdition">oder</rdg>
+                          <rdg source="#secondEdition">noch</rdg>
+                        </app> geweiſte Wege haben. Hievon macht<lb source="#secondEdition" /> nun offt ein jeder
+                        <app>
+                          <rdg source="#firstEdition">
+                            <hi rendition="#aq">Infor<pc force="weak" source="#firstEdition">-</pc><lb source="#firstEdition" />mator</hi>
+                          </rdg>
+                          <rdg source="#secondEdition" type="germanization">
+                            Meiſter
+                          </rdg>
+                        </app>
+                        <app>
+                          <rdg source="#firstEdition">ſonſt</rdg>
+                          <rdg source="#secondEdition" />
+                        </app> (der es verſteht) ein eigenes Weſen, und giebt
+                        <app>
+                          <rdg source="#firstEdition">3.</rdg>
+                          <rdg source="#secondEdition" type="expand-number">drey</rdg>
+                        </app> oder<lb source="#secondEdition" />
+                        <app>
+                          <rdg source="#firstEdition">4.</rdg>
+                          <rdg source="#secondEdition" type="expand-number">vier</rdg>
+                        </app> Regeln, vermittelſt
+                        <lb source="#firstEdition" />welcher der Schu&#x0364;ler lerne, was fu&#x0364;r Finger er, auf und
+                        <app>
+                          <rdg source="#firstEdition">nieder</rdg>
+                          <rdg source="#secondEdition">nie<pc force="weak" source="#secondEdition">-</pc><lb source="#secondEdition" />derwa&#x0364;rts,</rdg>
+                        </app>
+                        in beiden Ha&#x0364;nden
+                        <lb source="#firstEdition" />gebrauchen mu&#x0364;ſſe. Das iſt
+                        <app>
+                          <rdg source="#firstEdition">nun</rdg>
+                          <rdg source="#secondEdition">denn</rdg>
+                        </app>
+                        <app>
+                          <rdg source="#firstEdition">wohl</rdg>
+                          <rdg source="#secondEdition" type="orthographic">wol</rdg>
+                        </app> alles gut, und mag<lb source="#secondEdition" /> ſeinen Nutzen eben ſo haben,
+                        <lb source="#firstEdition" />als die Vorſchriften eines
+                        <app>
+                          <rdg source="#firstEdition">guten</rdg>
+                          <rdg source="#secondEdition">geſchickten</rdg>
+                        </app> Schreib-Mei<pc force="weak" source="#secondEdition">-</pc><lb source="#secondEdition" />sters. Allein,
+                        <app>
+                          <rdg source="#firstEdition">wie</rdg>
+                          <rdg source="#secondEdition">gleichwie</rdg>
+                        </app> dem ungeachtet
+                        <lb source="#firstEdition" />mancher ſich hieran, bey ſelbſt-anwachſendem<lb source="#secondEdition" /> Verſtande, gar nicht kehret, ſondern
+                        <lb source="#firstEdition" />wenige gefunden werden, die ſich<lb source="#secondEdition" /> nicht ſolten eine eigene Hand zu ſchreiben wehlen,
+                        <lb source="#firstEdition" />welche mit ihres Schreib-Mei<pc force="weak" source="#secondEdition">-</pc><lb source="#secondEdition" />sters ſeiner
+                        <app>
+                          <rdg source="#firstEdition">mannichmahl</rdg>
+                          <rdg source="#secondEdition">offtermahls</rdg>
+                        </app> auf keine Weiſe u&#x0364;berein<pc force="weak" source="#firstEdition">-</pc>
+                        <lb source="#firstEdition" />kommt
+                        <app>
+                          <rdg source="#firstEdition">;</rdg>
+                          <rdg source="#secondEdition" type="interpunction">:</rdg>
+                        </app> alſo geht es
+                        <app>
+                          <rdg source="#firstEdition" />
+                          <rdg source="#secondEdition">auch</rdg>
+                        </app>
+                        mit der
+                        <app>
+                          <rdg source="#firstEdition"><hi rendition="#aq">Application</hi></rdg>
+                          <rdg source="#secondEdition" type="germanization">Finger-Ordnung</rdg>
+                        </app> auf dem Clavier. So mancher als
+                        <lb source="#firstEdition" />ſpielet,
+                        <app xml:id="insert-000" corresp="#orig-000">
+                          <rdg source="#firstEdition"/>
+                          <rdg source="#secondEdition">fast</rdg>
+                        </app>
+                        ſo manche<lb source="#secondEdition" />Art
+                        <app>
+                          <rdg source="#firstEdition">dieſer</rdg>
+                          <rdg source="#secondEdition">der ſo genannten</rdg>
+                        </app>
+                        <hi rendition="#b">Application</hi> wird man
+                        <app xml:id="orig-000" corresp="#insert-000">
+                          <rdg source="#firstEdition">faſt</rdg>
+                          <rdg source="#firstEdition"/>
+                        </app> auch finden. Einer
+                        <lb source="#firstEdition" />la&#x0364;ufft mit
+                        <app>
+                          <rdg source="#firstEdition">4</rdg>
+                          <rdg source="#secondEdition" type="expand-number">vier</rdg>
+                        </app>, der ander mit
+                        <app>
+                          <rdg source="#firstEdition">5</rdg>
+                          <rdg source="#secondEdition" type="expand-number">fu&#x0364;nff</rdg>
+                        </app>, etliche gar, und faſt eben ſo geſchwind, mit nur
+                        <app>
+                          <rdg source="#firstEdition">2</rdg>
+                          <rdg source="#secondEdition" type="expand-number">zween</rdg>
+                        </app>
+                        <lb source="#secondEdition"/>Fin<pc force="weak" source="#firstEdition">-</pc>
+                        <lb source="#firstEdition" />gern. Es liegt auch nichts hieran; ſo lange man ſich nur eine gewiſſe
+                        <app>
+                          <rdg source="#firstEdition">
+                            <hi rendition="#aq">Applica<pc force="weak" source="#firstEdition">-</pc>
+                            <lb source="#firstEdition" />tion</hi>
+                          </rdg>
+                          <rdg source="#secondEdition">
+                            Richt<pc force="weak" source="#secondEdition">-</pc>
+                            <lb source="#secondEdition" />ſchnur</rdg>
+                        </app>
+                        <app>
+                          <rdg source="#firstEdition">auſſiehet</rdg>
+                          <rdg source="#secondEdition">wehlet</rdg>
+                        </app>, und beſta&#x0364;ndig dabei bleibet. Daran aber liegt es
+                        <app>
+                          <rdg source="#firstEdition">,</rdg>
+                          <rdg source="#secondEdition" type="orthographic">:</rdg>
+                        </app>
+                        die meiſten
+                        <fw place="bottom" type="catch" source="#firstEdition">ſind</fw>
+                        <pb n="119" source="#firstEdition" />
+                        <lb />ſind ſo zweiffelhaft, und ſo wenig feſt bey dieſer Sache, daß ſie eine
+                        Viertel<pc force="weak" source="#secondEdition">-</pc>
+                        <fw place="bottom" type="catch">Stun-</fw>
+                        <pb n="319" source="#secondEdition" facs="#facs-p403"/>
+                        <lb source="#secondEdition" />Stun<pc force="weak" source="#firstEdition">-</pc>
+                        <lb source="#firstEdition" />de gebrauchen, ehe ſie mit ſich ſelbſt u&#x0364;ber die Finger ko&#x0364;nnen eins werden.
+                        <lb source="#secondEdition" />Jch
+                        <app>
+                          <rdg source="#firstEdition">
+                            <hi rendition="#aq">re<pc force="weak" source="#firstEdition">-</pc>
+                            <lb source="#firstEdition" />commendi</hi>re
+                          </rdg>
+                          <rdg source="#secondEdition" xml:id="compound-verb-000" type="germanization">
+                            ſchlage
+                          </rdg>
+                        </app>
+                        demnach
+                        <app>
+                          <rdg source="#firstEdition"/>
+                          <rdg source="#secondEdition">hier</rdg>
+                        </app>
+                        keine
+                        <app>
+                          <rdg source="#firstEdition">
+                            <hi rendition="#aq">Application <foreign xml:lang="lat">in ſpecie</foreign></hi>
+                          </rdg>
+                          <rdg source="#firstEdition" type="germanization">
+                            beſondere Ordnung
+                          </rdg>
+                        </app>
+                        <app>
+                          <rdg source="#firstEdition"/>
+                          <rdg source="#secondEdition" corresp="#compound-verb-000">vor</rdg>
+                        </app>, ſondern daß <lb source="#secondEdition" />ſich einer durch
+                        <app>
+                          <rdg source="#firstEdition">
+                            lan<pc force="weak" source="#firstEdition">-</pc>
+                            <lb source="#firstEdition" />ge <hi rendition="#aq">Praxin</hi>
+                          </rdg>
+                          <rdg source="#secondEdition" type="substantive">
+                            fleißige Uebung
+                          </rdg>
+                        </app>
+                        feſt und unbeweglich zu einer eintzigen gewehne
+                        <app>
+                          <rdg source="#firstEdition">,</rdg>
+                          <rdg source="#secondEdition" type="interpunction">;</rdg>
+                        </app>
+                        <lb source="secondEdition" /> doch ſo, daß ſie auf alle
+                        <lb source="#firstEdition" />Fa&#x0364;lle paſſe: welches Nachdencken erfordert. Jn gar ge<pc force="weak" source="#secondEdition">-</pc>
+                        <lb source="#secondEdition" />meinen
+                        <app>
+                          <rdg source="#firstEdition">Fa&#x0364;llen</rdg>
+                          <rdg source="#secondEdition">Ga&#x0364;ngen</rdg>
+                        </app> iſt ſonſt nur
+                        <lb source="#firstEdition" />dieſes zu beoabchten, daß man in der rechten Hand
+                        <lb source="#secondEdition" />aufwerts den Gold-<note type="editorial" resp="#pfeffer">i.e. Ringfinger</note>
+                        <lb source="#firstEdition" />und Mittel-Finger; unterwerts alſo aber Mittel- und
+                        Zeige<pc force="strong" source="#secondEdition">-</pc><lb source="#secondEdition" />Finger nehme. Dahingegen ſich
+                        <lb source="#firstEdition" />die lincke Hand aufwerts des Zeige-Fingers und <lb source="#secondEdition" />Daumens, herunter aber des
+                        <lb source="#firstEdition" />Zeige und Mittel-Fingers
+                        <app>
+                          <rdg source="#firstEdition">abwechſlungs-weiſe</rdg>
+                          <rdg source="#secondEdition" type="orthographic">Abwechſlungs-Weiſe</rdg>
+                        </app> bedie<pc force="weak" source="#secondEdition">-</pc>
+                        <lb />net. Jch ſage dieſes iſt der
+                        <lb source="#firstEdition" />gemeine Weg und Unterricht
+                        <app>
+                          <rdg source="#firstEdition">,</rdg>
+                          <rdg source="#secondEdition" type="interpunction">;</rdg>
+                        </app>
+                        der ſich doch nur auf gar
+                        <lb source="#secondEdition" />wenige Vorfa&#x0364;lle
+                        <app>
+                          <rdg source="#firstEdition">paſſet</rdg>
+                          <rdg source="#secondEdition">ſchicket</rdg>
+                        </app>.
+                    </p>
+                </div>
+
+                <div n="3" type="section">
+                    <lb source="#firstEdition" /><head>§. 3.</head>
+                    <p xml:id="p3-1">
+                        <lb source="#firstEdition" />Jm <ref target="#m-420 #m-447">zehnten folgenden Tact</ref> ſchla&#x0364;gt die rechte Hand allemahl vor, wo
+                        <lb />die
+                        <hi rendition="#aq" source="#firstEdition">Pause</hi> ſtehet, ſolches giebt eine gar angenehme
+                        <app>
+                          <rdg source="#firstEdition"><hi rendition="#aq">Syncopation</hi></rdg>
+                          <rdg source="#secondEdition" type="germanization">Brechung</rdg>
+                        </app>.
+                        Jm <ref target="#m-633">ſiebenzehn<pc force="weak" source="#firstEdition">-</pc>
+                        <lb source="#firstEdition" />ten Tact</ref>
+                        <lb source="#secondEdition" />aber wird es umgekehrt
+                        <app>
+                          <rdg source="#firstEdition"/>
+                          <rdg source="#secondEdition" type="interpunction">,</rdg>
+                        </app> und
+                        <app>
+                          <rdg />
+                          <rdg source="#secondEdition">da</rdg>
+                        </app> ſchla&#x0364;gt der Baß ſeine ehrbaren Viertel
+                        <app>
+                          <rdg source="#firstEdition" />
+                          <rdg source="#secondEdition">voran</rdg>
+                        </app>,
+                        <app>
+                          <rdg source="#firstEdition">wo zu</rdg>
+                          <rdg source="#secondEdition" type="orthographic">wozu</rdg>
+                        </app>
+                        <lb />die rechte Hand, mit den <hi rendition="#aq" source="#firstEdition">Signatur</hi>en oder
+                        <app>
+                          <rdg source="#firstEdition"><hi rendition="#aq">Accor</hi>ten</rdg>
+                          <rdg source="#secondEdition">Accorden</rdg>
+                        </app> auf die
+                        vorige Weiſe <hi rendition="#aq" source="#firstEdition">ſyncopi</hi>rt.
+                        <lb />Eben alſo wird es mit allen vorkommenden Vierteln gehalten, die durch Sech-
+                        <lb />zehn-Theile abgelo&#x0364;ſet werden,
+                        <app>
+                          <rdg source="#firstEdition">etwan</rdg>
+                          <rdg source="#secondEdition">etwa</rdg>
+                        </app> auf dieſe Art:
+                        <lb />
+                        <figure type="notatedMusic">
+                          <notatedMusic xml:id="music-example1" facs="#facsZone-music-example1">
+                            <ptr target="music-example1.xml"/>
+                          </notatedMusic>
+                        </figure>
+                    </p>
+                    <lb source="secondEdition" />
+                    <p xml:id="p4-1" facs="#facsZone-p4-1">
+                        <lb />Wobey
+                        <app>
+                          <rdg source="#firstEdition">
+                            <hi rendition="#aq"><foreign xml:lang="fra">en passant</foreign></hi>
+                          </rdg>
+                          <rdg source="#secondEdition">
+                            ebenfalls
+                          </rdg>
+                        </app>
+                        zu mercken: daß alle dergleichen
+                        <app>
+                          <rdg source="#firstEdition">
+                            <hi rendition="#aq">Syncopationes</hi>
+                          </rdg>
+                          <rdg source="#secondEdition" type="germanization">
+                            Brechungen
+                          </rdg>
+                        </app>
+                        um ſo viel an<pc force="weak">-</pc>
+                        <lb />genehmer klingen, je weiter ihre
+                        <app>
+                          <rdg source="#firstEdition"><hi rendition="#aq">Intervalla</hi></rdg>
+                          <rdg source="#secondEdition" type="germanization">Intervalle</rdg>
+                        </app> voneinander entlegen
+                        <app>
+                          <rdg source="#firstEdition"/>
+                          <rdg source="#secondEdition">ſind</rdg>
+                        </app>: solche <lb source="#secondEdition" />mu&#x0364;ſſen
+                        <lb source="#firstEdition" />
+                        <app>
+                          <rdg source="#firstEdition">wohl</rdg>
+                          <rdg source="#secondEdition" type="orthographic">wol</rdg>
+                        </app> nie kleiner werden, als eine Quarte
+                        <app>
+                          <rdg source="#firstEdition">.</rdg>
+                          <rdg source="#secondEdition" type="interpunction">:</rdg>
+                        </app> denn die
+                        <app>
+                          <rdg source="#firstEdition"><hi rendition="#aq">Proportio</hi>n</rdg>
+                          <rdg source="#secondEdition" type="germanization">Verha&#x0364;ltniß</rdg>
+                        </app> der
+                        <app>
+                          <rdg source="#firstEdition">Tertien</rdg>
+                          <rdg source="#secondEdition" type="orthographic">Ter<pc force="weak" source="#secondEdition">-</pc><lb source="#secondEdition" />tzen</rdg>
+                        </app>
+                        (zu<pc force="weak" source="#firstEdition">-</pc>
+                        <lb source="#firstEdition" />mahl in der rechten Hand) allzu enge klinget, und faſt nicht gebraucht
+                        <lb source="#secondEdition" />werden
+                        <app>
+                          <rdg source="#firstEdition">kan</rdg>
+                          <rdg source="#secondEdition"/>
+                        </app>.
+                        <lb source="#firstEdition" />Wenn demnach im<lb source="#secondEdition" />
+                        <ref target="#m-956">ſechs und zwantzigsten Tact</ref>
+                        <hi rendition="#b">H dur</hi> ſtehet, muß<lb source="#secondEdition" />nicht von der
+                        <lb source="#firstEdition" />
+                        <app>
+                          <rdg source="#firstEdition">Tertie</rdg>
+                          <rdg source="#secondEdition" type="orthographic">Tertz</rdg>
+                        </app>, vielweniger von der Octave, ſondern bloß von der Quinte
+                        <app>
+                          <rdg>auf</rdg>
+                          <rdg>in</rdg>
+                        </app><lb source="#secondEdition" /> die
+                        <app>
+                          <rdg>Tertie</rdg>
+                          <rdg source="#secondEdition" type="orthographic">Tertz</rdg>
+                        </app>,
+                        <lb source="#firstEdition" />
+                        <app>
+                          <rdg>Sexten-Weiß</rdg>
+                          <rdg source="#secondEdition">Sexten-Weise</rdg>
+                        </app>
+                        aufwa&#x0364;rts geſprungen werden.
+                    </p>
+                    <fw source="#secondEdition" place="bottom" type="catch">Vier-</fw>
+                </div>
+            </div>
+        </body>
+    </text>
+</TEI>

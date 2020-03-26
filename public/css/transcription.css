@@ -158,7 +158,7 @@ tei-p {
   text-align: justify;
   position: relative;
   width: 90%;
-  line-height: 1.5;
+  line-height: 2.2;
 }
 
 tei-div:not(:first-of-type)>tei-p {
@@ -229,20 +229,27 @@ tei-lg {
   display: block;
 }
 
-tei-rdg:last-child {
-  color: gray;
+tei-app {
+  display: inline-table;
+  margin-top: 0;
 }
 
-tei-rdg:last-child::before {
-  content: "[alternative reading: ";
+tei-rdg {
+  display: table-row;
+  line-height: .8;
+  font-size: .9em;
 }
 
-tei-rdg:last-child::after {
-  content: "]";
+tei-rdg:nth-child(2) {
+  color: #b31717;
 }
 
 tei-sic::after {
   content: " [sic]";
+}
+
+tei-pc[force='weak'] {
+  display: none;
 }
 
 tei-front {
@@ -302,4 +309,14 @@ tei-code {
 /* overwrites the default max-width of bootstrap's popover */
 .expandable-popover {
   max-width: 100%;
+}
+
+@media print {
+  #sidebar, #footer, #options, #player, #pdf-download, #xmlDownload {
+    display: none;
+  }
+
+  #comments-view {
+    overflow: visible;
+  }
 }

@@ -20,7 +20,7 @@ function getTranscription(req, res) {
     '/db/apps/probstuecke-digital',
     number,
     label,
-    'comments_' + lookupTable[edition] + '.xml'].join('/');
+    'comments.xml'].join('/');
 
   let viewParams = {
     number: number,
