@@ -4,7 +4,7 @@
     <meiHead>
         <fileDesc>
             <titleStmt>
-                <title></title>
+                <title>Prob-Stück 11, Example 4</title>
                 <composer>
                     <persName role="composer" auth.uri="http://d-nb.info/gnd/118578995" auth="GND">Johann Mattheson</persName>
                 </composer>
@@ -26,14 +26,14 @@
         <body>
             <mdiv>
                 <score>
-                    <scoreDef mnum.visible="false">
+                    <scoreDef key.pname="e" key.accid="f" key.mode="major" meter.unit="4" midi.bpm="90" mnum.visible="false">
                         <staffGrp>
                             <staffDef clef.shape="C" clef.line="1" key.sig="3f" n="1" lines="5" />
                             <staffDef clef.shape="F" clef.line="4" key.sig="3f" n="2" lines="5" />
                         </staffGrp>
                     </scoreDef>
                     <section>
-                        <measure n="54">
+                        <measure n="54" corresp="#measure-0000000919086642">
                             <staff n="1">
                                 <layer n="1">
                                     <supplied resp="#pfeffer">
@@ -70,7 +70,7 @@
                                 </fb>
                             </harm>
                         </measure>
-                        <measure n="55">
+                        <measure n="55" corresp="#measure-0000001966821284">
                             <staff n="1">
                                 <layer n="1">
                                     <beam>
@@ -122,7 +122,7 @@
                                 </fb>
                             </harm>
                         </measure>
-                        <measure n="56">
+                        <measure n="56" corresp="#measure-0000001525394195">
                             <staff n="1">
                                 <layer n="1">
                                     <note dur="8" oct="4" pname="a">

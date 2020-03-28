@@ -81,7 +81,7 @@
           <zone ulx="384" uly="1049" lrx="1304" xml:id="facsZone-m-301"/>
           <zone ulx="966" uly="1061" lrx="1316" xml:id="facsZone-m-341"/>
           <zone ulx="1371" uly="1064" lrx="1343" xml:id="facsZone-m-341-2"/>
-          <zone ulx="93" uly="1352" lrx="1610" xml:id="facsZone-m-341-2"/>
+          <zone ulx="93" uly="1352" lrx="1610" xml:id="facsZone-m-341-3"/>
           <zone ulx="450" uly="1322" lrx="1619" xml:id="facsZone-m-365"/>
           <zone ulx="897" uly="1316" lrx="1619" xml:id="facsZone-m-387"/>
           <zone ulx="1305" uly="1301" lrx="1637" xml:id="facsZone-m-407"/>
@@ -147,7 +147,7 @@
       <body>
         <mdiv>
           <score>
-            <scoreDef key.pname="f" key.mode="minor" midi.bpm="100">
+            <scoreDef key.pname="f" key.accid="n" key.mode="minor" midi.bpm="100">
               <pgHead>
                 <rend halign="center" fontsize="large">Zehntes Prob-Stück.</rend>
               </pgHead>
@@ -630,7 +630,7 @@
                     <mSpace/>
                   </layer>
                 </staff>
-                <staff xml:id="m-341" n="2" facs="#facsZone-m-341 #facsZone-m-341-2 #facsZone-m-341-2">
+                <staff xml:id="m-341" n="2" facs="#facsZone-m-341 #facsZone-m-341-2 #facsZone-m-341-3">
                   <layer xml:id="m-342" n="1">
                     <beam xml:id="m-345">
                       <note xml:id="m-343" dur="8" oct="3" pname="a" accid.ges="f"/>

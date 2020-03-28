@@ -32,18 +32,18 @@
         <body>
             <mdiv>
                 <score>
-                    <scoreDef>
+                    <scoreDef key.pname="g" key.mode="minor" meter.unit="4" mnum.visible="false">
                         <staffGrp>
-                          <staffDef xml:id="staffdef-variant-1" clef.shape="C" clef.line="1" n="1" lines="5">
-                              <keySig sig="1f" />
-                          </staffDef>
-                          <staffDef xml:id="staffdef-bass" clef.shape="F" clef.line="4" n="2" lines="5">
-                              <keySig sig="1f" />
-                          </staffDef>
+                            <staffDef xml:id="staffdef-variant-1" clef.shape="C" clef.line="1" n="1" lines="5">
+                                <keySig sig="1f" />
+                            </staffDef>
+                            <staffDef xml:id="staffdef-bass" clef.shape="F" clef.line="4" n="2" lines="5">
+                                <keySig sig="1f" />
+                            </staffDef>
                         </staffGrp>
                     </scoreDef>
-                    <section xml:id="ex-34">
-                        <measure n="" right="dbl">
+                    <section>
+                        <measure right="dbl">
                             <staff n="1">
                                 <layer n="1">
                                     <space dur="2" />
@@ -91,7 +91,7 @@
                                 </layer>
                             </staff>
                         </measure>
-                        <measure n="">
+                        <measure>
                             <staff n="1">
                                 <layer n="1">
                                     <space dur="2" />

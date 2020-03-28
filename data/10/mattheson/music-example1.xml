@@ -34,14 +34,14 @@
         <body>
             <mdiv>
                 <score>
-                    <scoreDef mnum.visible="false">
+                    <scoreDef key.pname="f" key.accid="n" key.mode="minor" meter.unit="8" midi.bpm="100" mnum.visible="false">
                         <staffGrp>
-                            <staffDef clef.shape="C" clef.line="1" key.sig="3f" n="1" lines="5" meter.unit="8" />
-                            <staffDef clef.shape="F" clef.line="4" key.sig="3f" n="2" lines="5" meter.unit="8" />
+                            <staffDef clef.shape="C" clef.line="1" key.sig="3f" n="1" lines="5" />
+                            <staffDef clef.shape="F" clef.line="4" key.sig="3f" n="2" lines="5" />
                         </staffGrp>
                     </scoreDef>
                     <section>
-                        <measure xml:id="ex-1131" n="46">
+                        <measure xml:id="ex-1131" n="46" corresp="#m-1131">
                             <staff n="1">
                                 <layer n="1">
                                     <chord xml:id="ex-1134" dots="1" dur="4">
@@ -88,7 +88,7 @@
                                 </harm>
                             </supplied>
                         </measure>
-                        <measure xml:id="ex-1165" n="47">
+                        <measure xml:id="ex-1165" n="47" corresp="#m-1165">
                             <staff n="1">
                                 <layer n="1">
                                     <chord xml:id="ex-1169" dots="1" dur="4">
@@ -137,7 +137,7 @@
                                 </harm>
                             </supplied>
                         </measure>
-                        <measure xml:id="ex-1206" n="48">
+                        <measure xml:id="ex-1206" n="48" corresp="#m-1206">
                             <staff n="1">
                                 <layer n="1">
                                     <chord xml:id="ex-1209" dots="1" dur="4">

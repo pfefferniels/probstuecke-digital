@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-CMN.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0" ?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
     <meiHead>
       <fileDesc>
@@ -1327,7 +1326,8 @@
                                     <note xml:id="note-0000000912158176" dur="4" oct="3" pname="g" accid.ges="s" />
                                 </layer>
                             </staff>
-                            <fermata xml:id="fermata-0000000579684362" staff="2" startid="#note-0000001421883386" shape="curved" />
+                            <fermata staff="2" startid="#note-0000001421883386" place="above" shape="curved" />
+                            <fermata staff="2" startid="#note-0000001421883386" place="below" shape="curved" />
                             <dir xml:id="si-suona-3" place="below" tstamp="3">
                                 <rend halign="center" fontstyle="normal" fontsize="small">ſi ſuona</rend>
                             </dir>
@@ -2095,8 +2095,8 @@
                                     <note xml:id="note-0000000539276807" dur="2" oct="2" pname="a" accid.ges="s" />
                                 </layer>
                             </staff>
-                            <dir place="within" staff="2" tstamp="4.996094">
-                              <rend fontstyle="normal">Da Capo.</rend>
+                            <dir place="within" staff="2" tstamp="5">
+                              <rend fontstyle="normal">Da <lb />Capo.</rend>
                             </dir>
                             <harm place='above' staff="2" tstamp="1">
                               <fb>

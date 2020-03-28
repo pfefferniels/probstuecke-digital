@@ -4,7 +4,7 @@
     <meiHead>
         <fileDesc>
             <titleStmt>
-                <title></title>
+                <title>Prob-Stück 11, Example 2</title>
                 <composer>
                     <persName role="composer" auth.uri="http://d-nb.info/gnd/118578995" auth="GND">Johann Mattheson</persName>
                 </composer>
@@ -26,14 +26,14 @@
         <body>
             <mdiv>
                 <score>
-                    <scoreDef mnum.visible="false">
+                    <scoreDef key.pname="e" key.accid="f" key.mode="major" meter.unit="4" midi.bpm="90" mnum.visible="false">
                         <staffGrp>
                             <staffDef clef.shape="C" clef.line="1" key.sig="3f" n="1" lines="5" />
                             <staffDef clef.shape="F" clef.line="4" key.sig="3f" n="2" lines="5" />
                         </staffGrp>
                     </scoreDef>
                     <section>
-                        <measure n="23">
+                        <measure n="23" corresp="#measure-0000002078803044">
                             <staff n="1">
                                 <layer n="1">
                                     <rest dur="16" staff="2" loc="6" />
@@ -103,7 +103,7 @@
                                 </harm>
                             </supplied>
                         </measure>
-                        <measure n="24">
+                        <measure n="24" corresp="#measure-0000001071915657">
                             <staff n="1">
                                 <layer n="1">
                                     <beam>
@@ -174,7 +174,9 @@
                                 </layer>
                             </staff>
                             <!-- dir should be placed between staves -->
-                            <dir place="above" staff="2" tstamp="1"><rend fontstyle="normal">&amp;c.</rend></dir>
+                            <dir place="above" staff="2" tstamp="1">
+                                <rend fontstyle="normal">&amp;c.</rend>
+                            </dir>
                         </measure>
                     </section>
                 </score>
