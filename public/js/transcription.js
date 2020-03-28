@@ -146,9 +146,7 @@ cetei.addBehaviors({
     ],
 
    'note': [
-      ['[type="editorial"]', connectEditorialNote],
-      ['[type="on-key-signature"]', connectKeyOverlay],
-      ['[type="on-meter"]', connectMeterOverlay]
+      ['[type="editorial"]', connectEditorialNote]
     ]
   }
 });
@@ -184,7 +182,7 @@ function highlightText(element) {
   });
 }
 
-function drawSVGIndicator(targetAttr) {
+function drawOverlay(targetAttr) {
   let svg = SVG(targetAttr);
   if (svg == null) {
     console.log("corresponding SVG element for ", targetAttr, " not found");
@@ -305,48 +303,42 @@ function visibleContentOfTEINote(el) {
   return $(el).find('span').first().removeAttr('hidden')[0];
 }
 
-function connectKeyOverlay(el) {
-  let keySigIndicator = drawSVGIndicator('.keySig');
-  if (!keySigIndicator) {
+function renderKeyOverlay(el) {
+  let keySigOverlay = drawOverlay('.keySig');
+  if (!keySigOverlay) {
     // In that case we are probably dealing with a key without any signature.
     // Taking the meter instead and shifting the box to the left.
-    keySigIndicator = drawSVGIndicator('.meterSig');
-    keySigIndicator.dx(-1.33*keySigIndicator.width());
+    keySigOverlay = drawOverlay('.meterSig');
+    keySigOverlay.dx(-1.33*keySigOverlay.width());
   }
-  keySigIndicator.addClass('signature-overlay');
+  keySigOverlay.addClass('signature-overlay');
 
-  $(keySigIndicator.node).popover({
-      content: function() {
-        return visibleContentOfTEINote(el);
-      },
-      trigger: 'click',
-      html: true
+  cetei.makeHTML5(keyCharacteristics, function(html) {
+    $(keySigOverlay.node).popover({
+        content: html,
+        trigger: 'click',
+        html: true
+    });
   });
-  if (this.hideContent) {
-    this.hideContent(el, false);
-  }
 }
 
-function connectMeterOverlay(el) {
-  let meterSigOverlay = drawSVGIndicator('.meterSig');
+function renderMeterOverlay(el) {
+  let meterSigOverlay = drawOverlay('.meterSig');
   meterSigOverlay.addClass('signature-overlay');
 
-  $(meterSigOverlay.node).popover({
-      content: function() {
-        return visibleContentOfTEINote(el);
-      },
-      trigger: 'click',
-      html: true
+  cetei.makeHTML5(meterCharacteristics, function(html) {
+    $(meterSigOverlay.node).popover({
+        content: html,
+        trigger: 'click',
+        html: true
+    });
   });
-  if (this.hideContent) {
-    this.hideContent(el, false);
-  }
 }
 
 function connectTEIRefWithTarget(teiRef, target) {
   if ($(target).parents('svg').length != 0) {
     // connecting with SVG element
-    let rect = drawSVGIndicator(target);
+    let rect = drawOverlay(target);
 
     rect.click(async function() {
       highlightText(teiRef);
@@ -539,6 +531,15 @@ $(document).ready(async function() {
     renderWithNormalizedOrthography();
   }
 
+  if (keyCharacteristics) {
+    renderKeyOverlay();
+  }
+
+  if (meterCharacteristics) {
+    renderMeterOverlay();
+  }
+
+
   $("#update-page").on('click', function() {
     $('#options-form').submit();
   });
@@ -573,7 +574,7 @@ $(document).ready(async function() {
   if (hash) {
     let target = $('body').find(hash);
     if (target.parents('svg').length != 0) {
-      let rect = drawSVGIndicator(hash);
+      let rect = drawOverlay(hash);
       highlightSVG(rect);
     } else {
       highlightText(target);
