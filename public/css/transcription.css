@@ -25,6 +25,11 @@
   stroke-width: 2rem;
 }
 
+/* TEI texts inside popovers should be displayed somewhat more compact */
+.popover-body tei-p {
+  line-height: 1;
+}
+
 input[type="number"] {
   max-width: 4rem;
 }
@@ -158,7 +163,7 @@ tei-p {
   text-align: justify;
   position: relative;
   width: 90%;
-  line-height: 2.2;
+  line-height: 2;
 }
 
 tei-div:not(:first-of-type)>tei-p {

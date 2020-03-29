@@ -63,8 +63,8 @@ function getTranscription(req, res) {
       xquery version "3.1";
       declare namespace mei="http://www.music-encoding.org/ns/mei";
       let $input := doc('/db/apps/probstuecke-digital/${number}/${label}/score.xml')
-      let $count := string($input//mei:staffDef[1]/@meter.count)
-      let $unit := string($input//mei:staffDef[1]/@meter.unit)
+      let $count := string($input//mei:staffDef[1]/mei:meterSig/@count)
+      let $unit := string($input//mei:staffDef[1]/mei:meterSig/@unit)
       return doc('/db/apps/probstuecke-digital/meter/' || $count || '.' || $unit || '.xml')
       `, {});
   }).then((result) => {
