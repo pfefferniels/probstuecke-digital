@@ -35,7 +35,7 @@
         <body>
             <mdiv label="Example 1">
                 <score>
-                    <scoreDef key.pname="d" key.mode="minor">
+                    <scoreDef key.pname="d" key.mode="minor" meter.unit="4" mnum.visible="false">
                         <staffGrp>
                             <staffDef xml:id="staffdef-variant-1" clef.shape="C" clef.line="1" n="1" lines="5">
                                 <keySig sig="1f" type="supplied" />
@@ -45,9 +45,9 @@
                             </staffDef>
                         </staffGrp>
                     </scoreDef>
-                    <section xml:id="ex-34">
+                    <section>
                         <sb />
-                        <measure xml:id="ex-997" n="">
+                        <measure xml:id="ex-997" n="29" corresp="#m-997">
                             <staff n="1">
                                 <layer n="1">
                                     <rest xml:id="ex-1001" dur="4" />
@@ -93,7 +93,7 @@
                                 </layer>
                             </staff>
                         </measure>
-                        <measure xml:id="ex-1027" right="invis" metcon="false">
+                        <measure xml:id="ex-1027" n="30" corresp="#m-1027" right="invis" metcon="false">
                             <staff n="1">
                                 <layer n="1">
                                     <note xml:id="ex-1037" dur="4" oct="5" pname="f">

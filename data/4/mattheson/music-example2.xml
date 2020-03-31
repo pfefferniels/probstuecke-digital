@@ -29,13 +29,13 @@
         <body>
             <mdiv>
                 <score>
-                    <scoreDef key.pname="e" key.accid="n" key.mode="minor" midi.bpm="85" mnum.visible="false">
+                    <scoreDef key.pname="e" key.accid="n" key.mode="minor" meter.unit="8" midi.bpm="85" mnum.visible="false">
                         <staffGrp>
                             <staffDef clef.shape="C" clef.line="1" key.sig="1s" n="1" lines="5" meter.unit="8" />
                         </staffGrp>
                     </scoreDef>
                     <section>
-                        <measure xml:id="ex-101" n="" metcon="false" right="invis">
+                        <measure xml:id="ex-101" metcon="false" right="invis">
                             <staff n="1">
                                 <layer n="1">
                                     <space xml:id="ex-331" dots="1" dur="4" />

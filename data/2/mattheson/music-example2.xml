@@ -32,7 +32,7 @@
         <body>
             <mdiv>
                 <score>
-                    <scoreDef>
+                    <scoreDef key.pname="g" key.mode="minor" meter.unit="4" mnum.visible="false">
                         <staffGrp>
                             <staffDef xml:id="staffdef-variant-1" clef.shape="C" clef.line="1" n="1" lines="5">
                                 <keySig sig="1f" />
@@ -42,8 +42,8 @@
                             </staffDef>
                         </staffGrp>
                     </scoreDef>
-                    <section xml:id="ex-34">
-                        <measure xml:id="ex-606" n="">
+                    <section>
+                        <measure xml:id="ex-606" n="13" corresp="#m-606">
                             <staff n="1">
                                 <layer n="1">
                                     <space xml:id="ex-614" dur="2" />
@@ -78,7 +78,7 @@
                             </staff>
                             <fermata xml:id="ex-632" form="norm" layer="1" shape="curved" staff="3" startid="#m-631" tstamp="1" />
                         </measure>
-                        <measure xml:id="ex-640" n="">
+                        <measure xml:id="ex-640" n="14" corresp="#m-640">
                             <staff n="1">
                                 <layer n="1">
                                     <beam>
@@ -132,7 +132,7 @@
                                 </layer>
                             </staff>
                         </measure>
-                        <measure xml:id="ex-685" n="">
+                        <measure xml:id="ex-685" n="15" corresp="#m-685">
                             <staff n="1">
                                 <layer n="1">
                                     <beam>

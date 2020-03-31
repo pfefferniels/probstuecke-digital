@@ -4,7 +4,7 @@
     <meiHead>
         <fileDesc>
             <titleStmt>
-                <title></title>
+                <title>Prob-Stück 11, Example 1</title>
                 <composer>
                     <persName role="composer" auth.uri="http://d-nb.info/gnd/118578995" auth="GND">Johann Mattheson</persName>
                 </composer>
@@ -26,14 +26,14 @@
         <body>
             <mdiv>
                 <score>
-                    <scoreDef mnum.visible="false">
+                    <scoreDef key.pname="e" key.accid="f" key.mode="major" meter.unit="4" midi.bpm="90" mnum.visible="false">
                         <staffGrp>
                             <staffDef clef.shape="G" clef.line="2" key.sig="3f" n="1" lines="5" />
                             <staffDef clef.shape="C" clef.line="3" key.sig="3f" n="2" lines="5" />
                         </staffGrp>
                     </scoreDef>
                     <section>
-                        <measure n="4">
+                        <measure n="4" corresp="#measure-0000000448770319">
                             <staff n="1">
                                 <layer n="1">
                                     <rest dur="4" />
@@ -111,7 +111,7 @@
                                 </harm>
                             </supplied>
                         </measure>
-                        <measure n="5">
+                        <measure n="5" corresp="#measure-0000001465389423">
                             <staff n="1">
                                 <layer n="1">
                                     <note dur="4" oct="5" pname="d" stem.dir="down" xml:id="ex-1769775861" />
@@ -190,7 +190,7 @@
                                 </harm>
                             </supplied>
                         </measure>
-                        <measure n="6">
+                        <measure n="6" corresp="#measure-0000001029700479">
                             <staff n="1">
                                 <layer n="1">
                                     <note dur="4" oct="5" pname="c" stem.dir="down" xml:id="ex-1193092165" />
@@ -273,7 +273,7 @@
                                 </harm>
                             </supplied>
                         </measure>
-                        <measure n="5" right="invis">
+                        <measure n="7" right="invis">
                             <staff n="1">
                                 <layer n="1">
                                     <custos oct="4" pname="b" />
