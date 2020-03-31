@@ -304,6 +304,10 @@ function visibleContentOfTEINote(el) {
 }
 
 function renderKeyOverlay(el) {
+  if (!keyCharacteristics) {
+    return;
+  }
+
   let keySigOverlay = drawOverlay('.keySig');
   if (!keySigOverlay) {
     // In that case we are probably dealing with a key without any signature.
@@ -314,8 +318,11 @@ function renderKeyOverlay(el) {
   keySigOverlay.addClass('signature-overlay');
 
   cetei.makeHTML5(keyCharacteristics, function(html) {
+    $(html).attr('id', 'key-characteristics').hide().appendTo('body');
     $(keySigOverlay.node).popover({
-        content: html,
+        content: function() {
+          return $('#key-characteristics').show();
+        },
         trigger: 'click',
         html: true
     });
@@ -323,12 +330,19 @@ function renderKeyOverlay(el) {
 }
 
 function renderMeterOverlay(el) {
+  if (!meterCharacteristics) {
+    return;
+  }
+
   let meterSigOverlay = drawOverlay('.meterSig');
   meterSigOverlay.addClass('signature-overlay');
 
   cetei.makeHTML5(meterCharacteristics, function(html) {
+    $(html).attr('id', 'meter-characteristics').hide().appendTo('body');
     $(meterSigOverlay.node).popover({
-        content: html,
+        content: function() {
+          return $('#meter-characteristics').show();
+        },
         trigger: 'click',
         html: true
     });
@@ -455,11 +469,13 @@ async function reloadFacsimileTooltips() {
 
 function normalizeOption(replace, orig, replacement) {
   if (replace) {
-    findAndReplaceDOMText($('tei-text')[0], {
-      find: orig,
-      replace: replacement,
-      wrap: 'span',
-      wrapClass: 'replaced-by-' + replacement
+    $('tei-text').each(function() {
+      findAndReplaceDOMText(this, {
+        find: orig,
+        replace: replacement,
+        wrap: 'span',
+        wrapClass: 'replaced-by-' + replacement
+      });
     });
   } else {
     $('.replaced-by-' + replacement).replaceWith(orig);
@@ -469,19 +485,22 @@ function normalizeOption(replace, orig, replacement) {
 async function renderWithNormalizedOrthography() {
   $('.indicator').remove();
 
-  // hiding linebreaks and normalizing hyphens at linebreaks.
+  // hide line beginnings and normalize hyphens at line breaks.
   if ($('#ignore-lb').is(':checked')) {
-    // T5 Guidelines has <lb>s in the beginning of lines.
-    teiComments = teiComments.replace(/\-(\n|\s)*<lb(\s)*\/>([a-z]|ſ)/g, '$3&#xAD;');
-    // DTA-Bf recommends <lb>s in the end of lines.
-    teiComments = teiComments.replace(/\-<lb(\s)*\/>(\n|\s)*([a-z]|ſ)/g, '$3&#xAD;');
+    const lbWithHyphen = /\-(\n|\s)*<lb(\s)*\/>([a-z]|ſ)/g;
+    teiComments = teiComments.replace(lbWithHyphen, '$3&#xAD;');
+    keyCharacteristics = keyCharacteristics.replace(lbWithHyphen, '$3&#xAD;');
+    meterCharacteristics = meterCharacteristics.replace(lbWithHyphen, '$3&#xAD;');
 
-    await renderComments();
+    await Promise.all([renderComments(), renderKeyOverlay(), renderMeterOverlay()]);
     $('tei-lb').hide();
   } else {
-    teiComments = teiComments.replace(/\&#xAD;/g, '-<lb/>');
+    const softHyphen = /\&#xAD;/g;
+    teiComments = teiComments.replace(softHyphen, '-<lb/>');
+    keyCharacteristics = keyCharacteristics.replace(softHyphen, '-<lb/>');
+    meterCharacteristics = meterCharacteristics.replace(softHyphen, '-<lb/>');
 
-    await renderComments();
+    await Promise.all([renderComments(), renderKeyOverlay(), renderMeterOverlay()]);
     $('tei-lb').show();
   }
   reconnectCrossRefs();
@@ -527,18 +546,9 @@ $(document).ready(async function() {
     $("#player").midiPlayer.load(piece);
   }
 
-  if (teiComments) {
+  if (teiComments || keyCharacteristics || meterCharacteristics) {
     renderWithNormalizedOrthography();
   }
-
-  if (keyCharacteristics) {
-    renderKeyOverlay();
-  }
-
-  if (meterCharacteristics) {
-    renderMeterOverlay();
-  }
-
 
   $("#update-page").on('click', function() {
     $('#options-form').submit();
