@@ -124,11 +124,6 @@ cetei.addBehaviors({
     'placeName': geoReference,
     'name': gndReference,
 
-    'teiHeader': function(el) {
-      $('#transcript-info').html(el.innerHTML);
-      this.hideContent(el, false);
-    },
-
     'facsimile': function(el) {
       this.hideContent(el, false);
     },
@@ -206,7 +201,9 @@ function drawOverlay(targetAttr) {
 
 async function renderComments() {
   cetei.makeHTML5(teiComments, function(html) {
-      $("#comments-view").html(html);
+    let comment = $("#comments-view").html(html);
+
+    removeHiddenAttr(comment.find('tei-teiheader')[0]).detach().appendTo('#transcript-info');
   });
 
   // load the music examples, if there are any
@@ -267,21 +264,21 @@ function connectEditorialNote(el) {
   let ref = $(el.getAttribute('corresp'));
   if (ref.length != 0) {
     ref.popover({
-        content: visibleContentOfTEINote(el),
+        content: removeHiddenAttr(el),
         trigger: 'hover',
         html: true
     });
   } else {
     return $('<sup>editorial note</sup>').popover({
-        content: visibleContentOfTEINote(el),
+        content: removeHiddenAttr(el),
         trigger: 'hover',
         html: true
     })[0];
   }
 }
 
-function visibleContentOfTEINote(el) {
-  return $(el).find('span').first().removeAttr('hidden')[0];
+function removeHiddenAttr(el) {
+  return $(el).find('span').first().removeAttr('hidden');
 }
 
 function renderKeyOverlay(el) {
