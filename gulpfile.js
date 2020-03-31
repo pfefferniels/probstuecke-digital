@@ -13,10 +13,18 @@ gulp.task('deploy-data', function() {
         .pipe(exClient.dest(targetOptions));
 });
 
+gulp.task('deploy-characteristics', function() {
+  return gulp.src('characteristics-data/mattheson/**/*.xml', {})
+      .pipe(exClient.newer(targetOptions))
+      .pipe(exClient.dest(targetOptions));
+});
+
 gulp.task('deploy-xslt', function() {
     return gulp.src('src/xslt/*', {})
         .pipe(exClient.newer(targetOptions))
         .pipe(exClient.dest(targetOptions));
 });
 
-gulp.task('deploy', gulp.series('deploy-data', 'deploy-xslt'));
+gulp.task('deploy', gulp.series('deploy-data',
+                                'deploy-characteristics',
+                                'deploy-xslt'));

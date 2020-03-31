@@ -128,8 +128,11 @@
                             <rend halign="center" fontsize="large">Drittes Prob-Stück.</rend>
                         </pgHead>
                         <staffGrp>
-                            <staffDef type="embeddedAnnotation" clef.line="2" clef.shape="G" meter.count="3" meter.unit="4" meter.form="num" lines="5" n="1" />
+                            <staffDef type="embeddedAnnotation" clef.line="2" clef.shape="G" lines="5" n="1">
+                                <meterSig count="3" unit="4" form="num" />
+                            </staffDef>
                             <staffDef xml:id="bass" clef.line="4" clef.shape="F" lines="5" n="2">
+                                <meterSig count="3" unit="4" form="num" />
                                 <layerDef n="3" xml:id="layer-pfeffer" />
                                 <keySig />
                                 <meterSig count="3" unit="4" form="num" />

@@ -119,7 +119,8 @@
                 <rend halign="center" fontsize="large">Sechzehntes Prob-Stück.</rend>
               </pgHead>
               <staffGrp>
-                <staffDef xml:id="bass" clef.shape="F" clef.line="4" meter.count="4" meter.unit="4" meter.sym="common" n="1" lines="5">
+                <staffDef xml:id="bass" clef.shape="F" clef.line="4" n="1" lines="5">
+                  <meterSig count="4" unit="4" sym="common"  />
                   <keySig sig="7f"/>
                 </staffDef>
               </staffGrp>
