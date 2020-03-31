@@ -147,10 +147,14 @@
               <rend halign="center" fontsize="large">Dreizehntes Prob-Stück.</rend>
             </pgHead>
             <staffGrp>
-              <staffDef type="embeddedAnnotation" clef.shape="G" clef.line="2" key.sig="2f" meter.count="9" meter.unit="16" n="1" lines="5">
+              <staffDef type="embeddedAnnotation" clef.shape="G" clef.line="2" n="1" lines="5">
+                <keySig sig="2f" />
+                <meterSig count="9" unit="16" />
                 <label>Mattheson's annotations</label>
               </staffDef>
-              <staffDef xml:id="bass" clef.shape="F" clef.line="4" key.sig="2f" meter.count="9" meter.unit="16" n="2" lines="5">
+              <staffDef xml:id="bass" clef.shape="F" clef.line="4" n="2" lines="5">
+                <keySig sig="2f" />
+                <meterSig count="9" unit="16" />
               </staffDef>
             </staffGrp>
           </scoreDef>

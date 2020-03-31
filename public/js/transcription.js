@@ -146,9 +146,7 @@ cetei.addBehaviors({
     ],
 
    'note': [
-      ['[type="editorial"]', connectEditorialNote],
-      ['[type="on-key-signature"]', connectKeyOverlay],
-      ['[type="on-meter"]', connectMeterOverlay]
+      ['[type="editorial"]', connectEditorialNote]
     ]
   }
 });
@@ -184,7 +182,7 @@ function highlightText(element) {
   });
 }
 
-function drawSVGIndicator(targetAttr) {
+function drawOverlay(targetAttr) {
   let svg = SVG(targetAttr);
   if (svg == null) {
     console.log("corresponding SVG element for ", targetAttr, " not found");
@@ -286,48 +284,56 @@ function visibleContentOfTEINote(el) {
   return $(el).find('span').first().removeAttr('hidden')[0];
 }
 
-function connectKeyOverlay(el) {
-  let keySigIndicator = drawSVGIndicator('.keySig');
-  if (!keySigIndicator) {
+function renderKeyOverlay(el) {
+  if (!keyCharacteristics) {
+    return;
+  }
+
+  let keySigOverlay = drawOverlay('.keySig');
+  if (!keySigOverlay) {
     // In that case we are probably dealing with a key without any signature.
     // Taking the meter instead and shifting the box to the left.
-    keySigIndicator = drawSVGIndicator('.meterSig');
-    keySigIndicator.dx(-1.33*keySigIndicator.width());
+    keySigOverlay = drawOverlay('.meterSig');
+    keySigOverlay.dx(-1.33*keySigOverlay.width());
   }
-  keySigIndicator.addClass('signature-overlay');
+  keySigOverlay.addClass('signature-overlay');
 
-  $(keySigIndicator.node).popover({
-      content: function() {
-        return visibleContentOfTEINote(el);
-      },
-      trigger: 'click',
-      html: true
+  cetei.makeHTML5(keyCharacteristics, function(html) {
+    $(html).attr('id', 'key-characteristics').hide().appendTo('body');
+    $(keySigOverlay.node).popover({
+        content: function() {
+          return $('#key-characteristics').show();
+        },
+        trigger: 'click',
+        html: true
+    });
   });
-  if (this.hideContent) {
-    this.hideContent(el, false);
-  }
 }
 
-function connectMeterOverlay(el) {
-  let meterSigOverlay = drawSVGIndicator('.meterSig');
+function renderMeterOverlay(el) {
+  if (!meterCharacteristics) {
+    return;
+  }
+
+  let meterSigOverlay = drawOverlay('.meterSig');
   meterSigOverlay.addClass('signature-overlay');
 
-  $(meterSigOverlay.node).popover({
-      content: function() {
-        return visibleContentOfTEINote(el);
-      },
-      trigger: 'click',
-      html: true
+  cetei.makeHTML5(meterCharacteristics, function(html) {
+    $(html).attr('id', 'meter-characteristics').hide().appendTo('body');
+    $(meterSigOverlay.node).popover({
+        content: function() {
+          return $('#meter-characteristics').show();
+        },
+        trigger: 'click',
+        html: true
+    });
   });
-  if (this.hideContent) {
-    this.hideContent(el, false);
-  }
 }
 
 function connectTEIRefWithTarget(teiRef, target) {
   if ($(target).parents('svg').length != 0) {
     // connecting with SVG element
-    let rect = drawSVGIndicator(target);
+    let rect = drawOverlay(target);
 
     rect.click(async function() {
       highlightText(teiRef);
@@ -444,11 +450,13 @@ async function reloadFacsimileTooltips() {
 
 function normalizeOption(replace, orig, replacement) {
   if (replace) {
-    findAndReplaceDOMText($('tei-text')[0], {
-      find: orig,
-      replace: replacement,
-      wrap: 'span',
-      wrapClass: 'replaced-by-' + replacement
+    $('tei-text').each(function() {
+      findAndReplaceDOMText(this, {
+        find: orig,
+        replace: replacement,
+        wrap: 'span',
+        wrapClass: 'replaced-by-' + replacement
+      });
     });
   } else {
     $('.replaced-by-' + replacement).replaceWith(orig);
@@ -458,19 +466,22 @@ function normalizeOption(replace, orig, replacement) {
 async function renderWithNormalizedOrthography() {
   $('.indicator').remove();
 
-  // hiding linebreaks and normalizing hyphens at linebreaks.
+  // hide line beginnings and normalize hyphens at line breaks.
   if ($('#ignore-lb').is(':checked')) {
-    // T5 Guidelines has <lb>s in the beginning of lines.
-    teiComments = teiComments.replace(/\-(\n|\s)*<lb(\s)*\/>([a-z]|ſ)/g, '$3&#xAD;');
-    // DTA-Bf recommends <lb>s in the end of lines.
-    teiComments = teiComments.replace(/\-<lb(\s)*\/>(\n|\s)*([a-z]|ſ)/g, '$3&#xAD;');
+    const lbWithHyphen = /\-(\n|\s)*<lb(\s)*\/>([a-z]|ſ)/g;
+    teiComments = teiComments.replace(lbWithHyphen, '$3&#xAD;');
+    keyCharacteristics = keyCharacteristics.replace(lbWithHyphen, '$3&#xAD;');
+    meterCharacteristics = meterCharacteristics.replace(lbWithHyphen, '$3&#xAD;');
 
-    await renderComments();
+    await Promise.all([renderComments(), renderKeyOverlay(), renderMeterOverlay()]);
     $('tei-lb').hide();
   } else {
-    teiComments = teiComments.replace(/\&#xAD;/g, '-<lb/>');
+    const softHyphen = /\&#xAD;/g;
+    teiComments = teiComments.replace(softHyphen, '-<lb/>');
+    keyCharacteristics = keyCharacteristics.replace(softHyphen, '-<lb/>');
+    meterCharacteristics = meterCharacteristics.replace(softHyphen, '-<lb/>');
 
-    await renderComments();
+    await Promise.all([renderComments(), renderKeyOverlay(), renderMeterOverlay()]);
     $('tei-lb').show();
   }
   reconnectCrossRefs();
@@ -516,7 +527,7 @@ $(document).ready(async function() {
     $("#player").midiPlayer.load(piece);
   }
 
-  if (teiComments) {
+  if (teiComments || keyCharacteristics || meterCharacteristics) {
     renderWithNormalizedOrthography();
   }
 
@@ -554,7 +565,7 @@ $(document).ready(async function() {
   if (hash) {
     let target = $('body').find(hash);
     if (target.parents('svg').length != 0) {
-      let rect = drawSVGIndicator(hash);
+      let rect = drawOverlay(hash);
       highlightSVG(rect);
     } else {
       highlightText(target);
