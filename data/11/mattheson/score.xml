@@ -20,10 +20,9 @@
         </respStmt>
         <date>2019</date>
         <availability>
-          <useRestrict>This encoding is licensed under GPL. You may copy, distribute and
-            modify the software as long as you track changes/dates in source files.
-            Any modifications to or software including (via compiler) GPL-licensed
-            code must also be made available under the GPL along with build &amp; install instructions.</useRestrict>
+          <useRestrict label="licence" auth="https://creativecommons.org/licenses/by/" codedval="4.0">
+            <p>Creative Commons Attribution 4.0 International License</p>
+          </useRestrict>
         </availability>
       </pubStmt>
       <sourceDesc>
@@ -150,7 +149,7 @@
                 <keySig sig="3f" />
                 <meterSig count="3" unit="4" />
               </staffDef>
-              <staffDef xml:id="bass" clef.shape="C" clef.line="4" n="2" lines="5">
+              <staffDef clef.shape="C" clef.line="4" n="2" lines="5">
                 <keySig sig="3f" />
                 <meterSig count="3" unit="4" />
                 <layerDef n="3" type="embeddedAnnotation" />
@@ -2088,14 +2087,14 @@
               <staff xml:id="staff-0000001798032218" n="2" facs="#facsZone-staff-0000001798032218">
                 <layer n="1">
                   <beam>
-                    <note xml:id="note-0000000628687406" oct="4" pname="d" dur="8">
+                    <note oct="4" pname="d" dur="8">
                       <accid accid="f" />
                     </note>
-                    <note xml:id="note-0000000628687406" oct="4" pname="d" dur="8" accid.ges="f" />
-                    <note xml:id="note-0000000628687406" oct="4" pname="d" dur="8" accid.ges="f" />
-                    <note xml:id="note-0000000628687406" oct="4" pname="d" dur="8" accid.ges="f" />
-                    <note xml:id="note-0000000628687406" oct="4" pname="d" dur="8" accid.ges="f" />
-                    <note xml:id="note-0000000628687406" oct="4" pname="d" dur="8" accid.ges="f" />
+                    <note oct="4" pname="d" dur="8" accid.ges="f" />
+                    <note oct="4" pname="d" dur="8" accid.ges="f" />
+                    <note oct="4" pname="d" dur="8" accid.ges="f" />
+                    <note oct="4" pname="d" dur="8" accid.ges="f" />
+                    <note oct="4" pname="d" dur="8" accid.ges="f" />
                   </beam>
                 </layer>
                 <layer n="3">

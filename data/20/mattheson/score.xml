@@ -20,10 +20,9 @@
         </respStmt>
         <date>2019</date>
         <availability>
-          <useRestrict>This encoding is licensed under GPL. You may copy, distribute and
-            modify the software as long as you track changes/dates in source files.
-            Any modifications to or software including (via compiler) GPL-licensed
-            code must also be made available under the GPL along with build &amp; install instructions.</useRestrict>
+          <useRestrict label="licence" auth="https://creativecommons.org/licenses/by/" codedval="4.0">
+            <p>Creative Commons Attribution 4.0 International License</p>
+          </useRestrict>
         </availability>
       </pubStmt>
       <seriesStmt>
@@ -143,7 +142,7 @@
                 <keySig sig="2s" />
                 <meterSig count="4" unit="4" sym="common" />
               </staffDef>
-              <staffDef xml:id="bass" n="2" lines="5" clef.shape="F" clef.line="4">
+              <staffDef n="2" lines="5" clef.shape="F" clef.line="4">
                 <keySig sig="2s" />
                 <meterSig count="4" unit="4" sym="common" />
             </staffDef>

@@ -20,10 +20,9 @@
         </respStmt>
         <date>2019</date>
         <availability>
-          <useRestrict>This encoding is licensed under GPL. You may copy, distribute and
-            modify the software as long as you track changes/dates in source files.
-            Any modifications to or software including (via compiler) GPL-licensed
-            code must also be made available under the GPL along with build &amp; install instructions.</useRestrict>
+          <useRestrict label="licence" auth="https://creativecommons.org/licenses/by/" codedval="4.0">
+            <p>Creative Commons Attribution 4.0 International License</p>
+          </useRestrict>
         </availability>
       </pubStmt>
       <sourceDesc>
@@ -148,17 +147,17 @@
             </pgHead>
             <staffGrp>
               <staffDef type="embeddedAnnotation" clef.shape="G" clef.line="2" n="1" lines="5">
+                <label>Mattheson's annotations</label>
                 <keySig sig="2f" />
                 <meterSig count="9" unit="16" />
-                <label>Mattheson's annotations</label>
               </staffDef>
-              <staffDef xml:id="bass" clef.shape="F" clef.line="4" n="2" lines="5">
+              <staffDef clef.shape="F" clef.line="4" n="2" lines="5">
                 <keySig sig="2f" />
                 <meterSig count="9" unit="16" />
               </staffDef>
             </staffGrp>
           </scoreDef>
-          <section xml:id="section-0000001780414004">
+          <section>
             <measure xml:id="measure-0000001329733354" n="1">
               <staff xml:id="staff-0000001029842644" n="1">
                 <layer xml:id="layer-0000001218265116" n="1">
@@ -1569,7 +1568,7 @@
               </staff>
               <harm place="above" staff="2" tstamp="1">
                 <fb>
-                  <f>#</f>
+                  <f>♯</f>
                 </fb>
               </harm>
             </measure>
@@ -1704,7 +1703,7 @@
               </staff>
               <harm place="above" staff="2" tstamp="4">
                 <fb>
-                  <f>#</f>
+                  <f>♯</f>
                 </fb>
               </harm>
             </measure>
@@ -1727,7 +1726,7 @@
               </staff>
               <harm place="above" staff="2" tstamp="4">
                 <fb>
-                  <f>#</f>
+                  <f>♯</f>
                 </fb>
               </harm>
             </measure>

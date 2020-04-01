@@ -10,7 +10,7 @@
         </composer>
         <respStmt>
           <resp>Edited by</resp>
-          <persName role="editor">Niels Pfeffer</persName>
+          <persName role="editor" xml:id="pfeffer">Niels Pfeffer</persName>
           <persName role="editor" xml:id="rettinghaus">Klaus Rettinghaus</persName>
         </respStmt>
       </titleStmt>
@@ -130,7 +130,7 @@
                 <keySig sig="2s"/>
                 <meterSig count="12" unit="8"/>
               </staffDef>
-              <staffDef xml:id="bass" clef.shape="F" clef.line="4" n="2" lines="5">
+              <staffDef clef.shape="F" clef.line="4" n="2" lines="5">
                 <keySig sig="2s"/>
                 <meterSig count="12" unit="8"/>
               </staffDef>
@@ -1633,7 +1633,6 @@
                   <mSpace/>
                 </layer>
               </staff>
-              <tie endid="#m-918" startid="#m-916"/>
               <staff xml:id="staff-0000001474037539" n="2" facs="#facsZone-staff-0000001474037539">
                 <layer n="1">
                   <clef shape="F" line="4"/>
@@ -1729,7 +1728,9 @@
                   <note xml:id="note-0000000488499091" dots="1" dur="4" oct="2" pname="e"/>
                 </layer>
               </staff>
-              <tie xml:id="tie-0000000441265820" startid="#note-0000000847506698" endid="#note-0000000488499091"/>
+              <supplied resp="#pfeffer">
+                <tie xml:id="tie-0000000441265820" startid="#note-0000000847506698" endid="#note-0000000488499091"/>
+              </supplied>
               <dir staff="2" tstamp="10" place="within">
                 <rend fontstyle="normal">Da Capo.</rend>
               </dir>
