@@ -2,13 +2,13 @@
 
     <!-- adding staves above -->
     <xsl:template match="mei:staffGrp">
-        <xsl:apply-templates select="@*" />
         <xsl:copy>
+            <xsl:copy-of select="@*"/>
             <xsl:for-each select="1 to $stavesAbove">
                 <xsl:variable name="i" select="."/>
                 <staffDef n="{$i+10}" lines="5"/>
             </xsl:for-each>
-            <xsl:apply-templates />
+            <xsl:apply-templates/>
             <xsl:for-each select="1 to $stavesBelow">
                 <xsl:variable name="i" select="."/>
                 <staffDef n="{$i+20}" lines="5"/>
@@ -18,7 +18,7 @@
 
     <xsl:template match="mei:measure">
         <xsl:copy>
-            <xsl:copy-of select="@*" />
+            <xsl:copy-of select="@*"/>
             <xsl:for-each select="1 to $stavesAbove">
                 <xsl:variable name="i" select="."/>
                 <staff n="{$i+10}">
@@ -27,7 +27,7 @@
                     </layer>
                 </staff>
             </xsl:for-each>
-            <xsl:apply-templates />
+            <xsl:apply-templates/>
             <xsl:for-each select="1 to $stavesBelow">
                 <xsl:variable name="i" select="."/>
                 <staff n="{$i+20}">
