@@ -3,7 +3,7 @@ const express = require('express'),
       renderRouter = require('./src/render.js'),
       iiifRouter = require('./src/iiif.js'),
       facsimileRouter = require('./src/facsimile.js'),
-      transcriptionRouter = require('./src/transcription.js'),
+      viewRouter = require('./src/view.js'),
       personsRouter = require('./src/persons.js');
 
 // express.js setup
@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 
 app.use('/render', renderRouter);
 app.use('/facsimile', facsimileRouter);
-app.use('/transcription', transcriptionRouter);
+app.use('/view', viewRouter);
 app.use('/iiif', iiifRouter);
 app.use('/persons', personsRouter);
 
@@ -31,7 +31,7 @@ app.get('/contributions', function(req, res) {
 });
 
 app.get('/', function(req, res) {
-  res.redirect('/transcription/frontpage/mattheson/secondEdition');
+  res.redirect('/view/frontpage/mattheson/secondEdition');
 });
 
 app.listen(process.env.PORT || 3000, function() {

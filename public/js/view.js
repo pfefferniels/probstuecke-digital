@@ -350,7 +350,7 @@ function connectTEIRefWithTarget(teiRef, target) {
   }
 }
 
-// connecting transcription and facsimile
+// connecting view and facsimile
 async function reloadFacsimileTooltips() {
   $('.has-facsimile-popover').removeAttr('data-content').popover('dispose');
 
@@ -561,6 +561,8 @@ $(document).ready(async function() {
   let hash = window.location.hash;
   if (hash) {
     let target = $('body').find(hash);
+    console.log('looking for', hash, target);
+
     if (target.parents('svg').length != 0) {
       let rect = drawOverlay(hash);
       highlightSVG(rect);

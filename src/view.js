@@ -1,4 +1,4 @@
-const transcription = require('express').Router(),
+const view = require('express').Router(),
       exist = require('@existdb/node-exist'),
       existConfig = require('../existConfig.json'),
       db = exist.connect(existConfig);
@@ -82,10 +82,10 @@ function getTranscription(req, res) {
   }).then(() => {
 
     // and deliver everything
-    res.render('transcription', viewParams);
+    res.render('view', viewParams);
   });
 }
 
-transcription.get('/:number/:label/:edition', getTranscription);
+view.get('/:number/:label/:edition', getTranscription);
 
-module.exports = transcription;
+module.exports = view;
