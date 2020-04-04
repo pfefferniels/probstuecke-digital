@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-CMN.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<mei xmlns="http://www.music-encoding.org/ns/mei" xmlns:xlink="http://www.w3.org/1999/xlink" meiversion="4.0.0">
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-CMN.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?><mei xmlns="http://www.music-encoding.org/ns/mei" xmlns:xlink="http://www.w3.org/1999/xlink" meiversion="4.0.0">
   <meiHead>
     <fileDesc>
       <titleStmt>
@@ -65,50 +64,50 @@
       <facsimile decls="#secondEdition">
         <surface ulx="0" uly="0" lrx="1998" lry="2396" xml:id="facs-p476">
           <graphic width="1998" height="2396" target="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/476"/>
-          <zone ulx="57" uly="338" lrx="611" xml:id="facsZone-staff-0000001487026554"/>
-          <zone ulx="651" uly="281" lrx="620" xml:id="facsZone-staff-0000000469021128"/>
-          <zone ulx="1206" uly="296" lrx="608" xml:id="facsZone-staff-0000001370080221"/>
-          <zone ulx="62" uly="617" lrx="887" xml:id="facsZone-staff-0000001370080221-2"/>
-          <zone ulx="648" uly="596" lrx="899" xml:id="facsZone-staff-0000000866920064"/>
-          <zone ulx="1317" uly="590" lrx="881" xml:id="facsZone-staff-0000000777397585"/>
-          <zone ulx="69" uly="896" lrx="1232" xml:id="facsZone-staff-0000000777397585-2"/>
-          <zone ulx="642" uly="890" lrx="1220" xml:id="facsZone-staff-0000002084219878"/>
-          <zone ulx="966" uly="899" lrx="1232" xml:id="facsZone-staff-0000000037582788"/>
-          <zone ulx="1215" uly="896" lrx="1235" xml:id="facsZone-staff-0000001100102818"/>
-          <zone ulx="1443" uly="908" lrx="1217" xml:id="facsZone-staff-0000000401169297"/>
-          <zone ulx="72" uly="1229" lrx="1538" xml:id="facsZone-staff-0000001737688655"/>
-          <zone ulx="840" uly="1199" lrx="1538" xml:id="facsZone-staff-0000000200615105"/>
-          <zone ulx="1116" uly="1205" lrx="1535" xml:id="facsZone-staff-0000000996170850"/>
-          <zone ulx="1413" uly="1205" lrx="1520" xml:id="facsZone-staff-0000000197603987"/>
-          <zone ulx="72" uly="1526" lrx="1835" xml:id="facsZone-staff-0000001003220057"/>
-          <zone ulx="786" uly="1529" lrx="1841" xml:id="facsZone-staff-0000000018390852"/>
-          <zone ulx="1323" uly="1526" lrx="1850" xml:id="facsZone-staff-0000001250795903"/>
-          <zone ulx="75" uly="1838" lrx="2159" xml:id="facsZone-staff-0000000257480050"/>
-          <zone ulx="876" uly="1823" lrx="2192" xml:id="facsZone-staff-0000000369253008"/>
-          <zone ulx="1269" uly="1826" lrx="2159" xml:id="facsZone-staff-0000000906382025"/>
-          <zone ulx="1587" uly="1823" lrx="2153" xml:id="facsZone-staff-0000002095462985"/>
+          <zone ulx="57" uly="338" lrx="611" lry="610" xml:id="facsZone-staff-0000001487026554"/>
+          <zone ulx="651" uly="281" lrx="620" lry="619" xml:id="facsZone-staff-0000000469021128"/>
+          <zone ulx="1206" uly="296" lrx="608" lry="607" xml:id="facsZone-staff-0000001370080221"/>
+          <zone ulx="62" uly="617" lrx="887" lry="886" xml:id="facsZone-staff-0000001370080221-2"/>
+          <zone ulx="648" uly="596" lrx="899" lry="898" xml:id="facsZone-staff-0000000866920064"/>
+          <zone ulx="1317" uly="590" lrx="881" lry="880" xml:id="facsZone-staff-0000000777397585"/>
+          <zone ulx="69" uly="896" lrx="1232" lry="1231" xml:id="facsZone-staff-0000000777397585-2"/>
+          <zone ulx="642" uly="890" lrx="1220" lry="1219" xml:id="facsZone-staff-0000002084219878"/>
+          <zone ulx="966" uly="899" lrx="1232" lry="1231" xml:id="facsZone-staff-0000000037582788"/>
+          <zone ulx="1215" uly="896" lrx="1235" lry="1234" xml:id="facsZone-staff-0000001100102818"/>
+          <zone ulx="1443" uly="908" lrx="1217" lry="1216" xml:id="facsZone-staff-0000000401169297"/>
+          <zone ulx="72" uly="1229" lrx="1538" lry="1537" xml:id="facsZone-staff-0000001737688655"/>
+          <zone ulx="840" uly="1199" lrx="1538" lry="1537" xml:id="facsZone-staff-0000000200615105"/>
+          <zone ulx="1116" uly="1205" lrx="1535" lry="1534" xml:id="facsZone-staff-0000000996170850"/>
+          <zone ulx="1413" uly="1205" lrx="1520" lry="1519" xml:id="facsZone-staff-0000000197603987"/>
+          <zone ulx="72" uly="1526" lrx="1835" lry="1834" xml:id="facsZone-staff-0000001003220057"/>
+          <zone ulx="786" uly="1529" lrx="1841" lry="1840" xml:id="facsZone-staff-0000000018390852"/>
+          <zone ulx="1323" uly="1526" lrx="1850" lry="1849" xml:id="facsZone-staff-0000001250795903"/>
+          <zone ulx="75" uly="1838" lrx="2159" lry="2158" xml:id="facsZone-staff-0000000257480050"/>
+          <zone ulx="876" uly="1823" lrx="2192" lry="2191" xml:id="facsZone-staff-0000000369253008"/>
+          <zone ulx="1269" uly="1826" lrx="2159" lry="2158" xml:id="facsZone-staff-0000000906382025"/>
+          <zone ulx="1587" uly="1823" lrx="2153" lry="2152" xml:id="facsZone-staff-0000002095462985"/>
         </surface>
         <surface ulx="0" uly="0" lrx="1998" lry="2396" xml:id="facs-p477">
           <graphic width="1998" height="2396" target="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/477"/>
-          <zone ulx="66" uly="191" lrx="518" xml:id="facsZone-staff-0000002095462985-2"/>
-          <zone ulx="687" uly="194" lrx="518" xml:id="facsZone-staff-0000002058571182"/>
-          <zone ulx="1116" uly="197" lrx="533" xml:id="facsZone-staff-0000000776765693"/>
-          <zone ulx="57" uly="515" lrx="821" xml:id="facsZone-staff-0000002106645499"/>
-          <zone ulx="54" uly="818" lrx="1157" xml:id="facsZone-staff-0000001342003217"/>
-          <zone ulx="1047" uly="509" lrx="836" xml:id="facsZone-staff-0000000389115320"/>
+          <zone ulx="66" uly="191" lrx="518" lry="517" xml:id="facsZone-staff-0000002095462985-2"/>
+          <zone ulx="687" uly="194" lrx="518" lry="517" xml:id="facsZone-staff-0000002058571182"/>
+          <zone ulx="1116" uly="197" lrx="533" lry="532" xml:id="facsZone-staff-0000000776765693"/>
+          <zone ulx="57" uly="515" lrx="821" lry="820" xml:id="facsZone-staff-0000002106645499"/>
+          <zone ulx="54" uly="818" lrx="1157" lry="823" xml:id="facsZone-staff-0000001342003217"/>
+          <zone ulx="1047" uly="509" lrx="836" lry="835" xml:id="facsZone-staff-0000000389115320"/>
           <zone ulx="1407" uly="524" lrx="824" xml:id="facsZone-staff-0000001342003217-2"/>
-          <zone ulx="759" uly="809" lrx="1160" xml:id="facsZone-staff-0000001359134029"/>
-          <zone ulx="1200" uly="797" lrx="1136" xml:id="facsZone-staff-0000000710478214"/>
-          <zone ulx="1548" uly="800" lrx="1142" xml:id="facsZone-staff-0000000023963945"/>
-          <zone ulx="51" uly="1148" lrx="1472" xml:id="facsZone-staff-0000000023963945-2"/>
-          <zone ulx="543" uly="1145" lrx="1484" xml:id="facsZone-staff-0000001664066705"/>
-          <zone ulx="1011" uly="1139" lrx="1484" xml:id="facsZone-staff-0000001471871058"/>
-          <zone ulx="1368" uly="1121" lrx="1514" xml:id="facsZone-staff-0000001444555416"/>
-          <zone ulx="786" uly="1472" lrx="1826" xml:id="facsZone-staff-0000000818833052"/>
-          <zone ulx="51" uly="1481" lrx="1817" xml:id="facsZone-staff-0000001635909218"/>
-          <zone ulx="1149" uly="1466" lrx="1832" xml:id="facsZone-staff-0000000474150812"/>
-          <zone ulx="45" uly="1805" lrx="2198" xml:id="facsZone-staff-0000000382142317"/>
-          <zone ulx="693" uly="1817" lrx="2198" xml:id="facsZone-staff-0000001239128073"/>
+          <zone ulx="759" uly="809" lrx="1160" lry="1159" xml:id="facsZone-staff-0000001359134029"/>
+          <zone ulx="1200" uly="797" lrx="1136" lry="1135" xml:id="facsZone-staff-0000000710478214"/>
+          <zone ulx="1548" uly="800" lrx="1142" lry="1141" xml:id="facsZone-staff-0000000023963945"/>
+          <zone ulx="51" uly="1148" lrx="1472" lry="1471" xml:id="facsZone-staff-0000000023963945-2"/>
+          <zone ulx="543" uly="1145" lrx="1484" lry="1483" xml:id="facsZone-staff-0000001664066705"/>
+          <zone ulx="1011" uly="1139" lrx="1484" lry="1483" xml:id="facsZone-staff-0000001471871058"/>
+          <zone ulx="1368" uly="1121" lrx="1514" lry="1513" xml:id="facsZone-staff-0000001444555416"/>
+          <zone ulx="786" uly="1472" lrx="1826" lry="1825" xml:id="facsZone-staff-0000000818833052"/>
+          <zone ulx="51" uly="1481" lrx="1817" lry="1816" xml:id="facsZone-staff-0000001635909218"/>
+          <zone ulx="1149" uly="1466" lrx="1832" lry="1831" xml:id="facsZone-staff-0000000474150812"/>
+          <zone ulx="45" uly="1805" lrx="2198" lry="2197" xml:id="facsZone-staff-0000000382142317"/>
+          <zone ulx="693" uly="1817" lrx="2198" lry="2197" xml:id="facsZone-staff-0000001239128073"/>
         </surface>
       </facsimile>
       <body>
@@ -120,7 +119,7 @@
               </pgHead>
               <staffGrp>
                 <staffDef clef.shape="F" clef.line="4" n="1" lines="5">
-                  <meterSig count="4" unit="4" sym="common"  />
+                  <meterSig count="4" unit="4" sym="common"/>
                   <keySig sig="7f"/>
                 </staffDef>
               </staffGrp>
@@ -765,10 +764,10 @@
                     <note xml:id="note-0000001289419574" dur="4" oct="4" pname="c" stem.dir="down">
                       <choice>
                         <sic>
-                          <accid accid.ges="f" />
+                          <accid accid.ges="f"/>
                         </sic>
                         <corr type="corrigenda">
-                          <accid accid="n" />
+                          <accid accid="n"/>
                         </corr>
                       </choice>
                     </note>
@@ -777,7 +776,7 @@
                     </note>
                   </layer>
                 </staff>
-                <fermata place="above" staff="1" startid="#note-0000001767192693" />
+                <fermata place="above" staff="1" startid="#note-0000001767192693"/>
                 <harm place="above" staff="1" tstamp="2.5">
                   <fb>
                     <f>♮</f>
