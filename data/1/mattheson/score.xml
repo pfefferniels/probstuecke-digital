@@ -59,6 +59,20 @@
     </encodingDesc>
   </meiHead>
   <music>
+    <facsimile decls="#firstEdition">
+      <surface ulx="0" uly="0" lrx="1579" lry="1889" xml:id="facs-p266">
+        <graphic width="1680" height="1889" target="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10527431/canvas/266"/>
+      </surface>
+      <surface ulx="0" uly="0" lrx="1579" lry="1889" xml:id="facs-p267">
+        <graphic width="1579" height="1889" target="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10527431/canvas/267"/>
+      </surface>
+      <surface ulx="0" uly="0" lrx="1579" lry="1889" xml:id="facs-p268">
+        <graphic width="1579" height="1889" target="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10527431/canvas/268"/>
+      </surface>
+      <surface ulx="0" uly="0" lrx="1579" lry="1889" xml:id="facs-p269">
+        <graphic width="1579" height="1889" target="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10527431/canvas/269"/>
+      </surface>
+    </facsimile>
     <facsimile decls="#secondEdition">
       <surface ulx="0" uly="0" lrx="1998" lry="2396" xml:id="facs-p386">
         <graphic width="1998" height="2396" target="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/386"/>
@@ -140,6 +154,7 @@
           </scoreDef>
           <section>
             <pb source="#secondEdition" n="302" facs="#facs-p386"/>
+            <pb source="#firstEdition" n="102" facs="#facs-p266"/>
             <measure xml:id="m-35" label="1" n="1">
               <staff xml:id="m-37" n="1">
                 <layer n="1">
@@ -501,9 +516,7 @@
                   <beam>
                     <note xml:id="m-232" dur="16" oct="4" pname="a"/>
                     <note xml:id="m-234" dur="16" oct="4" pname="f"/>
-                    <note xml:id="m-235" dur="16" oct="4" pname="c">
-                      <accid accid="n"/>
-                    </note>
+                    <note xml:id="m-235" dur="16" oct="4" pname="c"/>
                     <note xml:id="m-237" dur="16" oct="3" pname="b" accid.ges="f"/>
                   </beam>
                   <beam>
@@ -670,6 +683,7 @@
                     <note xml:id="m-337" dur="16" oct="4" pname="g"/>
                   </beam>
                   <pb source="#secondEdition" n="303" facs="#facs-p387"/>
+                  <pb source="#secondEdition" n="103" facs="#facs-p267"/>
                   <beam>
                     <note xml:id="m-338" dur="32" oct="4" pname="e"/>
                     <note xml:id="m-340" dur="32" oct="4" pname="f">
@@ -976,15 +990,11 @@
                   </beam>
                   <beam>
                     <note xml:id="m-542" dur="8" oct="2" pname="b" accid.ges="f"/>
-                    <note xml:id="m-545" dur="8" oct="2" pname="b">
-                      <accid accid="n"/>
-                    </note>
+                    <note xml:id="m-545" dur="8" oct="2" pname="b" accid="n"/>
                   </beam>
                   <beam>
                     <note xml:id="m-547" dur="8" oct="3" pname="c"/>
-                    <note xml:id="m-548" dur="8" oct="2" pname="b">
-                      <accid accid="n"/>
-                    </note>
+                    <note xml:id="m-548" dur="8" oct="2" pname="b" accid.ges="n"/>
                   </beam>
                 </layer>
               </staff>
@@ -1057,21 +1067,15 @@
                 <layer n="1">
                   <beam>
                     <note xml:id="m-592" dur="8" oct="3" pname="c"/>
-                    <note xml:id="m-594" dur="8" oct="3" pname="c">
-                      <accid accid="s"/>
-                    </note>
+                    <note xml:id="m-594" dur="8" oct="3" pname="c" accid="s"/>
                   </beam>
                   <beam>
                     <note xml:id="m-596" dur="8" oct="3" pname="d"/>
-                    <note xml:id="m-597" dur="8" oct="3" pname="c">
-                      <accid accid="s"/>
-                    </note>
+                    <note xml:id="m-597" dur="8" oct="3" pname="c" accid.ges="s"/>
                   </beam>
                   <beam>
                     <note xml:id="m-599" dur="8" oct="3" pname="d"/>
-                    <note xml:id="m-601" dur="8" oct="3" pname="c">
-                      <accid accid="s"/>
-                    </note>
+                    <note xml:id="m-601" dur="8" oct="3" pname="c" accid.ges="s"/>
                   </beam>
                   <note xml:id="m-603" dur="4" oct="3" pname="d"/>
                 </layer>
@@ -1277,14 +1281,10 @@
                     <note xml:id="m-700" dur="16" oct="4" pname="d"/>
                   </beam>
                   <beam>
-                    <note xml:id="m-701" dur="32" oct="3" pname="b">
-                      <accid accid="n"/>
-                    </note>
+                    <note xml:id="m-701" dur="32" oct="3" pname="b" accid="n"/>
                     <note xml:id="m-704" dur="32" oct="4" pname="c"/>
                     <note xml:id="m-705" dur="16" oct="4" pname="d"/>
-                    <note xml:id="m-706" dur="32" oct="3" pname="b">
-                      <accid accid="n"/>
-                    </note>
+                    <note xml:id="m-706" dur="32" oct="3" pname="b" accid.ges="n"/>
                     <note xml:id="m-708" dur="32" oct="4" pname="c"/>
                     <note xml:id="m-709" dur="16" oct="4" pname="d"/>
                   </beam>
@@ -1489,6 +1489,7 @@
               </harm>
             </measure>
             <pb source="#secondEdition" n="304" facs="#facs-p388"/>
+            <pb source="#firstEdition" n="104" facs="#facs-p268"/>
             <measure xml:id="m-802" n="24">
               <staff xml:id="m-804" n="1">
                 <layer n="1">
@@ -2030,9 +2031,7 @@
                   <beam>
                     <note xml:id="m-1105" dur="16" oct="3" pname="c"/>
                     <note xml:id="m-1107" dur="16" oct="4" pname="c"/>
-                    <note xml:id="m-1108" dur="16" oct="3" pname="b">
-                      <accid accid="n"/>
-                    </note>
+                    <note xml:id="m-1108" dur="16" oct="3" pname="b" accid.ges="n"/>
                     <note xml:id="m-1110" dur="16" oct="3" pname="g"/>
                   </beam>
                   <beam>
@@ -2271,6 +2270,7 @@
                     <note xml:id="m-1245" dur="32" oct="3" pname="b" accid.ges="f"/>
                   </beam>
                   <pb source="#secondEdition" n="305" facs="#facs-p389"/>
+                  <pb source="#firstEdition" n="105" facs="#facs-p269"/>
                   <beam>
                     <note xml:id="m-1247" dur="16" oct="3" pname="c">
                       <accid accid="n"/>
@@ -2340,12 +2340,8 @@
                   <beam>
                     <note xml:id="m-1279" dur="16" oct="2" pname="g"/>
                     <note xml:id="m-1281" dur="32" oct="2" pname="a"/>
-                    <note xml:id="m-1282" dur="32" oct="2" pname="b">
-                      <accid accid="n"/>
-                    </note>
-                    <note xml:id="m-1284" dur="16" oct="3" pname="c">
-                      <accid accid="n"/>
-                    </note>
+                    <note xml:id="m-1282" dur="32" oct="2" pname="b" accid.ges="n"/>
+                    <note xml:id="m-1284" dur="16" oct="3" pname="c" accid.ges="n"/>
                     <note xml:id="m-1286" dur="32" oct="3" pname="d"/>
                     <note xml:id="m-1287" dur="32" oct="3" pname="e"/>
                   </beam>
@@ -2353,9 +2349,7 @@
                     <note xml:id="m-1288" dur="16" oct="2" pname="f"/>
                     <note xml:id="m-1290" dur="32" oct="2" pname="g"/>
                     <note xml:id="m-1291" dur="32" oct="2" pname="a"/>
-                    <note xml:id="m-1292" dur="16" oct="2" pname="b">
-                      <accid accid="n"/>
-                    </note>
+                    <note xml:id="m-1292" dur="16" oct="2" pname="b" accid.ges="n"/>
                     <note xml:id="m-1294" dur="32" oct="3" pname="c">
                       <accid accid="n"/>
                     </note>
