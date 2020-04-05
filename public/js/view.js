@@ -402,14 +402,11 @@ async function reloadFacsimileTooltips() {
 
     // extract what is actually annotating the canvas region
     let rTarget = r.resource["@id"];
-
-    // presuming that the XPath inside xpointer() is always following
-    // the same scheme
-    let targetMatch = rTarget.match(/xml:id='(.+)'\]/);
+    let targetMatch = rTarget.match(/#.+/);
     if (targetMatch) {
-      let xmlId = targetMatch[1];
-      if (xmlId) {
-        let target = $("#" + xmlId).addClass('has-facsimile-popover');
+      let referredElement = targetMatch[0];
+      if (referredElement) {
+        let target = $(referredElement).addClass('has-facsimile-popover');
 
         // Often, measures and paragraphs are interrupted by system breaks or
         // page breaks. This will be indicated by a ||-symbol in the tooltip.
@@ -561,8 +558,6 @@ $(document).ready(async function() {
   let hash = window.location.hash;
   if (hash) {
     let target = $('body').find(hash);
-    console.log('looking for', hash, target);
-
     if (target.parents('svg').length != 0) {
       let rect = drawOverlay(hash);
       highlightSVG(rect);
