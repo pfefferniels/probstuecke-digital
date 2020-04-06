@@ -227,7 +227,8 @@ async function renderComments() {
     let svg = vrvToolkit.renderData(exampleMEI, {
       pageHeight: 30000,
       adjustPageHeight: 1,
-      footer: "none"
+      footer: 'none',
+      header: 'encoded'
     });
     notatedmusic.find("tei-ptr").replaceWith(svg);
 
