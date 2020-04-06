@@ -59,9 +59,17 @@
         </encodingDesc>
     </meiHead>
     <music>
+        <facsimile decls="#firstEdition">
+            <surface ulx="0" uly="0" lrx="1579" lry="1883" xml:id="facs-p280">
+                <graphic width="1579" height="1883" target="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10527431/canvas/280"/>
+            </surface>
+            <surface ulx="0" uly="0" lrx="1579" lry="1889" xml:id="facs-p281">
+                <graphic width="1579" height="1889" target="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10527431/canvas/281"/>
+            </surface>
+        </facsimile>
         <facsimile decls="#secondEdition">
-            <surface ulx="0" uly="0" lrx="1998" lry="2396" xml:id="facs-p400">
-                <graphic width="1998" height="2396" target="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/400"/>
+            <surface ulx="0" uly="0" lrx="1998" lry="2465" xml:id="facs-p400">
+                <graphic width="1998" height="2465" target="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/400"/>
                 <zone ulx="103" uly="302" lrx="962" lry="568" xml:id="facsZone-m-62"/>
                 <zone ulx="919" uly="254" lrx="1937" lry="548" xml:id="facsZone-m-102"/>
                 <zone ulx="107" uly="552" lrx="790" lry="822" xml:id="facsZone-m-144"/>
@@ -86,8 +94,8 @@
                 <zone ulx="855" uly="1928" lrx="1362" lry="2218" xml:id="facsZone-m-842"/>
                 <zone ulx="1330" uly="1940" lrx="1965" lry="2226" xml:id="facsZone-m-866"/>
             </surface>
-            <surface ulx="0" uly="0" lrx="1998" lry="2396" xml:id="facs-p401">
-                <graphic width="1998" height="2396" target="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/401"/>
+            <surface ulx="0" uly="0" lrx="1998" lry="2421" xml:id="facs-p401">
+                <graphic width="1998" height="2421" target="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/401"/>
                 <zone ulx="57" uly="140" lrx="780" lry="421" xml:id="facsZone-m-891"/>
                 <zone ulx="747" uly="188" lrx="1344" lry="439" xml:id="facsZone-m-915"/>
                 <zone ulx="1308" uly="185" lrx="1548" lry="442" xml:id="facsZone-m-956"/>
@@ -139,6 +147,8 @@
                         </staffGrp>
                     </scoreDef>
                     <section>
+                        <pb n="116" source="#firstEdition" facs="#facs-p280"/>
+                        <pb n="316" source="#secondEdition" facs="#facs-p400"/>
                         <measure xml:id="m-35" label="1" n="1">
                             <staff n="1">
                                 <layer n="1">
@@ -880,6 +890,8 @@
                                 </layer>
                             </staff>
                         </measure>
+                        <pb n="317" source="#secondEdition" facs="#facs-p401"/>
+                        <pb n="117" source="#firstEdition" facs="#facs-p281"/>
                         <measure xml:id="m-883" n="24">
                             <staff n="1">
                                 <layer n="1">
@@ -1407,7 +1419,6 @@
                                 </layer>
                             </staff>
                         </measure>
-                        <pb xml:id="m-1482" n="3"/>
                         <measure xml:id="m-1480" n="43">
                             <staff n="1">
                                 <layer n="1">
