@@ -19,11 +19,10 @@
         </respStmt>
         <date>2019</date>
         <availability>
-          <useRestrict>This encoding is licensed under GPL. You may copy, distribute and
-            modify the software as long as you track changes/dates in source files.
-            Any modifications to or software including (via compiler) GPL-licensed
-            code must also be made available under the GPL along with build &amp; install instructions.</useRestrict>
-          </availability>
+          <useRestrict label="licence" auth="https://creativecommons.org/licenses/by/" codedval="4.0">
+            <p>Creative Commons Attribution 4.0 International License</p>
+          </useRestrict>
+        </availability>
         </pubStmt>
         <sourceDesc>
           <source n="1" xml:id="firstEdition">
@@ -61,6 +60,17 @@
       </encodingDesc>
     </meiHead>
     <music>
+      <facsimile decls="#firstEdition">
+        <surface ulx="0" uly="0" lry="1908" lrx="1579" xml:id="facs-p374">
+          <graphic width="1579" height="1908" target="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10527431/canvas/374" />
+        </surface>
+        <surface ulx="0" uly="0" lry="1902" lrx="1579" xml:id="facs-p375">
+          <graphic width="1579" height="1902" target="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10527431/canvas/375" />
+        </surface>
+        <surface ulx="0" uly="0" lry="1935" lrx="1579" xml:id="facs-p376">
+          <graphic width="1579" height="1935" target="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10527431/canvas/376" />
+        </surface>
+      </facsimile>
       <facsimile decls="#secondEdition">
         <surface ulx="0" uly="0" lrx="1998" lry="2475" xml:id="facs-p484">
           <graphic width="1998" height="2475" target="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/484"/>
