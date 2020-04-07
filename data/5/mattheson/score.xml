@@ -135,7 +135,7 @@
             </staffGrp>
           </scoreDef>
           <section>
-            <pb source="#firstEdition" n="126"/>
+            <pb source="#firstEdition" n="126" facs="#facs-p290"/>
             <pb source="#secondEdition" n="326" facs="#facs-p410"/>
             <measure xml:id="m-35" label="1" n="1">
               <staff xml:id="m-37" n="1">
@@ -930,6 +930,7 @@
                     <note xml:id="m-369" dur="16" oct="3" pname="d"/>
                   </beam>
                   <pb source="#secondEdition" n="327" facs="#facs-p411"/>
+                  <pb source="#firstEdition" n="127" facs="#facs-p291"/>
                   <beam xml:id="m-372">
                     <note xml:id="m-370" dur="16" oct="3" pname="g">
                       <accid accid="n"/>
@@ -997,7 +998,9 @@
                     <note xml:id="m-404" dur="32" oct="3" pname="f">
                       <accid accid="s"/>
                     </note>
-                    <note xml:id="m-406" breaksec="1" dur="32" oct="3" pname="g"/>
+                    <note xml:id="m-406" breaksec="1" dur="32" oct="3" pname="g">
+                      <accid accid="s"/>
+                    </note>
                     <note xml:id="m-407" dur="32" oct="3" pname="a"/>
                     <note xml:id="m-408" dur="32" oct="3" pname="b"/>
                     <note xml:id="m-409" dur="32" oct="4" pname="c"/>
