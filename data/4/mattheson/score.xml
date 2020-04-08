@@ -135,8 +135,6 @@
     <body>
       <mdiv>
         <score>
-          <pb n="310" source="#secondEdition" facs="#facs-p404"/>
-          <pb n="120" source="#firstEdition" facs="#facs-p284"/>
           <scoreDef key.pname="e" key.accid="n" key.mode="minor" midi.bpm="85">
             <pgHead>
               <rend halign="center" fontsize="large">Viertes Prob-Stück.</rend>
@@ -154,6 +152,8 @@
             </staffGrp>
           </scoreDef>
           <section>
+            <pb n="310" source="#secondEdition" facs="#facs-p404"/>
+            <pb n="120" source="#firstEdition" facs="#facs-p284"/>
             <measure xml:id="m-35" n="1">
               <staff xml:id="m-37" n="1">
                 <layer xml:id="m-38" n="1"/>
