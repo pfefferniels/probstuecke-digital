@@ -11,7 +11,7 @@ const targetOptions = {
 };
 
 gulp.task('deploy-data', function() {
-    return gulp.src('data/**/*', {})
+    return gulp.src('probstuecke-data/**/*', {})
         .pipe(exClient.newer(targetOptions))
         .pipe(exClient.dest(targetOptions));
 });
@@ -54,7 +54,7 @@ function generateIIIFAnnotation(n, edition) {
   };
 
   // open score.xml
-  const scorePath = './data/' + n + '/mattheson/score.xml';
+  const scorePath = './probstuecke-data/' + n + '/mattheson/score.xml';
   if (!fs.existsSync(scorePath)) {
     console.warn('No score.xml found for PS', n);
     return;
@@ -63,7 +63,7 @@ function generateIIIFAnnotation(n, edition) {
   const score = new JSDOM(scoreFile.toString(), { contentType: 'text/xml' }).window.document;
 
   // open comment_[1st|de].xml
-  const commentPath = './data/' + n + '/mattheson/comments_' + edition + '.xml';
+  const commentPath = './probstuecke-data/' + n + '/mattheson/comments_' + edition + '.xml';
   if (!fs.existsSync(commentPath)) {
     console.warn('No comment file found for PS', n, editionId);
     return;
@@ -189,7 +189,7 @@ gulp.task('generate-iiif-annotations', function(complete) {
     let promise1 = new Promise(function(resolve) {
       let annotationList = generateIIIFAnnotation(n, '1st');
       if (annotationList) {
-        fs.writeFile('./data/' + n + '/mattheson/facsimile_1st.json', JSON.stringify(annotationList, null, 2), function (e) {
+        fs.writeFile('./probstuecke-data/' + n + '/mattheson/facsimile_1st.json', JSON.stringify(annotationList, null, 2), function (e) {
           if (!e) {
             console.log('IIIF annotation for Probstück ', n, ' successfully generated');
           } else {
@@ -204,7 +204,7 @@ gulp.task('generate-iiif-annotations', function(complete) {
 
     let promise2 = new Promise(function(resolve) {
       let annotationList = generateIIIFAnnotation(n, 'de');
-      fs.writeFile('./data/' + n + '/mattheson/facsimile_de.json', JSON.stringify(annotationList, null, 2), function (e) {
+      fs.writeFile('./probstuecke-data/' + n + '/mattheson/facsimile_de.json', JSON.stringify(annotationList, null, 2), function (e) {
         if (!e) {
           console.log('IIIF annotation for Probstück ', n, ' successfully generated');
         } else {
