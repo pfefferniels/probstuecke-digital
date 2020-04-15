@@ -193,9 +193,8 @@ function drawOverlay(targetAttr) {
 
   return svg.rect(bbox.width,bbox.height).
              move(bbox.x,bbox.y).
-             fill("#ffe47a").
-             attr("class", "indicator").
-             attr("id", "indicate_" + targetAttr.substr(1)).
+             attr('class', 'indicator').
+             attr('id', 'indicate_' + targetAttr.substr(1)).
              back();
 }
 
