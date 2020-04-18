@@ -2,6 +2,9 @@ const render = require('express').Router(),
       vrvAdapter = require('./parseMEI.js');
 
 render.get('/:number/:label/:file', function(req, res) {
+  // do not add additional staves to the music examples
+  req.query.above = req.query.below = 0;
+
   vrvAdapter.parseMEI(req.params.number,
            req.params.label,
            req.params.file,
