@@ -176,7 +176,7 @@ function highlightText(element) {
   }, 100, async function() {
     element.addClass('blink');
     await sleep(4000);
-    $(element).removeClass('blink');
+    element.removeClass('blink');
   });
 }
 

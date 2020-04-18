@@ -51,12 +51,15 @@ input[type="number"] {
 
 @keyframes blinking {
   0% {
+    background-color: #ffe47a;
     fill: #ffe47a;
   }
   50% {
+    background-color: #ba0000;
     fill: #ba0000;
   }
   100% {
+    background-color: #ffe47a;
     fill: ##ffe47a;
   }
 }
