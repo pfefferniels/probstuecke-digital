@@ -4,14 +4,20 @@
     <xsl:template match="mei:staffGrp">
         <xsl:copy>
             <xsl:copy-of select="@*"/>
+            <xsl:variable name="meterSig" select="//mei:staffDef[1]/mei:meterSig" />
+
             <xsl:for-each select="1 to $stavesAbove">
                 <xsl:variable name="i" select="."/>
-                <staffDef n="{$i+10}" lines="5"/>
+                <staffDef n="{$i+10}" lines="5">
+                    <xsl:copy-of select="$meterSig" />
+                </staffDef>
             </xsl:for-each>
             <xsl:apply-templates/>
             <xsl:for-each select="1 to $stavesBelow">
                 <xsl:variable name="i" select="."/>
-                <staffDef n="{$i+20}" lines="5"/>
+                <staffDef n="{$i+20}" lines="5">
+                    <xsl:copy-of select="$meterSig" />
+                </staffDef>
             </xsl:for-each>
         </xsl:copy>
     </xsl:template>
