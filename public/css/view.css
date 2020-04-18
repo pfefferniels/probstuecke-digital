@@ -45,20 +45,20 @@ input[type="number"] {
   fill: lightslategray;
 }
 
-@keyframes highlight {
-  0% {
-    background: #f4a742;
-    opacity: 0.8;
-  }
-
-  100% {
-    background: none;
-    opacity: 0.3;
-  }
+.blink {
+  animation: blinking 1s 4;
 }
 
-.highlight {
-  animation: highlight 4s;
+@keyframes blinking {
+  0% {
+    fill: #ffe47a;
+  }
+  50% {
+    fill: #ba0000;
+  }
+  100% {
+    fill: ##ffe47a;
+  }
 }
 
 #score-view {

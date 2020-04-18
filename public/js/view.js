@@ -162,8 +162,10 @@ function printError(message) {
 async function highlightSVG(svgElement) {
   $("html,body").animate({
     scrollTop: svgElement.rbox().y
-  }, 100, function() {
-    svgElement.animate(500).attr({fill: "#ffaa99"}).animate().attr({fill: "#ffe47a"});
+  }, 100, async function() {
+    svgElement.addClass('blink');
+    await sleep(4000);
+    svgElement.removeClass('blink');
   });
 }
 
@@ -171,9 +173,9 @@ function highlightText(element) {
   $("html,body").animate({
     scrollTop: element.offset().top-50
   }, 100, async function() {
-    element.addClass("highlight");
-    await sleep(3000);
-    $(element).removeClass('highlight');
+    element.addClass('blink');
+    await sleep(4000);
+    $(element).removeClass('blink');
   });
 }
 
