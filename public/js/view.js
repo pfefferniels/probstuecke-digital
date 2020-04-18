@@ -40,7 +40,8 @@ function generatePDF() {
     footer: "none",
     pageHeight: 2970,
     pageWidth: 2100,
-    scale: 100
+    scale: 100,
+    appXPathQuery: (edition == 'firstEdition') ? "./rdg[contains(@source,'#firstEdition')]" : ""
   });
   vrvToolkit.loadData(mei);
   for (let i=0; i<vrvToolkit.getPageCount(); i++) {
@@ -229,7 +230,8 @@ async function renderComments() {
       pageHeight: 30000,
       adjustPageHeight: 1,
       footer: 'none',
-      header: 'encoded'
+      header: 'encoded',
+      appXPathQuery: (edition == 'firstEdition') ? "./rdg[contains(@source,'#firstEdition')]" : ""
     });
     notatedmusic.find("tei-ptr").replaceWith(svg);
 
@@ -509,7 +511,8 @@ $(document).ready(async function() {
     scoreToolkit.setOptions({
       pageHeight: 30000,
       adjustPageHeight: true,
-      footer: 'none'
+      footer: 'none',
+      appXPathQuery: (edition == 'firstEdition') ? "./rdg[contains(@source,'#firstEdition')]" : ""
     });
     scoreToolkit.loadData(mei);
     let svg = scoreToolkit.renderToSVG(1, {});

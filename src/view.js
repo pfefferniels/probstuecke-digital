@@ -24,7 +24,8 @@ function getTranscription(req, res) {
 
   let viewParams = {
     number: number,
-    label: label
+    label: label,
+    edition: edition
   }
 
   vrvAdapter.parseMEI(number, label, 'score.xml', req.query).then(function(result) {
