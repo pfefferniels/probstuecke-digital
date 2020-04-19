@@ -10,6 +10,10 @@ tei-ptr[type='transposition-origin'] {
   display: none;
 }
 
+tei-ptr[mimeType='audio/ogg'] {
+  display: none;
+}
+
 tei-q::before, tei-q::after {
   content: '"';
 }

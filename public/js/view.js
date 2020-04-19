@@ -233,7 +233,7 @@ async function renderComments() {
       header: 'encoded',
       appXPathQuery: (edition == 'firstEdition') ? "./rdg[contains(@source,'#firstEdition')]" : ""
     });
-    notatedmusic.find("tei-ptr").replaceWith(svg);
+    notatedmusic.find('tei-ptr:first').replaceWith(svg);
 
     dfd.resolve();
   });
