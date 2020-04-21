@@ -23,9 +23,15 @@ gulp.task('deploy-characteristics', function() {
 });
 
 gulp.task('deploy-xslt', function() {
-    return gulp.src('src/xslt/*', {})
-        .pipe(exClient.newer(targetOptions))
-        .pipe(exClient.dest(targetOptions));
+  return gulp.src('src/xslt/*', {})
+      .pipe(exClient.newer(targetOptions))
+      .pipe(exClient.dest(targetOptions));
+});
+
+gulp.task('deploy-xql', function() {
+  return gulp.src('src/xql/*', {})
+      .pipe(exClient.newer(targetOptions))
+      .pipe(exClient.dest(targetOptions));
 });
 
 function createAnnotation(on, n, name, resId, resType, resFormat) {

@@ -1,8 +1,6 @@
 const view = require('express').Router(),
-      exist = require('@existdb/node-exist'),
-      existConfig = require('../existConfig.json'),
-      db = exist.connect(existConfig);
-      vrvAdapter = require('./parseMEI.js');
+      db = require('./db.js'),
+      parameters = require('./parameters.js');
 
 const lookupTable = {
   secondEdition: 'de',
@@ -11,13 +9,12 @@ const lookupTable = {
   english: 'en'
 };
 
-function getTranscription(req, res) {
+async function composeView(req, res) {
   let number = req.params.number;
   let label = req.params.label;
   let edition = req.params.edition;
 
   let teiPath = [
-    '/db/apps/probstuecke-digital',
     number,
     label,
     'comments_' + lookupTable[edition] + '.xml'].join('/');
@@ -28,65 +25,38 @@ function getTranscription(req, res) {
     edition: edition
   }
 
-  vrvAdapter.parseMEI(number, label, 'score.xml', req.query).then(function(result) {
+  try {
+    let response = await db.retrieve('transform-mei.xql?' +
+                    parameters.serialize(number, label, 'score.xml', req.query));
+    viewParams.mei = response.data;
+  } catch (e) {
+    console.warn(e);
+  }
 
-    // provide the MEI score
-    viewParams.mei = Buffer.concat(result.pages).toString();
-  }).catch(function (e) {
-    console.error('failed loading MEI:', e);
-  }).then(() => {
+  try {
+    let response = await db.retrieve(teiPath)
+    viewParams.teiComment = response.data;
+  } catch (e) {
+    console.warn(e);
+  }
 
-    // provide the corresponding key characteristics
-    return db.queries.readAll(`
-      xquery version "3.1";
-      declare namespace mei="http://www.music-encoding.org/ns/mei";
-      let $input := doc('/db/apps/probstuecke-digital/${number}/${label}/score.xml')
-      let $pname := string($input//mei:scoreDef/@key.pname)
-      let $accid := string($input//mei:scoreDef/@key.accid)
-      let $pname := if($accid = 'f') then (
-                      $pname || 'b'
-                    ) else if($accid = 's') then (
-                      $pname || '#'
-                    ) else (
-                      $pname
-                    )
-      let $mode := string($input//mei:scoreDef/@key.mode)
-      return doc('/db/apps/probstuecke-digital/tonality/' || $pname || '.' || $mode || '.xml')
-      `, {});
-  }).then((result) => {
-      viewParams.keyCharacteristics = Buffer.concat(result.pages).toString();
-  }).catch((e) => {
-      console.info('no correspoinding key characteristics found:', e);
-  }).then(() => {
+  try {
+    let response = await db.retrieve(`get-key-character.xql?number=${number}&label=${label}`)
+    viewParams.keyCharacteristics = response.data;
+  } catch (e) {
+    console.warn(e);
+  }
 
-    // provide the corresponding meter characteristics
-    return db.queries.readAll(`
-      xquery version "3.1";
-      declare namespace mei="http://www.music-encoding.org/ns/mei";
-      let $input := doc('/db/apps/probstuecke-digital/${number}/${label}/score.xml')
-      let $count := string($input//mei:staffDef[1]/mei:meterSig/@count)
-      let $unit := string($input//mei:staffDef[1]/mei:meterSig/@unit)
-      return doc('/db/apps/probstuecke-digital/meter/' || $count || '.' || $unit || '.xml')
-      `, {});
-  }).then((result) => {
-      viewParams.meterCharacteristics = Buffer.concat(result.pages).toString();
-  }).catch((e) => {
-      console.info('no correspoinding meter characteristics found:', e);
-  }).then(() => {
+  try {
+    let response = await db.retrieve(`get-meter-character.xql?number=${number}&label=${label}`)
+    viewParams.meterCharacteristics = response.data;
+  } catch (e) {
+    console.warn(e);
+  }
 
-    // provide the TEI
-    return db.documents.read(teiPath, {})
-  }).then((result) => {
-    viewParams.teiComment = result.toString();
-  }).catch((e) => {
-    console.error('failed loading TEI comments:', e);
-  }).then(() => {
-
-    // and deliver everything
-    res.render('view', viewParams);
-  });
+  res.render('view', viewParams);
 }
 
-view.get('/:number/:label/:edition', getTranscription);
+view.get('/:number/:label/:edition', composeView);
 
 module.exports = view;

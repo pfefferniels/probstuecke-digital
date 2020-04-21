@@ -1,9 +1,8 @@
 // provide a simple AnnotationList service in the
 // recommended URI pattern: /{prefix}/{identifier}/list/{name}
 
-const axios = require('axios'),
-      existConfig = require('../existConfig.json'),
-      iiif = require('express').Router();
+const iiif = require('express').Router(),
+      db = require('./db.js');
 
 function sendAnnotationList(req, res) {
   if (isNaN(req.params.number)) {
@@ -13,13 +12,12 @@ function sendAnnotationList(req, res) {
   }
 
   let annotationListPath = [
-    'db/apps/probstuecke-digital',
     req.params.number,
     'mattheson',
     (req.params.name+'.json')
   ].join('/');
 
-  axios.get(`http://${existConfig.host}:${existConfig.port}/exist/rest/${annotationListPath}`)
+  db.retrieve(annotationListPath)
     .then(response => {
       res.json(response.data);
     })

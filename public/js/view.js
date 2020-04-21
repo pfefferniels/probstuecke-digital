@@ -214,14 +214,16 @@ async function renderComments() {
     var dfd = $.Deferred();
     notatedMusicPromises.push(dfd);
 
+    // load MEI of the example, transform it to SVG
+    // and insert at the right place
     var notatedmusic = $(this);
     let exampleMEI;
     try {
       exampleMEI = await $.get(
         ['/render',
          number,
-         label,
-         $(this).find('tei-ptr').attr('target')].join('/')
+         author,
+         $(this).find('tei-ptr:first').attr('target')].join('/')
         + window.location.search);
     } catch (error) {
       printError("failed loading embedded music example: " + error);
@@ -235,7 +237,38 @@ async function renderComments() {
     });
     notatedmusic.find('tei-ptr:first').replaceWith(svg);
 
+    // load corresponding audio of the example,
+    // and insert it at the right place
+    let audioPtr = $(this).find('tei-ptr[mimetype="audio/ogg"]');
+    if (audioPtr.length != 0) {
+      let audioPath =
+        ['/render',
+         number,
+         author,
+         audioPtr.attr('target')].join('/');
+
+      audioPtr.replaceWith(
+        `<audio class='embedded-audio' controls>
+           <source src="${audioPath}" type="audio/ogg">
+           Your browser does not support the audio element.
+         </audio>`);
+    }
+
     dfd.resolve();
+  });
+
+  $('#comments-view tei-media[mimetype="audio/ogg"]').each(function() {
+      let audioPath =
+        ['/render',
+         number,
+         author,
+         this.getAttribute('url')].join('/');
+
+      $(this).replaceWith(
+        `<audio class='embedded-audio' controls>
+           <source src="${audioPath}" type="audio/ogg">
+           Your browser does not support the audio element.
+         </audio>`);
   });
 
   // make sure that loading the comments is done only when all
