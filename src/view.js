@@ -11,23 +11,23 @@ const lookupTable = {
 
 async function composeView(req, res) {
   let number = req.params.number;
-  let label = req.params.label;
+  let author = req.params.author;
   let edition = req.params.edition;
 
   let teiPath = [
     number,
-    label,
+    author,
     'comments_' + lookupTable[edition] + '.xml'].join('/');
 
   let viewParams = {
     number: number,
-    label: label,
+    author: author,
     edition: edition
   }
 
   try {
     let response = await db.retrieve('transform-mei.xql?' +
-                    parameters.serialize(number, label, 'score.xml', req.query));
+                    parameters.serialize(number, author, 'score.xml', req.query));
     viewParams.mei = response.data;
   } catch (e) {
     console.warn(e);
@@ -41,14 +41,14 @@ async function composeView(req, res) {
   }
 
   try {
-    let response = await db.retrieve(`get-key-character.xql?number=${number}&label=${label}`)
+    let response = await db.retrieve(`get-key-character.xql?number=${number}&author=${author}`)
     viewParams.keyCharacteristics = response.data;
   } catch (e) {
     console.warn(e);
   }
 
   try {
-    let response = await db.retrieve(`get-meter-character.xql?number=${number}&label=${label}`)
+    let response = await db.retrieve(`get-meter-character.xql?number=${number}&author=${author}`)
     viewParams.meterCharacteristics = response.data;
   } catch (e) {
     console.warn(e);
@@ -57,6 +57,6 @@ async function composeView(req, res) {
   res.render('view', viewParams);
 }
 
-view.get('/:number/:label/:edition', composeView);
+view.get('/:number/:author/:edition', composeView);
 
 module.exports = view;
