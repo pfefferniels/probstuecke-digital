@@ -232,4 +232,5 @@ gulp.task('generate-iiif-annotations', function(complete) {
 gulp.task('deploy', gulp.series('generate-iiif-annotations',
                     gulp.parallel('deploy-data',
                                   'deploy-characteristics',
-                                  'deploy-xslt')));
+                                  'deploy-xslt',
+                                  'deploy-xql')));
