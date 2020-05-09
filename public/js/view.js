@@ -576,6 +576,14 @@ $(document).ready(async function() {
     }
   });
 
+  $('#hideSupplied').on('change', function() {
+    $('.supplied:has(.accid)').toggle();
+  });
+
+  $('#originalAccidentals').on('change', function() {
+    $('.orig:has(.accid)').toggle();
+  });
+
   $('#update-orthography').on('click', renderWithNormalizedOrthography);
 
   $("#pdf-download").on('click', function() {

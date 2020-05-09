@@ -41,6 +41,12 @@ block options
         data-content="Add staves, change clefs")
   
   if author == 'mattheson'
+    .p-2(data-toggle="modal" data-target="#accidentalsModal")
+      i.fas.fa-lg.fa-hashtag(
+        data-toggle="popover"
+        data-content="Accidentals"
+        )
+    
     .p-2(data-toggle="modal" data-target="#facsimileModal")
       i.far.fa-lg.fa-image(
         data-toggle="popover"
@@ -86,6 +92,33 @@ block content
           .modal-footer
             button.btn.btn-secondary(type="button" data-dismiss="modal") Cancel
             button#update-page.btn.btn-primary(type="button" data-dismiss="modal") Update view
+
+  #accidentalsModal.modal.fade(tabindex="-1" role="dialog" aria-labelledby="accidentals-title" aria-hidden="true")
+    .modal-dialog(role="document")
+      .modal-content
+        .modal-header
+          h5.modal-title#accidentals-title Accidentals
+          button.close(type="button" data-dismiss="modal" aria-label="Close")
+            span(aria-hidden="true") &times;
+  
+        .modal-body
+          .form-check
+            input#originalAccidentals.form-check-input(type='checkbox' name='original-accidentals' autocomplete='off')
+            label.form-check-label(for='originalAccidentals') Original accidentals
+            small 
+             | This will show all the original accidentals, including those which
+             | could be left out from a modern score.
+          
+          .form-check
+            input#hideSupplied.form-check-input(type='checkbox' name='hide-supplied' autocomplete='off')
+            label.form-check-label(for='hideSupplied') Hide supplied accidentals
+            small 
+              | This option will hide all the accidentals supplied by the editor, 
+              | (in particular cautionary accidentals).
+
+        .modal-footer
+          button#update-accidentals.btn.btn-primary(type="button" data-dismiss="modal") Close
+
 
   #facsimileModal.modal.fade(tabindex="-1" role="dialog" aria-labelledby="facsimile-title" aria-hidden="true")
     .modal-dialog(role="document")
