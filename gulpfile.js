@@ -107,8 +107,14 @@ function generateIIIFAnnotation(n, edition) {
     let zones = surfaces[i].querySelectorAll('zone');
     for (let j=0; j<zones.length; j++) {
       let zoneId = zones[j].getAttribute('xml:id'),
-          staff = score.querySelector('staff[facs*="#' + zoneId + '"]'),
-          staffId = staff.getAttribute('xml:id'),
+          staff = score.querySelector('staff[facs*="#' + zoneId + '"]');
+
+      if (!staff) {
+        console.log('No staff found that refers to the facsimile zone', zoneId);
+        continue;
+      }
+
+      let staffId = staff.getAttribute('xml:id'),
           x = zones[j].getAttribute('ulx'),
           y = zones[j].getAttribute('uly'),
           w = zones[j].getAttribute('lrx') - x,
