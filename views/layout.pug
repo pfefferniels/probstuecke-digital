@@ -222,8 +222,8 @@ mixin subitem(title)
               +submenu('Transcription')
                 +subitem('2nd edition (1731)')(href='/view/24/mattheson/secondEdition')
         
-        +menu('Appendix')(id='appendix')
-          +subitem('Index of Persons')(href='/persons')
+          li.nav-item.pl-1
+            a(href='/index/persons') Index of Persons
 
   .mt-1#options
     block options

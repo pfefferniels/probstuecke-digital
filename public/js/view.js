@@ -58,21 +58,8 @@ function gndReference(el) {
     return $('<span/>').html(el.innerHTML)[0];
   }
 
-  let newRef = ref.replace('d-nb.info', 'lobid.org');
-  return $('<a>').attr('href', ref).html(el.innerHTML).popover({
-    content: function() {
-      let span = $('<span><i class="fas fa-spinner fa-spin" /></span>');
-      $.ajax({
-        url: newRef,
-        success: function(response) {
-          span.html(response.preferredName);
-        }
-      });
-      return span;
-    },
-    trigger: 'hover',
-    html: true
-  })[0];
+  let newRef = '/index/persons' + ref;
+  return $('<a/>').attr('href', newRef).html(el.innerHTML)[0];
 }
 
 function geoReference(el) {

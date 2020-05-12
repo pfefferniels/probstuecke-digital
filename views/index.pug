@@ -1,0 +1,15 @@
+extends layout.pug
+
+block headAdditions
+  title Index of Persons
+
+  link(rel='stylesheet' href='/css/index.css')
+
+  script(type='text/javascript' src='/js/index.js')
+  script.
+    tei = `!{tei}`;
+  
+block content
+  h4 Index of Persons 
+  
+  #main

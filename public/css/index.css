@@ -1,0 +1,44 @@
+tei-person {
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+tei-person[role='mythological']:before {
+  content: '(mythological figure)';
+  font-size: 0.7rem;
+}
+
+tei-persname {
+  display: block;
+}
+
+tei-birth::after {
+  content: ' – ';
+}
+
+tei-birth {
+  margin-left: 1rem;
+}
+
+.gnd-link {
+  font-size: small;
+}
+
+tei-surname {
+  font-weight: bold;
+}
+
+tei-surname:after {
+  content: ', ';
+}
+
+.view-occurences {
+  display: block;
+}
+
+.reference {
+  font-size: small;
+  margin-right: 0.8rem;
+  padding-right: 0.8rem;
+  border-right: 1px solid black;
+}
