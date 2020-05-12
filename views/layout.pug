@@ -32,13 +32,20 @@ mixin subitem(title)
 
 .d-flex
   nav#sidebar.border-right.pt-1.pl-1.min-vh-100
-    .sidebar-header Contents
+    form.form-inline.mr-1(method='get' action='/search')
+      input.form-control.form-control-xs(type="search" placeholder="Full-text search" aria-label="Search" name="q")
+
+    .sidebar-header
+      .font-weight-bold.mt-1 Contents
 
       ul.nav.flex-column.flex-nowrap.overflow-hidden
         +menu('Introduction')(id='introduction')
           +subitem('How to use this edition')(href='/howto')
           +subitem('Edition Guidelines')(href='/view/guidelines/vvaa/english')
           +subitem('Contributions')(href='/Contributions')
+      
+      li.nav-item.pl-1
+        a(href='/view/guidelines/vvaa/english') Edition Guidelines
 
         +menu('Front page')(id='frontpage')
           +submenu('Transcription')
@@ -211,9 +218,9 @@ mixin subitem(title)
                 +subitem('2nd edition (1731)')(href='/view/23/mattheson/secondEdition')
                 +subitem('English translation')(href='/view/23/mattheson/english')
 
-        +menu('24rd Probstück')(id='ps-24')
-          +submenu('Transcription')
-            +subitem('2nd edition (1731)')(href='/view/24/mattheson/secondEdition')
+            +menu('24rd Probstück')(id='ps-24')
+              +submenu('Transcription')
+                +subitem('2nd edition (1731)')(href='/view/24/mattheson/secondEdition')
         
         +menu('Appendix')(id='appendix')
           +subitem('Index of Persons')(href='/persons')

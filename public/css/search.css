@@ -1,0 +1,28 @@
+#results ul {
+  list-style-type: none;
+}
+
+.result {
+  margin: 1rem;
+}
+
+.result-title::before {
+    content: 'in: ';
+    font-size: smaller;
+}
+.result-title {
+    font-size: smaller;
+}
+
+.result p {
+    font-size: smaller;
+    margin: 1rem;
+}
+
+.previous, .following {
+  color: gray;
+}
+
+.result .hi {
+  border: 1px dashed gray;
+}

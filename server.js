@@ -4,7 +4,8 @@ const express = require('express'),
       iiifRouter = require('./src/iiif.js'),
       facsimileRouter = require('./src/facsimile.js'),
       viewRouter = require('./src/view.js'),
-      personsRouter = require('./src/persons.js');
+      personsRouter = require('./src/persons.js'),
+      searchRouter = require('./src/search.js');
 
 // express.js setup
 const app = express();
@@ -21,6 +22,7 @@ app.use('/facsimile', facsimileRouter);
 app.use('/view', viewRouter);
 app.use('/iiif', iiifRouter);
 app.use('/persons', personsRouter);
+app.use('/search', searchRouter);
 
 app.get('/howto', function(req, res) {
   res.render('howto');

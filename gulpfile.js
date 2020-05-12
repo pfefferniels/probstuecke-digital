@@ -28,6 +28,12 @@ gulp.task('deploy-xslt', function() {
       .pipe(exClient.dest(targetOptions));
 });
 
+gulp.task('deploy-xconf', function() {
+  return gulp.src('src/xconf/*', {})
+      .pipe(exClient.newer({target: '/db/system/config/db/apps/probstuecke-digital/'}))
+      .pipe(exClient.dest({target: '/db/system/config/db/apps/probstuecke-digital/'}));
+});
+
 gulp.task('deploy-xql', function() {
   return gulp.src('src/xql/*', {})
       .pipe(exClient.newer(targetOptions))
@@ -238,5 +244,6 @@ gulp.task('generate-iiif-annotations', function(complete) {
 gulp.task('deploy', gulp.series('generate-iiif-annotations',
                     gulp.parallel('deploy-data',
                                   'deploy-characteristics',
+                                  'deploy-xconf',
                                   'deploy-xslt',
                                   'deploy-xql')));
