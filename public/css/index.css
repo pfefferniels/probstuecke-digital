@@ -1,4 +1,4 @@
-tei-person {
+tei-person, tei-bibl {
   display: block;
   margin-bottom: 1.5rem;
 }
@@ -30,6 +30,10 @@ tei-surname {
 
 tei-surname:after {
   content: ', ';
+}
+
+tei-title {
+  font-style: italic;
 }
 
 .view-occurences {

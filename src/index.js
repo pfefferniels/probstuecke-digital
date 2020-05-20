@@ -11,4 +11,15 @@ index.get('/persons', function(req, res) {
     .catch(e => console.error(e));
 });
 
+index.get('/musicalWorks', function(req, res) {
+  db.retrieve('indices/musical-works.xml')
+    .then(function (response) {
+      res.render('index', {
+        tei: response.data
+      });
+    })
+    .catch(e => console.error(e));
+});
+
+
 module.exports = index;

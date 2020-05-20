@@ -2,7 +2,13 @@ const cetei = new CETEI();
 
 cetei.addBehaviors({
   handlers: {
-    'idno': linkToGND
+    'idno': linkToGND,
+    "title": [
+      ["tei-titlestmt>tei-title", function(elt) {
+        $(`<title>${elt.innerText}</title>`).appendTo('head');
+        $(`<h4>${elt.innerText}</h4>`).prependTo('#main');
+      }]
+    ]
   }
 });
 
@@ -71,13 +77,26 @@ $(document).ready(function () {
     $(this).append('<button type="button" class="btn btn-link view-occurences">view occurences</button>');
   });
 
+  $('tei-bibl').each(function() {
+    $(this).append('<button type="button" class="btn btn-link view-occurences">view occurences</button>');
+  });
+
   $('.view-occurences').click(async function() {
     let parent = $(this).parent('tei-person');
-    let personId = parent.attr('id');
+    if (!parent.length) {
+      parent = $(this).parent('tei-bibl');
+      console.log(parent);
+      if (!parent.length) {
+        console.log('no corresponding id found.');
+        return;
+      }
+    }
+
+    let refId = parent.attr('id');
 
     if (!parent.find('.references').length) {
       let referencesEl = $('<div class="references"/>').appendTo(parent);
-      loadReferences(personId, referencesEl);
+      loadReferences(refId, referencesEl);
       return;
     };
 

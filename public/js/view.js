@@ -2,6 +2,11 @@ const cetei = new CETEI();
 let scoreToolkit = new verovio.toolkit();
 let vrvToolkit = new verovio.toolkit();
 
+function isUrl(str) {
+  const urlRegex = /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/;
+  return str.match(urlRegex);
+}
+
 function generatePDF() {
   let options = {
     fontCallback: function(family, bold, italic, fontOptions) {
@@ -52,14 +57,13 @@ function generatePDF() {
   doc.end();
 }
 
-function gndReference(el) {
+function linkTo(place, el) {
   let ref = el.getAttribute('ref');
   if (!ref) {
     return $('<span/>').html(el.innerHTML)[0];
   }
 
-  let newRef = '/index/persons' + ref;
-  return $('<a/>').attr('href', newRef).html(el.innerHTML)[0];
+  return $('<a/>').attr('href', isUrl(ref) ? ref : (place + ref)).html(el.innerHTML)[0];
 }
 
 function geoReference(el) {
@@ -108,9 +112,15 @@ function geoReference(el) {
 
 cetei.addBehaviors({
   handlers: {
-    'persName': gndReference,
+    'persName': function(el) {
+      return linkTo('/index/persons', el);
+    },
+
     'placeName': geoReference,
-    'name': gndReference,
+
+    'name': function(el) {
+      return linkTo('/index/musicalWorks', el);
+    },
 
     'facsimile': function(el) {
       this.hideContent(el, false);
@@ -271,10 +281,9 @@ function connectCrossRefs(el) {
 }
 
 function reconnectCrossRefs() {
-  const uriRegex = /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/;
   $('tei-ref[target]').each(function() {
     let target = $(this).attr('target');
-    if (target.match(uriRegex)) {
+    if (isUrl(target)) {
       $(this).wrap(`<a href="${target}" />`);
     } else {
       connectCrossRefs(this);
