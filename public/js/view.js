@@ -331,9 +331,7 @@ function renderKeyOverlay(el) {
   cetei.makeHTML5(keyCharacteristics, function(html) {
     $(html).attr('id', 'key-characteristics').hide().appendTo('body');
     $(keySigOverlay.node).popover({
-        content: function() {
-          return $('#key-characteristics').show();
-        },
+        content: $('#key-characteristics').show(),
         trigger: 'click',
         html: true
     });
@@ -351,9 +349,7 @@ function renderMeterOverlay(el) {
   cetei.makeHTML5(meterCharacteristics, function(html) {
     $(html).attr('id', 'meter-characteristics').hide().appendTo('body');
     $(meterSigOverlay.node).popover({
-        content: function() {
-          return $('#meter-characteristics').show();
-        },
+        content: $('#meter-characteristics').show(),
         trigger: 'click',
         html: true
     });
