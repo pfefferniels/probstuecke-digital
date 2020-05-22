@@ -13,15 +13,19 @@
   height: 60vh;
 }
 
-.indicator {
-  cursor: pointer;
+.underlay {
   fill: #ffe47a;
-  opacity: 0.5;
+  opacity: 0.75;
   stroke-width: 25;
   stroke-dasharray: 50 50;
   stroke: #000000;
   rx: 5rem;
   ry: 5rem;
+}
+
+.overlay {
+  cursor: pointer;
+  opacity: 0;
 }
 
 .signature-overlay {

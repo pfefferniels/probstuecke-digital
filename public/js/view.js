@@ -157,7 +157,7 @@ function printError(message) {
   });
 }
 
-async function highlightSVG(svgElement) {
+async function animateSVG(svgElement) {
   $("html,body").animate({
     scrollTop: svgElement.rbox().y
   }, 100, async function() {
@@ -167,7 +167,7 @@ async function highlightSVG(svgElement) {
   });
 }
 
-function highlightText(element) {
+function animateText(element) {
   $("html,body").animate({
     scrollTop: element.offset().top-50
   }, 100, async function() {
@@ -177,12 +177,14 @@ function highlightText(element) {
   });
 }
 
-function drawOverlay(targetAttr) {
-  let svg = SVG(targetAttr);
+function highlight(target) {
+  let svg = SVG(target);
   if (svg == null) {
     console.log("corresponding SVG element for ", targetAttr, " not found");
     return;
   }
+
+  const padding = 100;
   let bbox = svg.bbox();
 
   // draw the box always into g.measure to make
@@ -191,11 +193,15 @@ function drawOverlay(targetAttr) {
     svg = svg.parent(".measure");
   }
 
-  return svg.rect(bbox.width,bbox.height).
-             move(bbox.x,bbox.y).
-             attr('class', 'indicator').
-             attr('id', 'indicate_' + targetAttr.substr(1)).
-             back();
+  return {
+    underlay: svg.rect(bbox.width + padding, bbox.height + padding).
+                  move(bbox.x - .5*padding, bbox.y - .5*padding).
+                  attr('class', 'underlay').
+                  back(),
+    overlay: svg.rect(bbox.width + padding, bbox.height + padding).
+                 move(bbox.x - .5*padding, bbox.y - .5*padding).
+                 attr('class', 'overlay')
+  }
 }
 
 async function renderComments() {
@@ -319,19 +325,22 @@ function renderKeyOverlay(el) {
     return;
   }
 
-  let keySigOverlay = drawOverlay('.keySig');
-  if (!keySigOverlay) {
+  let keySigHighlight = highlight('.keySig');
+  if (!keySigHighlight) {
     // In that case we are probably dealing with a key without any signature.
     // Taking the meter instead and shifting the box to the left.
-    keySigOverlay = drawOverlay('.meterSig');
-    keySigOverlay.dx(-1.33*keySigOverlay.width());
+    keySigHighlight = highlight('.meterSig');
+    keySigHighlight.overlay.dx(-1.33*keySigHighlight.width());
+    keySigHighlight.underlay.dx(-1.33*keySigHighlight.width());
   }
-  keySigOverlay.addClass('signature-overlay');
+  keySigHighlight.underlay.addClass('signature-overlay');
 
   cetei.makeHTML5(keyCharacteristics, function(html) {
     $(html).attr('id', 'key-characteristics').hide().appendTo('body');
-    $(keySigOverlay.node).popover({
-        content: $('#key-characteristics').show(),
+    $(keySigHighlight.overlay.node).popover({
+        content: function() {
+          return $('#key-characteristics').clone().show();
+        },
         trigger: 'click',
         html: true
     });
@@ -343,12 +352,12 @@ function renderMeterOverlay(el) {
     return;
   }
 
-  let meterSigOverlay = drawOverlay('.meterSig');
-  meterSigOverlay.addClass('signature-overlay');
+  let meterSigHighlight = highlight('.meterSig');
+  meterSigHighlight.underlay.addClass('signature-overlay');
 
   cetei.makeHTML5(meterCharacteristics, function(html) {
     $(html).attr('id', 'meter-characteristics').hide().appendTo('body');
-    $(meterSigOverlay.node).popover({
+    $(meterSigHighlight.overlay.node).popover({
         content: function() {
           return $('#meter-characteristics').clone().show();
         },
@@ -361,19 +370,19 @@ function renderMeterOverlay(el) {
 function connectTEIRefWithTarget(teiRef, target) {
   if ($(target).parents('svg').length != 0) {
     // connecting with SVG element
-    let rect = drawOverlay(target);
+    let rect = highlight(target);
 
-    rect.click(async function() {
-      highlightText(teiRef);
+    rect.overlay.click(async function() {
+      animateText(teiRef);
     });
 
     teiRef.on('click', function() {
-      highlightSVG(rect);
+      animateSVG(rect.underlay);
     });
   } else if ($('tei-tei').has(target).length != 0) {
     // connecting with TEI element
     teiRef.on('click', function() {
-      highlightText($(target))
+      animateText($(target))
     });
   } else {
     // if no corresponding element exists, gray it out and remove the link
@@ -489,7 +498,8 @@ function normalizeOption(replace, orig, replacement) {
 }
 
 async function renderWithNormalizedOrthography() {
-  $('.indicator').remove();
+  $('.underlay').remove();
+  $('.overlay').remove();
 
   // hide line beginnings and normalize hyphens at line breaks.
   if ($('#ignore-lb').is(':checked')) {
@@ -599,10 +609,10 @@ $(document).ready(async function() {
   if (hash) {
     let target = $('body').find(hash);
     if (target.parents('svg').length != 0) {
-      let rect = drawOverlay(hash);
-      highlightSVG(rect);
+      let rect = highlight(hash);
+      animateSVG(rect.underlay);
     } else {
-      highlightText(target);
+      animateText(target);
     }
   }
 });
@@ -617,7 +627,6 @@ let midiUpdate = function(time) {
   }
 
   for (let i=0; i<notes.length; i++) {
-    console.log(notes[i]);
     let svg = SVG('#' + notes[i]);
     if (svg != null) {
       svg.opacity(0.1).animate().opacity(1);
