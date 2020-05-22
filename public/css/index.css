@@ -32,8 +32,20 @@ tei-surname:after {
   content: ', ';
 }
 
-tei-title {
+tei-bibl tei-title {
   font-style: italic;
+}
+
+tei-bibl tei-title:after {
+  content: '. ';
+}
+
+tei-bibl tei-pubPlace::before {
+  content: '(';
+}
+
+tei-bibl tei-pubPlace::after {
+  content: '),';
 }
 
 .view-occurences {
