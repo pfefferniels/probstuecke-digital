@@ -349,7 +349,9 @@ function renderMeterOverlay(el) {
   cetei.makeHTML5(meterCharacteristics, function(html) {
     $(html).attr('id', 'meter-characteristics').hide().appendTo('body');
     $(meterSigOverlay.node).popover({
-        content: $('#meter-characteristics').show(),
+        content: function() {
+          return $('#meter-characteristics').clone().show();
+        },
         trigger: 'click',
         html: true
     });
