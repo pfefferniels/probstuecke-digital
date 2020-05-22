@@ -40,13 +40,14 @@ block options
         data-toggle="popover"
         data-content="Add staves, change clefs")
   
-  if author == 'mattheson'
+  if mei && author == 'mattheson'
     .p-2(data-toggle="modal" data-target="#accidentalsModal")
       i.fas.fa-lg.fa-hashtag(
         data-toggle="popover"
         data-content="Accidentals"
         )
-    
+  
+  if author == 'mattheson'
     .p-2(data-toggle="modal" data-target="#facsimileModal")
       i.far.fa-lg.fa-image(
         data-toggle="popover"
