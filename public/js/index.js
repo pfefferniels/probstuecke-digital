@@ -73,6 +73,39 @@ $(document).ready(function () {
     $('#main').html(html);
   });
 
+  // create alphabetical pagination based on surname
+  for(let i='A'.charCodeAt(0); i<='Z'.charCodeAt(0); i++) {
+    const charCode = String.fromCharCode(i);
+
+    let target = $('tei-surname').filter(function (index, el) {
+      return el.innerText[0] == charCode;
+    })[0];
+
+    if (!target) {
+      $('#pagination').append(
+        `<li class="page-item disabled">
+          <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+            ${charCode}
+          </a>
+        </li>`
+      );
+      continue;
+    }
+
+    let targetId = $(target).parents('tei-person, tei-bibl').attr('id');
+    if (targetId) {
+      $('#pagination').append(
+        `<li class="page-item">
+          <a class="page-link" href="#${targetId}">
+            ${charCode}
+          </a>
+        </li>`
+      );
+    }
+  }
+
+
+
   $('tei-person').each(function() {
     $(this).append('<button type="button" class="btn btn-link view-occurences">view occurences</button>');
   });
