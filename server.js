@@ -1,12 +1,12 @@
 const express = require('express'),
       bodyParser = require('body-parser'),
-      renderRouter = require('./src/render.js'),
-      iiifRouter = require('./src/iiif.js'),
-      facsimileRouter = require('./src/facsimile.js'),
-      viewRouter = require('./src/view.js'),
-      searchRouter = require('./src/search.js')
-      indexRouter = require('./src/index.js'),
-      referencesRouter = require('./src/references.js');
+      renderRouter = require('./src/js/render.js'),
+      iiifRouter = require('./src/js/iiif.js'),
+      facsimileRouter = require('./src/js/facsimile.js'),
+      viewRouter = require('./src/js/view.js'),
+      searchRouter = require('./src/js/search.js')
+      indexRouter = require('./src/js/index.js'),
+      referencesRouter = require('./src/js/references.js');
 
 // express.js setup
 const app = express();
