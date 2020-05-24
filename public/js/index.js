@@ -104,13 +104,7 @@ $(document).ready(function () {
     }
   }
 
-
-
-  $('tei-person').each(function() {
-    $(this).append('<button type="button" class="btn btn-link view-occurences">view occurences</button>');
-  });
-
-  $('tei-bibl').each(function() {
+  $('tei-person, tei-bibl').each(function() {
     $(this).append('<button type="button" class="btn btn-link view-occurences">view occurences</button>');
   });
 
