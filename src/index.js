@@ -21,5 +21,14 @@ index.get('/musicalWorks', function(req, res) {
     .catch(e => console.error(e));
 });
 
+index.get('/bibliography', function(req, res) {
+  db.retrieve('indices/bibliography.xml')
+    .then(function (response) {
+      res.render('index', {
+        tei: response.data
+      });
+    })
+    .catch(e => console.error(e));
+});
 
 module.exports = index;
