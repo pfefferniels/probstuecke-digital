@@ -18,7 +18,7 @@ function linkToGND(el) {
     return $('<span/>').html(el.innerHTML)[0];
   }
 
-  return $('<a class="gnd-link">&rarr; link to GND</a>').attr('href', ref)[0];
+  return $('<a class="badge badge-pill badge-info">&rarr; link to GND</a>').attr('href', ref)[0];
 }
 
 function createElementFromUri(uri) {
