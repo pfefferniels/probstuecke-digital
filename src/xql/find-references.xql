@@ -4,7 +4,7 @@ declare namespace request = "http://exist-db.org/xquery/request";
 
 let $refId := '#' || xmldb:decode(request:get-parameter('ref', ''))
 let $collection := collection("/db/apps/probstuecke-digital")
-let $refs := $collection//tei:body//*[@ref=$refId]
+let $refs := $collection//tei:body//*[@corresp=$refId]
 
 return
    <references>

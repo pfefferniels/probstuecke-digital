@@ -58,7 +58,7 @@ function generatePDF() {
 }
 
 function linkTo(place, el) {
-  let ref = el.getAttribute('ref');
+  let ref = el.getAttribute('corresp');
   if (!ref) {
     return $('<span/>').html(el.innerHTML)[0];
   }
