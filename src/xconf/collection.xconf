@@ -4,6 +4,7 @@
             <create qname="tei:name" type="xs:string"/>
             <create qname="tei:persName" type="xs:string"/>
             <create qname="tei:placeName" type="xs:string"/>
+            <create qname="@corresp" type="xs:string"/>
         </range>
         <lucene>
             <text qname="tei:p"/>
