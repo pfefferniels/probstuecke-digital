@@ -68,10 +68,12 @@ input[type="number"] {
     background-color: #ffe47a;
     fill: #ffe47a;
   }
+
   50% {
     background-color: #ba0000;
     fill: #ba0000;
   }
+
   100% {
     background-color: #ffe47a;
     fill: ##ffe47a;
@@ -91,8 +93,8 @@ tei-licence>tei-p::before {
 }
 
 tei-editor, tei-publisher, tei-licence, tei-pubplace, tei-physdesc,
-  tei-particdesc, tei-settingdesc, tei-sourcedesc tei-editionstmt,
-  tei-sourcedesc tei-titlestmt, tei-idno, tei-repository {
+tei-particdesc, tei-settingdesc, tei-sourcedesc tei-editionstmt,
+tei-sourcedesc tei-titlestmt, tei-idno, tei-repository {
   display: block;
 }
 
@@ -188,13 +190,10 @@ tei-p {
   position: relative;
   width: 90%;
   line-height: 2;
-}
-
-tei-div:not(:first-of-type)>tei-p {
   text-indent: 2rem;
 }
 
-tei-div:not(:first-of-type)>tei-notatedmusic+tei-p {
+tei-div:not(:first-of-type)>tei-notatedmusic+tei-p, tei-div:first-of-type>tei-p:first-of-type {
   text-indent: 0;
 }
 
@@ -312,17 +311,17 @@ tei-milestone[rendition="#hr"] {
   margin: 1rem auto;
 }
 
-tei-epigraph{
+tei-epigraph {
   display: block;
 }
 
 tei-pb {
-	display: block;
+  display: block;
 }
 
 tei-pb[n]:after {
-	content: '[' attr(n)']\A';
-	color: gray;
+  content: '['attr(n)']\A';
+  color: gray;
 }
 
 tei-fw[type="catch"][place="bottom"] {
