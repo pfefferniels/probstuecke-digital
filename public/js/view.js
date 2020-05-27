@@ -180,7 +180,7 @@ function animateText(element) {
 function highlight(target) {
   let svg = SVG(target);
   if (svg == null) {
-    console.log("corresponding SVG element for ", targetAttr, " not found");
+    console.log("corresponding SVG element for ", target, " not found");
     return;
   }
 
@@ -508,7 +508,7 @@ async function renderWithNormalizedOrthography() {
     keyCharacteristics = keyCharacteristics.replace(lbWithHyphen, '$3&#xAD;');
     meterCharacteristics = meterCharacteristics.replace(lbWithHyphen, '$3&#xAD;');
 
-    await Promise.all([renderComments(), renderKeyOverlay(), renderMeterOverlay()]);
+    await Promise.all([renderComments(), reconnectCrossRefs(), renderKeyOverlay(), renderMeterOverlay()]);
     $('tei-lb').hide();
   } else {
     const softHyphen = /\&#xAD;/g;
@@ -516,10 +516,9 @@ async function renderWithNormalizedOrthography() {
     keyCharacteristics = keyCharacteristics.replace(softHyphen, '-<lb/>');
     meterCharacteristics = meterCharacteristics.replace(softHyphen, '-<lb/>');
 
-    await Promise.all([renderComments(), renderKeyOverlay(), renderMeterOverlay()]);
+    await Promise.all([renderComments(), reconnectCrossRefs(), renderKeyOverlay(), renderMeterOverlay()]);
     $('tei-lb').show();
   }
-  reconnectCrossRefs();
 
   // normalizing long s and Umlaut
   normalizeOption($('#normalize-s').is(':checked'), 'ſ', 's');
