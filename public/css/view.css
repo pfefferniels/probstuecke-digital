@@ -334,6 +334,10 @@ tei-code {
   font-family: monospace;
 }
 
+tei-choice tei-reg {
+  display: none;
+}
+
 /* overwrites the default max-width of bootstrap's popover */
 .expandable-popover {
   max-width: 100%;
