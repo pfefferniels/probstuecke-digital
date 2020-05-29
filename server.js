@@ -26,16 +26,16 @@ app.use('/index', indexRouter);
 app.use('/references', referencesRouter);
 app.use('/search', searchRouter);
 
+app.get('/', function(req, res) {
+  res.render('start');
+});
+
 app.get('/howto', function(req, res) {
   res.render('howto');
 });
 
 app.get('/contributions', function(req, res) {
   res.render('contributions');
-});
-
-app.get('/', function(req, res) {
-  res.redirect('/view/frontpage/mattheson/secondEdition');
 });
 
 app.listen(process.env.PORT || 3000, function() {
