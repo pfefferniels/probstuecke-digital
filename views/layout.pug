@@ -218,6 +218,7 @@ mixin subitem(title)
                 +subitem('1nd edition (1719)')(href='/facsimile/18/firstEdition')
                 +subitem('2nd edition (1731)')(href='/facsimile/18/secondEdition')
               +submenu('Transcription')
+                +subitem('1st edition (1719)')(href='/view/18/mattheson/firstEdition')
                 +subitem('2nd edition (1731)')(href='/view/18/mattheson/secondEdition')
 
             +menu('19th Probstück')(id='ps-19')
@@ -260,13 +261,13 @@ mixin subitem(title)
               +submenu('Transcription')
                 +subitem('2nd edition (1731)')(href='/view/24/mattheson/secondEdition')
         
-          li.nav-item.pl-1
+          li.nav-item.pl-1.mr-1.text-nowrap
             a(href='/index/persons') Index of Persons
 
-          li.nav-item.pl-1
+          li.nav-item.pl-1.mr-1.text-nowrap
             a(href='/index/musicalWorks') Index of Musical Works
           
-          li.nav-item.pl-1
+          li.nav-item.pl-1.mr-1.text-nowrap
             a(href='/index/bibliography') Bibliography
 
   .mt-1#options

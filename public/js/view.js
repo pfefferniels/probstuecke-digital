@@ -122,6 +122,10 @@ cetei.addBehaviors({
       return linkTo('/index/musicalWorks', el);
     },
 
+    'bibl': function(el) {
+      return linkTo('/index/bibliography', el);
+    }
+
     'facsimile': function(el) {
       this.hideContent(el, false);
     },
