@@ -330,8 +330,8 @@ function renderKeyOverlay(el) {
     // In that case we are probably dealing with a key without any signature.
     // Taking the meter instead and shifting the box to the left.
     keySigHighlight = highlight('.meterSig');
-    keySigHighlight.overlay.dx(-1.33*keySigHighlight.width());
-    keySigHighlight.underlay.dx(-1.33*keySigHighlight.width());
+    keySigHighlight.overlay.dx(-1.33*keySigHighlight.overlay.width());
+    keySigHighlight.underlay.dx(-1.33*keySigHighlight.underlay.width());
   }
   keySigHighlight.underlay.addClass('signature-overlay');
 
