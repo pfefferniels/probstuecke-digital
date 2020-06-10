@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'BravuraText';
+  src: url('/fonts/BravuraText.eot') format('embedded-opentype');
+  src: url('/fonts/BravuraText.otf') format('opentype');
+  /* Not including woff or woff2 files here, since
+     they do not seem to support ligatures */
+}
+
 * {
   box-sizing: border-box;
 }
