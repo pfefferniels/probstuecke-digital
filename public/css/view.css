@@ -338,8 +338,17 @@ tei-fw[type="catch"][place="bottom"] {
   color: #666;
 }
 
-tei-code {
+tei-code, tei-tag {
+  background-color: #ededed;
   font-family: monospace;
+}
+
+tei-tag::before {
+  content: '<';
+}
+
+tei-tag::after {
+  content: '>';
 }
 
 tei-choice tei-reg {
