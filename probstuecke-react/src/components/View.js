@@ -24,7 +24,8 @@ class View extends React.Component {
           {(toc) => (
             (!toc.ready) ? <Spinner animation='grow'/>
                          :
-              <Tabs>
+              <Tabs mountOnEnter={true}
+                    unmountOnExit={true}>
                 {Object.entries(toc.data[piece]).map(([key,value],i) => (
                   <Tab key={i} eventKey={key} title={key}>
                     <Container fluid>
@@ -33,7 +34,7 @@ class View extends React.Component {
                           <Score key={`Score_${key}`} mei={value.score}/>
                         </Col>
                         <Col md={6}>
-                          <Text key={`Text_{key}`} tei={value.comments}/>
+                          <Text key={`Text_${key}`} tei={value.comments}/>
                         </Col>
                       </Row>
                     </Container>
