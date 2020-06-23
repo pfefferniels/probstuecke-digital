@@ -1,0 +1,132 @@
+/* DTAbf4CETEI */
+
+tei-hi[rendition="#aq"] {
+  font-family: sans-serif;
+}
+
+tei-hi[rendition="#b"] {
+  font-weight: bold;
+}
+
+tei-hi[rendition="#blue"] {
+  color: blue;
+}
+
+tei-hi[rendition="#c"] {
+  display: block;
+  text-align: center;
+}
+
+tei-hi[rendition="#et"] {
+  display: block;
+  margin-left: 2em;
+  text-indent: 0;
+}
+
+tei-hi[rendition="#f"] {
+  border: 1px dotted silver;
+}
+
+tei-hi[rendition="#fr"] {
+  border: 1px dotted silver;
+}
+
+tei-hi[rendition="#g"] {
+  letter-spacing: 0.125em;
+}
+
+tei-hi[rendition="#i"] {
+  font-style: italic;
+}
+
+tei-hi[rendition="#in"] {
+  font-size: 150%;
+}
+
+tei-hi[rendition="#k"] {
+  font-variant: small-caps;
+}
+
+tei-hi[rendition="#red"] {
+  color: red;
+}
+
+tei-hi[rendition="#right"] {
+  display: block;
+  text-align: right;
+}
+
+tei-hi[rendition="#sub"] {
+  vertical-align: sub;
+  font-size: .7em;
+}
+
+tei-hi[rendition="#sup"] {
+  vertical-align: super;
+  font-size: .7em;
+}
+
+tei-hi[rendition="#u"] {
+  text-decoration: underline;
+}
+
+tei-hi[rendition="#uu"] {
+  border-bottom: double 3px #000;
+}
+
+tei-hi[rendition="#v"] {
+  ;
+}
+
+tei-hi[rendition="#s"] {
+  text-decoration: line-through;
+}
+
+tei-hi[rendition="#et2"] {
+  display: block;
+  margin-left: 4em;
+  text-indent: 0;
+}
+
+tei-hi[rendition="#et3"] {
+  display: block;
+  margin-left: 6em;
+  text-indent: 0;
+}
+
+tei-hi[rendition="#smaller"] {
+  font-size: smaller;
+}
+
+tei-hi[rendition="#larger"] {
+  font-size: larger
+}
+
+tei-p {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  text-align: justify;
+  position: relative;
+  line-height: 2;
+  text-indent: 2rem;
+}
+
+tei-facsimile {
+  display: none;
+}
+
+tei-tei {
+  font-size: 0.9rem;
+  text-align: justify;
+}
+
+tei-head {
+  font-weight: bold;
+  text-align: center;
+  display: block;
+}
+
+tei-lb, tei-fw {
+  display: none;
+}

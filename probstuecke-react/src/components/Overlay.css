@@ -1,0 +1,31 @@
+.overlay {
+  cursor: pointer;
+  background-color: #ffe47a;
+}
+
+.targetOverlay {
+  fill: #ffe47a;
+  opacity: 0.4;
+  cursor: pointer;
+}
+
+.blink {
+  animation: blinking 1s 4;
+}
+
+@keyframes blinking {
+  0% {
+    background-color: #ffe47a;
+    fill: #ffe47a;
+  }
+
+  50% {
+    background-color: #ba0000;
+    fill: #ba0000;
+  }
+
+  100% {
+    background-color: #ffe47a;
+    fill: ##ffe47a;
+  }
+}

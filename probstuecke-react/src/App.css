@@ -1,0 +1,21 @@
+body {
+  color: black;
+}
+
+#options {
+  background-color: white;
+  position: fixed;
+  top: 0;
+  right: 0;
+  margin-top: 4rem;
+  margin-right: 1rem;
+  padding: 0.5rem;
+  opacity: 0.5;
+  border: 0.5px solid black;
+  border-radius: 1rem;
+  z-index: 999;
+}
+
+#options:hover {
+  opacity: 1;
+}
