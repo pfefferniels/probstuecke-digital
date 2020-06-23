@@ -16,10 +16,6 @@ class TEIElement extends React.Component {
     }, {})
   }
 
-  componentWillUnmount() {
-    console.log('Unmounting TEIElement')
-  }
-
   render() {
     const el = this.props.teiDomElement
 

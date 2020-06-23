@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { scoreToolkit } from './Verovio.js';
 import { Spinner } from 'react-bootstrap';
 import './Score.css'
 import EventEmitter from './EventEmitter.js'
 
-class Score extends Component {
+class Score extends React.Component {
   constructor(props) {
     super(props)
     this.state = { }
@@ -31,7 +31,7 @@ class Score extends Component {
 
 
   componentDidUpdate() {
-    if (document.querySelector('#score-view')) {
+    if (document.getElementById('score-view')) {
       EventEmitter.dispatch('scoreIsReady', this.scoreViewRef)
     } else {
       console.error('This should not happen')

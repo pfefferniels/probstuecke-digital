@@ -10,11 +10,7 @@ class Text extends React.Component {
     this.state = {}
   }
 
-  componentDidMount() {
-    this.getTEI()
-  }
-
-  async getTEI() {
+  async componentDidMount() {
     const ct = new CETEI()
 
     ct.addBehaviors({

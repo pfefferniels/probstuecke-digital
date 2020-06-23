@@ -5,11 +5,8 @@ import { exampleToolkit } from './Verovio.js'
 import './MusicExample.css'
 
 class MusicExample extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      error: false
-    }
+  state = {
+    error: false
   }
 
   async componentDidMount() {
