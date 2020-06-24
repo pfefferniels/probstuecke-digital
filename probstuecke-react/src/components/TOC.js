@@ -10,7 +10,7 @@ class TOCProvider extends React.Component {
   }
 
   componentDidMount() {
-    fetch('/data/toc.json')
+    fetch('/toc.json')
       .then(response => response.json())
       .then(data => this.setState(prevState => ({
         ...prevState,
