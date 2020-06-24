@@ -43,8 +43,8 @@ const Welcome = (props) => (
         (!toc.ready) ? <Spinner animation='grow'/>
                      :
           <CardColumns>
-            {Object.entries(toc.data).map(([key,value],i) => (
-              <Card key={i}>
+            {Object.entries(toc.data).map(([key,value], i) => (
+              <Card key={i} style={{width: '25rem'}}>
                 <Card.Body>
                   <Card.Title>
                     <Link to={`/${key}`}>
@@ -52,12 +52,12 @@ const Welcome = (props) => (
                     </Link>
                   </Card.Title>
                   <div>
-                    {Object.keys(value).map((key,i) => (
+                    {Object.keys(value.editions).map((key, i) => (
                       <span className='contentEnum'
                             key={i}>{key}</span>
                     ))}
                   </div>
-                  <Incipit pae={value['mattheson1719'].incipit}/>
+                  <Incipit pae={value.incipit}/>
                 </Card.Body>
               </Card>
               ))

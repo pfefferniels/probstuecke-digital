@@ -26,7 +26,7 @@ class View extends React.Component {
                          :
               <Tabs mountOnEnter={true}
                     unmountOnExit={true}>
-                {Object.entries(toc.data[piece]).map(([key,value],i) => (
+                {Object.entries(toc.data[piece].editions).map(([key,value],i) => (
                   <Tab key={i} eventKey={key} title={key}>
                     <Container fluid>
                       <Row>
