@@ -1,0 +1,34 @@
+#welcome {
+  background: url('/images/start-bg.png') no-repeat;
+  background-size: 100%;
+}
+
+.welcomeOverlay {
+  background: rgba(256,256,256,0.7);
+  width: max-content;
+  padding: 0.2rem;
+  margin-left: 1rem;
+}
+
+.incipit svg {
+  width: 100%;
+}
+
+.card {
+  margin: 1rem;
+}
+
+.contentEnum {
+  font-size: 0.8rem;
+
+}
+
+.contentEnum:last-child::after {
+  content: '';
+}
+
+.contentEnum::after {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  content: '·';
+}
