@@ -2,6 +2,7 @@ import React from 'react'
 import Overlay from './Overlay.js'
 import MusicExample from './MusicExample.js'
 import EditorialNote from './EditorialNote.js'
+import Person from './Person.js'
 import EventEmitter from './EventEmitter.js'
 
 class TEIElement extends React.Component {
@@ -20,6 +21,9 @@ class TEIElement extends React.Component {
     const el = this.props.teiDomElement
 
     switch (el.tagName.toLowerCase()) {
+      case 'tei-persname':
+        if (el.hasAttribute('corresp')) return <Person teiEl={el} />
+        else break
       case 'tei-notatedmusic':
         return <MusicExample notatedMusic={el} teiPath={this.props.teiPath} />
       case 'tei-note':
@@ -28,7 +32,7 @@ class TEIElement extends React.Component {
         EventEmitter.dispatch('metadataAvailable', el)
         return (null)
       case 'tei-ref':
-        return <Overlay teiRef={el}/>
+        if (el.hasAttribute('target')) return <Overlay teiRef={el}/>
       default:
         break
     }

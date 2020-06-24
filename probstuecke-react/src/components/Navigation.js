@@ -26,7 +26,9 @@ const Navigation = () => {
             </TOCConsumer>
           </NavDropdown>
           <NavDropdown title='Indices'>
-            <NavDropdown.Item>Persons</NavDropdown.Item>
+            <NavDropdown.Item>
+              <Link to='indexOfPersons'>Persons</Link>
+            </NavDropdown.Item>
             <NavDropdown.Item>Musical Works</NavDropdown.Item>
             <NavDropdown.Item>Bibliography</NavDropdown.Item>
           </NavDropdown>
