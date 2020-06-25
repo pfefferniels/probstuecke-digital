@@ -30,12 +30,12 @@ class View extends React.Component {
                   <Tab key={i} eventKey={key} title={key}>
                     <Container fluid>
                       <Row>
-                        <Col md={6}>
-                          <Score key={`Score_${key}`} mei={value.score}/>
-                        </Col>
-                        <Col md={6}>
-                          <Text key={`Text_${key}`} tei={value.comments}/>
-                        </Col>
+                        {value.score && <Col md={6}>
+                                          <Score key={`Score_${key}`} mei={value.score}/>
+                                        </Col>}
+                        {value.comments && <Col md={6}>
+                                             <Text key={`Text_${key}`} tei={value.comments}/>
+                                           </Col>}
                       </Row>
                     </Container>
                   </Tab>
