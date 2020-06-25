@@ -62,6 +62,11 @@ class Overlay extends Component {
     })
   }
 
+  componentDidUpdate() {
+    if (!this.underlyingText.current) return
+    this.underlyingText.current.appendChild(this.props.teiRef.firstChild)
+  }
+
   highlight() {
     const domEl = this.underlyingText.current
     domEl.scrollIntoView()
@@ -84,7 +89,7 @@ class Overlay extends Component {
                         target={target}
                         onClick={this.highlight}/>),
             target)
-        ))}
+         ))}
         <span ref={this.underlyingText}
               className='overlay'
               onClick={() => {
@@ -93,8 +98,7 @@ class Overlay extends Component {
                     targetOverlay.highlight()
                   }
                 })
-              }}
-              dangerouslySetInnerHTML={{__html: this.props.teiRef.innerHTML}}/>
+              }} />
       </>
     )
   }
