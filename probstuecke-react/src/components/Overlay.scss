@@ -1,10 +1,12 @@
+$overlayColor: #ffe47a;
+
 .overlay {
   cursor: pointer;
-  background-color: #ffe47a;
+  background-color: $overlayColor;
 }
 
 .targetOverlay {
-  fill: #ffe47a;
+  fill: $overlayColor;
   opacity: 0.4;
   cursor: pointer;
 }
@@ -15,8 +17,8 @@
 
 @keyframes blinking {
   0% {
-    background-color: #ffe47a;
-    fill: #ffe47a;
+    background-color: $overlayColor;
+    fill: $overlayColor;
   }
 
   50% {
@@ -25,7 +27,7 @@
   }
 
   100% {
-    background-color: #ffe47a;
-    fill: ##ffe47a;
+    background-color: $overlayColor;
+    fill: $overlayColor;
   }
 }

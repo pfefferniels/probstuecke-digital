@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Spinner } from 'react-bootstrap'
-import './Overlay.css'
 import EventEmitter from './EventEmitter.js'
+import './Overlay.scss'
 
 class SVGOverlay extends Component {
   constructor(props) {
