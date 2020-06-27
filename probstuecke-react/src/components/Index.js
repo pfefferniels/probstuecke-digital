@@ -1,14 +1,9 @@
 import React from 'react'
-import Text from './Text.js'
+import EdiarumRegister from './EdiarumRegister.js'
 
-class Index extends React.Component {
-
-  render() {
-    return (
-      <div id='index'>
-        <Text tei={`indices/${this.props.type}.xml`}/>
-      </div>)
-  }
-}
+const Index = (props) => (
+  <div id='index'>
+    <EdiarumRegister tei={`indices/${props.type}.xml`}/>
+  </div>)
 
 export default Index

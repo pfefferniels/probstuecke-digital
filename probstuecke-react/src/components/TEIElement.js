@@ -19,14 +19,22 @@ class TEIElement extends React.Component {
     switch (el.tagName.toLowerCase()) {
       case 'tei-teiheader':
         if (this.props.onTeiHeader) return this.props.onTeiHeader(el)
+        break
       case 'tei-persname':
         if (this.props.onPersName) return this.props.onPersName(el)
+        break
       case 'tei-notatedmusic':
         if (this.props.onNotatedMusic) return this.props.onNotatedMusic(el)
+        break
       case 'tei-note':
         if (this.props.onNote) return this.props.onNote(el)
+        break
       case 'tei-ref':
         if (this.props.onRef) return this.props.onRef(el)
+        break
+      case 'tei-idno':
+        if (this.props.onIdno) return this.props.onIdno(el)
+        break
     }
 
     const teiChildren = Array.from(el.childNodes).map((teiEl, i) => {
@@ -40,7 +48,8 @@ class TEIElement extends React.Component {
             onPersName={this.props.onPersName}
             onNotatedMusic={this.props.onNotatedMusic}
             onRef={this.props.onRef}
-            onTeiHeader={this.props.onTeiHeader}/>
+            onTeiHeader={this.props.onTeiHeader}
+            onIdno={this.props.onIdno}/>
         case 3:
           return teiEl.nodeValue
         default:
