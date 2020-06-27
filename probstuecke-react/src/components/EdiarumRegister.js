@@ -3,7 +3,6 @@ import { Spinner, Badge } from 'react-bootstrap';
 import CETEI from 'CETEIcean';
 import TEIElement from './TEIElement.js'
 import EventEmitter from './EventEmitter.js'
-import EditorialNote from './EditorialNote.js'
 import './EdiarumRegister.css'
 
 const teiToHtml = async (file) => {
@@ -22,7 +21,7 @@ const EdiarumIdno = (props) => {
 
   return (
     <Badge pill variant='info'>
-      <a target='_blank' href={ref}>
+      <a target='_blank' rel="noopener noreferrer" href={ref}>
         &rarr; link to GND
       </a>
     </Badge>

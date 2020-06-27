@@ -1,6 +1,5 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Alert, Modal, Button } from 'react-bootstrap'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import EventEmitter from './EventEmitter.js'
 import Option from './Option.js'

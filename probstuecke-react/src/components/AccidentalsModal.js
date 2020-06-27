@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Modal, Button } from 'react-bootstrap'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHashtag } from '@fortawesome/free-solid-svg-icons'
 import Option from './Option.js'
 

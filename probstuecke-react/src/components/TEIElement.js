@@ -1,5 +1,4 @@
 import React from 'react'
-import Overlay from './Overlay.js'
 
 class TEIElement extends React.Component {
   forwardTeiAttributes() {
@@ -34,6 +33,8 @@ class TEIElement extends React.Component {
         break
       case 'tei-idno':
         if (this.props.onIdno) return this.props.onIdno(el)
+        break
+      default:
         break
     }
 
