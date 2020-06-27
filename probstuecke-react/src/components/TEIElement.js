@@ -27,15 +27,13 @@ class TEIElement extends React.Component {
         return this.props.onNote(el)
       case 'tei-ref':
         return this.props.onRef(el)
-      default:
-        break
     }
 
     const teiChildren = Array.from(el.childNodes).map((teiEl, i) => {
       switch (teiEl.nodeType) {
         case 1:
           return <TEIElement
-            key={`${teiEl.tagName}_${i}`}
+            key={`${teiEl.tagName}${i}`}
             teiDomElement={teiEl}
             teiPath={this.props.teiPath}
             onNote={this.props.onNote}

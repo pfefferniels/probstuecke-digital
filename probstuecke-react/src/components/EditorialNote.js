@@ -8,7 +8,7 @@ class EditorialNote extends React.Component {
   }
 
   componentDidMount() {
-    this.noteRef.current.appendChild(this.props.teiNote)
+    this.noteRef.current.appendChild(this.props.teiNote.firstChild)
   }
 
   render() {
