@@ -10,7 +10,7 @@ class MusicExample extends React.Component {
   }
 
   async componentDidMount() {
-    let filename = this.props.notatedMusic.querySelector('tei-ptr').getAttribute('target')
+    let filename = this.props.teiNotatedMusic.querySelector('tei-ptr').getAttribute('target')
     let directory = path.dirname(this.props.teiPath)
     let targetPath = `/data/${directory}/${filename}`
     const meiData = await fetch(targetPath).then(response => response.text()).catch(error => this.setState({error}))

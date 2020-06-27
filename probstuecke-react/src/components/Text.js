@@ -2,37 +2,49 @@ import React from 'react';
 import { Spinner } from 'react-bootstrap';
 import CETEI from 'CETEIcean';
 import TEIElement from './TEIElement.js'
+import EventEmitter from './EventEmitter.js'
+import EditorialNote from './EditorialNote.js'
+import Person from './Person.js'
+import MusicExample from './MusicExample.js'
+import Overlay from './Overlay.js'
 import './Text.css'
 
+const teiToHtml = async (file) => {
+  const ct = new CETEI()
+  ct.addBehaviors({
+    handlers: {
+      'teiHeader': undefined
+    }
+  });
+  return ct.getHTML5(`/data/${file}`)
+}
+
 class Text extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {}
-  }
+  state = {}
 
   async componentDidMount() {
-    const ct = new CETEI()
-
-    ct.addBehaviors({
-      handlers: {
-        'teiHeader': undefined
-      }
-    });
-
-    const teiData = await ct.getHTML5(`/data/${this.props.tei}`)
+    const teiData = await teiToHtml(this.props.tei)
     this.setState({
       teiData
     })
   }
 
   render() {
-    return (
-      <>
-      {
-        this.state.teiData ? <TEIElement teiDomElement={this.state.teiData} teiPath={this.props.tei} />
-                           : <Spinner animation='grow'/>
-      }
-      </>)
+    if (!this.state.teiData) {
+      return <Spinner animation='grow'/>
+    }
+
+    return <TEIElement teiDomElement={this.state.teiData}
+                       teiPath={this.props.tei}
+
+                       onNote={(el) => <EditorialNote teiNote={el}/>}
+                       onPersName={(el) => <Person teiPersName={el}/>}
+                       onNotatedMusic={(el) => <MusicExample teiNotatedMusic={el} teiPath={this.props.tei}/>}
+                       onRef={(el) => <Overlay teiRef={el}/>}
+                       onTeiHeader={(el) => {
+                         EventEmitter.dispatch('metadataAvailable', el)
+                         return (null)
+                       }}/>
   }
 }
 

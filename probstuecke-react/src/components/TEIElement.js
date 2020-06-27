@@ -1,9 +1,5 @@
 import React from 'react'
 import Overlay from './Overlay.js'
-import MusicExample from './MusicExample.js'
-import EditorialNote from './EditorialNote.js'
-import Person from './Person.js'
-import EventEmitter from './EventEmitter.js'
 
 class TEIElement extends React.Component {
   forwardTeiAttributes() {
@@ -21,18 +17,16 @@ class TEIElement extends React.Component {
     const el = this.props.teiDomElement
 
     switch (el.tagName.toLowerCase()) {
-      case 'tei-persname':
-        if (el.hasAttribute('corresp')) return <Person teiEl={el} />
-        else break
-      case 'tei-notatedmusic':
-        return <MusicExample notatedMusic={el} teiPath={this.props.teiPath} />
-      case 'tei-note':
-        return <EditorialNote teiNote={el}/>
       case 'tei-teiheader':
-        EventEmitter.dispatch('metadataAvailable', el)
-        return (null)
+        return this.props.onTeiHeader(el)
+      case 'tei-persname':
+        return this.props.onPersName(el)
+      case 'tei-notatedmusic':
+        return this.props.onNotatedMusic(el)
+      case 'tei-note':
+        return this.props.onNote(el)
       case 'tei-ref':
-        if (el.hasAttribute('target')) return <Overlay teiRef={el}/>
+        return this.props.onRef(el)
       default:
         break
     }
@@ -43,7 +37,12 @@ class TEIElement extends React.Component {
           return <TEIElement
             key={`${teiEl.tagName}_${i}`}
             teiDomElement={teiEl}
-            teiPath={this.props.teiPath} />
+            teiPath={this.props.teiPath}
+            onNote={this.props.onNote}
+            onPersName={this.props.onPersName}
+            onNotatedMusic={this.props.onNotatedMusic}
+            onRef={this.props.onRef}
+            onTeiHeader={this.props.onTeiHeader}/>
         case 3:
           return teiEl.nodeValue
         default:

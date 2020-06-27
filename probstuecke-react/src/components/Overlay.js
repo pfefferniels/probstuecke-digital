@@ -45,6 +45,10 @@ class Overlay extends Component {
   }
 
   componentDidMount() {
+    if (!this.props.teiRef.hasAttribute('target')) {
+      return;
+    }
+
     let targets = this.props.teiRef.getAttribute('target').split(' ')
 
     // Wait for the score view to finish loading
@@ -75,8 +79,11 @@ class Overlay extends Component {
   }
 
   render() {
-    const targets = this.state.targets
+    if (!this.props.teiRef.hasAttribute('target')) {
+      return <span className='targetlessRef' ref={this.underlyingText}/>
+    }
 
+    const targets = this.state.targets
     if (targets.length === 0) {
       return <Spinner animation='grow'/>
     }

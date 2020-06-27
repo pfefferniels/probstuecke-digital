@@ -8,13 +8,15 @@ class Person extends React.Component {
   }
 
   componentDidMount() {
-    this.personRef.current.appendChild(this.props.teiEl)
+    this.personRef.current.appendChild(this.props.teiPersName)
   }
 
   render() {
-    const corresp = this.props.teiEl.getAttribute('corresp')
-    return <Link to={`/indexOfPersons${corresp}`}
-                 ref={this.personRef}/>
+    const corresp = this.props.teiPersName.getAttribute('corresp')
+    return corresp ? <Link to={`/indexOfPersons${corresp}`}
+                           ref={this.personRef}/>
+                   : <span className='unreferencedPerson'
+                           ref={this.personRef}/>
   }
 }
 
