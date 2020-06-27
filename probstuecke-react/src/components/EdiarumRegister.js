@@ -3,7 +3,7 @@ import { Spinner, Badge } from 'react-bootstrap';
 import CETEI from 'CETEIcean';
 import TEIElement from './TEIElement.js'
 import EventEmitter from './EventEmitter.js'
-import './EdiarumRegister.css'
+import './EdiarumRegister.scss'
 
 const teiToHtml = async (file) => {
   const ct = new CETEI()
@@ -44,7 +44,7 @@ class EdiarumRegister extends React.Component {
     }
 
     return (
-      <div className='index'>
+      <div className='ediarumRegister'>
         <TEIElement teiDomElement={this.state.teiData}
                          teiPath={this.props.tei}
                          onIdno={(el) => <EdiarumIdno teiIdno={el}/>}

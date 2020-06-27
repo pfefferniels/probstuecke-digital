@@ -1,0 +1,47 @@
+.ediarumRegister {
+  tei-person, tei-bibl {
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  tei-person[role='mythological']:before {
+    content: '(mythological figure)';
+    font-size: 0.7rem;
+  }
+
+  tei-persname {
+    display: block;
+  }
+
+  tei-birth::after {
+    content: ' – ';
+  }
+
+  tei-birth {
+    margin-left: 1rem;
+  }
+
+  tei-surname {
+    font-weight: bold;
+  }
+
+  tei-surname:after {
+    content: ', ';
+  }
+
+  tei-bibl tei-title {
+    font-style: italic;
+  }
+
+  tei-bibl tei-title:after {
+    content: '. ';
+  }
+
+  tei-bibl tei-pubPlace::before {
+    content: '(';
+  }
+
+  tei-bibl tei-pubPlace::after {
+    content: '),';
+  }
+}
