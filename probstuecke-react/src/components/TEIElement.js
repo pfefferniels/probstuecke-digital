@@ -18,15 +18,15 @@ class TEIElement extends React.Component {
 
     switch (el.tagName.toLowerCase()) {
       case 'tei-teiheader':
-        return this.props.onTeiHeader(el)
+        if (this.props.onTeiHeader) return this.props.onTeiHeader(el)
       case 'tei-persname':
-        return this.props.onPersName(el)
+        if (this.props.onPersName) return this.props.onPersName(el)
       case 'tei-notatedmusic':
-        return this.props.onNotatedMusic(el)
+        if (this.props.onNotatedMusic) return this.props.onNotatedMusic(el)
       case 'tei-note':
-        return this.props.onNote(el)
+        if (this.props.onNote) return this.props.onNote(el)
       case 'tei-ref':
-        return this.props.onRef(el)
+        if (this.props.onRef) return this.props.onRef(el)
     }
 
     const teiChildren = Array.from(el.childNodes).map((teiEl, i) => {
