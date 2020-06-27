@@ -7,7 +7,7 @@ import EditorialNote from './EditorialNote.js'
 import Person from './Person.js'
 import MusicExample from './MusicExample.js'
 import Overlay from './Overlay.js'
-import './Text.css'
+import './DtaBfText.css'
 
 const teiToHtml = async (file) => {
   const ct = new CETEI()
@@ -19,7 +19,7 @@ const teiToHtml = async (file) => {
   return ct.getHTML5(`/data/${file}`)
 }
 
-class Text extends React.Component {
+class DtaBfText extends React.Component {
   state = {}
 
   async componentDidMount() {
@@ -48,4 +48,4 @@ class Text extends React.Component {
   }
 }
 
-export default Text;
+export default DtaBfText;
