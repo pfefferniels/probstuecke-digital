@@ -20,11 +20,12 @@ const EdiarumIdno = (props) => {
   if (!ref) return <span>{props.teiIdno.innerHTML}</span>
 
   return (
-    <Badge pill variant='info'>
-      <a target='_blank' rel="noopener noreferrer" href={ref}>
+    <a target='_blank' rel="noopener noreferrer" href={ref}>
+      <Badge pill variant='info'>
         &rarr; link to GND
-      </a>
-    </Badge>
+      </Badge>
+    </a>
+
   )
 }
 
@@ -46,12 +47,12 @@ class EdiarumRegister extends React.Component {
     return (
       <div className='ediarumRegister'>
         <TEIElement teiDomElement={this.state.teiData}
-                         teiPath={this.props.tei}
-                         onIdno={(el) => <EdiarumIdno teiIdno={el}/>}
-                         onTeiHeader={(el) => {
-                           EventEmitter.dispatch('metadataAvailable', el)
-                           return (null)
-                         }}/>
+                    teiPath={this.props.tei}
+                    onIdno={(el) => <EdiarumIdno teiIdno={el}/>}
+                    onTeiHeader={(el) => {
+                      EventEmitter.dispatch('metadataAvailable', el)
+                      return (null)
+                    }}/>
       </div>)
   }
 }
