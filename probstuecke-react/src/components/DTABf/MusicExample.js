@@ -1,7 +1,7 @@
 import React from 'react'
 import path from 'path'
 import { Alert, Spinner } from 'react-bootstrap';
-import { exampleToolkit } from './Verovio.js'
+import { exampleToolkit } from '../Verovio.js'
 import './MusicExample.css'
 
 class MusicExample extends React.Component {
@@ -10,7 +10,7 @@ class MusicExample extends React.Component {
   }
 
   async componentDidMount() {
-    let filename = this.props.teiNotatedMusic.querySelector('tei-ptr').getAttribute('target')
+    let filename = this.props.teiDomElement.querySelector('tei-ptr').getAttribute('target')
     let directory = path.dirname(this.props.teiPath)
     let targetPath = `/data/${directory}/${filename}`
     const meiData = await fetch(targetPath).then(response => response.text()).catch(error => this.setState({error}))

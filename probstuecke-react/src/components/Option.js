@@ -24,7 +24,10 @@ class Option extends React.Component {
   render() {
     return (
       <>
-        <FontAwesomeIcon style={{margin: '0.2rem'}} icon={this.props.icon} size='lg' onClick={this.props.onClick}/>
+        <FontAwesomeIcon style={{margin: '0.2rem'}}
+                         icon={this.props.icon}
+                         size='lg'
+                         onClick={this.props.onClick}/>
 
         {this.props.children}
       </>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Spinner } from 'react-bootstrap'
-import EventEmitter from './EventEmitter.js'
+import EventEmitter from '../EventEmitter.js'
 import './Overlay.scss'
 
 class SVGOverlay extends Component {
@@ -45,11 +45,11 @@ class Overlay extends Component {
   }
 
   componentDidMount() {
-    if (!this.props.teiRef.hasAttribute('target')) {
+    if (!this.props.teiDomElement.hasAttribute('target')) {
       return;
     }
 
-    let targets = this.props.teiRef.getAttribute('target').split(' ')
+    let targets = this.props.teiDomElement.getAttribute('target').split(' ')
 
     // Wait for the score view to finish loading
     EventEmitter.subscribe('scoreIsReady', (scoreView) => {
@@ -68,7 +68,7 @@ class Overlay extends Component {
 
   componentDidUpdate() {
     if (!this.underlyingText.current) return
-    this.underlyingText.current.appendChild(this.props.teiRef.firstChild)
+    this.underlyingText.current.appendChild(this.props.teiDomElement.firstChild)
   }
 
   highlight() {
@@ -79,7 +79,7 @@ class Overlay extends Component {
   }
 
   render() {
-    if (!this.props.teiRef.hasAttribute('target')) {
+    if (!this.props.teiDomElement.hasAttribute('target')) {
       return <span className='targetlessRef' ref={this.underlyingText}/>
     }
 

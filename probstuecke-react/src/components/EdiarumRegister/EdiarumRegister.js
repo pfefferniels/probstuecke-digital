@@ -1,8 +1,7 @@
 import React from 'react';
-import { Spinner, Badge } from 'react-bootstrap';
+import { Spinner, Badge, Card, CardColumns } from 'react-bootstrap';
 import CETEI from 'CETEIcean';
-import TEIElement from './TEIElement.js'
-import EventEmitter from './EventEmitter.js'
+import { TEIRoute, TEIRender } from '../TEI.js'
 import './EdiarumRegister.scss'
 
 const teiToHtml = async (file) => {
@@ -16,8 +15,8 @@ const teiToHtml = async (file) => {
 }
 
 const EdiarumIdno = (props) => {
-  const ref = props.teiIdno.innerText
-  if (!ref) return <span>{props.teiIdno.innerHTML}</span>
+  const ref = props.teiDomElement.innerText
+  if (!ref) return <span>{props.teiDomElement.innerHTML}</span>
 
   return (
     <a target='_blank' rel="noopener noreferrer" href={ref}>
@@ -26,6 +25,22 @@ const EdiarumIdno = (props) => {
       </Badge>
     </a>
 
+  )
+}
+
+const EdiarumListPerson = props => {
+  return (
+    <CardColumns className='personList'>
+      {props.children}
+    </CardColumns>
+  )
+}
+
+const EdiarumPerson = props => {
+  return (
+    <Card className='person'>
+      {props.children}
+    </Card>
   )
 }
 
@@ -46,13 +61,11 @@ class EdiarumRegister extends React.Component {
 
     return (
       <div className='ediarumRegister'>
-        <TEIElement teiDomElement={this.state.teiData}
-                    teiPath={this.props.tei}
-                    onIdno={(el) => <EdiarumIdno teiIdno={el}/>}
-                    onTeiHeader={(el) => {
-                      EventEmitter.dispatch('metadataAvailable', el)
-                      return (null)
-                    }}/>
+        <TEIRender data={this.state.teiData} path={this.props.tei}>
+          <TEIRoute el='tei-person' component={EdiarumPerson}/>
+          <TEIRoute el='tei-idno' component={EdiarumIdno}/>
+          <TEIRoute el='tei-listperson' component={EdiarumListPerson}/>
+        </TEIRender>
       </div>)
   }
 }

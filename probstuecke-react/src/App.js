@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from "react-router-dom"
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import { TOCProvider } from './components/TOC.js'
 import Navigation from './components/Navigation.js'
 import View from './components/View.js'
@@ -12,7 +12,7 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <TOCProvider>
-          <div className="App">
+          <div className='App'>
             <Navigation />
 
               <Switch>

@@ -8,11 +8,11 @@ class EditorialNote extends React.Component {
   }
 
   componentDidMount() {
-    this.noteRef.current.appendChild(this.props.teiNote.firstChild)
+    this.noteRef.current.appendChild(this.props.teiDomElement.firstChild)
   }
 
   render() {
-    const type = this.props.teiNote.getAttribute('type')
+    const type = this.props.teiDomElement.getAttribute('type')
     return <div className={ type==='editorial' ? 'editorialNote'
                                                : 'footnote'}
                 ref={this.noteRef} />

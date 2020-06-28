@@ -1,4 +1,5 @@
 import React from 'react'
+import { TEIRoutes } from './TEI.js'
 
 class TEIElement extends React.Component {
   forwardTeiAttributes() {
@@ -14,43 +15,16 @@ class TEIElement extends React.Component {
 
   render() {
     const el = this.props.teiDomElement
-
-    switch (el.tagName.toLowerCase()) {
-      case 'tei-teiheader':
-        if (this.props.onTeiHeader) return this.props.onTeiHeader(el)
-        break
-      case 'tei-persname':
-        if (this.props.onPersName) return this.props.onPersName(el)
-        break
-      case 'tei-notatedmusic':
-        if (this.props.onNotatedMusic) return this.props.onNotatedMusic(el)
-        break
-      case 'tei-note':
-        if (this.props.onNote) return this.props.onNote(el)
-        break
-      case 'tei-ref':
-        if (this.props.onRef) return this.props.onRef(el)
-        break
-      case 'tei-idno':
-        if (this.props.onIdno) return this.props.onIdno(el)
-        break
-      default:
-        break
-    }
+    const tagName = el.tagName.toLowerCase()
 
     const teiChildren = Array.from(el.childNodes).map((teiEl, i) => {
       switch (teiEl.nodeType) {
         case 1:
-          return <TEIElement
-            key={`${teiEl.tagName}${i}`}
-            teiDomElement={teiEl}
-            teiPath={this.props.teiPath}
-            onNote={this.props.onNote}
-            onPersName={this.props.onPersName}
-            onNotatedMusic={this.props.onNotatedMusic}
-            onRef={this.props.onRef}
-            onTeiHeader={this.props.onTeiHeader}
-            onIdno={this.props.onIdno}/>
+          return (
+            <TEIElement key={`${teiEl.tagName}${i}`}
+                        teiDomElement={teiEl}
+                        teiPath={this.props.teiPath}
+                        availableRoutes={this.props.availableRoutes}/>)
         case 3:
           return teiEl.nodeValue
         default:
@@ -58,11 +32,23 @@ class TEIElement extends React.Component {
       }
     })
 
-    return React.createElement(this.props.teiDomElement.tagName.toLowerCase(),
-      {
+    if (this.props.availableRoutes.includes(tagName)) {
+      return (
+        <TEIRoutes.Consumer>
+          {(routes) => {
+            return React.createElement(routes[tagName],
+                                       this.props,
+                                       teiChildren)
+          }}
+        </TEIRoutes.Consumer>
+      )
+    }
+
+    return (
+      React.createElement(tagName, {
         ...this.forwardTeiAttributes(),
       },
-      teiChildren
+      teiChildren)
     )
   }
 }
