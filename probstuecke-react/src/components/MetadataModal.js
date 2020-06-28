@@ -6,13 +6,12 @@ import Option from './Option.js'
 import './MetadataModal.css'
 
 class MetadataModal extends React.Component {
-  constructor(props) {
-    super(props)
+  state = {
+    show: false,
+    metadata: null
+  }
 
-    this.state = {
-      show: false,
-      metadata: null
-    }
+  componentWillMount() {
     this.show = this.show.bind(this)
     this.close = this.close.bind(this)
     this.metadataAvailable = this.metadataAvailable.bind(this)
@@ -59,7 +58,7 @@ class MetadataModal extends React.Component {
             }
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={this.close}>
+            <Button variant='secondary' onClick={this.close}>
               Close
             </Button>
           </Modal.Footer>
