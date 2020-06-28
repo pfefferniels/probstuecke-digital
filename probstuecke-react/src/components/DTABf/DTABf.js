@@ -1,12 +1,13 @@
 import React from 'react';
 import { Spinner } from 'react-bootstrap';
 import CETEI from 'CETEIcean';
-import { TEIRender, TEIRoute } from '../TEI.js'
-import EventEmitter from '../EventEmitter.js'
-import EditorialNote from './EditorialNote.js'
-import Person from './Person.js'
-import MusicExample from './MusicExample.js'
-import Overlay from './Overlay.js'
+import { TEIRender, TEIRoute } from '../TEI'
+import EventEmitter from '../EventEmitter'
+import EditorialNote from './EditorialNote'
+import Person from './Person'
+import MusicExample from './MusicExample'
+import Overlay from './Overlay'
+import MetadataModal from './MetadataModal'
 import './DTABf.css'
 
 const teiToHtml = async (file) => {
@@ -46,13 +47,19 @@ class DTABf extends React.Component {
     }
 
     return (
-      <TEIRender data={this.state.teiData} path={this.props.tei}>
-        <TEIRoute el='tei-note' component={EditorialNote}/>
-        <TEIRoute el='tei-persname' component={Person}/>
-        <TEIRoute el='tei-notatedmusic' component={MusicExample}/>
-        <TEIRoute el='tei-ref' component={Overlay}/>
-        <TEIRoute el='tei-teiheader' component={Header}/>
-      </TEIRender>
+      <>
+        <div className='options'>
+          <MetadataModal />
+        </div>
+
+        <TEIRender data={this.state.teiData} path={this.props.tei}>
+          <TEIRoute el='tei-note' component={EditorialNote}/>
+          <TEIRoute el='tei-persname' component={Person}/>
+          <TEIRoute el='tei-notatedmusic' component={MusicExample}/>
+          <TEIRoute el='tei-ref' component={Overlay}/>
+          <TEIRoute el='tei-teiheader' component={Header}/>
+        </TEIRender>
+      </>
     )
   }
 }

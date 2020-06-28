@@ -1,5 +1,5 @@
 import React from 'react'
-import TEIElement from './TEIElement.js'
+import TEIElement from './TEIElement'
 
 const TEIRoutes = React.createContext()
 

@@ -1,7 +1,7 @@
-import React from 'react';
-import { Spinner, Badge, Card, CardColumns } from 'react-bootstrap';
-import CETEI from 'CETEIcean';
-import { TEIRoute, TEIRender } from '../TEI.js'
+import React from 'react'
+import { Spinner, Badge, Card, CardColumns } from 'react-bootstrap'
+import CETEI from 'CETEIcean'
+import { TEIRoute, TEIRender } from '../TEI'
 import './EdiarumRegister.scss'
 
 const teiToHtml = async (file) => {

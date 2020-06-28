@@ -1,26 +1,26 @@
-import React, { useState } from 'react'
-import { Modal, Button } from 'react-bootstrap'
-import { faHashtag } from '@fortawesome/free-solid-svg-icons'
-import Option from './Option.js'
+import React, { useState, useRef } from 'react'
+import { Modal, Button, Overlay, Tooltip } from 'react-bootstrap'
+import { faImages } from '@fortawesome/free-solid-svg-icons'
+import Option from '../Option'
 
-function AccidentalsModal(props) {
+const FacsimileModal = props => {
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
 
   return (
-    <Option icon={faHashtag}
+    <Option icon={faImages}
             onClick={handleShow}>
       <Modal show={show}
              onHide={handleClose}
              size='lg'
              centered>
         <Modal.Header closeButton>
-          <Modal.Title>Accidentals</Modal.Title>
+          <Modal.Title>Facsimile Images</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <p>
-            Accidentals settings
+            ...
           </p>
         </Modal.Body>
         <Modal.Footer>
@@ -33,4 +33,4 @@ function AccidentalsModal(props) {
   )
 }
 
-export default AccidentalsModal
+export default FacsimileModal

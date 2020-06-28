@@ -1,7 +1,7 @@
 import React from 'react'
 import { Spinner, Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { TOCConsumer } from './TOC.js'
+import { TOCConsumer } from './TOC'
 
 const Navigation = () => {
     return (

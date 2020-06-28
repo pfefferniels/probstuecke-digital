@@ -1,7 +1,7 @@
 import React from 'react'
 import path from 'path'
-import { Alert, Spinner } from 'react-bootstrap';
-import { exampleToolkit } from '../Verovio.js'
+import { Alert, Spinner } from 'react-bootstrap'
+import { exampleToolkit } from '../Verovio'
 import './MusicExample.css'
 
 class MusicExample extends React.Component {

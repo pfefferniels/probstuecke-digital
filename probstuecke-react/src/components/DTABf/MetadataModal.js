@@ -1,8 +1,8 @@
 import React from 'react'
 import { Alert, Modal, Button } from 'react-bootstrap'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
-import EventEmitter from './EventEmitter.js'
-import Option from './Option.js'
+import EventEmitter from '../EventEmitter'
+import Option from '../Option'
 import './MetadataModal.css'
 
 class MetadataModal extends React.Component {

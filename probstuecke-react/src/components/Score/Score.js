@@ -1,8 +1,11 @@
-import React from 'react';
-import { scoreToolkit } from './Verovio.js';
-import { Spinner } from 'react-bootstrap';
+import React from 'react'
+import { scoreToolkit } from '../Verovio'
+import { Spinner } from 'react-bootstrap'
+import EventEmitter from '../EventEmitter'
+import AccidentalsModal from './AccidentalsModal'
+import FacsimileModal from './FacsimileModal'
+import StavesModal from './StavesModal'
 import './Score.css'
-import EventEmitter from './EventEmitter.js'
 
 class Score extends React.Component {
   state = {
@@ -42,13 +45,22 @@ class Score extends React.Component {
 
   render() {
     return (
-      <div>
-        {
-          this.state.svg
-           ? <div ref={this.scoreViewRef} id='score-view' dangerouslySetInnerHTML={{__html: this.state.svg}}/>
-           : <Spinner animation='grow'/>
-        }
-      </div>)
+      <>
+        <div className='options'>
+          <AccidentalsModal />
+          <FacsimileModal />
+          <StavesModal />
+        </div>
+
+        <div>
+          {
+            this.state.svg
+             ? <div ref={this.scoreViewRef} id='score-view' dangerouslySetInnerHTML={{__html: this.state.svg}}/>
+             : <Spinner animation='grow'/>
+          }
+        </div>
+      </>
+    )
   }
 }
 

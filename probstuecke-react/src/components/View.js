@@ -1,25 +1,39 @@
 import React from 'react'
-import { TOCConsumer } from './TOC.js'
-import Score from './Score.js'
-import DTABf from './DTABf/DTABf.js'
-import MetadataModal from './MetadataModal.js'
-import AccidentalsModal from './AccidentalsModal.js'
+import { useState, useRef } from 'react'
+import { Modal, Button, Overlay, Tooltip } from 'react-bootstrap'
 import { Spinner, Tabs, Tab, Container, Col, Row } from 'react-bootstrap'
-
-const Options = () => (
-    <div id='options'>
-      <MetadataModal />
-      <AccidentalsModal />
-    </div>)
+import EventEmitter from './EventEmitter'
+import { TOCConsumer } from './TOC'
+import Score from './Score/Score'
+import DTABf from './DTABf/DTABf'
 
 class View extends React.Component {
+  state = {
+    stavesAbove: 0,
+    stavesBelow: 0
+  }
+
+  componentWillMount() {
+    EventEmitter.subscribe('changeStavesAbove', (above) => {
+      this.setState(prevState => ({
+        ...prevState,
+        stavesAbove: above
+      }))
+    })
+
+    EventEmitter.subscribe('changeStavesBelow', (below) => {
+      this.setState(prevState => ({
+        ...prevState,
+        stavesBelow: below
+      }))
+    })
+  }
+
   render() {
     const { piece } = this.props.match.params
 
     return (
       <>
-        <Options />
-
         <TOCConsumer>
           {(toc) => (
             (!toc.ready) ? <Spinner animation='grow'/>
@@ -31,7 +45,10 @@ class View extends React.Component {
                     <Container fluid>
                       <Row>
                         {value.score && <Col md={6}>
-                                          <Score key={`Score_${key}`} mei={value.score}/>
+                                          <Score key={`Score_${key}`}
+                                                 mei={value.score}
+                                                 stavesAbove={this.state.stavesAbove}
+                                                 stavesBelow={this.state.stavesBelow}/>
                                         </Col>}
                         {value.comments && <Col md={6}>
                                              <DTABf key={`Text_${key}`} tei={value.comments}/>

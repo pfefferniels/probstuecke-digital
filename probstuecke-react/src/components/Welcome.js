@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { CardColumns, Card, Spinner } from 'react-bootstrap'
-import { incipitToolkit } from './Verovio.js'
-import { TOCConsumer } from './TOC.js'
+import { incipitToolkit } from './Verovio'
+import { TOCConsumer } from './TOC'
 import './Welcome.css'
 
 class Incipit extends React.Component {

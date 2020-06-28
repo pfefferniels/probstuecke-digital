@@ -1,5 +1,5 @@
 import React from 'react'
-import { TEIRoutes } from './TEI.js'
+import { TEIRoutes } from './TEI'
 
 class TEIElement extends React.Component {
   forwardTeiAttributes() {
