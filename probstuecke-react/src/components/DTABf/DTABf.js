@@ -51,7 +51,7 @@ class DTABf extends React.Component {
         <TEIRoute el='tei-persname' component={Person}/>
         <TEIRoute el='tei-notatedmusic' component={MusicExample}/>
         <TEIRoute el='tei-ref' component={Overlay}/>
-        <TEIRoute el='tei-header' component={Header}/>
+        <TEIRoute el='tei-teiheader' component={Header}/>
       </TEIRender>
     )
   }
