@@ -33,23 +33,20 @@ class SVGOverlay extends Component {
 }
 
 class Overlay extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      targets: []
-    }
-
-    this.connectedSVGOverlays = []
-    this.underlyingText = React.createRef()
-    this.highlight = this.highlight.bind(this)
+  state = {
+    targets: []
   }
+  connectedSVGOverlays = []
+  underlyingText = React.createRef()
 
   componentDidMount() {
+    this.highlight = this.highlight.bind(this)
+
     if (!this.props.teiDomElement.hasAttribute('target')) {
       return;
     }
 
-    let targets = this.props.teiDomElement.getAttribute('target').split(' ')
+    const targets = this.props.teiDomElement.getAttribute('target').split(' ')
 
     // Wait for the score view to finish loading
     EventEmitter.subscribe('scoreIsReady', (scoreView) => {
