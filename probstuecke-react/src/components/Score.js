@@ -5,14 +5,16 @@ import './Score.css'
 import EventEmitter from './EventEmitter.js'
 
 class Score extends React.Component {
+  state = {
+    svg: null
+  }
+
   constructor(props) {
     super(props)
-    this.state = { }
     this.scoreViewRef = React.createRef(null)
   }
 
   async componentDidMount() {
-    console.log('component did mount')
     const meiData = await fetch(`/data/${this.props.mei}`).then(response => response.text())
 
     scoreToolkit.setOptions({
@@ -43,7 +45,7 @@ class Score extends React.Component {
       <div>
         {
           this.state.svg
-           ? <div ref={this.scoreViewRef} id="score-view" dangerouslySetInnerHTML={{__html: this.state.svg}}/>
+           ? <div ref={this.scoreViewRef} id='score-view' dangerouslySetInnerHTML={{__html: this.state.svg}}/>
            : <Spinner animation='grow'/>
         }
       </div>)
