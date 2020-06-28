@@ -19,7 +19,7 @@ const EdiarumIdno = (props) => {
   if (!ref) return <span>{props.teiDomElement.innerHTML}</span>
 
   return (
-    <a target='_blank' rel="noopener noreferrer" href={ref}>
+    <a target='_blank' rel='noopener noreferrer' href={ref}>
       <Badge pill variant='info'>
         &rarr; link to GND
       </Badge>
