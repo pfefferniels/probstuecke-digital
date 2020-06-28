@@ -1,5 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import './Option.scss'
 
 class Option extends React.Component {
   constructor(props) {
@@ -23,14 +24,14 @@ class Option extends React.Component {
 
   render() {
     return (
-      <>
+      <span className='option'>
         <FontAwesomeIcon style={{margin: '0.2rem'}}
                          icon={this.props.icon}
                          size='lg'
                          onClick={this.props.onClick}/>
 
         {this.props.children}
-      </>
+      </span>
     );
   }
 }
