@@ -65,7 +65,8 @@ class Overlay extends Component {
 
   componentDidUpdate() {
     if (!this.underlyingText.current) return
-    this.underlyingText.current.appendChild(this.props.teiDomElement.firstChild)
+
+    this.underlyingText.current.innerHTML = this.props.teiDomElement.firstChild.innerHTML
   }
 
   highlight() {

@@ -33,11 +33,16 @@ class TEIElement extends React.Component {
     })
 
     if (this.props.availableRoutes.includes(tagName)) {
+      var propsClone = {
+        ...this.props,
+        teiDomElement: this.props.teiDomElement.cloneNode(true)
+      }
+
       return (
         <TEIRoutes.Consumer>
           {(routes) => {
             return React.createElement(routes[tagName],
-                                       this.props,
+                                       propsClone,
                                        teiChildren)
           }}
         </TEIRoutes.Consumer>
