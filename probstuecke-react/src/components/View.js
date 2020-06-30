@@ -1,8 +1,5 @@
 import React from 'react'
-import { useState, useRef } from 'react'
-import { Modal, Button, Overlay, Tooltip } from 'react-bootstrap'
 import { Spinner, Tabs, Tab, Container, Col, Row } from 'react-bootstrap'
-import EventEmitter from './EventEmitter'
 import { TOCConsumer } from './TOC'
 import Score from './Score/Score'
 import DTABf from './DTABf/DTABf'
