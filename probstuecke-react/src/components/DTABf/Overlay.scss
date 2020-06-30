@@ -1,14 +1,24 @@
-$overlayColor: #ffe47a;
+$overlayColor: rgb(255, 200, 10);
+$activeOverlay: rgba(255, 200, 10, 0.9);
+$inactiveOverlay: rgba(255, 200, 10, 0.2);
 
 .overlay {
   cursor: pointer;
-  background-color: $overlayColor;
+  background-color: $inactiveOverlay;
+}
+
+.overlay:hover {
+  background-color: $activeOverlay;
 }
 
 .targetOverlay {
   fill: $overlayColor;
-  opacity: 0.4;
+  opacity: 0.3;
   cursor: pointer;
+}
+
+.targetOverlay:hover {
+  opacity: 0.6;
 }
 
 .blink {

@@ -4,6 +4,14 @@ import { Spinner } from 'react-bootstrap'
 import EventEmitter from '../EventEmitter'
 import './Overlay.scss'
 
+const highlight = (domEl, scroll) => {
+  if (scroll) {
+    domEl.scrollIntoView()
+  }
+  domEl.addEventListener('animationend', () => domEl.classList.remove('blink'))
+  domEl.classList.add('blink')
+}
+
 class SVGOverlay extends Component {
   constructor(props) {
     super(props)
@@ -11,12 +19,15 @@ class SVGOverlay extends Component {
     this.rectRef = React.createRef()
   }
 
-  highlight() {
+  componentDidMount() {
     const domEl = this.rectRef.current
 
-    domEl.scrollIntoView()
-    domEl.addEventListener('animationend', () => domEl.classList.remove('blink'))
-    domEl.classList.add('blink')
+    domEl.addEventListener('mouseover', this.props.onHover)
+    domEl.addEventListener('click', this.props.onClick)
+  }
+
+  highlight(scroll) {
+    highlight(this.rectRef.current, scroll)
   }
 
   render() {
@@ -27,8 +38,7 @@ class SVGOverlay extends Component {
                   width={bbox.width}
                   height={bbox.height}
                   x={bbox.x}
-                  y={bbox.y}
-                  onClick={this.props.onClick}/>)
+                  y={bbox.y}/>)
   }
 }
 
@@ -40,7 +50,7 @@ class Overlay extends Component {
   underlyingText = React.createRef()
 
   componentDidMount() {
-    this.highlight = this.highlight.bind(this)
+    this._highlightTargets = this._highlightTargets.bind(this)
 
     if (!this.props.teiDomElement.hasAttribute('target')) {
       return;
@@ -63,17 +73,21 @@ class Overlay extends Component {
     })
   }
 
-  componentDidUpdate() {
-    if (!this.underlyingText.current) return
-
-    this.underlyingText.current.innerHTML = this.props.teiDomElement.firstChild.innerHTML
+  _highlightTargets(scroll) {
+    this.connectedSVGOverlays.forEach(targetOverlay => {
+      if (targetOverlay) {
+        targetOverlay.highlight(scroll)
+      }
+    })
   }
 
-  highlight() {
-    const domEl = this.underlyingText.current
-    domEl.scrollIntoView()
-    domEl.addEventListener('animationend', () => domEl.classList.remove('blink'))
-    domEl.classList.add('blink')
+  componentDidUpdate() {
+    const underlyingText = this.underlyingText.current
+    if (!underlyingText) return
+
+    underlyingText.addEventListener('click', () => this._highlightTargets(true))
+    underlyingText.addEventListener('mouseover', () => this._highlightTargets(false))
+    underlyingText.innerHTML = this.props.teiDomElement.firstChild.innerHTML
   }
 
   render() {
@@ -92,18 +106,12 @@ class Overlay extends Component {
           ReactDOM.createPortal((
             <SVGOverlay ref={node => this.connectedSVGOverlays.push(node)}
                         target={target}
-                        onClick={this.highlight}/>),
+                        onClick={() => highlight(this.underlyingText.current, true)}
+                        onHover={() => highlight(this.underlyingText.current, false)}/>),
             target)
          ))}
         <span ref={this.underlyingText}
-              className='overlay'
-              onClick={() => {
-                this.connectedSVGOverlays.forEach(targetOverlay => {
-                  if (targetOverlay) {
-                    targetOverlay.highlight()
-                  }
-                })
-              }} />
+              className='overlay'/>
       </>
     )
   }
