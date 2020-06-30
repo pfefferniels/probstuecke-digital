@@ -5,20 +5,24 @@ import EventEmitter from '../EventEmitter'
 import AccidentalsModal from './AccidentalsModal'
 import FacsimileModal from './FacsimileModal'
 import Option from '../Option'
-import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faMinus, faCouch, faSnowboarding } from '@fortawesome/free-solid-svg-icons'
 import './Score.css'
 
 class Score extends React.Component {
   state = {
     svg: null
   }
-  stavesAbove = 0
 
+  stavesAbove = 0
+  modernClefs = false
+  embed = false
   scoreViewRef = React.createRef(null)
 
   async componentDidMount() {
     this.addStaff = this.addStaff.bind(this)
     this.removeStaff = this.removeStaff.bind(this)
+    this.changeClef = this.changeClef.bind(this)
+    this.toggleEmbedding = this.toggleEmbedding.bind(this)
     this.fetchScore = this.fetchScore.bind(this)
 
     this.fetchScore()
@@ -26,7 +30,10 @@ class Score extends React.Component {
 
   async fetchScore() {
     const meiData = await fetch(
-      `/data/${this.props.mei}?above=${this.stavesAbove}`
+      `/data/${this.props.mei}?` +
+      `above=${this.stavesAbove}&` +
+      `modernClefs=${this.modernClefs ? 'on' : 'off'}&` +
+      `showAnnotationStaff=${this.embed ? 'on' : 'off'}`
       ).then(response => response.text())
 
     scoreToolkit.setOptions({
@@ -53,6 +60,16 @@ class Score extends React.Component {
     this.fetchScore()
   }
 
+  changeClef() {
+    this.modernClefs = !this.modernClefs
+    this.fetchScore()
+  }
+
+  toggleEmbedding() {
+    this.embed = !this.embed
+    this.fetchScore()
+  }
+
   componentDidUpdate() {
     if (document.getElementById('score-view')) {
       EventEmitter.dispatch('scoreIsReady', this.scoreViewRef)
@@ -71,6 +88,10 @@ class Score extends React.Component {
                   onClick={this.addStaff}/>
           <Option icon={faMinus}
                   onClick={this.removeStaff}/>
+          <Option icon={faCouch}
+                  onClick={this.changeClef}/>
+          <Option icon={faSnowboarding}
+                  onClick={this.toggleEmbedding}/>
         </div>
 
         <div>
