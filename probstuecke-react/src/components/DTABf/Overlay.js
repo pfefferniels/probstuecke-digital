@@ -46,30 +46,37 @@ class Overlay extends Component {
   state = {
     targets: []
   }
+
+  scoreSubscription = null
   connectedSVGOverlays = []
   underlyingText = React.createRef()
 
   componentDidMount() {
+    this._onScoreIsReady = this._onScoreIsReady.bind(this)
     this._highlightTargets = this._highlightTargets.bind(this)
 
+    this.scoreSubscription = EventEmitter.subscribe('scoreIsReady', this._onScoreIsReady)
+  }
+
+  componentWillUnmount() {
+    this.scoreSubscription.cancel()
+  }
+
+  _onScoreIsReady(scoreView) {
     if (!this.props.teiDomElement.hasAttribute('target')) {
       return;
     }
 
     const targets = this.props.teiDomElement.getAttribute('target').split(' ')
-
-    // Wait for the score view to finish loading
-    EventEmitter.subscribe('scoreIsReady', (scoreView) => {
-      targets.forEach(target => {
-        let targetEl = scoreView.current.querySelector(target)
-        if (!targetEl) {
-          console.warn('This should not have happened.', target)
-        } else {
-          this.setState(prevState => ({
-            targets: [...prevState.targets, targetEl]
-          }))
-        }
-      })
+    targets.forEach(target => {
+      let targetEl = scoreView.current.querySelector(target)
+      if (!targetEl) {
+        console.warn('This should not have happened.', target)
+      } else {
+        this.setState(prevState => ({
+          targets: [...prevState.targets, targetEl]
+        }))
+      }
     })
   }
 

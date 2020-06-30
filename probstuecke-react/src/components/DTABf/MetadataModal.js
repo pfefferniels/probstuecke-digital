@@ -11,12 +11,18 @@ class MetadataModal extends React.Component {
     metadata: null
   }
 
-  componentWillMount() {
+  metadataSubscription = null
+
+  componentDidMount() {
     this.show = this.show.bind(this)
     this.close = this.close.bind(this)
     this.metadataAvailable = this.metadataAvailable.bind(this)
 
-    EventEmitter.subscribe('metadataAvailable', this.metadataAvailable)
+    this.metadataSubscription = EventEmitter.subscribe('metadataAvailable', this.metadataAvailable)
+  }
+
+  componentWillUnmount() {
+    this.metadataSubscription.cancel()
   }
 
   metadataAvailable(metadata) {

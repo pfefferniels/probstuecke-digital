@@ -3,18 +3,19 @@ const EventEmitter = {
   _pendingEvents: {},
 
   dispatch: function(event, data) {
-    console.log('offering', data, 'as', event)
     if (!this._events[event]) {
       this._pendingEvents[event] = []
       this._pendingEvents[event].push(data)
       return
     }
 
-    this._events[event].forEach(callback => callback(data))
+    Object.keys(this._events[event]).forEach(key => {
+      const callback = this._events[event][key]
+      callback(data)
+    })
   },
 
   subscribe: function(event, callback) {
-    console.log('subscribing for', event)
     if (this._pendingEvents[event]) {
       this._pendingEvents[event].forEach(data => callback(data))
       this._pendingEvents[event] = []
@@ -22,7 +23,15 @@ const EventEmitter = {
 
     if (!this._events[event]) this._events[event] = [];
 
-    this._events[event].push(callback)
+    const uid = '_' + Math.random().toString(36).substr(2, 9)
+    this._events[event][uid] = callback
+
+    const _this = this
+    return {
+      cancel: function () {
+        delete _this._events[event][uid]
+      }
+    }
   }
 }
 
