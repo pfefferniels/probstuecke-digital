@@ -2,39 +2,16 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './Option.scss'
 
-class Option extends React.Component {
-  constructor(props) {
-    super(props)
+const Option = (props) => (
+  <span className='option'>
+    <FontAwesomeIcon style={{margin: '0.2rem'}}
+                     icon={props.icon}
+                     size='lg'
+                     onClick={props.onClick}
+                     ref={props.ref}/>
 
-    this.state = {
-      show: false
-    }
-
-    this.close = this.close.bind(this)
-    this.show = this.show.bind(this)
-  }
-
-  close() {
-    this.setState({show: false})
-  }
-
-  show() {
-    this.setState({show: true})
-  }
-
-  render() {
-    return (
-      <span className='option'>
-        <FontAwesomeIcon style={{margin: '0.2rem'}}
-                         icon={this.props.icon}
-                         size='lg'
-                         onClick={this.props.onClick}
-                         ref={this.props.ref}/>
-
-        {this.props.children}
-      </span>
-    );
-  }
-}
+    {props.children}
+  </span>
+)
 
 export default Option

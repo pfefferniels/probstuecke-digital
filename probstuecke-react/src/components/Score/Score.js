@@ -4,21 +4,30 @@ import { Spinner } from 'react-bootstrap'
 import EventEmitter from '../EventEmitter'
 import AccidentalsModal from './AccidentalsModal'
 import FacsimileModal from './FacsimileModal'
-import StavesModal from './StavesModal'
+import Option from '../Option'
+import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
 import './Score.css'
 
 class Score extends React.Component {
   state = {
     svg: null
   }
+  stavesAbove = 0
 
-  constructor(props) {
-    super(props)
-    this.scoreViewRef = React.createRef(null)
-  }
+  scoreViewRef = React.createRef(null)
 
   async componentDidMount() {
-    const meiData = await fetch(`/data/${this.props.mei}`).then(response => response.text())
+    this.addStaff = this.addStaff.bind(this)
+    this.removeStaff = this.removeStaff.bind(this)
+    this.fetchScore = this.fetchScore.bind(this)
+
+    this.fetchScore()
+  }
+
+  async fetchScore() {
+    const meiData = await fetch(
+      `/data/${this.props.mei}?above=${this.stavesAbove}`
+      ).then(response => response.text())
 
     scoreToolkit.setOptions({
       svgViewBox: true,
@@ -34,6 +43,15 @@ class Score extends React.Component {
     })
   }
 
+  addStaff() {
+    this.stavesAbove = this.stavesAbove + 1
+    this.fetchScore()
+  }
+
+  removeStaff() {
+    this.stavesAbove = this.stavesAbove - 1
+    this.fetchScore()
+  }
 
   componentDidUpdate() {
     if (document.getElementById('score-view')) {
@@ -49,7 +67,10 @@ class Score extends React.Component {
         <div className='options'>
           <AccidentalsModal />
           <FacsimileModal />
-          <StavesModal />
+          <Option icon={faPlus}
+                  onClick={this.addStaff}/>
+          <Option icon={faMinus}
+                  onClick={this.removeStaff}/>
         </div>
 
         <div>
