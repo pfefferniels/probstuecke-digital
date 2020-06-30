@@ -1,7 +1,19 @@
 import React from 'react'
 import TEIElement from './TEIElement'
+import warning from 'tiny-warning'
 
 const TEIRoutes = React.createContext()
+
+class TEIRoute extends React.Component {
+  componentDidMount() {
+    warning(!this.props.children,
+      'Children components are not supported yet. Use the component prop instead.')
+  }
+
+  render() {
+    return (null)
+  }
+}
 
 class TEIRender extends React.Component {
   availableRoutes = []
@@ -24,12 +36,6 @@ class TEIRender extends React.Component {
                     availableRoutes={this.availableRoutes}/>
       </TEIRoutes.Provider>
     )
-  }
-}
-
-class TEIRoute extends React.Component {
-  render() {
-    return (null)
   }
 }
 

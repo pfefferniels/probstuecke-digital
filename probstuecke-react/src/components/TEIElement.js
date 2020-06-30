@@ -4,11 +4,7 @@ import { TEIRoutes } from './TEI'
 class TEIElement extends React.Component {
   forwardTeiAttributes() {
     return Array.from(this.props.teiDomElement.attributes).reduce((acc, att) => {
-      if (att.name === 'ref') {
-        acc['_ref'] = att.value
-        return acc
-      }
-      acc[att.name] = att.value
+      acc[att.name === 'ref' ? '_ref' : att.name] = att.value
       return acc
     }, {})
   }
@@ -33,7 +29,7 @@ class TEIElement extends React.Component {
     })
 
     if (this.props.availableRoutes.includes(tagName)) {
-      var propsClone = {
+      const propsClone = {
         ...this.props,
         teiDomElement: this.props.teiDomElement.cloneNode(true)
       }
