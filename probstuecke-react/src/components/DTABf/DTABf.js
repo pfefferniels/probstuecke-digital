@@ -13,17 +13,15 @@ import './DTABf.css'
 const teiToHtml = async (file) => {
   const ct = new CETEI()
   ct.addBehaviors({
-    handlers: {
-      'teiHeader': undefined
-    }
-  });
+    'teiHeader': undefined
+  })
   return ct.getHTML5(`/data/${file}`)
 }
 
 class Header extends React.Component {
   constructor(props) {
     super(props)
-    EventEmitter.dispatch('metadataAvailable', props.teiDomElement)
+    EventEmitter.dispatch('metadataAvailable', props.teiDomElement.firstChild)
   }
 
   render() {
