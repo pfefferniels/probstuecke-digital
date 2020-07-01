@@ -88,9 +88,11 @@ class Score extends React.Component {
                   onClick={this.addStaff}/>
           <Option icon={faMinus}
                   onClick={this.removeStaff}/>
-          <Option icon={faCouch}
+          <Option toggle
+                  icon={faCouch}
                   onClick={this.changeClef}/>
-          <Option icon={faSnowboarding}
+          <Option toggle
+                  icon={faSnowboarding}
                   onClick={this.toggleEmbedding}/>
         </div>
 
