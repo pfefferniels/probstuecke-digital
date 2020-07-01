@@ -55,7 +55,8 @@ class Overlay extends Component {
     this._onScoreIsReady = this._onScoreIsReady.bind(this)
     this._highlightTargets = this._highlightTargets.bind(this)
 
-    this.scoreSubscription = EventEmitter.subscribe('scoreIsReady', this._onScoreIsReady)
+    this.scoreSubscription =
+      EventEmitter.subscribe('scoreIsReady', this._onScoreIsReady)
   }
 
   componentWillUnmount() {
