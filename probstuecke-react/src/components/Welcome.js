@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { CardColumns, Card, Spinner } from 'react-bootstrap'
 import { incipitToolkit } from './Verovio'
@@ -30,42 +31,47 @@ class Incipit extends React.Component {
   }
 }
 
-const Welcome = (props) => (
-  <div id='welcome'>
-    <header className='header'>
-      <p className='welcomeOverlay lead'>
-        An open and critical digital edition of the 24 Probstücke of Johann Mattheson
-      </p>
-    </header>
 
-    <TOCConsumer>
-      {(toc) => (
-        (!toc.ready) ? <Spinner animation='grow'/>
-                     :
-          <CardColumns>
-            {Object.entries(toc.data).map(([key,value], i) => (
-              <Card key={i} style={{width: '25rem'}}>
-                <Card.Body>
-                  <Card.Title>
-                    <Link to={`/${key}`}>
-                      {key}
-                    </Link>
-                  </Card.Title>
-                  <div>
-                    {Object.keys(value.editions).map((key, i) => (
-                      <span className='contentEnum'
-                            key={i}>{key}</span>
-                    ))}
-                  </div>
-                  <Incipit pae={value.incipit}/>
-                </Card.Body>
-              </Card>
-              ))
-            }
-          </CardColumns>
-        )}
-    </TOCConsumer>
-  </div>
-)
+const Welcome = (props) => {
+  const { t } = useTranslation()
+
+  return (
+    <div id='welcome'>
+      <header className='header'>
+        <p className='welcomeOverlay lead'>
+          {t('welcome')}
+        </p>
+      </header>
+
+      <TOCConsumer>
+        {(toc) => (
+          (!toc.ready) ? <Spinner animation='grow'/>
+                       :
+            <CardColumns>
+              {Object.entries(toc.data).map(([key,value], i) => (
+                <Card key={i} style={{width: '25rem'}}>
+                  <Card.Body>
+                    <Card.Title>
+                      <Link to={`/${key}`}>
+                        {key}
+                      </Link>
+                    </Card.Title>
+                    <div>
+                      {Object.keys(value.editions).map((key, i) => (
+                        <span className='contentEnum'
+                              key={i}>{t(key)}</span>
+                      ))}
+                    </div>
+                    <Incipit pae={value.incipit}/>
+                  </Card.Body>
+                </Card>
+                ))
+              }
+            </CardColumns>
+          )}
+      </TOCConsumer>
+    </div>
+  )
+}
 
 export default Welcome

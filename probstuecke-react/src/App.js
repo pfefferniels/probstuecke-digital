@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Suspense } from 'react'
+import { Spinner } from 'react-bootstrap'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import { TOCProvider } from './components/TOC.js'
 import Navigation from './components/Navigation.js'
@@ -12,17 +13,18 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <TOCProvider>
-          <div className='App'>
-            <Navigation />
-
-              <Switch>
-                <Route path='/indexOfPersons'>
-                  <Index type='persons'/>
-                </Route>
-                <Route path='/:piece' component={View} />
-                <Route path='/' component={Welcome} />
-              </Switch>
-          </div>
+          <Suspense fallback={<Spinner animation='border' />}>
+            <div className='App'>
+              <Navigation />
+                <Switch>
+                  <Route path='/indexOfPersons'>
+                    <Index type='persons'/>
+                  </Route>
+                  <Route path='/:piece' component={View} />
+                  <Route path='/' component={Welcome} />
+                </Switch>
+            </div>
+          </Suspense>
         </TOCProvider>
       </BrowserRouter>
 )

@@ -1,10 +1,12 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { Spinner, Tabs, Tab, Container, Col, Row } from 'react-bootstrap'
 import { TOCConsumer } from './TOC'
 import Score from './Score/Score'
 import DTABf from './DTABf/DTABf'
 
 const View = props => {
+  const { t, i18n } = useTranslation()
   const { piece } = props.match.params
 
   return (
@@ -15,7 +17,7 @@ const View = props => {
           <Tabs mountOnEnter={true}
                 unmountOnExit={true}>
             {Object.entries(toc.data[piece].editions).map(([key,value],i) => (
-              <Tab key={i} eventKey={key} title={key}>
+              <Tab key={i} eventKey={key} title={t(key)}>
                 <Container fluid>
                   <Row>
                     {value.score && <Col md={6}>
