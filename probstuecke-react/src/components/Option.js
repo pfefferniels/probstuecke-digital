@@ -2,16 +2,39 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './Option.scss'
 
-const Option = (props) => (
-  <span className='option'>
-    <FontAwesomeIcon style={{margin: '0.2rem'}}
-                     icon={props.icon}
-                     size='lg'
-                     onClick={props.onClick}
-                     ref={props.ref}/>
+class Option extends React.Component {
+  state = {
+    toggle: false,
+    isActive: false
+  }
 
-    {props.children}
-  </span>
-)
+  componentDidMount() {
+    if (this.props.toggle) {
+      this.setState({
+        toggle: true
+      })
+    }
+  }
+
+  render() {
+    return (
+      <span className='option'>
+        <FontAwesomeIcon className={this.state.isActive ? 'active' : 'inactive'}
+                         icon={this.props.icon}
+                         size='lg'
+                         onClick={() => {
+                           if (this.state.toggle) {
+                             this.setState({
+                               isActive: !this.state.isActive
+                             })
+                           }
+                           this.props.onClick()
+                         }}
+                         ref={this.props.ref}/>
+          {this.props.children}
+      </span>
+    )
+  }
+}
 
 export default Option

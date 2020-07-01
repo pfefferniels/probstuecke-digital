@@ -1,7 +1,12 @@
 .option {
   opacity: 0.5;
+  margin: 0.2rem;
 }
 
 .option:hover {
   opacity: 1;
+}
+
+.option .active {
+  color: red;
 }
