@@ -1,10 +1,13 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { Spinner, Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { TOCConsumer } from './TOC'
 
 const Navigation = () => {
-    return (
+  const { t } = useTranslation()
+
+  return (
       <Navbar>
         <Navbar.Brand>
           <Link to='/'>Probstücke Digital</Link>
@@ -12,7 +15,7 @@ const Navigation = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link href='/guidelines'>Edition Guidelines</Nav.Link>
+          <Nav.Link href='/guidelines'>{t('editionGuidelines')}</Nav.Link>
           <NavDropdown title="Probstücke" id="basic-nav-dropdown">
             <TOCConsumer>
               {(toc) => (
@@ -25,12 +28,12 @@ const Navigation = () => {
               )}
             </TOCConsumer>
           </NavDropdown>
-          <NavDropdown title='Indices'>
+          <NavDropdown title={t('indices')}>
             <NavDropdown.Item>
-              <Link to='indexOfPersons'>Persons</Link>
+              <Link to='indexOfPersons'>{t('indexOfPersons')}</Link>
             </NavDropdown.Item>
-            <NavDropdown.Item>Musical Works</NavDropdown.Item>
-            <NavDropdown.Item>Bibliography</NavDropdown.Item>
+            <NavDropdown.Item>{t('indexOfMusicalWorks')}</NavDropdown.Item>
+            <NavDropdown.Item>{t('bibliography')}</NavDropdown.Item>
           </NavDropdown>
         </Nav>
         <Form inline>
