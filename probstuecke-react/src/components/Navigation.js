@@ -29,11 +29,15 @@ const Navigation = () => {
             </TOCConsumer>
           </NavDropdown>
           <NavDropdown title={t('indices')}>
-            <NavDropdown.Item>
+            <NavDropdown.Item key='indexOfPersons'>
               <Link to='indexOfPersons'>{t('indexOfPersons')}</Link>
             </NavDropdown.Item>
-            <NavDropdown.Item>{t('indexOfMusicalWorks')}</NavDropdown.Item>
-            <NavDropdown.Item>{t('bibliography')}</NavDropdown.Item>
+            <NavDropdown.Item key='bibliography'>
+              <Link to='bibliography'>{t('bibliography')}</Link>
+            </NavDropdown.Item>
+            <NavDropdown.Item key='indexOfMusicalWorks'>
+              <Link to='indexOfMusicalWorks'>{t('indexOfMusicalWorks')}</Link>
+            </NavDropdown.Item>
           </NavDropdown>
         </Nav>
         <Form inline>

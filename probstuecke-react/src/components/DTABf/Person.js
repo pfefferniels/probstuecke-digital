@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 class Person extends React.Component {
-  this.personRef = React.createRef()
+  personRef = React.createRef()
 
   componentDidMount() {
     this.personRef.current.appendChild(this.props.teiDomElement)
