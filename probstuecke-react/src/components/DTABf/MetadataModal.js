@@ -3,7 +3,7 @@ import { Alert, Modal, Button } from 'react-bootstrap'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import EventEmitter from '../EventEmitter'
 import Option from '../Option'
-import './MetadataModal.css'
+import './MetadataModal.scss'
 
 class MetadataModal extends React.Component {
   state = {
@@ -58,10 +58,9 @@ class MetadataModal extends React.Component {
             <Modal.Title>Metadata</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            {
-              this.state.metadata ? <div dangerouslySetInnerHTML={{__html: this.state.metadata.innerHTML}}/>
-                                  : <Alert>Something went wrong</Alert>
-            }
+          {this.state.metadata ? <div className='teiMetadata'
+                                       dangerouslySetInnerHTML={{__html: this.state.metadata.innerHTML}}/>
+                                : <Alert>Something went wrong</Alert>}
           </Modal.Body>
           <Modal.Footer>
             <Button variant='secondary' onClick={this.close}>

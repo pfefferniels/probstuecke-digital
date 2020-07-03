@@ -13,11 +13,7 @@ const highlight = (domEl, scroll) => {
 }
 
 class SVGOverlay extends Component {
-  constructor(props) {
-    super(props)
-
-    this.rectRef = React.createRef()
-  }
+  rectRef = React.createRef()
 
   componentDidMount() {
     const domEl = this.rectRef.current
@@ -72,7 +68,7 @@ class Overlay extends Component {
     targets.forEach(target => {
       let targetEl = scoreView.current.querySelector(target)
       if (!targetEl) {
-        console.warn('This should not have happened.', target)
+        console.warn('Overlay target', target, 'not found')
       } else {
         this.setState(prevState => ({
           targets: [...prevState.targets, targetEl]

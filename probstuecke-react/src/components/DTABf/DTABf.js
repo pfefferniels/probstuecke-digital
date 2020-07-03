@@ -4,7 +4,7 @@ import CETEI from 'CETEIcean';
 import { TEIRender, TEIRoute } from '../TEI'
 import Option from '../Option'
 import EventEmitter from '../EventEmitter'
-import EditorialNote from './EditorialNote'
+import Note from './Note'
 import Person from './Person'
 import MusicExample from './MusicExample'
 import Overlay from './Overlay'
@@ -12,7 +12,7 @@ import Glyph from './Glyph'
 import TextSettings from './TextSettings'
 import MetadataModal from './MetadataModal'
 import { faFont } from '@fortawesome/free-solid-svg-icons'
-import './DTABf.css'
+import './DTABf.scss'
 
 const teiToHtml = async (file) => {
   const ct = new CETEI()
@@ -63,16 +63,18 @@ class DTABf extends React.Component {
                   }}/>
         </div>
 
-        <TextSettings.Provider value={this.state.diplomatic}>
-          <TEIRender data={this.state.teiData} path={this.props.tei}>
-            <TEIRoute el='tei-note' component={EditorialNote}/>
-            <TEIRoute el='tei-persname' component={Person}/>
-            <TEIRoute el='tei-notatedmusic' component={MusicExample}/>
-            <TEIRoute el='tei-ref' component={Overlay}/>
-            <TEIRoute el='tei-teiheader' component={Header}/>
-            <TEIRoute el='tei-g' component={Glyph}/>
-          </TEIRender>
-        </TextSettings.Provider>
+        <div className={this.state.diplomatic ? 'diplomatic' : 'modernized'}>
+          <TextSettings.Provider value={this.state.diplomatic}>
+            <TEIRender data={this.state.teiData} path={this.props.tei}>
+              <TEIRoute el='tei-note' component={Note}/>
+              <TEIRoute el='tei-persname' component={Person}/>
+              <TEIRoute el='tei-notatedmusic' component={MusicExample}/>
+              <TEIRoute el='tei-ref' component={Overlay}/>
+              <TEIRoute el='tei-teiheader' component={Header}/>
+              <TEIRoute el='tei-g' component={Glyph}/>
+            </TEIRender>
+          </TextSettings.Provider>
+        </div>
       </>
     )
   }

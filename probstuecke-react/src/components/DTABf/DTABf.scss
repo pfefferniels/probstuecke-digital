@@ -1,5 +1,3 @@
-/* DTAbf4CETEI */
-
 tei-hi[rendition="#aq"] {
   font-family: sans-serif;
 }
@@ -127,6 +125,27 @@ tei-head {
   display: block;
 }
 
-tei-lb, tei-fw {
-  display: none;
+.diplomatic {
+  tei-lb {
+    display: block;
+  }
+
+  tei-fw[type="catch"][place="bottom"] {
+    text-align: right;
+    display: block;
+    color: #666;
+  }
+
+  tei-pb {
+    display: block;
+  }
+
+  tei-pb[n]:after {
+    content: '['attr(n)']\A';
+    color: gray;
+  }
+
+  tei-p {
+    white-space: nowrap;
+  }
 }

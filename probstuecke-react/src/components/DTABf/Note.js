@@ -1,7 +1,7 @@
 import React from 'react';
-import './EditorialNote.css'
+import './Note.scss'
 
-class EditorialNote extends React.Component {
+class Note extends React.Component {
   constructor(props) {
     super(props)
     this.noteRef = React.createRef()
@@ -19,4 +19,4 @@ class EditorialNote extends React.Component {
   }
 }
 
-export default EditorialNote;
+export default Note;

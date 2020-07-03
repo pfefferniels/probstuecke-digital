@@ -1,5 +1,5 @@
 import React from 'react'
-import { Spinner, Badge, Card, CardColumns } from 'react-bootstrap'
+import { Spinner, Badge, ListGroup } from 'react-bootstrap'
 import CETEI from 'CETEIcean'
 import { TEIRoute, TEIRender } from '../TEI'
 import './EdiarumRegister.scss'
@@ -30,17 +30,17 @@ const EdiarumIdno = (props) => {
 
 const EdiarumListPerson = props => {
   return (
-    <CardColumns className='personList'>
+    <ListGroup variant='flush'>
       {props.children}
-    </CardColumns>
+    </ListGroup>
   )
 }
 
 const EdiarumPerson = props => {
   return (
-    <Card className='person'>
+    <ListGroup.Item id={props.teiDomElement.getAttribute('xml:id')}>
       {props.children}
-    </Card>
+    </ListGroup.Item>
   )
 }
 

@@ -6,7 +6,7 @@ import Score from './Score/Score'
 import DTABf from './DTABf/DTABf'
 
 const View = props => {
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
   const { piece } = props.match.params
 
   return (
