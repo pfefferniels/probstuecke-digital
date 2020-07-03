@@ -1,10 +1,9 @@
-import React from 'react';
-import { Spinner } from 'react-bootstrap';
+import React from 'react'
+import { Spinner } from 'react-bootstrap'
 import CETEI from 'CETEIcean';
 import { TEIRender, TEIRoute } from '../TEI'
 import Option from '../Option'
 import EventEmitter from '../EventEmitter'
-import Note from './Note'
 import Person from './Person'
 import MusicExample from './MusicExample'
 import Overlay from './Overlay'
@@ -66,7 +65,6 @@ class DTABf extends React.Component {
         <div className={this.state.diplomatic ? 'diplomatic' : 'modernized'}>
           <TextSettings.Provider value={this.state.diplomatic}>
             <TEIRender data={this.state.teiData} path={this.props.tei}>
-              <TEIRoute el='tei-note' component={Note}/>
               <TEIRoute el='tei-persname' component={Person}/>
               <TEIRoute el='tei-notatedmusic' component={MusicExample}/>
               <TEIRoute el='tei-ref' component={Overlay}/>
