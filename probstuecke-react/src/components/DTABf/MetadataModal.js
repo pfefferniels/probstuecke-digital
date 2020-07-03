@@ -26,24 +26,21 @@ class MetadataModal extends React.Component {
   }
 
   metadataAvailable(metadata) {
-    this.setState(prevState => ({
-      ...prevState,
+    this.setState({
       metadata: metadata
-    }))
+    })
   }
 
   show() {
-    this.setState(prevState => ({
-      ...prevState,
+    this.setState({
       show: true
-    }))
+    })
   }
 
   close() {
-    this.setState(prevState => ({
-      ...prevState,
+    this.setState({
       show: false
-    }))
+    })
   }
 
   render() {
