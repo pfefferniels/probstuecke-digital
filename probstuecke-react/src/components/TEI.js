@@ -6,8 +6,9 @@ const TEIRoutes = React.createContext()
 
 class TEIRoute extends React.Component {
   componentDidMount() {
-    warning(!this.props.children,
-      'Children components are not supported yet. Use the component prop instead.')
+    warning(!(this.props.children && this.props.component),
+      `You should not use child elements and the component attribute
+       at the same time.`)
   }
 
   render() {
@@ -24,7 +25,11 @@ class TEIRender extends React.Component {
 
     props.children.forEach(route => {
       this.availableRoutes.push(route.props.el)
-      this.routes[route.props.el] = route.props.component
+      if (route.props.children) {
+        this.routes[route.props.el] = route.props.children
+      } else {
+        this.routes[route.props.el] = route.props.component
+      }
     })
   }
 

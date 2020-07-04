@@ -37,7 +37,18 @@ class TEIElement extends React.Component {
       return (
         <TEIRoutes.Consumer>
           {(routes) => {
-            return React.createElement(routes[tagName],
+            const selectedRoute = routes[tagName]
+
+            // Routes can be given as child elements that are
+            // created already and need to be cloned here,
+            // or as a component, that is not yet instantiated.
+            if (React.isValidElement(selectedRoute)) {
+              return React.cloneElement(selectedRoute,
+                                        {...propsClone},
+                                        teiChildren)
+            }
+
+            return React.createElement(selectedRoute,
                                        propsClone,
                                        teiChildren)
           }}
