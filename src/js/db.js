@@ -1,5 +1,5 @@
 const axios = require('axios'),
-      existConfig = require('../existConfig.json'),
+      existConfig = require('../../existConfig.json'),
       APP_PATH = 'db/apps/probstuecke-digital';
 
 async function retrieve(documentPath) {
