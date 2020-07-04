@@ -1,7 +1,7 @@
 import React from 'react'
 import { Spinner } from 'react-bootstrap'
 import CETEI from 'CETEIcean';
-import { TEIRender, TEIRoute } from '../TEI'
+import { TEIRender, TEIRoute } from 'react-teirouter'
 import Option from '../Option'
 import EventEmitter from '../EventEmitter'
 import LinkToIndex from './LinkToIndex'

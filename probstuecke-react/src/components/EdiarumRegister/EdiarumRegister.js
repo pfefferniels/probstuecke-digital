@@ -1,7 +1,7 @@
 import React from 'react'
 import { Spinner, Badge, ListGroup } from 'react-bootstrap'
 import CETEI from 'CETEIcean'
-import { TEIRoute, TEIRender } from '../TEI'
+import { TEIRoute, TEIRender } from 'react-teirouter'
 import './EdiarumRegister.scss'
 
 const teiToHtml = async (file) => {
