@@ -149,8 +149,9 @@ tei-note[place='foot'] {
 }
 
 .diplomatic {
-  tei-lb {
-    display: block;
+  tei-lb:after {
+    content: ' | ';
+    color: gray;
   }
 
   tei-fw[type="catch"][place="bottom"] {
@@ -166,9 +167,5 @@ tei-note[place='foot'] {
   tei-pb[n]:after {
     content: '['attr(n)']\A';
     color: gray;
-  }
-
-  tei-p {
-    white-space: nowrap;
   }
 }
