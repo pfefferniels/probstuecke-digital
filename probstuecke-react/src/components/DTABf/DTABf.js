@@ -4,7 +4,7 @@ import CETEI from 'CETEIcean';
 import { TEIRender, TEIRoute } from '../TEI'
 import Option from '../Option'
 import EventEmitter from '../EventEmitter'
-import Person from './Person'
+import LinkToIndex from './LinkToIndex'
 import MusicExample from './MusicExample'
 import Overlay from './Overlay'
 import Glyph from './Glyph'
@@ -65,11 +65,19 @@ class DTABf extends React.Component {
         <div className={this.state.diplomatic ? 'diplomatic' : 'modernized'}>
           <TextSettings.Provider value={this.state.diplomatic}>
             <TEIRender data={this.state.teiData} path={this.props.tei}>
-              <TEIRoute el='tei-persname' component={Person}/>
               <TEIRoute el='tei-notatedmusic' component={MusicExample}/>
               <TEIRoute el='tei-ref' component={Overlay}/>
               <TEIRoute el='tei-teiheader' component={Header}/>
               <TEIRoute el='tei-g' component={Glyph}/>
+              <TEIRoute el='tei-persname'>
+                <LinkToIndex type='indexOfPersons'/>
+              </TEIRoute>
+              <TEIRoute el='tei-bibl'>
+                <LinkToIndex type='bibliography'/>
+              </TEIRoute>
+              <TEIRoute el='tei-name'>
+                <LinkToIndex type='indexOfMusicalWorks'/>
+              </TEIRoute>
             </TEIRender>
           </TextSettings.Provider>
         </div>
