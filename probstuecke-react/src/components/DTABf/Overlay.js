@@ -40,6 +40,7 @@ class SVGOverlay extends Component {
 
 class Overlay extends Component {
   state = {
+    isLoading: false,
     targets: []
   }
 
@@ -51,6 +52,7 @@ class Overlay extends Component {
     this._onScoreIsReady = this._onScoreIsReady.bind(this)
     this._highlightTargets = this._highlightTargets.bind(this)
 
+    this.state.isLoading = true
     this.scoreSubscription =
       EventEmitter.subscribe('scoreIsReady', this._onScoreIsReady)
   }
@@ -61,6 +63,7 @@ class Overlay extends Component {
 
   _onScoreIsReady(scoreView) {
     if (!this.props.teiDomElement.hasAttribute('target')) {
+      this.state.isLoading = false
       return;
     }
 
@@ -75,6 +78,8 @@ class Overlay extends Component {
         }))
       }
     })
+
+    this.state.isLoading = false
   }
 
   _highlightTargets(scroll) {
@@ -91,17 +96,20 @@ class Overlay extends Component {
 
     underlyingText.addEventListener('click', () => this._highlightTargets(true))
     underlyingText.addEventListener('mouseover', () => this._highlightTargets(false))
-    underlyingText.innerHTML = this.props.teiDomElement.firstChild.innerHTML
   }
 
   render() {
-    if (!this.props.teiDomElement.hasAttribute('target')) {
-      return <span className='targetlessRef' ref={this.underlyingText}/>
+    const targets = this.state.targets
+    if (this.state.isLoading) {
+      return <Spinner animation='grow'/>
     }
 
-    const targets = this.state.targets
     if (targets.length === 0) {
-      return <Spinner animation='grow'/>
+      return (
+        <span className='targetlessOverlay' ref={this.underlyingText}>
+          {this.props.children}
+        </span>
+      )
     }
 
     return (
@@ -114,8 +122,9 @@ class Overlay extends Component {
                         onHover={() => highlight(this.underlyingText.current, false)}/>),
             target)
          ))}
-        <span ref={this.underlyingText}
-              className='overlay'/>
+        <span ref={this.underlyingText} className='overlay'>
+          {this.props.children}
+        </span>
       </>
     )
   }
