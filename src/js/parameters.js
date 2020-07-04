@@ -31,4 +31,11 @@ function serialize(number, author, file, options) {
   return urlfy(newOptions);
 }
 
+function serialize2(number,author,file) {
+  return urlfy({
+    input: ['/db/apps/probstuecke-digital', number, author, file].join('/')
+  })
+}
+
 module.exports.serialize = serialize;
+module.exports.serialize2 = serialize2;
