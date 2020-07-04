@@ -52,7 +52,9 @@ class Overlay extends Component {
     this._onScoreIsReady = this._onScoreIsReady.bind(this)
     this._highlightTargets = this._highlightTargets.bind(this)
 
-    this.state.isLoading = true
+    this.setState({
+      isLoading: true
+    })
     this.scoreSubscription =
       EventEmitter.subscribe('scoreIsReady', this._onScoreIsReady)
   }
@@ -63,7 +65,9 @@ class Overlay extends Component {
 
   _onScoreIsReady(scoreView) {
     if (!this.props.teiDomElement.hasAttribute('target')) {
-      this.state.isLoading = false
+      this.setState({
+        isLoading: false
+      })
       return;
     }
 
@@ -79,7 +83,9 @@ class Overlay extends Component {
       }
     })
 
-    this.state.isLoading = false
+    this.setState({
+      isLoading: false
+    })
   }
 
   _highlightTargets(scroll) {
