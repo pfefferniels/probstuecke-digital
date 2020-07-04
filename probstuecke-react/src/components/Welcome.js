@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { CardColumns, Card, Spinner } from 'react-bootstrap'
 import { incipitToolkit } from './Verovio'
 import { TOCConsumer } from './TOC'
-import './Welcome.css'
+import './Welcome.scss'
 
 class Incipit extends React.Component {
   state = {

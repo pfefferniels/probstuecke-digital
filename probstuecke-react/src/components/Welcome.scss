@@ -21,14 +21,13 @@
 .contentEnum {
   font-size: 0.8rem;
 
-}
+  &:after {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    content: '·';
+  }
 
-.contentEnum:last-child::after {
-  content: '';
-}
-
-.contentEnum::after {
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-  content: '·';
+  &:last-child:after {
+    content: '';
+  }
 }

@@ -6,7 +6,7 @@ import AccidentalsModal from './AccidentalsModal'
 import FacsimileModal from './FacsimileModal'
 import Option from '../Option'
 import { faPlus, faMinus, faCouch, faSnowboarding } from '@fortawesome/free-solid-svg-icons'
-import './Score.css'
+import './Score.scss'
 
 class Score extends React.Component {
   state = {
