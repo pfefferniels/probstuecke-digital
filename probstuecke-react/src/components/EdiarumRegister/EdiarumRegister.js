@@ -28,7 +28,7 @@ const EdiarumIdno = (props) => {
   )
 }
 
-const EdiarumListPerson = props => {
+const EdiarumList = props => {
   return (
     <ListGroup variant='flush'>
       {props.children}
@@ -36,7 +36,7 @@ const EdiarumListPerson = props => {
   )
 }
 
-const EdiarumPerson = props => {
+const EdiarumListItem = props => {
   return (
     <ListGroup.Item id={props.teiDomElement.getAttribute('xml:id')}>
       {props.children}
@@ -62,9 +62,11 @@ class EdiarumRegister extends React.Component {
     return (
       <div className='ediarumRegister'>
         <TEIRender data={this.state.teiData} path={this.props.tei}>
-          <TEIRoute el='tei-person' component={EdiarumPerson}/>
+          <TEIRoute el='tei-listperson' component={EdiarumList}/>
+          <TEIRoute el='tei-listbibl' component={EdiarumList}/>
+          <TEIRoute el='tei-person' component={EdiarumListItem}/>
+          <TEIRoute el='tei-bibl' component={EdiarumListItem}/>
           <TEIRoute el='tei-idno' component={EdiarumIdno}/>
-          <TEIRoute el='tei-listperson' component={EdiarumListPerson}/>
         </TEIRender>
       </div>)
   }
