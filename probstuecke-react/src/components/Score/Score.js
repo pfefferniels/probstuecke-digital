@@ -2,26 +2,23 @@ import React from 'react'
 import { scoreToolkit } from '../Verovio'
 import { Spinner } from 'react-bootstrap'
 import EventEmitter from '../EventEmitter'
-import AccidentalsModal from './AccidentalsModal'
 import FacsimileModal from './FacsimileModal'
 import Option from '../Option'
-import { faPlus, faMinus, faCouch, faSnowboarding } from '@fortawesome/free-solid-svg-icons'
 import './Score.scss'
 
 class Score extends React.Component {
   state = {
+    diplomatic: false,
     svg: null
   }
 
   stavesAbove = 0
-  modernClefs = false
   embed = false
   scoreViewRef = React.createRef(null)
 
   async componentDidMount() {
     this.addStaff = this.addStaff.bind(this)
     this.removeStaff = this.removeStaff.bind(this)
-    this.changeClef = this.changeClef.bind(this)
     this.toggleEmbedding = this.toggleEmbedding.bind(this)
     this.fetchScore = this.fetchScore.bind(this)
 
@@ -32,7 +29,7 @@ class Score extends React.Component {
     const meiData = await fetch(
       `/data/${this.props.mei}?` +
       `above=${this.stavesAbove}&` +
-      `modernClefs=${this.modernClefs ? 'on' : 'off'}&` +
+      `modernClefs=${this.state.diplomatic ? 'off' : 'on'}&` +
       `showAnnotationStaff=${this.embed ? 'on' : 'off'}`
       ).then(response => response.text())
 
@@ -60,11 +57,6 @@ class Score extends React.Component {
     this.fetchScore()
   }
 
-  changeClef() {
-    this.modernClefs = !this.modernClefs
-    this.fetchScore()
-  }
-
   toggleEmbedding() {
     this.embed = !this.embed
     this.fetchScore()
@@ -83,10 +75,12 @@ class Score extends React.Component {
       <>
         <div className='options'>
           <FacsimileModal />
-          <AccidentalsModal />
           <Option toggle
-                  text={'𝄞'}
-                  onClick={this.changeClef}/>
+                  text={'D'}
+                  onClick={() => {
+                    this.state.diplomatic = !this.state.diplomatic
+                    this.fetchScore()
+                  }}/>
           <Option text={'+'}
                   onClick={this.addStaff}/>
           <Option text={'–'}
@@ -99,7 +93,10 @@ class Score extends React.Component {
         <div>
           {
             this.state.svg
-             ? <div ref={this.scoreViewRef} id='score-view' dangerouslySetInnerHTML={{__html: this.state.svg}}/>
+             ? <div ref={this.scoreViewRef}
+                    className={this.state.diplomatic ? 'diplomatic' : 'modernized'}
+                    id='score-view'
+                    dangerouslySetInnerHTML={{__html: this.state.svg}}/>
              : <Spinner animation='grow'/>
           }
         </div>

@@ -9,4 +9,26 @@
     font-weight: bold;
     font-family: sans-serif;
   }
+
+  &.diplomatic {
+    .supplied .accid {
+      display: none;
+    }
+
+    .orig .accid {
+      display: inline;
+      animation: blinking 1s 2;
+    }
+  }
+
+  &.modernized {
+    .supplied .accid {
+      display: inline;
+      animation: blinking 1s 2;
+    }
+
+    .orig .accid {
+      display: none;
+    }
+  }
 }
