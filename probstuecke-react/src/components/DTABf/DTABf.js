@@ -56,7 +56,7 @@ class DTABf extends React.Component {
             <MetadataModal />
           </HeaderContext.Provider>
           <Option toggle
-                  icon={faFont}
+                  text={'D'}
                   onClick={() => {
                     this.setState({
                       diplomatic: !this.state.diplomatic

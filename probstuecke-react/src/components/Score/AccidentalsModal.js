@@ -9,7 +9,7 @@ function AccidentalsModal(props) {
   const handleShow = () => setShow(true)
 
   return (
-    <Option icon={faHashtag}
+    <Option text={'♯'}
             onClick={handleShow}>
       <Modal show={show}
              onHide={handleClose}

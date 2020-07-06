@@ -1,12 +1,18 @@
-.option {
+.optionIcon, .optionText {
   opacity: 0.5;
   margin: 0.2rem;
+  font-weight: bold;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &.active {
+    color: red;
+  }
 }
 
-.option:hover {
-  opacity: 1;
-}
-
-.option .active {
-  color: red;
+.optionText {
+  font-size: 1.5rem;
 }

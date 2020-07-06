@@ -82,17 +82,17 @@ class Score extends React.Component {
     return (
       <>
         <div className='options'>
-          <AccidentalsModal />
           <FacsimileModal />
-          <Option icon={faPlus}
+          <AccidentalsModal />
+          <Option toggle
+                  text={'𝄞'}
+                  onClick={this.changeClef}/>
+          <Option text={'+'}
                   onClick={this.addStaff}/>
-          <Option icon={faMinus}
+          <Option text={'–'}
                   onClick={this.removeStaff}/>
           <Option toggle
-                  icon={faCouch}
-                  onClick={this.changeClef}/>
-          <Option toggle
-                  icon={faSnowboarding}
+                  text={'{}'}
                   onClick={this.toggleEmbedding}/>
         </div>
 

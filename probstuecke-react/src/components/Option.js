@@ -9,6 +9,8 @@ class Option extends React.Component {
   }
 
   componentDidMount() {
+    this._onClick = this._onClick.bind(this)
+
     if (this.props.toggle) {
       this.setState({
         toggle: true
@@ -16,23 +18,30 @@ class Option extends React.Component {
     }
   }
 
+  _onClick() {
+    if (this.state.toggle) {
+      this.setState({
+        isActive: !this.state.isActive
+      })
+    }
+    this.props.onClick()
+  }
+
   render() {
     return (
-      <span className='option'>
-        <FontAwesomeIcon className={this.state.isActive ? 'active' : 'inactive'}
-                         icon={this.props.icon}
-                         size='lg'
-                         onClick={() => {
-                           if (this.state.toggle) {
-                             this.setState({
-                               isActive: !this.state.isActive
-                             })
-                           }
-                           this.props.onClick()
-                         }}
-                         ref={this.props.ref}/>
-          {this.props.children}
-      </span>
+      <>
+        {this.props.icon && <FontAwesomeIcon className={`optionIcon ${this.state.isActive ? 'active' : 'inactive'}`}
+                                             icon={this.props.icon}
+                                             size='lg'
+                                             onClick={this._onClick}
+                                             ref={this.props.ref}/>}
+        {this.props.text && <span className={`optionText ${this.state.isActive ? 'active' : 'inactive'}`}
+                                  size='lg'
+                                  onClick={this._onClick}
+                                  ref={this.props.ref}>{this.props.text}</span>}
+
+        {this.props.children}
+      </>
     )
   }
 }
