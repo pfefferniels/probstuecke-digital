@@ -3,6 +3,7 @@ import { Alert, Modal, Button } from 'react-bootstrap'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import EventEmitter from '../EventEmitter'
 import Option from '../Option'
+import HeaderContext from './HeaderContext'
 import './MetadataModal.scss'
 
 class MetadataModal extends React.Component {
@@ -11,24 +12,10 @@ class MetadataModal extends React.Component {
     metadata: null
   }
 
-  metadataSubscription = null
-
-  componentDidMount() {
+  constructor(props) {
+    super(props)
     this.show = this.show.bind(this)
     this.close = this.close.bind(this)
-    this.metadataAvailable = this.metadataAvailable.bind(this)
-
-    this.metadataSubscription = EventEmitter.subscribe('metadataAvailable', this.metadataAvailable)
-  }
-
-  componentWillUnmount() {
-    this.metadataSubscription.cancel()
-  }
-
-  metadataAvailable(metadata) {
-    this.setState({
-      metadata: metadata
-    })
   }
 
   show() {
@@ -55,9 +42,13 @@ class MetadataModal extends React.Component {
             <Modal.Title>Metadata</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-          {this.state.metadata ? <div className='teiMetadata'
-                                       dangerouslySetInnerHTML={{__html: this.state.metadata.innerHTML}}/>
-                                : <Alert>Something went wrong</Alert>}
+            <div className='teiMetadata'>
+              <HeaderContext.Consumer>
+                {(headerRef) => (
+                  <div dangerouslySetInnerHTML={{__html: headerRef.current.innerHTML}}/>
+                )}
+              </HeaderContext.Consumer>
+            </div>
           </Modal.Body>
           <Modal.Footer>
             <Button variant='secondary' onClick={this.close}>

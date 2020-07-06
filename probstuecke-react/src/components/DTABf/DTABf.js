@@ -10,6 +10,7 @@ import Overlay from './Overlay'
 import Glyph from './Glyph'
 import TextSettings from './TextSettings'
 import MetadataModal from './MetadataModal'
+import HeaderContext from './HeaderContext'
 import { faFont } from '@fortawesome/free-solid-svg-icons'
 import './DTABf.scss'
 
@@ -21,21 +22,20 @@ const teiToHtml = async (file) => {
   return ct.getHTML5(`/data/${file}`)
 }
 
-class Header extends React.Component {
-  constructor(props) {
-    super(props)
-    EventEmitter.dispatch('metadataAvailable', props.teiDomElement.firstChild)
-  }
-
-  render() {
-    return (null)
-  }
-}
+const Header = React.forwardRef((props, ref) => (
+  <div hidden>
+    <div ref={ref} className="teiMetadata">
+      {props.children}
+    </div>
+  </div>
+));
 
 class DTABf extends React.Component {
   state = {
     diplomatic: true
   }
+
+  headerRef = React.createRef()
 
   async componentDidMount() {
     const teiData = await teiToHtml(this.props.tei)
@@ -52,7 +52,9 @@ class DTABf extends React.Component {
     return (
       <>
         <div className='options'>
-          <MetadataModal />
+          <HeaderContext.Provider value={this.headerRef}>
+            <MetadataModal />
+          </HeaderContext.Provider>
           <Option toggle
                   icon={faFont}
                   onClick={() => {
@@ -67,7 +69,9 @@ class DTABf extends React.Component {
             <TEIRender data={this.state.teiData} path={this.props.tei}>
               <TEIRoute el='tei-notatedmusic' component={MusicExample}/>
               <TEIRoute el='tei-ref' component={Overlay}/>
-              <TEIRoute el='tei-teiheader' component={Header}/>
+              <TEIRoute el='tei-teiheader'>
+                <Header ref={this.headerRef}/>
+              </TEIRoute>
               <TEIRoute el='tei-g' component={Glyph}/>
               <TEIRoute el='tei-persname'>
                 <LinkToIndex type='indexOfPersons'/>
