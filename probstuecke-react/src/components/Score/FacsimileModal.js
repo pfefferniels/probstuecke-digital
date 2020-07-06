@@ -1,5 +1,5 @@
-import React, { useState, useRef } from 'react'
-import { Modal, Button, Overlay, Tooltip } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Modal, Button } from 'react-bootstrap'
 import { faImages } from '@fortawesome/free-solid-svg-icons'
 import Option from '../Option'
 

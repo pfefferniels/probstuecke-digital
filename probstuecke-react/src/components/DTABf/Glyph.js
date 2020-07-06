@@ -34,6 +34,8 @@ class Glyph extends React.Component {
                 return diplomatic ? <span>aͤ</span> : <span>ä</span>
               case 'umlaut-u':
                 return diplomatic ? <span>uͤ</span> : <span>ü</span>
+              default:
+                return <span className='unknownGlyph'>{this.props.children}</span>
             }
           }}
         </TextSettings.Consumer>

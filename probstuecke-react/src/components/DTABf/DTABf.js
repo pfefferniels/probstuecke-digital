@@ -1,9 +1,8 @@
 import React from 'react'
 import { Spinner } from 'react-bootstrap'
-import CETEI from 'CETEIcean';
 import { TEIRender, TEIRoute } from 'react-teirouter'
+import CETEI from 'CETEIcean'
 import Option from '../Option'
-import EventEmitter from '../EventEmitter'
 import LinkToIndex from './LinkToIndex'
 import MusicExample from './MusicExample'
 import Overlay from './Overlay'
@@ -11,7 +10,6 @@ import Glyph from './Glyph'
 import TextSettings from './TextSettings'
 import MetadataModal from './MetadataModal'
 import HeaderContext from './HeaderContext'
-import { faFont } from '@fortawesome/free-solid-svg-icons'
 import './DTABf.scss'
 
 const teiToHtml = async (file) => {
@@ -32,7 +30,7 @@ const Header = React.forwardRef((props, ref) => (
 
 class DTABf extends React.Component {
   state = {
-    diplomatic: true
+    diplomatic: false
   }
 
   headerRef = React.createRef()

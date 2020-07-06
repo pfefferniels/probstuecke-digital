@@ -169,3 +169,9 @@ tei-note[place='foot'] {
     color: gray;
   }
 }
+
+.modernized {
+  tei-pc[force="weak"] {
+    display: none;
+  }
+}

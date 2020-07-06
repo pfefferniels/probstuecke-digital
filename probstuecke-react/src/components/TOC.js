@@ -26,8 +26,7 @@ class TOCProvider extends React.Component {
   }
 
   render () {
-    const { children } = this.props
-    return <Provider value={this.state}>{children}</Provider>
+    return <Provider value={this.state}>{this.props.children}</Provider>
   }
 }
 

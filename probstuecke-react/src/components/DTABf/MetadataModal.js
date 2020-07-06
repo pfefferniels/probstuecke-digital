@@ -1,7 +1,6 @@
 import React from 'react'
-import { Alert, Modal, Button } from 'react-bootstrap'
+import { Modal, Button } from 'react-bootstrap'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
-import EventEmitter from '../EventEmitter'
 import Option from '../Option'
 import HeaderContext from './HeaderContext'
 import './MetadataModal.scss'
