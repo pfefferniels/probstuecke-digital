@@ -8,9 +8,12 @@ class Option extends React.Component {
     isActive: false
   }
 
-  componentDidMount() {
+  constructor(props) {
+    super(props)
     this._onClick = this._onClick.bind(this)
+  }
 
+  componentDidMount() {
     if (this.props.toggle) {
       this.setState({
         toggle: true
