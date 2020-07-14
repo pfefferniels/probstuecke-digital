@@ -2,14 +2,16 @@ import React from 'react'
 import { Spinner } from 'react-bootstrap'
 import { TEIRender, TEIRoute } from 'react-teirouter'
 import CETEI from 'CETEIcean'
+import { faImages } from '@fortawesome/free-solid-svg-icons'
 import Option from '../Option'
 import LinkToIndex from './LinkToIndex'
 import MusicExample from './MusicExample'
 import Overlay from './Overlay'
 import Glyph from './Glyph'
-import TextSettings from './TextSettings'
+import DisplaySettings from './DisplaySettings'
+import FacsimileSettings from './FacsimileSettings'
 import MetadataModal from './MetadataModal'
-import HeaderContext from './HeaderContext'
+import Paragraph from './Paragraph'
 import './DTABf.scss'
 
 const teiToHtml = async (file) => {
@@ -30,6 +32,7 @@ const Header = React.forwardRef((props, ref) => (
 
 class DTABf extends React.Component {
   state = {
+    showFacsimile: false,
     diplomatic: false
   }
 
@@ -50,9 +53,14 @@ class DTABf extends React.Component {
     return (
       <>
         <div className='options'>
-          <HeaderContext.Provider value={this.headerRef}>
-            <MetadataModal />
-          </HeaderContext.Provider>
+          <MetadataModal headerRef={this.headerRef}/>
+          <Option toggle
+                  icon={faImages}
+                  onClick={() => {
+                    this.setState({
+                      showFacsimile: !this.state.showFacsimile
+                    })
+                  }}/>
           <Option toggle
                   text={'D'}
                   onClick={() => {
@@ -63,25 +71,28 @@ class DTABf extends React.Component {
         </div>
 
         <div className={this.state.diplomatic ? 'diplomatic' : 'modernized'}>
-          <TextSettings.Provider value={this.state.diplomatic}>
-            <TEIRender data={this.state.teiData} path={this.props.tei}>
-              <TEIRoute el='tei-notatedmusic' component={MusicExample}/>
-              <TEIRoute el='tei-ref' component={Overlay}/>
-              <TEIRoute el='tei-teiheader'>
-                <Header ref={this.headerRef}/>
-              </TEIRoute>
-              <TEIRoute el='tei-g' component={Glyph}/>
-              <TEIRoute el='tei-persname'>
-                <LinkToIndex type='indexOfPersons'/>
-              </TEIRoute>
-              <TEIRoute el='tei-bibl'>
-                <LinkToIndex type='bibliography'/>
-              </TEIRoute>
-              <TEIRoute el='tei-name'>
-                <LinkToIndex type='indexOfMusicalWorks'/>
-              </TEIRoute>
-            </TEIRender>
-          </TextSettings.Provider>
+          <DisplaySettings.Provider value={this.state.diplomatic}>
+            <FacsimileSettings.Provider value={this.state.showFacsimile}>
+              <TEIRender data={this.state.teiData} path={this.props.tei}>
+                <TEIRoute el='tei-p' component={Paragraph}/>
+                <TEIRoute el='tei-notatedmusic' component={MusicExample}/>
+                <TEIRoute el='tei-ref' component={Overlay}/>
+                <TEIRoute el='tei-teiheader'>
+                  <Header ref={this.headerRef}/>
+                </TEIRoute>
+                <TEIRoute el='tei-g' component={Glyph}/>
+                <TEIRoute el='tei-persname'>
+                  <LinkToIndex type='indexOfPersons'/>
+                </TEIRoute>
+                <TEIRoute el='tei-bibl'>
+                  <LinkToIndex type='bibliography'/>
+                </TEIRoute>
+                <TEIRoute el='tei-name'>
+                  <LinkToIndex type='indexOfMusicalWorks'/>
+                </TEIRoute>
+              </TEIRender>
+            </FacsimileSettings.Provider>
+          </DisplaySettings.Provider>
         </div>
       </>
     )

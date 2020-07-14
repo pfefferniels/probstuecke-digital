@@ -1,5 +1,6 @@
 import React from 'react'
 import path from 'path'
+import { useTranslation } from 'react-i18next'
 import { Alert, Spinner } from 'react-bootstrap'
 import { exampleToolkit } from '../Verovio'
 import './MusicExample.scss'
@@ -27,7 +28,8 @@ class MusicExample extends React.Component {
 
   render() {
     if (this.state.error) {
-      return <Alert>An error occured while rendering an embedded music example.</Alert>
+      const { t } = useTranslation()
+      return <Alert>{t('renderError')}</Alert>
     }
 
     return (

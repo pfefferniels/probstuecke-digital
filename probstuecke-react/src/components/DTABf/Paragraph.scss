@@ -1,0 +1,19 @@
+.paragraph {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  text-align: justify;
+  position: relative;
+  line-height: 2;
+  text-indent: 2rem;
+
+  background-image: white;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: left;
+
+  &.withFacsimile:hover {
+    color: rgba(0,0,0,0);
+    background-image: var(--facsimile-image);
+  }
+}

@@ -2,7 +2,6 @@ import React from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import Option from '../Option'
-import HeaderContext from './HeaderContext'
 import './MetadataModal.scss'
 
 class MetadataModal extends React.Component {
@@ -42,11 +41,7 @@ class MetadataModal extends React.Component {
           </Modal.Header>
           <Modal.Body>
             <div className='teiMetadata'>
-              <HeaderContext.Consumer>
-                {(headerRef) => (
-                  <div dangerouslySetInnerHTML={{__html: headerRef.current.innerHTML}}/>
-                )}
-              </HeaderContext.Consumer>
+              {this.props.headerRef.current && <div dangerouslySetInnerHTML={{__html: this.props.headerRef.current.innerHTML}}/>}
             </div>
           </Modal.Body>
           <Modal.Footer>

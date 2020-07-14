@@ -1,5 +1,5 @@
 import React from 'react'
-import TextSettings from './TextSettings'
+import DisplaySettings from './DisplaySettings'
 
 class Glyph extends React.Component {
   state = {
@@ -23,7 +23,7 @@ class Glyph extends React.Component {
   render() {
     return (
       <span className='specialGlyph'>
-        <TextSettings.Consumer>
+        <DisplaySettings.Consumer>
           {(diplomatic) => {
             switch (this.state.type) {
               case 'long-s':
@@ -38,7 +38,7 @@ class Glyph extends React.Component {
                 return <span className='unknownGlyph'>{this.props.children}</span>
             }
           }}
-        </TextSettings.Consumer>
+        </DisplaySettings.Consumer>
       </span>
     )
   }
