@@ -1,15 +1,15 @@
 import React from 'react'
 import { Alert } from 'react-bootstrap'
 import { IIIFConsumer } from '../IIIF'
-import FacsimileSettings from './FacsimileSettings'
+import Settings from '../Settings'
 import './Paragraph.scss'
 
 const Paragraph = (props) => {
   const xmlId = props.teiDomElement.getAttribute('xml:id')
 
   return (
-    <FacsimileSettings.Consumer>
-      {(showFacsimile) => {
+    <Settings.Consumer>
+      {({showFacsimile}) => {
         if (xmlId && showFacsimile) {
           return (
             <IIIFConsumer>
@@ -27,7 +27,7 @@ const Paragraph = (props) => {
           return <div className='paragraph'>{props.children}</div>
         }
       }}
-    </FacsimileSettings.Consumer>
+    </Settings.Consumer>
   )
 }
 

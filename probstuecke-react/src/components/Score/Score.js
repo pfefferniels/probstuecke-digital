@@ -2,13 +2,15 @@ import React from 'react'
 import { scoreToolkit } from '../Verovio'
 import { Spinner } from 'react-bootstrap'
 import EventEmitter from '../EventEmitter'
-import FacsimileModal from './FacsimileModal'
+import Settings from '../Settings'
 import Option from '../Option'
 import './Score.scss'
 
 class Score extends React.Component {
+  static contextType = Settings
+
   state = {
-    diplomatic: false,
+    diplomatic: this.context.diplomatic,
     svg: null
   }
 
@@ -29,7 +31,7 @@ class Score extends React.Component {
     const meiData = await fetch(
       `/data/${this.props.mei}?` +
       `above=${this.stavesAbove}&` +
-      `modernClefs=${this.state.diplomatic ? 'off' : 'on'}&` +
+      `modernClefs=${this.context.diplomatic ? 'off' : 'on'}&` +
       `showAnnotationStaff=${this.embed ? 'on' : 'off'}`
       ).then(response => response.text())
 
@@ -71,16 +73,16 @@ class Score extends React.Component {
   }
 
   render() {
+    if (this.context.diplomatic != this.state.diplomatic) {
+      this.fetchScore()
+      this.setState({
+        diplomatic: this.context.diplomatic
+      })
+    }
+
     return (
       <>
         <div className='options'>
-          <FacsimileModal />
-          <Option toggle
-                  text={'D'}
-                  onClick={() => {
-                    this.state.diplomatic = !this.state.diplomatic
-                    this.fetchScore()
-                  }}/>
           <Option text={'+'}
                   onClick={this.addStaff}/>
           <Option text={'–'}
@@ -94,7 +96,7 @@ class Score extends React.Component {
           {
             this.state.svg
              ? <div ref={this.scoreViewRef}
-                    className={this.state.diplomatic ? 'diplomatic' : 'modernized'}
+                    className={this.context.diplomatic ? 'diplomatic' : 'modernized'}
                     id='score-view'
                     dangerouslySetInnerHTML={{__html: this.state.svg}}/>
              : <Spinner animation='grow'/>
@@ -105,4 +107,4 @@ class Score extends React.Component {
   }
 }
 
-export default Score;
+export default Score

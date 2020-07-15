@@ -8,8 +8,6 @@ import LinkToIndex from './LinkToIndex'
 import MusicExample from './MusicExample'
 import Overlay from './Overlay'
 import Glyph from './Glyph'
-import DisplaySettings from './DisplaySettings'
-import FacsimileSettings from './FacsimileSettings'
 import MetadataModal from './MetadataModal'
 import Paragraph from './Paragraph'
 import './DTABf.scss'
@@ -54,46 +52,26 @@ class DTABf extends React.Component {
       <>
         <div className='options'>
           <MetadataModal headerRef={this.headerRef}/>
-          <Option toggle
-                  icon={faImages}
-                  onClick={() => {
-                    this.setState({
-                      showFacsimile: !this.state.showFacsimile
-                    })
-                  }}/>
-          <Option toggle
-                  text={'D'}
-                  onClick={() => {
-                    this.setState({
-                      diplomatic: !this.state.diplomatic
-                    })
-                  }}/>
         </div>
 
-        <div className={this.state.diplomatic ? 'diplomatic' : 'modernized'}>
-          <DisplaySettings.Provider value={this.state.diplomatic}>
-            <FacsimileSettings.Provider value={this.state.showFacsimile}>
-              <TEIRender data={this.state.teiData} path={this.props.tei}>
-                <TEIRoute el='tei-p' component={Paragraph}/>
-                <TEIRoute el='tei-notatedmusic' component={MusicExample}/>
-                <TEIRoute el='tei-ref' component={Overlay}/>
-                <TEIRoute el='tei-teiheader'>
-                  <Header ref={this.headerRef}/>
-                </TEIRoute>
-                <TEIRoute el='tei-g' component={Glyph}/>
-                <TEIRoute el='tei-persname'>
-                  <LinkToIndex type='indexOfPersons'/>
-                </TEIRoute>
-                <TEIRoute el='tei-bibl'>
-                  <LinkToIndex type='bibliography'/>
-                </TEIRoute>
-                <TEIRoute el='tei-name'>
-                  <LinkToIndex type='indexOfMusicalWorks'/>
-                </TEIRoute>
-              </TEIRender>
-            </FacsimileSettings.Provider>
-          </DisplaySettings.Provider>
-        </div>
+        <TEIRender data={this.state.teiData} path={this.props.tei}>
+          <TEIRoute el='tei-p' component={Paragraph}/>
+          <TEIRoute el='tei-notatedmusic' component={MusicExample}/>
+          <TEIRoute el='tei-ref' component={Overlay}/>
+          <TEIRoute el='tei-teiheader'>
+            <Header ref={this.headerRef}/>
+          </TEIRoute>
+          <TEIRoute el='tei-g' component={Glyph}/>
+          <TEIRoute el='tei-persname'>
+            <LinkToIndex type='indexOfPersons'/>
+          </TEIRoute>
+          <TEIRoute el='tei-bibl'>
+            <LinkToIndex type='bibliography'/>
+          </TEIRoute>
+          <TEIRoute el='tei-name'>
+            <LinkToIndex type='indexOfMusicalWorks'/>
+          </TEIRoute>
+        </TEIRender>
       </>
     )
   }
