@@ -1,6 +1,6 @@
 import React from 'react'
 import path from 'path'
-import { useTranslation } from 'react-i18next'
+import { Translation } from 'react-i18next'
 import { Alert, Spinner } from 'react-bootstrap'
 import { exampleToolkit } from '../Verovio'
 import './MusicExample.scss'
@@ -11,9 +11,9 @@ class MusicExample extends React.Component {
   }
 
   async componentDidMount() {
-    let filename = this.props.teiDomElement.querySelector('tei-ptr').getAttribute('target')
-    let directory = path.dirname(this.props.teiPath)
-    let targetPath = `/data/${directory}/${filename}`
+    const filename = this.props.teiDomElement.querySelector('tei-ptr').getAttribute('target')
+    const directory = path.dirname(this.props.teiPath)
+    const targetPath = `/data/${directory}/${filename}`
     const meiData = await fetch(targetPath).then(response => response.text()).catch(error => this.setState({error}))
 
     exampleToolkit.setOptions({
@@ -22,14 +22,19 @@ class MusicExample extends React.Component {
       footer: 'none'
     })
     exampleToolkit.loadData(meiData)
-    let svg = exampleToolkit.renderToSVG(1)
+    const svg = exampleToolkit.renderToSVG(1)
     this.setState({meiData, svg: svg})
   }
 
   render() {
     if (this.state.error) {
-      const { t } = useTranslation()
-      return <Alert>{t('renderError')}</Alert>
+      return (
+        <Translation>
+          {(t, i18n) => (
+            <Alert>{t('renderError')}</Alert>
+          )}
+        </Translation>
+      )
     }
 
     return (
