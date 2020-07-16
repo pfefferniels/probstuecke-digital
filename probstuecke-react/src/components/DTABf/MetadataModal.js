@@ -6,8 +6,7 @@ import './MetadataModal.scss'
 
 class MetadataModal extends React.Component {
   state = {
-    show: false,
-    metadata: null
+    show: false
   }
 
   constructor(props) {
