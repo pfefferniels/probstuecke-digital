@@ -2,8 +2,6 @@ import React from 'react'
 import { Spinner } from 'react-bootstrap'
 import { TEIRender, TEIRoute } from 'react-teirouter'
 import CETEI from 'CETEIcean'
-import { faImages } from '@fortawesome/free-solid-svg-icons'
-import Option from '../Option'
 import LinkToIndex from './LinkToIndex'
 import MusicExample from './MusicExample'
 import Overlay from './Overlay'
@@ -30,8 +28,7 @@ const Header = React.forwardRef((props, ref) => (
 
 class DTABf extends React.Component {
   state = {
-    showFacsimile: false,
-    diplomatic: false
+    teiData: null
   }
 
   headerRef = React.createRef()

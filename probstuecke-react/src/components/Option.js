@@ -39,7 +39,6 @@ class Option extends React.Component {
                                              onClick={this._onClick}
                                              ref={this.props.ref}/>}
         {this.props.text && <span className={`optionText ${this.state.isActive ? 'active' : 'inactive'}`}
-                                  size='lg'
                                   onClick={this._onClick}
                                   ref={this.props.ref}>{this.props.text}</span>}
 
