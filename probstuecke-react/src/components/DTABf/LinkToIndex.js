@@ -1,26 +1,22 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-class LinkToIndex extends React.Component {
-  state = {
-    corresp: ''
+const LinkToIndex = (props) => {
+  const corresp = props.teiDomElement.getAttribute('corresp')
+
+  if (!corresp) {
+    return (
+      <span className='targetlessLink'>
+        {props.children}
+      </span>
+    )
   }
 
-  componentDidMount() {
-    this.setState({
-      corresp: this.props.teiDomElement.getAttribute('corresp')
-    })
-  }
-
-  render() {
-    return this.state.corresp ?
-        <Link to={`/${this.props.type}${this.state.corresp}`}>
-          {this.props.children}
-        </Link>
-      : <span className='targetlessLink'>
-          {this.props.children}
-        </span>
-  }
+  return (
+    <Link to={`/${props.type}${corresp}`}>
+      {props.children}
+    </Link>
+  )
 }
 
 export default LinkToIndex
