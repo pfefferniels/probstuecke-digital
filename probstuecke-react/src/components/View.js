@@ -1,9 +1,10 @@
 import React from 'react'
 import { Translation } from 'react-i18next'
-import { Spinner, Tabs, Tab, Container, Col, Row } from 'react-bootstrap'
+import { Alert, Spinner, Tabs, Tab, Container, Col, Row } from 'react-bootstrap'
 import { TOCConsumer } from './TOC'
 import Score from './Score/Score'
 import DTABf from './DTABf/DTABf'
+import P5 from './P5/P5'
 import {IIIFProvider} from './IIIF'
 import { faImages } from '@fortawesome/free-solid-svg-icons'
 import Option from './Option'
@@ -58,10 +59,22 @@ class View extends React.Component {
                                                       <Score key={`Score_${key}`}
                                                              mei={value.score}/>
                                                   </Col>}
-                                  {value.comments && <Col md={6}>
-                                                       <DTABf key={`Text_${key}`}
-                                                              tei={value.comments}/>
-                                                     </Col>}
+                                  {value.comments && (
+                                    <Col md={6}>
+                                      {(() => {
+                                        switch (value.format) {
+                                          case 'dtabf':
+                                            return <DTABf key={`Text_${key}`}
+                                                          tei={value.comments}/>
+                                          case 'p5':
+                                            return <P5 key={`Text_${key}`}
+                                                       tei={value.comments}/>
+                                          default:
+                                            return <Alert>No format specified</Alert>
+                                        }
+                                      })()}
+                                    </Col>
+                                  )}
                                 </Row>
                               </Container>
                             </Settings.Provider>

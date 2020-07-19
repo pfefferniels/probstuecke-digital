@@ -72,4 +72,4 @@ class EdiarumRegister extends React.Component {
   }
 }
 
-export default EdiarumRegister;
+export default EdiarumRegister

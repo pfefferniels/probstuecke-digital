@@ -1,0 +1,102 @@
+.p5 {
+  margin-left: 6rem;
+  margin-right: 6rem;
+
+  tei-head {
+    text-align: left;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  tei-p {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  tei-code, tei-tag {
+    background-color: #ededed;
+    font-family: monospace;
+  }
+
+  tei-tag::before {
+    content: '<';
+  }
+
+  tei-tag::after {
+    content: '>';
+  }
+
+  tei-u {
+    display: block;
+  }
+
+  tei-choice tei-sic {
+    display: none;
+  }
+
+  tei-unclear, tei-surplus, tei-vocal, tei-pause {
+    display: none;
+  }
+
+  tei-ptr[type='transposition-origin'] {
+    display: none;
+  }
+
+  tei-ptr[mimeType='audio/ogg'] {
+    display: none;
+  }
+
+  tei-q::before, tei-q::after {
+    content: '"';
+  }
+
+  tei-q[type='emph'] {
+    font-weight: bold;
+  }
+
+  *[rendition='#hidden'] {
+    display: none;
+  }
+
+  tei-incident {
+    display: block;
+    text-align: center;
+    font-style: italic;
+    margin: 1rem auto;
+    font-size: 0.8rem;
+  }
+
+  tei-supplied {
+    color: lightslategray;
+  }
+
+  tei-listPerson::before {
+    content: 'Persons';
+    text-decoration: underline;
+  }
+
+  tei-listPerson {
+    display: block;
+    text-align: center;
+    margin: 1rem auto;
+  }
+
+  tei-listPerson tei-person {
+    display: block;
+  }
+
+
+  tei-listPerson tei-person[role]::after {
+    content: ' (' attr(role) ')';
+  }
+
+  tei-title {
+    font-weight: bold;
+  }
+
+  tei-gap[reason='inaudible']::before {
+    content: '[inaudible]';
+    color: lightslategray;
+  }
+}

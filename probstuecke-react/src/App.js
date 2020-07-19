@@ -6,6 +6,7 @@ import Navigation from './components/Navigation'
 import View from './components/View'
 import Index from './components/Index'
 import Welcome from './components/Welcome'
+import P5 from './components/P5/P5'
 import './App.css'
 
 class App extends React.Component {
@@ -16,19 +17,23 @@ class App extends React.Component {
           <Suspense fallback={<Spinner animation='border' />}>
             <div className='App'>
               <Navigation />
-                <Switch>
-                  <Route path='/indexOfPersons'>
-                    <Index type='persons'/>
-                  </Route>
-                  <Route path='/bibliography'>
-                    <Index type='bibliography'/>
-                  </Route>
-                  <Route path='/indexOfMusicalWorks'>
-                    <Index type='musical-works'/>
-                  </Route>
-                  <Route path='/:piece' component={View} />
-                  <Route path='/' component={Welcome} />
-                </Switch>
+
+              <Switch>
+                <Route path='/indexOfPersons'>
+                  <Index type='persons'/>
+                </Route>
+                <Route path='/bibliography'>
+                  <Index type='bibliography'/>
+                </Route>
+                <Route path='/indexOfMusicalWorks'>
+                  <Index type='musical-works'/>
+                </Route>
+                <Route path='/guidelines'>
+                  <P5 tei='guidelines'/>
+                </Route>
+                <Route path='/:piece' component={View} />
+                <Route path='/' component={Welcome} />
+              </Switch>
             </div>
           </Suspense>
         </TOCProvider>

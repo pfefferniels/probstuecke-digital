@@ -73,7 +73,7 @@ class Score extends React.Component {
   }
 
   render() {
-    if (this.context.diplomatic != this.state.diplomatic) {
+    if (this.context.diplomatic !== this.state.diplomatic) {
       this.fetchScore()
       this.setState({
         diplomatic: this.context.diplomatic
