@@ -7,6 +7,11 @@ data.get('/toc', async function(req, res) {
   res.send(response.data);
 });
 
+data.get('/guidelines', async function(req, res) {
+  let response = await db.retrieve('guidelines/guidelines_en.xml');
+  res.send(response.data);
+});
+
 data.get('/indices/:file', async function(req,res) {
   let response = await db.retrieve(`indices/${req.params.file}`);
   res.send(response.data);
@@ -17,12 +22,12 @@ data.get('/:number/:author/:file', function(req, res) {
       number = req.params.number,
       author = req.params.author;
 
-  if (file.endsWith('.ogg')) {
-    let audioPath = [number,
-                     author,
-                     file].join('/');
+  if (file.endsWith('.ogg') || file.endsWith('.json')) {
+    let path = [number,
+                author,
+                file].join('/');
 
-    db.retrieveAsStream(audioPath)
+    db.retrieveAsStream(path)
       .then(response => {
         response.data.pipe(res);
       })
