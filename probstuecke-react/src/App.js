@@ -6,7 +6,7 @@ import Navigation from './components/Navigation'
 import View from './components/View'
 import Index from './components/Index'
 import Welcome from './components/Welcome'
-import P5 from './components/P5/P5'
+import P5 from './components/Text/P5/P5'
 import './App.css'
 
 class App extends React.Component {

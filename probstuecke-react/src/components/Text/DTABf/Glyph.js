@@ -1,5 +1,5 @@
 import React from 'react'
-import Settings from '../Settings'
+import Settings from '../../Settings'
 
 class Glyph extends React.Component {
   state = {

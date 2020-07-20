@@ -1,7 +1,7 @@
 import React from 'react'
 import { Alert } from 'react-bootstrap'
-import { IIIFConsumer } from '../IIIF'
-import Settings from '../Settings'
+import { IIIFConsumer } from '../../IIIF'
+import Settings from '../../Settings'
 import './Paragraph.scss'
 
 const Paragraph = (props) => {

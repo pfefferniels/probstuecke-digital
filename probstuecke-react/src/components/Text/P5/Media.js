@@ -1,5 +1,4 @@
 import React from 'react'
-import path from 'path'
 
 const Media = (props) => {
   if (!props.teiDomElement.hasAttribute('mimeType') ||

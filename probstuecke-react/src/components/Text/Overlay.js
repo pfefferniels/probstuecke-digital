@@ -64,14 +64,7 @@ class Overlay extends Component {
   }
 
   _onScoreIsReady(scoreView) {
-    if (!this.props.teiDomElement.hasAttribute('target')) {
-      this.setState({
-        isLoading: false
-      })
-      return;
-    }
-
-    const targets = this.props.teiDomElement.getAttribute('target').split(' ')
+    const targets = this.props.target.split(' ')
     targets.forEach(target => {
       let targetEl = scoreView.current.querySelector(target)
       if (!targetEl) {

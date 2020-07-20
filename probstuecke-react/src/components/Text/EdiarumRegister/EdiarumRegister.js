@@ -13,7 +13,6 @@ const EdiarumIdno = (props) => {
         &rarr; link to GND
       </Badge>
     </a>
-
   )
 }
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import EdiarumRegister from './EdiarumRegister/EdiarumRegister'
+import EdiarumRegister from './Text/EdiarumRegister/EdiarumRegister'
 
 const Index = (props) => (
   <div id='index'>

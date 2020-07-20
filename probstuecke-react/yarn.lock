@@ -1885,6 +1885,11 @@ CETEIcean@^1.2.0:
   resolved "https://registry.yarnpkg.com/CETEIcean/-/CETEIcean-1.2.0.tgz#09223f333a5a15c43b471e54f35a5d681f2b5c01"
   integrity sha512-Wma91icZPNkLEtxkVVyShK0ItFHUKtv47ZXPS4Zn1CMdtwgOrYiEb0eorrPAs36PlU8AlFiNczJqkE3MegbXYA==
 
+CETEIcean@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/CETEIcean/-/CETEIcean-1.2.1.tgz#e2d06efdd604e5dbb9d1dae79a7ef4a47ef0c26f"
+  integrity sha512-iIFjWGu/0YYr9W6bGWize1fBNsImenG4uMS8BIBS8H2hqPQ+EJEqWc1P/Q7ASTJBDgZ2X9akP6fv3paylMrNvA==
+
 abab@^2.0.0:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/abab/-/abab-2.0.3.tgz#623e2075e02eb2d3f2475e49f99c91846467907a"
@@ -9270,11 +9275,12 @@ react-scripts@3.4.1:
   optionalDependencies:
     fsevents "2.1.2"
 
-react-teirouter@1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/react-teirouter/-/react-teirouter-1.0.5.tgz#87c9a0b69bae6d26fd709cbce09346dc7e03219a"
-  integrity sha512-m9yZffU21zytOKl3dPIK08Wy0PPGf7Cd7hQuQMeY3AcX2OerLfJMHru296hycWDLn8ouIsQsCyra1cyV0pvY4w==
+react-teirouter@1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/react-teirouter/-/react-teirouter-1.0.9.tgz#da278ce4f7e352f45d3415fbe46ab00e5ff310cf"
+  integrity sha512-MiPRsjCJG1yWreHBPAQwsGaKV6sG18co1qqOWC8xWTKyw/Oc03tpQssv4U8YJ7blPPhWDy15FF7J4QjFK4fH1A==
   dependencies:
+    CETEIcean "^1.2.1"
     tiny-warning "^1.0.3"
 
 react-transition-group@^4.0.0:

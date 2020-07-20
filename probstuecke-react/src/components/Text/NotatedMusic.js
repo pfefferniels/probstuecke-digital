@@ -17,7 +17,10 @@ class NotatedMusic extends React.Component {
       })
     }
 
-    const meiData = await fetch(`${this.props.teiPath}/${filename}`).then(response => response.text()).catch(error => this.setState({error}))
+    const meiData = await
+        fetch(`${this.props.teiPath}/${filename}`)
+        .then(response => response.text())
+        .catch(error => this.setState({error}))
 
     exampleToolkit.setOptions({
       pageHeight: 60000,
