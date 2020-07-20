@@ -3,22 +3,26 @@ import path from 'path'
 import { Translation } from 'react-i18next'
 import { Alert, Spinner } from 'react-bootstrap'
 import { exampleToolkit } from '../Verovio'
-import './MusicExample.scss'
+import './NotatedMusic.scss'
 
-class MusicExample extends React.Component {
+class NotatedMusic extends React.Component {
   state = {
     error: false
   }
 
   async componentDidMount() {
     const filename = this.props.teiDomElement.querySelector('tei-ptr').getAttribute('target')
-    const directory = path.dirname(this.props.teiPath)
-    const targetPath = `/data/${directory}/${filename}`
-    const meiData = await fetch(targetPath).then(response => response.text()).catch(error => this.setState({error}))
+    if (!filename) {
+      this.setState({
+        error: true
+      })
+    }
+
+    const meiData = await fetch(`${this.props.teiPath}/${filename}`).then(response => response.text()).catch(error => this.setState({error}))
 
     exampleToolkit.setOptions({
       pageHeight: 60000,
-      adjustPageHeight: 1,
+      adjustPageHeight: true,
       footer: 'none'
     })
     exampleToolkit.loadData(meiData)
@@ -48,4 +52,4 @@ class MusicExample extends React.Component {
   }
 }
 
-export default MusicExample;
+export default NotatedMusic

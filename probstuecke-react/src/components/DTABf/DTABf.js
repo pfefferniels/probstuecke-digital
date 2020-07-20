@@ -1,9 +1,10 @@
 import React from 'react'
+import path from 'path'
 import { Spinner } from 'react-bootstrap'
 import { TEIRender, TEIRoute } from 'react-teirouter'
 import CETEI from 'CETEIcean'
 import LinkToIndex from './LinkToIndex'
-import MusicExample from './MusicExample'
+import NotatedMusic from './NotatedMusic'
 import Overlay from './Overlay'
 import Glyph from './Glyph'
 import MetadataModal from './MetadataModal'
@@ -51,9 +52,9 @@ class DTABf extends React.Component {
           <MetadataModal headerRef={this.headerRef}/>
         </div>
 
-        <TEIRender data={this.state.teiData} path={this.props.tei}>
+        <TEIRender data={this.state.teiData} path={`data/${path.dirname(this.props.tei)}`}>
           <TEIRoute el='tei-p' component={Paragraph}/>
-          <TEIRoute el='tei-notatedmusic' component={MusicExample}/>
+          <TEIRoute el='tei-notatedmusic' component={NotatedMusic}/>
           <TEIRoute el='tei-ref' component={Overlay}/>
           <TEIRoute el='tei-teiheader'>
             <Header ref={this.headerRef}/>
