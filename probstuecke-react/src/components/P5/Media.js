@@ -9,13 +9,11 @@ const Media = (props) => {
 
   const mimeType = props.teiDomElement.getAttribute('mimeType')
   const url = props.teiDomElement.getAttribute('url')
-  const directory = path.dirname(props.teiPath)
-  const dataPath = `/data/${directory}/${url}`
 
   if (mimeType.startsWith('audio/')) {
     return (
       <audio className='embeddedAudio' controls>
-        <source src={dataPath} type={mimeType}/>
+        <source src={`${props.teiPath}/${url}`} type={mimeType}/>
       </audio>
     )
   }

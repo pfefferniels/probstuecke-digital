@@ -1,5 +1,4 @@
 import React from 'react'
-import path from 'path'
 import { Translation } from 'react-i18next'
 import { Alert, Spinner } from 'react-bootstrap'
 import { exampleToolkit } from '../Verovio'

@@ -1,8 +1,5 @@
 import React from 'react'
-import path from 'path'
-import { Spinner } from 'react-bootstrap'
 import { TEIRender, TEIRoute } from 'react-teirouter'
-import CETEI from 'CETEIcean'
 import LinkToIndex from './LinkToIndex'
 import NotatedMusic from './NotatedMusic'
 import Overlay from './Overlay'
@@ -10,14 +7,6 @@ import Glyph from './Glyph'
 import MetadataModal from './MetadataModal'
 import Paragraph from './Paragraph'
 import './DTABf.scss'
-
-const teiToHtml = async (file) => {
-  const ct = new CETEI()
-  ct.addBehaviors({
-    'teiHeader': undefined
-  })
-  return ct.getHTML5(`/data/${file}`)
-}
 
 const Header = React.forwardRef((props, ref) => (
   <div hidden>
@@ -28,31 +17,16 @@ const Header = React.forwardRef((props, ref) => (
 ));
 
 class DTABf extends React.Component {
-  state = {
-    teiData: null
-  }
-
   headerRef = React.createRef()
 
-  async componentDidMount() {
-    const teiData = await teiToHtml(this.props.tei)
-    this.setState({
-      teiData
-    })
-  }
-
   render() {
-    if (!this.state.teiData) {
-      return <Spinner animation='grow'/>
-    }
-
     return (
       <>
         <div className='options'>
           <MetadataModal headerRef={this.headerRef}/>
         </div>
 
-        <TEIRender data={this.state.teiData} path={`data/${path.dirname(this.props.tei)}`}>
+        <TEIRender tei={`data/${this.props.tei}`}>
           <TEIRoute el='tei-p' component={Paragraph}/>
           <TEIRoute el='tei-notatedmusic' component={NotatedMusic}/>
           <TEIRoute el='tei-ref' component={Overlay}/>
@@ -75,4 +49,4 @@ class DTABf extends React.Component {
   }
 }
 
-export default DTABf;
+export default DTABf

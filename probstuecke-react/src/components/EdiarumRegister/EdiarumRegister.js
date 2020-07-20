@@ -1,18 +1,7 @@
 import React from 'react'
-import { Spinner, Badge, ListGroup } from 'react-bootstrap'
-import CETEI from 'CETEIcean'
+import { Badge, ListGroup } from 'react-bootstrap'
 import { TEIRoute, TEIRender } from 'react-teirouter'
 import './EdiarumRegister.scss'
-
-const teiToHtml = async (file) => {
-  const ct = new CETEI()
-  ct.addBehaviors({
-    handlers: {
-      'teiHeader': undefined
-    }
-  });
-  return ct.getHTML5(`/data/${file}`)
-}
 
 const EdiarumIdno = (props) => {
   const ref = props.teiDomElement.innerText
@@ -44,32 +33,16 @@ const EdiarumListItem = props => {
   )
 }
 
-class EdiarumRegister extends React.Component {
-  state = {}
-
-  async componentDidMount() {
-    const teiData = await teiToHtml(this.props.tei)
-    this.setState({
-      teiData
-    })
-  }
-
-  render() {
-    if (!this.state.teiData) {
-      return <Spinner animation='grow'/>
-    }
-
-    return (
-      <div className='ediarumRegister'>
-        <TEIRender data={this.state.teiData} path={this.props.tei}>
-          <TEIRoute el='tei-listperson' component={EdiarumList}/>
-          <TEIRoute el='tei-listbibl' component={EdiarumList}/>
-          <TEIRoute el='tei-person' component={EdiarumListItem}/>
-          <TEIRoute el='tei-bibl' component={EdiarumListItem}/>
-          <TEIRoute el='tei-idno' component={EdiarumIdno}/>
-        </TEIRender>
-      </div>)
-  }
-}
+const EdiarumRegister = (props) => (
+  <div className='ediarumRegister'>
+    <TEIRender tei={`data/${props.tei}`}>
+      <TEIRoute el='tei-listperson' component={EdiarumList}/>
+      <TEIRoute el='tei-listbibl' component={EdiarumList}/>
+      <TEIRoute el='tei-person' component={EdiarumListItem}/>
+      <TEIRoute el='tei-bibl' component={EdiarumListItem}/>
+      <TEIRoute el='tei-idno' component={EdiarumIdno}/>
+    </TEIRender>
+  </div>
+)
 
 export default EdiarumRegister
