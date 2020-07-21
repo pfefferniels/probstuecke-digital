@@ -1,7 +1,6 @@
 import React from 'react'
 import { scoreToolkit } from '../Verovio'
 import { Spinner } from 'react-bootstrap'
-import EventEmitter from '../EventEmitter'
 import Settings from '../Settings'
 import Option from '../Option'
 import './Score.scss'
@@ -16,7 +15,6 @@ class Score extends React.Component {
 
   stavesAbove = 0
   embed = false
-  scoreViewRef = React.createRef(null)
 
   async componentDidMount() {
     this.addStaff = this.addStaff.bind(this)
@@ -65,14 +63,11 @@ class Score extends React.Component {
   }
 
   componentDidUpdate() {
-    if (document.getElementById('score-view')) {
-      EventEmitter.dispatch('scoreIsReady', this.scoreViewRef)
-    } else {
-      console.error('This should not happen')
-    }
   }
 
   render() {
+    const {forwardedRef, ...rest} = this.props
+
     if (this.context.diplomatic !== this.state.diplomatic) {
       this.fetchScore()
       this.setState({
@@ -95,9 +90,9 @@ class Score extends React.Component {
         <div>
           {
             this.state.svg
-             ? <div ref={this.scoreViewRef}
+             ? <div ref={forwardedRef}
                     className={this.context.diplomatic ? 'diplomatic' : 'modernized'}
-                    id='score-view'
+                    id='scoreView'
                     dangerouslySetInnerHTML={{__html: this.state.svg}}/>
              : <Spinner animation='grow'/>
           }
@@ -107,4 +102,9 @@ class Score extends React.Component {
   }
 }
 
-export default Score
+const ScoreWithForwardRef = React.forwardRef((props, ref) => {
+  console.log('forwarding ref')
+  return <Score {...props} forwardedRef={ref} />
+})
+
+export default ScoreWithForwardRef

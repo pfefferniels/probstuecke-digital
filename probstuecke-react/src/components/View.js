@@ -1,5 +1,5 @@
 import React from 'react'
-import { Translation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { Alert, Spinner, Tabs, Tab, Container, Col, Row } from 'react-bootstrap'
 import { TOCConsumer } from './TOC'
 import Score from './Score/Score'
@@ -9,88 +9,76 @@ import {IIIFProvider} from './IIIF'
 import { faImages } from '@fortawesome/free-solid-svg-icons'
 import Option from './Option'
 import Settings from './Settings'
+import ScoreRef from './ScoreRef'
 
-class View extends React.Component {
-  state = {
-    diplomatic: false,
-    showFacsimile: false
-  }
+const View = (props) => {
+  const { t } = useTranslation()
+  const { piece } = props.match.params
 
-  render() {
-    const { piece } = this.props.match.params
+  const [diplomatic, setDiplomatic] = React.useState(false)
+  const [showFacsimile, setShowFacsimile] = React.useState(false)
+  const [scoreRef, setScoreRef] = React.useState(null)
 
-    return (
-      <TOCConsumer>
-        {(toc) => (
-          (!toc.ready) ? <Spinner animation='grow'/>
-                       :
-            <>
-              <div className='options'>
-                <Option toggle
-                        icon={faImages}
-                        onClick={() => {
-                          this.setState({
-                            showFacsimile: !this.state.showFacsimile
-                          })
-                        }}/>
-                <Option toggle
-                        text={'D'}
-                        onClick={() => {
-                          this.setState({
-                            diplomatic: !this.state.diplomatic
-                          })
-                        }}/>
-              </div>
+  return (
+    <TOCConsumer>
+      {(toc) => (
+        (!toc.ready) ? <Spinner animation='grow'/>
+                     :
+          <>
+            <div className='options'>
+              <Option toggle
+                      icon={faImages}
+                      onClick={() => {setShowFacsimile(!showFacsimile)}}/>
+              <Option toggle
+                      text={'D'}
+                      onClick={() => {setDiplomatic(!diplomatic)}}/>
+            </div>
 
-              <Translation>
-                {(t, {i18n}) => (
-                  <Tabs mountOnEnter={true}
-                        unmountOnExit={true}>
-                    {Object.entries(toc.data[piece].editions).map(([key,value],i) => (
-                      <Tab key={i} eventKey={key} title={t(key)}>
-                        <IIIFProvider iiif={value.iiif}>
-                          <div className={this.state.diplomatic ? 'diplomatic' : 'modernized'}>
-                            <Settings.Provider value={{
-                                diplomatic: this.state.diplomatic,
-                                showFacsimile: this.state.showFacsimile}}>
-                              <Container fluid>
-                                <Row>
-                                  {value.score && <Col md={6}>
-                                                      <Score key={`Score_${key}`}
-                                                             mei={value.score}/>
-                                                  </Col>}
-                                  {value.comments && (
-                                    <Col md={6}>
-                                      {(() => {
-                                        switch (value.format) {
-                                          case 'dtabf':
-                                            return <DTABf key={`Text_${key}`}
-                                                          tei={value.comments}/>
-                                          case 'p5':
-                                            return <P5 key={`Text_${key}`}
-                                                       tei={value.comments}/>
-                                          default:
-                                            return <Alert>No format specified</Alert>
-                                        }
-                                      })()}
-                                    </Col>
-                                  )}
-                                </Row>
-                              </Container>
-                            </Settings.Provider>
-                          </div>
-                        </IIIFProvider>
-                      </Tab>
-                    ))
-                    }
-                  </Tabs>
-                )}
-              </Translation>
-            </>
-          )}
-      </TOCConsumer>
-    )
-  }
+            <Tabs mountOnEnter={true}
+                  unmountOnExit={true}>
+              {Object.entries(toc.data[piece].editions).map(([key,value],i) => (
+                <Tab key={i} eventKey={key} title={t(key)}>
+                  <IIIFProvider iiif={value.iiif}>
+                    <div className={diplomatic ? 'diplomatic' : 'modernized'}>
+                      <Settings.Provider value={{diplomatic, showFacsimile}}>
+                        <Container fluid>
+                          <Row>
+                            {value.score && <Col md={6}>
+                                                <Score ref={(ref) => setScoreRef(ref)}
+                                                       key={`Score_${key}`}
+                                                       mei={value.score}/>
+                                            </Col>}
+                            {value.comments && (
+                              <Col md={6}>
+                                <ScoreRef.Provider value={scoreRef}>
+                                  {(() => {
+                                    switch (value.format) {
+                                      case 'dtabf':
+                                        return <DTABf key={`Text_${key}`}
+                                                      tei={value.comments}/>
+                                      case 'p5':
+                                        return <P5 key={`Text_${key}`}
+                                                   tei={value.comments}/>
+                                      default:
+                                        return <Alert>No format specified</Alert>
+                                    }
+                                  })()}
+                                </ScoreRef.Provider>
+                              </Col>
+                            )}
+                          </Row>
+                        </Container>
+                      </Settings.Provider>
+                    </div>
+                  </IIIFProvider>
+                </Tab>
+              ))
+              }
+            </Tabs>
+          </>
+        )}
+    </TOCConsumer>
+  )
 }
 
 export default View

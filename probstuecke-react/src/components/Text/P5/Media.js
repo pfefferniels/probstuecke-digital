@@ -11,7 +11,9 @@ const Media = (props) => {
 
   if (mimeType.startsWith('audio/')) {
     return (
-      <audio className='embeddedAudio' controls>
+      <audio className='embeddedAudio' style={{
+        display: 'block'
+      }} controls>
         <source src={`${props.teiPath}/${url}`} type={mimeType}/>
       </audio>
     )

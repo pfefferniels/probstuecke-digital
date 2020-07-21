@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { Spinner } from 'react-bootstrap'
-import EventEmitter from '../EventEmitter'
+import Settings from '../Settings'
+import ScoreRef from '../ScoreRef'
 import './Overlay.scss'
 
 const highlight = (domEl, scroll) => {
@@ -38,95 +39,53 @@ class SVGOverlay extends Component {
   }
 }
 
-class Overlay extends Component {
-  state = {
-    isLoading: false,
-    targets: []
-  }
-
-  scoreSubscription = null
-  connectedSVGOverlays = []
-  underlyingText = React.createRef()
-
-  componentDidMount() {
-    this._onScoreIsReady = this._onScoreIsReady.bind(this)
-    this._highlightTargets = this._highlightTargets.bind(this)
-
-    this.setState({
-      isLoading: true
-    })
-    this.scoreSubscription =
-      EventEmitter.subscribe('scoreIsReady', this._onScoreIsReady)
-  }
-
-  componentWillUnmount() {
-    this.scoreSubscription.cancel()
-  }
-
-  _onScoreIsReady(scoreView) {
-    const targets = this.props.target.split(' ')
-    targets.forEach(target => {
-      let targetEl = scoreView.current.querySelector(target)
-      if (!targetEl) {
-        console.warn('Overlay target', target, 'not found')
-      } else {
-        this.setState(prevState => ({
-          targets: [...prevState.targets, targetEl]
-        }))
-      }
-    })
-
-    this.setState({
-      isLoading: false
+const Overlay = (props) => {
+  const targets = props.target.split(' ')
+  const connectedSVGOverlays = []
+  const underlyingText = React.useRef()
+  const highlightTargets = (scroll) => {
+    connectedSVGOverlays.forEach(targetOverlay => {
+      if (targetOverlay) targetOverlay.highlight(scroll)
     })
   }
 
-  _highlightTargets(scroll) {
-    this.connectedSVGOverlays.forEach(targetOverlay => {
-      if (targetOverlay) {
-        targetOverlay.highlight(scroll)
-      }
-    })
-  }
+  React.useEffect(() => {
+    if (!underlyingText.current) return
 
-  componentDidUpdate() {
-    const underlyingText = this.underlyingText.current
-    if (!underlyingText) return
+    underlyingText.current.addEventListener('click', () => highlightTargets(true))
+    underlyingText.current.addEventListener('mouseover', () => highlightTargets(false))
+  })
 
-    underlyingText.addEventListener('click', () => this._highlightTargets(true))
-    underlyingText.addEventListener('mouseover', () => this._highlightTargets(false))
-  }
+  return (
+    <ScoreRef.Consumer>
+      {(scoreRef) => {
+        if (!scoreRef) return <Spinner animation='border'/>
 
-  render() {
-    const targets = this.state.targets
-    if (this.state.isLoading) {
-      return <Spinner animation='grow'/>
-    }
+        return (
+          <>
+            {
+              targets.map((target, i) => {
+                const targetEl = scoreRef.querySelector(target)
 
-    if (targets.length === 0) {
-      return (
-        <span className='targetlessOverlay' ref={this.underlyingText}>
-          {this.props.children}
-        </span>
-      )
-    }
+                if (!targetEl) return
 
-    return (
-      <>
-        {targets.map(target => (
-          ReactDOM.createPortal((
-            <SVGOverlay ref={node => this.connectedSVGOverlays.push(node)}
-                        target={target}
-                        onClick={() => highlight(this.underlyingText.current, true)}
-                        onHover={() => highlight(this.underlyingText.current, false)}/>),
-            target)
-         ))}
-        <span ref={this.underlyingText} className='overlay'>
-          {this.props.children}
-        </span>
-      </>
-    )
-  }
+                return ReactDOM.createPortal((
+                  <SVGOverlay ref={node => connectedSVGOverlays.push(node)}
+                              target={targetEl}
+                              onClick={() => highlight(underlyingText.current, true)}
+                              onHover={() => highlight(underlyingText.current, false)}/>),
+                  targetEl)
+              })
+            }
+
+            <span ref={underlyingText} className='overlay'>
+              {props.children}
+            </span>
+          </>
+        )
+      }}
+    </ScoreRef.Consumer>
+  )
 }
 
-export default Overlay;
+export default Overlay
