@@ -6,10 +6,14 @@ import ScoreRef from '../ScoreRef'
 import './Overlay.scss'
 
 const highlight = (domEl, scroll) => {
+  if (!domEl) return
+
   if (scroll) {
     domEl.scrollIntoView()
   }
-  domEl.addEventListener('animationend', () => domEl.classList.remove('blink'))
+  domEl.addEventListener('animationend', () => {
+    if (domEl) domEl.classList.remove('blink')
+  })
   domEl.classList.add('blink')
 }
 
@@ -66,7 +70,6 @@ const Overlay = (props) => {
             {
               targets.map((target, i) => {
                 const targetEl = scoreRef.querySelector(target)
-
                 if (!targetEl) return
 
                 return ReactDOM.createPortal((

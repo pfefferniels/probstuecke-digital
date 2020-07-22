@@ -18,6 +18,7 @@ const View = (props) => {
   const [diplomatic, setDiplomatic] = React.useState(false)
   const [showFacsimile, setShowFacsimile] = React.useState(false)
   const [scoreRef, setScoreRef] = React.useState(null)
+  const [dummy, setDummy] = React.useState(0)
 
   return (
     <TOCConsumer>
@@ -33,7 +34,6 @@ const View = (props) => {
                       text={'D'}
                       onClick={() => {setDiplomatic(!diplomatic)}}/>
             </div>
-
             <Tabs mountOnEnter={true}
                   unmountOnExit={true}>
               {Object.entries(toc.data[piece].editions).map(([key,value],i) => (
@@ -44,7 +44,10 @@ const View = (props) => {
                         <Container fluid>
                           <Row>
                             {value.score && <Col md={6}>
-                                                <Score ref={(ref) => setScoreRef(ref)}
+                                                <Score scoreDidUpdate={(scoreRef) => {
+                                                         setDummy(scoreRef.innerHTML.length)
+                                                         setScoreRef(scoreRef)
+                                                       }}
                                                        key={`Score_${key}`}
                                                        mei={value.score}/>
                                             </Col>}
