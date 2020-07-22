@@ -5,32 +5,18 @@ import Settings from '../Settings'
 import Option from '../Option'
 import './Score.scss'
 
-class Score extends React.Component {
-  static contextType = Settings
+const Score = (props) => {
+  const { diplomatic } = React.useContext(Settings)
+  const [svg, setSVG] = React.useState(null)
+  const [stavesAbove, setStavesAbove] = React.useState(0)
+  const [embed, setEmbed] = React.useState(false)
 
-  state = {
-    diplomatic: this.context.diplomatic,
-    svg: null
-  }
-
-  stavesAbove = 0
-  embed = false
-
-  async componentDidMount() {
-    this.addStaff = this.addStaff.bind(this)
-    this.removeStaff = this.removeStaff.bind(this)
-    this.toggleEmbedding = this.toggleEmbedding.bind(this)
-    this.fetchScore = this.fetchScore.bind(this)
-
-    this.fetchScore()
-  }
-
-  async fetchScore() {
+  const fetchScore = async () => {
     const meiData = await fetch(
-      `/data/${this.props.mei}?` +
-      `above=${this.stavesAbove}&` +
-      `modernClefs=${this.context.diplomatic ? 'off' : 'on'}&` +
-      `showAnnotationStaff=${this.embed ? 'on' : 'off'}`
+      `/data/${props.mei}?` +
+      `above=${stavesAbove}&` +
+      `modernClefs=${diplomatic ? 'off' : 'on'}&` +
+      `showAnnotationStaff=${embed ? 'on' : 'off'}`
       ).then(response => response.text())
 
     scoreToolkit.setOptions({
@@ -41,70 +27,37 @@ class Score extends React.Component {
     })
     scoreToolkit.loadData(meiData)
 
-    this.setState({
-      meiData,
-      svg: scoreToolkit.renderToSVG(1, {})
-    })
+    setSVG(scoreToolkit.renderToSVG(1, {}))
   }
 
-  addStaff() {
-    this.stavesAbove = this.stavesAbove + 1
-    this.fetchScore()
-  }
+  React.useEffect(() => { fetchScore() }, [diplomatic, stavesAbove, embed])
 
-  removeStaff() {
-    this.stavesAbove = this.stavesAbove - 1
-    this.fetchScore()
-  }
+  return (
+    <>
+      <div className='options'>
+        <Option text={'+'}
+                onClick={() => setStavesAbove(stavesAbove + 1)}/>
+        <Option text={'–'}
+                onClick={() => setStavesAbove(stavesAbove - 1)}/>
+        <Option toggle
+                text={'{}'}
+                onClick={() => setEmbed(!embed)}/>
+      </div>
 
-  toggleEmbedding() {
-    this.embed = !this.embed
-    this.fetchScore()
-  }
-
-  componentDidUpdate() {
-  }
-
-  render() {
-    const {forwardedRef, ...rest} = this.props
-
-    if (this.context.diplomatic !== this.state.diplomatic) {
-      this.fetchScore()
-      this.setState({
-        diplomatic: this.context.diplomatic
-      })
-    }
-
-    return (
-      <>
-        <div className='options'>
-          <Option text={'+'}
-                  onClick={this.addStaff}/>
-          <Option text={'–'}
-                  onClick={this.removeStaff}/>
-          <Option toggle
-                  text={'{}'}
-                  onClick={this.toggleEmbedding}/>
-        </div>
-
-        <div>
-          {
-            this.state.svg
-             ? <div ref={forwardedRef}
-                    className={this.context.diplomatic ? 'diplomatic' : 'modernized'}
-                    id='scoreView'
-                    dangerouslySetInnerHTML={{__html: this.state.svg}}/>
-             : <Spinner animation='grow'/>
-          }
-        </div>
-      </>
-    )
-  }
+      <div>
+        {
+          svg
+           ? <div ref={props.forwardedRef}
+                  className={diplomatic ? 'diplomatic' : 'modernized'}
+                  id='scoreView'
+                  dangerouslySetInnerHTML={{__html: svg}}/>
+           : <Spinner animation='grow'/>
+        }
+      </div>
+    </>
+  )
 }
 
-const ScoreWithForwardRef = React.forwardRef((props, ref) => {
-  console.log('forwarding ref')
+export default React.forwardRef((props, ref) => {
   return <Score {...props} forwardedRef={ref} />
 })
-
-export default ScoreWithForwardRef
