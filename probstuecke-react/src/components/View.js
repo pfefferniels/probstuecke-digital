@@ -9,7 +9,7 @@ import {IIIFProvider} from './IIIF'
 import { faImages } from '@fortawesome/free-solid-svg-icons'
 import Option from './Option'
 import Settings from './Settings'
-import ScoreRef from './ScoreRef'
+import ScoreContext from './ScoreContext'
 
 const View = (props) => {
   const { t } = useTranslation()
@@ -17,7 +17,7 @@ const View = (props) => {
 
   const [diplomatic, setDiplomatic] = React.useState(false)
   const [showFacsimile, setShowFacsimile] = React.useState(false)
-  const [scoreRef, setScoreRef] = React.useState(null)
+  const [scoreRef, setScoreContext] = React.useState(null)
   const [dummy, setDummy] = React.useState(0)
 
   return (
@@ -46,14 +46,14 @@ const View = (props) => {
                             {value.score && <Col md={6}>
                                                 <Score scoreDidUpdate={(scoreRef) => {
                                                          setDummy(scoreRef.innerHTML.length)
-                                                         setScoreRef(scoreRef)
+                                                         setScoreContext(scoreRef)
                                                        }}
                                                        key={`Score_${key}`}
                                                        mei={value.score}/>
                                             </Col>}
                             {value.comments && (
                               <Col md={6}>
-                                <ScoreRef.Provider value={scoreRef}>
+                                <ScoreContext.Provider value={scoreRef}>
                                   {(() => {
                                     switch (value.format) {
                                       case 'dtabf':
@@ -66,7 +66,7 @@ const View = (props) => {
                                         return <Alert>No format specified</Alert>
                                     }
                                   })()}
-                                </ScoreRef.Provider>
+                                </ScoreContext.Provider>
                               </Col>
                             )}
                           </Row>

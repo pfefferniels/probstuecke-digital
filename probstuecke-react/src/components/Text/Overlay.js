@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { Spinner } from 'react-bootstrap'
 import Settings from '../Settings'
-import ScoreRef from '../ScoreRef'
+import ScoreContext from '../ScoreContext'
 import './Overlay.scss'
 
 const highlight = (domEl, scroll) => {
@@ -61,7 +61,7 @@ const Overlay = (props) => {
   })
 
   return (
-    <ScoreRef.Consumer>
+    <ScoreContext.Consumer>
       {(scoreRef) => {
         if (!scoreRef) return <Spinner animation='border'/>
 
@@ -87,7 +87,7 @@ const Overlay = (props) => {
           </>
         )
       }}
-    </ScoreRef.Consumer>
+    </ScoreContext.Consumer>
   )
 }
 
