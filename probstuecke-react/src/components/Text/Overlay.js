@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { Spinner } from 'react-bootstrap'
+import Settings from '../Settings'
 import ScoreContext from '../ScoreContext'
 import './Overlay.scss'
 
@@ -43,10 +44,12 @@ class SVGOverlay extends Component {
 }
 
 const Overlay = (props) => {
+  const { showFacsimile } = React.useContext(Settings)
+  const scoreRef = React.useContext(ScoreContext)
+  const underlyingText = React.useRef()
   const targets = props.target.split(' ')
   const connectedSVGOverlays = []
-  const underlyingText = React.useRef()
-  const highlightTargets = (scroll) => {
+  const highlightTargets = scroll => {
     connectedSVGOverlays.forEach(targetOverlay => {
       if (targetOverlay) targetOverlay.highlight(scroll)
     })
@@ -59,34 +62,31 @@ const Overlay = (props) => {
     underlyingText.current.addEventListener('mouseover', () => highlightTargets(false))
   })
 
+  if (!scoreRef) return <Spinner animation='border'/>
+
+  // do not display overlays in facsimile mode
+  if (showFacsimile) return <span>{props.children}</span>
+
   return (
-    <ScoreContext.Consumer>
-      {(scoreRef) => {
-        if (!scoreRef) return <Spinner animation='border'/>
+    <>
+    {
+      targets.map((target, i) => {
+        const targetEl = scoreRef.querySelector(target)
+        if (!targetEl) return null
 
-        return (
-          <>
-            {
-              targets.map((target, i) => {
-                const targetEl = scoreRef.querySelector(target)
-                if (!targetEl) return null
+        return ReactDOM.createPortal((
+          <SVGOverlay ref={node => connectedSVGOverlays.push(node)}
+                      target={targetEl}
+                      onClick={() => highlight(underlyingText.current, true)}
+                      onHover={() => highlight(underlyingText.current, false)}/>),
+          targetEl)
+      })
+    }
 
-                return ReactDOM.createPortal((
-                  <SVGOverlay ref={node => connectedSVGOverlays.push(node)}
-                              target={targetEl}
-                              onClick={() => highlight(underlyingText.current, true)}
-                              onHover={() => highlight(underlyingText.current, false)}/>),
-                  targetEl)
-              })
-            }
-
-            <span ref={underlyingText} className='overlay'>
-              {props.children}
-            </span>
-          </>
-        )
-      }}
-    </ScoreContext.Consumer>
+    <span ref={underlyingText} className='overlay'>
+      {props.children}
+    </span>
+    </>
   )
 }
 
