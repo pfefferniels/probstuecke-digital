@@ -25,8 +25,9 @@ const StaffWithFacsimile = ({svgDomElement, children}) => {
   return (
     <g className='staff withFacsimile' ref={staffRef}>
       {(showFacsimile && hover && bbox && iiif.ready && iiif.data[measureId])
-        ? iiif.data[measureId].map(imageUrl => (
-            <image className='staffFacsimile'
+        ? iiif.data[measureId].map((imageUrl, i) => (
+            <image key={`facsimileFor${measureId}_${i}`}
+                   className='staffFacsimile'
                    x={bbox.x}
                    y={bbox.y}
                    width={bbox.width}
