@@ -28,11 +28,11 @@ const StaffWithFacsimile = ({svgDomElement, children}) => {
         ? iiif.data[measureId].map(imageUrl => (
             <image className='staffFacsimile'
                    x={bbox.x}
-                   y={bbox.y - bbox.height}
+                   y={bbox.y}
                    width={bbox.width}
                    height={bbox.height*2}
                    href={imageUrl}
-                   preserveAspectRatio='xMinYMin slice'/>))
+                   preserveAspectRatio='xMidYMin'/>))
         : children}
     </g>
   )
