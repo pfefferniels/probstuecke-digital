@@ -1,17 +1,14 @@
 import React, { useContext, useState, useRef, useEffect } from 'react'
-import ReactDOM from 'react-dom'
 import { scoreToolkit } from '../Verovio'
 import { Spinner } from 'react-bootstrap'
 import Settings from '../Settings'
-import { IIIF } from '../IIIF'
 import Option from '../Option'
 import { SVGRender, SVGRoute } from './SVGRender/SVGRouter'
 import StaffWithFacsimile from './StaffWithFacsimile'
 import './Score.scss'
 
 const Score = ({mei, scoreDidUpdate}) => {
-  const { diplomatic, showFacsimile } = useContext(Settings)
-  const iiif = useContext(IIIF)
+  const { diplomatic } = useContext(Settings)
   const [svg, setSVG] = useState(null)
   const [stavesAbove, setStavesAbove] = useState(0)
   const [embed, setEmbed] = useState(false)

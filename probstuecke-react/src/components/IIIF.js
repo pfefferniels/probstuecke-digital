@@ -1,5 +1,4 @@
 import React, { createContext } from 'react'
-import path from 'path'
 
 const IIIF = createContext()
 

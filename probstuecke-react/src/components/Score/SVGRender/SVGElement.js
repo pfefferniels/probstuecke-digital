@@ -4,7 +4,12 @@ import SVGRoutes from './SVGRoutes'
 const attrMapping = {
   'stroke-width': 'strokeWidth',
   'font-size': 'fontSize',
-  'font-family': 'fontFamily'
+  'font-family': 'fontFamily',
+  'font-style': 'fontStyle',
+  'xlink:href': 'xlinkHref',
+  'class': 'className',
+  'text-anchor': 'textAnchor',
+  'xmlns:xlink': 'xmlnsXlink'
 }
 
 const reactAttrFor = attrName => attrMapping[attrName] ? attrMapping[attrName] : attrName

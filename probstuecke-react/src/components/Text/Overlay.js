@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { Spinner } from 'react-bootstrap'
-import Settings from '../Settings'
 import ScoreContext from '../ScoreContext'
 import './Overlay.scss'
 
@@ -70,7 +69,7 @@ const Overlay = (props) => {
             {
               targets.map((target, i) => {
                 const targetEl = scoreRef.querySelector(target)
-                if (!targetEl) return
+                if (!targetEl) return null
 
                 return ReactDOM.createPortal((
                   <SVGOverlay ref={node => connectedSVGOverlays.push(node)}
