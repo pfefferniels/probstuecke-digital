@@ -15,5 +15,8 @@
   &.withFacsimile:hover {
     color: rgba(0,0,0,0);
     background-image: var(--facsimile-image);
+    background-position: top, bottom;
+    background-clip: border-box, content-box, border-box, border-box;
+    filter: grayscale(100%) brightness(160%) contrast(200%);
   }
 }

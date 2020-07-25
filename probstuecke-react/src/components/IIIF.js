@@ -1,7 +1,7 @@
 import React, { createContext } from 'react'
 import path from 'path'
 
-const { Provider, Consumer: IIIFConsumer } = createContext();
+const IIIF = createContext()
 
 class IIIFProvider extends React.Component {
   state = {
@@ -21,24 +21,24 @@ class IIIFProvider extends React.Component {
           // extract the X, Y, width and height from the annotation
           // if no region is given, we are dealing with full page annotation on a <pb>
           let xywhParam = 'full'
-          let xywhMatch = canvasUri.match(/#xywh=((\d)+,(\d)+,(\d)+,(\d)+)/)
+          const xywhMatch = canvasUri.match(/#xywh=((\d)+,(\d)+,(\d)+,(\d)+)/)
           if (xywhMatch) {
-            xywhParam = xywhMatch[1];
+            xywhParam = xywhMatch[1]
           }
 
           // extract the identifier from the annotation
-          let idMatch = canvasUri.match(/\/(bsb(\d)+)\//);
+          const idMatch = canvasUri.match(/\/(bsb(\d)+)\//)
           if (!idMatch) return acc
-          let identifier = idMatch[1];
+          const identifier = idMatch[1]
 
           // extract scan number
-          let scanMatch = canvasUri.match(/canvas\/((\d)+)/);
+          const scanMatch = canvasUri.match(/canvas\/((\d)+)/);
           if (!scanMatch) return acc
-          let scan = scanMatch[1].padStart(5, "0")
+          const scan = scanMatch[1].padStart(5, "0")
 
           // create an Image API URI from the given information
           // and from the user's choice.
-          let imageApiUri = [
+          const imageApiUri = [
             'https://api.digitale-sammlungen.de/iiif/image/v2',
             (identifier + '_' + scan),
             xywhParam,
@@ -46,7 +46,12 @@ class IIIFProvider extends React.Component {
             '0',
             'color.jpg'].join('/')
 
-          acc[path.basename(current['@id'])] = imageApiUri
+          // extract ID of the corresponding element in the TEI/MEI file
+          const elementId = current.resource['@id'].split('#').pop()
+
+          if (!acc[elementId]) acc[elementId] = [ imageApiUri ]
+          else acc[elementId].push(imageApiUri)
+
           return acc
         }, {})
 
@@ -65,12 +70,12 @@ class IIIFProvider extends React.Component {
 
   render () {
     return (
-      <Provider value={this.state}>{this.props.children}</Provider>
+      <IIIF.Provider value={this.state}>{this.props.children}</IIIF.Provider>
     )
   }
 }
 
 export {
-  IIIFProvider,
-  IIIFConsumer
+  IIIF,
+  IIIFProvider
 }

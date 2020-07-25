@@ -1,6 +1,6 @@
 import React from 'react'
 import { Alert } from 'react-bootstrap'
-import { IIIFConsumer } from '../../IIIF'
+import { IIIF } from '../../IIIF'
 import Settings from '../../Settings'
 import './Paragraph.scss'
 
@@ -12,17 +12,17 @@ const Paragraph = (props) => {
       {({showFacsimile}) => {
         if (xmlId && showFacsimile) {
           return (
-            <IIIFConsumer>
+            <IIIF.Consumer>
               {(iiif) => (
                iiif.ready ? <div className='paragraph withFacsimile'
                                  style={{
-                                   '--facsimile-image': `url(${iiif.data[xmlId]})`
+                                   '--facsimile-image': iiif.data[xmlId].map(url => `url(${url})`).join(',')
                                  }}>
                               {props.children}
                             </div>
                           : <Alert>IIIF not yet ready</Alert>
               )}
-            </IIIFConsumer>)
+            </IIIF.Consumer>)
         } else {
           return <div className='paragraph'>{props.children}</div>
         }

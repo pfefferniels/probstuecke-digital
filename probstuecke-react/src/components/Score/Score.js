@@ -1,21 +1,26 @@
-import React from 'react'
+import React, { useContext, useState, useRef, useEffect } from 'react'
+import ReactDOM from 'react-dom'
 import { scoreToolkit } from '../Verovio'
 import { Spinner } from 'react-bootstrap'
 import Settings from '../Settings'
+import { IIIF } from '../IIIF'
 import Option from '../Option'
+import { SVGRender, SVGRoute } from './SVGRender/SVGRouter'
+import StaffWithFacsimile from './StaffWithFacsimile'
 import './Score.scss'
 
-const Score = (props) => {
-  const { diplomatic } = React.useContext(Settings)
-  const scoreRef = React.useRef(null)
-  const [svg, setSVG] = React.useState(null)
-  const [stavesAbove, setStavesAbove] = React.useState(0)
-  const [embed, setEmbed] = React.useState(false)
+const Score = ({mei, scoreDidUpdate}) => {
+  const { diplomatic, showFacsimile } = useContext(Settings)
+  const iiif = useContext(IIIF)
+  const [svg, setSVG] = useState(null)
+  const [stavesAbove, setStavesAbove] = useState(0)
+  const [embed, setEmbed] = useState(false)
+  const scoreRef = useRef(null)
 
-  React.useEffect(() => {
+  useEffect(() => {
     const fetchScore = async () => {
       const meiData = await fetch(
-        `/data/${props.mei}?` +
+        `/data/${mei}?` +
         `above=${stavesAbove}&` +
         `modernClefs=${diplomatic ? 'off' : 'on'}&` +
         `showAnnotationStaff=${embed ? 'on' : 'off'}`
@@ -30,7 +35,7 @@ const Score = (props) => {
       scoreToolkit.loadData(meiData)
 
       setSVG(scoreToolkit.renderToSVG(1, {}))
-      props.scoreDidUpdate(scoreRef.current.querySelector('svg'))
+      scoreDidUpdate(scoreRef.current.querySelector('svg'))
     }
 
     fetchScore()
@@ -53,8 +58,11 @@ const Score = (props) => {
           svg
            ? <div ref={scoreRef}
                   className={diplomatic ? 'diplomatic' : 'modernized'}
-                  id='scoreView'
-                  dangerouslySetInnerHTML={{__html: svg}}/>
+                  id='scoreView'>
+               <SVGRender svg={svg}>
+                 <SVGRoute el='staff' component={StaffWithFacsimile}/>
+               </SVGRender>
+             </div>
            : <Spinner animation='grow'/>
         }
       </div>
