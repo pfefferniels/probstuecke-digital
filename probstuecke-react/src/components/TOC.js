@@ -1,6 +1,6 @@
 import React, { createContext } from 'react'
 
-const { Provider, Consumer: TOCConsumer } = createContext();
+const TOC = createContext();
 
 class TOCProvider extends React.Component {
   state = {
@@ -26,11 +26,11 @@ class TOCProvider extends React.Component {
   }
 
   render () {
-    return <Provider value={this.state}>{this.props.children}</Provider>
+    return <TOC.Provider value={this.state}>{this.props.children}</TOC.Provider>
   }
 }
 
 export {
   TOCProvider,
-  TOCConsumer
+  TOC
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Spinner, Navbar, Nav, NavDropdown, Form, FormControl } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { TOCConsumer } from './TOC'
+import { TOC } from './TOC'
 
 const Navigation = () => {
   const { t } = useTranslation()
@@ -17,7 +17,7 @@ const Navigation = () => {
         <Nav className="mr-auto">
           <Nav.Link href='/guidelines'>{t('editionGuidelines')}</Nav.Link>
           <NavDropdown title="Probstücke" id="basic-nav-dropdown">
-            <TOCConsumer>
+            <TOC.Consumer>
               {(toc) => (
                 (!toc.ready) ? <Spinner animation='grow'/>
                              : Object.keys(toc.data).map(key => (
@@ -26,7 +26,7 @@ const Navigation = () => {
                                </NavDropdown.Item>
                              ))
               )}
-            </TOCConsumer>
+            </TOC.Consumer>
           </NavDropdown>
           <NavDropdown title={t('indices')}>
             <NavDropdown.Item key='indexOfPersons'>

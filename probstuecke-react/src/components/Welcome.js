@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { CardColumns, Card, Spinner } from 'react-bootstrap'
 import { incipitToolkit } from './Verovio'
-import { TOCConsumer } from './TOC'
+import { TOC } from './TOC'
 import './Welcome.scss'
 
 class Incipit extends React.Component {
@@ -34,6 +34,7 @@ class Incipit extends React.Component {
 
 const Welcome = (props) => {
   const { t } = useTranslation()
+  const toc = useContext(TOC)
 
   return (
     <div id='welcome'>
@@ -43,33 +44,29 @@ const Welcome = (props) => {
         </p>
       </header>
 
-      <TOCConsumer>
-        {(toc) => (
-          (!toc.ready) ? <Spinner animation='grow'/>
-                       :
-            <CardColumns>
-              {Object.entries(toc.data).map(([key,value], i) => (
-                <Card key={i} style={{width: '25rem'}}>
-                  <Card.Body>
-                    <Card.Title>
-                      <Link to={`/${key}`}>
-                        {key}
-                      </Link>
-                    </Card.Title>
-                    <div>
-                      {Object.keys(value.editions).map((key, i) => (
-                        <span className='contentEnum'
-                              key={i}>{t(key)}</span>
-                      ))}
-                    </div>
-                    <Incipit pae={value.incipit}/>
-                  </Card.Body>
-                </Card>
-                ))
-              }
-            </CardColumns>
-          )}
-      </TOCConsumer>
+      {(!toc.ready) ? <Spinner animation='grow'/>
+                   :
+        <CardColumns>
+          {Object.entries(toc.data).map(([key,value], i) => (
+            <Card key={i} style={{width: '25rem'}}>
+              <Card.Body>
+                <Card.Title>
+                  <Link to={`/${key}`}>
+                    {key}
+                  </Link>
+                </Card.Title>
+                <div>
+                  {Object.keys(value.editions).map((key, i) => (
+                    <span className='contentEnum'
+                          key={i}>{t(key)}</span>
+                  ))}
+                </div>
+                <Incipit pae={value.incipit}/>
+              </Card.Body>
+            </Card>
+            ))
+          }
+        </CardColumns>}
     </div>
   )
 }
