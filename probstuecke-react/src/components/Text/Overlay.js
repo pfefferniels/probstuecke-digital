@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useEffect, useContext, useRef } from 'react'
 import ReactDOM from 'react-dom'
 import { Spinner } from 'react-bootstrap'
 import Settings from '../Settings'
@@ -44,9 +44,9 @@ class SVGOverlay extends Component {
 }
 
 const Overlay = (props) => {
-  const { showFacsimile } = React.useContext(Settings)
-  const scoreRef = React.useContext(ScoreContext)
-  const underlyingText = React.useRef()
+  const { showFacsimile } = useContext(Settings)
+  const scoreRef = useContext(ScoreContext)
+  const underlyingText = useRef()
   const targets = props.target.split(' ')
   const connectedSVGOverlays = []
   const highlightTargets = scroll => {
@@ -55,12 +55,12 @@ const Overlay = (props) => {
     })
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!underlyingText.current) return
 
     underlyingText.current.addEventListener('click', () => highlightTargets(true))
     underlyingText.current.addEventListener('mouseover', () => highlightTargets(false))
-  })
+  }, [underlyingText])
 
   if (!scoreRef) return <Spinner animation='border'/>
 

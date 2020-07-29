@@ -3,8 +3,8 @@ import { scoreToolkit } from '../Verovio'
 import { Spinner } from 'react-bootstrap'
 import Settings from '../Settings'
 import Option from '../Option'
-import { SVGRender, SVGRoute } from './SVGRender/SVGRouter'
-import StaffWithFacsimile from './StaffWithFacsimile'
+import { SVGRouter, SVGRoute } from './SVGRouter'
+import MeasureFacsimile from './MeasureFacsimile'
 import './Score.scss'
 
 const Score = ({mei, scoreDidUpdate}) => {
@@ -56,9 +56,9 @@ const Score = ({mei, scoreDidUpdate}) => {
            ? <div ref={scoreRef}
                   className={diplomatic ? 'diplomatic' : 'modernized'}
                   id='scoreView'>
-               <SVGRender svg={svg}>
-                 <SVGRoute el='staff' component={StaffWithFacsimile}/>
-               </SVGRender>
+               <SVGRouter svg={svg}>
+                 <SVGRoute for='.staff' component={MeasureFacsimile}/>
+               </SVGRouter>
              </div>
            : <Spinner animation='grow'/>
         }

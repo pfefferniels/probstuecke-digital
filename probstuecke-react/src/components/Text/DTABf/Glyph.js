@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import Settings from '../../Settings'
 
 const Glyph = ({teiDomElement, children}) => {
