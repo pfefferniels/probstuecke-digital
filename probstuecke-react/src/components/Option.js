@@ -1,51 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './Option.scss'
 
-class Option extends React.Component {
-  state = {
-    toggle: false,
-    isActive: false
+const Option = props => {
+  const [active, setActive] = useState(false)
+
+  const _onClick = () => {
+    if (props.toggle) setActive(!active)
+    props.onClick()
   }
 
-  constructor(props) {
-    super(props)
-    this._onClick = this._onClick.bind(this)
-  }
+  return (
+    <>
+      {props.icon && <FontAwesomeIcon className={`optionIcon ${active ? 'active' : 'inactive'}`}
+                                      icon={props.icon}
+                                      size='lg'
+                                      onClick={_onClick}
+                                      ref={props.ref}/>}
+      {props.text && <span className={`optionText ${active ? 'active' : 'inactive'}`}
+                           onClick={_onClick}
+                           ref={props.ref}>{props.text}</span>}
 
-  componentDidMount() {
-    if (this.props.toggle) {
-      this.setState({
-        toggle: true
-      })
-    }
-  }
-
-  _onClick() {
-    if (this.state.toggle) {
-      this.setState({
-        isActive: !this.state.isActive
-      })
-    }
-    this.props.onClick()
-  }
-
-  render() {
-    return (
-      <>
-        {this.props.icon && <FontAwesomeIcon className={`optionIcon ${this.state.isActive ? 'active' : 'inactive'}`}
-                                             icon={this.props.icon}
-                                             size='lg'
-                                             onClick={this._onClick}
-                                             ref={this.props.ref}/>}
-        {this.props.text && <span className={`optionText ${this.state.isActive ? 'active' : 'inactive'}`}
-                                  onClick={this._onClick}
-                                  ref={this.props.ref}>{this.props.text}</span>}
-
-        {this.props.children}
-      </>
-    )
-  }
+      {props.children}
+    </>
+  )
 }
 
 export default Option

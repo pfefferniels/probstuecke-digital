@@ -32,7 +32,7 @@ const SVGRouter = props => {
 
       targets.forEach(target => {
         if (!route.props.component) return
-        let reactChild =
+
         preparedPortals.push(
           ReactDOM.createPortal(
             React.createElement(route.props.component,

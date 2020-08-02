@@ -21,10 +21,10 @@ const Navigation = () => {
               {(toc) => (
                 (!toc.ready) ? <Spinner animation='grow'/>
                              : Object.keys(toc.data).map(key => (
-                               <NavDropdown.Item>
-                                 <Link to={`/${key}`}>{key}</Link>
-                               </NavDropdown.Item>
-                             ))
+                                <NavDropdown.Item>
+                                  <Link to={`/${key}`}>{key}</Link>
+                                </NavDropdown.Item>
+                               ))
               )}
             </TOC.Consumer>
           </NavDropdown>
