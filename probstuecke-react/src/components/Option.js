@@ -7,7 +7,7 @@ const Option = props => {
 
   const _onClick = () => {
     if (props.toggle) setActive(!active)
-    props.onClick()
+    if (props.onClick) props.onClick()
   }
 
   return (

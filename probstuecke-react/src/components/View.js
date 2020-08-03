@@ -36,8 +36,8 @@ const View = ({match}) => {
 
       <Tabs mountOnEnter={true}
             unmountOnExit={true}>
-        {Object.entries(toc.data[piece].editions).map(([key,value],i) => (
-          <Tab key={i} eventKey={key} title={t(key)}>
+        {Object.entries(toc.data[piece].editions).map(([key,value]) => (
+          <Tab key={`Tab_${key}`} eventKey={key} title={t(key)}>
             <IIIFProvider iiif={value.iiif}>
               <div className={diplomatic ? 'diplomatic' : 'modernized'}>
                 <Settings.Provider value={{diplomatic, showFacsimile}}>

@@ -1,15 +1,18 @@
 import React, { useContext, useState, useRef, useEffect } from 'react'
 import { scoreToolkit } from '../Verovio'
 import { Spinner } from 'react-bootstrap'
+import { faFilePdf } from '@fortawesome/free-solid-svg-icons'
 import Settings from '../Settings'
 import Option from '../Option'
 import { SVGRouter, SVGRoute } from './SVGRouter'
 import MeasureFacsimile from './MeasureFacsimile'
+import generatePDF from './PDFExport'
 import './Score.scss'
 
 const Score = ({mei, scoreDidUpdate}) => {
   const { diplomatic } = useContext(Settings)
   const [svg, setSVG] = useState(null)
+  const [meiData, setMEIData] = useState(null)
   const [stavesAbove, setStavesAbove] = useState(0)
   const [embed, setEmbed] = useState(false)
   const scoreRef = useRef(null)
@@ -22,6 +25,7 @@ const Score = ({mei, scoreDidUpdate}) => {
         `modernClefs=${diplomatic ? 'off' : 'on'}&` +
         `showAnnotationStaff=${embed ? 'on' : 'off'}`
         ).then(response => response.text())
+      setMEIData(meiData)
 
       scoreToolkit.setOptions({
         svgViewBox: true,
@@ -48,6 +52,8 @@ const Score = ({mei, scoreDidUpdate}) => {
         <Option toggle
                 text={'{}'}
                 onClick={() => setEmbed(!embed)}/>
+        <Option icon={faFilePdf}
+                onClick={() => generatePDF(meiData)}/>
       </div>
 
       <div>
