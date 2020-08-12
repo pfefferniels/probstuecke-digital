@@ -15,16 +15,20 @@ const MeasureFacsimile = ({svgDomElement}) => {
   if (showFacsimile && hover && iiif.ready && iiif.data[measureId]) {
     return (
       <g className='measureFacsimile'>
-        {iiif.data[measureId].map((imageUrl, i) => (
-          <image key={`facsimileFor${measureId}_${i}`}
-                 className='staffFacsimile'
-                 x={bbox.x}
-                 y={bbox.y}
-                 width={bbox.width}
-                 height={bbox.height*2}
-                 href={imageUrl}
-                 preserveAspectRatio='xMidYMin'/>))
-        }
+        {iiif.data[measureId].map((imageUrl, i) => {
+            const width = bbox.width / iiif.data[measureId].length
+
+            return (
+              <image key={`facsimileFor${measureId}_${i}`}
+                     className='staffFacsimile'
+                     x={bbox.x + width*i}
+                     y={bbox.y}
+                     width={width}
+                     height={bbox.height*2}
+                     href={imageUrl}
+                     preserveAspectRatio='xMidYMin'/>
+                 )
+          })}
       </g>
     )
   }
