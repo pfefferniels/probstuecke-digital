@@ -1,10 +1,7 @@
 import React from 'react'
 import { TEIRoute, TEIRender } from 'react-teirouter'
+import { Header, MetadataModal, NotatedMusic, Reference } from '..'
 import Media from './Media'
-import MetadataModal from '../MetadataModal'
-import Header from '../Header'
-import Reference from '../Reference'
-import NotatedMusic from '../NotatedMusic'
 import './P5.scss'
 
 const P5 = (props) => {
