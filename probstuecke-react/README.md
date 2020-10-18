@@ -1,1 +1,1 @@
-This is the client web application for [Probstücke Digital](https://github.com/pfefferniels/probstuecke-digital), built with React.js.
+This is an experimental viewer for [Probstücke Digital](https://github.com/pfefferniels/probstuecke-digital), built on React.js. You can see a demonstration [here](https://master.d1qvv5zeypw99.amplifyapp.com/)
