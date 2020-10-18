@@ -7,6 +7,8 @@ import Settings from '../Settings'
 import Option from '../Option'
 import { SVGRouter, SVGRoute } from './SVGRouter'
 import MeasureFacsimile from './MeasureFacsimile'
+import MeterSignature from './MeterSignature'
+import KeySignature from './KeySignature'
 import generatePDF from './PDFExport'
 import './Score.scss'
 
@@ -21,13 +23,13 @@ const Score = ({mei, scoreDidUpdate}) => {
   useEffect(() => {
     const fetchScore = async () => {
       try {
-        const meiData = await API.get('probstueckeBackend',
+        const meiData = await API.get(
+          'probstueckeBackend',
           `/load/data/${mei}?` +
           `above=${stavesAbove}&` +
           `modernClefs=${diplomatic ? 'off' : 'on'}&` +
           `showAnnotationStaff=${embed ? 'on' : 'off'}`,
-          { responseType: 'xml' }
-          )
+          { responseType: 'xml' })
         setMEIData(meiData)
 
         scoreToolkit.setOptions({
@@ -69,6 +71,8 @@ const Score = ({mei, scoreDidUpdate}) => {
                   className={diplomatic ? 'diplomatic' : 'modernized'}
                   id='scoreView'>
                <SVGRouter svg={svg}>
+                 <SVGRoute for='.meterSig' component={MeterSignature}/>
+                 <SVGRoute for='.keySig' component={KeySignature}/>
                  <SVGRoute for='.staff' component={MeasureFacsimile}/>
                </SVGRouter>
              </div>

@@ -60,7 +60,7 @@ const Overlay = (props) => {
 
     underlyingText.current.addEventListener('click', () => highlightTargets(true))
     underlyingText.current.addEventListener('mouseover', () => highlightTargets(false))
-  }, [underlyingText])
+  })
 
   if (!scoreRef) return <Spinner animation='border'/>
 

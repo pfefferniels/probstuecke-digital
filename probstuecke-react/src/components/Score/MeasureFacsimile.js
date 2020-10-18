@@ -3,14 +3,13 @@ import Settings from '../Settings'
 import { IIIF } from '../IIIF'
 import './MeasureFacsimile.scss'
 
-const MeasureFacsimile = ({svgDomElement}) => {
+const MeasureFacsimile = ({svgDomElement, bbox}) => {
   const { showFacsimile } = useContext(Settings)
   const iiif = useContext(IIIF)
   const [hover, setHover] = useState(false)
-  const bbox = svgDomElement.getBBox()
-  const measureId = svgDomElement.getAttribute('id')
   svgDomElement.addEventListener('mouseenter', () => setHover(true))
   svgDomElement.addEventListener('mouseleave', () => setHover(false))
+  const measureId = svgDomElement.getAttribute('id')
 
   if (showFacsimile && hover && iiif.ready && iiif.data[measureId]) {
     return (

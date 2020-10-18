@@ -27,7 +27,7 @@ const DTABf = (props) => {
     }
 
     fetchTEI()
-  }, [])
+  })
 
   if (!teiData) {
     return <Spinner animation='grow'/>

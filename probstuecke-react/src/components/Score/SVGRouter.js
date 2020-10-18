@@ -36,7 +36,8 @@ const SVGRouter = props => {
         preparedPortals.push(
           ReactDOM.createPortal(
             React.createElement(route.props.component,
-                                {svgDomElement: target}),
+                                {svgDomElement: target,
+                                 bbox: target.getBBox()}),
             target))
       })
     })

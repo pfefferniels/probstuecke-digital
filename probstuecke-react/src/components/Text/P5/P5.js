@@ -25,7 +25,7 @@ const P5 = (props) => {
     }
 
     fetchTEI()
-  }, [])
+  })
 
   if (!teiData) {
     return <Spinner animation='grow' />
