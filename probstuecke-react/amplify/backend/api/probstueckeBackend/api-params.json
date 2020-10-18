@@ -1,0 +1,35 @@
+{
+    "paths": [
+        {
+            "name": "/load",
+            "lambdaFunction": "load",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/load"
+        }
+    ],
+    "resourceName": "probstueckeBackend",
+    "apiName": "probstueckeBackend",
+    "functionArns": [
+        {
+            "lambdaFunction": "load"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-probstueckereact-dev-200057-authRole",
+        "unAuthRoleName": "amplify-probstueckereact-dev-200057-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "load",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}

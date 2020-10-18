@@ -1,4 +1,5 @@
 import React, { createContext } from 'react'
+import { API } from 'aws-amplify'
 
 const IIIF = createContext()
 
@@ -10,8 +11,7 @@ class IIIFProvider extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`data/${this.props.iiif}`)
-      .then(response => response.json())
+    API.get('probstueckeBackend', `/load/data/${this.props.iiif}`)
       .then(data => {
         var processed = {}
         processed = data.resources.reduce((acc, current) => {

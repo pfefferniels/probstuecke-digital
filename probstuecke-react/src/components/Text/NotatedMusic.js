@@ -1,4 +1,5 @@
 import React from 'react'
+import { API } from 'aws-amplify'
 import { Translation } from 'react-i18next'
 import { Alert, Spinner } from 'react-bootstrap'
 import { exampleToolkit } from '../Verovio'
@@ -18,8 +19,7 @@ class NotatedMusic extends React.Component {
     }
 
     const meiData = await
-        fetch(`${this.props.teiPath}/${filename}`)
-        .then(response => response.text())
+        API.get('probstueckeBackend', `/load/data/${this.props.teiPath}/${filename}`, {responseType: 'xml'})
         .catch(error => this.setState({error}))
 
     exampleToolkit.setOptions({
