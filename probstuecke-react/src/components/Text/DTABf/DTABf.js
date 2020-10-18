@@ -22,7 +22,7 @@ const DTABf = (props) => {
         )
         setTeiData(teiData)
       } catch (e) {
-        console.log('failed getting TEI: ', e)
+        console.log('failed fetching TEI: ', e)
       }
     }
 

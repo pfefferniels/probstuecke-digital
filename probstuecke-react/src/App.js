@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useState } from 'react'
+import React, { Suspense } from 'react'
 import { Spinner } from 'react-bootstrap'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import { TOCProvider } from './components/TOC'

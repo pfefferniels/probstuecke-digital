@@ -1,5 +1,5 @@
 import React, { useContext, useState, useRef, useEffect } from 'react'
-import Amplify, { API } from 'aws-amplify'
+import { API } from 'aws-amplify'
 import { scoreToolkit } from '../Verovio'
 import { Spinner } from 'react-bootstrap'
 import { faFilePdf } from '@fortawesome/free-solid-svg-icons'
