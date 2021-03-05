@@ -1,5 +1,5 @@
 import React, { useContext, useState, useRef, useEffect } from 'react'
-import { API } from 'aws-amplify'
+import { apiUrl } from '../../config.js'
 import { scoreToolkit } from '../Verovio'
 import { Spinner } from 'react-bootstrap'
 import { faFilePdf } from '@fortawesome/free-solid-svg-icons'
@@ -23,14 +23,14 @@ const Score = ({mei, scoreDidUpdate}) => {
   useEffect(() => {
     const fetchScore = async () => {
       try {
-        const meiData = await API.get(
-          'probstueckeBackend',
-          `/load/data/${mei}?` +
-          `above=${stavesAbove}&` +
+        const data = await fetch(
+          `${apiUrl}/mei/${mei}?` +
+          `stavesAbove=${stavesAbove}&` +
+          `stavesBelow=0&` +
           `modernClefs=${diplomatic ? 'off' : 'on'}&` +
-          `showAnnotationStaff=${embed ? 'on' : 'off'}`,
-          { responseType: 'xml' })
-        setMEIData(meiData)
+          `removeAnnotationStaff=${embed ? 'off' : 'on'}`)
+        const text = await data.text()
+        console.log(text)
 
         scoreToolkit.setOptions({
           svgViewBox: true,
@@ -38,9 +38,10 @@ const Score = ({mei, scoreDidUpdate}) => {
           pageHeight: 60000,
           footer: 'none'
         })
-        scoreToolkit.loadData(meiData)
+        scoreToolkit.loadData(text)
 
         setSVG(scoreToolkit.renderToSVG(1, {}))
+        setMEIData(text)
         scoreDidUpdate(scoreRef.current.querySelector('svg'))
       } catch (e) {
         console.log('error fetching MEI:', e)

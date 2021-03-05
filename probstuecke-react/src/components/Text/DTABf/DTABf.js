@@ -1,33 +1,32 @@
-import React, { useState, useRef, useEffect } from 'react'
-import { API } from 'aws-amplify'
+import React, { useState, useRef, useEffect, useContext } from 'react'
 import { TEIRender, TEIRoute } from 'react-teirouter'
 import { Spinner } from 'react-bootstrap'
 import { Header, LinkToIndex, MetadataModal, NotatedMusic, Reference } from '..'
+import { apiUrl } from '../../../config.js'
 import path from 'path'
-import Glyph from './Glyph'
 import Paragraph from './Paragraph'
+import Settings from '../../Settings'
 import './DTABf.scss'
 
-const DTABf = (props) => {
+const DTABf = props => {
   const headerRef = useRef()
-  const [teiData, setTeiData] = useState(null)
+  const [teiData, setTEIData] = useState(null)
+  const { diplomatic } = useContext(Settings)
 
   useEffect(() => {
     const fetchTEI = async () => {
       try {
-        const teiData = await API.get(
-          'probstueckeBackend',
-          `/load/data/${props.tei}`,
-          {responseType: 'xml'}
-        )
-        setTeiData(teiData)
+        console.log('fetching', `${apiUrl}/tei/${props.tei}?modernize=${diplomatic ? 0 : 1}`)
+        const data = await fetch(`${apiUrl}/tei/${props.tei}?modernize=${diplomatic ? 0 : 1}`)
+        const text = await data.text()
+        setTEIData(text)
       } catch (e) {
         console.log('failed fetching TEI: ', e)
       }
     }
 
     fetchTEI()
-  })
+  }, [diplomatic])
 
   if (!teiData) {
     return <Spinner animation='grow'/>
@@ -46,7 +45,6 @@ const DTABf = (props) => {
         <TEIRoute el='tei-teiheader'>
           <Header ref={headerRef}/>
         </TEIRoute>
-        <TEIRoute el='tei-g' component={Glyph}/>
         <TEIRoute el='tei-persname'>
           <LinkToIndex type='indexOfPersons'/>
         </TEIRoute>

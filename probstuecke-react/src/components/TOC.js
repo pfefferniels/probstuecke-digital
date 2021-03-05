@@ -1,33 +1,31 @@
-import React, { createContext } from 'react'
+import React, { createContext, useEffect, useState } from 'react'
+import { apiUrl } from '../config'
 
 const TOC = createContext();
 
-class TOCProvider extends React.Component {
-  state = {
-    data: null,
-    ready: false,
-    error: null
-  }
+const TOCProvider = props => {
+  const [data, setData] = useState(null)
+  const [ready, setReady] = useState(false)
+  const [error, setError] = useState(null)
 
-  componentDidMount() {
-    fetch('/toc.json')
-      .then(response => response.json())
-      .then(data => this.setState(prevState => ({
-        ...prevState,
-        data: data,
-        ready: true
-      })))
-      .catch(error => {
-        console.log(error)
-        this.setState({
-          error, ready: false
-        })
-      })
-  }
+  useEffect(() => {
+    async function fetchData () {
+      try {
+        const response = await fetch(`${apiUrl}/toc`);
+        const json = await response.json();
+        setData(json);
+        setReady(true)
+      } catch (error) {
+        console.error(error);
+        setError(error);
+        setReady(false);
+      }
+    }
 
-  render () {
-    return <TOC.Provider value={this.state}>{this.props.children}</TOC.Provider>
-  }
+    fetchData();
+  }, []);
+
+  return <TOC.Provider value={{data, ready, error}}>{props.children}</TOC.Provider>
 }
 
 export {

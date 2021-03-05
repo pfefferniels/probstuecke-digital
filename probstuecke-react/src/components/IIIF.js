@@ -1,19 +1,20 @@
-import React, { createContext } from 'react'
-import { API } from 'aws-amplify'
-
+import React, { createContext, useState, useEffect } from 'react'
+import { apiUrl } from '../config.js'
 const IIIF = createContext()
 
-class IIIFProvider extends React.Component {
-  state = {
-    data: null,
-    ready: false,
-    error: null
-  }
+const IIIFProvider = props => {
+  const [data, setData] = useState(null)
+  const [ready, setReady] = useState(false)
+  const [error, setError] = useState(null)
 
-  componentDidMount() {
-    API.get('probstueckeBackend', `/load/data/${this.props.iiif}`)
-      .then(data => {
-        var processed = {}
+  useEffect(() => {
+    const fetchIIIF = async () => {
+      try {
+        const response = await fetch(`/${apiUrl}/iiif/${props.iiif}`)
+        const data = await data.json()
+        console.log(data)
+
+        let processed = {}
         processed = data.resources.reduce((acc, current) => {
           const canvasUri = current.on
 
@@ -54,24 +55,21 @@ class IIIFProvider extends React.Component {
           return acc
         }, {})
 
-        this.setState({
-          data: processed,
-          ready: true
-        })
-      })
-      .catch(error => {
-        console.log(error)
-        this.setState({
-          error, ready: false
-        })
-      })
-  }
+        setData(processed)
+        setReady(true)
+      } catch (e) {
+        console.log('Error:', e)
+        setReady(false)
+        setError(true)
+      }
+    }
 
-  render () {
-    return (
-      <IIIF.Provider value={this.state}>{this.props.children}</IIIF.Provider>
-    )
-  }
+    fetchIIIF()
+  }, [])
+
+  return (
+    <IIIF.Provider value={{data, ready, error}}>{props.children}</IIIF.Provider>
+  )
 }
 
 export {

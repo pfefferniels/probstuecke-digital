@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 const Media = (props) => {
   if (!props.teiDomElement.hasAttribute('mimeType') ||
       !props.teiDomElement.hasAttribute('url')) {
-    return (null)
+    return null
   }
 
   const mimeType = props.teiDomElement.getAttribute('mimeType')
@@ -14,12 +14,12 @@ const Media = (props) => {
       <audio className='embeddedAudio' style={{
         display: 'block'
       }} controls>
-        <source src={`${props.teiPath}/${url}`} type={mimeType}/>
+        <source src={`${process.env.PUBLIC_URL}/${props.teiPath}/${url}`} type={mimeType}/>
       </audio>
     )
   }
 
-  return (null)
+  return null
 }
 
 export default Media

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { API } from 'aws-amplify'
 import { Spinner } from 'react-bootstrap'
 import { Badge, ListGroup } from 'react-bootstrap'
 import { TEIRoute, TEIRender } from 'react-teirouter'
+import { apiUrl } from '../../../config.js'
 import path from 'path'
 import './EdiarumRegister.scss'
 
-const EdiarumIdno = (props) => {
+const EdiarumIdno = props => {
   const ref = props.teiDomElement.innerText
   if (!ref) return <span>{props.teiDomElement.innerHTML}</span>
 
@@ -35,17 +35,15 @@ const EdiarumListItem = props => {
   )
 }
 
-const EdiarumRegister = (props) => {
+const EdiarumRegister = props => {
   const [teiData, setTeiData] = useState(null)
 
   useEffect(() => {
     const fetchTEI = async () => {
       try {
-        const data = await API.get(
-          'probstueckeBackend',
-          `/load/data/${props.tei}`,
-          {responseType: 'xml'})
-        setTeiData(data)
+        const data = await fetch(`${apiUrl}/${props.tei}`)
+        const text = await data.text()
+        setTeiData(text)
       } catch (e) {
         console.log('failed fetching TEI:', e)
       }

@@ -1,26 +1,24 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { API } from 'aws-amplify'
 import { TEIRoute, TEIRender } from 'react-teirouter'
 import { Spinner } from 'react-bootstrap'
 import path from 'path'
 import { Header, MetadataModal, NotatedMusic, Reference } from '..'
+import { apiUrl } from '../../../config.js'
 import Media from './Media'
 import './P5.scss'
 
-const P5 = (props) => {
+const P5 = props => {
   const headerRef = useRef()
   const [teiData, setTeiData] = useState(null)
 
   useEffect(() => {
     const fetchTEI = async () => {
       try {
-        const data = await API.get(
-          'probstueckeBackend',
-          `/load/data/${props.tei}`,
-          {responseType: 'xml'})
-        setTeiData(data)
+        const data = await fetch(`${apiUrl}/tei/${props.tei}`)
+        const text = await data.text()
+        setTeiData(text)
       } catch (e) {
-        console.log('failed fetching TEI:', e)
+        console.error('failed fetching TEI:', e)
       }
     }
 
