@@ -1,6 +1,6 @@
 xquery version "3.1";
 
-module namespace api = "http://dracor.org/ns/exist/api";
+module namespace api = "http://probstuecke-digital.de/ns/exist/api";
 
 declare namespace rest = "http://exquery.org/ns/restxq";
 declare namespace http = "http://expath.org/ns/http-client";
