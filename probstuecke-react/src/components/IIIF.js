@@ -10,8 +10,8 @@ const IIIFProvider = props => {
   useEffect(() => {
     const fetchIIIF = async () => {
       try {
-        const response = await fetch(`/${apiUrl}/iiif/${props.iiif}`)
-        const data = await data.json()
+        const response = await fetch(`${apiUrl}/iiif/${props.iiif}`)
+        const data = await response.json()
         console.log(data)
 
         let processed = {}
