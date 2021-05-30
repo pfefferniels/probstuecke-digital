@@ -11,7 +11,7 @@ import './App.css'
 
 const App = props => {
   return (
-    <HashRouter>
+    <HashRouter hashType="noslash">
       <TOCProvider>
         <Suspense fallback={<Spinner animation='border' />}>
           <div className='App'>
@@ -30,7 +30,7 @@ const App = props => {
               <Route path='/guidelines'>
                 <P5 tei='guidelines'/>
               </Route>
-              <Route path='/:piece' component={View} />
+              <Route path='/n:piece' component={View} />
               <Route path='/' component={Welcome} />
             </Switch>
           </div>
