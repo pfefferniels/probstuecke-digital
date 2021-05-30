@@ -1,6 +1,6 @@
-import {create} from 'apisauce';
-import {apiUrl} from './config';
+import { create } from 'apisauce'
+import { apiUrl } from './config'
 
-const api = create({baseURL: apiUrl});
+const api = create({baseURL: apiUrl})
 
-export default api;
+export default api

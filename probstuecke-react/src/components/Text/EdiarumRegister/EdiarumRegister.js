@@ -3,12 +3,20 @@ import { Spinner } from 'react-bootstrap'
 import { Badge, ListGroup } from 'react-bootstrap'
 import { TEIRoute, TEIRender } from 'react-teirouter'
 import { apiUrl } from '../../../config.js'
-import path from 'path'
 import './EdiarumRegister.scss'
+import CETEI from 'CETEIcean'
 
-const EdiarumIdno = props => {
-  const ref = props.teiDomElement.innerText
-  if (!ref) return <span>{props.teiDomElement.innerHTML}</span>
+const teiToHtml = async (file) => {
+  const ct = new CETEI()
+  ct.addBehaviors({
+    'teiHeader': undefined
+  })
+  return ct.getHTML5(file)
+}
+
+const EdiarumIdno = ({ teiNode }) => {
+  const ref = teiNode.innerText
+  if (!ref) return <span>{teiNode.innerHTML}</span>
 
   return (
     <a target='_blank' rel='noopener noreferrer' href={ref}>
@@ -19,18 +27,18 @@ const EdiarumIdno = props => {
   )
 }
 
-const EdiarumList = props => {
+const EdiarumList = ({ children }) => {
   return (
     <ListGroup variant='flush'>
-      {props.children}
+      {children}
     </ListGroup>
   )
 }
 
-const EdiarumListItem = props => {
+const EdiarumListItem = ({teiNode, children}) => {
   return (
-    <ListGroup.Item id={props.teiDomElement.getAttribute('xml:id')}>
-      {props.children}
+    <ListGroup.Item id={teiNode.getAttribute('xml:id')}>
+      {children}
     </ListGroup.Item>
   )
 }
@@ -41,9 +49,8 @@ const EdiarumRegister = props => {
   useEffect(() => {
     const fetchTEI = async () => {
       try {
-        const data = await fetch(`${apiUrl}/${props.tei}`)
-        const text = await data.text()
-        setTeiData(text)
+        const data = await teiToHtml(`${apiUrl}/${props.tei}`)
+        setTeiData(data)
       } catch (e) {
         console.log('failed fetching TEI:', e)
       }
@@ -58,7 +65,7 @@ const EdiarumRegister = props => {
 
   return (
     <div className='ediarumRegister'>
-      <TEIRender teiData={teiData} path={path.dirname(props.tei)}>
+      <TEIRender data={teiData}>
         <TEIRoute el='tei-listperson' component={EdiarumList}/>
         <TEIRoute el='tei-listbibl' component={EdiarumList}/>
         <TEIRoute el='tei-person' component={EdiarumListItem}/>

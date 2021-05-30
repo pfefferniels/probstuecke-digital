@@ -7,6 +7,15 @@ import path from 'path'
 import Paragraph from './Paragraph'
 import Settings from '../../Settings'
 import './DTABf.scss'
+import CETEI from 'CETEIcean'
+
+const teiToHtml = async (file) => {
+  const ct = new CETEI()
+  ct.addBehaviors({
+    'teiHeader': undefined
+  })
+  return ct.getHTML5(file)
+}
 
 const DTABf = props => {
   const headerRef = useRef()
@@ -16,17 +25,15 @@ const DTABf = props => {
   useEffect(() => {
     const fetchTEI = async () => {
       try {
-        console.log('fetching', `${apiUrl}/tei/${props.tei}?modernize=${diplomatic ? 0 : 1}`)
-        const data = await fetch(`${apiUrl}/tei/${props.tei}?modernize=${diplomatic ? 0 : 1}`)
-        const text = await data.text()
-        setTEIData(text)
+        const teiData = await teiToHtml(`${apiUrl}/tei/${props.tei}?modernize=${diplomatic ? 0 : 1}`)
+        setTEIData(teiData)
       } catch (e) {
         console.log('failed fetching TEI: ', e)
       }
     }
 
     fetchTEI()
-  }, [diplomatic])
+  }, [diplomatic, props.tei])
 
   if (!teiData) {
     return <Spinner animation='grow'/>
@@ -38,9 +45,11 @@ const DTABf = props => {
         <MetadataModal headerRef={headerRef}/>
       </div>
 
-      <TEIRender teiData={teiData} path={path.dirname(props.tei)}>
+      <TEIRender data={teiData} path={path.dirname(props.tei)}>
         <TEIRoute el='tei-p' component={Paragraph}/>
-        <TEIRoute el='tei-notatedmusic' component={NotatedMusic}/>
+        <TEIRoute el='tei-notatedmusic'>
+          <NotatedMusic path={path.dirname(props.tei)} />
+        </TEIRoute>
         <TEIRoute el='tei-ref' component={Reference}/>
         <TEIRoute el='tei-teiheader'>
           <Header ref={headerRef}/>

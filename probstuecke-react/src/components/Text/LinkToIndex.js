@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const LinkToIndex = (props) => {
-  const corresp = props.teiDomElement.getAttribute('corresp')
+  const corresp = props.teiNode.getAttribute('corresp')
 
   if (!corresp) {
     return (

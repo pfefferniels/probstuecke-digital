@@ -6,7 +6,7 @@ import './Paragraph.scss'
 
 const Paragraph = (props) => {
   const { showFacsimile } = useContext(Settings)
-  const xmlId = props.teiDomElement.getAttribute('xml:id')
+  const xmlId = props.teiNode.getAttribute('xml:id')
 
   if (xmlId && showFacsimile) {
     return (

@@ -6,17 +6,26 @@ import { Header, MetadataModal, NotatedMusic, Reference } from '..'
 import { apiUrl } from '../../../config.js'
 import Media from './Media'
 import './P5.scss'
+import CETEI from 'CETEIcean'
 
-const P5 = props => {
+const teiToHtml = async (file) => {
+  const ct = new CETEI()
+  ct.addBehaviors({
+    'teiHeader': undefined
+  })
+  return ct.getHTML5(file)
+}
+
+const P5 = ({tei}) => {
   const headerRef = useRef()
   const [teiData, setTeiData] = useState(null)
+  const teiPath = path.dirname(tei)
 
   useEffect(() => {
     const fetchTEI = async () => {
       try {
-        const data = await fetch(`${apiUrl}/tei/${props.tei}`)
-        const text = await data.text()
-        setTeiData(text)
+        const data = await teiToHtml(`${apiUrl}/tei/${tei}`)
+        setTeiData(data)
       } catch (e) {
         console.error('failed fetching TEI:', e)
       }
@@ -36,13 +45,17 @@ const P5 = props => {
       </div>
 
       <div className='p5'>
-        <TEIRender teiData={teiData} path={path.dirname(props.tei)}>
+        <TEIRender data={teiData}>
           <TEIRoute el='tei-teiheader'>
             <Header ref={headerRef}/>
           </TEIRoute>
-          <TEIRoute el='tei-media' component={Media}/>
+          <TEIRoute el='tei-media'>
+            <Media path={teiPath} />
+          </TEIRoute>
           <TEIRoute el='tei-ref' component={Reference}/>
-          <TEIRoute el='tei-notatedmusic' component={NotatedMusic}/>
+          <TEIRoute el='tei-notatedmusic'>
+            <NotatedMusic path={teiPath} />
+          </TEIRoute>
         </TEIRender>
       </div>
     </>

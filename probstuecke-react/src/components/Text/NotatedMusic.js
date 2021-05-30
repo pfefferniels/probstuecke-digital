@@ -5,12 +5,11 @@ import { exampleToolkit } from '../Verovio'
 import { apiUrl } from '../../config.js'
 import './NotatedMusic.scss'
 
-const NotatedMusic = props => {
+const NotatedMusic = ({ teiNode, path }) => {
   const [error, setError] = useState(false)
-  const [meiData, setMEIData] = useState(null)
   const [svg, setSVG] = useState(null)
 
-  const filename = props.teiDomElement.querySelector('tei-ptr').getAttribute('target')
+  const filename = teiNode.querySelector('tei-ptr').getAttribute('target')
   if (!filename) {
     setError(true)
   }
@@ -18,8 +17,7 @@ const NotatedMusic = props => {
   useEffect(() => {
     const fetchMEI = async () => {
       try {
-        console.log(`${apiUrl}/mei/${props.teiPath}/${filename}`)
-        const data = await fetch(`${apiUrl}/mei/${props.teiPath}/${filename}`)
+        const data = await fetch(`${apiUrl}/mei/${path}/${filename}`)
         const text = await data.text()
 
         exampleToolkit.setOptions({
@@ -29,7 +27,7 @@ const NotatedMusic = props => {
         })
         exampleToolkit.loadData(text)
         const svg = exampleToolkit.renderToSVG(1)
-        setMEIData(text)
+        //setMEIData(text)
         setSVG(svg)
       } catch (e) {
         console.log('failed fetching MEI: ', e)
@@ -38,7 +36,7 @@ const NotatedMusic = props => {
     }
 
     fetchMEI()
-  }, [])
+  })
 
   if (error) {
     return (
@@ -50,14 +48,13 @@ const NotatedMusic = props => {
     )
   }
 
+  if (!svg) {
+    return <Spinner animation='grow'/>
+  }
+
   return (
-    <div>
-      {
-        svg
-         ? <div className='notatedMusic' dangerouslySetInnerHTML={{__html: svg}}/>
-         : <Spinner animation='grow'/>
-      }
-    </div>)
+    <div className='notatedMusic' dangerouslySetInnerHTML={{__html: svg}}/>
+  )
 }
 
 export default NotatedMusic

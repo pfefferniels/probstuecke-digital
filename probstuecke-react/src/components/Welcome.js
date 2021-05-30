@@ -19,7 +19,7 @@ const Incipit = ({pae}) => {
     })
     incipitToolkit.loadData(pae)
     setSVG(incipitToolkit.renderToSVG(1))
-  }, [])
+  }, [pae])
 
   if (!svg) {
     return <Spinner animation='grow'/>

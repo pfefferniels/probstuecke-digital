@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 
 const Media = (props) => {
-  if (!props.teiDomElement.hasAttribute('mimeType') ||
-      !props.teiDomElement.hasAttribute('url')) {
+  if (!props.teiNode.hasAttribute('mimeType') ||
+      !props.teiNode.hasAttribute('url')) {
     return null
   }
 
-  const mimeType = props.teiDomElement.getAttribute('mimeType')
-  const url = props.teiDomElement.getAttribute('url')
+  const mimeType = props.teiNode.getAttribute('mimeType')
+  const url = props.teiNode.getAttribute('url')
 
   if (mimeType.startsWith('audio/')) {
     return (

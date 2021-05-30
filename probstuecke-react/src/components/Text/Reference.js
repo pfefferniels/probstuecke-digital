@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons'
 
 const Reference = (props) => {
-  const target = props.teiDomElement.getAttribute('target')
+  const target = props.teiNode.getAttribute('target')
 
   if (!target) {
     return (
