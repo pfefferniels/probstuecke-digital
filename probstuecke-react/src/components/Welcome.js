@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { CardColumns, Card, Spinner } from 'react-bootstrap'
@@ -6,12 +6,10 @@ import { incipitToolkit } from './Verovio'
 import { TOC } from './TOC'
 import './Welcome.scss'
 
-class Incipit extends React.Component {
-  state = {
-    svg: null
-  }
+const Incipit = ({pae}) => {
+  const [svg, setSVG] = useState(null)
 
-  componentDidMount() {
+  useEffect(() => {
     incipitToolkit.setOptions({
       from: 'pae',
       adjustPageWidth: true,
@@ -19,20 +17,21 @@ class Incipit extends React.Component {
       footer: 'none',
       svgViewBox: true
     })
-    incipitToolkit.loadData(this.props.pae)
-    const svg = incipitToolkit.renderToSVG(1)
-    this.setState({ svg })
+    incipitToolkit.loadData(pae)
+    setSVG(incipitToolkit.renderToSVG(1))
+  }, [])
+
+  if (!svg) {
+    return <Spinner animation='grow'/>
   }
 
-  render() {
-    return this.state.svg ? <div className='incipit'
-                                 dangerouslySetInnerHTML={{__html: this.state.svg}}/>
-                          : <Spinner animation='grow'/>
-  }
+  return (
+    <div className='incipit'
+         dangerouslySetInnerHTML={{__html: svg}}/>
+  )
 }
 
-
-const Welcome = (props) => {
+const Welcome = () => {
   const { t } = useTranslation()
   const toc = useContext(TOC)
 
@@ -45,7 +44,7 @@ const Welcome = (props) => {
       </header>
 
       {(!toc.ready) ? <Spinner animation='grow'/>
-                   :
+                    :
         <CardColumns>
           {Object.entries(toc.data).map(([key,value], i) => (
             <Card key={i} style={{width: '25rem'}}>
