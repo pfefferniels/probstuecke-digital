@@ -4,26 +4,29 @@ import { IIIF } from '../../IIIF'
 import Settings from '../../Settings'
 import './Paragraph.scss'
 
-const Paragraph = (props) => {
+const Paragraph = ({zones, teiNode, children}) => {
   const { showFacsimile } = useContext(Settings)
-  const xmlId = props.teiNode.getAttribute('xml:id')
+  const xmlId = teiNode.getAttribute('xml:id')
+  const facs = teiNode.getAttribute('facs')
 
-  if (xmlId && showFacsimile) {
-    return (
-      <IIIF.Consumer>
-        {(iiif) => (
-         iiif.ready ? <div className='paragraph withFacsimile'
-                           style={{
-                             '--facsimile-image': iiif.data[xmlId].map(url => `url(${url})`).join(',')
-                           }}>
-                        {props.children}
-                      </div>
-                    : <Alert>IIIF not yet ready</Alert>
-        )}
-      </IIIF.Consumer>)
+  let style = {}
+  let classNames = ['paragraph']
+
+  if (xmlId && facs && showFacsimile && zones) {
+    const matchingZones = zones.filter(item => item.id == facs.substr(1))
+    if (matchingZones.length > 0) {
+      classNames.push('withFacsimile')
+      style = {
+        '--facsimile-image': matchingZones.map(zone => `url(${zone.imageApiUrl})`).join(',')
+      }
+    }
   }
 
-  return <div className='paragraph'>{props.children}</div>
+  return (
+    <div className={classNames.join(' ')} style={style}>
+      {children}
+    </div>
+  )
 }
 
 export default Paragraph

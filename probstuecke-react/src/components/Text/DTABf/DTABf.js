@@ -3,6 +3,7 @@ import { TEIRender, TEIRoute } from 'react-teirouter'
 import { Spinner } from 'react-bootstrap'
 import { Header, LinkToIndex, MetadataModal, NotatedMusic, Reference } from '..'
 import { apiUrl } from '../../../config.js'
+import api from '../../../api'
 import path from 'path'
 import Paragraph from './Paragraph'
 import Settings from '../../Settings'
@@ -20,7 +21,8 @@ const teiToHtml = async (file) => {
 const DTABf = props => {
   const headerRef = useRef()
   const [teiData, setTEIData] = useState(null)
-  const { diplomatic } = useContext(Settings)
+  const [facsimileZones, setFacsimileZones] = useState(null)
+  const { diplomatic, showFacsimile } = useContext(Settings)
 
   useEffect(() => {
     const fetchTEI = async () => {
@@ -32,8 +34,20 @@ const DTABf = props => {
       }
     }
 
+    const fetchFacsimile = async () => {
+      api.get(`tei-facsimile/${props.tei}`)
+        .then(response => {
+          if (response.ok) {
+            setFacsimileZones(response.data.zones)
+          } else {
+            console.error(response.problem)
+          }
+        })
+    }
+
     fetchTEI()
-  }, [diplomatic, props.tei])
+    fetchFacsimile()
+  }, [diplomatic, showFacsimile, props.tei])
 
   if (!teiData) {
     return <Spinner animation='grow'/>
@@ -45,8 +59,10 @@ const DTABf = props => {
         <MetadataModal headerRef={headerRef}/>
       </div>
 
-      <TEIRender data={teiData} path={path.dirname(props.tei)}>
-        <TEIRoute el='tei-p' component={Paragraph}/>
+      <TEIRender data={teiData}>
+        <TEIRoute el='tei-p'>
+          <Paragraph zones={facsimileZones} />
+        </TEIRoute>
         <TEIRoute el='tei-notatedmusic'>
           <NotatedMusic path={path.dirname(props.tei)} />
         </TEIRoute>
