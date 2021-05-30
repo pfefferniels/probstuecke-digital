@@ -36,7 +36,7 @@ const NotatedMusic = ({ teiNode, path }) => {
     }
 
     fetchMEI()
-  })
+  }, [])
 
   if (error) {
     return (
