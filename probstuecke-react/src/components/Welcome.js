@@ -50,7 +50,7 @@ const Welcome = () => {
             <Card key={i} style={{width: '25rem'}}>
               <Card.Body>
                 <Card.Title>
-                  <Link to={`/${key}`}>
+                  <Link to={`/n${key}`}>
                     {key}
                   </Link>
                 </Card.Title>
