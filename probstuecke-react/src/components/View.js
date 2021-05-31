@@ -10,10 +10,11 @@ import { faImages } from '@fortawesome/free-solid-svg-icons'
 import Option from './Option'
 import Settings from './Settings'
 import ScoreContext from './ScoreContext'
+import { useParams } from 'react-router-dom'
 
-const View = ({match}) => {
+const View = () => {
   const { t } = useTranslation()
-  const { piece } = match.params
+  const { piece } = useParams()
 
   const toc = useContext(TOC)
   const [diplomatic, setDiplomatic] = useState(false)
@@ -38,7 +39,6 @@ const View = ({match}) => {
             unmountOnExit={true}>
         {Object.entries(toc.data[piece].editions).map(([key,value]) => (
           <Tab key={`Tab_${key}`} eventKey={key} title={t(key)}>
-            <IIIFProvider iiif={value.iiif}>
               <div className={diplomatic ? 'diplomatic' : 'modernized'}>
                 <Settings.Provider value={{diplomatic, showFacsimile}}>
                   <Container fluid>
@@ -69,7 +69,6 @@ const View = ({match}) => {
                   </Container>
                 </Settings.Provider>
               </div>
-            </IIIFProvider>
           </Tab>
         ))
         }
