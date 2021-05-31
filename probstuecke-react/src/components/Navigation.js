@@ -1,11 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Spinner, Navbar, Nav, NavDropdown, Form, FormControl } from 'react-bootstrap'
+import { Button, Spinner, Navbar, Nav, NavDropdown, Form, FormControl } from 'react-bootstrap'
+import { useHistory } from "react-router-dom"
 import { LinkContainer } from 'react-router-bootstrap'
 import { TOC } from './TOC'
 
 const Navigation = () => {
+  const [searchString, setSearchString] = useState('')
+  const history = useHistory()
   const { t } = useTranslation()
+
+  const handleChange = e => {
+    setSearchString(e.target.value)
+  }
+
+  const handleKey = e => {
+    if (e.key === 'Enter') {
+      history.push(`/search/${searchString}`)
+    }
+  }
 
   return (
       <Navbar>
@@ -44,7 +57,7 @@ const Navigation = () => {
           </NavDropdown>
         </Nav>
         <Form inline>
-          <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+          <FormControl type="text" placeholder="Search" className="mr-sm-2" onChange={handleChange} onKeyPress={handleKey}/>
         </Form>
       </Navbar.Collapse>
     </Navbar>
