@@ -1,5 +1,6 @@
 import React, { useContext, useState, useRef, useEffect } from 'react'
-import { apiUrl } from '../../config.js'
+import { apiUrl } from '../../config'
+import api from '../../api'
 import { scoreToolkit } from '../Verovio'
 import { Spinner } from 'react-bootstrap'
 import { faFilePdf } from '@fortawesome/free-solid-svg-icons'
@@ -18,6 +19,7 @@ const Score = ({mei, scoreDidUpdate}) => {
   const [meiData, setMEIData] = useState(null)
   const [stavesAbove, setStavesAbove] = useState(0)
   const [embed, setEmbed] = useState(false)
+  const [facsimileZones, setFacsimileZones] = useState(null)
   const scoreRef = useRef(null)
 
   useEffect(() => {
@@ -48,7 +50,19 @@ const Score = ({mei, scoreDidUpdate}) => {
       }
     }
 
+    const fetchFacsimile = async () => {
+      api.get(`mei-facsimile/${mei}`)
+        .then(response => {
+          if (response.ok) {
+            setFacsimileZones(response.data.zones)
+          } else {
+            console.error(response.problem)
+          }
+        })
+    }
+
     fetchScore()
+    fetchFacsimile()
   }, [diplomatic, stavesAbove, embed])
 
   return (
@@ -71,10 +85,12 @@ const Score = ({mei, scoreDidUpdate}) => {
            ? <div ref={scoreRef}
                   className={diplomatic ? 'diplomatic' : 'modernized'}
                   id='scoreView'>
-               <SVGRouter svg={svg}>
+               <SVGRouter svg={svg} childPropsChanged={!!facsimileZones}>
                  <SVGRoute for='.meterSig' component={MeterSignature}/>
                  <SVGRoute for='.keySig' component={KeySignature}/>
-                 <SVGRoute for='.staff' component={MeasureFacsimile}/>
+                 <SVGRoute for='.staff'>
+                   <MeasureFacsimile zones={facsimileZones}/>
+                  </SVGRoute>
                </SVGRouter>
              </div>
            : <Spinner animation='grow'/>

@@ -31,18 +31,32 @@ const SVGRouter = props => {
       if (!targets) return
 
       targets.forEach(target => {
-        if (!route.props.component) return
-
-        preparedPortals.push(
-          ReactDOM.createPortal(
-            React.createElement(route.props.component,
-                                {svgDomElement: target,
-                                 bbox: target.getBBox()}),
-            target))
+        if (route.props.component) {
+          preparedPortals.push(
+            ReactDOM.createPortal(
+              React.createElement(route.props.component,
+                                  {svgDomElement: target,
+                                   bbox: target.getBBox()}),
+              target))
+        } else {
+          React.Children.forEach(route.props.children, child => {
+            if (React.isValidElement(child)) {
+              preparedPortals.push(
+                ReactDOM.createPortal(
+                  React.cloneElement(child, {
+                    svgDomElement: target,
+                    bbox: target.getBBox()
+                  }),
+                  target))
+            }
+          })
+        }
       })
     })
     setPortals(preparedPortals)
-  }, [portals.length, props.children])
+  }, [portals.length, props.children, props.childPropsChanged])
+  // TODO observing childPropsChanged is a workaround for now.
+  // a better solution should be found.
 
   if (!props.svg) return <Spinner />
 
