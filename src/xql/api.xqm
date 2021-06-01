@@ -87,24 +87,6 @@ function api:toc() {
 };
 
 (:~
- : Guidelines
- :
- : Returns the TEI and MEI encoding guidelines.
- :
- : @result XML object
- :)
-declare
-  %rest:GET
-  %rest:path("/guidelines")
-  %rest:produces("application/xml")
-  %output:media-type("application/xml")
-  %output:method("xml")
-function api:guidelines() {
-    (api:enable_cors(),
-    doc("/db/apps/probstuecke-digital/encodings/guidelines/guidelines_en.xml"))
-};
-
-(:~
  : Indices
  :
  : Returns the TEI for a given index (musical works, persons ...)
@@ -153,6 +135,24 @@ function api:tei($number, $author, $file, $modernize) {
       (api:enable_cors(), $input)
     )
   )
+};
+
+(:~
+ : Guidelines
+ :
+ : Returns the TEI and MEI encoding guidelines.
+ :
+ : @result XML object
+ :)
+declare
+  %rest:GET
+  %rest:path("/tei/guidelines")
+  %rest:produces("application/xml")
+  %output:media-type("application/xml")
+  %output:method("xml")
+function api:guidelines() {
+    (api:enable_cors(),
+    doc("/db/apps/probstuecke-digital/encodings/guidelines/guidelines_en.xml"))
 };
 
 (:~
