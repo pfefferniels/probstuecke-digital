@@ -32,12 +32,12 @@ const Navigation = () => {
           <LinkContainer to='guidelines'>
             <Nav.Link>{t('editionGuidelines')}</Nav.Link>
           </LinkContainer>
-          <NavDropdown title="Probstücke" id="basic-nav-dropdown">
+          <NavDropdown title="Probstücke" id='basic-nav-dropdown'>
             <TOC.Consumer>
               {(toc) => (
                 (!toc.ready) ? <Spinner animation='grow'/>
                              : Object.keys(toc.data).map(key => (
-                                <LinkContainer to={`/n${key}`}>
+                                <LinkContainer key={`n${key}`} to={`/n${key}`}>
                                   <NavDropdown.Item>{key}</NavDropdown.Item>
                                 </LinkContainer>
                                ))
