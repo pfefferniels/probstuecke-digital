@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect } from 'react'
+import { Spinner } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import { apiUrl } from '../config'
 import './Search.scss'
@@ -22,14 +23,14 @@ const Search = () => {
   }, [q])
 
   if (!results) {
-    return <p>loading</p>
+    return <Spinner animation='grow' />
   }
 
   return (
-    <div>
+    <div id='searchResults'>
       {results.map((result) => {
         return (
-          <div id='searchResults'>
+          <div className='result'>
             <b className='title'>{result.title}</b>
             <p className='summary' dangerouslySetInnerHTML={{__html: result.summary}} />
           </div>

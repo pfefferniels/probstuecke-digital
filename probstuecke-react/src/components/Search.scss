@@ -1,12 +1,16 @@
 #searchResults {
-  .summary {
-    .hi {
-      font-weight: bold;
+  .result {
+    .summary {
+      .hi {
+        font-weight: bold;
+      }
+
+      .previous, .following {
+        color: gray;
+      }
     }
 
-    .previous, .following {
-      color: gray;
-    }
+    margin: 1rem;
   }
 
   margin: 2rem;
