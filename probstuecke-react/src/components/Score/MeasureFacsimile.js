@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react'
 import Settings from '../Settings'
-import { IIIF } from '../IIIF'
 import './MeasureFacsimile.scss'
 
 const MeasureFacsimile = ({zones, svgDomElement, bbox}) => {

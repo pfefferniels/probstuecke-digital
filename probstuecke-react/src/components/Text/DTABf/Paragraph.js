@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import { Alert } from 'react-bootstrap'
-import { IIIF } from '../../IIIF'
 import Settings from '../../Settings'
 import './Paragraph.scss'
 
