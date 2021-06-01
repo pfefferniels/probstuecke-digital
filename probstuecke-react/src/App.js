@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react'
 import { Spinner } from 'react-bootstrap'
 import { HashRouter, Switch, Route } from 'react-router-dom'
-import { TOCProvider } from './components/TOC'
+import { TOCProvider } from './providers/TOC'
 import APIErrorProvider from './providers/APIErrorProvider'
 import APIErrorNotification from './components/APIErrorNotification'
 import Navigation from './components/Navigation'

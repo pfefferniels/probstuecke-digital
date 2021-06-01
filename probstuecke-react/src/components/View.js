@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Alert, Spinner, Tabs, Tab, Container, Col, Row } from 'react-bootstrap'
-import { TOC } from './TOC'
+import { TOC } from './../providers/TOC'
 import Score from './Score/Score'
 import DTABf from './Text/DTABf/DTABf'
 import P5 from './Text/P5/P5'

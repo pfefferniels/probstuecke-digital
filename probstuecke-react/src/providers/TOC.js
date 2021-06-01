@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from 'react'
 import api from '../api'
 
-const TOC = createContext();
+const TOC = createContext()
 
 const TOCProvider = ({ children }) => {
   const [data, setData] = useState(null)

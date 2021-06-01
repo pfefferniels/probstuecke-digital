@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { CardColumns, Card, Spinner } from 'react-bootstrap'
 import { incipitToolkit } from './Verovio'
-import { TOC } from './TOC'
+import { TOC } from './../providers/TOC'
 import './Welcome.scss'
 
 const Incipit = ({pae}) => {

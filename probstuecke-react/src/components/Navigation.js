@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Button, Spinner, Navbar, Nav, NavDropdown, Form, FormControl } from 'react-bootstrap'
 import { useHistory } from "react-router-dom"
 import { LinkContainer } from 'react-router-bootstrap'
-import { TOC } from './TOC'
+import { TOC } from './../providers/TOC'
 
 const Navigation = () => {
   const [searchString, setSearchString] = useState('')
