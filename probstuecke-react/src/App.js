@@ -2,6 +2,8 @@ import React, { Suspense } from 'react'
 import { Spinner } from 'react-bootstrap'
 import { HashRouter, Switch, Route } from 'react-router-dom'
 import { TOCProvider } from './components/TOC'
+import APIErrorProvider from './providers/APIErrorProvider'
+import APIErrorNotification from './components/APIErrorNotification'
 import Navigation from './components/Navigation'
 import View from './components/View'
 import Index from './components/Index'
@@ -12,32 +14,35 @@ import './App.css'
 
 const App = props => (
   <HashRouter hashType="noslash">
-        <TOCProvider>
-          <Suspense fallback={<Spinner animation='border' />}>
-            <div className='App'>
-              <Navigation />
+    <APIErrorProvider>
+      <TOCProvider>
+        <Suspense fallback={<Spinner animation='border' />}>
+          <div className='App'>
+            <Navigation />
 
-              <Switch>
-                <Route path='/indexOfPersons'>
-                  <Index type='persons'/>
-                </Route>
-                <Route path='/bibliography'>
-                  <Index type='bibliography'/>
-                </Route>
-                <Route path='/indexOfMusicalWorks'>
-                  <Index type='musical-works'/>
-                </Route>
-                <Route path='/guidelines'>
-                  <P5 tei='guidelines'/>
-                </Route>
-                <Route path='/n:piece' component={View} />
-                <Route path='/search/:q' component={Search} />
-                <Route path='/' component={Welcome} />
-              </Switch>
-            </div>
-          </Suspense>
-        </TOCProvider>
-      </HashRouter>
+            <Switch>
+              <Route path='/indexOfPersons'>
+                <Index type='persons'/>
+              </Route>
+              <Route path='/bibliography'>
+                <Index type='bibliography'/>
+              </Route>
+              <Route path='/indexOfMusicalWorks'>
+                <Index type='musical-works'/>
+              </Route>
+              <Route path='/guidelines'>
+                <P5 tei='guidelines'/>
+              </Route>
+              <Route path='/n:piece' component={View} />
+              <Route path='/search/:q' component={Search} />
+              <Route path='/' component={Welcome} />
+            </Switch>
+          </div>
+        </Suspense>
+      </TOCProvider>
+      <APIErrorNotification />
+    </APIErrorProvider>
+  </HashRouter>
 )
 
 export default App
