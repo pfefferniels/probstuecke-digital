@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { Spinner } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
-import { apiUrl } from '../config'
+import { useTranslation } from 'react-i18next'
 import useAPIError from '../hooks/useAPIError'
+import { apiUrl } from '../config'
 import './Search.scss'
 
 const Search = () => {
   const [results, setResults] = useState(null)
   const [ready, setReady] = useState(false)
   const { q } = useParams()
+  const { t } = useTranslation()
   const { addError } = useAPIError()
 
   useEffect(() => {
@@ -31,7 +33,7 @@ const Search = () => {
   }
 
   if (!results) {
-    return <p>nothing found</p>
+    return <p class='noSearchResults'>{t('noSearchResults')}</p>
   }
 
   return (
