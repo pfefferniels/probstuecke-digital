@@ -33,7 +33,7 @@ const Search = () => {
   }
 
   if (!results) {
-    return <p class='noSearchResults'>{t('noSearchResults')}</p>
+    return <p className='noSearchResults'>{t('noSearchResults')}</p>
   }
 
   return (

@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import { Alert } from 'react-bootstrap'
 import Settings from '../../Settings'
 import './Paragraph.scss'
 
