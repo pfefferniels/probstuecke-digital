@@ -1,5 +1,6 @@
 import React, { useContext, useState, useRef, useEffect } from 'react'
 import { apiUrl } from '../../config'
+import useAPIError from '../../hooks/useAPIError'
 import api from '../../api'
 import { scoreToolkit } from '../Verovio'
 import { Spinner } from 'react-bootstrap'
@@ -14,6 +15,7 @@ import generatePDF from './PDFExport'
 import './Score.scss'
 
 const Score = ({mei, scoreDidUpdate}) => {
+  const { addError } = useAPIError()
   const { diplomatic } = useContext(Settings)
   const [svg, setSVG] = useState(null)
   const [meiData, setMEIData] = useState(null)
@@ -46,7 +48,7 @@ const Score = ({mei, scoreDidUpdate}) => {
         setMEIData(text)
         scoreDidUpdate(scoreRef.current.querySelector('svg'))
       } catch (e) {
-        console.log('error fetching MEI:', e)
+        addError(`error fetching MEI: ${e}`, 'warning')
       }
     }
 
@@ -56,7 +58,7 @@ const Score = ({mei, scoreDidUpdate}) => {
           if (response.ok) {
             setFacsimileZones(response.data.zones)
           } else {
-            console.error(response.problem)
+            addError(`error fetching facsimile: ${response.problem}`, 'warning')
           }
         })
     }

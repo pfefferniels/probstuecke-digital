@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { TEIRoute, TEIRender } from 'react-teirouter'
 import { Spinner } from 'react-bootstrap'
+import useAPIError from '../../../hooks/useAPIError'
 import path from 'path'
 import { Header, MetadataModal, NotatedMusic, Reference } from '..'
 import { apiUrl } from '../../../config.js'
@@ -19,6 +20,7 @@ const teiToHtml = async (file) => {
 const P5 = ({tei}) => {
   const headerRef = useRef()
   const [teiData, setTeiData] = useState(null)
+  const { addError } = useAPIError()
   const teiPath = path.dirname(tei)
 
   useEffect(() => {
@@ -27,7 +29,7 @@ const P5 = ({tei}) => {
         const data = await teiToHtml(`${apiUrl}/tei/${tei}`)
         setTeiData(data)
       } catch (e) {
-        console.error('failed fetching TEI:', e)
+        addError(`failed fetching TEI: ${e}`, 'warning')
       }
     }
 

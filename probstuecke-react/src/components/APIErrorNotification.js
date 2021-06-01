@@ -1,18 +1,15 @@
 import React from 'react'
 import useAPIError from '../hooks/useAPIError'
 import Alert from 'react-bootstrap/Alert'
+import './APIErrorNotification.scss'
 
 function APIErrorNotification() {
   const { error, removeError } = useAPIError()
 
-  const handleSubmit = () => {
-    removeError()
-  }
-
   return (
-    <div>
+    <div className="notification">
       {error && error.message &&
-        <Alert variant='warning'>
+        <Alert variant={error.status} dismissible onClose={()=>removeError()}>
           {error.message}
         </Alert>}
     </div>

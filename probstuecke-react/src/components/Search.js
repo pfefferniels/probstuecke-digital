@@ -21,7 +21,7 @@ const Search = () => {
         setResults(json.results)
         setReady(true)
       } catch (e) {
-        addError(`Error fetching search results: ${e}`, e)
+        addError(`Error fetching search results: ${e}`, 'warning')
       }
     }
 
