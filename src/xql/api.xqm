@@ -263,7 +263,7 @@ declare
   %output:method("json")
 function api:search($query) {
   let $q := xmldb:decode($query) || '~0.8'
-  let $collection := collection("/db/apps/probstuecke-digital")
+  let $collection := collection("/db/apps/probstuecke-digital")[not(contains(util:document-name(.), '_en') or contains(util:document-name(.), 'modernized'))]
 
   let $results :=
     for $p in $collection//tei:body//tei:p[ft:query(., $q)]
@@ -316,7 +316,7 @@ function api:tei-facsimile($number as xs:integer, $author, $name) {
         api:enable_cors(),
         map {
             'zones': array { $zones }
-            })
+        })
 };
 
 (:~
@@ -367,5 +367,5 @@ function api:mei-facsimile($number as xs:integer, $author, $name) {
         api:enable_cors(),
         map {
             'zones': array { $facsElements }
-            })
+        })
 };
