@@ -45,13 +45,13 @@ const Navigation = () => {
             </TOC.Consumer>
           </NavDropdown>
           <NavDropdown title={t('indices')}>
-            <LinkContainer to='indexOfPersons'>
+            <LinkContainer to='/indexOfPersons'>
               <NavDropdown.Item key='indexOfPersons'>{t('indexOfPersons')}</NavDropdown.Item>
             </LinkContainer>
-            <LinkContainer to='bibliography'>
+            <LinkContainer to='/bibliography'>
               <NavDropdown.Item key='bibliography'>{t('bibliography')}</NavDropdown.Item>
             </LinkContainer>
-            <LinkContainer to='indexOfMusicalWorks'>
+            <LinkContainer to='/indexOfMusicalWorks'>
               <NavDropdown.Item key='indexOfMusicalWorks'>{t('indexOfMusicalWorks')}</NavDropdown.Item>
             </LinkContainer>
           </NavDropdown>
