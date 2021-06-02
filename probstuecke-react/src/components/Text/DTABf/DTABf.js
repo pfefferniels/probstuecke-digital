@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect, useContext } from 'react'
 import { TEIRender, TEIRoute } from 'react-teirouter'
 import { Spinner } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { Header, LinkToIndex, MetadataModal, NotatedMusic, Reference } from '..'
 import { apiUrl } from '../../../config.js'
+import useAPIError from '../../../hooks/useAPIError'
 import api from '../../../api'
 import path from 'path'
 import Paragraph from './Paragraph'
@@ -19,6 +21,8 @@ const teiToHtml = async (file) => {
 }
 
 const DTABf = props => {
+  const { t } = useTranslation()
+  const { addError } = useAPIError()
   const headerRef = useRef()
   const [teiData, setTEIData] = useState(null)
   const [facsimileZones, setFacsimileZones] = useState(null)
@@ -30,7 +34,7 @@ const DTABf = props => {
         const teiData = await teiToHtml(`${apiUrl}/tei/${props.tei}?modernize=${diplomatic ? 0 : 1}`)
         setTEIData(teiData)
       } catch (e) {
-        console.log('failed fetching TEI: ', e)
+        addError(`${t('errorLoading')}: ${e}`, 'warning')
       }
     }
 
@@ -38,9 +42,12 @@ const DTABf = props => {
       api.get(`tei-facsimile/${props.tei}`)
         .then(response => {
           if (response.ok) {
+            if (response.data.zones.length == 0 && showFacsimile) {
+              addError(t('noFacsimile'), 'info')
+            }
             setFacsimileZones(response.data.zones)
           } else {
-            console.error(response.problem)
+            addError(`${t('errorLoading')}: ${response.problem}`, 'warning')
           }
         })
     }
