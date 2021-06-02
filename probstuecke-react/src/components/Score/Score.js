@@ -65,7 +65,7 @@ const Score = ({mei, scoreDidUpdate}) => {
 
     fetchScore()
     fetchFacsimile()
-  }, [diplomatic, stavesAbove, embed])
+  }, [diplomatic, stavesAbove, embed, mei])
 
   return (
     <>
