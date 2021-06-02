@@ -179,15 +179,25 @@ function api:mei($number, $author, $file, $stavesAbove, $stavesBelow, $modernCle
   let $removeAnnotationStaff := if ($removeAnnotationStaff) then ($removeAnnotationStaff) else ('on')
 
   let $input := doc("/db/apps/probstuecke-digital/encodings/" || ($number) || "/" || ($author) || "/" || ($file))
-  let $xsl := doc('/db/apps/probstuecke-digital/xslt/transform-mei.xsl')
 
-  return (api:enable_cors(), transform:transform($input, $xsl,
+  let $removeAnnotStaff := doc('/db/apps/probstuecke-digital/xslt/remove-annotationstaff.xsl')
+  let $addStaves := doc('/db/apps/probstuecke-digital/xslt/add-staves.xsl')
+  let $modernizeClefs := doc('/db/apps/probstuecke-digital/xslt/change-clefs.xsl')
+
+  let $stage1 := if ($removeAnnotationStaff eq 'on') then transform:transform($input, $removeAnnotStaff,
+    <parameters>
+    </parameters>) else ($input)
+
+  let $stage2 := if ($modernClefs eq 'on') then transform:transform($stage1, $modernizeClefs,
+    <parameters></parameters>) else ($stage1)
+
+  let $stage3 := if ($stavesAbove) then transform:transform($stage2, $addStaves,
     <parameters>
       <param name="stavesAbove" value="{$stavesAbove}" />
       <param name="stavesBelow" value="{$stavesBelow}" />
-      <param name="modernClefs" value="{$modernClefs}" />
-      <param name="removeAnnotationStaff" value="{$removeAnnotationStaff}" />
-    </parameters>))
+    </parameters>) else ($stage2)
+
+  return (api:enable_cors(), $stage3)
 };
 
 
