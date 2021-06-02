@@ -19,6 +19,7 @@ const Score = ({mei, scoreDidUpdate}) => {
   const { diplomatic } = useContext(Settings)
   const [svg, setSVG] = useState(null)
   const [meiData, setMEIData] = useState(null)
+  const [modernClefs, setModernClefs] = useState(false)
   const [stavesAbove, setStavesAbove] = useState(0)
   const [embed, setEmbed] = useState(false)
   const [facsimileZones, setFacsimileZones] = useState(null)
@@ -31,7 +32,7 @@ const Score = ({mei, scoreDidUpdate}) => {
           `${apiUrl}/mei/${mei}?` +
           `stavesAbove=${stavesAbove}&` +
           `stavesBelow=0&` +
-          `modernClefs=${diplomatic ? 'off' : 'on'}&` +
+          `modernClefs=${modernClefs ? 'on' : 'off'}&` +
           `removeAnnotationStaff=${embed ? 'off' : 'on'}`)
         const text = await data.text()
         console.log(text)
@@ -65,11 +66,14 @@ const Score = ({mei, scoreDidUpdate}) => {
 
     fetchScore()
     fetchFacsimile()
-  }, [diplomatic, stavesAbove, embed, mei])
+  }, [diplomatic, modernClefs, stavesAbove, embed, mei])
 
   return (
     <>
       <div className='options'>
+        <Option toggle
+                text={'𝄢'}
+                onClick={() => setModernClefs(!modernClefs)}/>
         <Option text={'+'}
                 onClick={() => setStavesAbove(stavesAbove + 1)}/>
         <Option text={'–'}
