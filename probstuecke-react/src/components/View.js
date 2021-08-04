@@ -34,7 +34,8 @@ const View = () => {
                onClick={() => {setDiplomatic(!diplomatic)}}/>
       </div>
 
-      <Tabs mountOnEnter={true}
+      <Tabs defaultActiveKey='mattheson1732'
+            mountOnEnter={true}
             unmountOnExit={true}>
         {Object.entries(toc.data[piece].editions).map(([key,value]) => (
           <Tab key={`Tab_${key}`} eventKey={key} title={t(key)}>
