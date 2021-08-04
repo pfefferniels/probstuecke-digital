@@ -82,6 +82,7 @@ declare
   %output:media-type("application/json")
   %output:method("json")
 function api:toc() {
+    (: TODO generate toc.json :)
     (api:enable_cors(),
     json-doc("/db/apps/probstuecke-digital/encodings/toc.json"))
 };
@@ -341,7 +342,7 @@ function api:mei-facsimile($number as xs:integer, $author, $name) {
         let $facsRefs := tokenize(normalize-space($el/@facs/string()),' ')
 
         let $zones :=
-            if (count($facsRefs) > 0 and count(//$el[@xml:id]) > 0)
+            if (count($facsRefs) > 0 and count($el[@xml:id]) > 0)
             then (
             for $facsRef in $facsRefs
             let $ref := substring($facsRef, 2)
