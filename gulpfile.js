@@ -49,7 +49,7 @@ gulp.task('xql', function() {
 });
 
 gulp.task('deploy-xconf', function() {
-  return gulp.src('src/xconf/collection.xconf', {cwd: '.'})
+  return gulp.src('eXist-app-template/collection.xconf', {cwd: '.'})
 		.pipe(exClient.dest({
             target: `/db/system/config${targetOptions.target}`
         }))
