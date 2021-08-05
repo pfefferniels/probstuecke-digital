@@ -1,33 +1,18 @@
 {
   "name": "probstuecke_digital",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Niels Pfeffer",
-  "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/pfefferniels/probstuecke-digital"
-  },
+  "repository": "https://github.com/pfefferniels/probstuecke-digital.git",
+  "author": "pfefferniels <niels.pfeffer@gmail.com>",
+  "license": "MIT",
   "dependencies": {
-    "@existdb/gulp-exist": "^3.0.3",
-    "@existdb/node-exist": "^2.0.2",
-    "axios": "^0.21.1",
-    "body-parser": "^1.19.0",
-    "express": "^4.17.1",
-    "expressjs": "^1.0.1",
-    "gulp": "^4.0.2",
-    "jquery": "^3.5.0",
-    "jsdom": "^16.2.2",
-    "pdfkit": "^0.10.0",
-    "pug": "^3.0.1",
-    "svg-to-pdfkit": "^0.1.8",
-    "verovio": "^2.6.0"
-  },
-  "devDependencies": {
-    "eslint": "^6.8.0"
+    "@existdb/gulp-exist": "^4.0.0",
+    "gulp-exist": "^3.0.0",
+    "gulp-post": "^1.0.3",
+    "gulp-rename": "^2.0.0",
+    "gulp-zip": "^5.0.2",
+    "jsdom": "^16.4.0",
+    "request": "^2.88.2",
+    "through2": "^4.0.2"
   }
 }
