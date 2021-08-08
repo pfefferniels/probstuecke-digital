@@ -201,6 +201,21 @@ function api:mei($number, $author, $file, $stavesAbove, $stavesBelow, $modernCle
   return (api:enable_cors(), $stage3)
 };
 
+(:~
+ : Media
+ :
+ : Streams media elements
+ :
+ : @result binary object
+ :)
+declare
+  %rest:GET
+  %rest:path("/media/{$number}/{$author}/{$name}")
+  %output:method('binary')
+function api:media($number as xs:integer, $author, $name) {
+  (api:enable_cors(),
+    util:binary-doc("/db/apps/probstuecke-digital/encodings/" || ($number) || "/" || ($author) || "/" || ($name)))
+};
 
 (:~
  : IIIF Annotations
