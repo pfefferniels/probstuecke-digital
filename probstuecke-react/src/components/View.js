@@ -5,7 +5,7 @@ import { TOC } from './../providers/TOC'
 import Score from './Score/Score'
 import DTABf from './Text/DTABf/DTABf'
 import P5 from './Text/P5/P5'
-import { faImages } from '@fortawesome/free-solid-svg-icons'
+import { faEye, faImages } from '@fortawesome/free-solid-svg-icons'
 import Option from './Option'
 import Settings from './Settings'
 import ScoreContext from './ScoreContext'
@@ -18,6 +18,7 @@ const View = () => {
   const toc = useContext(TOC)
   const [diplomatic, setDiplomatic] = useState(false)
   const [showFacsimile, setShowFacsimile] = useState(false)
+  const [showMirador, setShowMirador] = useState(false)
   const [scoreRef, setScoreContext] = useState(null)
   const [dummy, setDummy] = useState(0)
 
@@ -28,13 +29,17 @@ const View = () => {
       <div className='options'>
         <Option toggle
                 icon={faImages}
+                onClick={() => {setShowMirador(!showMirador)}} />
+        <Option toggle
+                icon={faEye}
                 onClick={() => {setShowFacsimile(!showFacsimile)}}/>
         <Option toggle
                 text={'D'}
                onClick={() => {setDiplomatic(!diplomatic)}}/>
       </div>
 
-      <Tabs mountOnEnter={true}
+      <Tabs defaultActiveKey='mattheson1732'
+            mountOnEnter={true}
             unmountOnExit={true}>
         {Object.entries(toc.data[piece].editions).map(([key,value]) => (
           <Tab key={`Tab_${key}`} eventKey={key} title={t(key)}>
