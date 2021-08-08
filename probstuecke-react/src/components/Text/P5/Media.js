@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { apiUrl } from '../../../config.js'
 
-const Media = (props) => {
+const Media = props => {
   if (!props.teiNode.hasAttribute('mimeType') ||
       !props.teiNode.hasAttribute('url')) {
     return null
@@ -15,7 +15,7 @@ const Media = (props) => {
       <audio className='embeddedAudio' style={{
         display: 'block'
       }} controls>
-        <source src={`${apiUrl}/${props.path}/${url}`} type={mimeType}/>
+        <source src={`${apiUrl}/media/${props.path}/${url}`}/>
       </audio>
     )
   }
