@@ -41,7 +41,8 @@ const Score = ({mei, scoreDidUpdate}) => {
           svgViewBox: true,
           adjustPageHeight: true,
           pageHeight: 60000,
-          footer: 'none'
+          footer: 'none',
+          choiceXPathQuery: diplomatic ? ['./orig'] : ['./reg']
         })
         scoreToolkit.loadData(text)
 
