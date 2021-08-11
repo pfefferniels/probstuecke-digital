@@ -1,4 +1,5 @@
 import React, { useContext, useState, useRef, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { apiUrl } from '../../config'
 import useAPIError from '../../hooks/useAPIError'
 import api from '../../api'
@@ -15,6 +16,7 @@ import generatePDF from './PDFExport'
 import './Score.scss'
 
 const Score = ({mei, scoreDidUpdate}) => {
+  const { t } = useTranslation()
   const { addError } = useAPIError()
   const { diplomatic } = useContext(Settings)
   const [svg, setSVG] = useState(null)
@@ -74,16 +76,21 @@ const Score = ({mei, scoreDidUpdate}) => {
       <div className='options'>
         <Option toggle
                 text={'𝄢'}
-                onClick={() => setModernClefs(!modernClefs)}/>
+                onClick={() => setModernClefs(!modernClefs)}
+                tooltip={t('toggleModernClefs')}/>
         <Option text={'+'}
-                onClick={() => setStavesAbove(stavesAbove + 1)}/>
+                onClick={() => setStavesAbove(stavesAbove + 1)}
+                tooltip={t('addStaff')}/>
         <Option text={'–'}
-                onClick={() => setStavesAbove(stavesAbove - 1)}/>
+                onClick={() => setStavesAbove(stavesAbove - 1)}
+                tooltip={t('removeStaff')}/>
         <Option toggle
                 text={'{}'}
-                onClick={() => setEmbed(!embed)}/>
+                onClick={() => setEmbed(!embed)}
+                tooltip={t('embedAnnotations')}/>
         <Option icon={faFilePdf}
-                onClick={() => generatePDF(meiData)}/>
+                onClick={() => generatePDF(meiData)}
+                tooltip={t('generatePDF')}/>
       </div>
 
       <div>

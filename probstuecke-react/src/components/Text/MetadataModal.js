@@ -1,15 +1,18 @@
 import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Modal, Button } from 'react-bootstrap'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import Option from '../Option'
 import './MetadataModal.scss'
 
 const MetadataModal = ({ headerRef }) => {
+  const { t } = useTranslation()
   const [show, setShow] = useState(false)
 
   return (
     <Option icon={faInfoCircle}
-            onClick={() => setShow(!show)}>
+            onClick={() => setShow(!show)}
+            tooltip={t('metadataModal')}>
       <Modal show={show}
              onHide={() => setShow(false)}
              size='lg'

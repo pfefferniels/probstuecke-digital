@@ -27,21 +27,23 @@ const View = () => {
   return (
     <>
       <div className='options'>
-        <Option toggle
-                icon={faImages}
-                onClick={() => {setShowMirador(!showMirador)}} />
+        <Option icon={faImages}
+                onClick={() => {setShowMirador(!showMirador)}}
+                tooltip={t('showMirador')} />
         <Option toggle
                 icon={faEye}
-                onClick={() => {setShowFacsimile(!showFacsimile)}}/>
+                onClick={() => {setShowFacsimile(!showFacsimile)}}
+                tooltip={t('toggleFacsimileOverlays')}/>
         <Option toggle
                 text={'D'}
-               onClick={() => {setDiplomatic(!diplomatic)}}/>
+                onClick={() => {setDiplomatic(!diplomatic)}}
+                tooltip={t('toggleDiplomatic')}/>
       </div>
 
       <Tabs defaultActiveKey='mattheson1732'
             mountOnEnter={true}
             unmountOnExit={true}>
-        {Object.entries(toc.data[piece].editions).map(([key,value]) => (
+        {Object.entries(toc.data[piece].editions).map(([key, value]) => (
           <Tab key={`Tab_${key}`} eventKey={key} title={t(key)}>
               <div className={diplomatic ? 'diplomatic' : 'modernized'}>
                 <Settings.Provider value={{diplomatic, showFacsimile}}>
