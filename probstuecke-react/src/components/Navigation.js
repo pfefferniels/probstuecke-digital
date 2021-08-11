@@ -1,14 +1,21 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import i18n from 'i18next'
 import { Button, Spinner, Navbar, Nav, NavDropdown, Form, FormControl } from 'react-bootstrap'
 import { useHistory } from "react-router-dom"
 import { LinkContainer } from 'react-router-bootstrap'
 import { TOC } from './../providers/TOC'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faLanguage } from '@fortawesome/free-solid-svg-icons'
 
 const Navigation = () => {
   const [searchString, setSearchString] = useState('')
   const history = useHistory()
   const { t } = useTranslation()
+
+  const changeLanguage = lng => {
+    i18n.changeLanguage(lng)
+  }
 
   const handleChange = e => {
     setSearchString(e.target.value)
@@ -56,12 +63,30 @@ const Navigation = () => {
             </LinkContainer>
           </NavDropdown>
         </Nav>
+
         <Form inline>
-          <FormControl type="text" placeholder="Search" className="mr-sm-2" onChange={handleChange} onKeyPress={handleKey}/>
+          <FormControl
+            type='text'
+            placeholder={t('search')}
+            onChange={handleChange}
+            onKeyPress={handleKey} />
         </Form>
+
+        <NavDropdown
+          alignRight
+          title={
+            <FontAwesomeIcon size='2x' icon={faLanguage} />
+          }>
+          <NavDropdown.Item onClick={() => changeLanguage('en')}>
+            {t('english')}
+          </NavDropdown.Item>
+          <NavDropdown.Item onClick={() => changeLanguage('de')}>
+            {t('german')}
+          </NavDropdown.Item>
+        </NavDropdown>
       </Navbar.Collapse>
     </Navbar>
   )
 }
 
-export default Navigation;
+export default Navigation
