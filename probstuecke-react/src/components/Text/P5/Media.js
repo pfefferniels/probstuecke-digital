@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { apiUrl } from '../../../config.js'
 
 const Media = props => {

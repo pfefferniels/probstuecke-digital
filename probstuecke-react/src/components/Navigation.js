@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import i18n from 'i18next'
-import { Button, Spinner, Navbar, Nav, NavDropdown, Form, FormControl } from 'react-bootstrap'
+import { Spinner, Navbar, Nav, NavDropdown, Form, FormControl } from 'react-bootstrap'
 import { useHistory } from "react-router-dom"
 import { LinkContainer } from 'react-router-bootstrap'
 import { TOC } from './../providers/TOC'

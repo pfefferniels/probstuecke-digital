@@ -11,7 +11,7 @@ const Paragraph = ({zones, teiNode, children}) => {
   let classNames = ['paragraph']
 
   if (xmlId && facs && showFacsimile && zones) {
-    const matchingZones = zones.filter(item => item.id == facs.substr(1))
+    const matchingZones = zones.filter(item => item.id === facs.substr(1))
     if (matchingZones.length > 0) {
       classNames.push('withFacsimile')
       style = {

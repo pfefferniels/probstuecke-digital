@@ -42,7 +42,7 @@ const DTABf = props => {
       api.get(`tei-facsimile/${props.tei}`)
         .then(response => {
           if (response.ok) {
-            if (response.data.zones.length == 0 && showFacsimile) {
+            if (response.data.zones.length === 0 && showFacsimile) {
               addError(t('noFacsimile'), 'info')
             }
             setFacsimileZones(response.data.zones)
