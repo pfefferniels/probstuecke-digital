@@ -34,7 +34,7 @@ const P5 = ({tei}) => {
     }
 
     fetchTEI()
-  }, [])
+  }, [tei])
 
   if (!teiData) {
     return <Spinner animation='grow' />

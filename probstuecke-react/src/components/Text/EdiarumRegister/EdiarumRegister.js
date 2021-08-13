@@ -43,13 +43,13 @@ const EdiarumListItem = ({teiNode, children}) => {
   )
 }
 
-const EdiarumRegister = props => {
+const EdiarumRegister = ({tei}) => {
   const [teiData, setTeiData] = useState(null)
 
   useEffect(() => {
     const fetchTEI = async () => {
       try {
-        const data = await teiToHtml(`${apiUrl}/${props.tei}`)
+        const data = await teiToHtml(`${apiUrl}/${tei}`)
         setTeiData(data)
       } catch (e) {
         console.log('failed fetching TEI:', e)
@@ -57,7 +57,7 @@ const EdiarumRegister = props => {
     }
 
     fetchTEI()
-  }, [])
+  }, [tei])
 
   if (!teiData) {
     return <Spinner animation='grow' />
