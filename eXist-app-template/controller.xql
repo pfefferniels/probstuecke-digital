@@ -16,7 +16,7 @@ if ($exist:path eq '') then
 else if ($exist:path eq "/") then (
     response:set-header("Access-Control-Allow-Origin", "*"),
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-        <redirect url="index.html"/>
+        <redirect url="/index.html"/>
     </dispatch>
 )
 
