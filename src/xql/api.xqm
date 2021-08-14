@@ -55,11 +55,11 @@ declare function api:enable_cors() {
  :)
 declare
   %rest:GET
-  %rest:path("/info2")
+  %rest:path("/info")
   %rest:produces("application/xml")
   %output:media-type("application/xml")
   %output:method("xml")
-function api:info2() {
+function api:info() {
     <info>
        <name>Probstücke API</name>
        <version>0.1</version>
@@ -88,25 +88,6 @@ function api:toc() {
 };
 
 (:~
- : Indices
- :
- : Returns the TEI for a given index (musical works, persons ...)
- : following the ediarum.REGISTER specification.
- :
- : @result XML object
- :)
-declare
-  %rest:GET
-  %rest:path("/indices/{$file}")
-  %rest:produces("application/xml")
-  %output:media-type("application/xml")
-  %output:method("xml")
-function api:indices($file) {
-    (api:enable_cors(),
-    doc("/db/apps/probstuecke-digital/encodings/indices/" || ($file)))
-};
-
-(:~
  : TEI
  :
  : Returns the TEI at a given path
@@ -115,46 +96,33 @@ function api:indices($file) {
  :)
 declare
   %rest:GET
-  %rest:path("/tei/{$number}/{$author}/{$file}")
+  %rest:path("/tei")
+  %rest:query-param("path", "{$path}")
   %rest:query-param("modernize", "{$modernize}")
   %rest:produces("application/xml")
   %output:media-type("application/xml")
   %output:method("xml")
-function api:tei($number, $author, $file, $modernize) {
-  let $input := doc("/db/apps/probstuecke-digital/encodings/" || ($number) || "/" || ($author) || "/" || (
-    if ($modernize = '1') then (
-      (fn:substring-before($file, ".") || "-modernized.xml")
+function api:tei($path, $modernize) {
+  let $newPath := (
+    if ($modernize = "1") then (
+      (fn:substring-before($path, ".") || "-modernized.xml")
     ) else (
-      $file
-    )))
-  let $xsl := doc('/db/apps/probstuecke-digital/xslt/modernize-tei.xsl')
+      $path
+    )
+  )
+
+  let $input := doc("/db/apps/probstuecke-digital/encodings/" || $newPath)
 
   return (
-    if ($modernize = '1') then (
-      (api:enable_cors(), transform:transform($input, $xsl, ()))
+    if ($modernize = "1") then (
+      let $xsl := doc("/db/apps/probstuecke-digital/xslt/modernize-tei.xsl")
+      return (api:enable_cors(), transform:transform($input, $xsl, ()))
     ) else (
       (api:enable_cors(), $input)
     )
   )
 };
 
-(:~
- : Guidelines
- :
- : Returns the TEI and MEI encoding guidelines.
- :
- : @result XML object
- :)
-declare
-  %rest:GET
-  %rest:path("/tei/guidelines")
-  %rest:produces("application/xml")
-  %output:media-type("application/xml")
-  %output:method("xml")
-function api:guidelines() {
-    (api:enable_cors(),
-    doc("/db/apps/probstuecke-digital/encodings/guidelines/guidelines_en.xml"))
-};
 
 (:~
  : MEI
@@ -165,7 +133,8 @@ function api:guidelines() {
  :)
 declare
   %rest:GET
-  %rest:path("/mei/{$number}/{$author}/{$file}")
+  %rest:path("/mei")
+  %rest:query-param("path", "{$path}")
   %rest:query-param("stavesAbove", "{$stavesAbove}", '0')
   %rest:query-param("stavesBelow", "{$stavesBelow}", '0')
   %rest:query-param("modernClefs", "{$modernClefs}", "on")
@@ -173,13 +142,13 @@ declare
   %rest:produces("application/xml")
   %output:media-type("application/xml")
   %output:method("xml")
-function api:mei($number, $author, $file, $stavesAbove, $stavesBelow, $modernClefs, $removeAnnotationStaff) {
+function api:mei($path, $stavesAbove, $stavesBelow, $modernClefs, $removeAnnotationStaff) {
   let $stavesAbove := if ($stavesAbove) then ($stavesAbove) else (())
   let $stavesBelow := if ($stavesBelow) then ($stavesBelow) else (())
   let $modernClefs := if ($modernClefs) then ($modernClefs) else ('off')
   let $removeAnnotationStaff := if ($removeAnnotationStaff) then ($removeAnnotationStaff) else ('on')
 
-  let $input := doc("/db/apps/probstuecke-digital/encodings/" || ($number) || "/" || ($author) || "/" || ($file))
+  let $input := doc("/db/apps/probstuecke-digital/encodings/" || $path)
 
   let $removeAnnotStaff := doc('/db/apps/probstuecke-digital/xslt/remove-annotationstaff.xsl')
   let $addStaves := doc('/db/apps/probstuecke-digital/xslt/add-staves.xsl')
@@ -210,11 +179,12 @@ function api:mei($number, $author, $file, $stavesAbove, $stavesBelow, $modernCle
  :)
 declare
   %rest:GET
-  %rest:path("/media/{$number}/{$author}/{$name}")
+  %rest:path("/media")
+  %rest:query-param("path", "{$path}")
   %output:method('binary')
-function api:media($number as xs:integer, $author, $name) {
+function api:media($path) {
   (api:enable_cors(),
-    util:binary-doc("/db/apps/probstuecke-digital/encodings/" || ($number) || "/" || ($author) || "/" || ($name)))
+    util:binary-doc("/db/apps/probstuecke-digital/encodings/" || $path))
 };
 
 (:~
@@ -226,12 +196,13 @@ function api:media($number as xs:integer, $author, $name) {
  :)
 declare
   %rest:GET
-  %rest:path("/iiif/{$number}/{$author}/{$name}")
+  %rest:path("/iiif")
+  %rest:query-param("path", "{$path}")
   %rest:produces("application/json")
   %output:media-type("application/json")
   %output:method("json")
-function api:iiif($number as xs:integer, $author, $name) {
-  (api:enable_cors(), json-doc("/db/apps/probstuecke-digital/" || ($number) || "/" || ($author) || "/" || ($name)))
+function api:iiif($path) {
+  (api:enable_cors(), json-doc("/db/apps/probstuecke-digital/" || $path))
 };
 
 
@@ -306,12 +277,13 @@ function api:search($query) {
  :)
 declare
   %rest:GET
-  %rest:path("/tei-facsimile/{$number}/{$author}/{$name}")
+  %rest:path("/tei-facsimile")
+  %rest:query-param("path", "{$path}")
   %rest:produces("application/json")
   %output:media-type("application/json")
   %output:method("json")
-function api:tei-facsimile($number as xs:integer, $author, $name) {
-    let $doc := doc("/db/apps/probstuecke-digital/encodings/" || ($number) || "/" || ($author) || "/" || ($name))
+function api:tei-facsimile($path) {
+    let $doc := doc("/db/apps/probstuecke-digital/encodings/" || $path)
     let $zones :=
         for $zone in $doc//tei:zone
         let $url := $zone/../tei:graphic/@url/string()
@@ -344,12 +316,13 @@ function api:tei-facsimile($number as xs:integer, $author, $name) {
  :)
 declare
   %rest:GET
-  %rest:path("/mei-facsimile/{$number}/{$author}/{$name}")
+  %rest:path("/mei-facsimile")
+  %rest:query-param("path", "{$path}")
   %rest:produces("application/json")
   %output:media-type("application/json")
   %output:method("json")
-function api:mei-facsimile($number as xs:integer, $author, $name) {
-    let $doc := doc("/db/apps/probstuecke-digital/encodings/" || ($number) || "/" || ($author) || "/" || ($name))
+function api:mei-facsimile($path) {
+    let $doc := doc("/db/apps/probstuecke-digital/encodings/" || $path)
 
     let $facsElements :=
         for $el in $doc//*[@facs]
