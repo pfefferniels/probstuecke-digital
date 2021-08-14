@@ -21,7 +21,7 @@ const NotatedMusic = ({ teiNode, path }) => {
   useEffect(() => {
     const fetchMEI = async () => {
       try {
-        const data = await fetch(`${apiUrl}/mei/${path}/${filename}`)
+        const data = await fetch(`${apiUrl}/mei?path=${path}/${filename}`)
         const text = await data.text()
 
         exampleToolkit.setOptions({

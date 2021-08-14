@@ -15,7 +15,7 @@ const Media = props => {
       <audio className='embeddedAudio' style={{
         display: 'block'
       }} controls>
-        <source src={`${apiUrl}/media/${props.path}/${url}`}/>
+        <source src={`${apiUrl}/media?path=${props.path}/${url}`}/>
       </audio>
     )
   }

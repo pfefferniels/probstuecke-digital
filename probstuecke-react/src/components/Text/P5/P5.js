@@ -26,7 +26,7 @@ const P5 = ({tei}) => {
   useEffect(() => {
     const fetchTEI = async () => {
       try {
-        const data = await teiToHtml(`${apiUrl}/tei/${tei}`)
+        const data = await teiToHtml(`${apiUrl}/tei?path=${tei}`)
         setTeiData(data)
       } catch (e) {
         addError(`failed fetching TEI: ${e}`, 'warning')

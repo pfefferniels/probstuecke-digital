@@ -24,37 +24,44 @@ const DTABf = props => {
   const { t } = useTranslation()
   const { addError } = useAPIError()
   const headerRef = useRef()
+  const zonesRef = useRef()
   const [teiData, setTEIData] = useState(null)
-  const [facsimileZones, setFacsimileZones] = useState(null)
   const { diplomatic, showFacsimile } = useContext(Settings)
 
   useEffect(() => {
     const fetchTEI = async () => {
       try {
-        const teiData = await teiToHtml(`${apiUrl}/tei/${props.tei}?modernize=${diplomatic ? 0 : 1}`)
+        const teiData = await teiToHtml(`
+          ${apiUrl}/tei?path=${props.tei}&modernize=${diplomatic ? 0 : 1}`)
         setTEIData(teiData)
       } catch (e) {
         addError(`${t('errorLoading')}: ${e}`, 'warning')
       }
     }
 
-    const fetchFacsimile = async () => {
-      api.get(`tei-facsimile/${props.tei}`)
-        .then(response => {
-          if (response.ok) {
-            if (response.data.zones.length === 0 && showFacsimile) {
-              addError(t('noFacsimile'), 'info')
-            }
-            setFacsimileZones(response.data.zones)
-          } else {
-            addError(`${t('errorLoading')}: ${response.problem}`, 'warning')
-          }
-        })
-    }
 
     fetchTEI()
-    fetchFacsimile()
   }, [diplomatic, showFacsimile, props.tei])
+
+  useEffect(() => {
+    const fetchFacsimile = async () => {
+      try {
+        const data = await fetch(`${apiUrl}/tei-facsimile?path=${props.tei}`)
+        const json = await data.json()
+        if (showFacsimile && json.zones.length === 0) {
+          addError(t('noFacsimile'), 'info')
+          return
+        }
+        zonesRef.current = json.zones
+      } catch (e) {
+        addError(`${t('errorLoading')}: ${e}`, 'warning')
+      }
+    }
+
+    if (showFacsimile && !zonesRef.current) {
+      fetchFacsimile()
+    }
+  }, [showFacsimile])
 
   if (!teiData) {
     return <Spinner animation='grow'/>
@@ -68,10 +75,10 @@ const DTABf = props => {
 
       <TEIRender data={teiData}>
         <TEIRoute el='tei-p'>
-          <Paragraph zones={facsimileZones} />
+          <Paragraph zonesRef={zonesRef}/>
         </TEIRoute>
         <TEIRoute el='tei-notatedmusic'>
-          <NotatedMusic path={path.dirname(props.tei)} />
+          <NotatedMusic path={path.dirname(props.tei)}/>
         </TEIRoute>
         <TEIRoute el='tei-ref' component={Reference}/>
         <TEIRoute el='tei-teiheader'>

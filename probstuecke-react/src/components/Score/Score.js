@@ -31,7 +31,8 @@ const Score = ({mei, scoreDidUpdate}) => {
     const fetchScore = async () => {
       try {
         const data = await fetch(
-          `${apiUrl}/mei/${mei}?` +
+          `${apiUrl}/mei?` +
+          `path=${mei}&` +
           `stavesAbove=${stavesAbove}&` +
           `stavesBelow=0&` +
           `modernClefs=${modernClefs ? 'on' : 'off'}&` +
@@ -58,6 +59,7 @@ const Score = ({mei, scoreDidUpdate}) => {
 
     const fetchFacsimile = async () => {
       api.get(`mei-facsimile/${mei}`)
+      api.get(`mei-facsimile?path=${mei}`)
         .then(response => {
           if (response.ok) {
             setFacsimileZones(response.data.zones)

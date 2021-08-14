@@ -31,7 +31,7 @@ const App = props => (
                 <Index type='musical-works'/>
               </Route>
               <Route path='/guidelines'>
-                <P5 tei='guidelines'/>
+                <P5 tei='guidelines/guidelines_en.xml'/>
               </Route>
               <Route path='/n:piece' component={View} />
               <Route path='/search/:q' component={Search} />

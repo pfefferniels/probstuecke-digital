@@ -49,7 +49,7 @@ const EdiarumRegister = ({tei}) => {
   useEffect(() => {
     const fetchTEI = async () => {
       try {
-        const data = await teiToHtml(`${apiUrl}/${tei}`)
+        const data = await teiToHtml(`${apiUrl}/tei?path=${tei}`)
         setTeiData(data)
       } catch (e) {
         console.log('failed fetching TEI:', e)
