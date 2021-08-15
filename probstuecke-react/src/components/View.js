@@ -4,6 +4,7 @@ import { Alert, Spinner, Tabs, Tab, Container, Col, Row } from 'react-bootstrap'
 import { TOC } from './../providers/TOC'
 import Score from './Score/Score'
 import DTABf from './Text/DTABf/DTABf'
+import LessonTrascription from './Text/LessonTranscription/LessonTranscription'
 import P5 from './Text/P5/P5'
 import { faEye, faImages } from '@fortawesome/free-solid-svg-icons'
 import Option from './Option'
@@ -64,8 +65,12 @@ const View = () => {
                           <ScoreContext.Provider value={scoreRef}>
                             {
                               {
-                                'dtabf': <DTABf key={`Text_${key}`} tei={value.comments}/>,
-                                'p5': <P5 key={`Text_${key}`} tei={value.comments}/>
+                                'dtabf':
+                                  <DTABf key={`Text_${key}`} tei={value.comments}/>,
+                                'lesson_transcription':
+                                  <LessonTrascription key={`Text_${key}`} tei={value.comments}/>,
+                                'p5':
+                                  <P5 key={`Text_${key}`} tei={value.comments}/>
                               }[value.format] || <Alert>No format specified</Alert>
                             }
                           </ScoreContext.Provider>
