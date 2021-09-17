@@ -10,16 +10,29 @@
 
             <xsl:for-each select="1 to $stavesAbove">
                 <xsl:variable name="i" select="."/>
-                <staffDef n="{$i+10}" lines="5">
+                
+                <xsl:element name="staffDef" xmlns="http://www.music-encoding.org/ns/mei">
+                    <xsl:attribute name="n">
+                        <xsl:value-of select="$i+10" />
+                    </xsl:attribute>
+                    <xsl:attribute name="lines">5</xsl:attribute>
+                    
                     <xsl:copy-of select="$meterSig"/>
-                </staffDef>
+                </xsl:element>
             </xsl:for-each>
+            
             <xsl:apply-templates/>
+            
             <xsl:for-each select="1 to $stavesBelow">
                 <xsl:variable name="i" select="."/>
-                <staffDef n="{$i+20}" lines="5">
+                <xsl:element name="staffDef" xmlns="http://www.music-encoding.org/ns/mei">
+                    <xsl:attribute name="n">
+                        <xsl:value-of select="$i+20" />
+                    </xsl:attribute>
+                    <xsl:attribute name="lines">5</xsl:attribute>
+                    
                     <xsl:copy-of select="$meterSig"/>
-                </staffDef>
+                </xsl:element>
             </xsl:for-each>
         </xsl:copy>
     </xsl:template>
@@ -29,43 +42,42 @@
             <xsl:apply-templates select="@*"/>
             <xsl:for-each select="1 to $stavesAbove">
                 <xsl:variable name="i" select="."/>
-                <staff n="{$i+10}">
-                    <layer n="1">
-                        <mSpace/>
-                    </layer>
-                </staff>
+                
+                <xsl:element name="staff" xmlns="http://www.music-encoding.org/ns/mei">
+                    <xsl:attribute name="n">
+                        <xsl:value-of select="$i+10" />
+                    </xsl:attribute>
+                    
+                    <xsl:element name="layer" xmlns="http://www.music-encoding.org/ns/mei">
+                        <xsl:attribute name="n">1</xsl:attribute>
+                        
+                        <xsl:element name="mSpace" xmlns="http://www.music-encoding.org/ns/mei" />
+                    </xsl:element>
+                </xsl:element>
             </xsl:for-each>
+            
             <xsl:apply-templates select="*"/>
+            
             <xsl:for-each select="1 to $stavesBelow">
                 <xsl:variable name="i" select="."/>
-                <staff n="{$i+20}">
-                    <layer n="1">
-                        <mSpace/>
-                    </layer>
-                </staff>
+                <xsl:element name="staff" xmlns="http://www.music-encoding.org/ns/mei">
+                    <xsl:attribute name="n">
+                        <xsl:value-of select="$i+20" />
+                    </xsl:attribute>
+                    
+                    <xsl:element name="layer" xmlns="http://www.music-encoding.org/ns/mei">
+                        <xsl:attribute name="n">1</xsl:attribute>
+                        
+                        <xsl:element name="mSpace" xmlns="http://www.music-encoding.org/ns/mei" />
+                    </xsl:element>
+                </xsl:element>
             </xsl:for-each>
         </xsl:copy>
     </xsl:template>
-
-  <xsl:template match="*">
-    <xsl:element name="{local-name(.)}">
-      <xsl:apply-templates select="@* | node()"/>
-    </xsl:element>
-  </xsl:template>
-  <xsl:template match="@*">
-    <xsl:attribute name="{local-name(.)}">
-      <xsl:value-of select="."/>
-    </xsl:attribute>
-  </xsl:template>
-
-  <!--
-    The above template removes namespace prefixes, that eXist seems
-    to introduce, while other XSLT processors don't. Usually, a normal
-    identity template should be sufficient.
 
     <xsl:template match="node() | @*">
         <xsl:copy>
             <xsl:apply-templates select="node() | @*"/>
         </xsl:copy>
-    </xsl:template>-->
+    </xsl:template>
 </xsl:stylesheet>

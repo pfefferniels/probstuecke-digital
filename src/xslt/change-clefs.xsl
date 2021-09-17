@@ -1,5 +1,4 @@
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:mei="http://www.music-encoding.org/ns/mei" version="2.0">
-
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:mei="http://www.music-encoding.org/ns/mei" version="3.0">
     <xsl:template match="mei:clef[(@shape='C' and @line='4') or (@shape='F' and @line='3')]">
         <xsl:copy>
                     <xsl:attribute name="shape">F</xsl:attribute>

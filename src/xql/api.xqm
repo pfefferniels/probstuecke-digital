@@ -150,13 +150,18 @@ function api:mei($path, $stavesAbove, $stavesBelow, $modernClefs, $removeAnnotat
 
   let $input := doc("/db/apps/probstuecke-digital/encodings/" || $path)
 
+  let $formatFb := doc('/db/apps/probstuecke-digital/xslt/format-fb.xsl')
   let $removeAnnotStaff := doc('/db/apps/probstuecke-digital/xslt/remove-annotationstaff.xsl')
   let $addStaves := doc('/db/apps/probstuecke-digital/xslt/add-staves.xsl')
   let $modernizeClefs := doc('/db/apps/probstuecke-digital/xslt/change-clefs.xsl')
 
-  let $stage1 := if ($removeAnnotationStaff eq 'on') then transform:transform($input, $removeAnnotStaff,
+  let $stage0 := transform:transform($input, $formatFb,
     <parameters>
-    </parameters>) else ($input)
+    </parameters>)
+
+  let $stage1 := if ($removeAnnotationStaff eq 'on') then transform:transform($stage0, $removeAnnotStaff,
+    <parameters>
+    </parameters>) else ($stage0)
 
   let $stage2 := if ($modernClefs eq 'on') then transform:transform($stage1, $modernizeClefs,
     <parameters></parameters>) else ($stage1)
