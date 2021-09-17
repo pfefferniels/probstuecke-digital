@@ -2,15 +2,22 @@ import SVGtoPDF from 'svg-to-pdfkit'
 import blobStream from 'blob-stream'
 import saveAs from 'save-as'
 import { pdfToolkit } from '../Verovio'
+import { apiUrl } from '../../config.js'
+import junicode from '../../assets/Junicode.woff'
+import junicodeBold from '../../assets/Junicode-Bold.woff'
+import junicodeItalic from '../../assets/Junicode-Italic.woff'
+import junicodeBoldItalic from '../../assets/Junicode-BoldItalic.woff'
+import verovioTextFont from '../../assets/VerovioText.ttf'
 
-const generatePDF = meiData => {
+const generatePDF = async (meiData) => {
   const options = {
     fontCallback: function(family, bold, italic, fontOptions) {
       if (family === 'VerovioText') return family
-      if (bold && italic) return 'Times-BoldItalic'
-      if (bold && !italic) return 'Times-Bold'
-      if (!bold && italic) return 'Times-Italic'
-      if (!bold && !italic) return 'Times-Roman'
+      if (bold && italic) return 'Junicode-BoldItalic'
+      if (bold && !italic) return 'Junicode-Bold'
+      if (!bold && italic) return 'Junicode-Italic'
+
+      return 'Junicode'
     }
   }
 
@@ -20,6 +27,19 @@ const generatePDF = meiData => {
     compress: true,
     autoFirstPage: false
   })
+
+  const loadFont = async (name, file) => {
+    const response = await fetch(file)
+    const buffer = await response.arrayBuffer()
+    doc.registerFont(name, buffer)
+  }
+
+  await loadFont('Junicode', junicode)
+  await loadFont('Junicode-Bold', junicodeBold)
+  await loadFont('Junicode-Italic', junicodeItalic)
+  await loadFont('Junicode-BoldItalic', junicodeBoldItalic)
+  await loadFont('VerovioText', verovioTextFont)
+
   doc.info['Title'] = 'Probstück'
 
   let stream = doc.pipe(blobStream())
