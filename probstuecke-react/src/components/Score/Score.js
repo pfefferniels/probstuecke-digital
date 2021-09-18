@@ -12,7 +12,7 @@ import { SVGRouter, SVGRoute } from './SVGRouter'
 import MeasureFacsimile from './MeasureFacsimile'
 import MeterSignature from './MeterSignature'
 import KeySignature from './KeySignature'
-import generatePDF from './PDFExport'
+import ExportPDFModal from './ExportPDFModal'
 import './Score.scss'
 
 const Score = ({mei, scoreDidUpdate}) => {
@@ -24,6 +24,7 @@ const Score = ({mei, scoreDidUpdate}) => {
   const [modernClefs, setModernClefs] = useState(false)
   const [stavesAbove, setStavesAbove] = useState(0)
   const [embed, setEmbed] = useState(false)
+  const [exportModalShow, setExportModalShow] = useState(false)
   const [facsimileZones, setFacsimileZones] = useState(null)
   const scoreRef = useRef(null)
 
@@ -91,9 +92,13 @@ const Score = ({mei, scoreDidUpdate}) => {
                 onClick={() => setEmbed(!embed)}
                 tooltip={t('embedAnnotations')}/>
         <Option icon={faFilePdf}
-                onClick={() => generatePDF(meiData)}
+                onClick={() => setExportModalShow(true)}
                 tooltip={t('generatePDF')}/>
       </div>
+
+      <ExportPDFModal show={exportModalShow}
+                      onHide={() => setExportModalShow(false)}
+                      meiData={meiData} />
 
       <div>
         {
