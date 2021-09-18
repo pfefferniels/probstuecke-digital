@@ -48,6 +48,44 @@ const ExportPDFModal = ({
   const { t } = useTranslation()
 
   const exportPDF = async () => {
+    pdfToolkit.setOptions({
+      font: font,
+      adjustPageHeight: false,
+      breaks: 'auto',
+      mmOutput: true,
+      breaksNoWidow: true,
+      ...paperSizes[format],
+      landscape: orientation === 'landscape',
+      pageMarginLeft: margins[margin],
+      pageMarginRight: margins[margin],
+      pageMarginTop: margins[margin],
+      pageMarginBottom: margins[margin],
+      scale: 100
+    })
+
+    const dom = new DOMParser().parseFromString(meiData, 'text/xml')
+
+    // insert composer's name on the right side of pgHead
+    const composerName = dom.querySelector('composer persName').textContent
+    const composerRend = dom.createElementNS('http://www.music-encoding.org/ns/mei', 'rend')
+    composerRend.setAttribute('halign', 'right')
+    composerRend.textContent = composerName
+    const pgHead = dom.querySelector('pgHead')
+    pgHead.appendChild(composerRend)
+
+    // insert pgFoot with information on when the content was downloaded.
+    const scoreDef = dom.querySelector('scoreDef')
+    const pgFoot = dom.createElementNS('http://www.music-encoding.org/ns/mei', 'pgFoot')
+    const rend = dom.createElementNS('http://www.music-encoding.org/ns/mei', 'rend')
+    const date = new Date()
+    rend.textContent =
+      `This content was downloaded from probstuecke-digital.de
+       on ${date.getDate()}.${date.getMonth()+1}.${date.getFullYear()}.`
+    pgFoot.appendChild(rend)
+    scoreDef.appendChild(pgFoot)
+
+    pdfToolkit.loadData(new XMLSerializer().serializeToString(dom))
+
     const options = {
       fontCallback: function(family, bold, italic, fontOptions) {
         if (family === 'VerovioText') return family
@@ -61,6 +99,7 @@ const ExportPDFModal = ({
 
     const doc = new window.PDFDocument({
       size: format,
+      layout: orientation,
       useCSS: true,
       compress: true,
       autoFirstPage: false
@@ -78,7 +117,8 @@ const ExportPDFModal = ({
     await loadFont('Junicode-BoldItalic', junicodeBoldItalic)
     await loadFont('VerovioText', verovioTextFont)
 
-    doc.info['Title'] = 'Probstück'
+    doc.info['Title'] = dom.querySelector('title').textContent
+    doc.info['Author'] = composerName
 
     let stream = doc.pipe(blobStream())
     stream.on('finish', function() {
@@ -86,44 +126,7 @@ const ExportPDFModal = ({
       saveAs(blob, 'probstueck.pdf')
     })
 
-    pdfToolkit.setOptions({
-      font: font,
-      adjustPageHeight: false,
-      breaks: 'auto',
-      mmOutput: true,
-      breaksNoWidow: true,
-      ...paperSizes[format],
-      pageMarginLeft: margins[margin],
-      pageMarginRight: margins[margin],
-      pageMarginTop: margins[margin],
-      pageMarginBottom: margins[margin],
-      scale: 100
-    })
-
-    const dom = new DOMParser().parseFromString(meiData, 'text/xml')
-    const scoreDef = dom.querySelector('scoreDef')
-
-    // insert composer's name on the right side of pgHead
-    const composerName = dom.querySelector('composer persName').textContent
-    const composerRend = dom.createElementNS('http://www.music-encoding.org/ns/mei', 'rend')
-    composerRend.setAttribute('halign', 'right')
-    composerRend.textContent = composerName
-    const pgHead = dom.querySelector('pgHead')
-    pgHead.appendChild(composerRend)
-
-    // insert pgFoot with information on when the content was downloaded.
-    const pgFoot = dom.createElementNS('http://www.music-encoding.org/ns/mei', 'pgFoot')
-    const rend = dom.createElementNS('http://www.music-encoding.org/ns/mei', 'rend')
-    const date = new Date()
-    rend.textContent =
-      `This content was downloaded from probstuecke-digital.de
-       on ${date.getDate()}.${date.getMonth()+1}.${date.getFullYear()}.`
-    pgFoot.appendChild(rend)
-    scoreDef.appendChild(pgFoot)
-
-    pdfToolkit.loadData(new XMLSerializer().serializeToString(dom))
-
-    for (let i=0; i < pdfToolkit.getPageCount(); i++) {
+    for (let i=0; i<pdfToolkit.getPageCount(); i++) {
       doc.addPage()
       SVGtoPDF(doc, pdfToolkit.renderToSVG(i+1, {}), 0, 0, options)
     }
@@ -251,6 +254,3 @@ const ExportPDFModal = ({
 }
 
 export default ExportPDFModal
-
-/*
-*/
