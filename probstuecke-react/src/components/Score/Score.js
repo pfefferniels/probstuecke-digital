@@ -93,7 +93,7 @@ const Score = ({mei, scoreDidUpdate}) => {
                 tooltip={t('embedAnnotations')}/>
         <Option icon={faFilePdf}
                 onClick={() => setExportModalShow(true)}
-                tooltip={t('generatePDF')}/>
+                tooltip={t('exportPDF')}/>
       </div>
 
       <ExportPDFModal show={exportModalShow}
