@@ -7,7 +7,7 @@ import { apiUrl } from '../config'
 import './Search.scss'
 
 const Search = () => {
-  const [results, setResults] = useState(null)
+  const [results, setResults] = useState([])
   const [ready, setReady] = useState(false)
   const { q } = useParams()
   const { t } = useTranslation()
@@ -18,7 +18,11 @@ const Search = () => {
       try {
         const data = await fetch(`${apiUrl}/search/${q}`)
         const json = await data.json()
-        setResults(json.results)
+        setResults(
+          Array.isArray(json.results) ?
+            json.results :
+            [json.results]
+        )
         setReady(true)
       } catch (e) {
         addError(`Error fetching search results: ${e}`, 'warning')
