@@ -17,6 +17,9 @@ declare namespace transform = "http://exist-db.org/xquery/transform";
 declare namespace xmldb = "http://exist-db.org/xquery/xmldb";
 import module namespace kwic="http://exist-db.org/xquery/kwic";
 
+declare variable $api:home := "/db/apps/probstuecke-digital";
+declare variable $api:encodings := $api:home || "/encodings";
+
 declare function api:getRegion($zones as element()+) as xs:string {
     let $x := min($zones/xs:integer(@ulx))
     let $y := min($zones/xs:integer(@uly))
@@ -84,7 +87,7 @@ declare
 function api:toc() {
     (: TODO generate toc.json :)
     (api:enable_cors(),
-    json-doc("/db/apps/probstuecke-digital/encodings/toc.json"))
+    json-doc($api:encodings || "/toc.json"))
 };
 
 (:~
@@ -111,11 +114,11 @@ function api:tei($path, $modernize) {
     )
   )
 
-  let $input := doc("/db/apps/probstuecke-digital/encodings/" || $newPath)
+  let $input := doc($api:encodings || "/" || $newPath)
 
   return (
     if ($modernize = "1") then (
-      let $xsl := doc("/db/apps/probstuecke-digital/xslt/modernize-tei.xsl")
+      let $xsl := doc($api:home || "/xslt/modernize-tei.xsl")
       return (api:enable_cors(), transform:transform($input, $xsl, ()))
     ) else (
       (api:enable_cors(), $input)
@@ -148,12 +151,12 @@ function api:mei($path, $stavesAbove, $stavesBelow, $modernClefs, $removeAnnotat
   let $modernClefs := if ($modernClefs) then ($modernClefs) else ('off')
   let $removeAnnotationStaff := if ($removeAnnotationStaff) then ($removeAnnotationStaff) else ('on')
 
-  let $input := doc("/db/apps/probstuecke-digital/encodings/" || $path)
+  let $input := doc($api:encodings || "/" || $path)
 
-  let $formatFb := doc('/db/apps/probstuecke-digital/xslt/format-fb.xsl')
-  let $removeAnnotStaff := doc('/db/apps/probstuecke-digital/xslt/remove-annotationstaff.xsl')
-  let $addStaves := doc('/db/apps/probstuecke-digital/xslt/add-staves.xsl')
-  let $modernizeClefs := doc('/db/apps/probstuecke-digital/xslt/change-clefs.xsl')
+  let $formatFb := doc($api:home || '/xslt/format-fb.xsl')
+  let $removeAnnotStaff := doc($api:home || '/xslt/remove-annotationstaff.xsl')
+  let $addStaves := doc($api:home || '/xslt/add-staves.xsl')
+  let $modernizeClefs := doc($api:home || '/xslt/change-clefs.xsl')
 
   let $stage0 := transform:transform($input, $formatFb,
     <parameters>
@@ -189,7 +192,7 @@ declare
   %output:method('binary')
 function api:media($path) {
   (api:enable_cors(),
-    util:binary-doc("/db/apps/probstuecke-digital/encodings/" || $path))
+    util:binary-doc($api:encodings || '/' || $path))
 };
 
 (:~
@@ -207,7 +210,7 @@ declare
   %output:media-type("application/json")
   %output:method("json")
 function api:iiif($path) {
-  (api:enable_cors(), json-doc("/db/apps/probstuecke-digital/" || $path))
+  (api:enable_cors(), json-doc($api:home || '/' || $path))
 };
 
 
@@ -226,7 +229,7 @@ declare
   %output:method("xml")
 function api:references($ref) {
   let $refId := '#' || xmldb:decode($ref)
-  let $collection := collection("/db/apps/probstuecke-digital")
+  let $collection := collection($api:encodings)
   let $refs :=
     for $ref in $collection//tei:body//*[@corresp=$refId]
     return base-uri($ref)
@@ -255,7 +258,7 @@ declare
   %output:method("json")
 function api:search($query) {
   let $q := xmldb:decode($query) || '~0.8'
-  let $collection := collection("/db/apps/probstuecke-digital")[not(contains(util:document-name(.), '_en') or contains(util:document-name(.), 'modernized'))]
+  let $collection := collection($api:home)[not(contains(util:document-name(.), '_en') or contains(util:document-name(.), 'modernized'))]
 
   let $results :=
     for $p in $collection//tei:body//tei:p[ft:query(., $q)]
@@ -263,7 +266,8 @@ function api:search($query) {
         return
             map {
                 'title': string(fn:head(root($p)//tei:titleStmt/tei:title)),
-                'summary': kwic:summarize($p, <config width="150"/>)
+                'summary': kwic:summarize($p, <config width="150" />),
+                'path': fn:replace(string(fn:document-uri(root($p))), $api:encodings || '/', '')
             }
 
   return (api:enable_cors(),
@@ -288,7 +292,7 @@ declare
   %output:media-type("application/json")
   %output:method("json")
 function api:tei-facsimile($path) {
-    let $doc := doc("/db/apps/probstuecke-digital/encodings/" || $path)
+    let $doc := doc($api:home || "/encodings/" || $path)
     let $zones :=
         for $zone in $doc//tei:zone
         let $url := $zone/../tei:graphic/@url/string()
@@ -327,7 +331,7 @@ declare
   %output:media-type("application/json")
   %output:method("json")
 function api:mei-facsimile($path) {
-    let $doc := doc("/db/apps/probstuecke-digital/encodings/" || $path)
+    let $doc := doc($api:encodings || '/' || $path)
 
     let $facsElements :=
         for $el in $doc//*[@facs]
