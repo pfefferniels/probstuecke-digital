@@ -195,22 +195,43 @@ function api:media($path) {
     util:binary-doc($api:encodings || '/' || $path))
 };
 
+
 (:~
- : IIIF Annotations
+ : IIIF Manifest
  :
- : Returns IIIF annotations for a given Probstück
+ : Returns IIIF manifest for a given Probstück
  :
  : @result JSON object
  :)
 declare
   %rest:GET
-  %rest:path("/iiif")
+  %rest:path("/manifest")
   %rest:query-param("path", "{$path}")
   %rest:produces("application/json")
   %output:media-type("application/json")
   %output:method("json")
-function api:iiif($path) {
-  (api:enable_cors(), json-doc($api:home || '/' || $path))
+function api:manifest($path) {
+  let $doc := doc($api:encodings || '/' || $path)
+  let $facsimile :=  $doc//mei:facsimile
+
+  let $result :=
+    for $facsimile in $facsimile
+      let $targets := $facsimile//mei:graphic[1]/string(@target)
+      let $url.tokens := tokenize($targets, "/")
+      let $identifier := $url.tokens[7]
+
+      (: the BSB has managed to mess up the page numbering in both
+      manifests. For now, we are correcting it here ... :)
+      let $canvas.id :=
+        if ($identifier = "bsb10527431") then (xs:string(xs:integer($url.tokens[9])+6))
+        else ((xs:string(xs:integer($url.tokens[9])-16)))
+
+      return map {
+        "manifest": "https://api.digitale-sammlungen.de/iiif/presentation/v2/" || $identifier || "/manifest",
+        "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/" || $identifier || "/canvas/" || $canvas.id
+      }
+
+  return (api:enable_cors(), $result)
 };
 
 
