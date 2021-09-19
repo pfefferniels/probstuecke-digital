@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Modal, Button, Tabs, Tab, ToggleButtonGroup, ToggleButton } from 'react-bootstrap'
+import { Modal, Button, Tabs, Tab, ToggleButtonGroup, ToggleButton, Spinner } from 'react-bootstrap'
 import SVGtoPDF from 'svg-to-pdfkit'
 import blobStream from 'blob-stream'
 import saveAs from 'save-as'
@@ -45,9 +45,12 @@ const ExportPDFModal = ({
   const [format, setFormat] = useState('A4')
   const [margin, setMargin] = useState('normal')
   const [font, setFont] = useState('Leipzig')
+  const [loading, setLoading] = useState(false)
   const { t } = useTranslation()
 
   const exportPDF = async () => {
+    setLoading(true)
+
     pdfToolkit.setOptions({
       font: font,
       adjustPageHeight: false,
@@ -122,8 +125,10 @@ const ExportPDFModal = ({
 
     let stream = doc.pipe(blobStream())
     stream.on('finish', function() {
+      setLoading(false)
       const blob = stream.toBlob('application/pdf')
       saveAs(blob, 'probstueck.pdf')
+      onHide()
     })
 
     for (let i=0; i<pdfToolkit.getPageCount(); i++) {
@@ -132,7 +137,6 @@ const ExportPDFModal = ({
     }
 
     doc.end()
-    onHide()
   }
 
   return (
@@ -242,8 +246,11 @@ const ExportPDFModal = ({
         </Tabs>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant='secondary' onClick={exportPDF}>
-          {t('export')}
+        <Button
+          variant='primary'
+          onClick={exportPDF}
+          disabled={loading}>
+          {loading ? <Spinner animation='border'/> : t('export')}
         </Button>
         <Button variant='secondary' onClick={onHide}>
           {t('close')}
