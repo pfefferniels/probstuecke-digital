@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Alert, Spinner, Tabs, Tab, Container, Col, Row } from 'react-bootstrap'
 import { TOC } from './../providers/TOC'
+import MiradorModal from './MiradorModal'
 import Score from './Score/Score'
 import DTABf from './Text/DTABf/DTABf'
 import LessonTrascription from './Text/LessonTranscription/LessonTranscription'
@@ -40,6 +41,11 @@ const View = () => {
                 onClick={() => {setDiplomatic(!diplomatic)}}
                 tooltip={t('toggleDiplomatic')}/>
       </div>
+
+      <MiradorModal
+        show={showMirador}
+        onHide={() => setShowMirador(false)}
+        piece={piece} />
 
       <Tabs defaultActiveKey='mattheson1732'
             mountOnEnter={true}
