@@ -1,5 +1,9 @@
 #searchResults {
   .result {
+    .title:hover {
+      text-decoration: underline;
+    }
+
     .summary {
       .hi {
         font-weight: bold;
@@ -11,6 +15,7 @@
     }
 
     margin: 1rem;
+    cursor: pointer;
   }
 
   margin: 2rem;
