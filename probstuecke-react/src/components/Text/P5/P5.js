@@ -1,40 +1,16 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useRef } from 'react'
 import { TEIRoute, TEIRender } from 'react-teirouter'
 import { Spinner } from 'react-bootstrap'
-import useAPIError from '../../../hooks/useAPIError'
-import path from 'path'
+import { useAPIError, useTEI } from '../../../hooks'
 import { Header, MetadataModal, NotatedMusic, Reference } from '..'
 import { apiUrl } from '../../../config.js'
 import Media from './Media'
 import './P5.scss'
-import CETEI from 'CETEIcean'
-
-const teiToHtml = async (file) => {
-  const ct = new CETEI()
-  ct.addBehaviors({
-    'teiHeader': undefined
-  })
-  return ct.getHTML5(file)
-}
 
 const P5 = ({tei}) => {
   const headerRef = useRef()
-  const [teiData, setTeiData] = useState(null)
   const { addError } = useAPIError()
-  const teiPath = path.dirname(tei)
-
-  useEffect(() => {
-    const fetchTEI = async () => {
-      try {
-        const data = await teiToHtml(`${apiUrl}/tei?path=${tei}`)
-        setTeiData(data)
-      } catch (e) {
-        addError(`failed fetching TEI: ${e}`, 'warning')
-      }
-    }
-
-    fetchTEI()
-  }, [tei])
+  const { teiPath, teiData } = useTEI(tei, addError)
 
   if (!teiData) {
     return <Spinner animation='grow' />
