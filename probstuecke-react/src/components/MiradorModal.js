@@ -9,8 +9,6 @@ const MiradorModal = ({
   onHide,
   piece
 }) => {
-  const [miradorInstance, setMiradorInstance] = useState(null)
-
   useEffect(() => {
     if (!show) return
 
@@ -29,7 +27,6 @@ const MiradorModal = ({
     }
 
     const instance = mirador.viewer(config, [])
-    setMiradorInstance(instance)
 
     // load manifest
     const loadManifest = async () => {
