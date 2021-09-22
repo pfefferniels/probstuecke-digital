@@ -36,10 +36,18 @@ const Search = () => {
       try {
         const data = await fetch(`${apiUrl}/search/${q}`)
         const json = await data.json()
+
+        // nothing found
+        if (!json.results) {
+          setResults([])
+          setReady(true)
+          return
+        }
+
         setResults(
           Array.isArray(json.results) ?
-            json.results :
-            [json.results]
+            json.results : // multiple results
+            [json.results] // exactly one result
         )
         setReady(true)
       } catch (e) {
@@ -54,7 +62,7 @@ const Search = () => {
     return <Spinner animation='grow' />
   }
 
-  if (!results) {
+  if (results.length === 0) {
     return <p className='noSearchResults'>{t('noSearchResults')}</p>
   }
 
