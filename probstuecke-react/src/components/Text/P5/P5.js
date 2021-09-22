@@ -3,7 +3,6 @@ import { TEIRoute, TEIRender } from 'react-teirouter'
 import { Spinner } from 'react-bootstrap'
 import { useAPIError, useTEI } from '../../../hooks'
 import { Header, MetadataModal, NotatedMusic, Reference } from '..'
-import { apiUrl } from '../../../config.js'
 import Media from './Media'
 import './P5.scss'
 

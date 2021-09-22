@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { Modal, Button } from 'react-bootstrap'
+import React, { useEffect } from 'react'
+import { Button } from 'react-bootstrap'
 import mirador from 'mirador'
 import { apiUrl } from '../config'
 import './MiradorModal.scss'
@@ -38,9 +38,9 @@ const MiradorModal = ({
           return
         }
 
-        data.map((facsimile) => {
+        data.forEach((facsimile) => {
           // add manifest to Mirador
-          let addWindow = mirador.actions.addWindow({
+          const addWindow = mirador.actions.addWindow({
             defaultView: 'single',
             id: `window-${Date.now()}`,
             manifestId: facsimile.manifest,
@@ -48,14 +48,13 @@ const MiradorModal = ({
           })
           instance.store.dispatch(addWindow)
         })
-
       } catch (e) {
         console.log(e)
       }
     }
 
     loadManifest()
-  }, [show])
+  }, [piece, show])
 
 
   return (
