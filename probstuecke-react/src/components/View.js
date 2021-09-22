@@ -15,7 +15,7 @@ import { useParams } from 'react-router-dom'
 
 const View = () => {
   const { t } = useTranslation()
-  const { piece } = useParams()
+  const { piece, key } = useParams()
 
   const toc = useContext(TOC)
   const [diplomatic, setDiplomatic] = useState(false)
@@ -47,7 +47,7 @@ const View = () => {
         onHide={() => setShowMirador(false)}
         piece={piece} />
 
-      <Tabs defaultActiveKey='mattheson1732'
+      <Tabs defaultActiveKey={key ? key : 'mattheson1732'}
             mountOnEnter={true}
             unmountOnExit={true}>
         {Object.entries(toc.data[piece].editions).map(([key, value]) => (

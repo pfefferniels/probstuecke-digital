@@ -28,10 +28,7 @@ const Search = () => {
 
   const redirectTo = (path) => {
     const where = findInToc(path)
-    history.push(`/n${where.n}`)
-    // Ideally, we also deliver the key (e.g. mattheson1723)
-    // However, we CETEIcean prevents that, see here:
-    // https://github.com/TEIC/CETEIcean/issues/41
+    history.push(`/n${where.n}/${where.key}`)
   }
 
   useEffect(() => {

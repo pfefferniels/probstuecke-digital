@@ -33,6 +33,7 @@ const App = props => (
               <Route path='/guidelines'>
                 <P5 tei='guidelines/guidelines_en.xml'/>
               </Route>
+              <Route path='/n:piece/:key' component={View} />
               <Route path='/n:piece' component={View} />
               <Route path='/search/:q' component={Search} />
               <Route path='/' component={Welcome} />
