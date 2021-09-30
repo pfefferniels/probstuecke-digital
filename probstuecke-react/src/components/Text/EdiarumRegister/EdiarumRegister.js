@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useRef, useEffect } from 'react'
 import { Spinner } from 'react-bootstrap'
 import { Button, Badge, ListGroup } from 'react-bootstrap'
 import { TEIRoute, TEIRender } from 'react-teirouter'
@@ -26,7 +26,7 @@ const EdiarumList = ({ children }) => {
   return <ListGroup variant='flush'>{children}</ListGroup>
 }
 
-const EdiarumListItem = ({ teiNode, children }) => {
+const EdiarumListItem = ({ activeItem, teiNode, children }) => {
   const { t } = useTranslation()
   const { addError } = useAPIError()
   const history = useHistory()
@@ -34,13 +34,21 @@ const EdiarumListItem = ({ teiNode, children }) => {
   const { navigateTo } = useNavigation(toc, history)
   const [references, setReferences] = useState([])
   const xmlId = teiNode.getAttribute('xml:id')
+  const itemRef = useRef()
+  const isActive = xmlId === activeItem
+
+  useEffect(() => {
+    if (itemRef.current && isActive) {
+      itemRef.current.scrollIntoView({ behaviour: 'smooth' })
+    }
+  }, [itemRef.current, isActive])
 
   const fetchReferences = async () => {
     try {
       const response = await fetch(`${apiUrl}/references/${xmlId}`)
       const data = await response.json()
       if (!data.references) {
-        console.log('no references found')
+        addError('no references found', 'warning')
         return
       }
       setReferences(
@@ -49,12 +57,12 @@ const EdiarumListItem = ({ teiNode, children }) => {
           : [data.references] // exactly one result
       )
     } catch (e) {
-      console.log('failed fetching references', e)
+      addError(`failed fetching references ${e}`, 'warning')
     }
   }
 
   return (
-    <ListGroup.Item id={xmlId}>
+    <ListGroup.Item ref={itemRef} id={xmlId}>
       {children}
 
       <Button variant='link' onClick={() => fetchReferences()}>
@@ -73,7 +81,7 @@ const EdiarumListItem = ({ teiNode, children }) => {
   )
 }
 
-const EdiarumRegister = ({ tei }) => {
+const EdiarumRegister = ({ tei, activeItem }) => {
   const { addError } = useAPIError()
   const { teiData } = useTEI(tei, addError)
 
@@ -86,8 +94,12 @@ const EdiarumRegister = ({ tei }) => {
       <TEIRender data={teiData}>
         <TEIRoute el='tei-listperson' component={EdiarumList} />
         <TEIRoute el='tei-listbibl' component={EdiarumList} />
-        <TEIRoute el='tei-person' component={EdiarumListItem} />
-        <TEIRoute el='tei-bibl' component={EdiarumListItem} />
+        <TEIRoute el='tei-person'>
+          <EdiarumListItem activeItem={activeItem} />
+        </TEIRoute>
+        <TEIRoute el='tei-bibl'>
+          <EdiarumListItem activeItem={activeItem} />
+        </TEIRoute>
         <TEIRoute el='tei-idno' component={EdiarumIdno} />
       </TEIRender>
     </div>

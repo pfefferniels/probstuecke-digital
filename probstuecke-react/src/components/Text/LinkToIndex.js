@@ -8,7 +8,11 @@ const LinkToIndex = (props) => {
     return <span className='targetlessLink'>{props.children}</span>
   }
 
-  return <Link to={`/${props.type}${corresp}`}>{props.children}</Link>
+  return (
+    <Link to={`/${props.type}/${corresp.replace('#', '')}`}>
+      {props.children}
+    </Link>
+  )
 }
 
 export default LinkToIndex
