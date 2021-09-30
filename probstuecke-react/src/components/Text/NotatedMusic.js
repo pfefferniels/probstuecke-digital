@@ -27,7 +27,7 @@ const NotatedMusic = ({ teiNode, path }) => {
         exampleToolkit.setOptions({
           pageHeight: 60000,
           adjustPageHeight: true,
-          footer: 'none'
+          footer: 'none',
         })
         exampleToolkit.loadData(text)
         const svg = exampleToolkit.renderToSVG(1)
@@ -46,11 +46,11 @@ const NotatedMusic = ({ teiNode, path }) => {
   }
 
   if (!svg) {
-    return <Spinner animation='grow'/>
+    return <Spinner animation='grow' />
   }
 
   return (
-    <div className='notatedMusic' dangerouslySetInnerHTML={{__html: svg}}/>
+    <div className='notatedMusic' dangerouslySetInnerHTML={{ __html: svg }} />
   )
 }
 

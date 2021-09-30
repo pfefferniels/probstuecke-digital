@@ -23,14 +23,10 @@ const EdiarumIdno = ({ teiNode }) => {
 }
 
 const EdiarumList = ({ children }) => {
-  return (
-    <ListGroup variant='flush'>
-      {children}
-    </ListGroup>
-  )
+  return <ListGroup variant='flush'>{children}</ListGroup>
 }
 
-const EdiarumListItem = ({teiNode, children}) => {
+const EdiarumListItem = ({ teiNode, children }) => {
   const { t } = useTranslation()
   const { addError } = useAPIError()
   const history = useHistory()
@@ -44,13 +40,13 @@ const EdiarumListItem = ({teiNode, children}) => {
       const response = await fetch(`${apiUrl}/references/${xmlId}`)
       const data = await response.json()
       if (!data.references) {
-         console.log('no references found')
-         return
+        console.log('no references found')
+        return
       }
       setReferences(
-        Array.isArray(data.references) ?
-          data.references : // multiple refs
-          [data.references] // exactly one result
+        Array.isArray(data.references)
+          ? data.references // multiple refs
+          : [data.references] // exactly one result
       )
     } catch (e) {
       console.log('failed fetching references', e)
@@ -61,27 +57,23 @@ const EdiarumListItem = ({teiNode, children}) => {
     <ListGroup.Item id={xmlId}>
       {children}
 
-      <Button
-        variant='link'
-        onClick={() => fetchReferences()}>
+      <Button variant='link' onClick={() => fetchReferences()}>
         {t('viewOccurences')}
       </Button>
       {references.map((ref, i) => {
-         return (
-            <div key={`referenceOn${xmlId}_${i}`}>
-              <Button
-                variant='link'
-                onClick={() => navigateTo(ref.path)}>
-                  {ref.title}
-               </Button>
-             </div>
-         )
+        return (
+          <div key={`referenceOn${xmlId}_${i}`}>
+            <Button variant='link' onClick={() => navigateTo(ref.path)}>
+              {ref.title}
+            </Button>
+          </div>
+        )
       })}
     </ListGroup.Item>
   )
 }
 
-const EdiarumRegister = ({tei}) => {
+const EdiarumRegister = ({ tei }) => {
   const { addError } = useAPIError()
   const { teiData } = useTEI(tei, addError)
 
@@ -92,11 +84,11 @@ const EdiarumRegister = ({tei}) => {
   return (
     <div className='ediarumRegister'>
       <TEIRender data={teiData}>
-        <TEIRoute el='tei-listperson' component={EdiarumList}/>
-        <TEIRoute el='tei-listbibl' component={EdiarumList}/>
-        <TEIRoute el='tei-person' component={EdiarumListItem}/>
-        <TEIRoute el='tei-bibl' component={EdiarumListItem}/>
-        <TEIRoute el='tei-idno' component={EdiarumIdno}/>
+        <TEIRoute el='tei-listperson' component={EdiarumList} />
+        <TEIRoute el='tei-listbibl' component={EdiarumList} />
+        <TEIRoute el='tei-person' component={EdiarumListItem} />
+        <TEIRoute el='tei-bibl' component={EdiarumListItem} />
+        <TEIRoute el='tei-idno' component={EdiarumIdno} />
       </TEIRender>
     </div>
   )

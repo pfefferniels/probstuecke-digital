@@ -3,106 +3,105 @@ tei-text {
   font-size: 1.1rem;
 }
 
-tei-hi[rendition="#aq"] {
+tei-hi[rendition='#aq'] {
   letter-spacing: 0.1rem;
 }
 
-tei-hi[rendition="#b"] {
+tei-hi[rendition='#b'] {
   font-weight: bold;
 }
 
-tei-hi[rendition="#blue"] {
+tei-hi[rendition='#blue'] {
   color: blue;
 }
 
-tei-hi[rendition="#c"] {
+tei-hi[rendition='#c'] {
   display: block;
   text-align: center;
 }
 
-tei-hi[rendition="#et"] {
+tei-hi[rendition='#et'] {
   display: block;
   margin-left: 2em;
   text-indent: 0;
 }
 
-tei-hi[rendition="#f"] {
+tei-hi[rendition='#f'] {
   border: 1px dotted silver;
 }
 
-tei-hi[rendition="#fr"] {
+tei-hi[rendition='#fr'] {
   border: 1px dotted silver;
 }
 
-tei-hi[rendition="#g"] {
+tei-hi[rendition='#g'] {
   letter-spacing: 0.125em;
 }
 
-tei-hi[rendition="#i"] {
+tei-hi[rendition='#i'] {
   font-style: italic;
 }
 
-tei-hi[rendition="#in"] {
+tei-hi[rendition='#in'] {
   font-size: 150%;
 }
 
-tei-hi[rendition="#k"] {
+tei-hi[rendition='#k'] {
   font-variant: small-caps;
 }
 
-tei-hi[rendition="#red"] {
+tei-hi[rendition='#red'] {
   color: red;
 }
 
-tei-hi[rendition="#right"] {
+tei-hi[rendition='#right'] {
   display: block;
   text-align: right;
 }
 
-tei-hi[rendition="#sub"] {
+tei-hi[rendition='#sub'] {
   vertical-align: sub;
-  font-size: .7em;
+  font-size: 0.7em;
 }
 
-tei-hi[rendition="#sup"] {
+tei-hi[rendition='#sup'] {
   vertical-align: super;
-  font-size: .7em;
+  font-size: 0.7em;
 }
 
-tei-hi[rendition="#u"] {
+tei-hi[rendition='#u'] {
   text-decoration: underline;
 }
 
-tei-hi[rendition="#uu"] {
+tei-hi[rendition='#uu'] {
   border-bottom: double 3px #000;
 }
 
-tei-hi[rendition="#v"] {
-  ;
+tei-hi[rendition='#v'] {
 }
 
-tei-hi[rendition="#s"] {
+tei-hi[rendition='#s'] {
   text-decoration: line-through;
 }
 
-tei-hi[rendition="#et2"] {
+tei-hi[rendition='#et2'] {
   display: block;
   margin-left: 4em;
   text-indent: 0;
 }
 
-tei-hi[rendition="#et3"] {
+tei-hi[rendition='#et3'] {
   display: block;
   margin-left: 6em;
   text-indent: 0;
 }
 
-tei-hi[rendition="#smaller"] {
+tei-hi[rendition='#smaller'] {
   font-size: smaller;
 }
 
-tei-hi[rendition="#larger"] {
-  font-size: larger
+tei-hi[rendition='#larger'] {
+  font-size: larger;
 }
 
 tei-facsimile {
@@ -153,7 +152,7 @@ tei-fw {
     color: gray;
   }
 
-  tei-fw[type="catch"][place="bottom"] {
+  tei-fw[type='catch'][place='bottom'] {
     text-align: right;
     display: block;
     color: #666;
@@ -164,13 +163,13 @@ tei-fw {
   }
 
   tei-pb[n]:after {
-    content: '['attr(n)']\A';
+    content: '[' attr(n) ']\A';
     color: gray;
   }
 }
 
 .modernized {
-  tei-pc[force="weak"] {
+  tei-pc[force='weak'] {
     display: none;
   }
 }

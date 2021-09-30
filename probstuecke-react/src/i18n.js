@@ -10,8 +10,8 @@ i18n
   .init({
     fallbackLng: 'en',
     backend: {
-      loadPath: `${process.env.PUBLIC_URL}/locales/{{lng}}/{{ns}}.json`
-    }
-  });
+      loadPath: `${process.env.PUBLIC_URL}/locales/{{lng}}/{{ns}}.json`,
+    },
+  })
 
 export default i18n

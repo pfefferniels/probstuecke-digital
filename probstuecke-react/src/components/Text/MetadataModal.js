@@ -10,19 +10,24 @@ const MetadataModal = ({ headerRef }) => {
   const [show, setShow] = useState(false)
 
   return (
-    <Option icon={faInfoCircle}
-            onClick={() => setShow(!show)}
-            tooltip={t('metadataModal')}>
-      <Modal show={show}
-             onHide={() => setShow(false)}
-             size='lg'
-             centered>
+    <Option
+      icon={faInfoCircle}
+      onClick={() => setShow(!show)}
+      tooltip={t('metadataModal')}
+    >
+      <Modal show={show} onHide={() => setShow(false)} size='lg' centered>
         <Modal.Header closeButton>
           <Modal.Title>Metadata</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div className='teiMetadata'>
-            {headerRef.current && <div dangerouslySetInnerHTML={{__html: headerRef.current.innerHTML}}/>}
+            {headerRef.current && (
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: headerRef.current.innerHTML,
+                }}
+              />
+            )}
           </div>
         </Modal.Body>
         <Modal.Footer>
@@ -31,7 +36,8 @@ const MetadataModal = ({ headerRef }) => {
           </Button>
         </Modal.Footer>
       </Modal>
-    </Option>)
+    </Option>
+  )
 }
 
 export default MetadataModal

@@ -6,7 +6,7 @@ import { incipitToolkit } from './Verovio'
 import { TOC } from './../providers/TOC'
 import './Welcome.scss'
 
-const Incipit = ({pae}) => {
+const Incipit = ({ pae }) => {
   const [svg, setSVG] = useState(null)
 
   useEffect(() => {
@@ -15,20 +15,17 @@ const Incipit = ({pae}) => {
       adjustPageWidth: true,
       adjustPageHeight: true,
       footer: 'none',
-      svgViewBox: true
+      svgViewBox: true,
     })
     incipitToolkit.loadData(pae)
     setSVG(incipitToolkit.renderToSVG(1))
   }, [pae])
 
   if (!svg) {
-    return <Spinner animation='grow'/>
+    return <Spinner animation='grow' />
   }
 
-  return (
-    <div className='incipit'
-         dangerouslySetInnerHTML={{__html: svg}}/>
-  )
+  return <div className='incipit' dangerouslySetInnerHTML={{ __html: svg }} />
 }
 
 const Welcome = () => {
@@ -38,34 +35,32 @@ const Welcome = () => {
   return (
     <div id='welcome'>
       <header className='header'>
-        <p className='welcomeOverlay lead'>
-          {t('welcome')}
-        </p>
+        <p className='welcomeOverlay lead'>{t('welcome')}</p>
       </header>
 
-      {(!toc.ready) ? <Spinner animation='grow'/>
-                    :
+      {!toc.ready ? (
+        <Spinner animation='grow' />
+      ) : (
         <CardColumns>
-          {Object.entries(toc.data).map(([key,value], i) => (
-            <Card key={i} style={{width: '25rem'}}>
+          {Object.entries(toc.data).map(([key, value], i) => (
+            <Card key={i} style={{ width: '25rem' }}>
               <Card.Body>
                 <Card.Title>
-                  <Link to={`/n${key}`}>
-                    {key}
-                  </Link>
+                  <Link to={`/n${key}`}>{key}</Link>
                 </Card.Title>
                 <div>
                   {Object.keys(value.editions).map((key, i) => (
-                    <span className='contentEnum'
-                          key={i}>{t(key)}</span>
+                    <span className='contentEnum' key={i}>
+                      {t(key)}
+                    </span>
                   ))}
                 </div>
-                <Incipit pae={value.incipit}/>
+                <Incipit pae={value.incipit} />
               </Card.Body>
             </Card>
-            ))
-          }
-        </CardColumns>}
+          ))}
+        </CardColumns>
+      )}
     </div>
   )
 }

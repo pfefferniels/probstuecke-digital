@@ -34,12 +34,16 @@ class SVGOverlay extends Component {
   render() {
     const targetEl = this.props.target
     const bbox = targetEl.getBBox()
-    return (<rect ref={this.rectRef}
-                  className='targetOverlay'
-                  width={bbox.width}
-                  height={bbox.height}
-                  x={bbox.x}
-                  y={bbox.y}/>)
+    return (
+      <rect
+        ref={this.rectRef}
+        className='targetOverlay'
+        width={bbox.width}
+        height={bbox.height}
+        x={bbox.x}
+        y={bbox.y}
+      />
+    )
   }
 }
 
@@ -49,8 +53,8 @@ const Overlay = (props) => {
   const underlyingText = useRef()
   const targets = props.target.split(' ')
   const connectedSVGOverlays = []
-  const highlightTargets = scroll => {
-    connectedSVGOverlays.forEach(targetOverlay => {
+  const highlightTargets = (scroll) => {
+    connectedSVGOverlays.forEach((targetOverlay) => {
       if (targetOverlay) targetOverlay.highlight(scroll)
     })
   }
@@ -58,34 +62,39 @@ const Overlay = (props) => {
   useEffect(() => {
     if (!underlyingText.current) return
 
-    underlyingText.current.addEventListener('click', () => highlightTargets(true))
-    underlyingText.current.addEventListener('mouseover', () => highlightTargets(false))
+    underlyingText.current.addEventListener('click', () =>
+      highlightTargets(true)
+    )
+    underlyingText.current.addEventListener('mouseover', () =>
+      highlightTargets(false)
+    )
   })
 
-  if (!scoreRef) return <Spinner animation='border'/>
+  if (!scoreRef) return <Spinner animation='border' />
 
   // do not display overlays in facsimile mode
   if (showFacsimile) return <span>{props.children}</span>
 
   return (
     <>
-    {
-      targets.map((target, i) => {
+      {targets.map((target, i) => {
         const targetEl = scoreRef.querySelector(target)
         if (!targetEl) return null
 
-        return ReactDOM.createPortal((
-          <SVGOverlay ref={node => connectedSVGOverlays.push(node)}
-                      target={targetEl}
-                      onClick={() => highlight(underlyingText.current, true)}
-                      onHover={() => highlight(underlyingText.current, false)}/>),
-          targetEl)
-      })
-    }
+        return ReactDOM.createPortal(
+          <SVGOverlay
+            ref={(node) => connectedSVGOverlays.push(node)}
+            target={targetEl}
+            onClick={() => highlight(underlyingText.current, true)}
+            onHover={() => highlight(underlyingText.current, false)}
+          />,
+          targetEl
+        )
+      })}
 
-    <span ref={underlyingText} className='overlay'>
-      {props.children}
-    </span>
+      <span ref={underlyingText} className='overlay'>
+        {props.children}
+      </span>
     </>
   )
 }

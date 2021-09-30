@@ -7,11 +7,12 @@ function APIErrorNotification() {
   const { error, removeError } = useAPIError()
 
   return (
-    <div className="notification">
-      {error && error.message &&
-        <Alert variant={error.status} dismissible onClose={()=>removeError()}>
+    <div className='notification'>
+      {error && error.message && (
+        <Alert variant={error.status} dismissible onClose={() => removeError()}>
           {error.message}
-        </Alert>}
+        </Alert>
+      )}
     </div>
   )
 }

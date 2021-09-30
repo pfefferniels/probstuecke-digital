@@ -17,7 +17,6 @@ const Search = () => {
   const toc = useContext(TOC)
   const { navigateTo } = useNavigation(toc, history)
 
-
   useEffect(() => {
     const fetchResults = async () => {
       try {
@@ -32,9 +31,9 @@ const Search = () => {
         }
 
         setResults(
-          Array.isArray(json.results) ?
-            json.results : // multiple results
-            [json.results] // exactly one result
+          Array.isArray(json.results)
+            ? json.results // multiple results
+            : [json.results] // exactly one result
         )
         setReady(true)
       } catch (e) {
@@ -57,11 +56,16 @@ const Search = () => {
     <div id='searchResults'>
       {results.map((result, i) => {
         return (
-          <div key={`result${i}`}
-               className='result'
-               onClick={() => navigateTo(result.path)}>
+          <div
+            key={`result${i}`}
+            className='result'
+            onClick={() => navigateTo(result.path)}
+          >
             <b className='title'>{result.title}</b>
-            <p className='summary' dangerouslySetInnerHTML={{__html: result.summary}} />
+            <p
+              className='summary'
+              dangerouslySetInnerHTML={{ __html: result.summary }}
+            />
           </div>
         )
       })}

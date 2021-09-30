@@ -1,15 +1,25 @@
 .teiMetadata {
-  tei-licence>tei-p::before {
+  tei-licence > tei-p::before {
     content: 'Licence: ';
   }
 
-  tei-editor, tei-publisher, tei-licence, tei-pubplace, tei-physdesc,
-  tei-particdesc, tei-settingdesc, tei-sourcedesc tei-editionstmt,
-  tei-sourcedesc tei-titlestmt, tei-idno, tei-repository {
+  tei-editor,
+  tei-publisher,
+  tei-licence,
+  tei-pubplace,
+  tei-physdesc,
+  tei-particdesc,
+  tei-settingdesc,
+  tei-sourcedesc tei-editionstmt,
+  tei-sourcedesc tei-titlestmt,
+  tei-idno,
+  tei-repository {
     display: block;
   }
 
-  tei-sourcedesc>tei-bibl, tei-physdesc, tei-sourcedesc tei-respstmt {
+  tei-sourcedesc > tei-bibl,
+  tei-physdesc,
+  tei-sourcedesc tei-respstmt {
     display: none;
   }
 

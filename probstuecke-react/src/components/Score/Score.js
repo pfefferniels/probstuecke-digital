@@ -15,7 +15,7 @@ import KeySignature from './KeySignature'
 import ExportPDFModal from './ExportPDFModal'
 import './Score.scss'
 
-const Score = ({mei, scoreDidUpdate}) => {
+const Score = ({ mei, scoreDidUpdate }) => {
   const { t } = useTranslation()
   const { addError } = useAPIError()
   const { diplomatic } = useContext(Settings)
@@ -33,11 +33,12 @@ const Score = ({mei, scoreDidUpdate}) => {
       try {
         const data = await fetch(
           `${apiUrl}/mei?` +
-          `path=${mei}&` +
-          `stavesAbove=${stavesAbove}&` +
-          `stavesBelow=0&` +
-          `modernClefs=${modernClefs ? 'on' : 'off'}&` +
-          `removeAnnotationStaff=${embed ? 'off' : 'on'}`)
+            `path=${mei}&` +
+            `stavesAbove=${stavesAbove}&` +
+            `stavesBelow=0&` +
+            `modernClefs=${modernClefs ? 'on' : 'off'}&` +
+            `removeAnnotationStaff=${embed ? 'off' : 'on'}`
+        )
         const text = await data.text()
         console.log(text)
 
@@ -46,7 +47,7 @@ const Score = ({mei, scoreDidUpdate}) => {
           adjustPageHeight: true,
           pageHeight: 60000,
           footer: 'none',
-          choiceXPathQuery: diplomatic ? ['./orig'] : ['./reg']
+          choiceXPathQuery: diplomatic ? ['./orig'] : ['./reg'],
         })
         scoreToolkit.loadData(text)
 
@@ -60,14 +61,13 @@ const Score = ({mei, scoreDidUpdate}) => {
 
     const fetchFacsimile = async () => {
       api.get(`mei-facsimile/${mei}`)
-      api.get(`mei-facsimile?path=${mei}`)
-        .then(response => {
-          if (response.ok) {
-            setFacsimileZones(response.data.zones)
-          } else {
-            addError(`error fetching facsimile: ${response.problem}`, 'warning')
-          }
-        })
+      api.get(`mei-facsimile?path=${mei}`).then((response) => {
+        if (response.ok) {
+          setFacsimileZones(response.data.zones)
+        } else {
+          addError(`error fetching facsimile: ${response.problem}`, 'warning')
+        }
+      })
     }
 
     fetchScore()
@@ -77,45 +77,59 @@ const Score = ({mei, scoreDidUpdate}) => {
   return (
     <>
       <div className='options'>
-        <Option toggle
-                text={'𝄢'}
-                onClick={() => setModernClefs(!modernClefs)}
-                tooltip={t('toggleModernClefs')}/>
-        <Option text={'+'}
-                onClick={() => setStavesAbove(stavesAbove + 1)}
-                tooltip={t('addStaff')}/>
-        <Option text={'–'}
-                onClick={() => setStavesAbove(stavesAbove - 1)}
-                tooltip={t('removeStaff')}/>
-        <Option toggle
-                text={'{}'}
-                onClick={() => setEmbed(!embed)}
-                tooltip={t('embedAnnotations')}/>
-        <Option icon={faFilePdf}
-                onClick={() => setExportModalShow(true)}
-                tooltip={t('exportPDF')}/>
+        <Option
+          toggle
+          text={'𝄢'}
+          onClick={() => setModernClefs(!modernClefs)}
+          tooltip={t('toggleModernClefs')}
+        />
+        <Option
+          text={'+'}
+          onClick={() => setStavesAbove(stavesAbove + 1)}
+          tooltip={t('addStaff')}
+        />
+        <Option
+          text={'–'}
+          onClick={() => setStavesAbove(stavesAbove - 1)}
+          tooltip={t('removeStaff')}
+        />
+        <Option
+          toggle
+          text={'{}'}
+          onClick={() => setEmbed(!embed)}
+          tooltip={t('embedAnnotations')}
+        />
+        <Option
+          icon={faFilePdf}
+          onClick={() => setExportModalShow(true)}
+          tooltip={t('exportPDF')}
+        />
       </div>
 
-      <ExportPDFModal show={exportModalShow}
-                      onHide={() => setExportModalShow(false)}
-                      meiData={meiData} />
+      <ExportPDFModal
+        show={exportModalShow}
+        onHide={() => setExportModalShow(false)}
+        meiData={meiData}
+      />
 
       <div>
-        {
-          svg
-           ? <div ref={scoreRef}
-                  className={diplomatic ? 'diplomatic' : 'modernized'}
-                  id='scoreView'>
-               <SVGRouter svg={svg} childPropsChanged={!!facsimileZones}>
-                 <SVGRoute for='.meterSig' component={MeterSignature}/>
-                 <SVGRoute for='.keySig' component={KeySignature}/>
-                 <SVGRoute for='.staff'>
-                   <MeasureFacsimile zones={facsimileZones}/>
-                  </SVGRoute>
-               </SVGRouter>
-             </div>
-           : <Spinner animation='grow'/>
-        }
+        {svg ? (
+          <div
+            ref={scoreRef}
+            className={diplomatic ? 'diplomatic' : 'modernized'}
+            id='scoreView'
+          >
+            <SVGRouter svg={svg} childPropsChanged={!!facsimileZones}>
+              <SVGRoute for='.meterSig' component={MeterSignature} />
+              <SVGRoute for='.keySig' component={KeySignature} />
+              <SVGRoute for='.staff'>
+                <MeasureFacsimile zones={facsimileZones} />
+              </SVGRoute>
+            </SVGRouter>
+          </div>
+        ) : (
+          <Spinner animation='grow' />
+        )}
       </div>
     </>
   )

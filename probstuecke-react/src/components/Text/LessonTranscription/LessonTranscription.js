@@ -28,7 +28,7 @@ const Transcription = ({ path, url }) => {
         exampleToolkit.setOptions({
           pageHeight: 60000,
           adjustPageHeight: true,
-          footer: 'none'
+          footer: 'none',
         })
         exampleToolkit.loadData(text)
         const svg = exampleToolkit.renderToSVG(1)
@@ -47,51 +47,46 @@ const Transcription = ({ path, url }) => {
   }
 
   if (!svg) {
-    return <Spinner animation='grow'/>
+    return <Spinner animation='grow' />
   }
 
   return (
-    <div className='notatedMusic' dangerouslySetInnerHTML={{__html: svg}}/>
+    <div className='notatedMusic' dangerouslySetInnerHTML={{ __html: svg }} />
   )
 }
 
-const Audio = ({path, url}) => {
+const Audio = ({ path, url }) => {
   return (
-    <audio className='embeddedAudio' style={{
-      display: 'block'
-    }} controls>
-      <source src={`${apiUrl}/media?path=${path}/${url}`}/>
+    <audio
+      className='embeddedAudio'
+      style={{
+        display: 'block',
+      }}
+      controls
+    >
+      <source src={`${apiUrl}/media?path=${path}/${url}`} />
     </audio>
   )
 }
 
-const Utterance = ({teiNode, children}) => {
-  return (
-    <p class='utterance'>
-      {children}
-    </p>
-  )
+const Utterance = ({ teiNode, children }) => {
+  return <p class='utterance'>{children}</p>
 }
 
-const Ptr = ({teiNode, path, children}) => {
+const Ptr = ({ teiNode, path, children }) => {
   const type = teiNode.getAttribute('type')
   const url = teiNode.getAttribute('target')
 
   if (type === 'audio') {
     return <Audio path={path} url={url} />
-  }
-  else if (type === 'transcription') {
+  } else if (type === 'transcription') {
     return <Transcription path={path} url={url} />
   }
 
-  return (
-    <span class='ptr'>
-      {children}
-    </span>
-  )
+  return <span class='ptr'>{children}</span>
 }
 
-const LessonTranscription = ({tei}) => {
+const LessonTranscription = ({ tei }) => {
   const headerRef = useRef()
   const { addError } = useAPIError()
   const { teiPath, teiData } = useTEI(tei, addError)
@@ -103,19 +98,19 @@ const LessonTranscription = ({tei}) => {
   return (
     <>
       <div className='options'>
-        <MetadataModal headerRef={headerRef}/>
+        <MetadataModal headerRef={headerRef} />
       </div>
 
       <div className='lessonTranscription'>
         <TEIRender data={teiData}>
           <TEIRoute el='tei-teiheader'>
-            <Header ref={headerRef}/>
+            <Header ref={headerRef} />
           </TEIRoute>
-          <TEIRoute el='tei-u' component={Utterance}/>
+          <TEIRoute el='tei-u' component={Utterance} />
           <TEIRoute el='tei-ptr'>
             <Ptr path={teiPath} />
           </TEIRoute>
-          <TEIRoute el='tei-ref' component={Reference}/>
+          <TEIRoute el='tei-ref' component={Reference} />
         </TEIRender>
       </div>
     </>

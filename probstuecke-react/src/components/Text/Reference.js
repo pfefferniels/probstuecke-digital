@@ -7,24 +7,21 @@ const Reference = (props) => {
   const target = props.teiNode.getAttribute('target')
 
   if (!target) {
-    return (
-      <span className='targetlessRef'>
-        {props.children}
-      </span>
-    )
+    return <span className='targetlessRef'>{props.children}</span>
   }
 
   if (target.startsWith('#')) {
-    return (
-      <Overlay target={target}>{props.children}</Overlay>
-    )
+    return <Overlay target={target}>{props.children}</Overlay>
   }
 
   if (/(http(s?)):\/\//i.test(target)) {
     return (
       <span>
         <a target='_blank' rel='noopener noreferrer' href={target}>
-          {props.children} <small><FontAwesomeIcon icon={faExternalLinkAlt} /></small>
+          {props.children}{' '}
+          <small>
+            <FontAwesomeIcon icon={faExternalLinkAlt} />
+          </small>
         </a>
       </span>
     )

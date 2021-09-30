@@ -5,17 +5,19 @@ import { Spinner } from 'react-bootstrap'
 
 class SVGRoute extends React.Component {
   componentDidMount() {
-    warning(!(this.props.children && this.props.component),
+    warning(
+      !(this.props.children && this.props.component),
       `You should not use child elements and the component attribute
-       at the same time.`)
+       at the same time.`
+    )
   }
 
   render() {
-    return (null)
+    return null
   }
 }
 
-const SVGRouter = props => {
+const SVGRouter = (props) => {
   const scoreViewRef = useRef(null)
   const [portals, setPortals] = useState([])
 
@@ -23,31 +25,36 @@ const SVGRouter = props => {
     if (!scoreViewRef.current || portals.length !== 0) return
 
     let preparedPortals = []
-    React.Children.forEach(props.children, route => {
+    React.Children.forEach(props.children, (route) => {
       const selector = route.props.for
       if (!selector) return
 
       const targets = scoreViewRef.current.querySelectorAll(selector)
       if (!targets) return
 
-      targets.forEach(target => {
+      targets.forEach((target) => {
         if (route.props.component) {
           preparedPortals.push(
             ReactDOM.createPortal(
-              React.createElement(route.props.component,
-                                  {svgDomElement: target,
-                                   bbox: target.getBBox()}),
-              target))
+              React.createElement(route.props.component, {
+                svgDomElement: target,
+                bbox: target.getBBox(),
+              }),
+              target
+            )
+          )
         } else {
-          React.Children.forEach(route.props.children, child => {
+          React.Children.forEach(route.props.children, (child) => {
             if (React.isValidElement(child)) {
               preparedPortals.push(
                 ReactDOM.createPortal(
                   React.cloneElement(child, {
                     svgDomElement: target,
-                    bbox: target.getBBox()
+                    bbox: target.getBBox(),
                   }),
-                  target))
+                  target
+                )
+              )
             }
           })
         }
@@ -61,12 +68,14 @@ const SVGRouter = props => {
   if (!props.svg) return <Spinner />
 
   return (
-      <>
-        <div ref={scoreViewRef}
-             id='scoreView'
-             dangerouslySetInnerHTML={{__html: props.svg}}/>
-        {portals}
-      </>
+    <>
+      <div
+        ref={scoreViewRef}
+        id='scoreView'
+        dangerouslySetInnerHTML={{ __html: props.svg }}
+      />
+      {portals}
+    </>
   )
 }
 

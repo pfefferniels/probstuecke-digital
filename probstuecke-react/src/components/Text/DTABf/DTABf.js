@@ -9,7 +9,7 @@ import Paragraph from './Paragraph'
 import Settings from '../../Settings'
 import './DTABf.scss'
 
-const DTABf = ({tei}) => {
+const DTABf = ({ tei }) => {
   const { t } = useTranslation()
   const { addError } = useAPIError()
   const { diplomatic, showFacsimile } = useContext(Settings)
@@ -38,34 +38,34 @@ const DTABf = ({tei}) => {
   }, [showFacsimile])
 
   if (!teiData) {
-    return <Spinner animation='grow'/>
+    return <Spinner animation='grow' />
   }
 
   return (
     <>
       <div className='options'>
-        <MetadataModal headerRef={headerRef}/>
+        <MetadataModal headerRef={headerRef} />
       </div>
 
       <TEIRender data={teiData}>
         <TEIRoute el='tei-p'>
-          <Paragraph zonesRef={zonesRef}/>
+          <Paragraph zonesRef={zonesRef} />
         </TEIRoute>
         <TEIRoute el='tei-notatedmusic'>
-          <NotatedMusic path={teiPath}/>
+          <NotatedMusic path={teiPath} />
         </TEIRoute>
-        <TEIRoute el='tei-ref' component={Reference}/>
+        <TEIRoute el='tei-ref' component={Reference} />
         <TEIRoute el='tei-teiheader'>
-          <Header ref={headerRef}/>
+          <Header ref={headerRef} />
         </TEIRoute>
         <TEIRoute el='tei-persname'>
-          <LinkToIndex type='indexOfPersons'/>
+          <LinkToIndex type='indexOfPersons' />
         </TEIRoute>
         <TEIRoute el='tei-bibl'>
-          <LinkToIndex type='bibliography'/>
+          <LinkToIndex type='bibliography' />
         </TEIRoute>
         <TEIRoute el='tei-name'>
-          <LinkToIndex type='indexOfMusicalWorks'/>
+          <LinkToIndex type='indexOfMusicalWorks' />
         </TEIRoute>
       </TEIRender>
     </>

@@ -23,7 +23,10 @@
     display: none;
   }
 
-  tei-unclear, tei-surplus, tei-vocal, tei-pause {
+  tei-unclear,
+  tei-surplus,
+  tei-vocal,
+  tei-pause {
     display: none;
   }
 
@@ -35,7 +38,8 @@
     display: none;
   }
 
-  tei-q::before, tei-q::after {
+  tei-q::before,
+  tei-q::after {
     content: '"';
   }
 
@@ -47,7 +51,8 @@
     display: none;
   }
 
-  tei-incident, tei-kinesic {
+  tei-incident,
+  tei-kinesic {
     display: block;
     text-align: center;
     font-style: italic;
@@ -73,7 +78,6 @@
   tei-listPerson tei-person {
     display: block;
   }
-
 
   tei-listPerson tei-person[role]::after {
     content: ' (' attr(role) ')';

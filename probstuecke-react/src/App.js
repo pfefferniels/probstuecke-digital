@@ -12,8 +12,8 @@ import Search from './components/Search'
 import P5 from './components/Text/P5/P5'
 import './App.css'
 
-const App = props => (
-  <HashRouter hashType="noslash">
+const App = (props) => (
+  <HashRouter hashType='noslash'>
     <APIErrorProvider>
       <TOCProvider>
         <Suspense fallback={<Spinner animation='border' />}>
@@ -21,17 +21,17 @@ const App = props => (
             <Navigation />
 
             <Switch>
-              <Route path='/indexOfPersons'>
-                <Index type='persons'/>
+              <Route path='/indexOfPersons/:key?'>
+                <Index type='persons' />
               </Route>
-              <Route path='/bibliography'>
-                <Index type='bibliography'/>
+              <Route path='/bibliography/:key?'>
+                <Index type='bibliography' />
               </Route>
-              <Route path='/indexOfMusicalWorks'>
-                <Index type='musical-works'/>
+              <Route path='/indexOfMusicalWorks/:key?'>
+                <Index type='musical-works' />
               </Route>
               <Route path='/guidelines'>
-                <P5 tei='guidelines/guidelines_en.xml'/>
+                <P5 tei='guidelines/guidelines_en.xml' />
               </Route>
               <Route path='/n:piece/:key?' component={View} />
               <Route path='/search/:q' component={Search} />

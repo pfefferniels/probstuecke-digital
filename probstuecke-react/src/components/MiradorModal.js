@@ -4,11 +4,7 @@ import mirador from 'mirador'
 import { apiUrl } from '../config'
 import './MiradorModal.scss'
 
-const MiradorModal = ({
-  show,
-  onHide,
-  piece
-}) => {
+const MiradorModal = ({ show, onHide, piece }) => {
   useEffect(() => {
     if (!show) return
 
@@ -17,13 +13,9 @@ const MiradorModal = ({
       id: 'mirador',
       window: {
         defaultView: 'single',
-        views: [
-          { key: 'single' },
-          { key: 'book' },
-          { key: 'scroll' }
-        ]
+        views: [{ key: 'single' }, { key: 'book' }, { key: 'scroll' }],
       },
-      windows: []
+      windows: [],
     }
 
     const instance = mirador.viewer(config, [])
@@ -31,7 +23,9 @@ const MiradorModal = ({
     // load manifest
     const loadManifest = async () => {
       try {
-        const response = await fetch(`${apiUrl}/manifest?path=${piece}/mattheson/score.xml`)
+        const response = await fetch(
+          `${apiUrl}/manifest?path=${piece}/mattheson/score.xml`
+        )
         const data = await response.json()
         if (!data) {
           console.log('something went wrong')
@@ -44,7 +38,7 @@ const MiradorModal = ({
             defaultView: 'single',
             id: `window-${Date.now()}`,
             manifestId: facsimile.manifest,
-            canvasId: facsimile.canvas
+            canvasId: facsimile.canvas,
           })
           instance.store.dispatch(addWindow)
         })
@@ -56,23 +50,26 @@ const MiradorModal = ({
     loadManifest()
   }, [piece, show])
 
-
   return (
     <div
       className='overlayBackground'
       style={{
-        display: show ? 'flex' : 'none'
-      }}>
-        <div className='overlayBox'>
-          <div id='mirador' />
+        display: show ? 'flex' : 'none',
+      }}
+    >
+      <div className='overlayBox'>
+        <div id='mirador' />
 
-          <Button
-            style={{
-              float: 'right',
-              marginTop: '0.5rem'
-            }}
-            onClick={onHide}>Close</Button>
-        </div>
+        <Button
+          style={{
+            float: 'right',
+            marginTop: '0.5rem',
+          }}
+          onClick={onHide}
+        >
+          Close
+        </Button>
+      </div>
     </div>
   )
 }

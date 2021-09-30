@@ -10,25 +10,21 @@ const TOCProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchData = () => {
-      api.get('/toc')
-       .then(response => {
-         if (response.ok) {
-           setData(response.data)
-           setReady(true)
-         } else {
-           setError(response.problem)
-           setReady(false)
-         }
-       })
+      api.get('/toc').then((response) => {
+        if (response.ok) {
+          setData(response.data)
+          setReady(true)
+        } else {
+          setError(response.problem)
+          setReady(false)
+        }
+      })
     }
 
     fetchData()
   }, [])
 
-  return <TOC.Provider value={{data, ready, error}}>{children}</TOC.Provider>
+  return <TOC.Provider value={{ data, ready, error }}>{children}</TOC.Provider>
 }
 
-export {
-  TOCProvider,
-  TOC
-}
+export { TOCProvider, TOC }
