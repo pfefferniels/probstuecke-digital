@@ -1,18 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Spinner } from 'react-bootstrap'
 import { Badge, ListGroup } from 'react-bootstrap'
 import { TEIRoute, TEIRender } from 'react-teirouter'
-import { apiUrl } from '../../../config.js'
+import { useAPIError, useTEI } from '../../../hooks'
 import './EdiarumRegister.scss'
-import CETEI from 'CETEIcean'
-
-const teiToHtml = async (file) => {
-  const ct = new CETEI()
-  ct.addBehaviors({
-    'teiHeader': undefined
-  })
-  return ct.getHTML5(file)
-}
 
 const EdiarumIdno = ({ teiNode }) => {
   const ref = teiNode.innerText
@@ -44,20 +35,8 @@ const EdiarumListItem = ({teiNode, children}) => {
 }
 
 const EdiarumRegister = ({tei}) => {
-  const [teiData, setTeiData] = useState(null)
-
-  useEffect(() => {
-    const fetchTEI = async () => {
-      try {
-        const data = await teiToHtml(`${apiUrl}/tei?path=${tei}`)
-        setTeiData(data)
-      } catch (e) {
-        console.log('failed fetching TEI:', e)
-      }
-    }
-
-    fetchTEI()
-  }, [tei])
+  const { addError } = useAPIError()
+  const { teiData } = useTEI(tei, addError)
 
   if (!teiData) {
     return <Spinner animation='grow' />
