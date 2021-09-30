@@ -11,7 +11,7 @@ const Incipit = ({ pae }) => {
 
   useEffect(() => {
     incipitToolkit.setOptions({
-      from: 'pae',
+      inputFrom: 'pae',
       adjustPageWidth: true,
       adjustPageHeight: true,
       footer: 'none',
