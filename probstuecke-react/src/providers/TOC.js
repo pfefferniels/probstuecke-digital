@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react'
-import api from '../api'
+import { apiUrl } from '../config'
 
 const TOC = createContext()
 
@@ -9,16 +9,22 @@ const TOCProvider = ({ children }) => {
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    const fetchData = () => {
-      api.get('/toc').then((response) => {
-        if (response.ok) {
-          setData(response.data)
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`${apiUrl}/toc`)
+        const data = await response.json()
+        if (!data) {
+          setError('failed fetching TOC')
           setReady(true)
-        } else {
-          setError(response.problem)
-          setReady(false)
+          return
         }
-      })
+
+        setData(data)
+        setReady(true)
+      } catch (e) {
+        setError(`failed fetching TOC: ${e}`)
+        setReady(true)
+      }
     }
 
     fetchData()

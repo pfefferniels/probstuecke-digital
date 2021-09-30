@@ -2,7 +2,6 @@ import React, { useContext, useState, useRef, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { apiUrl } from '../../config'
 import useAPIError from '../../hooks/useAPIError'
-import api from '../../api'
 import { scoreToolkit } from '../Verovio'
 import { Spinner } from 'react-bootstrap'
 import { faFilePdf } from '@fortawesome/free-solid-svg-icons'
@@ -60,14 +59,17 @@ const Score = ({ mei, scoreDidUpdate }) => {
     }
 
     const fetchFacsimile = async () => {
-      api.get(`mei-facsimile/${mei}`)
-      api.get(`mei-facsimile?path=${mei}`).then((response) => {
-        if (response.ok) {
-          setFacsimileZones(response.data.zones)
-        } else {
-          addError(`error fetching facsimile: ${response.problem}`, 'warning')
+      try {
+        const response = await fetch(`${apiUrl}/mei-facsimile?path=${mei}`)
+        const data = await response.json()
+        if (!data.zones) {
+          addError(`no facsimile zones found`, 'warning')
+          return
         }
-      })
+        setFacsimileZones(data.zones)
+      } catch (e) {
+        addError(`error fetching facsimile: ${e}`, 'warning')
+      }
     }
 
     fetchScore()
