@@ -12,10 +12,11 @@ const Incipit = ({ pae }) => {
   useEffect(() => {
     incipitToolkit.setOptions({
       inputFrom: 'pae',
-      adjustPageWidth: true,
       adjustPageHeight: true,
+      pageMarginTop: 0,
+      header: 'none',
       footer: 'none',
-      svgViewBox: true,
+      svgViewBox: true
     })
     incipitToolkit.loadData(pae)
     setSVG(incipitToolkit.renderToSVG(1))
@@ -48,6 +49,7 @@ const Welcome = () => {
                 <Card.Title>
                   <Link to={`/n${key}`}>{key}</Link>
                 </Card.Title>
+                <Incipit pae={value.incipit} />
                 <div>
                   {Object.keys(value.editions).map((key, i) => (
                     <span className='contentEnum' key={i}>
@@ -55,7 +57,6 @@ const Welcome = () => {
                     </span>
                   ))}
                 </div>
-                <Incipit pae={value.incipit} />
               </Card.Body>
             </Card>
           ))}
