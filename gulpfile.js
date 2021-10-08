@@ -39,12 +39,12 @@ gulp.task('xar-structure', function() {
 });
 
 gulp.task('xslt', function() {
-  return gulp.src('src/xslt/*', {})
+  return gulp.src('api/xslt/*', {})
              .pipe(gulp.dest('./build/xslt'));
 });
 
 gulp.task('xql', function() {
-  return gulp.src('src/xql/*', {})
+  return gulp.src('api/xql/*', {})
              .pipe(gulp.dest('./build/xql'));
 });
 
@@ -91,7 +91,7 @@ gulp.task('modernize-tei', function() {
 });
 
 gulp.task('frontend', function() {
-  return gulp.src('build/**/*', {cwd: 'probstuecke-react'})
+  return gulp.src('build/**/*', {cwd: 'frontend'})
              .pipe(gulp.dest('./build'));
 });
 
