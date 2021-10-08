@@ -1,0 +1,27 @@
+#searchResults {
+  .result {
+    .title:hover {
+      text-decoration: underline;
+    }
+
+    .summary {
+      .hi {
+        font-weight: bold;
+      }
+
+      .previous,
+      .following {
+        color: gray;
+      }
+    }
+
+    margin: 1rem;
+    cursor: pointer;
+  }
+
+  margin: 2rem;
+}
+
+.noSearchResults {
+  margin: 2rem;
+}

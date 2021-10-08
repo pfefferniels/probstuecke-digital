@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Probstücke Digital"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+
+    <script type="text/javascript" src="%PUBLIC_URL%/js/pdfkit.standalone.js"></script>
+    <script type="text/javascript">
+      window.PDFDocument = PDFDocument;
+    </script>
+
+    <script type="text/javascript" src="%PUBLIC_URL%/js/verovio-toolkit.js"></script>
+    <script type="text/javascript">
+      window.scoreToolkit = new verovio.toolkit();
+      window.exampleToolkit = new verovio.toolkit();
+      window.incipitToolkit = new verovio.toolkit();
+      window.pdfToolkit = new verovio.toolkit();
+    </script>
+
+    <title>Probstücke Digital</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+  </body>
+</html>

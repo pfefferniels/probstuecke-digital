@@ -1,0 +1,29 @@
+.optionIcon,
+.optionText {
+  opacity: 0.5;
+  margin: 0.2rem;
+  font-weight: bold;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &.active {
+    color: red;
+  }
+}
+
+.optionText {
+  font-size: 1.5rem;
+}
+
+.options {
+  position: sticky;
+  float: right;
+  margin: 1rem;
+  padding: 0.1rem;
+  border: 0.5px solid gray;
+  border-radius: 0.5rem;
+  z-index: 999;
+}

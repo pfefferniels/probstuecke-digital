@@ -1,0 +1,34 @@
+#scoreView {
+  svg {
+    display: block;
+    width: 100%;
+    height: auto !important;
+  }
+
+  .pgHead {
+    font-weight: bold;
+    font-family: Junicode;
+  }
+
+  &.diplomatic {
+    .supplied .accid {
+      display: none;
+    }
+
+    .orig .accid {
+      display: inline;
+      animation: blinking 1s 2;
+    }
+  }
+
+  &.modernized {
+    .supplied .accid {
+      display: inline;
+      animation: blinking 1s 2;
+    }
+
+    .orig .accid {
+      display: none;
+    }
+  }
+}

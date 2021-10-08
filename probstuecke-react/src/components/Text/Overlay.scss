@@ -1,0 +1,47 @@
+$overlayColor: rgb(255, 200, 10);
+$activeOverlay: rgba(255, 200, 10, 0.9);
+$inactiveOverlay: rgba(255, 200, 10, 0.2);
+
+.targetlessRef {
+  border: 0.8px dashed gray;
+}
+
+.overlay {
+  cursor: pointer;
+  background-color: $inactiveOverlay;
+
+  &:hover {
+    background-color: $activeOverlay;
+  }
+}
+
+.targetOverlay {
+  fill: $overlayColor;
+  opacity: 0.3;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+.blink {
+  animation: blinking 1s 4;
+}
+
+@keyframes blinking {
+  0% {
+    background-color: $overlayColor;
+    fill: $overlayColor;
+  }
+
+  50% {
+    background-color: #ba0000;
+    fill: #ba0000;
+  }
+
+  100% {
+    background-color: $overlayColor;
+    fill: $overlayColor;
+  }
+}
