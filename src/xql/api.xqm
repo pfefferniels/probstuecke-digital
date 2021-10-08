@@ -245,15 +245,18 @@ function api:manifest($path) {
 declare
   %rest:GET
   %rest:path("/references/{$ref}")
-  %rest:produces("application/xml")
-  %output:media-type("application/xml")
-  %output:method("xml")
+  %rest:produces("application/json")
+  %output:media-type("application/json")
+  %output:method("json")
 function api:references($ref) {
   let $refId := '#' || xmldb:decode($ref)
-  let $collection := collection($api:encodings)
+  let $collection := collection($api:encodings)[not(contains(util:document-name(.), '_en') or contains(util:document-name(.), 'modernized'))]
   let $refs :=
     for $ref in $collection//tei:body//*[@corresp=$refId]
-    return base-uri($ref)
+    return map {
+      'title': string(fn:head(root($ref)//tei:titleStmt/tei:title)),
+      'path': fn:replace(string(fn:document-uri(root($ref))), $api:encodings || '/', '')
+    }
 
 
   return
@@ -346,45 +349,29 @@ function api:tei-facsimile($path) {
  :)
 declare
   %rest:GET
-  %rest:path("/mei-facsimile")
+  %rest:path("/facsimile-zone")
   %rest:query-param("path", "{$path}")
+  %rest:query-param("id", "{$id}")
   %rest:produces("application/json")
   %output:media-type("application/json")
   %output:method("json")
-function api:mei-facsimile($path) {
+function api:image-zone($path, $id) {
     let $doc := doc($api:encodings || '/' || $path)
+    let $zone := $doc//mei:zone[@xml:id=$id]
 
-    let $facsElements :=
-        for $el in $doc//*[@facs]
-        let $elId := $el/@xml:id/string()
-        let $facsRefs := tokenize(normalize-space($el/@facs/string()),' ')
+    let $url := $zone/../mei:graphic/@target/string()
+    let $region := api:getRegion($zone)
+    let $url.tokens := tokenize($url, "/")
+    let $identifier := $url.tokens[7]
+    let $canvas.id := xs:string(xs:integer($url.tokens[9])-16)
+    let $scan.id := api:pad-string-to-length($canvas.id, 5)
 
-        let $zones :=
-            if (count($facsRefs) > 0 and count($el[@xml:id]) > 0)
-            then (
-            for $facsRef in $facsRefs
-            let $ref := substring($facsRef, 2)
-            let $zone := $doc//mei:zone[@xml:id=$ref]
-            let $url := $zone/../mei:graphic/@target/string()
-            let $id := $zone/@xml:id/string()
-            let $region := api:getRegion($zone)
-
-            let $url.tokens := tokenize($url, "/")
-            let $identifier := $url.tokens[7]
-            let $canvas.id := xs:string(xs:integer($url.tokens[9])-16)
-            let $scan.id := api:pad-string-to-length($canvas.id, 5)
-
-            return 'https://api.digitale-sammlungen.de/iiif/image/v2/' || $identifier || '_' || $scan.id || '/' || $region || '/pct:50/0/color.jpg')
-            else ()
-
-        return map {
-            'id': $elId,
-            'imageApiUrl': array { $zones }
-        }
+    let $imageApiUrl := 'https://api.digitale-sammlungen.de/iiif/image/v2/' || $identifier || '_' || $scan.id || '/' || $region || '/pct:50/0/color.jpg'
 
     return (
         api:enable_cors(),
         map {
-            'zones': array { $facsElements }
-        })
+            'imageApiUrl': $imageApiUrl
+        }
+     )
 };
