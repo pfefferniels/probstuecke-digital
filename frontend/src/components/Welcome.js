@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import { CardColumns, Card, Spinner } from 'react-bootstrap'
+import { Row, Card, Spinner } from 'react-bootstrap'
 import { incipitToolkit } from './Verovio'
 import { TOC } from './../providers/TOC'
 import './Welcome.scss'
@@ -42,7 +42,7 @@ const Welcome = () => {
       {!toc.ready ? (
         <Spinner animation='grow' />
       ) : (
-        <CardColumns>
+        <Row className='mx-auto'>
           {Object.entries(toc.data).map(([key, value], i) => (
             <Card key={i} style={{ width: '25rem' }}>
               <Card.Body>
@@ -60,7 +60,7 @@ const Welcome = () => {
               </Card.Body>
             </Card>
           ))}
-        </CardColumns>
+        </Row>
       )}
     </div>
   )
