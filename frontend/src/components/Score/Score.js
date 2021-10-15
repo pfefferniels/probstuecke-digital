@@ -39,14 +39,14 @@ const Score = ({ mei, scoreDidUpdate }) => {
             `removeAnnotationStaff=${embed ? 'off' : 'on'}`
         )
         const text = await data.text()
-        console.log(text)
-
+        
         scoreToolkit.setOptions({
           svgViewBox: true,
           adjustPageHeight: true,
           pageHeight: 60000,
           footer: 'none',
           choiceXPathQuery: diplomatic ? ['./orig'] : ['./reg'],
+          svgAdditionalAttribute: 'staff@facs',
         })
         scoreToolkit.loadData(text)
 
@@ -58,22 +58,7 @@ const Score = ({ mei, scoreDidUpdate }) => {
       }
     }
 
-    const fetchFacsimile = async () => {
-      try {
-        const response = await fetch(`${apiUrl}/mei-facsimile?path=${mei}`)
-        const data = await response.json()
-        if (!data.zones) {
-          addError(`no facsimile zones found`, 'warning')
-          return
-        }
-        setFacsimileZones(data.zones)
-      } catch (e) {
-        addError(`error fetching facsimile: ${e}`, 'warning')
-      }
-    }
-
     fetchScore()
-    fetchFacsimile()
   }, [diplomatic, modernClefs, stavesAbove, embed, mei])
 
   return (
@@ -125,7 +110,7 @@ const Score = ({ mei, scoreDidUpdate }) => {
               <SVGRoute for='.meterSig' component={MeterSignature} />
               <SVGRoute for='.keySig' component={KeySignature} />
               <SVGRoute for='.staff'>
-                <MeasureFacsimile zones={facsimileZones} />
+                <MeasureFacsimile path={mei} />
               </SVGRoute>
             </SVGRouter>
           </div>
