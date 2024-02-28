@@ -2,7 +2,7 @@ import { Link } from "gatsby"
 import React from "react"
 
 interface ExpressionListProps {
-    expressions: Queries.manifestation[]
+    expressions: Queries.expression[]
 }
 
 export const ExpressionList = ({ expressions }: ExpressionListProps) => {
