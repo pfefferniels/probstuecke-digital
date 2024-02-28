@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../../../schema/probstuecke-customization.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.1">
+    <meiHead>
+        <fileDesc>
+            <titleStmt>
+                <title>Prob-Stück 2, Example 2</title>
+                <composer>
+                    <persName role="composer" auth.uri="http://d-nb.info/gnd/118578995" auth="GND">Johann Mattheson</persName>
+                </composer>
+                <respStmt>
+                    <resp>Edited by</resp>
+                    <persName role="editor" xml:id="pfeffer">Niels Pfeffer</persName>
+                    <persName role="editor" xml:id="rettinghaus">Klaus Rettinghaus</persName>
+                </respStmt>
+            </titleStmt>
+            <pubStmt>
+                <respStmt>
+                    <persName role="publisher">Niels Pfeffer</persName>
+                </respStmt>
+                <date>2019</date>
+                <availability>
+                    <useRestrict label="licence" auth="https://creativecommons.org/licenses/by/" codedval="4.0">
+                        <p>Creative Commons Attribution 4.0 International License</p>
+                    </useRestrict>
+                </availability>
+            </pubStmt>
+        </fileDesc>
+    </meiHead>
+    <music>
+        <body>
+            <mdiv>
+                <score>
+                    <scoreDef key.pname="g" key.mode="minor" meter.unit="4" mnum.visible="false">
+                        <staffGrp>
+                            <staffDef xml:id="staffdef-variant-1" clef.shape="C" clef.line="1" n="1" lines="5">
+                                <keySig sig="1f" />
+                            </staffDef>
+                            <staffDef xml:id="staffdef-bass" clef.shape="C" clef.line="3" n="2" lines="5">
+                                <keySig sig="1f" />
+                            </staffDef>
+                        </staffGrp>
+                    </scoreDef>
+                    <section>
+                        <measure corresp="#m-606">
+                            <staff n="1">
+                                <layer n="1">
+                                    <space xml:id="ex-614" dur="2" />
+                                    <beam>
+                                        <note xml:id="ex-615" dur="16" oct="5" pname="b" accid.ges="f" />
+                                        <note xml:id="ex-618" dur="16" oct="5" pname="d" />
+                                        <note xml:id="ex-619" dur="16" oct="5" pname="g" />
+                                        <note xml:id="ex-620" dur="16" oct="5" pname="b" accid.ges="f" />
+                                    </beam>
+                                    <beam>
+                                        <note xml:id="ex-622" dur="16" oct="5" pname="b" accid.ges="f" />
+                                        <note xml:id="ex-625" dur="16" oct="5" pname="c" />
+                                        <note xml:id="ex-626" dur="16" oct="5" pname="g" />
+                                        <note xml:id="ex-627" dur="16" oct="5" pname="b" accid.ges="f" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <staff n="2">
+                                <layer n="1">
+                                    <space xml:id="ex-628" dur="2" />
+                                    <beam>
+                                        <note xml:id="ex-634" dur="8" oct="4" pname="g" />
+                                        <note xml:id="ex-636" dur="8" oct="4" pname="f" />
+                                    </beam>
+                                    <beam>
+                                        <note xml:id="ex-637" dur="8" oct="4" pname="e">
+                                            <accid xml:id="ex-638" accid="f" />
+                                        </note>
+                                        <note xml:id="ex-639" dur="8" oct="4" pname="c" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <fermata xml:id="ex-632" form="norm" layer="1" shape="curved" staff="3" startid="#m-631" tstamp="1" />
+                        </measure>
+                        <measure corresp="#m-640">
+                            <staff n="1">
+                                <layer n="1">
+                                    <beam>
+                                        <note xml:id="ex-646" dur="16" oct="5" pname="a" />
+                                        <note xml:id="ex-648" dur="16" oct="5" pname="c" />
+                                        <note xml:id="ex-649" dur="16" oct="5" pname="f" />
+                                        <note xml:id="ex-650" dur="16" oct="5" pname="a" />
+                                    </beam>
+                                    <beam>
+                                        <note xml:id="ex-651" dur="16" oct="5" pname="a" />
+                                        <note xml:id="ex-653" dur="16" oct="4" pname="b" accid.ges="f" />
+                                        <note xml:id="ex-655" dur="16" oct="5" pname="f" />
+                                        <note xml:id="ex-656" dur="16" oct="5" pname="a" />
+                                    </beam>
+                                    <beam>
+                                        <note xml:id="ex-657" dur="16" oct="5" pname="g" />
+                                        <note xml:id="ex-659" dur="16" oct="4" pname="b" accid.ges="f" />
+                                        <note xml:id="ex-661" dur="16" oct="5" pname="e">
+                                            <accid xml:id="ex-662" accid="f" />
+                                        </note>
+                                        <note xml:id="ex-663" dur="16" oct="5" pname="g" />
+                                    </beam>
+                                    <beam>
+                                        <note xml:id="ex-664" dur="16" oct="5" pname="g" />
+                                        <note xml:id="ex-666" dur="16" oct="4" pname="a" />
+                                        <note xml:id="ex-667" dur="16" oct="5" pname="e" accid.ges="f">
+                                            <orig>
+                                                <accid xml:id="ex-668" accid="f" />
+                                            </orig>
+                                        </note>
+                                        <note xml:id="ex-669" dur="16" oct="5" pname="g" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <staff n="2">
+                                <layer n="1">
+                                    <beam>
+                                        <note xml:id="ex-672" dur="8" oct="4" pname="f" />
+                                        <note xml:id="ex-674" dur="8" oct="4" pname="e">
+                                            <accid xml:id="ex-675" accid="f" />
+                                        </note>
+                                    </beam>
+                                    <beam>
+                                        <note xml:id="ex-676" dur="8" oct="4" pname="d" />
+                                        <note xml:id="ex-677" dur="8" oct="3" pname="b" accid.ges="f" />
+                                    </beam>
+                                    <beam>
+                                        <note xml:id="ex-679" dur="8" oct="4" pname="e" accid.ges="f">
+                                            <orig>
+                                                <accid xml:id="ex-680" accid="f" />
+                                            </orig>
+                                        </note>
+                                        <note xml:id="ex-682" dur="8" oct="4" pname="d" />
+                                    </beam>
+                                    <beam>
+                                        <note xml:id="ex-683" dur="8" oct="4" pname="c" />
+                                        <note xml:id="ex-684" dur="8" oct="3" pname="a" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                        </measure>
+                        <measure corresp="#m-685">
+                            <staff n="1">
+                                <layer n="1">
+                                    <beam>
+                                        <note xml:id="ex-691" dur="16" oct="5" pname="f" />
+                                        <note xml:id="ex-693" dur="16" oct="4" pname="a" />
+                                        <note xml:id="ex-694" dur="16" oct="5" pname="d" />
+                                        <note xml:id="ex-695" dur="16" oct="5" pname="f" />
+                                    </beam>
+                                    <beam>
+                                        <note xml:id="ex-696" dur="16" oct="5" pname="f" />
+                                        <note xml:id="ex-698" dur="16" oct="4" pname="g" />
+                                        <note xml:id="ex-699" dur="16" oct="5" pname="d" />
+                                        <note xml:id="ex-700" dur="16" oct="5" pname="f" />
+                                    </beam>
+                                    <beam>
+                                        <note xml:id="ex-701" dur="16" oct="5" pname="e">
+                                            <accid xml:id="ex-702" accid="f" />
+                                        </note>
+                                        <note xml:id="ex-704" dur="16" oct="4" pname="g" />
+                                        <note xml:id="ex-705" dur="16" oct="5" pname="c" />
+                                        <note xml:id="ex-706" dur="16" oct="5" pname="e" accid.ges="f" />
+                                    </beam>
+                                    <beam>
+                                        <note xml:id="ex-708" dur="16" oct="5" pname="e" accid.ges="f" />
+                                        <note xml:id="ex-711" dur="16" oct="4" pname="f" />
+                                        <note xml:id="ex-712" dur="16" oct="5" pname="c" />
+                                        <note xml:id="ex-713" dur="16" oct="5" pname="e" accid.ges="f">
+                                            <orig>
+                                                <accid xml:id="ex-714" accid="f" />
+                                            </orig>
+                                        </note>
+                                    </beam>
+                                </layer>
+                            </staff>
+                            <staff n="2">
+                                <layer n="1">
+                                    <clef line="4" shape="F" />
+                                    <beam>
+                                        <note xml:id="ex-717" dur="8" oct="4" pname="d" />
+                                        <note xml:id="ex-719" dur="8" oct="4" pname="c" />
+                                    </beam>
+                                    <beam>
+                                        <note xml:id="ex-720" dur="8" oct="3" pname="b" accid.ges="f" />
+                                        <note xml:id="ex-722" dur="8" oct="3" pname="g" />
+                                    </beam>
+                                    <beam>
+                                        <note xml:id="ex-723" dur="8" oct="4" pname="c" />
+                                        <note xml:id="ex-725" dur="8" oct="3" pname="b" accid.ges="f" />
+                                    </beam>
+                                    <beam>
+                                        <note xml:id="ex-727" dur="8" oct="3" pname="a" />
+                                        <note xml:id="ex-728" dur="8" oct="3" pname="f" />
+                                    </beam>
+                                </layer>
+                            </staff>
+                        </measure>
+                        <measure right="invis">
+                            <staff n="1">
+                                <layer n="1">
+                                    <custos oct="5" pname="d" />
+                                </layer>
+                            </staff>
+                            <staff n="2">
+                                <layer n="1">
+                                    <custos oct="3" pname="b" />
+                                </layer>
+                            </staff>
+                            <dir place="within" staff="1" tstamp="2">
+                                <rend fontstyle="normal">&amp;c.</rend>
+                            </dir>
+                        </measure>
+                    </section>
+                </score>
+            </mdiv>
+        </body>
+    </music>
+</mei>

@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-model href="../../../schema/basisformat_customized.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="expression002">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title type="part">Mattheson: Der Ober-Classe Erstes Probstück</title>
+        <editor>
+          <persName xml:id="pfeffer">
+            <surname>Pfeffer</surname>
+            <forename>Niels</forename>
+          </persName>
+        </editor>
+        <editor>
+          <persName xml:id="rettinghaus" ref="https://d-nb.info/gnd/140541624">
+            <surname>Rettinghaus</surname>
+            <forename>Klaus</forename>
+          </persName>
+        </editor>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>
+          <persName xml:id="pfeffer">
+            <surname>Pfeffer</surname>
+            <forename>Niels</forename>
+          </persName>
+        </publisher>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by/4.0">
+            <p>Creative Commons Attribution 4.0 International License</p>
+          </licence>
+        </availability>
+      </publicationStmt>
+      <sourceDesc>
+        <bibl type="M">Mattheson, Johann: Grosse General-Baß-Schule. Hamburg, 1731, S. 301-309.</bibl>
+        <biblFull>
+          <titleStmt>
+            <title level="m" type="main">Johann Matthesons Grosse General-Baß-Schule.</title>
+            <title level="m" type="sub">Oder: Der exemplariſchen Organiſten-Probe</title>
+            <title level="m" type="sub">Beſtehend in dreien Claſſen, Als: In einer gruͤndlichen Vorbereitung, In 24 leichten Exempeln, In 24 ſchwerern Prob-Stuͤcken</title>
+            <author>
+              <persName ref="http://d-nb.info/gnd/118578995">
+                <surname>Johann</surname>
+                <forename>Mattheson</forename>
+              </persName>
+            </author>
+          </titleStmt>
+          <editionStmt>
+            <edition n="2">Zweite/ verbesserte und vermehrte Auflage</edition>
+          </editionStmt>
+          <publicationStmt>
+            <publisher>
+              <name>Kißner</name>
+            </publisher>
+            <pubPlace>Hamburg</pubPlace>
+            <date type="publication">1731</date>
+          </publicationStmt>
+        </biblFull>
+        <msDesc>
+          <msIdentifier>
+            <repository>Bayerische Staatsbibliothek</repository>
+            <idno>
+              <idno type="shelfmark">Bayerische Staatsbibliothek, Mus.th. 978 a</idno>
+              <idno type="URLCatalogue">https://opacplus.bsb-muenchen.de/search?oclcno=57052215</idno>
+              <idno type="URLIIIF">https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/manifest</idno>
+              <idno type="URN">urn:nbn:de:bvb:12-bsb10598495-7</idno>
+            </idno>
+          </msIdentifier>
+          <physDesc>
+            <typeDesc>
+              <p>Fraktur</p>
+            </typeDesc>
+          </physDesc>
+        </msDesc>
+      </sourceDesc>
+      <profileDesc>
+        <langUsage>
+          <language ident="deu">German</language>
+        </langUsage>
+        <textDesc>
+          <derivation type="edition" />
+        </textDesc>
+      </profileDesc>
+    </fileDesc>
+  </teiHeader>
+  <standOff>
+    <listRelation>
+      <relation name="realises" active="#expression002" passive="#work001" />
+    </listRelation>
+  </standOff>
+  <facsimile>
+    <surface ulx="0" uly="0" lrx="1998" lry="2396" xml:id="facs-p389">
+      <graphic width="1998px" height="2396px" url="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/389"/>
+      <zone ulx="66" uly="1004" lry="1978" lrx="1899" xml:id="facsZone-p1-1"/>
+      <zone ulx="54" uly="1964" lry="2215" lrx="1869" xml:id="facsZone-p2-1"/>
+    </surface>
+    <surface ulx="0" uly="0" lrx="1998" lry="2396" xml:id="facs-p390">
+      <graphic width="1998px" height="2396px" url="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/390"/>
+      <zone ulx="141" uly="155" lry="718" lrx="1932" xml:id="facsZone-p2-1-2"/>
+      <zone ulx="138" uly="692" lry="1924" lrx="1950" xml:id="facsZone-music-example1"/>
+      <zone ulx="138" uly="1892" lry="2221" lrx="1941" xml:id="facsZone-p2-2"/>
+    </surface>
+    <surface ulx="0" uly="0" lrx="1998" lry="2396" xml:id="facs-p391">
+      <graphic width="1998px" height="2396px" url="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/391"/>
+      <zone ulx="62" uly="176" lry="700" lrx="1871" xml:id="facsZone-p3-1"/>
+      <zone ulx="60" uly="668" lry="1279" lrx="1881" xml:id="facsZone-music-example2"/>
+      <zone ulx="62" uly="1265" lry="1540" lrx="1880" xml:id="facsZone-p4-1"/>
+      <zone ulx="62" uly="1526" lry="2089" lrx="1868" xml:id="facsZone-music-example3"/>
+      <zone ulx="57" uly="2069" lry="2230" lrx="1878" xml:id="facsZone-p4-2"/>
+    </surface>
+  </facsimile>
+  <text>
+    <body>
+      <div type="score">
+        <pb n="301" facs="#facs-p385"/>
+        <head>Erſtes Prob-Stueck.</head><lb/>
+
+        <figure type="notatedMusic">
+          <notatedMusic xml:id="score">
+            <ptr target="score.xml"/>
+          </notatedMusic>
+        </figure>
+      </div>
+
+      <div n="0" type="chapter">
+        <pb n="305" facs="#facs-p389"/>
+
+        <head>Erlaͤuterung.</head><lb/>
+        <div n="1">
+          <lb/><head>§. 1.</head><lb/>
+          <p xml:id="p1-1" facs="#facsZone-p1-1">
+            <s xml:id="expression001_s1">
+              <lb/><hi rendition="#in">J</hi>Ener Geiſtliche wollte die truͤbſeligen Zeiten des menſchlichen Lebens gerne
+              <lb/>mit etwas vergleichen, und ſagte: Sie waͤren wie ein muſicaliſches Buch,
+              <lb/>darin gemeinglich mehr ſchwartze, als weiſſe Noten gefunden wuͤr-
+              <lb/>den; ſeine Meynung war, man treffe
+              <choice>
+                <sic>ſich</sic>
+                <corr type="corrigenda"/>
+              </choice>
+              ebener maſſen in unserm Leben mehr Un-
+              <lb/>gluͤcks- als Gluͤcks-Faͤlle an.
+            </s>
+            <note type="editorial" resp="#pfeffer">
+              Mattheson bezieht sich vermutlich auf eine Betrachtung <persName>Samuel von Butschkys</persName>,
+              die sich als Nummer 250 mit dem Titel <hi rendition="#i">Menschliches Leben</hi> in dessen Schrift
+              <bibl>
+                <hi rendition="#i">Wohl-Bebauter Rosen-Thal</hi>, Nürnberg 1679
+              </bibl>, findet.
+            </note>
+            Ob nun das Gleichniß hincket, laſſe dahin geſtellt ſeyn;
+            <lb/>mir iſt es ſehr laͤcherlich vorgekommen. Denn erſtlich bedeuten die ſchwartzen No-
+            <lb/>ten eine geſchwinde Spiel-Art, und zeigen vielmehr etwas freudiges, als betruͤb-
+            <lb/>tes, an. Sollte aber fuͤrs andere, die ſchwartze Farbe hier bloß das Bild des Elen-
+            <lb/>des bezeichnen, ſo moͤgte man lieber eine Kirche, oder andere geiſtliche Ehren-Ver-
+            <lb/>ſammlungen, als ein Noten-Buch dazu erwehlen; ſintemahl allda jederzeit mehr
+            <lb/>ſchwartze, als weiſſe Kleider anzutreffen ſind. Jch fuͤhre dieſes deswegen an, damit
+            <lb/>keiner, bey den etwas ſchwartzen Noten dieſer Claſſe, dencken ſoll, er werde in die
+            <lb/>Angst- oder Kreutz-Schule gefuͤhret; gantz und gar nicht, es darff niemand grauen:
+            <lb/>denn unſre Noten ſind lauter Merckmahle eines muntern Gemuͤthes, eines hurti-
+            gen Geiſtes, und eines froͤhlichen Hertzens. Friſch daran, iſt hier das beſte Mittel.
+          </p>
+        </div>
+        <div n="2">
+          <lb/><head>§. 2.</head>
+          <p xml:id="p2-1" facs="#facsZone-p2-1 #facsZonep2-1-2">
+            <lb/>Die
+            <ref target="#m-536 #m-538 #m-539 #m-541 #m-542 #m-545 #m-547 #m-548 #m-592 #m-594 #m-596 #m-597 #m-599 #m-601 #m-638 #m-641 #m-643 #m-645 #m-647 #m-648">
+            Achtel, oder ſchlechte Noten, im ſechszehnten, ſiebenzehnten und achtzehn-
+            <lb/>ten Tact</ref>, geben ſchon von ſelbſten zu verſtehen, daß allda mit der rechten Hand
+            <fw place="bottom" type="catch">etwas</fw>
+            <pb n="306" facs="#facs-p390"/>
+            <lb/>etwas veraͤnderliches angebracht werden mag; wie es aber eigentlich beſchaffen
+            <lb/>ſeyn ſoll, das muß aus den vorhergehenden Saͤtzen abgenommen werden: ſinte-
+            <lb/>mahl dieſe Arbeit ſo eingerichtet iſt, daß alles in derselben Aufgabe entweder ſchon vor-
+            <lb/>geweſen, oder doch bald erſcheinet, was etwan auſſerordentliches gemacht werden
+            <lb/>ſoll. So werden auch die Sachen, jedes Stuͤck fuͤr ſich, ſo natuͤrlich zusammen hangen,
+            <lb/>auch vom Haupt-Satz ſo wenig abweichen, daß es gar leicht faͤllt, die rechte Mey-
+            <lb/>nung zu treffen. Damit ich gleichwol nicht abermahl beſchuldiget werde, als haͤtte
+            <lb/>ich Raͤtsel aufgeben wollen, ſo mag dieſes wenige zu weiterem Nachdencken eine Anlei-
+            <lb/>tung geben:
+          </p>
+          <figure type="notatedMusic">
+            <notatedMusic xml:id="music-example1" facs="#facsZone-music-example1">
+              <ptr target="music-example1.xml"/>
+            </notatedMusic>
+          </figure>
+          <p xml:id="p2-2" facs="#facsZone-p2-2">
+            <lb/>Daß die lincke Hand, bey dieſer Ausſchmuͤckung, die Zieffern und Accorde mitgreif-
+            <lb/>fen muͤsse, iſt hoffentlich ſchon genug geſaget worden, und haͤtte ich es mannig-
+            <lb/>mahl gern im Baß just ſo hingeſetzt, als es ſeyn muß, wenn die Noten ſo wol in
+            <lb/>einander koͤnnten gedruckt, als geſchrieben, oder auf Kupffer geſtochen werden.
+          </p>
+        </div>
+
+        <div n="3">
+          <pb n="307" facs="#facs-p391"/>
+          <lb/><head>§. 3.</head><lb/>
+          <p xml:id="p3-1" facs="#facsZone-p3-1">
+            <lb/>Jm <ref target="#m-785">drey und zwantzigſten Tact</ref> koͤmmt wieder eben dergleichen Gelegenheit
+            <lb/>vor, daß man alſo nur das vorhergehende deswegen um Rath zu fragen hat. Jm
+            <ref target="#m-832">vier und zwantzigſten Tact</ref> koͤnnen
+            <ref target="#m-804">Tertzen</ref> angebracht werden; jedoch bey vollen
+            <lb/>Griffen.
+            Jm <ref target="#m-873">fuͤnff und zwantzigſten Tact geht es wieder auf den vorigen Schlag.</ref>
+            <lb/>Der <ref target="#m-1009 #m-1049 #m-1073">neun und zwantzigſte, dreyßigſte und ein und dreyßigſte Tact</ref>
+            laſſen eine Um-
+            <lb/>wechslung zu, da die rechte Hand der lincken nachahmet, und, nach Maßgabung
+            <lb/>des Haupt-Satzes,
+            <ref target="#m-1019 #m-1051 #m-1060 #m-1075 #m-1083">zu den Vierteln</ref>
+            moduliret. Wem es dunckel ſcheinet, der ſe-
+            <lb/>he dieſe Zeile an:
+          </p>
+          <figure type="notatedMusic">
+            <notatedMusic xml:id="music-example2" facs="#facsZone-music-example2">
+              <ref type="editorialNote" xml:id="commented-extract" corresp="#extract-comment">
+                <ptr target="music-example2.xml"/>
+              </ref>
+            </notatedMusic>
+          </figure>
+          <note type="editorial" xml:id="extract-comment" corresp="#commented-extract" resp="#pfeffer">
+            Mattheson setzt in diesem Auszug den Taktstrich um eine Viertel versetzt.
+          </note>
+        </div>
+
+        <div n="4">
+          <lb/><head>§. 4.</head><lb/>
+          <p xml:id="p4-1" facs="#facsZone-p4-1">
+            <lb/>Jm <ref target="#m-1162">drey und dreißigſten Tact</ref> moͤgte es nicht uͤbel klingen, wenn mit den
+            <lb/>Accorden, auch
+            <ref target="#fb-1 #fb-2 #fb-3 #fb-4">Sexten und Quinten</ref>,
+            etwas mehr, als gewoͤhnlich, geſpielet
+            <lb/>und ſyncopiret werde, etwa auf folgende Manier:
+          </p>
+          <figure type="notatedMusic">
+            <notatedMusic xml:id="music-example3" facs="#facsZone-music-example3">
+              <ptr target="music-example3.xml"/>
+            </notatedMusic>
+          </figure>
+          <p xml:id="p4-2" facs="#facsZone-p4-2">
+            <lb/>Ferner wuͤſte ich, bey dieſer Vorſchrifft, nichts mehr weder zu erinnern, noch zu erleich-
+            <lb/>tern.
+            <fw place="bottom" type="catch">Zwey</fw>
+          </p>
+        </div>
+      </div>
+    </body>
+  </text>
+</TEI>
