@@ -90,7 +90,10 @@ export const onCreateNode = async ({
   const { createNode, createParentChildLink } = actions
 
   const rawXml = await loadNodeContent(node)
-  const { document } = (new JSDOM(rawXml)).window
+  const dom = new JSDOM('');
+  const DOMParser = dom.window.DOMParser;
+  const parser = new DOMParser;
+  const document = parser.parseFromString(rawXml, 'application/xml');
 
   const meiRoot = document.querySelector('mei')
   if (meiRoot && meiRoot.getAttribute('xml:id') === 'works') {
