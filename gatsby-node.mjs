@@ -47,10 +47,10 @@ const onCreateWorks = async ({
     .from(document.querySelectorAll('work'))
     .map((work, i) => {
       const key = work.querySelector('key')
-      const incipitCode = work.querySelector('incipCode')
-      let incipitSvg
+      const incipitCode = work.querySelector('incip')
+      let incipitSvg = ''
       if (incipitCode) {
-        verovioToolkit.loadData(incipitCode.textContent)
+        verovioToolkit.loadData(incipitCode.textContent.trim())
         incipitSvg = verovioToolkit.renderToSVG(1)
       }
 
