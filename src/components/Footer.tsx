@@ -1,7 +1,6 @@
 import React from "react"
-import Grid from "@mui/material/Grid"
 import Container from "@mui/material/Container"
-import { Box } from "@mui/material"
+import { Box, Typography } from "@mui/material"
 
 const styles = {
   footer: {
@@ -15,12 +14,12 @@ const styles = {
 export const Footer = () => (
   <Box component="footer" sx={styles.footer}>
     <Container maxWidth="lg">
-      <Grid container>
-        <Grid item xs={9}>
-          <br /> The open source code for this collection is available at <a href='https://github.com/digimuwi/lma-digital'>https://github.com/pfefferniels/probstuecke-data</a>.
-          <br /> © {new Date().getFullYear()}
-        </Grid>
-      </Grid>
+      <Typography>
+        The open source code for this collection is available at <a href='https://github.com/digimuwi/lma-digital'>https://github.com/pfefferniels/probstuecke-data</a>.
+      </Typography>
+      <Typography>
+        © {new Date().getFullYear()}
+      </Typography>
     </Container>
   </Box>
 )

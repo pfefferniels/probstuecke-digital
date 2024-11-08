@@ -1,7 +1,7 @@
 import React from 'react'
 import Layout from "../components/Layout"
 import { HeadFC, graphql, useStaticQuery } from 'gatsby'
-import { Container, Grid, Grid2 } from '@mui/material'
+import { Container, Grid2 } from '@mui/material'
 import { WorkCard } from '../components/WorkCard'
 import backgroundImage from "../images/start-bg.png"
 

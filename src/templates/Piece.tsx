@@ -5,7 +5,7 @@ import './CETEI-dta.css'
 import { NotatedMusic } from '../components/NotatedMusic'
 import Ceteicean from "gatsby-theme-ceteicean/src/components/Ceteicean"
 import { Behavior } from 'gatsby-theme-ceteicean/src/components/Behavior'
-import { Grid } from '@mui/material'
+import { Grid2 } from '@mui/material'
 import { Word } from '../components/Word'
 import { VerovioProvider } from '../hooks/useVerovio'
 import { Ref } from '../components/Ref'
@@ -44,14 +44,14 @@ function Piece({ pageContext }: PieceProps) {
                 </h2>
 
                 <VerovioProvider>
-                    <Grid container spacing={1}>
-                        <Grid item xs={6} className='scoreView'>
+                    <Grid2 container spacing={1}>
+                        <Grid2 size={6} className='scoreView'>
                             <Ceteicean pageContext={piece.score as any} routes={routes} />
-                        </Grid>
-                        <Grid item xs={6} p={1.5}>
+                        </Grid2>
+                        <Grid2 size={6} p={1.5}>
                             <Ceteicean pageContext={piece.text as any} routes={routes} />
-                        </Grid>
-                    </Grid>
+                        </Grid2>
+                    </Grid2>
                 </VerovioProvider>
             </div>
         </Layout>
