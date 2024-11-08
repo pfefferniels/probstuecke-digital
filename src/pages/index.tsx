@@ -1,7 +1,7 @@
 import React from 'react'
 import Layout from "../components/Layout"
 import { HeadFC, graphql, useStaticQuery } from 'gatsby'
-import { Container, Grid } from '@mui/material'
+import { Container, Grid, Grid2 } from '@mui/material'
 import { WorkCard } from '../components/WorkCard'
 import backgroundImage from "../images/start-bg.png"
 
@@ -34,9 +34,10 @@ const IndexPage = () => {
         <Layout location="IndexPage">
             <div style={{ background: `url(${backgroundImage})`, minHeight: '85vh' }}>
                 <Container>
-                    <Grid
+                    <Grid2
                         container
-                        spacing={{ xs: 2, md: 3 }}
+                        padding={3}
+                        spacing={{ xs: 2, sm: 2, md: 3 }}
                         columns={{ xs: 2, sm: 8, md: 12 }}>
                         {allWork.nodes.map(work => {
                             const expressions = allExpression.nodes
@@ -57,16 +58,16 @@ const IndexPage = () => {
                                 }, {} as { [index: string]: Queries.expression[] })
 
                             return (
-                                <Grid item xs={2} sm={4} md={4} key={work.id}>
+                                <Grid2 size={{ xs: 2, sm: 4, md: 4 }} key={work.id}>
                                     <WorkCard
                                         title={work.title || 'unknown work'}
                                         keySignature={work.key!}
                                         incipitSVG={work.incipitSvg!}
                                         expressions={expressions} />
-                                </Grid>
+                                </Grid2>
                             )
                         })}
-                    </Grid>
+                    </Grid2>
                 </Container>
             </div>
         </Layout >
