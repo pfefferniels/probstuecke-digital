@@ -6,6 +6,7 @@ import { transformToCeteicean } from './src/helpers/transformToCeteicean.mjs'
 import { extractFromXML } from './src/helpers/extractFromTEI.mjs';
 import { collectExpressionMetadata, collectEmbeddedMEI, collectRefTargets } from './src/helpers/collectors/index.mjs';
 import { collectZones } from './src/helpers/collectors/collectZones.mjs';
+import { collectPersName } from './src/helpers/collectors/collectPersName.mjs';
 
 const modernizeTEI = async (rawXml) => {
   const modernized = await fetch("https://www.deutschestextarchiv.de/public/cab/query?a=default&fmt=xml&clean=1&pretty=1&raw=1&qname=qd&file=C%3A%5Cfakepath%5Ccomments_de.xml", {
@@ -170,11 +171,22 @@ export const onCreateNode = async ({
     Array
       .from(teiRoot.querySelectorAll('bibl')).map(entry => {
         const xmlId = entry.getAttribute('xml:id') || 'no-id'
-        const bibl = entry.textContent || ''
+
+        const title = entry.querySelector('title')?.textContent || ''
+        const author = collectPersName(entry.querySelector('author'))
+        const editor = collectPersName(entry.querySelector('editor'))
+        const pubPlace = entry.querySelector('pubPlace')?.textContent || ''
+        const date = entry.querySelector('date')?.textContent || ''
+        const link = entry.querySelector('note')?.getAttribute('target') || ''
 
         return {
           xmlId,
-          bibl,
+          title,
+          author,
+          editor,
+          pubPlace,
+          date,
+          link,
           id: createNodeId(`${xmlId} >>> XML`),
           children: [],
           parent: node.id,
