@@ -1,25 +1,30 @@
 import React from 'react'
 import Layout from "../components/Layout"
 import { graphql, useStaticQuery } from 'gatsby'
-import { Container, Card, CardContent, CardActions, Typography, Link, Stack } from '@mui/material';
+import { Container, Card, CardContent, CardActions, Typography, Link, Stack, Paper } from '@mui/material';
+import { OccurenceBox } from '../components/OccurenceBox';
 
-const PersonCard = ({ person }: { person: Queries.person }) => (
-        <Card id={person.xmlId || 'no-id'}>
+const PersonCard = ({ person }: { person: Queries.person }) => {
+    return (
+        <Card id={person.xmlId || 'no-id'} sx={{ p: 2 }} elevation={1}>
             <CardContent>
-                <Typography variant="h5">
-                    {person.forename} {person.surname}
-                </Typography>
-                <Typography color="textSecondary">
-                    {person.birth} - {person.death}
-                </Typography>
+                <div style={{ float: 'left' }}>
+                    <Typography variant="h5">
+                        {person.forename} {person.surname}
+                    </Typography>
+                    <Typography color="textSecondary">
+                        {person.birth} - {person.death}
+                    </Typography>
+                    <Link href={person.idno || ''} target="_blank" rel="noopener noreferrer">
+                        Link to GND
+                    </Link>
+
+                </div>
+                <OccurenceBox forId={person.xmlId || ''} />
             </CardContent>
-            <CardActions>
-                <Link href={person.idno || ''} target="_blank" rel="noopener noreferrer">
-                    Link to GND
-                </Link>
-            </CardActions>
         </Card>
-);
+    )
+};
 
 const Persons = () => {
     const { allPerson } = useStaticQuery<Queries.Query>(graphql`

@@ -14,7 +14,7 @@ const modernizeTEI = async (rawXml) => {
     "method": "POST",
     "mode": "cors"
   });
-
+  
   return modernized.text()
 }
 
@@ -22,7 +22,7 @@ const vrvModule = await createVerovioModule()
 const verovioToolkit = new VerovioToolkit(vrvModule)
 
 export const shouldOnCreateNode = ({ node }) => {
-  // We only care about TEI content
+  // We only care about TEI/MEI content
   return [`application/xml`, `text/xml`].includes(node.internal.mediaType)
 }
 
@@ -170,13 +170,22 @@ export const onCreateNode = async ({
   const refTargets = collectRefTargets(document)
   const mei = collectEmbeddedMEI(document, node.absolutePath)
   const metadata = collectExpressionMetadata(document)
+  const indexRefs = Array
+    .from(document.querySelectorAll('[corresp]'))
+    .map(persName => {
+      return {
+        xmlId: persName.getAttribute('xml:id'),
+        corresp: persName.getAttribute('corresp').slice(1)
+      }
+    })
+
   const zones = mei
     .map(mei => {
       const meiDoc = parser.parseFromString(mei.mei, 'application/xml')
       return collectZones(meiDoc)
     })
     .flat()
-
+  
   const modernized = metadata.isFraktur
     ? await modernizeTEI(rawXml)
     : rawXml
@@ -218,6 +227,7 @@ export const onCreateNode = async ({
     ...sections,
     ...metadata,
     zones,
+    indexRefs,
     mei,
     refTargets,
     id: createNodeId(`${node.id} >>> XML`),
