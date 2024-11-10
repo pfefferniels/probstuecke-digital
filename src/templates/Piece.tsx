@@ -33,8 +33,12 @@ function Piece({ pageContext }: PieceProps) {
         'tei-ref': Ref
     }
 
+    const title = piece.title?.original
+        ? new DOMParser().parseFromString(piece.title.original, 'text/xml').documentElement.textContent?.trim().replaceAll('ſ', 's')
+        : ''
+
     return (
-        <Layout>
+        <Layout location={title || ''}>
             <div className='piece'>
                 <GlowDefs />
 
