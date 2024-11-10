@@ -133,6 +133,40 @@ export const onCreateNode = async ({
   const teiRoot = document.querySelector('TEI')
   if (!teiRoot) return
 
+  if (teiRoot.querySelector('listPerson')) {
+    Array
+      .from(teiRoot.querySelectorAll('person'))
+      .map(person => {
+        const xmlId = person.getAttribute('xml:id') || 'no-id'
+        const surname = person.querySelector('surname')?.textContent || ''
+        const forename = person.querySelector('forename')?.textContent || ''
+        const birth = person.querySelector('birth')?.textContent || ''
+        const death = person.querySelector('death')?.textContent || ''
+        const idno = person.querySelector('idno')?.textContent || ''
+
+        return {
+          xmlId,
+          surname,
+          forename,
+          birth,
+          death,
+          idno,
+          id: createNodeId(`${xmlId} >>> XML`),
+          children: [],
+          parent: node.id,
+          internal: {
+            contentDigest: createContentDigest({ outerHTML: person.outerHTML }),
+            type: `person`
+          }
+        }
+      })
+      .forEach(person => {
+        createNode(person)
+        createParentChildLink({ parent: node, child: person })
+      })
+    return
+  }
+
   const refTargets = collectRefTargets(document)
   const mei = collectEmbeddedMEI(document, node.absolutePath)
   const metadata = collectExpressionMetadata(document)
@@ -142,8 +176,6 @@ export const onCreateNode = async ({
       return collectZones(meiDoc)
     })
     .flat()
-  
-  console.log('Zones', zones)
 
   const modernized = metadata.isFraktur
     ? await modernizeTEI(rawXml)
