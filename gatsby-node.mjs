@@ -14,7 +14,7 @@ const modernizeTEI = async (rawXml) => {
     "method": "POST",
     "mode": "cors"
   });
-  
+
   return modernized.text()
 }
 
@@ -133,7 +133,7 @@ export const onCreateNode = async ({
   const teiRoot = document.querySelector('TEI')
   if (!teiRoot) return
 
-  if (teiRoot.querySelector('listPerson')) {
+  if (teiRoot.getAttribute('type') === 'persons') {
     Array
       .from(teiRoot.querySelectorAll('person'))
       .map(person => {
@@ -166,6 +166,29 @@ export const onCreateNode = async ({
       })
     return
   }
+  else if (teiRoot.getAttribute('type') === 'bibliography' || teiRoot.getAttribute('type') === 'musical-works') {
+    Array
+      .from(teiRoot.querySelectorAll('bibl')).map(entry => {
+        const xmlId = entry.getAttribute('xml:id') || 'no-id'
+        const bibl = entry.textContent || ''
+
+        return {
+          xmlId,
+          bibl,
+          id: createNodeId(`${xmlId} >>> XML`),
+          children: [],
+          parent: node.id,
+          internal: {
+            contentDigest: createContentDigest({ outerHTML: entry.outerHTML }),
+            type: teiRoot.getAttribute('type') === 'bibliography' ? `bibliography` : `musicalWork`
+          }
+        }
+      })
+      .forEach(bibl => {
+        createNode(bibl)
+        createParentChildLink({ parent: node, child: bibl })
+      })
+  }
 
   const refTargets = collectRefTargets(document)
   const mei = collectEmbeddedMEI(document, node.absolutePath)
@@ -185,7 +208,7 @@ export const onCreateNode = async ({
       return collectZones(meiDoc)
     })
     .flat()
-  
+
   const modernized = metadata.isFraktur
     ? await modernizeTEI(rawXml)
     : rawXml
