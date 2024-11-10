@@ -1,7 +1,7 @@
 import React from 'react'
 import Layout from "../components/Layout"
 import { graphql, useStaticQuery } from 'gatsby'
-import { Container, Card, CardContent, CardActions, Typography, Link, Stack, Paper } from '@mui/material';
+import { Container, Card, CardContent, CardActions, Typography, Link, Stack, Paper, Chip } from '@mui/material';
 import { OccurenceBox } from '../components/OccurenceBox';
 
 const PersonCard = ({ person }: { person: Queries.person }) => {
@@ -16,9 +16,8 @@ const PersonCard = ({ person }: { person: Queries.person }) => {
                         {person.birth} - {person.death}
                     </Typography>
                     <Link href={person.idno || ''} target="_blank" rel="noopener noreferrer">
-                        Link to GND
+                        <Chip label="→ GND" size='small' color='info' />
                     </Link>
-
                 </div>
                 <OccurenceBox forId={person.xmlId || ''} />
             </CardContent>
@@ -45,6 +44,9 @@ const Persons = () => {
     return (
         <Layout location="Persons">
             <Container>
+                <Typography variant="h5" gutterBottom>
+                    Index of Persons
+                </Typography>
                 <Stack spacing={2} direction='column'>
                     {allPerson.nodes.map(person => {
                         return (
