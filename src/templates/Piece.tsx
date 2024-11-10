@@ -26,6 +26,7 @@ function Piece({ pageContext }: PieceProps) {
                 <NotatedMusic
                     teiNode={node.teiNode}
                     meis={piece.mei || []}
+                    zones={(piece.zones?.filter(zone => !!zone) || []) as Queries.expressionZones[]}
                     refs={piece.refTargets || []} />
             </Behavior>),
         'tei-w': Word,

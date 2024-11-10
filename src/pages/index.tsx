@@ -2,11 +2,11 @@ import React from 'react'
 import Layout from "../components/Layout"
 import { HeadFC, graphql, useStaticQuery } from 'gatsby'
 import { Container, Grid2 } from '@mui/material'
-import { WorkCard } from '../components/WorkCard'
+import { ExpressionsByCategory, WorkCard } from '../components/WorkCard'
 import backgroundImage from "../images/start-bg.png"
 
 const IndexPage = () => {
-    const { allWork, allExpression } = useStaticQuery<Queries.Query>(graphql`
+    const { allWork } = useStaticQuery<Queries.Query>(graphql`
         query {
           allWork {
             nodes {
@@ -17,14 +17,13 @@ const IndexPage = () => {
                 pname 
                 mode
               }
-            }
-          }
-          allExpression {
-            nodes {
-                expressionId
-                derivationType
-                label
-                realises
+              expressions {
+                type 
+                date
+                lang
+                id
+                referringTo
+              }
             }
           }
         }
@@ -40,22 +39,26 @@ const IndexPage = () => {
                         spacing={{ xs: 2, sm: 2, md: 3 }}
                         columns={{ xs: 2, sm: 8, md: 12 }}>
                         {allWork.nodes.map(work => {
-                            const expressions = allExpression.nodes
-                                .filter(node => {
-                                    return node.realises?.slice(1) === work.xmlId
-                                })
-                                .sort((a, b) => a.derivationType?.localeCompare(b.derivationType!) || 0)
+                            const expressions = work.expressions
+                            console.log(expressions)
+                            if (!expressions) return null
+
+                            const byCategory = expressions
+                                .slice()
+                                .sort((a, b) => a?.type?.localeCompare(b?.type!) || 0)
                                 .reduce((acc, current) => {
-                                    const index = current.derivationType || 'unknown'
+                                    if (!current) return acc
+
+                                    const index = current.type || 'unknown'
                                     if (Array.isArray(acc[index])) {
                                         acc[index].push(current)
                                     }
                                     else {
-                                        acc[current.derivationType || 'unknown'] = [current]
+                                        acc[current.type || 'unknown'] = [current]
                                     }
-                                    acc[index].sort((a, b) => a.label?.localeCompare(b.label!) || 0)
+                                    acc[index].sort((a, b) => a.date?.localeCompare(b.date!) || 0)
                                     return acc
-                                }, {} as { [index: string]: Queries.expression[] })
+                                }, {} as ExpressionsByCategory)
 
                             return (
                                 <Grid2 size={{ xs: 2, sm: 4, md: 4 }} key={work.id}>
@@ -63,7 +66,7 @@ const IndexPage = () => {
                                         title={work.title || 'unknown work'}
                                         keySignature={work.key!}
                                         incipitSVG={work.incipitSvg!}
-                                        expressions={expressions} />
+                                        expressions={byCategory} />
                                 </Grid2>
                             )
                         })}

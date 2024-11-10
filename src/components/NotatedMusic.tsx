@@ -3,6 +3,7 @@ import { useVerovio } from '../hooks/useVerovio';
 import { Stack, Pagination, ToggleButton, ToggleButtonProps, Button, ButtonProps } from '@mui/material';
 import { addEmptyStaves } from '../helpers/addEmptyStaves';
 import { removeEmbeddedAnnotations } from '../helpers/removeEmbeddedAnnotations';
+import './NotatedMusic.css'
 
 const OptionToggle = (props: ToggleButtonProps) => {
     return (
@@ -53,10 +54,11 @@ window.highlightRefs = window.highlightRefs || ((_: string) => { });
 interface NotatedMusicProps {
     teiNode: Element,
     meis: readonly (Queries.expressionMei | null)[]
+    zones: readonly (Queries.expressionZones | null)[]
     refs: readonly (string | null)[]
 }
 
-export const NotatedMusic = ({ teiNode, meis, refs }: NotatedMusicProps) => {
+export const NotatedMusic = ({ teiNode, meis, refs, zones }: NotatedMusicProps) => {
     const [currentPage, setCurrentPage] = useState(1)
     const [svgs, setSVGs] = useState<string[]>([])
     const [modernClefs, setModernClefs] = useState(false)
@@ -112,7 +114,8 @@ export const NotatedMusic = ({ teiNode, meis, refs }: NotatedMusicProps) => {
             adjustPageHeight: true,
             svgViewBox: true,
             header: 'none',
-            choiceXPathQuery: [modernClefs ? './reg' : './orig']
+            choiceXPathQuery: [modernClefs ? './reg' : './orig'],
+            svgAdditionalAttribute: ['staff@facs']
         })
         console.log(vrvToolkit.getOptions().choiceXPathQuery)
         vrvToolkit.loadData(mei);
@@ -139,6 +142,7 @@ export const NotatedMusic = ({ teiNode, meis, refs }: NotatedMusicProps) => {
     }, [vrvToolkit, modernClefs, rightHand, emptyStaves, refs])
 
     useLayoutEffect(() => {
+        // Highlight references
         document
             .querySelectorAll('[data-referenced]')
             .forEach(ref => {
@@ -160,6 +164,46 @@ export const NotatedMusic = ({ teiNode, meis, refs }: NotatedMusicProps) => {
                         (corresp as HTMLElement).classList.remove('highlight')
                     })
                     dehighlight()
+                })
+            })
+
+        // Show facsimile on mouseover
+        document
+            .querySelectorAll('.staff[data-facs]')
+            .forEach(staff => {
+                staff.addEventListener('mouseover', () => {
+                    if (document.querySelector('.zone-preview')) return
+
+                    const zoneLinks = staff.getAttribute('data-facs')?.split(' ') || []
+
+                    const selectedZones = zoneLinks
+                        .map((zoneLink) => {
+                            return zones.find((zone) => {
+                                if (!zone) return false
+                                return zone.xmlId === zoneLink.slice(1)
+                            })
+                        })
+                        .filter(zone => !!zone && !!zone.imageApiUrl)
+                        .map(zone => zone!.imageApiUrl!)
+
+                    const bbox = (staff as SVGGraphicsElement).getBoundingClientRect();
+
+                    const div = document.createElement('div');
+                    div.classList.add('zone-preview');
+                    div.style.position = 'fixed';
+                    div.style.left = `${Math.max(bbox.left - 100, 0)}px`;
+                    div.style.top = `${bbox.top - 100}px`;
+                    document.body.appendChild(div);
+
+                    selectedZones.forEach((zone) => {
+                        const img = document.createElement('img');
+                        img.src = zone;
+                        div.appendChild(img);
+                    });
+                })
+
+                staff.addEventListener('mouseleave', () => {
+                    document.querySelectorAll('.zone-preview').forEach(preview => preview.remove())
                 })
             })
     })
@@ -209,6 +253,6 @@ export const NotatedMusic = ({ teiNode, meis, refs }: NotatedMusicProps) => {
                     </Stack>
                 )
             }
-        </div >
+        </div>
     )
 }

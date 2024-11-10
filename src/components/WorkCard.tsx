@@ -5,7 +5,7 @@ import { ExpressionList } from './ExpressionList'
 const capitalizeFirstLetter = (string: string) => string.charAt(0).toUpperCase() + string.slice(1);
 
 export interface ExpressionsByCategory {
-    [index: string]: Queries.expression[]
+    [index: string]: Queries.workExpressions[]
 }
 
 interface WorkCardProps {

@@ -1,3 +1,4 @@
+import { Tooltip } from '@mui/material';
 import React from 'react'
 
 declare global {
@@ -12,8 +13,11 @@ interface WordProps {
 
 export const Word = ({ teiNode }: WordProps) => {
     const modernizedWord = teiNode.querySelector('tei-moot')?.getAttribute('word')
+    const originalWord = teiNode.textContent
 
     return (
-        <span>{modernizedWord}</span>
+        <Tooltip title={originalWord} placement='top'>
+            <span>{modernizedWord}</span>
+        </Tooltip>
     )
 }

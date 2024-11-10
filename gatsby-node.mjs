@@ -5,6 +5,7 @@ import * as path from 'path'
 import { transformToCeteicean } from './src/helpers/transformToCeteicean.mjs'
 import { extractFromXML } from './src/helpers/extractFromTEI.mjs';
 import { collectExpressionMetadata, collectEmbeddedMEI, collectRefTargets } from './src/helpers/collectors/index.mjs';
+import { collectZones } from './src/helpers/collectors/collectZones.mjs';
 
 const modernizeTEI = async (rawXml) => {
   const modernized = await fetch("https://www.deutschestextarchiv.de/public/cab/query?a=default&fmt=xml&clean=1&pretty=1&raw=1&qname=qd&file=C%3A%5Cfakepath%5Ccomments_de.xml", {
@@ -40,7 +41,8 @@ const onCreateWorks = async ({
   verovioToolkit.setOptions({
     svgViewBox: true,
     footer: 'none',
-    adjustPageHeight: true
+    adjustPageHeight: true,
+    svgAdditionalAttribute: ['measure@facs']
   })
 
   Array
@@ -54,7 +56,29 @@ const onCreateWorks = async ({
         incipitSvg = verovioToolkit.renderToSVG(1)
       }
 
+      const expressionList = Array
+        .from(work.querySelectorAll('expression'))
+        .map(expression => {
+          const date = expression.querySelector('creation')?.getAttribute('startdate') || '[unknown]'
+          const type = expression.getAttribute('type') || '[unknown]'
+          const lang = expression.querySelector('language')?.textContent || 'German'
+          const referringTo = expression.getAttribute('data').split(' ').map(str => str.slice(1))
+
+          return {
+            date,
+            type,
+            id: expression.getAttribute('xml:id') || `id_${Math.random()}`,
+            referringTo,
+            lang,
+            internal: {
+              contentDigest: 'blub',
+              type: 'expression'
+            }
+          }
+        })
+
       return {
+        expressions: expressionList,
         xmlId: work.getAttribute('xml:id'),
         title: work.querySelector('title').textContent || '[no title]',
         incipitSvg,
@@ -75,6 +99,11 @@ const onCreateWorks = async ({
       }
     })
     .forEach(async work => {
+      work.expressions.forEach(async expression => {
+        await createNode(expression)
+        createParentChildLink({ parent: work, child: expression })
+      })
+
       await createNode(work)
       createParentChildLink({ parent: node, child: work })
     })
@@ -107,15 +136,22 @@ export const onCreateNode = async ({
   const refTargets = collectRefTargets(document)
   const mei = collectEmbeddedMEI(document, node.absolutePath)
   const metadata = collectExpressionMetadata(document)
+  const zones = mei
+    .map(mei => {
+      const meiDoc = parser.parseFromString(mei.mei, 'application/xml')
+      return collectZones(meiDoc)
+    })
+    .flat()
+  
+  console.log('Zones', zones)
 
-  const modernized = metadata.derivationType === 'edition'
+  const modernized = metadata.isFraktur
     ? await modernizeTEI(rawXml)
     : rawXml
 
   const selectors = {
     'title': 'div[type="score"] head',
     'score': 'div[type="score"]',
-    'facsimile': 'facsimile',
     'metadata': 'fileDesc',
     'text': 'text'
   }
@@ -149,6 +185,7 @@ export const onCreateNode = async ({
   const obj = {
     ...sections,
     ...metadata,
+    zones,
     mei,
     refTargets,
     id: createNodeId(`${node.id} >>> XML`),
@@ -183,21 +220,22 @@ export const createPages = async ({ graphql, actions, reporter }) => {
                   prefixed
                   elements
                 }
-                facsimile {
-                  original
-                }
                 text {
                   original
                   prefixed
                   elements
                 }
                 expressionId
-                realises
                 mei {
                   xmlId
                   mei
                 }
                 refTargets
+                zones {
+                  xmlId
+                  imageApiUrl
+                }
+                isFraktur
               }
             }
           }
