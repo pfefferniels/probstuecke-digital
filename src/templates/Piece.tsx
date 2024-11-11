@@ -10,6 +10,7 @@ import { Word } from '../components/Word'
 import { VerovioProvider } from '../hooks/useVerovio'
 import { Ref } from '../components/Ref'
 import { GlowDefs } from '../components/GlowDefs'
+import LinkToIndex from '../components/LinkToIndex'
 
 interface PieceProps {
     pageContext: {
@@ -30,7 +31,10 @@ function Piece({ pageContext }: PieceProps) {
                     refs={piece.refTargets || []} />
             </Behavior>),
         'tei-w': Word,
-        'tei-ref': Ref
+        'tei-ref': Ref,
+        'tei-persname': (props: any) => <LinkToIndex type='persons' {...props} />,
+        'tei-name': (props: any) => <LinkToIndex type='musicalworks' {...props} />,
+        'tei-bibl': (props: any) => <LinkToIndex type='bibliography' {...props} />,
     }
 
     const title = piece.title?.original

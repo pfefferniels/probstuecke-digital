@@ -56,7 +56,7 @@ export const OccurenceBox = ({ forId }: OccurenceBoxProps) => {
                                         <>
                                             Occurrences:{" "}
                                             {xmlIds.map((xmlId, i) => (
-                                                <Link key={xmlId} to={`/element/${xmlId}`}>
+                                                <Link key={xmlId} to={`/${expressionId}#${xmlId}`}>
                                                     [{i + 1}]{i !== xmlIds.length - 1 && ", "}
                                                 </Link>
                                             ))}
