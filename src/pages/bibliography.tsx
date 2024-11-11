@@ -1,21 +1,8 @@
 import React from 'react'
 import Layout from "../components/Layout"
 import { graphql, useStaticQuery } from 'gatsby'
-import { Container, Card, CardContent, CardActions, Typography, Link, Stack, Paper, Chip } from '@mui/material';
-import { OccurenceBox } from '../components/OccurenceBox';
-
-const WorkCard = ({ work }: { work: Queries.bibliography }) => {
-    return (
-        <Card id={work.xmlId || 'no-id'} sx={{ p: 2 }} elevation={1}>
-            <CardContent>
-                <div style={{ float: 'left' }}>
-                   {work.bibl}
-                </div>
-                <OccurenceBox forId={work.xmlId || ''} />
-            </CardContent>
-        </Card>
-    )
-};
+import { Container, Typography, Stack } from '@mui/material';
+import { BiblCard } from '../components/BiblCard';
 
 const Bibliography = () => {
     const { allBibliography } = useStaticQuery<Queries.Query>(graphql`
@@ -23,7 +10,18 @@ const Bibliography = () => {
           allBibliography {
             nodes {
               xmlId
-              bibl
+              title
+              author {
+                surname
+                forename
+              }
+              editor {
+                surname
+                forename
+              }
+              pubPlace
+              date
+              link
             }
           }
         }
@@ -38,7 +36,7 @@ const Bibliography = () => {
                 <Stack spacing={2} direction='column'>
                     {allBibliography.nodes.map(work => {
                         return (
-                            <WorkCard work={work} key={work.xmlId} />
+                            <BiblCard work={work} key={work.xmlId} />
                         )
                     })}
                 </Stack>
