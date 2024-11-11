@@ -30,12 +30,12 @@ const IndexPage = () => {
     `)
 
     return (
-        <Layout location="IndexPage">
+        <Layout location="Overview">
             <div style={{ background: `url(${backgroundImage})`, minHeight: '85vh' }}>
                 <Container>
                     <Grid2
                         container
-                        padding={3}
+                        padding={9}
                         spacing={{ xs: 2, sm: 2, md: 3 }}
                         columns={{ xs: 2, sm: 8, md: 12 }}>
                         {allWork.nodes.map(work => {

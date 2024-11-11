@@ -1,0 +1,34 @@
+tei-title {
+    font-size: 1.1rem;
+}
+
+tei-head {
+    text-align: left;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+tei-p {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+tei-code,
+tei-tag {
+    background-color: #ededed;
+    font-family: monospace;
+    font-size: 0.8rem;
+}
+
+tei-tag::before {
+    content: '<';
+}
+
+tei-tag::after {
+    content: '>';
+}
+
+tei-title {
+    font-weight: bold;
+}
