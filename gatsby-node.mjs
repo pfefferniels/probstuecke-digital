@@ -201,6 +201,20 @@ export const onCreateNode = async ({
         createParentChildLink({ parent: node, child: bibl })
       })
   }
+  else if (teiRoot.getAttribute('type') === 'guideline') {
+    const transformed = transformToCeteicean(rawXml)
+    const obj = {
+      transformed,
+      id: createNodeId(`${node.id} >>> XML`),
+      children: [],
+      parent: node.id,
+      internal: {
+        contentDigest: createContentDigest({ rawXml }),
+        type: `guideline`
+      }
+    }
+    createNode(obj)
+  }
 
   const refTargets = collectRefTargets(document)
   const mei = collectEmbeddedMEI(document, node.absolutePath)
