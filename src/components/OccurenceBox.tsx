@@ -11,7 +11,8 @@ export const OccurenceBox = ({ forId }: OccurenceBoxProps) => {
         query {
           allExpression {
             nodes {
-              expressionId 
+              expressionId
+              label
               indexRefs {
                 xmlId 
                 corresp

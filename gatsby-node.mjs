@@ -9,14 +9,21 @@ import { collectZones } from './src/helpers/collectors/collectZones.mjs';
 import { collectPersName } from './src/helpers/collectors/collectPersName.mjs';
 
 const modernizeTEI = async (rawXml) => {
-  const modernized = await fetch("https://www.deutschestextarchiv.de/public/cab/query?a=default&fmt=xml&clean=1&pretty=1&raw=1&qname=qd&file=C%3A%5Cfakepath%5Ccomments_de.xml", {
-    "referrer": "https://www.deutschestextarchiv.de/public/cab/file",
-    "body": rawXml,
-    "method": "POST",
-    "mode": "cors"
-  });
+  try {
+    const modernized = await fetch("https://www.deutschestextarchiv.de/public/cab/query?a=default&fmt=xml&clean=1&pretty=1&raw=1&qname=qd&file=C%3A%5Cfakepath%5Ccomments_de.xml",
+      {
+        "referrer": "https://www.deutschestextarchiv.de/public/cab/file",
+        "body": rawXml,
+        "method": "POST",
+        "mode": "cors"
+      });
 
-  return modernized.text()
+    return modernized.text()
+  }
+  catch (e) {
+    console.error('Error fetching modernized version: ' + e.message)
+    return rawXml
+  }
 }
 
 const vrvModule = await createVerovioModule()
@@ -63,6 +70,7 @@ const onCreateWorks = async ({
           const date = expression.querySelector('creation')?.getAttribute('startdate') || '[unknown]'
           const type = expression.getAttribute('type') || '[unknown]'
           const lang = expression.querySelector('language')?.textContent || 'German'
+          const author = expression.querySelector('author')?.textContent || ''
           const referringTo = expression.getAttribute('data').split(' ').map(str => str.slice(1))
 
           return {
@@ -71,6 +79,7 @@ const onCreateWorks = async ({
             id: expression.getAttribute('xml:id') || `id_${Math.random()}`,
             referringTo,
             lang,
+            author,
             internal: {
               contentDigest: 'blub',
               type: 'expression'

@@ -12,3 +12,13 @@
     float: left;
     margin-left: 1rem;
 }
+
+/* Hide supplied accids in diplomatic mode */
+.diplomatic .supplied .accid {
+    display: none;
+}
+
+/* hide repeating accids in modernized mode */
+.modernized .orig .accid {
+    display: none;
+}

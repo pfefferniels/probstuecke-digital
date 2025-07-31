@@ -13,7 +13,10 @@ export const ExpressionList = ({ expressions }: ExpressionListProps) => {
                     <Link key={expression.id} to={`${expression.referringTo}`}>
                         {expression.type === 'edition'
                             ? expression.date
-                            : expression.lang}
+                            : expression.author !== ''
+                                ? expression.author
+                                : expression.lang
+                        }
                     </Link>
                     {(i !== expressions.length - 1) &&
                         <span style={{ color: 'gray', marginLeft: 2, marginRight: 2 }}>·</span>}

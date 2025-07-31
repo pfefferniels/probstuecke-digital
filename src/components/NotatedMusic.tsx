@@ -4,6 +4,7 @@ import { Stack, Pagination, ToggleButton, ToggleButtonProps, Button, ButtonProps
 import { addEmptyStaves } from '../helpers/addEmptyStaves';
 import { removeEmbeddedAnnotations } from '../helpers/removeEmbeddedAnnotations';
 import './NotatedMusic.css'
+import { PictureAsPdf } from '@mui/icons-material';
 
 const OptionToggle = (props: ToggleButtonProps) => {
     return (
@@ -46,19 +47,32 @@ const OptionButton = (props: ButtonProps) => {
 declare global {
     interface Window {
         highlightRefs: (refs: string[]) => () => void;
+        scoreSettings: {
+            modernClefs: boolean,
+            rightHand: boolean,
+            emptyStaves: number
+        }
     }
 }
 
 window.highlightRefs = window.highlightRefs || ((_: string) => { });
+window.scoreSettings = window.scoreSettings || {
+    modernClefs: false,
+    rightHand: false,
+    emptyStaves: 0
+}
 
 interface NotatedMusicProps {
     teiNode: Element,
     meis: readonly (Queries.expressionMei | null)[]
     zones: readonly (Queries.expressionZones | null)[]
     refs: readonly (string | null)[]
+    expressionId?: string
+
+    pageSettings: {}
 }
 
-export const NotatedMusic = ({ teiNode, meis, refs, zones }: NotatedMusicProps) => {
+export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: NotatedMusicProps) => {
     const [currentPage, setCurrentPage] = useState(1)
     const [svgs, setSVGs] = useState<string[]>([])
     const [modernClefs, setModernClefs] = useState(false)
@@ -69,6 +83,14 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones }: NotatedMusicProps) 
     const isMainScore = teiId === 'score'
 
     const { vrvToolkit } = useVerovio()
+
+    useEffect(() => {
+        window.scoreSettings = {
+            modernClefs,
+            rightHand,
+            emptyStaves
+        }
+    }, [modernClefs, rightHand, emptyStaves])
 
     useEffect(() => {
         if (!isMainScore) return
@@ -99,6 +121,9 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones }: NotatedMusicProps) 
         let mei = corresp.mei
         const meiDoc = new DOMParser().parseFromString(mei, 'application/xml')
 
+        const sourceId = meiDoc
+            .querySelector(`source[corresp="${expressionId}"]`)?.getAttribute('xml:id')
+
         if (isMainScore && !rightHand) removeEmbeddedAnnotations(meiDoc)
         addEmptyStaves(meiDoc, emptyStaves)
 
@@ -107,7 +132,7 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones }: NotatedMusicProps) 
             console.log('new MEI with', mei)
         }
 
-        vrvToolkit.setOptions({
+        const options: any = {
             scale: 30,
             footer: modernClefs ? 'auto' : 'none',
             pageHeight: 2000,
@@ -116,8 +141,13 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones }: NotatedMusicProps) 
             header: 'none',
             choiceXPathQuery: [modernClefs ? './reg' : './orig'],
             svgAdditionalAttribute: ['staff@facs']
-        })
-        console.log(vrvToolkit.getOptions().choiceXPathQuery)
+        }
+
+        if (sourceId) {
+            options.appXPathQuery = `./*[source="${sourceId}"]`
+        }
+
+        vrvToolkit.setOptions(options)
         vrvToolkit.loadData(mei);
 
         const svgs = []
@@ -209,7 +239,7 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones }: NotatedMusicProps) 
     })
 
     return (
-        <div className={`score ${isMainScore ? 'main-score' : 'example-score'}`}>
+        <div className={`score ${isMainScore ? 'main-score' : 'example-score'} ${modernClefs ? 'modernized' : 'diplomatic'}`}>
             <div style={{
                 float: isMainScore ? 'right' : 'left',
                 border: '0.5px solid gray',

@@ -74,10 +74,6 @@ tei-hi[rendition="#uu"] {
     border-bottom: double 3px #000;
 }
 
-/*tei-hi[rendition="#v"] {
-    ;
-}*/
-
 tei-hi[rendition="#s"] {
     text-decoration: line-through;
 }
@@ -105,4 +101,19 @@ tei-hi[rendition="#larger"] {
 tei-lb:before {
     content: '\A';
     white-space: pre;
+}
+
+tei-fw[type='catch'][place='bottom'] {
+    text-align: right;
+    display: block;
+    color: #666;
+}
+
+tei-pb {
+    display: block;
+}
+
+tei-pb[n]:after {
+    content: '[' attr(n) ']\A';
+    color: gray;
 }

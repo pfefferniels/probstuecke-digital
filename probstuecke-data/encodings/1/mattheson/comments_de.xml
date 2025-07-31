@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <?xml-model href="../../../schema/basisformat_customized.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="expression002">
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="ps1-002">
   <teiHeader>
     <fileDesc>
       <titleStmt>
-        <title type="part">Mattheson: Der Ober-Classe Erstes Probstück</title>
+        <title type="part">Der Ober-Classe Erstes Probstück (1731)</title>
         <editor>
           <persName xml:id="pfeffer">
             <surname>Pfeffer</surname>
@@ -73,21 +73,8 @@
           </physDesc>
         </msDesc>
       </sourceDesc>
-      <profileDesc>
-        <langUsage>
-          <language ident="deu">German</language>
-        </langUsage>
-        <textDesc>
-          <derivation type="edition" />
-        </textDesc>
-      </profileDesc>
     </fileDesc>
   </teiHeader>
-  <standOff>
-    <listRelation>
-      <relation name="realises" active="#expression002" passive="#work001" />
-    </listRelation>
-  </standOff>
   <facsimile>
     <surface ulx="0" uly="0" lrx="1998" lry="2396" xml:id="facs-p389">
       <graphic width="1998px" height="2396px" url="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10598495/canvas/389"/>
@@ -129,7 +116,6 @@
         <div n="1">
           <lb/><head>§. 1.</head><lb/>
           <p xml:id="p1-1" facs="#facsZone-p1-1">
-            <s xml:id="expression001_s1">
               <lb/><hi rendition="#in">J</hi>Ener Geiſtliche wollte die truͤbſeligen Zeiten des menſchlichen Lebens gerne
               <lb/>mit etwas vergleichen, und ſagte: Sie waͤren wie ein muſicaliſches Buch,
               <lb/>darin gemeinglich mehr ſchwartze, als weiſſe Noten gefunden wuͤr-
@@ -140,7 +126,6 @@
               </choice>
               ebener maſſen in unserm Leben mehr Un-
               <lb/>gluͤcks- als Gluͤcks-Faͤlle an.
-            </s>
             <note type="editorial" resp="#pfeffer">
               Mattheson bezieht sich vermutlich auf eine Betrachtung <persName>Samuel von Butschkys</persName>,
               die sich als Nummer 250 mit dem Titel <hi rendition="#i">Menschliches Leben</hi> in dessen Schrift

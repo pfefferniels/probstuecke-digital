@@ -21,6 +21,7 @@ const IndexPage = () => {
                 type 
                 date
                 lang
+                author
                 id
                 referringTo
               }

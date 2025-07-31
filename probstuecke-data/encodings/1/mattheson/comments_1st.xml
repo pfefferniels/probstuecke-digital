@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="../../../schema/basisformat_customized.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="expression001">
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="ps1-001">
   <teiHeader>
     <fileDesc>
       <titleStmt>
-        <title type="part">Mattheson: Der Ober-Classe Erstes Probstück</title>
+        <title type="part">Der Ober-Classe Erstes Probstück (1719)</title>
         <editor>
           <persName xml:id="pfeffer">
             <surname>Pfeffer</surname>
@@ -71,21 +71,8 @@
           </physDesc>
         </msDesc>
       </sourceDesc>
-      <profileDesc>
-        <langUsage>
-          <language ident="deu">German</language>
-        </langUsage>
-        <textDesc>
-          <derivation type="edition" />
-        </textDesc>
-      </profileDesc>
     </fileDesc>
   </teiHeader>
-  <standOff>
-    <listRelation>
-      <relation name="realises" active="#expression001" passive="#work001" />
-    </listRelation>
-  </standOff>
   <facsimile>
     <surface ulx="0" uly="0" lrx="1579" lry="1869" xml:id="facs-p269">
       <graphic width="1579px" height="1869px" url="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10527431/canvas/269"/>
@@ -99,9 +86,9 @@
   </facsimile>
   <text>
     <body>
-      <div>
+      <div type="score">
         <pb n="102" facs="#facs-p385"/>
-        <head type="title">Erſtes Prob-Stueck.</head><lb/>
+        <head>Erſtes Prob-Stueck.</head><lb/>
         <figure type="notatedMusic">
           <notatedMusic type="fullPage" xml:id="score">
             <ptr target="score.xml"/>
@@ -111,7 +98,7 @@
 
       <div>
         <p>
-          <abbr>vid.</abbr> <persName corresp="#ed_fy5_r5x_qlb">Keiſers</persName> <name type="musicalWork" corresp="#ed_sbs_x2c_tlb">Erleſene
+          <abbr>vid.</abbr> <persName xml:id="dpxhEhL1Y7" corresp="#ed_fy5_r5x_qlb">Keiſers</persName> <name type="musicalWork" xml:id="uGS0nC7pww" corresp="#ed_sbs_x2c_tlb">Erleſene
           <lb/> Sätze</name> <hi rendition="#aq">p. 50</hi>.
         </p>
       </div>
@@ -120,14 +107,13 @@
       <head>Erla&#x0364;uterung.</head>
       <div n="1">
         <lb /><head>§. 1.</head>
-        <lb /><p>
-          <s xml:id="#expression001_s1">
-            <hi rendition="#in">J</hi>Ener Geiſtliche wollte die tru&#x0364;bſeligen Zeiten des menſchlichen Lebens gerne
-            <lb />mit etwas vergleichen, und ſagte: Sie wa&#x0364;ren gleich einem musicalischen
-            <lb />Buch, darin&#x0303; gemeinglich mehr ſchwartze, als weiſſe Noten gefunden wu&#x0364;rden;
-            <lb />als wolte er ſprechen, es fu&#x0364;nden ſich ebener maſſen in unserm Leben mehr Unglu&#x0364;cks-
-            <lb />als Glu&#x0364;cks-Fa&#x0364;lle.
-          </s>
+        <lb />
+        <p>
+          <hi rendition="#in">J</hi>Ener Geiſtliche wollte die tru&#x0364;bſeligen Zeiten des menſchlichen Lebens gerne
+          <lb />mit etwas vergleichen, und ſagte: Sie wa&#x0364;ren gleich einem musicalischen
+          <lb />Buch, darin&#x0303; gemeinglich mehr ſchwartze, als weiſſe Noten gefunden wu&#x0364;rden;
+          <lb />als wolte er ſprechen, es fu&#x0364;nden ſich ebener maſſen in unserm Leben mehr Unglu&#x0364;cks-
+          <lb />als Glu&#x0364;cks-Fa&#x0364;lle.
           <note type="editorial" resp="#pfeffer">
             Mattheson bezieht sich vermutlich auf eine Betrachtung <persName>Samuel von Butschkys</persName>,
             die sich als Nummer 250 mit dem Titel <hi rendition="#i">Menschliches Leben</hi> in dessen Schrift
