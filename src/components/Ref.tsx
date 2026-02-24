@@ -1,6 +1,6 @@
 import { TEINodes } from "react-teirouter"
-import { Behavior } from "gatsby-theme-ceteicean/src/components//Behavior"
-import React, { useEffect, useRef } from 'react'
+import { Behavior } from '@/ceteicean/Behavior'
+import { useEffect, useRef } from 'react'
 
 interface RefProps {
     teiNode: Node
@@ -12,18 +12,27 @@ export const Ref = (props: RefProps) => {
     const ref = useRef<HTMLSpanElement>(null)
 
     useEffect(() => {
-        if (!ref.current) return 
-        if (!targets) return 
+        if (!ref.current) return
+        if (!targets) return
 
-        let dehighlight: () => void
+        const el = ref.current
+        let dehighlight: (() => void) | undefined
 
-        ref.current.addEventListener('mouseover', () => {
+        const onMouseOver = () => {
             dehighlight = window.highlightRefs(targets.split(' ').map(target => target.slice(1)))
-        })
+        }
 
-        ref.current.addEventListener('mouseleave', () => {
+        const onMouseLeave = () => {
             if (dehighlight) dehighlight()
-        })
+        }
+
+        el.addEventListener('mouseover', onMouseOver)
+        el.addEventListener('mouseleave', onMouseLeave)
+
+        return () => {
+            el.removeEventListener('mouseover', onMouseOver)
+            el.removeEventListener('mouseleave', onMouseLeave)
+        }
     })
 
     return (

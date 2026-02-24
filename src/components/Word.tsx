@@ -1,14 +1,11 @@
 import { Tooltip } from '@mui/material';
-import React from 'react'
 
-declare global {
-    interface Window { verovio: any; }
+if (typeof window !== 'undefined') {
+    window.verovio = window.verovio || {};
 }
 
-window.verovio = window.verovio || {};
-
 interface WordProps {
-    teiNode: any
+    teiNode: Element
 }
 
 export const Word = ({ teiNode }: WordProps) => {

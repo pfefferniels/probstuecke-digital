@@ -1,15 +1,18 @@
-import React from 'react';
+'use client'
+
+import { useState } from 'react';
 import { Dialog, DialogTitle, DialogContent, List, ListItemText, ListItemButton, ListItem } from '@mui/material';
 import { ExportPDFModal } from './ExportPDFModal';
+import type { Expression } from '@/lib/types'
 
 interface DownloadDialogProps {
     open: boolean
     onClose: () => void
-    expression: Queries.expression
+    expression: Expression
 }
 
 export const DownloadDialog = ({ open, onClose, expression }: DownloadDialogProps) => {
-    const [showPDFOptions, setShowPDFOptions] = React.useState(false);
+    const [showPDFOptions, setShowPDFOptions] = useState(false);
     const meiData = expression.mei?.find(mei => mei?.xmlId === 'score')?.mei || 'no MEI'
     const handleMEI = () => {
         downloadAs('music.mei', meiData, 'application/xml');

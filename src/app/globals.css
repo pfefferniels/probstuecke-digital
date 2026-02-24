@@ -1,0 +1,258 @@
+/* Header.css */
+.title {
+    color: black;
+}
+
+/* NotatedMusic.css */
+.zone-preview {
+    width: fit-content;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transform: scale(0.5);
+}
+
+.zone-preview img {
+    float: left;
+    margin-left: 1rem;
+}
+
+/* Hide supplied accids in diplomatic mode */
+.diplomatic .supplied .accid {
+    display: none;
+}
+
+/* hide repeating accids in modernized mode */
+.modernized .orig .accid {
+    display: none;
+}
+
+/* Piece.css */
+tei-note[type="editorial"] {
+    width: 30%;
+    float: right;
+    border: 1px dashed #000;
+    border-radius: 1rem;
+    font-size: .7rem;
+    padding: .5rem;
+    margin: .5rem;
+    text-align: left;
+    text-indent: 0;
+}
+
+tei-note[place='foot'] {
+    display: block;
+    width: 90%;
+    margin: 0.5rem auto;
+    text-indent: 0rem;
+    color: gray;
+    padding: 0.5rem;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+}
+
+tei-tei {
+    font-size: 0.9rem;
+    text-align: justify;
+}
+
+tei-head {
+    font-weight: bold;
+    text-align: center;
+    display: block;
+}
+
+tei-text {
+    font-family: Junicode;
+    font-size: 1.1rem;
+    line-height: 2;
+}
+
+tei-lb {
+    display: none;
+}
+
+.piece .title {
+    position: sticky;
+    top: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    margin-top: 3rem;
+    padding: 0.5rem;
+    z-index: 100;
+}
+
+.main-score {
+    position: sticky;
+    top: 0;
+    padding-top: 2rem;
+}
+
+.ref {
+    background-color: rgba(255, 200, 10, .2);
+    cursor: pointer;
+}
+
+.highlight {
+    background-color: rgba(255, 14, 10, 0.2);
+}
+
+svg * {
+    pointer-events: bounding-box;
+}
+
+/* CETEI-dta.css */
+tei-hi[rendition="#aq"] {
+    font-family: sans-serif;
+}
+
+tei-hi[rendition="#b"] {
+    font-weight: bold;
+}
+
+tei-hi[rendition="#blue"] {
+    color: blue;
+}
+
+tei-hi[rendition="#c"] {
+    display: block;
+    text-align: center;
+}
+
+tei-hi[rendition="#et"] {
+    display: block;
+    margin-left: 2em;
+    text-indent: 0;
+}
+
+tei-hi[rendition="#f"] {
+    border: 1px dotted silver;
+}
+
+tei-hi[rendition="#fr"] {
+    border: 1px dotted silver;
+}
+
+tei-hi[rendition="#g"] {
+    letter-spacing: 0.125em;
+}
+
+tei-hi[rendition="#i"] {
+    font-style: italic;
+}
+
+tei-hi[rendition="#in"] {
+    font-size: 150%;
+}
+
+tei-hi[rendition="#k"] {
+    font-variant: small-caps;
+}
+
+tei-hi[rendition="#red"] {
+    color: red;
+}
+
+tei-hi[rendition="#right"] {
+    display: block;
+    text-align: right;
+}
+
+tei-hi[rendition="#sub"] {
+    vertical-align: sub;
+    font-size: .7em;
+}
+
+tei-hi[rendition="#sup"] {
+    vertical-align: super;
+    font-size: .7em;
+}
+
+tei-hi[rendition="#u"] {
+    text-decoration: underline;
+}
+
+tei-hi[rendition="#uu"] {
+    border-bottom: double 3px #000;
+}
+
+tei-hi[rendition="#s"] {
+    text-decoration: line-through;
+}
+
+tei-hi[rendition="#et2"] {
+    display: block;
+    margin-left: 4em;
+    text-indent: 0;
+}
+
+tei-hi[rendition="#et3"] {
+    display: block;
+    margin-left: 6em;
+    text-indent: 0;
+}
+
+tei-hi[rendition="#smaller"] {
+    font-size: smaller;
+}
+
+tei-hi[rendition="#larger"] {
+    font-size: larger
+}
+
+tei-lb:before {
+    content: '\A';
+    white-space: pre;
+}
+
+tei-fw[type='catch'][place='bottom'] {
+    text-align: right;
+    display: block;
+    color: #666;
+}
+
+tei-pb {
+    display: block;
+}
+
+tei-pb[n]:after {
+    content: '[' attr(n) ']\A';
+    color: gray;
+}
+
+/* CETEI-guidelines.css */
+tei-title {
+    font-size: 1.1rem;
+}
+
+tei-head {
+    text-align: left;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+tei-p {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+tei-code,
+tei-tag {
+    background-color: #ededed;
+    font-family: monospace;
+    font-size: 0.8rem;
+}
+
+tei-tag::before {
+    content: '<';
+}
+
+tei-tag::after {
+    content: '>';
+}
+
+tei-title {
+    font-weight: bold;
+}

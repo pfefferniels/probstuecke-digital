@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+'use client'
+
+import { useState } from 'react'
 import SVGtoPDF from 'svg-to-pdfkit'
 import { Button, CircularProgress, Tab, Tabs, ToggleButton, ToggleButtonGroup } from '@mui/material'
 import { downloadAs } from './DownloadDialog'
@@ -148,7 +150,7 @@ export const ExportPDFModal = ({ meiData }: ExportPDFModalProps) => {
         doc.info['Title'] = dom.querySelector('title')?.textContent || ''
         doc.info['Author'] = composerName || ''
 
-        let stream = doc.pipe(window.blobStream())
+        const stream = doc.pipe(window.blobStream())
         stream.on('finish', function () {
             setLoading(false)
             const blob = stream.toBlob('application/pdf')

@@ -1,17 +1,17 @@
-import React from 'react'
-import { Card, Table, TableRow, TableCell, tableCellClasses } from "@mui/material"
+import { Card, Table, TableBody, TableRow, TableCell, tableCellClasses } from "@mui/material"
 import { ExpressionList } from './ExpressionList'
+import type { WorkExpression, WorkKey } from '@/lib/types'
 
 const capitalizeFirstLetter = (string: string) => string.charAt(0).toUpperCase() + string.slice(1);
 
 export interface ExpressionsByCategory {
-    [index: string]: Queries.workExpressions[]
+    [index: string]: WorkExpression[]
 }
 
 interface WorkCardProps {
     title: string
     incipitSVG: string
-    keySignature: Queries.workKey
+    keySignature: WorkKey
     expressions: ExpressionsByCategory
 }
 
@@ -29,18 +29,20 @@ export const WorkCard = ({ title, incipitSVG, expressions, keySignature }: WorkC
                     borderBottom: "none"
                 }
             }}>
-                {Object.entries(expressions).map(([category, expressions]) => {
-                    return (
-                        <TableRow key={category}>
-                            <TableCell sx={{ fontWeight: 'bold', width: 0 }}>
-                                {capitalizeFirstLetter(category) + 's'}
-                            </TableCell>
-                            <TableCell>
-                                <ExpressionList expressions={expressions} />
-                            </TableCell>
-                        </TableRow>
-                    )
-                })}
+                <TableBody>
+                    {Object.entries(expressions).map(([category, expressions]) => {
+                        return (
+                            <TableRow key={category}>
+                                <TableCell sx={{ fontWeight: 'bold', width: 0 }}>
+                                    {capitalizeFirstLetter(category) + 's'}
+                                </TableCell>
+                                <TableCell>
+                                    <ExpressionList expressions={expressions} />
+                                </TableCell>
+                            </TableRow>
+                        )
+                    })}
+                </TableBody>
             </Table>
         </Card>
     )

@@ -1,22 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
-
-declare global {
-    interface Window {
-        verovio: any;
-        blobStream: any;
-    }
-}
-
-window.verovio = window.verovio || {};
-window.blobStream = window.blobStream || {};
-
-declare global {
-    interface Window {
-        PDFDocument: any;
-    }
-}
-
-window.PDFDocument = window.PDFDocument || {};
+import { type ReactNode, createContext, useContext, useEffect, useState } from 'react';
 
 interface VerovioContextType {
     verovioReady: boolean;
@@ -27,7 +9,7 @@ const VerovioContext = createContext<VerovioContextType>({
 });
 
 interface VerovioProviderProps {
-    children: React.ReactNode;
+    children: ReactNode;
 }
 
 export const VerovioProvider = ({ children }: VerovioProviderProps) => {

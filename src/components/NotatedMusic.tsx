@@ -1,10 +1,13 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react'
+'use client'
+
+import { useEffect, useLayoutEffect, useState } from 'react'
 import { useVerovio } from '../hooks/useVerovio';
 import { Stack, Pagination, ToggleButton, ToggleButtonProps, Button, ButtonProps } from '@mui/material';
 import { addEmptyStaves } from '../helpers/addEmptyStaves';
 import { removeEmbeddedAnnotations } from '../helpers/removeEmbeddedAnnotations';
 import './NotatedMusic.css'
-import { PictureAsPdf } from '@mui/icons-material';
+import type { ExpressionMei, ExpressionZone } from '@/lib/types'
+
 
 const OptionToggle = (props: ToggleButtonProps) => {
     return (
@@ -44,32 +47,21 @@ const OptionButton = (props: ButtonProps) => {
     );
 }
 
-declare global {
-    interface Window {
-        highlightRefs: (refs: string[]) => () => void;
-        scoreSettings: {
-            modernClefs: boolean,
-            rightHand: boolean,
-            emptyStaves: number
-        }
+if (typeof window !== 'undefined') {
+    window.highlightRefs = window.highlightRefs || ((_: string[]) => () => { });
+    window.scoreSettings = window.scoreSettings || {
+        modernClefs: false,
+        rightHand: false,
+        emptyStaves: 0
     }
-}
-
-window.highlightRefs = window.highlightRefs || ((_: string) => { });
-window.scoreSettings = window.scoreSettings || {
-    modernClefs: false,
-    rightHand: false,
-    emptyStaves: 0
 }
 
 interface NotatedMusicProps {
     teiNode: Element,
-    meis: readonly (Queries.expressionMei | null)[]
-    zones: readonly (Queries.expressionZones | null)[]
+    meis: readonly (ExpressionMei | null)[]
+    zones: readonly (ExpressionZone | null)[]
     refs: readonly (string | null)[]
     expressionId?: string
-
-    pageSettings: {}
 }
 
 export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: NotatedMusicProps) => {
@@ -115,7 +107,7 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
     useEffect(() => {
         if (!vrvToolkit) return
 
-        const corresp = meis.find((mei: any) => mei.xmlId === teiId)
+        const corresp = meis.find(mei => mei?.xmlId === teiId)
         if (!corresp || !corresp.mei) return
 
         let mei = corresp.mei
@@ -128,9 +120,6 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
         addEmptyStaves(meiDoc, emptyStaves)
 
         mei = new XMLSerializer().serializeToString(meiDoc)
-        if (emptyStaves > 0) {
-            console.log('new MEI with', mei)
-        }
 
         const options: any = {
             scale: 30,
@@ -172,6 +161,8 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
     }, [vrvToolkit, modernClefs, rightHand, emptyStaves, refs])
 
     useLayoutEffect(() => {
+        const cleanups: (() => void)[] = []
+
         // Highlight references
         document
             .querySelectorAll('[data-referenced]')
@@ -180,20 +171,27 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
                 if (!meiId) return
 
                 const corresps = document.querySelectorAll(`[data-target~="#${meiId}"]`)
-                let dehighlight: () => void
+                let dehighlight: (() => void) | undefined
 
-                ref.addEventListener('mouseover', () => {
+                const onMouseOver = () => {
                     corresps.forEach(corresp => {
                         (corresp as HTMLElement).classList.add('highlight')
                     })
                     dehighlight = window.highlightRefs([meiId])
-                })
+                }
 
-                ref.addEventListener('mouseleave', () => {
+                const onMouseLeave = () => {
                     corresps.forEach(corresp => {
                         (corresp as HTMLElement).classList.remove('highlight')
                     })
-                    dehighlight()
+                    if (dehighlight) dehighlight()
+                }
+
+                ref.addEventListener('mouseover', onMouseOver)
+                ref.addEventListener('mouseleave', onMouseLeave)
+                cleanups.push(() => {
+                    ref.removeEventListener('mouseover', onMouseOver)
+                    ref.removeEventListener('mouseleave', onMouseLeave)
                 })
             })
 
@@ -201,7 +199,7 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
         document
             .querySelectorAll('.staff[data-facs]')
             .forEach(staff => {
-                staff.addEventListener('mouseover', () => {
+                const onMouseOver = () => {
                     if (document.querySelector('.zone-preview')) return
 
                     const zoneLinks = staff.getAttribute('data-facs')?.split(' ') || []
@@ -230,12 +228,23 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
                         img.src = zone;
                         div.appendChild(img);
                     });
-                })
+                }
 
-                staff.addEventListener('mouseleave', () => {
+                const onMouseLeave = () => {
                     document.querySelectorAll('.zone-preview').forEach(preview => preview.remove())
+                }
+
+                staff.addEventListener('mouseover', onMouseOver)
+                staff.addEventListener('mouseleave', onMouseLeave)
+                cleanups.push(() => {
+                    staff.removeEventListener('mouseover', onMouseOver)
+                    staff.removeEventListener('mouseleave', onMouseLeave)
                 })
             })
+
+        return () => {
+            cleanups.forEach(cleanup => cleanup())
+        }
     })
 
     return (
@@ -250,7 +259,7 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
                     selected={modernClefs}
                     onChange={() => setModernClefs(!modernClefs)}
                 >
-                    {modernClefs ? '𝄡' : '𝄢'}
+                    {modernClefs ? '\u{1D121}' : '\u{1D122}'}
                 </OptionToggle>
 
                 {isMainScore && (

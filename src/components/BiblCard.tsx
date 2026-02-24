@@ -1,8 +1,8 @@
 import { Card, CardContent, Chip } from "@mui/material";
 import { OccurenceBox } from "./OccurenceBox";
-import React from "react";
+import type { Bibliography, MusicalWork, ExpressionIndexData } from '@/lib/types'
 
-export const BiblCard = ({ work }: { work: Queries.bibliography | Queries.musicalWork }) => {
+export const BiblCard = ({ work, expressions }: { work: Bibliography | MusicalWork; expressions: ExpressionIndexData[] }) => {
     return (
         <Card id={work.xmlId || 'no-id'} sx={{ p: 2 }} elevation={1}>
             <CardContent>
@@ -31,7 +31,7 @@ export const BiblCard = ({ work }: { work: Queries.bibliography | Queries.musica
                         </div>
                     )}
                 </div>
-                <OccurenceBox forId={work.xmlId || ''} />
+                <OccurenceBox forId={work.xmlId || ''} expressions={expressions} />
             </CardContent>
         </Card>
     )

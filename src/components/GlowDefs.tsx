@@ -1,5 +1,3 @@
-import React from 'react'
-
 export const GlowDefs = () => {
     return (
         <svg width="0" height="0">

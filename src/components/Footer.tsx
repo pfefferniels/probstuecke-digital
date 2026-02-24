@@ -1,4 +1,3 @@
-import React from "react"
 import Container from "@mui/material/Container"
 import { Box, Typography } from "@mui/material"
 
@@ -15,7 +14,7 @@ export const Footer = () => (
   <Box component="footer" sx={styles.footer}>
     <Container maxWidth="lg">
       <Typography>
-        The open source code for this collection is available at <a href='https://github.com/digimuwi/lma-digital'>https://github.com/pfefferniels/probstuecke-data</a>.
+        The open source code for this collection is available at <a href='https://github.com/pfefferniels/probstuecke-data'>https://github.com/pfefferniels/probstuecke-data</a>.
       </Typography>
       <Typography>
         © {new Date().getFullYear()}

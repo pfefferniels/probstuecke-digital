@@ -1,7 +1,13 @@
-import { Link } from 'gatsby'
-import React from 'react'
+import Link from 'next/link'
+import type { ReactNode } from 'react'
 
-const LinkToIndex = (props: any) => {
+interface LinkToIndexProps {
+  type: string
+  teiNode: Element
+  children?: ReactNode
+}
+
+const LinkToIndex = (props: LinkToIndexProps) => {
   const corresp = props.teiNode.getAttribute('corresp')
 
   if (!corresp) {
@@ -9,7 +15,7 @@ const LinkToIndex = (props: any) => {
   }
 
   return (
-    <Link to={`/${props.type}#${corresp.replace('#', '')}`}>
+    <Link href={`/${props.type}#${corresp.replace('#', '')}`}>
       <span id={props.teiNode.getAttribute('id') || 'unknown'}>{props.children}</span>
     </Link>
   )

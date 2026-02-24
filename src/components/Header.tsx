@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+'use client'
+
+import { type MouseEvent, useState } from 'react'
 import './Header.css'
-import { AppBar, Button, Divider, IconButton, Menu, MenuItem, Toolbar, Typography } from '@mui/material'
-import { Link } from 'gatsby'
-import { MenuBookOutlined } from '@mui/icons-material'
+import { AppBar, Button, Divider, Menu, MenuItem, Toolbar, Typography } from '@mui/material'
+import Link from 'next/link'
 
 interface HeaderProps {
   title: string
@@ -12,7 +13,7 @@ interface HeaderProps {
 export const Header = ({ title, subtitle }: HeaderProps) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+  const handleClick = (event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget)
   }
   const handleClose = () => {
@@ -25,7 +26,7 @@ export const Header = ({ title, subtitle }: HeaderProps) => {
       <AppBar sx={{ bgcolor: 'white' }} position='absolute' elevation={1}>
         <Toolbar sx={{ color: 'black' }}>
           <Typography variant="h5" component="div" sx={{ flexGrow: 0, paddingRight: 1 }}>
-            <Link to='/' style={{ textDecoration: 'none', color: 'black' }}>
+            <Link href='/' style={{ textDecoration: 'none', color: 'black' }}>
               {title}
             </Link>
           </Typography>
@@ -73,17 +74,17 @@ export const Header = ({ title, subtitle }: HeaderProps) => {
             onClose={handleClose}
           >
             <MenuItem onClick={handleClose}>
-              <Link to='/bibliography' style={{ textDecoration: 'none', color: 'black' }}>
+              <Link href='/bibliography' style={{ textDecoration: 'none', color: 'black' }}>
                 Bibliography
               </Link>
             </MenuItem>
             <MenuItem onClick={handleClose}>
-              <Link to='/musicalworks' style={{ textDecoration: 'none', color: 'black' }}>
+              <Link href='/musicalworks' style={{ textDecoration: 'none', color: 'black' }}>
                 Index of Musical Works
               </Link>
             </MenuItem>
             <MenuItem onClick={handleClose}>
-              <Link to='/persons' style={{ textDecoration: 'none', color: 'black' }}>
+              <Link href='/persons' style={{ textDecoration: 'none', color: 'black' }}>
                 Index of Persons
               </Link>
             </MenuItem>
