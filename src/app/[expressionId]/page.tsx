@@ -1,4 +1,4 @@
-import { loadExpressions, loadExpression } from '@/lib/data'
+import { loadExpressionIds, loadExpression } from '@/lib/data'
 import PieceClient from './PieceClient'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
@@ -8,12 +8,7 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-  const expressions = await loadExpressions()
-  return expressions
-    .filter(e => e.expressionId)
-    .map(e => ({
-      expressionId: e.expressionId!,
-    }))
+  return loadExpressionIds()
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {

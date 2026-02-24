@@ -101,7 +101,8 @@ let cachedPersons: Person[] | null = null
 let cachedBibliography: Bibliography[] | null = null
 let cachedMusicalWorks: MusicalWork[] | null = null
 let cachedGuidelines: Guideline | null = null
-let cachedExpressions: Expression[] | null = null
+let cachedExpressionIndex: Map<string, string> | null = null
+const cachedExpressionById = new Map<string, Expression>()
 
 // ---------------------------------------------------------------------------
 // loadWorks
@@ -370,46 +371,102 @@ const processExpressionFile = async (filePath: string): Promise<Expression | nul
 }
 
 // ---------------------------------------------------------------------------
-// loadExpressions
+// Expression index: lightweight scan mapping expressionId → filePath
 // ---------------------------------------------------------------------------
 
-export const loadExpressions = async (): Promise<Expression[]> => {
-  if (cachedExpressions) return cachedExpressions
+const buildExpressionIndex = (): Map<string, string> => {
+  if (cachedExpressionIndex) return cachedExpressionIndex
 
   const allXmlFiles = findXmlFiles(DATA_DIR)
-  const expressions: Expression[] = []
+  const index = new Map<string, string>()
 
   for (const filePath of allXmlFiles) {
-    const expression = await processExpressionFile(filePath)
-    if (expression) {
-      expressions.push(expression)
+    const rawXml = fs.readFileSync(filePath, 'utf-8')
+    const document = parseXml(rawXml)
+
+    if (document.querySelector('mei')) continue
+
+    const teiRoot = document.querySelector('TEI')
+    if (!teiRoot) continue
+
+    const teiType = teiRoot.getAttribute('type')
+    if (teiType && SPECIAL_TEI_TYPES.has(teiType)) continue
+
+    const xmlId = teiRoot.getAttribute('xml:id')
+    if (xmlId) {
+      index.set(xmlId, filePath)
     }
   }
 
-  cachedExpressions = expressions
-  return expressions
+  cachedExpressionIndex = index
+  return index
 }
 
 // ---------------------------------------------------------------------------
-// loadExpression
+// loadExpressionIds (for generateStaticParams)
+// ---------------------------------------------------------------------------
+
+export const loadExpressionIds = (): { expressionId: string }[] => {
+  const index = buildExpressionIndex()
+  return Array.from(index.keys()).map((id) => ({ expressionId: id }))
+}
+
+// ---------------------------------------------------------------------------
+// loadExpression (processes a single file)
 // ---------------------------------------------------------------------------
 
 export const loadExpression = async (
   expressionId: string
 ): Promise<Expression | undefined> => {
-  const expressions = await loadExpressions()
-  return expressions.find((e) => e.expressionId === expressionId)
+  if (cachedExpressionById.has(expressionId)) return cachedExpressionById.get(expressionId)
+
+  const index = buildExpressionIndex()
+  const filePath = index.get(expressionId)
+  if (!filePath) return undefined
+
+  const expression = await processExpressionFile(filePath)
+  if (expression) {
+    cachedExpressionById.set(expressionId, expression)
+  }
+  return expression ?? undefined
 }
 
 // ---------------------------------------------------------------------------
-// loadExpressionIndexRefs
+// loadExpressionIndexRefs (lightweight – skips expensive transformations)
 // ---------------------------------------------------------------------------
 
+let cachedExpressionIndexRefs: ExpressionIndexData[] | null = null
+
 export const loadExpressionIndexRefs = async (): Promise<ExpressionIndexData[]> => {
-  const expressions = await loadExpressions()
-  return expressions.map((e) => ({
-    expressionId: e.expressionId,
-    label: e.label,
-    indexRefs: e.indexRefs,
-  }))
+  if (cachedExpressionIndexRefs) return cachedExpressionIndexRefs
+
+  const allXmlFiles = findXmlFiles(DATA_DIR)
+  const results: ExpressionIndexData[] = []
+
+  for (const filePath of allXmlFiles) {
+    const rawXml = fs.readFileSync(filePath, 'utf-8')
+    const document = parseXml(rawXml)
+
+    const meiRoot = document.querySelector('mei')
+    if (meiRoot) continue
+
+    const teiRoot = document.querySelector('TEI')
+    if (!teiRoot) continue
+
+    const teiType = teiRoot.getAttribute('type')
+    if (teiType && SPECIAL_TEI_TYPES.has(teiType)) continue
+
+    const expressionId = teiRoot.getAttribute('xml:id')
+    const label = teiRoot.querySelector('title')?.textContent ?? null
+
+    const indexRefs = Array.from(document.querySelectorAll('[corresp]')).map((el) => ({
+      xmlId: el.getAttribute('xml:id'),
+      corresp: el.getAttribute('corresp')!.slice(1),
+    }))
+
+    results.push({ expressionId, label, indexRefs })
+  }
+
+  cachedExpressionIndexRefs = results
+  return results
 }
