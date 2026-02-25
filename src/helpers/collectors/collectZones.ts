@@ -17,7 +17,7 @@ export const collectZones = (document: Document) => {
             if (!match) return null
 
             const identifier = match[1]
-            const scanId = (parseInt(match[2]) - 16).toString().padStart(5, '0')
+            const scanId = parseInt(match[2]).toString().padStart(5, '0')
 
             const imageApiUrl = `https://api.digitale-sammlungen.de/iiif/image/v2/${identifier}_${scanId}/${ulx},${uly},${parseInt(lrx!) - parseInt(ulx!)},${parseInt(lry!) - parseInt(uly!)}/pct:50/0/color.jpg`
 
