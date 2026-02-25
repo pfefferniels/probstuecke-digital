@@ -71,7 +71,8 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
     const [rightHand, setRightHand] = useState(false)
     const [emptyStaves, setEmptyStaves] = useState(0)
 
-    const teiId = teiNode.getAttribute('id');
+    const teiId = teiNode.getAttribute('id')
+        || teiNode.querySelector('tei-ptr')?.getAttribute('target')?.replace('.xml', '');
     const isMainScore = teiId === 'score'
 
     const { vrvToolkit } = useVerovio()
@@ -116,7 +117,8 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
         const sourceId = meiDoc
             .querySelector(`source[corresp="${expressionId}"]`)?.getAttribute('xml:id')
 
-        if (isMainScore && !rightHand) removeEmbeddedAnnotations(meiDoc)
+        const hasEmbeddedAnnotation = !!meiDoc.querySelector('staffDef[type="embeddedAnnotation"]')
+        if (isMainScore && !rightHand && hasEmbeddedAnnotation) removeEmbeddedAnnotations(meiDoc)
         addEmptyStaves(meiDoc, emptyStaves)
 
         mei = new XMLSerializer().serializeToString(meiDoc)

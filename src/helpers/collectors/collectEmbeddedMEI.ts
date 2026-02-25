@@ -11,12 +11,11 @@ export const collectEmbeddedMEI = (document: Document, absolutePath: string): Em
     const mei: EmbeddedMEI[] = []
 
     for (const music of notatedMusicEls) {
-        const xmlId = music.getAttribute('xml:id')
-        if (!xmlId) continue
         const ptr = music.querySelector('ptr')
         if (!ptr) continue
         const target = ptr.getAttribute('target')
         if (!target) continue
+        const xmlId = music.getAttribute('xml:id') || target.replace('.xml', '')
 
         try {
             const meiContents = fs.readFileSync(`${path.dirname(absolutePath)}/${target}`, 'utf-8')
