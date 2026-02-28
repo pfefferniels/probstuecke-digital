@@ -165,37 +165,82 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
     useLayoutEffect(() => {
         const cleanups: (() => void)[] = []
 
-        // Highlight references
+        // Highlight references using proximity detection (no extra SVG elements)
+        const refDataMap = new Map<Element, { meiId: string, corresps: NodeListOf<Element> }>()
+
         document
             .querySelectorAll('[data-referenced]')
             .forEach(ref => {
                 const meiId = ref.getAttribute('id')
                 if (!meiId) return
-
                 const corresps = document.querySelectorAll(`[data-target~="#${meiId}"]`)
-                let dehighlight: (() => void) | undefined
+                refDataMap.set(ref, { meiId, corresps })
+            })
 
-                const onMouseOver = () => {
-                    corresps.forEach(corresp => {
-                        (corresp as HTMLElement).classList.add('highlight')
-                    })
-                    dehighlight = window.highlightRefs([meiId])
+        let currentHoveredRef: Element | null = null
+        let currentDehighlight: (() => void) | undefined
+        const proximityPadding = 15
+
+        const onMouseMove = (e: MouseEvent) => {
+            let closestRef: Element | null = null
+
+            for (const [ref] of refDataMap) {
+                const rect = (ref as SVGGraphicsElement).getBoundingClientRect()
+                if (
+                    e.clientX >= rect.left - proximityPadding &&
+                    e.clientX <= rect.right + proximityPadding &&
+                    e.clientY >= rect.top - proximityPadding &&
+                    e.clientY <= rect.bottom + proximityPadding
+                ) {
+                    closestRef = ref
+                    break
                 }
+            }
 
-                const onMouseLeave = () => {
-                    corresps.forEach(corresp => {
+            if (closestRef === currentHoveredRef) return
+
+            // Dehighlight previous
+            if (currentHoveredRef) {
+                const data = refDataMap.get(currentHoveredRef)
+                if (data) {
+                    data.corresps.forEach(corresp => {
                         (corresp as HTMLElement).classList.remove('highlight')
                     })
-                    if (dehighlight) dehighlight()
                 }
+                if (currentDehighlight) currentDehighlight()
+            }
 
-                ref.addEventListener('mouseover', onMouseOver)
-                ref.addEventListener('mouseleave', onMouseLeave)
-                cleanups.push(() => {
-                    ref.removeEventListener('mouseover', onMouseOver)
-                    ref.removeEventListener('mouseleave', onMouseLeave)
+            currentHoveredRef = closestRef
+
+            // Highlight new
+            if (closestRef) {
+                const data = refDataMap.get(closestRef)!
+                data.corresps.forEach(corresp => {
+                    (corresp as HTMLElement).classList.add('highlight')
                 })
-            })
+                currentDehighlight = window.highlightRefs([data.meiId])
+                if (data.corresps.length > 0) {
+                    (data.corresps[0] as HTMLElement).scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    })
+                }
+            }
+        }
+
+        document.addEventListener('mousemove', onMouseMove)
+        cleanups.push(() => {
+            document.removeEventListener('mousemove', onMouseMove)
+            if (currentHoveredRef) {
+                const data = refDataMap.get(currentHoveredRef)
+                if (data) {
+                    data.corresps.forEach(corresp => {
+                        (corresp as HTMLElement).classList.remove('highlight')
+                    })
+                }
+                if (currentDehighlight) currentDehighlight()
+            }
+        })
 
         // Show facsimile on mouseover
         let removeTimer: ReturnType<typeof setTimeout> | null = null

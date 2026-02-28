@@ -102,6 +102,10 @@ svg * {
     pointer-events: bounding-box;
 }
 
+[data-referenced] {
+    cursor: pointer;
+}
+
 /* CETEI-dta.css */
 tei-hi[rendition="#aq"] {
     font-family: sans-serif;
