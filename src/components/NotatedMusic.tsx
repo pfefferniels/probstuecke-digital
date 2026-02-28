@@ -198,10 +198,32 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
             })
 
         // Show facsimile on mouseover
+        let removeTimer: ReturnType<typeof setTimeout> | null = null
+
+        const cancelRemoveTimer = () => {
+            if (removeTimer) {
+                clearTimeout(removeTimer)
+                removeTimer = null
+            }
+        }
+
+        const scheduleRemovePreview = () => {
+            cancelRemoveTimer()
+            removeTimer = setTimeout(() => {
+                document.querySelectorAll('.zone-preview').forEach(preview => preview.remove())
+                removeTimer = null
+            }, 300)
+        }
+
         document
             .querySelectorAll('.staff[data-facs]')
             .forEach(staff => {
-                const onMouseOver = () => {
+                const onMouseOver = (e: Event) => {
+                    // Don't show facsimile when hovering on a referenced element (score-to-text link)
+                    const target = e.target as Element | null
+                    if (target?.closest('[data-referenced]')) return
+
+                    cancelRemoveTimer()
                     if (document.querySelector('.zone-preview')) return
 
                     const zoneLinks = staff.getAttribute('data-facs')?.split(' ') || []
@@ -225,6 +247,9 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
                     div.style.top = `${bbox.top - 100}px`;
                     document.body.appendChild(div);
 
+                    div.addEventListener('mouseenter', cancelRemoveTimer)
+                    div.addEventListener('mouseleave', scheduleRemovePreview)
+
                     selectedZones.forEach((zone) => {
                         const img = document.createElement('img');
                         img.src = zone;
@@ -233,7 +258,7 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
                 }
 
                 const onMouseLeave = () => {
-                    document.querySelectorAll('.zone-preview').forEach(preview => preview.remove())
+                    scheduleRemovePreview()
                 }
 
                 staff.addEventListener('mouseover', onMouseOver)
@@ -243,6 +268,8 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
                     staff.removeEventListener('mouseleave', onMouseLeave)
                 })
             })
+
+        cleanups.push(() => cancelRemoveTimer())
 
         return () => {
             cleanups.forEach(cleanup => cleanup())

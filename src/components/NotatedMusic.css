@@ -1,11 +1,12 @@
 .zone-preview {
     width: fit-content;
-    background-color: #ffffff; 
+    background-color: #ffffff;
     border: 1px solid #ccc;
     border-radius: 0.5rem;
     padding: 1rem;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     transform: scale(0.5);
+    z-index: 200;
 }
 
 .zone-preview img {
