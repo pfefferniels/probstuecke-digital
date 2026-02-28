@@ -43,6 +43,7 @@ export interface WorkExpression {
 
 export interface WorkKey {
   pname?: string
+  accid?: string
   mode?: string
 }
 
