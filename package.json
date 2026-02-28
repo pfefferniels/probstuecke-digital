@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "node scripts/prepare-search-index.mjs && npx pagefind",
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "lint": "next lint",
@@ -39,6 +40,7 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "globals": "^17.3.0",
     "knip": "^5.85.0",
+    "pagefind": "^1.4.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.56.1"
   }

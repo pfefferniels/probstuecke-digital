@@ -4,6 +4,7 @@ import { type MouseEvent, useState } from 'react'
 import './Header.css'
 import { AppBar, Button, Divider, Menu, MenuItem, Toolbar, Typography } from '@mui/material'
 import Link from 'next/link'
+import { SearchDialog } from './SearchDialog'
 
 interface HeaderProps {
   title: string
@@ -61,6 +62,8 @@ export const Header = ({ title, subtitle }: HeaderProps) => {
           >
             Edition Guidelines
           </Button>
+          <Divider flexItem orientation='vertical' variant='middle' />
+          <SearchDialog />
 
           <Menu
             id="menu-appbar"

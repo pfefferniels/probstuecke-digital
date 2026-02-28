@@ -1,0 +1,7 @@
+site: out
+root_selector: "[data-pagefind-body]"
+glob: "**/*.html"
+exclude_selectors:
+  - "svg"
+  - "script"
+  - "style"
