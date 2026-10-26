@@ -7,6 +7,8 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
   serverExternalPackages: ['verovio', 'jsdom', 'w3c-xmlserializer'],
+  // pages wait for the DTA CAB normalisation service, which can be slow
+  staticPageGenerationTimeout: 180,
 }
 
 export default nextConfig

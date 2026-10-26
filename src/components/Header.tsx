@@ -24,7 +24,7 @@ export const Header = ({ title, subtitle }: HeaderProps) => {
 
   return (
     <div className="header">
-      <AppBar sx={{ bgcolor: 'white' }} position='absolute' elevation={1}>
+      <AppBar sx={{ bgcolor: 'white' }} position='static' elevation={1}>
         <Toolbar sx={{ color: 'black' }}>
           <Typography variant="h5" component="div" sx={{ flexGrow: 0, paddingRight: 1 }}>
             <Link href='/' style={{ textDecoration: 'none', color: 'black' }}>
@@ -35,17 +35,16 @@ export const Header = ({ title, subtitle }: HeaderProps) => {
             {subtitle}
           </Typography>
 
-            <Button
-            color="inherit"
-            aria-label="menu"
-            onClick={() => window.open('/', '_self')}
-            >
-              Overview
-            </Button>
+          <Button color="inherit" component={Link} href="/">
+            Overview
+          </Button>
+          <Divider flexItem orientation='vertical' variant='middle' />
+          <Button color="inherit" component={Link} href="/about/">
+            About
+          </Button>
           <Divider flexItem orientation='vertical' variant='middle' />
           <Button
             color="inherit"
-            aria-label="menu"
             aria-controls="menu-appbar"
             aria-haspopup="true"
             onClick={handleClick}
@@ -53,13 +52,7 @@ export const Header = ({ title, subtitle }: HeaderProps) => {
             Indices
           </Button>
           <Divider flexItem orientation='vertical' variant='middle' />
-          <Button
-            color="inherit"
-            aria-label="menu"
-            aria-controls="menu-appbar"
-            aria-haspopup="true"
-            onClick={() => window.open('/guidelines', '_self')}
-          >
+          <Button color="inherit" component={Link} href="/guidelines/">
             Edition Guidelines
           </Button>
           <Divider flexItem orientation='vertical' variant='middle' />
@@ -77,17 +70,17 @@ export const Header = ({ title, subtitle }: HeaderProps) => {
             onClose={handleClose}
           >
             <MenuItem onClick={handleClose}>
-              <Link href='/bibliography' style={{ textDecoration: 'none', color: 'black' }}>
+              <Link href='/bibliography/' style={{ textDecoration: 'none', color: 'black' }}>
                 Bibliography
               </Link>
             </MenuItem>
             <MenuItem onClick={handleClose}>
-              <Link href='/musicalworks' style={{ textDecoration: 'none', color: 'black' }}>
+              <Link href='/musicalworks/' style={{ textDecoration: 'none', color: 'black' }}>
                 Index of Musical Works
               </Link>
             </MenuItem>
             <MenuItem onClick={handleClose}>
-              <Link href='/persons' style={{ textDecoration: 'none', color: 'black' }}>
+              <Link href='/persons/' style={{ textDecoration: 'none', color: 'black' }}>
                 Index of Persons
               </Link>
             </MenuItem>

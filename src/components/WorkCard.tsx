@@ -1,5 +1,6 @@
 import { Card, Table, TableBody, TableRow, TableCell, tableCellClasses } from "@mui/material"
 import { ExpressionList } from './ExpressionList'
+import { keyLabel } from '@/lib/expressionLabels'
 import type { WorkExpression, WorkKey } from '@/lib/types'
 
 const capitalizeFirstLetter = (string: string) => string.charAt(0).toUpperCase() + string.slice(1);
@@ -19,7 +20,7 @@ export const WorkCard = ({ title, incipitSVG, expressions, keySignature }: WorkC
     return (
         <Card style={{ padding: '1.25rem', borderRadius: '0.25rem' }}>
             <h3 style={{ fontFamily: 'sans-serif', fontWeight: 'normal', paddingBottom: 0 }}>
-                <b>{title}</b><span style={{ color: 'gray' }}> · {keySignature.pname?.toUpperCase()}{keySignature.accid === 'f' ? '♭' : keySignature.accid === 's' ? '♯' : ''} {keySignature.mode}</span>
+                <b>{title}</b><span style={{ color: 'gray' }}> · {keyLabel(keySignature)}</span>
             </h3>
 
             <div dangerouslySetInnerHTML={{ __html: incipitSVG }} style={{width: '100%'}}/>

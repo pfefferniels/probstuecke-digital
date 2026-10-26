@@ -8,6 +8,7 @@ import { extractFromXML } from '@/helpers/extractFromTEI'
 import { collectExpressionMetadata, collectEmbeddedMEI, collectRefTargets } from '@/helpers/collectors/index'
 import { collectZones } from '@/helpers/collectors/collectZones'
 import { collectPersName } from '@/helpers/collectors/collectPersName'
+import { collectHeader } from '@/helpers/collectors/collectHeader'
 import type {
   Work,
   WorkExpression,
@@ -16,7 +17,9 @@ import type {
   Bibliography,
   MusicalWork,
   Guideline,
+  About,
   Expression,
+  ExpressionContext,
   TransformedTEI,
   ExpressionIndexData,
 } from '@/lib/types'
@@ -45,7 +48,7 @@ const getVerovioToolkit = async (): Promise<VerovioToolkit> => {
 // Modernize TEI via DTA CAB
 // ---------------------------------------------------------------------------
 
-const modernizeTEI = async (rawXml: string): Promise<string> => {
+const modernizeTEI = async (rawXml: string, attempts = 2): Promise<string> => {
   try {
     const modernized = await fetch(
       'https://www.deutschestextarchiv.de/public/cab/query?a=default&fmt=xml&clean=1&pretty=1&raw=1&qname=qd&file=C%3A%5Cfakepath%5Ccomments_de.xml',
@@ -56,9 +59,14 @@ const modernizeTEI = async (rawXml: string): Promise<string> => {
         mode: 'cors',
       }
     )
+    if (!modernized.ok) throw new Error(`HTTP ${modernized.status}`)
 
-    return modernized.text()
+    // under load CAB sometimes answers with an HTML error page instead of TEI
+    const text = await modernized.text()
+    if (!parseXml(text).querySelector('TEI text')) throw new Error('response is not a TEI document')
+    return text
   } catch (e) {
+    if (attempts > 1) return modernizeTEI(rawXml, attempts - 1)
     console.error('Error fetching modernized version: ' + (e as Error).message)
     return rawXml
   }
@@ -101,6 +109,8 @@ let cachedPersons: Person[] | null = null
 let cachedBibliography: Bibliography[] | null = null
 let cachedMusicalWorks: MusicalWork[] | null = null
 let cachedGuidelines: Guideline | null = null
+let cachedAbout: About | null = null
+let cachedWorkList: Document | null = null
 let cachedExpressionIndex: Map<string, string> | null = null
 const cachedExpressionById = new Map<string, Expression>()
 
@@ -108,12 +118,71 @@ const cachedExpressionById = new Map<string, Expression>()
 // loadWorks
 // ---------------------------------------------------------------------------
 
+// ISO 639-2 codes used in works.xml → BCP 47 language tags
+const LANGUAGE_TAGS: Record<string, string> = { deu: 'de', eng: 'en', fra: 'fr' }
+
+const readWorkList = (): Document => {
+  if (!cachedWorkList) {
+    cachedWorkList = parseXml(fs.readFileSync(path.join(DATA_DIR, 'works.xml'), 'utf-8'))
+  }
+  return cachedWorkList
+}
+
+const readWorkExpressions = (work: Element): WorkExpression[] =>
+  Array.from(work.querySelectorAll('expression')).map((expression) => {
+    const date =
+      expression.querySelector('creation')?.getAttribute('startdate') || '[unknown]'
+    const type = expression.getAttribute('type') || '[unknown]'
+    const language = expression.querySelector('language')
+    const lang = language?.textContent || 'German'
+    const langCode = language?.getAttribute('ident') || 'deu'
+    const author = expression.querySelector('author')?.textContent || ''
+    const referringTo = expression
+      .getAttribute('data')!
+      .split(' ')
+      .map((str) => str.slice(1))
+
+    return {
+      date,
+      type,
+      id: expression.getAttribute('xml:id') || `id_${Math.random()}`,
+      referringTo,
+      lang,
+      langCode,
+      author,
+    }
+  })
+
+const readWorkKey = (work: Element): WorkKey => {
+  const key = work.querySelector('key')
+  return key
+    ? Array.from(key.attributes).reduce((obj: Record<string, string>, attr) => {
+        obj[attr.name] = attr.value
+        return obj
+      }, {})
+    : {}
+}
+
+const findExpressionContext = (expressionId: string): ExpressionContext | null => {
+  for (const work of Array.from(readWorkList().querySelectorAll('work'))) {
+    const expressions = readWorkExpressions(work)
+    const expression = expressions.find((e) => e.referringTo.includes(expressionId))
+    if (expression) {
+      return {
+        workTitle: work.querySelector('title')?.textContent || '[no title]',
+        key: readWorkKey(work),
+        expression,
+        siblings: expressions,
+      }
+    }
+  }
+  return null
+}
+
 export const loadWorks = async (): Promise<Work[]> => {
   if (cachedWorks) return cachedWorks
 
-  const worksPath = path.join(DATA_DIR, 'works.xml')
-  const rawXml = fs.readFileSync(worksPath, 'utf-8')
-  const document = parseXml(rawXml)
+  const document = readWorkList()
 
   const toolkit = await getVerovioToolkit()
 
@@ -125,7 +194,6 @@ export const loadWorks = async (): Promise<Work[]> => {
   })
 
   const works: Work[] = Array.from(document.querySelectorAll('work')).map((work) => {
-    const key = work.querySelector('key')
     const incipitCode = work.querySelector('incip')
     let incipitSvg = ''
     if (incipitCode) {
@@ -133,42 +201,12 @@ export const loadWorks = async (): Promise<Work[]> => {
       incipitSvg = toolkit.renderToSVG(1)
     }
 
-    const expressions: WorkExpression[] = Array.from(work.querySelectorAll('expression')).map(
-      (expression) => {
-        const date =
-          expression.querySelector('creation')?.getAttribute('startdate') || '[unknown]'
-        const type = expression.getAttribute('type') || '[unknown]'
-        const lang = expression.querySelector('language')?.textContent || 'German'
-        const author = expression.querySelector('author')?.textContent || ''
-        const referringTo = expression
-          .getAttribute('data')!
-          .split(' ')
-          .map((str) => str.slice(1))
-
-        return {
-          date,
-          type,
-          id: expression.getAttribute('xml:id') || `id_${Math.random()}`,
-          referringTo,
-          lang,
-          author,
-        }
-      }
-    )
-
-    const keyObj: WorkKey = key
-      ? Array.from(key.attributes).reduce((obj: Record<string, string>, attr) => {
-          obj[attr.name] = attr.value
-          return obj
-        }, {})
-      : {}
-
     return {
       xmlId: work.getAttribute('xml:id'),
       title: work.querySelector('title')?.textContent || '[no title]',
       incipitSvg,
-      key: keyObj,
-      expressions,
+      key: readWorkKey(work),
+      expressions: readWorkExpressions(work),
     }
   })
 
@@ -188,10 +226,17 @@ export const loadPersons = async (): Promise<Person[]> => {
   const document = parseXml(rawXml)
 
   const persons: Person[] = Array.from(document.querySelectorAll('person')).map((person) => {
+    const surname = person.querySelector('surname')?.textContent || ''
+    const forename = person.querySelector('forename')?.textContent || ''
+    // persons without forename/surname (e.g. Apollo, Aristoxenus) use <name> and <addName>
+    const name = person.querySelector('persName > name')?.textContent || ''
+    const addName = person.querySelector('persName > addName')?.textContent || ''
+
     return {
       xmlId: person.getAttribute('xml:id') || 'no-id',
-      surname: person.querySelector('surname')?.textContent || '',
-      forename: person.querySelector('forename')?.textContent || '',
+      name: [forename, surname, name, addName].filter(Boolean).join(' '),
+      surname,
+      forename,
       birth: person.querySelector('birth')?.textContent || '',
       death: person.querySelector('death')?.textContent || '',
       idno: person.querySelector('idno')?.textContent || '',
@@ -271,10 +316,25 @@ export const loadGuidelines = async (): Promise<Guideline> => {
 }
 
 // ---------------------------------------------------------------------------
+// loadAbout
+// ---------------------------------------------------------------------------
+
+export const loadAbout = async (): Promise<About> => {
+  if (cachedAbout) return cachedAbout
+
+  const filePath = path.join(DATA_DIR, 'about/about_en.xml')
+  const rawXml = fs.readFileSync(filePath, 'utf-8')
+  const transformed = transformToCeteicean(rawXml)
+
+  cachedAbout = { transformed }
+  return cachedAbout
+}
+
+// ---------------------------------------------------------------------------
 // Expression processing (core logic ported from gatsby-node onCreateNode)
 // ---------------------------------------------------------------------------
 
-const SPECIAL_TEI_TYPES = new Set(['persons', 'bibliography', 'musical-works', 'guideline'])
+const SPECIAL_TEI_TYPES = new Set(['persons', 'bibliography', 'musical-works', 'guideline', 'about'])
 
 const processExpressionFile = async (filePath: string): Promise<Expression | null> => {
   const rawXml = fs.readFileSync(filePath, 'utf-8')
@@ -294,6 +354,12 @@ const processExpressionFile = async (filePath: string): Promise<Expression | nul
 
   // Collect metadata, MEI, refs, indexRefs
   const metadata = collectExpressionMetadata(document)
+  const header = collectHeader(document)
+  const context = metadata.expressionId ? findExpressionContext(metadata.expressionId) : null
+  const lang =
+    LANGUAGE_TAGS[context?.expression.langCode ?? ''] ||
+    teiRoot.getAttribute('xml:lang') ||
+    'de'
   const mei = collectEmbeddedMEI(document, filePath)
   const refTargets = collectRefTargets(document)
   const indexRefs = Array.from(document.querySelectorAll('[corresp]')).map((persName) => {
@@ -348,10 +414,11 @@ const processExpressionFile = async (filePath: string): Promise<Expression | nul
     .map((extract) => {
       return {
         fill: extract.fill,
-        with: transformToCeteicean(extract.with!),
+        // a selector may find nothing, e.g. lessons have no score section
+        with: extract.with ? transformToCeteicean(extract.with) : null,
       }
     })
-    .reduce((prev: Record<string, TransformedTEI>, curr) => {
+    .reduce((prev: Record<string, TransformedTEI | null>, curr) => {
       prev[curr.fill] = curr.with
       return prev
     }, {})
@@ -360,13 +427,17 @@ const processExpressionFile = async (filePath: string): Promise<Expression | nul
     expressionId: metadata.expressionId,
     isFraktur: metadata.isFraktur,
     label: metadata.label,
-    score: (sections.score as TransformedTEI) || null,
-    title: (sections.title as TransformedTEI) || null,
-    text: (sections.text as TransformedTEI) || null,
+    score: sections.score || null,
+    title: sections.title || null,
+    text: sections.text || null,
     mei,
     zones,
     refTargets,
     indexRefs,
+    sourcePath: path.relative(DATA_DIR, filePath).split(path.sep).join('/'),
+    lang,
+    header,
+    context,
   }
 }
 

@@ -40,9 +40,10 @@ const fonts = ['Leipzig', 'Bravura', 'Gootville', 'Leland']
 
 interface ExportPDFModalProps {
     meiData: string
+    fileName: string
 }
 
-export const ExportPDFModal = ({ meiData }: ExportPDFModalProps) => {
+export const ExportPDFModal = ({ meiData, fileName }: ExportPDFModalProps) => {
     const [activeTab, setActiveTab] = useState(0)
     const [orientation, setOrientation] = useState<'portrait' | 'landscape'>('portrait')
     const [format, setFormat] = useState<'A4' | 'Letter' | 'B4'>('A4')
@@ -154,7 +155,7 @@ export const ExportPDFModal = ({ meiData }: ExportPDFModalProps) => {
         stream.on('finish', function () {
             setLoading(false)
             const blob = stream.toBlob('application/pdf')
-            downloadAs('probstueck.pdf', blob)
+            downloadAs(fileName, blob)
             // onHide()
         })
 

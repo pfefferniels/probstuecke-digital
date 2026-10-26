@@ -19,6 +19,26 @@ export interface IndexRef {
   corresp: string
 }
 
+export interface TextHeader {
+  title: string | null
+  editors: { name: string; role: string | null }[]
+  source: string | null
+  copy: {
+    shelfmark: string | null
+    catalogue: string | null
+    iiif: string | null
+    urn: string | null
+  } | null
+  licence: { url: string | null; label: string | null } | null
+}
+
+export interface ExpressionContext {
+  workTitle: string
+  key: WorkKey
+  expression: WorkExpression
+  siblings: WorkExpression[]
+}
+
 export interface Expression {
   expressionId: string | null
   isFraktur: boolean
@@ -30,6 +50,10 @@ export interface Expression {
   zones: ExpressionZone[]
   refTargets: (string | null)[]
   indexRefs: IndexRef[]
+  sourcePath: string
+  lang: string
+  header: TextHeader
+  context: ExpressionContext | null
 }
 
 export interface WorkExpression {
@@ -38,6 +62,7 @@ export interface WorkExpression {
   id: string
   referringTo: string[]
   lang: string
+  langCode: string
   author: string
 }
 
@@ -62,6 +87,7 @@ export interface PersName {
 
 export interface Person {
   xmlId: string
+  name: string
   surname: string
   forename: string
   birth: string
@@ -90,6 +116,16 @@ export interface MusicalWork {
 
 export interface Guideline {
   transformed: TransformedTEI
+}
+
+export interface About {
+  transformed: TransformedTEI
+}
+
+export interface EditionVersion {
+  version: string | null
+  commit: string | null
+  buildDate: string
 }
 
 export interface ExpressionIndexData {

@@ -4,8 +4,11 @@
   "private": true,
   "description": "probstuecke-digital",
   "author": "Niels Pfeffer",
+  "license": "MIT",
   "scripts": {
+    "predev": "node scripts/copy-data.mjs",
     "dev": "next dev",
+    "prebuild": "node scripts/copy-data.mjs",
     "build": "next build",
     "postbuild": "node scripts/prepare-search-index.mjs && npx pagefind",
     "start": "next start",

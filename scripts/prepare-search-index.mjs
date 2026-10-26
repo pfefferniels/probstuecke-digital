@@ -42,7 +42,7 @@ function findXmlFiles(dir) {
   return results
 }
 
-const SPECIAL_TEI_TYPES = new Set(['persons', 'bibliography', 'musical-works', 'guideline'])
+const SPECIAL_TEI_TYPES = new Set(['persons', 'bibliography', 'musical-works', 'guideline', 'about'])
 
 function collectExpressions() {
   const allXml = findXmlFiles(DATA_DIR)
@@ -75,6 +75,23 @@ function collectExpressions() {
 // ---------------------------------------------------------------------------
 // Inject hidden div into an HTML file
 // ---------------------------------------------------------------------------
+
+function decodeEntities(s) {
+  return s
+    .replace(/&#x27;|&#39;/g, "'")
+    .replace(/&quot;/g, '"')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&amp;/g, '&')
+}
+
+/** The page's own <title> without the site name, e.g. "Probstück 1 · Edition 1731" */
+function pageTitleOf(htmlPath) {
+  if (!fs.existsSync(htmlPath)) return null
+  const html = fs.readFileSync(htmlPath, 'utf-8')
+  const title = html.match(/<title>([^<]*)<\/title>/)?.[1]
+  return title ? decodeEntities(title).replace(/ \| Probstücke Digital$/, '') : null
+}
 
 function injectIntoHtml(htmlPath, title, body) {
   if (!fs.existsSync(htmlPath)) {
@@ -115,7 +132,9 @@ console.log(`Found ${expressions.length} expressions`)
 let injected = 0
 for (const expr of expressions) {
   const htmlPath = path.join(OUT_DIR, expr.xmlId, 'index.html')
-  if (injectIntoHtml(htmlPath, expr.title, expr.body)) {
+  // the page title names piece and version; the TEI title is the same for 1719 and 1731
+  const title = pageTitleOf(htmlPath) || expr.title
+  if (injectIntoHtml(htmlPath, title, expr.body)) {
     injected++
   }
 }
@@ -155,16 +174,22 @@ for (const page of indexPages) {
   }
 }
 
-// 3. Guidelines page
-const guidelinesXml = path.join(DATA_DIR, 'guidelines/guidelines_en.xml')
-if (fs.existsSync(guidelinesXml)) {
-  const raw = fs.readFileSync(guidelinesXml, 'utf-8')
+// 3. Guidelines and About pages
+const textPages = [
+  { xml: 'guidelines/guidelines_en.xml', htmlDir: 'guidelines', title: 'Edition Guidelines' },
+  { xml: 'about/about_en.xml', htmlDir: 'about', title: 'About the Edition' },
+]
+
+for (const page of textPages) {
+  const xmlPath = path.join(DATA_DIR, page.xml)
+  if (!fs.existsSync(xmlPath)) continue
+  const raw = fs.readFileSync(xmlPath, 'utf-8')
   const doc = parseXml(raw)
   const body = textContent(doc.querySelector('text'))
-  const htmlPath = path.join(OUT_DIR, 'guidelines', 'index.html')
+  const htmlPath = path.join(OUT_DIR, page.htmlDir, 'index.html')
 
-  if (injectIntoHtml(htmlPath, 'Edition Guidelines', body)) {
-    console.log('Injected guidelines page')
+  if (injectIntoHtml(htmlPath, page.title, body)) {
+    console.log(`Injected ${page.htmlDir} page`)
   }
 }
 

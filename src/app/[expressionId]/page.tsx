@@ -1,4 +1,6 @@
 import { loadExpressionIds, loadExpression } from '@/lib/data'
+import { loadEditionVersion } from '@/lib/editionVersion'
+import { citationMetaTags, expressionTitle } from '@/lib/citation'
 import PieceClient from './PieceClient'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
@@ -14,8 +16,12 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { expressionId } = await params
   const expression = await loadExpression(expressionId)
+  if (!expression) return { title: expressionId }
+
   return {
-    title: expression?.label || expressionId,
+    title: expressionTitle(expression),
+    alternates: { canonical: `/${expressionId}/` },
+    other: citationMetaTags(expression),
   }
 }
 
@@ -27,5 +33,5 @@ export default async function ExpressionPage({ params }: PageProps) {
     notFound()
   }
 
-  return <PieceClient piece={expression} />
+  return <PieceClient piece={expression} version={loadEditionVersion()} />
 }

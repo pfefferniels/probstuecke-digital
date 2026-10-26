@@ -2,16 +2,18 @@
 
 import { useEffect, useLayoutEffect, useState } from 'react'
 import { useVerovio } from '../hooks/useVerovio';
-import { Stack, Pagination, ToggleButton, ToggleButtonProps, Button, ButtonProps } from '@mui/material';
+import { Stack, Pagination, ToggleButton, ToggleButtonProps, Button, ButtonProps, Tooltip } from '@mui/material';
 import { addEmptyStaves } from '../helpers/addEmptyStaves';
 import { removeEmbeddedAnnotations } from '../helpers/removeEmbeddedAnnotations';
 import './NotatedMusic.css'
 import type { ExpressionMei, ExpressionZone } from '@/lib/types'
 
 
-const OptionToggle = (props: ToggleButtonProps) => {
+const OptionToggle = ({ label, ...props }: ToggleButtonProps & { label: string }) => {
     return (
+        <Tooltip title={label}>
         <ToggleButton
+            aria-label={label}
             sx={{
                 border: 0,
                 fontWeight: 700,
@@ -24,12 +26,15 @@ const OptionToggle = (props: ToggleButtonProps) => {
         >
             {props.children}
         </ToggleButton>
+        </Tooltip>
     );
 }
 
-const OptionButton = (props: ButtonProps) => {
+const OptionButton = ({ label, ...props }: ButtonProps & { label: string }) => {
     return (
+        <Tooltip title={label}>
         <Button
+            aria-label={label}
             sx={{
                 border: 0,
                 fontWeight: 700,
@@ -44,6 +49,7 @@ const OptionButton = (props: ButtonProps) => {
         >
             {props.children}
         </Button>
+        </Tooltip>
     );
 }
 
@@ -70,6 +76,7 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
     const [modernClefs, setModernClefs] = useState(false)
     const [rightHand, setRightHand] = useState(false)
     const [emptyStaves, setEmptyStaves] = useState(0)
+    const [renderFailed, setRenderFailed] = useState(false)
 
     const teiId = teiNode.getAttribute('id')
         || teiNode.querySelector('tei-ptr')?.getAttribute('target')?.replace('.xml', '');
@@ -139,26 +146,35 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
         }
 
         vrvToolkit.setOptions(options)
-        vrvToolkit.loadData(mei);
 
         const svgs = []
-        for (let i = 0; i < vrvToolkit.getPageCount(); i++) {
-            // draw refs on the current page into the SVG
-            const currentSVG = new DOMParser().parseFromString(vrvToolkit.renderToSVG(i + 1), 'image/svg+xml')
-            for (const ref of refs) {
-                if (!ref) continue
-                ref
-                    .split(' ')
-                    .filter(target => vrvToolkit.getPageWithElement(target.slice(1)) === i + 1)
-                    .forEach(target => {
-                        const correspEl = currentSVG.querySelector(target) as SVGElement | null
-                        if (!correspEl) return
-                        correspEl.setAttribute('filter', 'url(#softGlow)')
-                        correspEl.setAttribute('data-referenced', 'true')
-                    })
+        try {
+            vrvToolkit.loadData(mei);
+
+            for (let i = 0; i < vrvToolkit.getPageCount(); i++) {
+                // draw refs on the current page into the SVG
+                const currentSVG = new DOMParser().parseFromString(vrvToolkit.renderToSVG(i + 1), 'image/svg+xml')
+                for (const ref of refs) {
+                    if (!ref) continue
+                    ref
+                        .split(' ')
+                        .filter(target => vrvToolkit.getPageWithElement(target.slice(1)) === i + 1)
+                        .forEach(target => {
+                            const correspEl = currentSVG.querySelector(target) as SVGElement | null
+                            if (!correspEl) return
+                            correspEl.setAttribute('filter', 'url(#softGlow)')
+                            correspEl.setAttribute('data-referenced', 'true')
+                        })
+                }
+                svgs.push(new XMLSerializer().serializeToString(currentSVG))
             }
-            svgs.push(new XMLSerializer().serializeToString(currentSVG))
         }
+        catch {
+            // Verovio aborts on some invalid encodings; this must not take down the whole page
+            setRenderFailed(true)
+            return
+        }
+        setRenderFailed(false)
         setSVGs(svgs)
     }, [vrvToolkit, modernClefs, rightHand, emptyStaves, refs])
 
@@ -330,6 +346,7 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
             }}>
                 <OptionToggle
                     value="check"
+                    label={modernClefs ? 'Show original clefs' : 'Show modern clefs'}
                     selected={modernClefs}
                     onChange={() => setModernClefs(!modernClefs)}
                 >
@@ -340,21 +357,27 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
                     <>
                         <OptionToggle
                             value="check"
+                            label={rightHand ? 'Hide the right-hand staff' : 'Show the right-hand staff'}
                             selected={rightHand}
                             onChange={() => setRightHand(!rightHand)}
                         >
                             {'{}'}
                         </OptionToggle>
-                        <OptionButton onClick={() => setEmptyStaves(emptyStaves + 1)}>
+                        <OptionButton label="Add an empty staff for a realisation" onClick={() => setEmptyStaves(emptyStaves + 1)}>
                             +
                         </OptionButton>
-                        <OptionButton onClick={() => setEmptyStaves(Math.max(emptyStaves - 1, 0))}>
+                        <OptionButton label="Remove an empty staff" onClick={() => setEmptyStaves(Math.max(emptyStaves - 1, 0))}>
                             -
                         </OptionButton>
                     </>
                 )}
             </div>
 
+            {renderFailed && (
+                <p style={{ clear: 'both', color: 'gray', fontStyle: 'italic' }}>
+                    This music could not be displayed.
+                </p>
+            )}
             <div dangerouslySetInnerHTML={{ __html: svgs[currentPage - 1] }} />
 
             {
