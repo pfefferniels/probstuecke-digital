@@ -89,6 +89,9 @@ export const alignTranslation = (
   }
 
   const termIds = new Set<string>()
+  // a sentence of the original rendered by sentences apart (e.g. on either side of a
+  // music example) is shown beneath the first of them only
+  const shown = new Set<Element>()
   for (const group of groups) {
     const pair = seg(translation, 'pair')
     const originalSide = seg(translation, 'original')
@@ -97,7 +100,9 @@ export const alignTranslation = (
     group[0].before(pair)
 
     const targets = [...new Set(group.flatMap((s) => targetsOf.get(s)!))]
+      .filter((target) => !shown.has(target))
       .sort((a, b) => (a.compareDocumentPosition(b) & 4 ? -1 : 1))
+    targets.forEach((target) => shown.add(target))
     targets.forEach((target, i) => {
       if (i > 0) originalSide.append(' ')
       originalSide.append(translation.importNode(target, true))
@@ -112,7 +117,8 @@ export const alignTranslation = (
       translationSide.append(s)
     })
     translationSide.append(seg(translation, 'space'))
-    pair.append(translationSide, originalSide)
+    pair.append(translationSide)
+    if (targets.length > 0) pair.append(originalSide)
   }
 
   return {

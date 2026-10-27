@@ -54,27 +54,46 @@ const textRects = (translation: Element) => {
   return rects
 }
 
-// the lines of the translation in a paragraph, top to bottom
-const rowsOf = (pairs: Element[]) => {
-  const rows: { top: number; bottom: number }[] = []
+interface Row { top: number; bottom: number }
+
+// the lines of the translation in a paragraph, top to bottom; where a music example,
+// a note or a spacer leaves a gap, lines at the usual distance are filled in
+const rowsOf = (pairs: Element[], pitch: number) => {
+  const rows: Row[] = []
   const rects = pairs.flatMap((pair) => textRects(partOf(pair, 'translation')!)).sort((a, b) => a.top - b.top)
   for (const rect of rects) {
     const row = rows[rows.length - 1]
     if (row && rect.top < row.bottom - 2) row.bottom = Math.max(row.bottom, rect.bottom)
     else rows.push({ top: rect.top, bottom: rect.bottom })
   }
-  return rows
+  return rows.flatMap((row, i) => {
+    const next = rows[i + 1]
+    const filled = [row]
+    for (let k = 1; next && row.top + k * pitch < next.top - pitch / 2; k++) {
+      filled.push({ top: row.top + k * pitch, bottom: row.bottom + k * pitch })
+    }
+    return filled
+  })
+}
+
+// the distance between the lines of a paragraph
+const pitchOf = (pairs: Element[], style: CSSStyleDeclaration) => {
+  const tops = pairs.flatMap((pair) => textRects(partOf(pair, 'translation')!)).map((rect) => rect.top).sort((a, b) => a - b)
+  const fontSize = parseFloat(style.fontSize)
+  const steps = tops.slice(1).map((top, i) => top - tops[i]).filter((step) => step > fontSize)
+  return steps.length > 0 ? Math.min(...steps) : parseFloat(style.lineHeight) || fontSize * 2.6
 }
 
 /**
  * Sets the sentences of the original into the space beneath the lines of their
- * translation, paragraph by paragraph. Where a sentence of the original needs more
- * room than its translation, the spacer at the end of the translation
- * (<seg type="space">) is widened, so that the next sentence starts after it.
+ * translation, paragraph by paragraph. With `adjust`, the spacer at the end of a
+ * translation (<seg type="space">) is first widened where its original needs more
+ * room, so that the next sentence starts after it; otherwise the spacers are left
+ * as they are and only the original is placed.
  */
-const layout = (root: HTMLElement): Line[] => {
+const layout = (root: HTMLElement, adjust: boolean): Line[] => {
   const pairs = Array.from(root.querySelectorAll<HTMLElement>(PAIRS))
-  pairs.forEach((pair) => spacerOf(pair)?.removeAttribute('style'))
+  if (adjust) pairs.forEach((pair) => spacerOf(pair)?.removeAttribute('style'))
 
   const origin = root.getBoundingClientRect()
   const context = document.createElement('canvas').getContext('2d')
@@ -83,9 +102,13 @@ const layout = (root: HTMLElement): Line[] => {
 
   const paragraphs = new Map<Element, HTMLElement[]>()
   for (const pair of pairs) {
-    const paragraph = pair.parentElement!
+    // a sentence may stand in a quotation or a reference inside the paragraph
+    const paragraph = pair.closest('tei-p') ?? pair.parentElement!
     paragraphs.set(paragraph, [...(paragraphs.get(paragraph) || []), pair])
   }
+  // notes and music examples anywhere in the text: a note beside one paragraph may reach into the next
+  const blocks = Array.from(root.querySelectorAll('tei-note, tei-notatedmusic, tei-figure'))
+    .filter((el) => !el.closest('tei-seg[type="original"]'))
 
   for (const [paragraph, group] of paragraphs) {
     const style = getComputedStyle(paragraph)
@@ -98,9 +121,7 @@ const layout = (root: HTMLElement): Line[] => {
     const contentRight = box.right - parseFloat(style.paddingRight)
     const center = (contentLeft + contentRight) / 2
     const band = size * 1.2
-    // notes beside the text and music examples below it
-    const blocks = Array.from(paragraph.querySelectorAll('tei-note, tei-notatedmusic, tei-figure'))
-      .filter((el) => !el.closest('tei-seg[type="original"]'))
+    const pitch = pitchOf(group, style)
 
     let previous: { top: number; x: number } | null = null
     for (const pair of group) {
@@ -110,10 +131,9 @@ const layout = (root: HTMLElement): Line[] => {
       if (!first || words.length === 0) continue
 
       // measured again for each sentence: the spacers of the sentences before may have moved them
-      const rows = rowsOf(group)
+      const rows = rowsOf(group, pitch)
       const obstacles = blocks.map((el) => el.getBoundingClientRect()).filter((rect) => rect.width > 0 && rect.height > 0)
       const last = rows[rows.length - 1]
-      const pitch = rows.length > 1 ? (last.top - rows[0].top) / (rows.length - 1) : parseFloat(style.lineHeight) || fontSize * 2
       // beyond the last line of the paragraph, lines are added at the same distance
       const rowAt = (i: number) => (i < rows.length
         ? rows[i]
@@ -175,7 +195,7 @@ const layout = (root: HTMLElement): Line[] => {
 
       // make room for the rest of the original before the next sentence
       const spacer = spacerOf(pair)
-      if (spacer) {
+      if (adjust && spacer) {
         spacer.setAttribute('style', 'display: inline-block; width: 0')
         const at = spacer.getBoundingClientRect()
         spacer.removeAttribute('style')
@@ -186,19 +206,23 @@ const layout = (root: HTMLElement): Line[] => {
         // spacer would drop below the note and take the following lines with it
         const room = (i: number) => slot(i) ?? { left: contentLeft, right: contentRight }
         const needed = end.x + GAP
-        let width = 0
-        if (row === spacerRow) width = Math.min(needed, room(row).right - 1) - at.left
+        if (row === spacerRow && needed > at.left) {
+          const width = Math.min(needed, room(row).right - 1) - at.left
+          spacer.setAttribute('style', `display: inline-block; width: ${Math.floor(width)}px`)
+        }
         // into the next line: wider than what is left of this one, so that it wraps
         else if (row === spacerRow + 1) {
-          width = Math.min(
+          const width = Math.min(
             Math.max(needed - room(row).left, room(spacerRow).right - at.left + 1),
             room(row).right - room(row).left - 1
           )
+          spacer.setAttribute('style', `display: inline-block; width: ${Math.floor(width)}px`)
         }
-        // further: a whole line; the original then runs on beneath the next sentence
-        else if (row > spacerRow + 1) width = room(spacerRow + 1).right - room(spacerRow + 1).left - 1
-        // shown only when needed: at the start of a line it would keep the space after it
-        if (width > 0) spacer.setAttribute('style', `display: inline-block; width: ${Math.floor(width)}px`)
+        // further: as many empty lines as the original needs; the next sentence starts on a new line
+        else if (row > spacerRow + 1) {
+          spacer.setAttribute('style', `display: block; height: ${Math.ceil((row - spacerRow) * pitch + DROP + band)}px`)
+        }
+        // otherwise not shown: at the start of a line it would keep the space after it
       }
       previous = end
     }
@@ -224,7 +248,11 @@ export const InterlinearOriginal = ({ container }: InterlinearOriginalProps) => 
     let frame = 0
     const update = () => {
       cancelAnimationFrame(frame)
-      frame = requestAnimationFrame(() => setLines(layout(root)))
+      // first the spacers, then the original in the layout they leave
+      frame = requestAnimationFrame(() => {
+        layout(root, true)
+        setLines(layout(root, false))
+      })
     }
     const observer = new ResizeObserver(update)
     observer.observe(root)
