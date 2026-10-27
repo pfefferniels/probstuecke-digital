@@ -1,6 +1,6 @@
 export const siteMetadata = {
   title: 'Probstücke Digital',
-  subtitle: 'Digital edition of Johann Matthesons Große Generalbass-Schule',
+  subtitle: 'Digital edition of Johann Mattheson’s Große Generalbass-Schule',
   siteUrl: 'https://probstuecke-digital.de',
   editors: ['Niels Pfeffer', 'Klaus Rettinghaus'],
   dataRepository: 'https://github.com/pfefferniels/probstuecke-data',
