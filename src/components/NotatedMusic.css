@@ -23,3 +23,43 @@
 .modernized .orig .accid {
     display: none;
 }
+
+/* Touch screens: the part of the page image for a tapped staff, below it */
+.example-score {
+    position: relative;
+}
+
+.facsimile-popup {
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    padding: 0 0.5rem 0.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.facsimile-popup-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-size: 0.8rem;
+    color: #555;
+}
+
+.facsimile-popup-images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.facsimile-popup img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}

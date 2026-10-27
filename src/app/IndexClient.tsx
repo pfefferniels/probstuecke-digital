@@ -14,7 +14,7 @@ export default function IndexClient({ works }: IndexClientProps) {
       <Container>
         <Grid
           container
-          padding={9}
+          padding={{ xs: '1.5rem 0', sm: 4, md: 9 }}
           spacing={{ xs: 2, sm: 2, md: 3 }}
           columns={{ xs: 2, sm: 8, md: 12 }}
         >

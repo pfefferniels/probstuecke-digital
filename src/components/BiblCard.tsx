@@ -1,12 +1,13 @@
-import { Card, CardContent, Chip } from "@mui/material";
+import { Box, Card, CardContent, Chip } from "@mui/material";
 import { OccurenceBox } from "./OccurenceBox";
 import type { Bibliography, MusicalWork, ExpressionIndexData } from '@/lib/types'
 
 export const BiblCard = ({ work, expressions }: { work: Bibliography | MusicalWork; expressions: ExpressionIndexData[] }) => {
     return (
-        <Card id={work.xmlId || 'no-id'} sx={{ p: 2 }} elevation={1}>
+        <Card id={work.xmlId || 'no-id'} sx={{ p: { xs: 0, sm: 2 } }} elevation={1}>
             <CardContent>
-                <div style={{ float: 'left' }}>
+                {/* on phones the occurrences go below */}
+                <Box sx={{ float: { sm: 'left' }, mb: { xs: 2, sm: 0 } }}>
                     {work.author && (
                         <span>
                             {work.author.surname}, {work.author.forename}:
@@ -30,7 +31,7 @@ export const BiblCard = ({ work, expressions }: { work: Bibliography | MusicalWo
                             </a>
                         </div>
                     )}
-                </div>
+                </Box>
                 <OccurenceBox forId={work.xmlId || ''} expressions={expressions} />
             </CardContent>
         </Card>

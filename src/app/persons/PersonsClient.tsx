@@ -1,6 +1,6 @@
 'use client'
 
-import { Container, Card, CardContent, Typography, Link, Stack, Chip } from '@mui/material'
+import { Box, Container, Card, CardContent, Typography, Link, Stack, Chip } from '@mui/material'
 import { OccurenceBox } from '@/components/OccurenceBox'
 import type { Person, ExpressionIndexData } from '@/lib/types'
 
@@ -11,9 +11,10 @@ interface PersonCardProps {
 
 const PersonCard = ({ person, expressions }: PersonCardProps) => {
   return (
-    <Card id={person.xmlId || 'no-id'} sx={{ p: 2 }} elevation={1}>
+    <Card id={person.xmlId || 'no-id'} sx={{ p: { xs: 0, sm: 2 } }} elevation={1}>
       <CardContent>
-        <div style={{ float: 'left' }}>
+        {/* on phones the occurrences go below */}
+        <Box sx={{ float: { sm: 'left' }, mb: { xs: 2, sm: 0 } }}>
           <Typography variant="h5">
             {person.name}
           </Typography>
@@ -23,7 +24,7 @@ const PersonCard = ({ person, expressions }: PersonCardProps) => {
           <Link href={person.idno || ''} target="_blank" rel="noopener noreferrer">
             <Chip label="→ GND" size="small" color="info" />
           </Link>
-        </div>
+        </Box>
         <OccurenceBox forId={person.xmlId || ''} expressions={expressions} />
       </CardContent>
     </Card>

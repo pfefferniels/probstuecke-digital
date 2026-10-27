@@ -133,13 +133,14 @@ export default function PieceClient({ piece, version }: PieceClientProps) {
         </Collapse>
 
         <VerovioProvider>
+          {/* side by side from the md breakpoint on; below it the score comes first and the commentary follows */}
           <Grid container spacing={1} lang={piece.lang}>
             {piece.score && (
-              <Grid size={6} className="scoreView">
+              <Grid size={{ xs: 12, md: 6 }} className="scoreView">
                 <Ceteicean pageContext={piece.score as any} routes={routes} />
               </Grid>
             )}
-            <Grid size={piece.score ? 6 : 12} p={1.5} className={piece.score ? undefined : 'textOnly'}>
+            <Grid size={piece.score ? { xs: 12, md: 6 } : 12} p={1.5} className={piece.score ? undefined : 'textOnly'}>
               {piece.text && <Ceteicean pageContext={piece.text as any} routes={routes} />}
             </Grid>
           </Grid>

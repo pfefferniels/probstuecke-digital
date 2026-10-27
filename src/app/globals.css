@@ -128,6 +128,48 @@ tei-lb {
     padding-top: 2rem;
 }
 
+/* Below the md breakpoint the score stands above the commentary */
+@media (max-width: 899.95px) {
+    /* sticky, the title bar and the score would cover most of a small screen */
+    .piece .title {
+        position: static;
+    }
+
+    .main-score {
+        position: relative;
+        padding-top: 0.5rem;
+    }
+
+    tei-note[type="editorial"] {
+        float: none;
+        display: block;
+        width: auto;
+        margin: 1rem 0;
+    }
+}
+
+/* Phones: work and actions on the first line of the bar, versions on the second */
+@media (max-width: 599.95px) {
+    .pieceBar .actions {
+        order: 1;
+    }
+
+    .pieceBar::before {
+        content: '';
+        order: 2;
+        flex-basis: 100%;
+    }
+
+    .pieceBar .layer,
+    .pieceBar .versions {
+        order: 3;
+    }
+
+    .piece .title h2 {
+        font-size: 1.3rem;
+    }
+}
+
 .ref {
     background-color: rgba(255, 200, 10, .2);
     cursor: pointer;
