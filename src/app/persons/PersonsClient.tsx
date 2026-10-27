@@ -15,7 +15,7 @@ const PersonCard = ({ person, expressions }: PersonCardProps) => {
       <CardContent>
         <div style={{ float: 'left' }}>
           <Typography variant="h5">
-            {person.forename} {person.surname}
+            {person.name}
           </Typography>
           <Typography color="textSecondary">
             {person.birth} - {person.death}

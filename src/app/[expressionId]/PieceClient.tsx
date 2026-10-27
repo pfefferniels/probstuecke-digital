@@ -1,25 +1,31 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Fragment } from 'react'
+import Link from 'next/link'
 import { NotatedMusic } from '@/components/NotatedMusic'
 import Ceteicean from '@/ceteicean/Ceteicean'
 import { Behavior } from '@/ceteicean/Behavior'
-import { Grid, IconButton } from '@mui/material'
+import { Collapse, Grid, IconButton, Tooltip } from '@mui/material'
 import { Word } from '@/components/Word'
 import { VerovioProvider } from '@/hooks/useVerovio'
 import { Ref } from '@/components/Ref'
 import { GlowDefs } from '@/components/GlowDefs'
 import LinkToIndex from '@/components/LinkToIndex'
-import { Download } from '@mui/icons-material'
+import { Download, InfoOutlined } from '@mui/icons-material'
 import { DownloadDialog } from '@/components/DownloadDialog'
-import type { Expression, ExpressionZone } from '@/lib/types'
+import { SourcePanel } from '@/components/SourcePanel'
+import { keyLabel, longLabel, shortLabel } from '@/lib/expressionLabels'
+import type { EditionVersion, Expression, ExpressionZone } from '@/lib/types'
 
 interface PieceClientProps {
   piece: Expression
+  version: EditionVersion
 }
 
-export default function PieceClient({ piece }: PieceClientProps) {
+export default function PieceClient({ piece, version }: PieceClientProps) {
   const [downloadDialogOpen, setDownloadDialogOpen] = useState(false)
+  const [sourceOpen, setSourceOpen] = useState(false)
+  const context = piece.context
 
   const routes = {
     'tei-notatedmusic': (node: any) => (
@@ -71,28 +77,70 @@ export default function PieceClient({ piece }: PieceClientProps) {
       <div className="piece">
         <GlowDefs />
 
-        <h2 className="title" style={{ textAlign: 'center' }}>
-          <div style={{ position: 'absolute', top: '0', right: '1rem' }}>
-            <IconButton color="primary" onClick={() => setDownloadDialogOpen(true)}>
-              <Download />
-            </IconButton>
+        <div className="title">
+          <div className="pieceBar">
+            <span className="workTitle">
+              {context ? `${context.workTitle} · ${keyLabel(context.key)}` : piece.header.title}
+            </span>
+            {context && <span className="layer">{longLabel(context.expression)}</span>}
+            {context && context.siblings.length > 1 && (
+              <nav className="versions" aria-label="Versions of this piece">
+                {context.siblings.map((sibling, i) => (
+                  <Fragment key={sibling.id}>
+                    {i > 0 && <span className="sep">·</span>}
+                    {sibling.referringTo.includes(piece.expressionId || '')
+                      ? <strong aria-current="page">{shortLabel(sibling)}</strong>
+                      : <Link href={`/${sibling.referringTo[0]}/`} title={longLabel(sibling)}>{shortLabel(sibling)}</Link>}
+                  </Fragment>
+                ))}
+              </nav>
+            )}
+            <span className="actions">
+              <Tooltip title="About this text">
+                <IconButton
+                  color="primary"
+                  aria-label="About this text"
+                  aria-expanded={sourceOpen}
+                  onClick={() => setSourceOpen(!sourceOpen)}
+                >
+                  <InfoOutlined />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Download">
+                <IconButton color="primary" aria-label="Download" onClick={() => setDownloadDialogOpen(true)}>
+                  <Download />
+                </IconButton>
+              </Tooltip>
+            </span>
           </div>
 
-          <Ceteicean
-            pageContext={piece.title as any}
-            routes={{
-              'tei-w': Word,
-            }}
-          />
-        </h2>
+          <h2 lang={piece.lang}>
+            {piece.title
+              ? (
+                <Ceteicean
+                  pageContext={piece.title as any}
+                  routes={{
+                    'tei-w': Word,
+                  }}
+                />
+              )
+              : piece.header.title}
+          </h2>
+        </div>
+
+        <Collapse in={sourceOpen}>
+          <SourcePanel expression={piece} version={version} />
+        </Collapse>
 
         <VerovioProvider>
-          <Grid container spacing={1}>
-            <Grid size={6} className="scoreView">
-              <Ceteicean pageContext={piece.score as any} routes={routes} />
-            </Grid>
-            <Grid size={6} p={1.5}>
-              <Ceteicean pageContext={piece.text as any} routes={routes} />
+          <Grid container spacing={1} lang={piece.lang}>
+            {piece.score && (
+              <Grid size={6} className="scoreView">
+                <Ceteicean pageContext={piece.score as any} routes={routes} />
+              </Grid>
+            )}
+            <Grid size={piece.score ? 6 : 12} p={1.5} className={piece.score ? undefined : 'textOnly'}>
+              {piece.text && <Ceteicean pageContext={piece.text as any} routes={routes} />}
             </Grid>
           </Grid>
         </VerovioProvider>

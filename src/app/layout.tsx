@@ -5,6 +5,7 @@ import { siteMetadata } from '@/lib/siteMetadata'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteMetadata.siteUrl),
   title: { default: 'Probstücke Digital', template: '%s | Probstücke Digital' },
   description: siteMetadata.subtitle,
   openGraph: { title: 'Probstücke Digital', description: siteMetadata.subtitle, type: 'website' },

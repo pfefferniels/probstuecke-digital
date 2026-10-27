@@ -77,10 +77,49 @@ tei-lb {
 .piece .title {
     position: sticky;
     top: 0;
-    background-color: rgba(255, 255, 255, 0.8);
-    margin-top: 3rem;
-    padding: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.92);
+    margin-top: 0.5rem;
+    padding: 0.25rem 0.5rem 0.5rem;
     z-index: 100;
+}
+
+.piece .title h2 {
+    margin: 0.25rem 0 0;
+    padding-bottom: 0;
+    text-align: center;
+}
+
+/* Bar above the title: work, version shown, other versions, actions */
+.pieceBar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.25rem 1rem;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-size: 0.95rem;
+}
+
+.pieceBar .workTitle {
+    font-weight: 600;
+}
+
+.pieceBar .layer {
+    color: #555;
+}
+
+.pieceBar .versions .sep {
+    color: gray;
+    margin: 0 0.35rem;
+}
+
+.pieceBar .actions {
+    margin-left: auto;
+}
+
+/* Pages without a score (e.g. lessons) use a single reading column */
+.textOnly {
+    max-width: 52rem;
+    margin: 0 auto;
 }
 
 .main-score {
@@ -223,6 +262,23 @@ tei-pb {
 tei-pb[n]:after {
     content: '[' attr(n) ']\A';
     color: gray;
+}
+
+/* About page */
+.about tei-list {
+    display: block;
+    margin: 1rem 0;
+}
+
+.about tei-item {
+    display: list-item;
+    margin-left: 1.5rem;
+    margin-bottom: 0.4rem;
+}
+
+.about tei-div {
+    display: block;
+    margin-bottom: 2rem;
 }
 
 /* CETEI-guidelines.css */
