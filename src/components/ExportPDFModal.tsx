@@ -7,6 +7,7 @@ import { downloadAs } from './DownloadDialog'
 import { removeEmbeddedAnnotations } from '../helpers/removeEmbeddedAnnotations'
 import { addEmptyStaves } from '../helpers/addEmptyStaves'
 import { smuflFigures } from '../helpers/smuflFigures'
+import { dropHiddenAccidentals } from '../helpers/dropHiddenAccidentals'
 import { mdivXPathQuery, topLevelMdivs } from '../helpers/mdivs'
 import { readingsXPathQuery } from '../helpers/readings'
 
@@ -121,6 +122,7 @@ export const ExportPDFModal = ({ meiData, fileName, expressionId }: ExportPDFMod
         if (!window.scoreSettings.rightHand) removeEmbeddedAnnotations(dom)
         addEmptyStaves(dom, window.scoreSettings.emptyStaves)
         smuflFigures(dom)
+        dropHiddenAccidentals(dom, window.scoreSettings.modernClefs)
 
         pdfToolkit.loadData(new XMLSerializer().serializeToString(dom))
 

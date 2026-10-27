@@ -7,6 +7,7 @@ import { Close } from '@mui/icons-material';
 import { addEmptyStaves } from '../helpers/addEmptyStaves';
 import { removeEmbeddedAnnotations } from '../helpers/removeEmbeddedAnnotations';
 import { smuflFigures } from '../helpers/smuflFigures';
+import { dropHiddenAccidentals } from '../helpers/dropHiddenAccidentals';
 import { showPieceBarNumbers } from '../helpers/showPieceBarNumbers';
 import { clearTouchSelection, isTouchInput, revealElement, selectLink } from '../helpers/touchSelection';
 import { mdivLabel, mdivXPathQuery, topLevelMdivs } from '../helpers/mdivs';
@@ -280,6 +281,7 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
         if (!isMainScore) showPieceBarNumbers(meiDoc)
         addEmptyStaves(meiDoc, emptyStaves)
         smuflFigures(meiDoc)
+        dropHiddenAccidentals(meiDoc, modernClefs)
 
         const options: any = {
             scale,
