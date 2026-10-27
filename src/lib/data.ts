@@ -455,6 +455,18 @@ export const loadAbout = async (): Promise<About> => {
   return cachedAbout
 }
 
+const XML_NS = 'http://www.w3.org/XML/1998/namespace'
+
+// The mentions of persons, works and books in a text mostly have no xml:id. They get one here,
+// numbered in document order, so that the indices can link to each (see OccurenceBox). The
+// piece pages and the indices both call this on the same file, so the IDs agree.
+const addMentionIds = (document: Document) => {
+  const mentions = document.querySelectorAll('text persName[corresp], text name[corresp], text bibl[corresp]')
+  Array.from(mentions).forEach((mention, i) => {
+    if (!mention.hasAttribute('xml:id')) mention.setAttributeNS(XML_NS, 'xml:id', `mention-${i + 1}`)
+  })
+}
+
 // Elements pointing to an index entry; @corresp may name several entries ("#t_a #t_b")
 const collectIndexRefs = (document: Document) =>
   Array.from(document.querySelectorAll('[corresp]')).flatMap((el) =>
@@ -517,6 +529,8 @@ const processExpressionFile = async (filePath: string): Promise<Expression | nul
   const teiType = teiRoot.getAttribute('type')
   if (teiType && SPECIAL_TEI_TYPES.has(teiType)) return null
 
+  addMentionIds(document)
+
   // Collect metadata, MEI, refs, indexRefs
   const metadata = collectExpressionMetadata(document)
   const header = collectHeader(document)
@@ -541,7 +555,8 @@ const processExpressionFile = async (filePath: string): Promise<Expression | nul
     .flat()
 
   // Modernize Fraktur TEI
-  const modernized = metadata.isFraktur ? modernizeTEI(rawXml) : rawXml
+  const xml = serialize(document)
+  const modernized = metadata.isFraktur ? modernizeTEI(xml) : xml
 
   // Extract sections exactly as in gatsby-node
   const selectors: Record<string, string> = {
@@ -678,7 +693,7 @@ export const loadExpressionIndexRefs = async (): Promise<ExpressionIndexData[]> 
   if (cachedExpressionIndexRefs) return cachedExpressionIndexRefs
 
   const allXmlFiles = findXmlFiles(DATA_DIR)
-  const results: ExpressionIndexData[] = []
+  const results: { data: ExpressionIndexData; work: string; version: number }[] = []
 
   for (const filePath of allXmlFiles) {
     const rawXml = fs.readFileSync(filePath, 'utf-8')
@@ -696,11 +711,25 @@ export const loadExpressionIndexRefs = async (): Promise<ExpressionIndexData[]> 
     const expressionId = teiRoot.getAttribute('xml:id')
     const label = teiRoot.querySelector('title')?.textContent ?? null
 
+    addMentionIds(document)
     const indexRefs = collectIndexRefs(document)
+    const context = expressionId ? findExpressionContext(expressionId) : null
 
-    results.push({ expressionId, label, indexRefs })
+    results.push({
+      data: {
+        expressionId,
+        label,
+        context: context && { workTitle: context.workTitle, expression: context.expression },
+        indexRefs,
+      },
+      work: context?.workTitle ?? label ?? '',
+      version: context ? context.siblings.indexOf(context.expression) : 0,
+    })
   }
 
+  // by Probstück, then in the order of the versions on the piece pages
   cachedExpressionIndexRefs = results
-  return results
+    .sort((a, b) => a.work.localeCompare(b.work, 'en', { numeric: true }) || a.version - b.version)
+    .map(({ data }) => data)
+  return cachedExpressionIndexRefs
 }

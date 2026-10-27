@@ -1,5 +1,7 @@
-import { Card, CardContent, List, ListItem, ListItemText, Typography } from "@mui/material"
+import { Typography } from "@mui/material"
 import Link from 'next/link'
+import { Fragment } from "react"
+import { longLabel, shortLabel } from '@/lib/expressionLabels'
 import type { ExpressionIndexData } from '@/lib/types'
 
 interface OccurenceBoxProps {
@@ -7,54 +9,83 @@ interface OccurenceBoxProps {
     expressions: ExpressionIndexData[]
 }
 
-export const OccurenceBox = ({ forId, expressions }: OccurenceBoxProps) => {
-    // maps expressionId to all xml:ids of elements mentioning the given ID
-    // (a person, work etc.) inside that expression
-    const mentions = new Map<string, string[]>()
+interface Mentions {
+    expression: ExpressionIndexData
+    // the xml:ids of the elements in the text that mention the person, work etc.
+    xmlIds: (string | null)[]
+}
 
-    for (const expression of expressions) {
-        if (!expression.indexRefs || !expression.expressionId) continue
+const mentionHref = (expressionId: string, xmlId: string | null) =>
+    `/${expressionId}/${xmlId ? `#${xmlId}` : ''}`
 
-        for (const indexRef of expression.indexRefs) {
-            if (forId !== indexRef.corresp) continue
+// A version of a Probstück (e.g. "1731"), linking to the mention in it; several mentions get a link each
+const Version = ({ expression, xmlIds }: Mentions) => {
+    const { expressionId, context } = expression
+    const label = context ? shortLabel(context.expression) : 'Text'
+    const title = context ? longLabel(context.expression) : expression.label || label
 
-            if (mentions.has(expression.expressionId)) {
-                mentions.get(expression.expressionId)?.push(indexRef.xmlId || '[no-id]')
-            }
-            else {
-                mentions.set(expression.expressionId, [indexRef.xmlId || '[no-id]'])
-            }
-        }
+    if (xmlIds.length === 1) {
+        return <Link href={mentionHref(expressionId!, xmlIds[0])} title={title}>{label}</Link>
     }
 
-    if (mentions.size === 0) return null
+    return (
+        <>
+            {label}:{' '}
+            {xmlIds.map((xmlId, i) => (
+                <Fragment key={i}>
+                    {i > 0 && ' '}
+                    <Link
+                        href={mentionHref(expressionId!, xmlId)}
+                        className="mention"
+                        aria-label={`${title}, mention ${i + 1}`}
+                    >
+                        {i + 1}
+                    </Link>
+                </Fragment>
+            ))}
+        </>
+    )
+}
+
+/** Where a person, work etc. is mentioned, by Probstück, e.g. "Probstück 6   1719 · 1731 · English" */
+export const OccurenceBox = ({ forId, expressions }: OccurenceBoxProps) => {
+    // the expressions come in the order of the Probstücke and their versions
+    const byWork = new Map<string, Mentions[]>()
+
+    for (const expression of expressions) {
+        if (!expression.expressionId) continue
+
+        const xmlIds = expression.indexRefs
+            .filter(indexRef => indexRef.corresp === forId)
+            .map(indexRef => indexRef.xmlId)
+        if (xmlIds.length === 0) continue
+
+        const work = expression.context?.workTitle || expression.label || expression.expressionId
+        byWork.set(work, [...(byWork.get(work) || []), { expression, xmlIds }])
+    }
+
+    if (byWork.size === 0) return null
 
     return (
-        <Card sx={{ float: { sm: 'right' }, mb: 2 }} elevation={7}>
-            <CardContent>
-                <Typography variant="h6">Mentioned in …</Typography>
-                <List>
-                    {Array.from(mentions).map(([expressionId, xmlIds]) => {
-                        return (
-                            <ListItem key={expressionId}>
-                                <ListItemText
-                                    primary={expressionId}
-                                    secondary={
-                                        <>
-                                            Occurrences:{" "}
-                                            {xmlIds.map((xmlId, i) => (
-                                                <Link key={xmlId} href={`/${expressionId}/#${xmlId}`}>
-                                                    [{i + 1}]{i !== xmlIds.length - 1 && ", "}
-                                                </Link>
-                                            ))}
-                                        </>
-                                    }
-                                />
-                            </ListItem>
-                        )
-                    })}
-                </List>
-            </CardContent>
-        </Card>
+        <>
+            <Typography variant="subtitle2" component="h4" color="text.secondary" sx={{ mt: 2 }}>
+                Mentioned in
+            </Typography>
+            <Typography component="ul" variant="body2" className="mentions">
+                {Array.from(byWork).map(([work, versions]) => (
+                    <li key={work}>
+                        <span>{work}</span>
+                        <span>
+                            {versions.map((mentions, i) => (
+                                <Fragment key={mentions.expression.expressionId}>
+                                    {i > 0 && <span className="sep"> · </span>}
+                                    <Version {...mentions} />
+                                </Fragment>
+                            ))}
+                        </span>
+                    </li>
+                ))}
+            </Typography>
+        </>
     )
 }

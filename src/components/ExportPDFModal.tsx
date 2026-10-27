@@ -1,15 +1,26 @@
 'use client'
 
-import { useState } from 'react'
-import SVGtoPDF from 'svg-to-pdfkit'
-import { Button, CircularProgress, Tab, Tabs, ToggleButton, ToggleButtonGroup } from '@mui/material'
+import { type ReactNode, useEffect, useMemo, useState } from 'react'
+import {
+    Box,
+    Button,
+    CircularProgress,
+    FormControl,
+    FormControlLabel,
+    FormLabel,
+    Radio,
+    RadioGroup,
+    Stack,
+    Typography,
+} from '@mui/material'
 import { downloadAs } from './DownloadDialog'
 import { removeEmbeddedAnnotations } from '../helpers/removeEmbeddedAnnotations'
 import { addEmptyStaves } from '../helpers/addEmptyStaves'
 import { smuflFigures } from '../helpers/smuflFigures'
 import { dropHiddenAccidentals } from '../helpers/dropHiddenAccidentals'
-import { mdivXPathQuery, topLevelMdivs } from '../helpers/mdivs'
+import { mdivLabel, mdivXPathQuery, topLevelMdivs } from '../helpers/mdivs'
 import { readingsXPathQuery } from '../helpers/readings'
+import { joinNames } from '@/lib/citation'
 
 const junicode = '/Junicode.woff'
 const junicodeBold = '/Junicode-Bold.woff'
@@ -46,22 +57,105 @@ const fonts = ['Leipzig', 'Bravura', 'Gootville', 'Leland']
 // figures in figured bass, tempo signs) use a music font. Leipzig is the one bundled.
 const musicFontFamily = /Leipzig|Bravura|Gootville|Leland/
 
+const scripts = new Map<string, Promise<void>>()
+
+// Adds a script to the page once; one that failed to load is tried again on the next call
+const loadScript = (src: string) => {
+    let loaded = scripts.get(src)
+    if (!loaded) {
+        loaded = new Promise<void>((resolve, reject) => {
+            const script = document.createElement('script')
+            script.src = src
+            script.addEventListener('load', () => resolve())
+            script.addEventListener('error', () => {
+                script.remove()
+                scripts.delete(src)
+                reject(new Error(`${src} could not be loaded`))
+            })
+            document.body.appendChild(script)
+        })
+        scripts.set(src, loaded)
+    }
+    return loaded
+}
+
+// PDFKit (window.PDFDocument), blob-stream (window.blobStream) and SVG-to-PDFKit are only
+// needed here, so the piece pages do not load them until the PDF options are shown
+const loadPDFLibraries = async () => {
+    const [svgToPdf] = await Promise.all([
+        import('svg-to-pdfkit'),
+        loadScript('/pdfkit.standalone.js'),
+        loadScript('/blob-stream.js'),
+    ])
+    return svgToPdf.default
+}
+
+interface ChoiceProps<T extends string> {
+    label: string
+    value: T
+    options: { value: T, label: ReactNode }[]
+    onChange: (value: T) => void
+    /** focus the chosen option when shown */
+    autoFocus?: boolean
+}
+
+// One setting of the PDF, with its options side by side (wrapping on narrow screens)
+const Choice = <T extends string>({ label, value, options, onChange, autoFocus }: ChoiceProps<T>) => (
+    <FormControl component="fieldset">
+        <FormLabel component="legend">{label}</FormLabel>
+        <RadioGroup row value={value} onChange={(_, value) => onChange(value as T)}>
+            {options.map(option => (
+                <FormControlLabel
+                    key={option.value}
+                    value={option.value}
+                    control={<Radio size="small" autoFocus={autoFocus && option.value === value} />}
+                    label={option.label}
+                />
+            ))}
+        </RadioGroup>
+    </FormControl>
+)
+
+// The PDF shows the music as the score on the page does (see NotatedMusic), e.g.
+// "As on the page: C♯ major, original notation, with the right-hand staff and 2 empty staves."
+const describeScoreSettings = (meiData: string) => {
+    const { modernClefs, rightHand, emptyStaves, mdiv } = window.scoreSettings
+    const mdivs = topLevelMdivs(new DOMParser().parseFromString(meiData, 'text/xml'))
+    const shown = [
+        mdivs.length > 1 && mdivs[mdiv] ? mdivLabel(mdivs[mdiv], mdiv) : null,
+        modernClefs ? 'modern clefs and accidentals' : 'original notation',
+    ].filter(Boolean)
+    const added = [
+        rightHand ? 'the right-hand staff' : null,
+        emptyStaves === 1 ? 'an empty staff' : emptyStaves > 1 ? `${emptyStaves} empty staves` : null,
+    ].filter((part): part is string => !!part)
+    return `As on the page: ${shown.join(', ')}${added.length > 0 ? `, with ${joinNames(added)}` : ''}.`
+}
+
 interface ExportPDFModalProps {
     meiData: string
     fileName: string
     expressionId?: string
+    onBack: () => void
 }
 
-export const ExportPDFModal = ({ meiData, fileName, expressionId }: ExportPDFModalProps) => {
-    const [activeTab, setActiveTab] = useState(0)
+export const ExportPDFModal = ({ meiData, fileName, expressionId, onBack }: ExportPDFModalProps) => {
     const [orientation, setOrientation] = useState<'portrait' | 'landscape'>('portrait')
-    const [format, setFormat] = useState<'A4' | 'Letter' | 'B4'>('A4')
-    const [margin, setMargin] = useState<'narrow' | 'normal' | 'broad'>('normal')
+    const [format, setFormat] = useState<keyof typeof paperSizes>('A4')
+    const [margin, setMargin] = useState<keyof typeof margins>('normal')
     const [font, setFont] = useState('Leipzig')
     const [loading, setLoading] = useState(false)
+    const [error, setError] = useState<string | null>(null)
+    // the score settings do not change while the dialog is open
+    const scoreAsShown = useMemo(() => describeScoreSettings(meiData), [meiData])
 
-    const exportPDF = async () => {
-        setLoading(true)
+    // load them while the options are being chosen
+    useEffect(() => {
+        loadPDFLibraries().catch(() => { })
+    }, [])
+
+    const createPDF = async () => {
+        const SVGtoPDF = await loadPDFLibraries()
 
         // Verovio is loaded by the VerovioProvider of the page
         const pdfToolkit = new window.verovio.toolkit()
@@ -163,11 +257,8 @@ export const ExportPDFModal = ({ meiData, fileName, expressionId }: ExportPDFMod
         doc.info['Author'] = composerName || ''
 
         const stream = doc.pipe(window.blobStream())
-        stream.on('finish', function () {
-            setLoading(false)
-            const blob = stream.toBlob('application/pdf')
-            downloadAs(fileName, blob)
-            // onHide()
+        const finished = new Promise<Blob>(resolve => {
+            stream.on('finish', () => resolve(stream.toBlob('application/pdf')))
         })
 
         for (let i = 0; i < pdfToolkit.getPageCount(); i++) {
@@ -176,87 +267,86 @@ export const ExportPDFModal = ({ meiData, fileName, expressionId }: ExportPDFMod
         }
 
         doc.end()
+        return finished
     }
 
+    const exportPDF = async () => {
+        setLoading(true)
+        setError(null)
+        try {
+            downloadAs(fileName, await createPDF())
+        }
+        catch (e) {
+            setError(`The PDF could not be created (${(e as Error).message}).`)
+        }
+        finally {
+            setLoading(false)
+        }
+    }
+
+    const [width, height] = orientation === 'landscape' ? ['pageHeight', 'pageWidth'] as const : ['pageWidth', 'pageHeight'] as const
+
     return (
-        <div>
-            <Tabs value={activeTab} sx={{ mb: 2 }} onChange={(_, newValue) => setActiveTab(newValue)} aria-label="Export PDF Options">
-                <Tab label="Orientation" />
-                <Tab label="Format" />
-                <Tab label="Margins" />
-                <Tab label="Font" />
-                <Tab label="Staff Size" disabled />
-            </Tabs>
-            <div hidden={activeTab !== 0}>
-                <ToggleButtonGroup
-                    value={orientation}
-                    exclusive
-                    onChange={(event, newOrientation) => setOrientation(newOrientation)}
-                    aria-label="Orientation"
-                >
-                    {['portrait', 'landscape'].map((orientation, i) => (
-                        <ToggleButton key={`orientation_${i}`} value={orientation} aria-label={orientation}>
-                            {orientation}
-                        </ToggleButton>
-                    ))}
-                </ToggleButtonGroup>
-            </div>
-            <div hidden={activeTab !== 1}>
-                <ToggleButtonGroup
+        <>
+            <Stack spacing={2}>
+                <Choice
+                    autoFocus
+                    label="Paper"
                     value={format}
-                    exclusive
-                    onChange={(event, newFormat) => setFormat(newFormat)}
-                    aria-label="Format"
-                >
-                    {Object.entries(paperSizes).map(([key, value], i) => (
-                        <ToggleButton key={`format_${i}`} value={key} aria-label={key}>
-                            {key}
-                            {orientation === 'landscape' ? (
-                                <span>
-                                    ({value.pageWidth / 100}cm x {value.pageHeight / 100}cm)
-                                </span>
-                            ) : (
-                                <span>
-                                    ({value.pageHeight / 100}cm x {value.pageWidth / 100}cm)
-                                </span>
-                            )}
-                        </ToggleButton>
-                    ))}
-                </ToggleButtonGroup>
-            </div>
-            <div hidden={activeTab !== 2}>
-                <ToggleButtonGroup
+                    onChange={setFormat}
+                    options={(Object.keys(paperSizes) as (keyof typeof paperSizes)[]).map(key => ({
+                        value: key,
+                        label: (
+                            <>
+                                {key}{' '}
+                                <Typography component="span" variant="body2" color="text.secondary">
+                                    {paperSizes[key][width] / 100} × {paperSizes[key][height] / 100} cm
+                                </Typography>
+                            </>
+                        ),
+                    }))}
+                />
+                <Choice
+                    label="Orientation"
+                    value={orientation}
+                    onChange={setOrientation}
+                    options={[{ value: 'portrait', label: 'Portrait' }, { value: 'landscape', label: 'Landscape' }]}
+                />
+                <Choice
+                    label="Margins"
                     value={margin}
-                    exclusive
-                    onChange={(event, newMargin) => setMargin(newMargin)}
-                    aria-label="Margin"
-                >
-                    {Object.entries(margins).map(([key, value], i) => (
-                        <ToggleButton key={`margin_${i}`} value={key} aria-label={key}>
-                            {key} ({value / 100}cm)
-                        </ToggleButton>
-                    ))}
-                </ToggleButtonGroup>
-            </div>
-            <div hidden={activeTab !== 3}>
-                <ToggleButtonGroup
+                    onChange={setMargin}
+                    options={(Object.keys(margins) as (keyof typeof margins)[]).map(key => ({
+                        value: key,
+                        label: `${key.charAt(0).toUpperCase()}${key.slice(1)} (${margins[key] / 100} cm)`,
+                    }))}
+                />
+                <Choice
+                    label="Music font"
                     value={font}
-                    exclusive
-                    onChange={(event, newFont) => setFont(newFont)}
-                    aria-label="Font"
+                    onChange={setFont}
+                    options={fonts.map(font => ({ value: font, label: font }))}
+                />
+            </Stack>
+
+            <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
+                {scoreAsShown}
+            </Typography>
+            {error && (
+                <Typography color="error" variant="body2" sx={{ mt: 1 }}>{error}</Typography>
+            )}
+
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 1, mt: 3 }}>
+                <Button onClick={onBack} disabled={loading}>Back</Button>
+                <Button
+                    variant="contained"
+                    onClick={exportPDF}
+                    disabled={loading}
+                    startIcon={loading ? <CircularProgress size={18} color="inherit" /> : undefined}
                 >
-                    {fonts.map((font, i) => (
-                        <ToggleButton key={`font_${i}`} value={font} aria-label={font}>
-                            {font}
-                        </ToggleButton>
-                    ))}
-                </ToggleButtonGroup>
-            </div>
-            <div style={{ marginTop: '20px', display: 'flex', justifyContent: 'space-between' }}>
-                <Button variant="contained" color="primary" onClick={exportPDF} disabled={loading}>
-                    {loading ? <CircularProgress size={24} /> : 'Export'}
+                    {loading ? 'Creating PDF…' : 'Download PDF'}
                 </Button>
-            </div>
-        </div>
+            </Box>
+        </>
     )
 };

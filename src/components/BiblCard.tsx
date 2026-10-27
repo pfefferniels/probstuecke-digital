@@ -4,10 +4,9 @@ import type { Bibliography, MusicalWork, ExpressionIndexData } from '@/lib/types
 
 export const BiblCard = ({ work, expressions }: { work: Bibliography | MusicalWork; expressions: ExpressionIndexData[] }) => {
     return (
-        <Card id={work.xmlId || 'no-id'} sx={{ p: { xs: 0, sm: 2 } }} elevation={1}>
+        <Card id={work.xmlId || 'no-id'} sx={{ p: { xs: 0, sm: 1 } }} elevation={1}>
             <CardContent>
-                {/* on phones the occurrences go below */}
-                <Box sx={{ float: { sm: 'left' }, mb: { xs: 2, sm: 0 } }}>
+                <Box>
                     {work.author && (
                         <span>
                             {work.author.surname}, {work.author.forename}:

@@ -41,9 +41,14 @@ export const DownloadDialog = ({ open, onClose, expression }: DownloadDialogProp
     }
 
     return (
-        <Dialog open={open} onClose={onClose}>
-
-            <DialogTitle>Download</DialogTitle>
+        <Dialog
+            open={open}
+            onClose={onClose}
+            fullWidth
+            // the next time it opens, it starts with the list of downloads again
+            slotProps={{ transition: { onExited: () => { setShowPDFOptions(false); setError(null) } } }}
+        >
+            <DialogTitle>{showPDFOptions ? 'Download as PDF' : 'Download'}</DialogTitle>
             <DialogContent>
                 {showPDFOptions && meiData
                     ? (
@@ -51,13 +56,15 @@ export const DownloadDialog = ({ open, onClose, expression }: DownloadDialogProp
                             meiData={meiData}
                             fileName={`${baseName}.pdf`}
                             expressionId={expression.expressionId || undefined}
+                            onBack={() => setShowPDFOptions(false)}
                         />
                     )
                     : (
                         <List>
                             {meiData && (
                                 <ListItem>
-                                    <ListItemButton onClick={handlePDF}>
+                                    {/* also where the focus returns from the PDF options */}
+                                    <ListItemButton autoFocus onClick={handlePDF}>
                                         <ListItemText
                                             primary="PDF (music only)"
                                             secondary="Download the music notation as a PDF file."

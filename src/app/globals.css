@@ -637,6 +637,29 @@ a.term:hover {
     font-weight: 600;
 }
 
+/* Indices of persons, musical works and the bibliography: where an entry is mentioned */
+ul.mentions {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.25rem 0 0;
+}
+
+ul.mentions li {
+    display: grid;
+    grid-template-columns: 7.5rem 1fr;
+    column-gap: 0.5rem;
+    margin-bottom: 0.3rem;
+}
+
+ul.mentions .sep {
+    color: gray;
+}
+
+/* numbered links to several mentions in one text: wide enough to tap */
+ul.mentions a.mention {
+    padding: 0 0.3em;
+}
+
 /* Mattheson's Register: entries in two columns as in the print */
 .register tei-text {
     font-size: 1rem;
