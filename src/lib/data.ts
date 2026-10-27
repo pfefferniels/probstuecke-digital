@@ -20,6 +20,10 @@ import type {
   MusicalWork,
   Guideline,
   About,
+  Term,
+  TermOccurrence,
+  TermSummary,
+  Register,
   Expression,
   ExpressionContext,
   TransformedTEI,
@@ -100,6 +104,8 @@ let cachedBibliography: Bibliography[] | null = null
 let cachedMusicalWorks: MusicalWork[] | null = null
 let cachedGuidelines: Guideline | null = null
 let cachedAbout: About | null = null
+let cachedTerms: Term[] | null = null
+let cachedRegister: Register | null = null
 let cachedWorkList: Document | null = null
 let cachedExpressionIndex: Map<string, string> | null = null
 const cachedExpressionById = new Map<string, Expression>()
@@ -291,6 +297,132 @@ export const loadMusicalWorks = async (): Promise<MusicalWork[]> => {
 }
 
 // ---------------------------------------------------------------------------
+// loadTerms: the index of terms, based on Mattheson's Register
+// ---------------------------------------------------------------------------
+
+const TEI_NS = 'http://www.tei-c.org/ns/1.0'
+
+// text of the quotation in a <ref>, split at the marked <term>
+const readQuote = (ref: Element): TermOccurrence['quote'] => {
+  const term = ref.getElementsByTagNameNS(TEI_NS, 'term')[0]
+  if (!term) return null
+  let pre = ''
+  let post = ''
+  let after = false
+  for (const node of Array.from(ref.childNodes)) {
+    if (node === term) {
+      after = true
+      continue
+    }
+    if (after) post += node.textContent
+    else pre += node.textContent
+  }
+  const clean = (text: string) => text.replace(/\s+/g, ' ')
+  return { pre: clean(pre).trimStart(), key: clean(term.textContent || ''), post: clean(post).trimEnd() }
+}
+
+const expressionIdOfFile = new Map<string, string | null>()
+
+const readExpressionId = (file: string): string | null => {
+  if (!expressionIdOfFile.has(file)) {
+    let id: string | null = null
+    if (fs.existsSync(file)) {
+      const match = fs.readFileSync(file, 'utf-8').match(/<TEI\b[^>]*\bxml:id="([^"]+)"/)
+      id = match ? match[1] : null
+    }
+    expressionIdOfFile.set(file, id)
+  }
+  return expressionIdOfFile.get(file) ?? null
+}
+
+const readOccurrence = (ref: Element, indexDir: string): TermOccurrence => {
+  const [file, fragment] = (ref.getAttribute('target') || '').split('#')
+  const piece = file.match(/^\.\.\/(\d+)\//)?.[1] ?? null
+  const target = fragment || null
+  const targetKind: TermOccurrence['targetKind'] = !target
+    ? 'text'
+    : target.startsWith('t_')
+      ? 'word'
+      : target === 'score' || target.startsWith('music-example') || target.startsWith('aria')
+        ? 'music'
+        : 'passage'
+  return {
+    type: ref.getAttribute('type') === 'editorial' ? 'editorial' : 'register',
+    page: ref.getAttribute('n'),
+    piece,
+    expressionId: file ? readExpressionId(path.join(indexDir, file)) : null,
+    target,
+    targetKind,
+    quote: readQuote(ref),
+    registerEntry: ref.getAttribute('corresp')?.split('#')[1] ?? null,
+  }
+}
+
+export const loadTerms = async (): Promise<Term[]> => {
+  if (cachedTerms) return cachedTerms
+
+  const indexDir = path.join(DATA_DIR, 'indices')
+  const document = parseXml(fs.readFileSync(path.join(indexDir, 'terms.xml'), 'utf-8'))
+  const list = document.getElementsByTagNameNS(TEI_NS, 'list')[0]
+  const items = list ? Array.from(list.children).filter((el) => el.localName === 'item') : []
+
+  cachedTerms = items.map((item) => {
+    const labels = Array.from(item.children).filter((el) => el.localName === 'label')
+    const ptr = Array.from(item.children).find((el) => el.localName === 'ptr')
+    const refs = Array.from(item.getElementsByTagNameNS(TEI_NS, 'ref'))
+    const page = (o: TermOccurrence) => Number(o.page) || 0
+    return {
+      xmlId: item.getAttribute('xml:id') || 'no-id',
+      label: labels.find((l) => l.getAttribute('type') === 'reg')?.textContent || '',
+      orig: labels.filter((l) => l.getAttribute('type') === 'orig').map((l) => l.textContent || ''),
+      gloss: Array.from(item.children).find((el) => el.localName === 'gloss')?.textContent || '',
+      registerEntries: (ptr?.getAttribute('target') || '')
+        .split(/\s+/)
+        .map((token) => token.split('#')[1])
+        .filter(Boolean),
+      occurrences: refs.map((ref) => readOccurrence(ref, indexDir)).sort((a, b) => page(a) - page(b)),
+    }
+  })
+  return cachedTerms
+}
+
+/** label and gloss of the terms tagged in a text, by xml:id */
+export const loadTermSummaries = async (ids: string[]): Promise<Record<string, TermSummary>> => {
+  const wanted = new Set(ids)
+  const summaries: Record<string, TermSummary> = {}
+  for (const term of await loadTerms()) {
+    if (wanted.has(term.xmlId)) summaries[term.xmlId] = { label: term.label, gloss: term.gloss }
+  }
+  return summaries
+}
+
+// ---------------------------------------------------------------------------
+// loadRegister: Mattheson's Register, with links from its entries to the indices
+// ---------------------------------------------------------------------------
+
+const INDEX_ROUTES: Record<string, string> = {
+  'persons.xml': 'persons',
+  'musical-works.xml': 'musicalworks',
+  'bibliography.xml': 'bibliography',
+  'terms.xml': 'terms',
+}
+
+export const loadRegister = async (): Promise<Register> => {
+  if (cachedRegister) return cachedRegister
+
+  const indexRoutes: Record<string, string> = {}
+  for (const [file, route] of Object.entries(INDEX_ROUTES)) {
+    const raw = fs.readFileSync(path.join(DATA_DIR, 'indices', file), 'utf-8')
+    for (const match of raw.matchAll(/xml:id="([^"]+)"/g)) indexRoutes[match[1]] = route
+  }
+
+  const rawXml = fs.readFileSync(path.join(DATA_DIR, 'register/register_1731.xml'), 'utf-8')
+  const text = extractFromXML(modernizeTEI(rawXml), 'text').extracted
+  cachedRegister = { transformed: transformToCeteicean(text || ''), indexRoutes }
+  return cachedRegister
+}
+
+// ---------------------------------------------------------------------------
 // loadGuidelines
 // ---------------------------------------------------------------------------
 
@@ -320,11 +452,20 @@ export const loadAbout = async (): Promise<About> => {
   return cachedAbout
 }
 
+// Elements pointing to an index entry; @corresp may name several entries ("#t_a #t_b")
+const collectIndexRefs = (document: Document) =>
+  Array.from(document.querySelectorAll('[corresp]')).flatMap((el) =>
+    (el.getAttribute('corresp') || '')
+      .split(/\s+/)
+      .filter((token) => token.startsWith('#'))
+      .map((token) => ({ xmlId: el.getAttribute('xml:id'), corresp: token.slice(1) }))
+  )
+
 // ---------------------------------------------------------------------------
 // Expression processing (core logic ported from gatsby-node onCreateNode)
 // ---------------------------------------------------------------------------
 
-const SPECIAL_TEI_TYPES = new Set(['persons', 'bibliography', 'musical-works', 'guideline', 'about'])
+const SPECIAL_TEI_TYPES = new Set(['persons', 'bibliography', 'musical-works', 'terms', 'guideline', 'about'])
 
 const processExpressionFile = async (filePath: string): Promise<Expression | null> => {
   const rawXml = fs.readFileSync(filePath, 'utf-8')
@@ -352,12 +493,7 @@ const processExpressionFile = async (filePath: string): Promise<Expression | nul
     'de'
   const mei = collectEmbeddedMEI(document, filePath)
   const refTargets = collectRefTargets(document)
-  const indexRefs = Array.from(document.querySelectorAll('[corresp]')).map((persName) => {
-    return {
-      xmlId: persName.getAttribute('xml:id'),
-      corresp: persName.getAttribute('corresp')!.slice(1),
-    }
-  })
+  const indexRefs = collectIndexRefs(document)
 
   // Collect zones from embedded MEI
   const parser = new JSDOM('').window.DOMParser
@@ -520,10 +656,7 @@ export const loadExpressionIndexRefs = async (): Promise<ExpressionIndexData[]> 
     const expressionId = teiRoot.getAttribute('xml:id')
     const label = teiRoot.querySelector('title')?.textContent ?? null
 
-    const indexRefs = Array.from(document.querySelectorAll('[corresp]')).map((el) => ({
-      xmlId: el.getAttribute('xml:id'),
-      corresp: el.getAttribute('corresp')!.slice(1),
-    }))
+    const indexRefs = collectIndexRefs(document)
 
     results.push({ expressionId, label, indexRefs })
   }

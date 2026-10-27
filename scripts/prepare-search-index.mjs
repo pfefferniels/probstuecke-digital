@@ -42,7 +42,7 @@ function findXmlFiles(dir) {
   return results
 }
 
-const SPECIAL_TEI_TYPES = new Set(['persons', 'bibliography', 'musical-works', 'guideline', 'about'])
+const SPECIAL_TEI_TYPES = new Set(['persons', 'bibliography', 'musical-works', 'terms', 'guideline', 'about'])
 
 function collectExpressions() {
   const allXml = findXmlFiles(DATA_DIR)
@@ -157,6 +157,11 @@ const indexPages = [
     htmlDir: 'musicalworks',
     title: 'Index of Musical Works',
   },
+  {
+    xml: path.join(DATA_DIR, 'indices/terms.xml'),
+    htmlDir: 'terms',
+    title: 'Index of Terms',
+  },
 ]
 
 for (const page of indexPages) {
@@ -178,14 +183,19 @@ for (const page of indexPages) {
 const textPages = [
   { xml: 'guidelines/guidelines_en.xml', htmlDir: 'guidelines', title: 'Edition Guidelines' },
   { xml: 'about/about_en.xml', htmlDir: 'about', title: 'About the Edition' },
+  { xml: 'register/register_1731.xml', htmlDir: 'register', title: 'Mattheson’s Register (1731)' },
 ]
+
+// long s and umlauts with superscript e in their modern form, so that the diplomatic text can be found
+const UMLAUTS = { a: 'ä', o: 'ö', u: 'ü', A: 'Ä', O: 'Ö', U: 'Ü' }
+const searchable = (text) => text.replace(/ſ/g, 's').replace(/([aouAOU])\u0364/g, (_, vowel) => UMLAUTS[vowel])
 
 for (const page of textPages) {
   const xmlPath = path.join(DATA_DIR, page.xml)
   if (!fs.existsSync(xmlPath)) continue
   const raw = fs.readFileSync(xmlPath, 'utf-8')
   const doc = parseXml(raw)
-  const body = textContent(doc.querySelector('text'))
+  const body = searchable(textContent(doc.querySelector('text')))
   const htmlPath = path.join(OUT_DIR, page.htmlDir, 'index.html')
 
   if (injectIntoHtml(htmlPath, page.title, body)) {

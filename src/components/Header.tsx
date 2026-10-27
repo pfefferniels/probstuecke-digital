@@ -33,6 +33,8 @@ const indices = [
   { href: '/bibliography/', label: 'Bibliography' },
   { href: '/musicalworks/', label: 'Index of Musical Works' },
   { href: '/persons/', label: 'Index of Persons' },
+  { href: '/terms/', label: 'Index of Terms' },
+  { href: '/register/', label: 'Mattheson’s Register (1731)' },
 ]
 
 // usePathname() may or may not carry the trailing slash of our hrefs

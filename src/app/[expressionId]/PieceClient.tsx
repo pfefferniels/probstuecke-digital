@@ -11,18 +11,20 @@ import { VerovioProvider } from '@/hooks/useVerovio'
 import { Ref } from '@/components/Ref'
 import { GlowDefs } from '@/components/GlowDefs'
 import LinkToIndex from '@/components/LinkToIndex'
+import TermLink from '@/components/TermLink'
 import { Download, InfoOutlined } from '@mui/icons-material'
 import { DownloadDialog } from '@/components/DownloadDialog'
 import { SourcePanel } from '@/components/SourcePanel'
 import { keyLabel, longLabel, shortLabel } from '@/lib/expressionLabels'
-import type { EditionVersion, Expression, ExpressionZone } from '@/lib/types'
+import type { EditionVersion, Expression, ExpressionZone, TermSummary } from '@/lib/types'
 
 interface PieceClientProps {
   piece: Expression
   version: EditionVersion
+  terms: Record<string, TermSummary>
 }
 
-export default function PieceClient({ piece, version }: PieceClientProps) {
+export default function PieceClient({ piece, version, terms }: PieceClientProps) {
   const [downloadDialogOpen, setDownloadDialogOpen] = useState(false)
   const [sourceOpen, setSourceOpen] = useState(false)
   const context = piece.context
@@ -44,7 +46,30 @@ export default function PieceClient({ piece, version }: PieceClientProps) {
     'tei-persname': (props: any) => <LinkToIndex type="persons" {...props} />,
     'tei-name': (props: any) => <LinkToIndex type="musicalworks" {...props} />,
     'tei-bibl': (props: any) => <LinkToIndex type="bibliography" {...props} />,
+    'tei-term': (props: any) => <TermLink terms={terms} {...props} />,
   }
+
+  // the text is rendered in the browser, so a link to a place in it (e.g. from an index)
+  // only finds its target once it is there
+  useEffect(() => {
+    const id = decodeURIComponent(window.location.hash.slice(1))
+    if (!id) return
+    let tries = 0
+    const later: number[] = []
+    const timer = window.setInterval(() => {
+      const el = document.getElementById(id)
+      if (el || ++tries > 40) window.clearInterval(timer)
+      if (!el) return
+      el.classList.add('linkTarget')
+      el.scrollIntoView({ block: 'center' })
+      // the score is laid out after the text and may push the passage down
+      later.push(window.setTimeout(() => el.scrollIntoView({ block: 'center' }), 1500))
+    }, 150)
+    return () => {
+      window.clearInterval(timer)
+      later.forEach((t) => window.clearTimeout(t))
+    }
+  }, [])
 
   useEffect(() => {
     const pdfkitScript = document.createElement('script')

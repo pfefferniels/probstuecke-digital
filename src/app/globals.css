@@ -354,6 +354,99 @@ tei-pb[n]:after {
     color: gray;
 }
 
+/* Words listed in the index of terms */
+a.term {
+    color: inherit;
+    text-decoration: underline dotted #8a6d3b;
+    text-underline-offset: 0.25em;
+}
+
+a.term:hover {
+    text-decoration-style: solid;
+}
+
+/* the place a link from an index leads to */
+.linkTarget {
+    background-color: rgba(255, 213, 79, 0.45);
+    border-radius: 2px;
+}
+
+/* Index of terms */
+.terms ul.occurrences {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.25rem 0 0.5rem;
+}
+
+.terms li.occurrence {
+    display: grid;
+    grid-template-columns: 4.5rem 1fr;
+    margin-bottom: 0.3rem;
+}
+
+.terms .page,
+.terms .note {
+    color: #666;
+}
+
+.terms .quote strong {
+    font-weight: 600;
+}
+
+/* Mattheson's Register: entries in two columns as in the print */
+.register tei-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: left;
+}
+
+.register tei-div {
+    display: block;
+}
+
+.register tei-head {
+    margin: 1rem 0 0.5rem;
+}
+
+/* the title of the Register is printed in three lines */
+.register tei-head tei-lb {
+    display: block;
+}
+
+.register tei-list {
+    display: block;
+    columns: 2 22rem;
+    column-gap: 3rem;
+}
+
+.register tei-list > tei-head {
+    column-span: all;
+}
+
+.register .entry {
+    padding-left: 1.5em;
+    text-indent: -1.5em;
+    margin-bottom: 0.2rem;
+}
+
+.register .entry:target,
+.register .entry.linkTarget {
+    background-color: rgba(255, 213, 79, 0.45);
+}
+
+.register .toIndex {
+    margin-left: 0.5em;
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+
+/* running heads, signatures and catchwords; column breaks; misprints corrected with <choice> */
+.register tei-fw[type],
+.register tei-cb,
+.register tei-sic {
+    display: none;
+}
+
 /* About page */
 .about tei-list {
     display: block;

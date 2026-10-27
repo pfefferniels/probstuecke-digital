@@ -1,4 +1,4 @@
-import { loadExpressionIds, loadExpression } from '@/lib/data'
+import { loadExpressionIds, loadExpression, loadTermSummaries } from '@/lib/data'
 import { loadEditionVersion } from '@/lib/editionVersion'
 import { citationMetaTags, expressionTitle } from '@/lib/citation'
 import PieceClient from './PieceClient'
@@ -33,5 +33,8 @@ export default async function ExpressionPage({ params }: PageProps) {
     notFound()
   }
 
-  return <PieceClient piece={expression} version={loadEditionVersion()} />
+  // label and gloss of the words tagged for the index of terms
+  const terms = await loadTermSummaries(expression.indexRefs.map((ref) => ref.corresp))
+
+  return <PieceClient piece={expression} version={loadEditionVersion()} terms={terms} />
 }

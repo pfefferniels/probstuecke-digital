@@ -128,6 +128,49 @@ export interface EditionVersion {
   buildDate: string
 }
 
+/** A passage listed for a term: a page reference of Mattheson's Register or one added by the editors */
+export interface TermOccurrence {
+  type: 'register' | 'editorial'
+  /** page of the 1731 print */
+  page: string | null
+  /** number of the Probstück */
+  piece: string | null
+  /** expression of the 1731 text, e.g. ps9-002 */
+  expressionId: string | null
+  /** xml:id of the place in the text, if any */
+  target: string | null
+  /** word: a tagged word; passage: a paragraph; music: the score or a music example; text: only the Probstück */
+  targetKind: 'word' | 'passage' | 'music' | 'text'
+  /** quotation from the passage, the indexed word marked */
+  quote: { pre: string; key: string; post: string } | null
+  /** xml:id of the entry in Mattheson's Register */
+  registerEntry: string | null
+}
+
+export interface Term {
+  xmlId: string
+  /** modern German form */
+  label: string
+  /** Mattheson's headwords in the Register */
+  orig: string[]
+  gloss: string
+  /** xml:ids of the entries in the Register */
+  registerEntries: string[]
+  occurrences: TermOccurrence[]
+}
+
+/** what a tagged term shows in the text */
+export interface TermSummary {
+  label: string
+  gloss: string
+}
+
+export interface Register {
+  transformed: TransformedTEI
+  /** xml:id of an index entry → route of its index page, e.g. "persons" */
+  indexRoutes: Record<string, string>
+}
+
 export interface ExpressionIndexData {
   expressionId: string | null
   label: string | null
