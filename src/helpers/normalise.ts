@@ -26,10 +26,16 @@ export const parseLexicon = (tsv: string): Lexicon => {
 
 const UMLAUTS: Record<string, string> = { a: 'ä', o: 'ö', u: 'ü', A: 'Ä', O: 'Ö', U: 'Ü' }
 
+// the nasal bar abbreviates a doubled consonant or a following n: kom̃en, genañten, Sachẽ
+const NASAL: Record<string, string> = { m: 'mm', n: 'nn', e: 'en' }
+
 export const characterRules = (word: string) =>
   word
     .replace(/ſ/g, 's')
     .replace(/([aouAOU])ͤ/g, (_, vowel: string) => UMLAUTS[vowel])
+    .replace(/ñ/g, 'nn')
+    .replace(/ẽ/g, 'en')
+    .replace(/([mne])\u0303/g, (_, letter: string) => NASAL[letter])
 
 // left as they are
 const SKIP = new Set(['teiHeader', 'facsimile', 'g'])
