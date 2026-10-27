@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useLayoutEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { useVerovio } from '../hooks/useVerovio';
 import { Stack, Pagination, ToggleButton, ToggleButtonProps, Button, ButtonProps, Tooltip } from '@mui/material';
 import { addEmptyStaves } from '../helpers/addEmptyStaves';
@@ -53,6 +53,21 @@ const OptionButton = ({ label, ...props }: ButtonProps & { label: string }) => {
     );
 }
 
+// Verovio lays the music out on a page 2100 units wide, drawn 630 px wide at scale 30
+// and then fitted to the width of the container. A much narrower container (on a phone
+// or tablet) gets a narrower page instead, with fewer bars to a system, so that the
+// music keeps its size.
+const scale = 30
+const fullPageWidth = 2100
+
+const pageWidthFor = (containerWidth: number) => {
+    const units = containerWidth * 100 / scale
+    // shrinking the full page a little is fine
+    if (units >= fullPageWidth * 0.8) return fullPageWidth
+    // in steps of 100 units, so that small changes in width do not lay the music out again
+    return Math.max(600, Math.floor(units / 100) * 100)
+}
+
 if (typeof window !== 'undefined') {
     window.highlightRefs = window.highlightRefs || ((_: string[]) => () => { });
     window.scoreSettings = window.scoreSettings || {
@@ -77,6 +92,8 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
     const [rightHand, setRightHand] = useState(false)
     const [emptyStaves, setEmptyStaves] = useState(0)
     const [renderFailed, setRenderFailed] = useState(false)
+    const [pageWidth, setPageWidth] = useState<number | null>(null)
+    const containerRef = useRef<HTMLDivElement>(null)
 
     const teiId = teiNode.getAttribute('id')
         || teiNode.querySelector('tei-ptr')?.getAttribute('target')?.replace('.xml', '');
@@ -112,8 +129,20 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
         }
     }, [vrvToolkit])
 
+    // lay the music out again when the width of the container changes
+    useLayoutEffect(() => {
+        const container = containerRef.current
+        if (!container) return
+
+        const observer = new ResizeObserver(([entry]) => {
+            if (entry.contentRect.width > 0) setPageWidth(pageWidthFor(entry.contentRect.width))
+        })
+        observer.observe(container)
+        return () => observer.disconnect()
+    }, [])
+
     useEffect(() => {
-        if (!vrvToolkit) return
+        if (!vrvToolkit || !pageWidth) return
 
         const corresp = meis.find(mei => mei?.xmlId === teiId)
         if (!corresp || !corresp.mei) return
@@ -131,7 +160,8 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
         mei = new XMLSerializer().serializeToString(meiDoc)
 
         const options: any = {
-            scale: 30,
+            scale,
+            pageWidth,
             footer: modernClefs ? 'auto' : 'none',
             pageHeight: 2000,
             adjustPageHeight: true,
@@ -176,7 +206,7 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
         }
         setRenderFailed(false)
         setSVGs(svgs)
-    }, [vrvToolkit, modernClefs, rightHand, emptyStaves, refs])
+    }, [vrvToolkit, modernClefs, rightHand, emptyStaves, refs, pageWidth])
 
     useLayoutEffect(() => {
         const cleanups: (() => void)[] = []
@@ -338,7 +368,7 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
     })
 
     return (
-        <div className={`score ${isMainScore ? 'main-score' : 'example-score'} ${modernClefs ? 'modernized' : 'diplomatic'}`}>
+        <div ref={containerRef} className={`score ${isMainScore ? 'main-score' : 'example-score'} ${modernClefs ? 'modernized' : 'diplomatic'}`}>
             <div style={{
                 float: isMainScore ? 'right' : 'left',
                 border: '0.5px solid gray',
