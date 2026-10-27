@@ -1,3 +1,7 @@
+// the page image (…/iiif/image/v2/<id>_<canvas>/full/…) or, in older encodings, the IIIF canvas
+const IMAGE_URL = /\/iiif\/image\/v2\/([^/_]+)_(\d+)\//
+const CANVAS_URL = /\/([^/]+)\/canvas\/(\d+)/
+
 export const collectZones = (document: Document) => {
     return Array
         .from(document.querySelectorAll('zone'))
@@ -11,9 +15,7 @@ export const collectZones = (document: Document) => {
             const url = zone.parentElement?.querySelector('graphic')?.getAttribute('target')
             if (!url) return null
 
-            const canvasUrl = zone.parentElement?.querySelector('graphic')?.getAttribute('target')
-            if (!canvasUrl) return null
-            const match = canvasUrl.match(/\/([^/]+)\/canvas\/(\d+)/)
+            const match = url.match(IMAGE_URL) || url.match(CANVAS_URL)
             if (!match) return null
 
             const identifier = match[1]
