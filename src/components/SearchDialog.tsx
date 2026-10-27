@@ -115,7 +115,7 @@ export const SearchDialog = () => {
 
   return (
     <>
-      <IconButton color="inherit" aria-label="search" onClick={handleOpen}>
+      <IconButton color="inherit" aria-label="Search" onClick={handleOpen}>
         <SearchIcon />
       </IconButton>
 
@@ -125,7 +125,15 @@ export const SearchDialog = () => {
         maxWidth="sm"
         fullWidth
         slotProps={{
-          paper: { sx: { minHeight: 300 } },
+          // on phones: almost full width, and at the top, out of the way of the keyboard
+          paper: {
+            sx: {
+              minHeight: 300,
+              m: { xs: 1, sm: 4 },
+              width: { xs: 'calc(100% - 16px)', sm: 'calc(100% - 64px)' },
+              alignSelf: { xs: 'flex-start', sm: 'center' },
+            },
+          },
         }}
       >
         <DialogTitle sx={{ pb: 0 }}>Search</DialogTitle>
