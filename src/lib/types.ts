@@ -82,12 +82,15 @@ export interface Expression {
 
 export interface WorkExpression {
   date: string
+  /** edition, translation, realisation or lesson */
   type: string
   id: string
   referringTo: string[]
   lang: string
   langCode: string
   author: string
+  /** the number of sections (§) of the text */
+  sections: number
 }
 
 export interface WorkKey {

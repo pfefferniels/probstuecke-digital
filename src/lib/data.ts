@@ -108,7 +108,7 @@ let cachedAbout: About | null = null
 let cachedTerms: Term[] | null = null
 let cachedRegister: Register | null = null
 let cachedWorkList: Document | null = null
-let cachedExpressionIndex: Map<string, string> | null = null
+let cachedExpressionIndex: Map<string, IndexedExpression> | null = null
 const cachedExpressionById = new Map<string, Expression>()
 
 // ---------------------------------------------------------------------------
@@ -138,15 +138,18 @@ const readWorkExpressions = (work: Element): WorkExpression[] =>
       .getAttribute('data')!
       .split(' ')
       .map((str) => str.slice(1))
+    const text = buildExpressionIndex().get(referringTo[0])
 
     return {
       date,
-      type,
+      // works.xml calls the lessons realisations too; a lesson names its participants
+      type: type === 'realisation' && text?.lesson ? 'lesson' : type,
       id: expression.getAttribute('xml:id') || `id_${Math.random()}`,
       referringTo,
       lang,
       langCode,
       author,
+      sections: text?.sections ?? 0,
     }
   })
 
@@ -465,6 +468,21 @@ const addMentionIds = (document: Document) => {
   })
 }
 
+// The sections (§) of a text: its numbered divisions, in the chapter of the piece
+const sectionDivs = (document: Document) =>
+  Array.from(document.querySelectorAll('text div[n]')).filter((div) => div.getAttribute('type') !== 'chapter')
+
+// The sections get an ID by their number (section-1, section-2, …), so that switching to another
+// version of the piece can stay at the section being read (see PieceClient)
+const addSectionIds = (document: Document) => {
+  const used = new Set<string>()
+  for (const div of sectionDivs(document)) {
+    const id = `section-${div.getAttribute('n')}`
+    if (!div.hasAttribute('xml:id') && !used.has(id)) div.setAttributeNS(XML_NS, 'xml:id', id)
+    used.add(id)
+  }
+}
+
 // Elements pointing to an index entry; @corresp may name several entries ("#t_a #t_b")
 const collectIndexRefs = (document: Document) =>
   Array.from(document.querySelectorAll('[corresp]')).flatMap((el) =>
@@ -497,6 +515,7 @@ const processExpressionFile = async (filePath: string): Promise<Expression | nul
   if (teiType && SPECIAL_TEI_TYPES.has(teiType)) return null
 
   addMentionIds(document)
+  addSectionIds(document)
 
   // Collect metadata, MEI, refs, indexRefs
   const metadata = collectExpressionMetadata(document)
@@ -590,11 +609,19 @@ const processExpressionFile = async (filePath: string): Promise<Expression | nul
 // Expression index: lightweight scan mapping expressionId → filePath
 // ---------------------------------------------------------------------------
 
-const buildExpressionIndex = (): Map<string, string> => {
+interface IndexedExpression {
+  filePath: string
+  /** whether the text is a lesson, with participants such as teacher and student */
+  lesson: boolean
+  /** the number of its sections (§) */
+  sections: number
+}
+
+const buildExpressionIndex = (): Map<string, IndexedExpression> => {
   if (cachedExpressionIndex) return cachedExpressionIndex
 
   const allXmlFiles = findXmlFiles(DATA_DIR)
-  const index = new Map<string, string>()
+  const index = new Map<string, IndexedExpression>()
 
   for (const filePath of allXmlFiles) {
     const rawXml = fs.readFileSync(filePath, 'utf-8')
@@ -610,7 +637,11 @@ const buildExpressionIndex = (): Map<string, string> => {
 
     const xmlId = teiRoot.getAttribute('xml:id')
     if (xmlId) {
-      index.set(xmlId, filePath)
+      index.set(xmlId, {
+        filePath,
+        lesson: !!document.querySelector('particDesc'),
+        sections: sectionDivs(document).length,
+      })
     }
   }
 
@@ -636,8 +667,7 @@ export const loadExpression = async (
 ): Promise<Expression | undefined> => {
   if (cachedExpressionById.has(expressionId)) return cachedExpressionById.get(expressionId)
 
-  const index = buildExpressionIndex()
-  const filePath = index.get(expressionId)
+  const filePath = buildExpressionIndex().get(expressionId)?.filePath
   if (!filePath) return undefined
 
   const expression = await processExpressionFile(filePath)

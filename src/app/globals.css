@@ -155,9 +155,38 @@ tei-lb {
     color: #555;
 }
 
-.pieceBar .versions .sep {
-    color: gray;
-    margin: 0 0.35rem;
+/* the versions as a row of pills; the one shown is filled */
+.pieceBar .versions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+}
+
+.pieceBar .version {
+    padding: 0.05rem 0.65rem;
+    border: 1px solid #c4c4c4;
+    border-radius: 1rem;
+    color: inherit;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.pieceBar a.version:hover,
+.pieceBar a.version:focus-visible {
+    border-color: #1976d2;
+    color: #1976d2;
+}
+
+.pieceBar .version[aria-current="page"] {
+    background-color: #1976d2;
+    border-color: #1976d2;
+    color: white;
+    font-weight: 600;
+}
+
+/* a section opened from another version starts below the bar with the title */
+[id^="section-"] {
+    scroll-margin-top: 8rem;
 }
 
 .pieceBar .actions {
@@ -186,6 +215,10 @@ tei-lb {
     .main-score {
         position: relative;
         padding-top: 0.5rem;
+    }
+
+    [id^="section-"] {
+        scroll-margin-top: 1rem;
     }
 
     tei-note[type="editorial"] {
