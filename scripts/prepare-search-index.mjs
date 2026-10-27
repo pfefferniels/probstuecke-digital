@@ -28,6 +28,40 @@ function textContent(node) {
   return node.textContent.replace(/\s+/g, ' ').trim()
 }
 
+const SPEAKING = new Set(['u', 'kinesic', 'incident', 'vocal'])
+
+/**
+ * Text of a TEI element as the page shows it: in lessons, utterances and actions
+ * are preceded by the names of the participants (@who), and what the page hides
+ * (rend="hidden") is left out
+ */
+function indexText(root, doc) {
+  const names = new Map(
+    Array.from(doc.querySelectorAll('particDesc person, text listPerson person'))
+      .map(person => [person.getAttribute('xml:id'), textContent(person.querySelector('persName'))])
+  )
+  const nameOf = el => (el.getAttribute('who') || '')
+    .split(/\s+/)
+    .filter(Boolean)
+    .map(token => names.get(token.replace(/^#/, '')) || token.replace(/^#/, ''))
+    .join(', ')
+
+  const parts = []
+  const walk = node => {
+    if (node.nodeType === 3) {
+      parts.push(node.nodeValue)
+      return
+    }
+    if (node.nodeType !== 1 || node.getAttribute('rend') === 'hidden') return
+    const name = SPEAKING.has(node.localName) ? nameOf(node) : ''
+    if (name) parts.push(` ${name}${node.localName === 'u' ? ':' : ''} `)
+    for (const child of Array.from(node.childNodes)) walk(child)
+    if (name) parts.push(' ')
+  }
+  if (root) walk(root)
+  return parts.join('').replace(/\s+/g, ' ').trim()
+}
+
 // ---------------------------------------------------------------------------
 // Discover all TEI expression files (same logic as data.ts)
 // ---------------------------------------------------------------------------
@@ -64,7 +98,7 @@ function collectExpressions() {
     if (!xmlId) continue
 
     const title = textContent(tei.querySelector('title'))
-    const body = textContent(tei.querySelector('text'))
+    const body = indexText(tei.querySelector('text'), doc)
 
     expressions.push({ xmlId, title, body })
   }
