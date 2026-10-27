@@ -198,5 +198,7 @@ export interface Register {
 export interface ExpressionIndexData {
   expressionId: string | null
   label: string | null
+  /** the Probstück and which version of it the text is, if it is one */
+  context: Pick<ExpressionContext, 'workTitle' | 'expression'> | null
   indexRefs: IndexRef[]
 }

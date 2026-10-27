@@ -78,32 +78,6 @@ export default function PieceClient({ piece, version, terms }: PieceClientProps)
     }
   }, [])
 
-  useEffect(() => {
-    const pdfkitScript = document.createElement('script')
-    pdfkitScript.type = 'application/javascript'
-    pdfkitScript.src = '/pdfkit.standalone.js'
-    document.body.appendChild(pdfkitScript)
-
-    const blobstreamScript = document.createElement('script')
-    blobstreamScript.type = 'application/javascript'
-    blobstreamScript.src = '/blob-stream.js'
-    document.body.appendChild(blobstreamScript)
-
-    const pdfKitHandler = () => {
-      // PDFKit initialized
-    }
-
-    pdfkitScript.defer = true
-    pdfkitScript.addEventListener('load', pdfKitHandler)
-
-    blobstreamScript.defer = true
-    blobstreamScript.addEventListener('load', () => {})
-
-    return () => {
-      pdfkitScript.removeEventListener('load', pdfKitHandler)
-    }
-  }, [])
-
   return (
     <>
       <div className="piece">
