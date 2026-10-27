@@ -64,10 +64,58 @@ tei-head {
     display: block;
 }
 
-tei-text {
+/* Junicode covers the characters of the diplomatic transcription (ſ, combining e, …) */
+@font-face {
     font-family: Junicode;
+    src: url('/Junicode.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Junicode;
+    src: url('/Junicode-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Junicode;
+    src: url('/Junicode-Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Junicode;
+    src: url('/Junicode-BoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+tei-text {
+    font-family: Junicode, serif;
     font-size: 1.1rem;
     line-height: 2;
+}
+
+/* Music symbols in the text (<g type="smufl">), e.g. rests and figures.
+   They sit in the SMuFL private use area, which only a music font covers. */
+@font-face {
+    font-family: Leipzig;
+    src: url('/Leipzig.ttf') format('truetype');
+    font-display: swap;
+}
+
+tei-g[type="smufl"] {
+    font-family: Leipzig;
+    /* SMuFL fonts are scaled to the staff, so the glyphs need a larger size */
+    font-size: 1.8em;
+    line-height: 0;
 }
 
 tei-lb {
