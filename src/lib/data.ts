@@ -28,7 +28,7 @@ import type {
   Register,
   Expression,
   ExpressionContext,
-  ParallelText,
+  AlignedOriginal,
   TransformedTEI,
   ExpressionIndexData,
 } from '@/lib/types'
@@ -477,7 +477,7 @@ const collectIndexRefs = (document: Document) =>
   )
 
 // ---------------------------------------------------------------------------
-// A translation side by side with its original
+// A translation aligned with its original
 // ---------------------------------------------------------------------------
 
 // the original as its own page shows it: a Fraktur print in modern spelling
@@ -494,7 +494,11 @@ const loadOriginal = (filePath: string): Original | null => {
   }
 }
 
-const buildParallelText = (textXml: string | null, filePath: string): ParallelText | null => {
+// the text of a translation whose sentences point to those of its original, with these sentences
+const alignWithOriginal = (
+  textXml: string | null,
+  filePath: string
+): { text: TransformedTEI; original: AlignedOriginal } | null => {
   if (!textXml) return null
   const document = parseXml(textXml)
   const originals = new Map<string, Original | null>()
@@ -504,7 +508,7 @@ const buildParallelText = (textXml: string | null, filePath: string): ParallelTe
     return originals.get(originalPath)!
   })
   if (!aligned) return null
-  return { text: transformToCeteicean(serialize(document)), ...aligned }
+  return { text: transformToCeteicean(serialize(document)), original: aligned }
 }
 
 // ---------------------------------------------------------------------------
@@ -589,6 +593,8 @@ const processExpressionFile = async (filePath: string): Promise<Expression | nul
       []
     )
 
+  const aligned = alignWithOriginal(extracts.find((extract) => extract.fill === 'text')?.with ?? null, filePath)
+
   const sections = extracts
     .map((extract) => {
       return {
@@ -608,8 +614,8 @@ const processExpressionFile = async (filePath: string): Promise<Expression | nul
     label: metadata.label,
     score: sections.score || null,
     title: sections.title || null,
-    text: sections.text || null,
-    parallel: buildParallelText(extracts.find((extract) => extract.fill === 'text')?.with ?? null, filePath),
+    text: aligned?.text || sections.text || null,
+    original: aligned?.original ?? null,
     mei,
     media,
     zones,

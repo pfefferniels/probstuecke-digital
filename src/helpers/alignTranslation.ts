@@ -1,18 +1,20 @@
 /**
- * Puts a translation side by side with its original, sentence by sentence.
+ * Gives a translation the sentences of its original, sentence by sentence.
  *
  * The sentences of the translation point to the sentences of the original
  * that they render (<s corresp="comments_de.xml#p1-1-s2">). Each run of
  * sentences that render the same sentences of the original (a German sentence
- * translated as two English ones, say) is replaced by
+ * translated as two English ones, say) is wrapped as
  *
  *   <seg type="pair">
+ *     <seg type="translation">…the sentences of the translation…<seg type="space"/></seg>
  *     <seg type="original" xml:lang="de">…the sentences of the original…</seg>
- *     <seg type="translation">…the sentences of the translation…</seg>
  *   </seg>
  *
- * so that the page can show the two in one row. The rest of the text (heads,
- * music examples, notes outside the sentences) stays as it is.
+ * so that the page can set the original between the lines of the
+ * translation, or hide it (components/InterlinearOriginal); the spacer makes
+ * room where the original needs more than its translation. The rest of the
+ * text (heads, music examples, notes outside the sentences) stays as it is.
  */
 
 const TEI_NS = 'http://www.tei-c.org/ns/1.0'
@@ -109,11 +111,12 @@ export const alignTranslation = (
       if (i > 0) translationSide.append(' ')
       translationSide.append(s)
     })
-    pair.append(originalSide, translationSide)
+    translationSide.append(seg(translation, 'space'))
+    pair.append(translationSide, originalSide)
   }
 
   return {
-    originalId: original.document.documentElement.getAttribute('xml:id'),
+    expressionId: original.document.documentElement.getAttribute('xml:id'),
     termIds: [...termIds],
   }
 }

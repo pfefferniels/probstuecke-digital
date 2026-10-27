@@ -170,89 +170,45 @@ tei-lb {
     margin: 0 auto;
 }
 
-/* A translation side by side with its original (src/components/ParallelText.tsx):
-   one row per sentence of the original and the sentences that render it */
-.parallelView {
-    max-width: 80rem;
-    margin: 0 auto;
-}
-
-.parallel tei-text {
-    line-height: 1.7;
-    text-align: left;
-}
-
-.parallelHeader,
-.parallel tei-seg[type="pair"] {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    column-gap: 2.5rem;
-    padding: 0.4rem 0.75rem;
-}
-
-.parallelHeader {
-    font-family: Roboto, Helvetica, Arial, sans-serif;
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: #555;
-    border-bottom: 1px solid #ccc;
-}
-
-.parallel tei-seg[type="pair"] {
-    border-top: 1px solid #eee;
-    border-radius: 2px;
-}
-
-.parallel tei-seg[type="pair"]:first-of-type {
-    border-top: none;
-}
-
-.parallel tei-seg[type="pair"]:hover {
-    background-color: rgba(255, 213, 79, 0.2);
-}
-
-.parallel tei-seg[type="original"],
-.parallel tei-seg[type="translation"] {
-    display: block;
-}
-
-/* the catchword repeats the next word; the page break only marks the place */
-.parallel tei-seg[type="original"] tei-fw {
+/* A translation aligned with its original (src/helpers/alignTranslation.ts): the
+   original runs small and grey between the lines of the translation, each sentence
+   beneath its translation (src/components/InterlinearOriginal.tsx) */
+tei-seg[type="original"],
+tei-seg[type="space"] {
     display: none;
 }
 
-.parallel tei-pb {
-    display: inline;
+.interlinearText {
+    position: relative;
 }
 
-.parallel tei-pb[n]:after {
-    content: '[' attr(n) ']';
-    font-size: 0.8em;
+.interlinear tei-p {
+    line-height: 2.6;
+    text-align: left;
 }
 
-.parallel tei-note[type="editorial"] {
-    float: none;
-    display: block;
-    width: auto;
-    margin: 0.5rem 0;
+.interlinear tei-seg[type="space"] {
+    height: 0;
 }
 
-/* phones: the original above the translation */
-@media (max-width: 599.95px) {
-    .parallelHeader {
-        display: none;
-    }
+.interlinearOriginal {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
 
-    .parallel tei-seg[type="pair"] {
-        grid-template-columns: minmax(0, 1fr);
-        row-gap: 0.25rem;
-        padding: 0.5rem 0;
-    }
+.interlinearOriginal span {
+    position: absolute;
+    white-space: nowrap;
+    font-family: Junicode, serif;
+    line-height: 1.2;
+    color: #666;
+    pointer-events: auto;
+}
 
-    .parallel tei-seg[type="original"] {
-        color: #555;
-        font-size: 0.95em;
-    }
+.interlinear tei-seg[type="pair"].active > tei-seg[type="translation"],
+.interlinearOriginal span.active {
+    background-color: rgba(255, 213, 79, 0.25);
 }
 
 .main-score {

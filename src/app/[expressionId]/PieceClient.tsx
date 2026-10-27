@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, Fragment } from 'react'
+import { useState, useEffect, useRef, Fragment } from 'react'
 import Link from 'next/link'
 import { NotatedMusic } from '@/components/NotatedMusic'
 import Ceteicean from '@/ceteicean/Ceteicean'
@@ -12,10 +12,10 @@ import { Ref } from '@/components/Ref'
 import { GlowDefs } from '@/components/GlowDefs'
 import LinkToIndex from '@/components/LinkToIndex'
 import TermLink from '@/components/TermLink'
-import { CompareArrows, Download, InfoOutlined } from '@mui/icons-material'
+import { Download, InfoOutlined, Subtitles, SubtitlesOff } from '@mui/icons-material'
 import { DownloadDialog } from '@/components/DownloadDialog'
 import { SourcePanel } from '@/components/SourcePanel'
-import { ParallelText } from '@/components/ParallelText'
+import { InterlinearOriginal } from '@/components/InterlinearOriginal'
 import { lessonRoutes, Participants } from '@/components/Lesson'
 import { keyLabel, longLabel, shortLabel } from '@/lib/expressionLabels'
 import type { EditionVersion, Expression, ExpressionZone, TermSummary } from '@/lib/types'
@@ -29,21 +29,27 @@ interface PieceClientProps {
 export default function PieceClient({ piece, version, terms }: PieceClientProps) {
   const [downloadDialogOpen, setDownloadDialogOpen] = useState(false)
   const [sourceOpen, setSourceOpen] = useState(false)
-  // a translation aligned with its original can be shown side by side with it (?view=parallel)
-  const [parallel, setParallel] = useState(false)
+  // a translation aligned with its original shows the original between its lines,
+  // unless the reader has hidden it (remembered in this browser)
+  const [showOriginal, setShowOriginal] = useState(true)
+  const textRef = useRef<HTMLDivElement>(null)
   const context = piece.context
-  const showScore = !!piece.score && !parallel
 
   useEffect(() => {
-    if (piece.parallel && new URLSearchParams(window.location.search).get('view') === 'parallel') setParallel(true)
-  }, [piece.parallel])
+    try {
+      if (localStorage.getItem('hideOriginal') === 'true') setShowOriginal(false)
+    } catch {
+      // no storage: the original is shown
+    }
+  }, [])
 
-  const toggleParallel = () => {
-    const url = new URL(window.location.href)
-    if (parallel) url.searchParams.delete('view')
-    else url.searchParams.set('view', 'parallel')
-    window.history.replaceState(null, '', url)
-    setParallel(!parallel)
+  const toggleOriginal = () => {
+    try {
+      localStorage.setItem('hideOriginal', String(showOriginal))
+    } catch {
+      // no storage: the choice holds for this page only
+    }
+    setShowOriginal(!showOriginal)
   }
 
   const renderMusic = (teiNode: Element) => (
@@ -118,15 +124,15 @@ export default function PieceClient({ piece, version, terms }: PieceClientProps)
               </nav>
             )}
             <span className="actions">
-              {piece.parallel && (
-                <Tooltip title={parallel ? 'Back to the score' : 'Compare with the original, sentence by sentence'}>
+              {piece.original && (
+                <Tooltip title={showOriginal ? 'Hide the original' : 'Show the original between the lines'}>
                   <IconButton
                     color="primary"
-                    aria-label="Compare with the original"
-                    aria-pressed={parallel}
-                    onClick={toggleParallel}
+                    aria-label="Original between the lines"
+                    aria-pressed={showOriginal}
+                    onClick={toggleOriginal}
                   >
-                    <CompareArrows />
+                    {showOriginal ? <Subtitles /> : <SubtitlesOff />}
                   </IconButton>
                 </Tooltip>
               )}
@@ -169,16 +175,21 @@ export default function PieceClient({ piece, version, terms }: PieceClientProps)
         <VerovioProvider>
           {/* side by side from the md breakpoint on; below it the score comes first and the commentary follows */}
           <Grid container spacing={1} lang={piece.lang}>
-            {showScore && (
+            {piece.score && (
               <Grid size={{ xs: 12, md: 6 }} className="scoreView">
                 <Ceteicean pageContext={piece.score as any} routes={routes} />
               </Grid>
             )}
-            <Grid size={showScore ? { xs: 12, md: 6 } : 12} p={1.5} className={showScore ? undefined : parallel ? 'parallelView' : 'textOnly'}>
+            <Grid
+              size={piece.score ? { xs: 12, md: 6 } : 12}
+              p={1.5}
+              className={[piece.score ? '' : 'textOnly', piece.original && showOriginal ? 'interlinear' : ''].join(' ').trim() || undefined}
+            >
               {piece.header.participants.length > 0 && <Participants participants={piece.header.participants} />}
-              {parallel && piece.parallel
-                ? <ParallelText parallel={piece.parallel} context={context} routes={routes} />
-                : piece.text && <Ceteicean pageContext={piece.text as any} routes={routes} />}
+              <div ref={textRef} className={piece.original ? 'interlinearText' : undefined}>
+                {piece.text && <Ceteicean pageContext={piece.text as any} routes={routes} />}
+                {piece.original && showOriginal && <InterlinearOriginal container={textRef} />}
+              </div>
             </Grid>
           </Grid>
         </VerovioProvider>
