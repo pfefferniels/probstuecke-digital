@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Dialog, DialogTitle, DialogContent, List, ListItemText, ListItemButton, ListItem, Typography } from '@mui/material';
 import { ExportPDFModal } from './ExportPDFModal';
+import { mediaDetails } from './Lesson';
 import type { Expression } from '@/lib/types'
 
 interface DownloadDialogProps {
@@ -82,6 +83,17 @@ export const DownloadDialog = ({ open, onClose, expression }: DownloadDialogProp
                                     />
                                 </ListItemButton>
                             </ListItem>
+                            {/* the recordings of a realisation, or what is played in a lesson */}
+                            {expression.media.map(media => (
+                                <ListItem key={media.url}>
+                                    <ListItemButton component="a" href={media.url} download>
+                                        <ListItemText
+                                            primary={media.label ? `Recording: ${media.label}` : 'Recording'}
+                                            secondary={`Download the audio file ${[media.target.split('/').pop(), mediaDetails(media)].filter(Boolean).join(', ')}.`}
+                                        />
+                                    </ListItemButton>
+                                </ListItem>
+                            ))}
                             {error && (
                                 <ListItem>
                                     <Typography color="error" variant="body2">{error}</Typography>
