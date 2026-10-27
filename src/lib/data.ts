@@ -1,6 +1,7 @@
 import * as fs from 'fs'
 import * as path from 'path'
 import { JSDOM } from 'jsdom'
+import serialize from 'w3c-xmlserializer'
 import createVerovioModule from 'verovio/wasm'
 import { VerovioToolkit } from 'verovio/esm'
 import { transformToCeteicean } from '@/helpers/transformToCeteicean'
@@ -9,6 +10,7 @@ import { collectExpressionMetadata, collectEmbeddedMEI, collectRefTargets } from
 import { collectZones } from '@/helpers/collectors/collectZones'
 import { collectPersName } from '@/helpers/collectors/collectPersName'
 import { collectHeader } from '@/helpers/collectors/collectHeader'
+import { normaliseDocument, parseLexicon, type Lexicon } from '@/helpers/normalise'
 import type {
   Work,
   WorkExpression,
@@ -45,31 +47,19 @@ const getVerovioToolkit = async (): Promise<VerovioToolkit> => {
 }
 
 // ---------------------------------------------------------------------------
-// Modernize TEI via DTA CAB
+// Modernize Fraktur TEI with the edition's lexicon
 // ---------------------------------------------------------------------------
 
-const modernizeTEI = async (rawXml: string, attempts = 2): Promise<string> => {
-  try {
-    const modernized = await fetch(
-      'https://www.deutschestextarchiv.de/public/cab/query?a=default&fmt=xml&clean=1&pretty=1&raw=1&qname=qd&file=C%3A%5Cfakepath%5Ccomments_de.xml',
-      {
-        referrer: 'https://www.deutschestextarchiv.de/public/cab/file',
-        body: rawXml,
-        method: 'POST',
-        mode: 'cors',
-      }
-    )
-    if (!modernized.ok) throw new Error(`HTTP ${modernized.status}`)
+let cachedLexicon: Lexicon | null = null
 
-    // under load CAB sometimes answers with an HTML error page instead of TEI
-    const text = await modernized.text()
-    if (!parseXml(text).querySelector('TEI text')) throw new Error('response is not a TEI document')
-    return text
-  } catch (e) {
-    if (attempts > 1) return modernizeTEI(rawXml, attempts - 1)
-    console.error('Error fetching modernized version: ' + (e as Error).message)
-    return rawXml
+const modernizeTEI = (rawXml: string): string => {
+  if (!cachedLexicon) {
+    const lexiconPath = path.join(DATA_DIR, '../normalisation/lexicon.tsv')
+    cachedLexicon = parseLexicon(fs.readFileSync(lexiconPath, 'utf-8'))
   }
+  const document = parseXml(rawXml)
+  normaliseDocument(document, cachedLexicon)
+  return serialize(document)
 }
 
 // ---------------------------------------------------------------------------
@@ -380,7 +370,7 @@ const processExpressionFile = async (filePath: string): Promise<Expression | nul
     .flat()
 
   // Modernize Fraktur TEI
-  const modernized = metadata.isFraktur ? await modernizeTEI(rawXml) : rawXml
+  const modernized = metadata.isFraktur ? modernizeTEI(rawXml) : rawXml
 
   // Extract sections exactly as in gatsby-node
   const selectors: Record<string, string> = {
