@@ -19,6 +19,7 @@ import {
   Typography,
 } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { SearchDialog } from './SearchDialog'
@@ -34,6 +35,41 @@ const indices = [
   { href: '/persons/', label: 'Index of Persons' },
 ]
 
+// usePathname() may or may not carry the trailing slash of our hrefs
+const isCurrent = (pathname: string, href: string) =>
+  pathname === href || `${pathname}/` === href
+
+// Underlines the entry of the page currently shown
+const navButtonSx = {
+  textTransform: 'none',
+  fontSize: '1rem',
+  px: 1.5,
+  whiteSpace: 'nowrap',
+  '&[aria-current="page"], &.current': {
+    textDecoration: 'underline',
+    textDecorationThickness: 2,
+    textUnderlineOffset: 6,
+  },
+}
+
+interface NavButtonProps {
+  href: string
+  label: string
+  pathname: string
+}
+
+const NavButton = ({ href, label, pathname }: NavButtonProps) => (
+  <Button
+    color="inherit"
+    component={Link}
+    href={href}
+    aria-current={isCurrent(pathname, href) ? 'page' : undefined}
+    sx={navButtonSx}
+  >
+    {label}
+  </Button>
+)
+
 interface DrawerLinkProps {
   href: string
   label: string
@@ -43,7 +79,7 @@ interface DrawerLinkProps {
 
 // Entry of the navigation drawer used on small screens
 const DrawerLink = ({ href, label, pathname, onNavigate }: DrawerLinkProps) => (
-  <ListItemButton component={Link} href={href} selected={pathname === href} onClick={onNavigate}>
+  <ListItemButton component={Link} href={href} selected={isCurrent(pathname, href)} onClick={onNavigate}>
     <ListItemText primary={label} />
   </ListItemButton>
 )
@@ -63,58 +99,59 @@ export const Header = ({ title, subtitle }: HeaderProps) => {
 
   return (
     <div className="header">
-      <AppBar sx={{ bgcolor: 'white' }} position='static' elevation={1}>
-        <Toolbar sx={{ color: 'black' }}>
-          <Typography
-            variant="h5"
-            component="div"
-            sx={{ flexGrow: 0, paddingRight: 1, fontSize: { xs: '1.3rem', sm: '1.5rem' }, whiteSpace: 'nowrap' }}
+      <AppBar
+        position='static'
+        elevation={0}
+        sx={{ bgcolor: 'white', color: 'black', borderBottom: 1, borderColor: 'divider' }}
+      >
+        <Toolbar sx={{ gap: 1 }}>
+          {/* title with the subtitle beneath it, both linking home */}
+          <Box
+            component={Link}
+            href='/'
+            sx={{ display: 'flex', flexDirection: 'column', minWidth: 0, color: 'inherit', textDecoration: 'none' }}
           >
-            <Link href='/' style={{ textDecoration: 'none', color: 'black' }}>
+            <Typography
+              component="span"
+              sx={{ fontSize: { xs: '1.3rem', sm: '1.5rem' }, lineHeight: 1.2, whiteSpace: 'nowrap' }}
+            >
               {title}
-            </Link>
-          </Typography>
-          {/* too long for phones; the title says enough there */}
-          <Typography
-            component="div"
-            sx={{
-              display: { xs: 'none', sm: 'block' },
-              flexGrow: 1,
-              color: 'gray',
-              borderLeft: '1px solid black',
-              paddingLeft: 1,
-              maxWidth: 300,
-              fontSize: { sm: '0.9rem', md: '1rem' },
-            }}
-          >
-            {subtitle}
-          </Typography>
+            </Typography>
+            {/* too long for phones; the title says enough there */}
+            <Typography
+              component="span"
+              sx={{
+                display: { xs: 'none', sm: 'block' },
+                color: 'text.secondary',
+                fontSize: '0.85rem',
+                lineHeight: 1.3,
+                textWrap: 'balance',
+              }}
+            >
+              {subtitle}
+            </Typography>
+          </Box>
 
-          <Box component="nav" aria-label="Main" sx={{ display: { xs: 'none', md: 'flex' }, alignSelf: 'stretch', alignItems: 'center' }}>
-            <Button color="inherit" component={Link} href="/">
-              Overview
-            </Button>
-            <Divider flexItem orientation='vertical' variant='middle' />
-            <Button color="inherit" component={Link} href="/about/">
-              About
-            </Button>
-            <Divider flexItem orientation='vertical' variant='middle' />
+          <Box sx={{ flexGrow: 1 }} />
+
+          <Box component="nav" aria-label="Main" sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center' }}>
+            <NavButton href="/" label="Overview" pathname={pathname} />
+            <NavButton href="/about/" label="About" pathname={pathname} />
             <Button
               color="inherit"
               aria-controls="menu-appbar"
               aria-haspopup="true"
+              aria-expanded={open}
               onClick={handleClick}
+              endIcon={<ExpandMoreIcon />}
+              className={indices.some(({ href }) => isCurrent(pathname, href)) ? 'current' : undefined}
+              sx={{ ...navButtonSx, '& .MuiButton-endIcon': { ml: 0.25 } }}
             >
               Indices
             </Button>
-            <Divider flexItem orientation='vertical' variant='middle' />
-            <Button color="inherit" component={Link} href="/guidelines/">
-              Edition Guidelines
-            </Button>
-            <Divider flexItem orientation='vertical' variant='middle' />
+            <NavButton href="/guidelines/" label="Edition Guidelines" pathname={pathname} />
           </Box>
           {/* below md: search and menu button at the right edge */}
-          <Box sx={{ flexGrow: 1, display: { md: 'none' } }} />
           <SearchDialog />
           <IconButton
             color="inherit"
@@ -140,10 +177,14 @@ export const Header = ({ title, subtitle }: HeaderProps) => {
             onClose={handleClose}
           >
             {indices.map(({ href, label }) => (
-              <MenuItem key={href} onClick={handleClose}>
-                <Link href={href} style={{ textDecoration: 'none', color: 'black' }}>
-                  {label}
-                </Link>
+              <MenuItem
+                key={href}
+                component={Link}
+                href={href}
+                selected={isCurrent(pathname, href)}
+                onClick={handleClose}
+              >
+                {label}
               </MenuItem>
             ))}
           </Menu>
