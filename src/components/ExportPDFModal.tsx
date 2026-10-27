@@ -6,9 +6,10 @@ import { Button, CircularProgress, Tab, Tabs, ToggleButton, ToggleButtonGroup } 
 import { downloadAs } from './DownloadDialog'
 import { removeEmbeddedAnnotations } from '../helpers/removeEmbeddedAnnotations'
 import { addEmptyStaves } from '../helpers/addEmptyStaves'
+import { smuflFigures } from '../helpers/smuflFigures'
 
 const junicode = '/Junicode.woff'
-const junicodeBold = 'Junicode-Bold.woff'
+const junicodeBold = '/Junicode-Bold.woff'
 const junicodeItalic = '/Junicode-Italic.woff'
 const junicodeBoldItalic = '/Junicode-BoldItalic.woff'
 const verovioTextFont = '/VerovioText.ttf'
@@ -38,6 +39,10 @@ const margins = {
 
 const fonts = ['Leipzig', 'Bravura', 'Gootville', 'Leland']
 
+// The notation itself is drawn as paths; only symbols within text (accidentals and raised
+// figures in figured bass, tempo signs) use a music font. Leipzig is the one bundled.
+const musicFontFamily = /Leipzig|Bravura|Gootville|Leland/
+
 interface ExportPDFModalProps {
     meiData: string
     fileName: string
@@ -54,16 +59,7 @@ export const ExportPDFModal = ({ meiData, fileName }: ExportPDFModalProps) => {
     const exportPDF = async () => {
         setLoading(true)
 
-        const script = document.createElement("script");
-        script.type = "application/javascript";
-        script.src = "/verovio-toolkit-wasm.js";
-        document.body.appendChild(script);
-
-        script.defer = true;
-        script.addEventListener("load", () => {
-
-        });
-
+        // Verovio is loaded by the VerovioProvider of the page
         const pdfToolkit = new window.verovio.toolkit()
 
         pdfToolkit.setOptions({
@@ -113,12 +109,14 @@ export const ExportPDFModal = ({ meiData, fileName }: ExportPDFModalProps) => {
 
         if (!window.scoreSettings.rightHand) removeEmbeddedAnnotations(dom)
         addEmptyStaves(dom, window.scoreSettings.emptyStaves)
+        smuflFigures(dom)
 
         pdfToolkit.loadData(new XMLSerializer().serializeToString(dom))
 
         const options = {
             fontCallback: function (family: string, bold: boolean, italic: boolean) {
-                if (family === 'Leipzig') return family
+                if (musicFontFamily.test(family)) return 'Leipzig'
+                if (family.includes('VerovioText')) return 'VerovioText'
                 if (bold && italic) return 'Junicode-BoldItalic'
                 if (bold && !italic) return 'Junicode-Bold'
                 if (!bold && italic) return 'Junicode-Italic'

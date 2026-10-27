@@ -6,6 +6,7 @@ import { Stack, Pagination, ToggleButton, ToggleButtonProps, Button, ButtonProps
 import { Close } from '@mui/icons-material';
 import { addEmptyStaves } from '../helpers/addEmptyStaves';
 import { removeEmbeddedAnnotations } from '../helpers/removeEmbeddedAnnotations';
+import { smuflFigures } from '../helpers/smuflFigures';
 import { clearTouchSelection, isTouchInput, revealElement, selectLink } from '../helpers/touchSelection';
 import './NotatedMusic.css'
 import type { ExpressionMei, ExpressionZone } from '@/lib/types'
@@ -230,6 +231,7 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
         const hasEmbeddedAnnotation = !!meiDoc.querySelector('staffDef[type="embeddedAnnotation"]')
         if (isMainScore && !rightHand && hasEmbeddedAnnotation) removeEmbeddedAnnotations(meiDoc)
         addEmptyStaves(meiDoc, emptyStaves)
+        smuflFigures(meiDoc)
 
         mei = new XMLSerializer().serializeToString(meiDoc)
 
