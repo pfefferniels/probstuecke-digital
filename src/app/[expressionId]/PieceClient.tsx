@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, Fragment } from 'react'
+import { useState, useEffect, useRef, Fragment } from 'react'
 import Link from 'next/link'
 import { NotatedMusic } from '@/components/NotatedMusic'
 import Ceteicean from '@/ceteicean/Ceteicean'
@@ -12,9 +12,10 @@ import { Ref } from '@/components/Ref'
 import { GlowDefs } from '@/components/GlowDefs'
 import LinkToIndex from '@/components/LinkToIndex'
 import TermLink from '@/components/TermLink'
-import { Download, InfoOutlined } from '@mui/icons-material'
+import { Download, InfoOutlined, Subtitles, SubtitlesOff } from '@mui/icons-material'
 import { DownloadDialog } from '@/components/DownloadDialog'
 import { SourcePanel } from '@/components/SourcePanel'
+import { InterlinearOriginal } from '@/components/InterlinearOriginal'
 import { lessonRoutes, Participants } from '@/components/Lesson'
 import { keyLabel, longLabel, shortLabel } from '@/lib/expressionLabels'
 import type { EditionVersion, Expression, ExpressionZone, TermSummary } from '@/lib/types'
@@ -28,7 +29,28 @@ interface PieceClientProps {
 export default function PieceClient({ piece, version, terms }: PieceClientProps) {
   const [downloadDialogOpen, setDownloadDialogOpen] = useState(false)
   const [sourceOpen, setSourceOpen] = useState(false)
+  // a translation aligned with its original shows the original between its lines,
+  // unless the reader has hidden it (remembered in this browser)
+  const [showOriginal, setShowOriginal] = useState(true)
+  const textRef = useRef<HTMLDivElement>(null)
   const context = piece.context
+
+  useEffect(() => {
+    try {
+      if (localStorage.getItem('hideOriginal') === 'true') setShowOriginal(false)
+    } catch {
+      // no storage: the original is shown
+    }
+  }, [])
+
+  const toggleOriginal = () => {
+    try {
+      localStorage.setItem('hideOriginal', String(showOriginal))
+    } catch {
+      // no storage: the choice holds for this page only
+    }
+    setShowOriginal(!showOriginal)
+  }
 
   const renderMusic = (teiNode: Element) => (
     <NotatedMusic
@@ -102,6 +124,18 @@ export default function PieceClient({ piece, version, terms }: PieceClientProps)
               </nav>
             )}
             <span className="actions">
+              {piece.original && (
+                <Tooltip title={showOriginal ? 'Hide the original' : 'Show the original between the lines'}>
+                  <IconButton
+                    color="primary"
+                    aria-label="Original between the lines"
+                    aria-pressed={showOriginal}
+                    onClick={toggleOriginal}
+                  >
+                    {showOriginal ? <Subtitles /> : <SubtitlesOff />}
+                  </IconButton>
+                </Tooltip>
+              )}
               <Tooltip title="About this text">
                 <IconButton
                   color="primary"
@@ -146,9 +180,16 @@ export default function PieceClient({ piece, version, terms }: PieceClientProps)
                 <Ceteicean pageContext={piece.score as any} routes={routes} />
               </Grid>
             )}
-            <Grid size={piece.score ? { xs: 12, md: 6 } : 12} p={1.5} className={piece.score ? undefined : 'textOnly'}>
+            <Grid
+              size={piece.score ? { xs: 12, md: 6 } : 12}
+              p={1.5}
+              className={[piece.score ? '' : 'textOnly', piece.original && showOriginal ? 'interlinear' : ''].join(' ').trim() || undefined}
+            >
               {piece.header.participants.length > 0 && <Participants participants={piece.header.participants} />}
-              {piece.text && <Ceteicean pageContext={piece.text as any} routes={routes} />}
+              <div ref={textRef} className={piece.original ? 'interlinearText' : undefined}>
+                {piece.text && <Ceteicean pageContext={piece.text as any} routes={routes} />}
+                {piece.original && showOriginal && <InterlinearOriginal container={textRef} />}
+              </div>
             </Grid>
           </Grid>
         </VerovioProvider>

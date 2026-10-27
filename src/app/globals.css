@@ -170,6 +170,47 @@ tei-lb {
     margin: 0 auto;
 }
 
+/* A translation aligned with its original (src/helpers/alignTranslation.ts): the
+   original runs small and grey between the lines of the translation, each sentence
+   beneath its translation (src/components/InterlinearOriginal.tsx) */
+tei-seg[type="original"],
+tei-seg[type="space"] {
+    display: none;
+}
+
+.interlinearText {
+    position: relative;
+}
+
+.interlinear tei-p {
+    line-height: 2.6;
+    text-align: left;
+}
+
+.interlinear tei-seg[type="space"] {
+    height: 0;
+}
+
+.interlinearOriginal {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.interlinearOriginal span {
+    position: absolute;
+    white-space: nowrap;
+    font-family: Junicode, serif;
+    line-height: 1.2;
+    color: #666;
+    pointer-events: auto;
+}
+
+.interlinear tei-seg[type="pair"].active > tei-seg[type="translation"],
+.interlinearOriginal span.active {
+    background-color: rgba(255, 213, 79, 0.25);
+}
+
 .main-score {
     position: sticky;
     top: 0;
