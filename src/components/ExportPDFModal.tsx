@@ -1,8 +1,7 @@
 'use client'
 
-import { useState } from 'react'
-import SVGtoPDF from 'svg-to-pdfkit'
-import { Button, CircularProgress, Tab, Tabs, ToggleButton, ToggleButtonGroup } from '@mui/material'
+import { useEffect, useState } from 'react'
+import { Button, CircularProgress, Tab, Tabs, ToggleButton, ToggleButtonGroup, Typography } from '@mui/material'
 import { downloadAs } from './DownloadDialog'
 import { removeEmbeddedAnnotations } from '../helpers/removeEmbeddedAnnotations'
 import { addEmptyStaves } from '../helpers/addEmptyStaves'
@@ -46,6 +45,39 @@ const fonts = ['Leipzig', 'Bravura', 'Gootville', 'Leland']
 // figures in figured bass, tempo signs) use a music font. Leipzig is the one bundled.
 const musicFontFamily = /Leipzig|Bravura|Gootville|Leland/
 
+const scripts = new Map<string, Promise<void>>()
+
+// Adds a script to the page once; one that failed to load is tried again on the next call
+const loadScript = (src: string) => {
+    let loaded = scripts.get(src)
+    if (!loaded) {
+        loaded = new Promise<void>((resolve, reject) => {
+            const script = document.createElement('script')
+            script.src = src
+            script.addEventListener('load', () => resolve())
+            script.addEventListener('error', () => {
+                script.remove()
+                scripts.delete(src)
+                reject(new Error(`${src} could not be loaded`))
+            })
+            document.body.appendChild(script)
+        })
+        scripts.set(src, loaded)
+    }
+    return loaded
+}
+
+// PDFKit (window.PDFDocument), blob-stream (window.blobStream) and SVG-to-PDFKit are only
+// needed here, so the piece pages do not load them until the PDF options are shown
+const loadPDFLibraries = async () => {
+    const [svgToPdf] = await Promise.all([
+        import('svg-to-pdfkit'),
+        loadScript('/pdfkit.standalone.js'),
+        loadScript('/blob-stream.js'),
+    ])
+    return svgToPdf.default
+}
+
 interface ExportPDFModalProps {
     meiData: string
     fileName: string
@@ -59,9 +91,23 @@ export const ExportPDFModal = ({ meiData, fileName, expressionId }: ExportPDFMod
     const [margin, setMargin] = useState<'narrow' | 'normal' | 'broad'>('normal')
     const [font, setFont] = useState('Leipzig')
     const [loading, setLoading] = useState(false)
+    const [error, setError] = useState<string | null>(null)
+
+    // load them while the options are being chosen
+    useEffect(() => {
+        loadPDFLibraries().catch(() => { })
+    }, [])
 
     const exportPDF = async () => {
         setLoading(true)
+        setError(null)
+
+        const SVGtoPDF = await loadPDFLibraries().catch(() => null)
+        if (!SVGtoPDF) {
+            setError('The PDF export could not be loaded. Please check your connection and try again.')
+            setLoading(false)
+            return
+        }
 
         // Verovio is loaded by the VerovioProvider of the page
         const pdfToolkit = new window.verovio.toolkit()
@@ -257,6 +303,9 @@ export const ExportPDFModal = ({ meiData, fileName, expressionId }: ExportPDFMod
                     {loading ? <CircularProgress size={24} /> : 'Export'}
                 </Button>
             </div>
+            {error && (
+                <Typography color="error" variant="body2" sx={{ mt: 2 }}>{error}</Typography>
+            )}
         </div>
     )
 };
