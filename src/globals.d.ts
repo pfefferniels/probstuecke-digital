@@ -12,7 +12,8 @@ declare module "react-teirouter" {
 }
 
 interface Window {
-    highlightRefs: (refs: string[]) => () => void;
+    /** highlights score elements; `reveal` also scrolls them into view. Returns a function that undoes it */
+    highlightRefs: (refs: string[], reveal?: boolean) => () => void;
     scoreSettings: {
         modernClefs: boolean;
         rightHand: boolean;

@@ -1,6 +1,7 @@
 import { TEINodes } from "react-teirouter"
 import { Behavior } from '@/ceteicean/Behavior'
 import { useEffect, useRef } from 'react'
+import { isTouchInput, selectLink } from '@/helpers/touchSelection'
 
 interface RefProps {
     teiNode: Node
@@ -16,22 +17,37 @@ export const Ref = (props: RefProps) => {
         if (!targets) return
 
         const el = ref.current
+        const meiIds = targets.split(' ').map(target => target.slice(1))
         let dehighlight: (() => void) | undefined
 
-        const onMouseOver = () => {
-            dehighlight = window.highlightRefs(targets.split(' ').map(target => target.slice(1)))
+        // pointing with a mouse (or pen) highlights the score elements
+        const onPointerOver = (e: PointerEvent) => {
+            if (e.pointerType === 'touch') return
+            dehighlight = window.highlightRefs(meiIds)
         }
 
-        const onMouseLeave = () => {
+        const onPointerLeave = (e: PointerEvent) => {
+            if (e.pointerType === 'touch') return
             if (dehighlight) dehighlight()
         }
 
-        el.addEventListener('mouseover', onMouseOver)
-        el.addEventListener('mouseleave', onMouseLeave)
+        // on touch screens a tap does the same, and also brings the score elements into view
+        const onClick = (e: MouseEvent) => {
+            if (!isTouchInput()) return
+            // links inside the passage, and passages inside this one, handle the tap themselves
+            const target = e.target as Element
+            if (target.closest('a') || target.closest('.ref') !== el) return
+            selectLink([el], meiIds, 'score')
+        }
+
+        el.addEventListener('pointerover', onPointerOver)
+        el.addEventListener('pointerleave', onPointerLeave)
+        el.addEventListener('click', onClick)
 
         return () => {
-            el.removeEventListener('mouseover', onMouseOver)
-            el.removeEventListener('mouseleave', onMouseLeave)
+            el.removeEventListener('pointerover', onPointerOver)
+            el.removeEventListener('pointerleave', onPointerLeave)
+            el.removeEventListener('click', onClick)
         }
     })
 
