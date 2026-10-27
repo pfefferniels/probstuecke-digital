@@ -235,6 +235,165 @@ svg * {
     cursor: pointer;
 }
 
+/* Lessons and realisations (src/components/Lesson.tsx) */
+.visuallyHidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* caption of a score that is not Mattheson's (in the figure of the score division) */
+tei-figure > tei-head {
+    display: block;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-size: 0.9rem;
+    font-weight: normal;
+    color: #555;
+    margin: 0.5rem 0 0;
+}
+
+/* "Lesson on Prob-Stück 4" above "MH Freiburg, 17 May 2019" */
+tei-head tei-title[type="main"],
+tei-head tei-title[type="sub"] {
+    display: block;
+}
+
+tei-head tei-title[type="sub"] {
+    font-size: 1rem;
+    font-weight: normal;
+    color: #555;
+}
+
+.participants {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0.5rem;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.participants li {
+    display: inline;
+}
+
+.participants li + li::before {
+    content: ' · ';
+    color: #666;
+}
+
+.participants .role {
+    color: #666;
+}
+
+/* a turn: the speaker's name runs into what is said */
+.utterance {
+    margin: 0.75rem 0;
+}
+
+.utterance .speaker {
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-size: 0.85em;
+    font-weight: 600;
+    color: #333;
+    margin-right: 0.4em;
+}
+
+/* what is done (playing, a gesture), set off like a stage direction */
+.action {
+    margin: 0.75rem 0;
+    padding-left: 0.75rem;
+    border-left: 3px solid #d9c27a;
+}
+
+.actionDesc {
+    font-style: italic;
+    color: #444;
+}
+
+.actionDesc .actor {
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-size: 0.85em;
+    font-style: normal;
+    font-weight: 600;
+    color: #333;
+}
+
+.actionIcon {
+    vertical-align: -0.2em;
+    margin-right: 0.3em;
+    color: #8c7428;
+}
+
+/* the music of what is played; a ref to it highlights it */
+.transcription {
+    margin: 0.5rem 0;
+    border-radius: 0.25rem;
+}
+
+.transcription[filter="url(#highlightGlow)"] {
+    outline: 2px solid rgba(255, 14, 10, 0.4);
+}
+
+.audioPlayer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.25rem 0.75rem;
+    margin: 0.5rem 0;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-size: 0.85rem;
+    font-style: normal;
+    line-height: 1.5;
+    text-indent: 0;
+}
+
+.audioPlayer figcaption {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: #555;
+}
+
+.audioIcon {
+    color: #8c7428;
+}
+
+.audioPlayer audio {
+    flex: 1 1 15rem;
+    min-width: 0;
+    max-width: min(100%, 28rem);
+    height: 2.5rem;
+}
+
+/* words quoted from Mattheson's text, and so-called ones */
+tei-q:lang(de) {
+    quotes: "\201E" "\201C" "\201A" "\2018";
+}
+
+tei-q::before {
+    content: open-quote;
+}
+
+tei-q::after {
+    content: close-quote;
+}
+
+tei-q[type="written"] {
+    font-style: italic;
+}
+
+.gap {
+    color: #666;
+    font-style: italic;
+}
+
 /* CETEI-dta.css */
 tei-hi[rendition="#aq"] {
     font-family: sans-serif;

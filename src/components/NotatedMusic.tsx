@@ -149,6 +149,8 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
     const [renderFailed, setRenderFailed] = useState(false)
     // whether the encoding has modern clefs, figures or accidentals to switch to
     const [canModernise, setCanModernise] = useState(false)
+    // whether the score has a staff with Mattheson's right hand (realisations have their own)
+    const [hasRightHandStaff, setHasRightHandStaff] = useState(false)
     const [pageWidth, setPageWidth] = useState<number | null>(null)
     // on touch screens: the part of the page image shown for a tapped staff
     const [facsimile, setFacsimile] = useState<Facsimile | null>(null)
@@ -164,8 +166,10 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
     const highlighted = useRef<Highlight>({ ids: [], reveal: false })
     const shownPage = useRef(1)
 
+    // a notatedMusic, or in lessons a ptr[@type="transcription"] (see collectEmbeddedMEI)
+    const ptr = teiNode.tagName.toLowerCase() === 'tei-ptr' ? teiNode : teiNode.querySelector('tei-ptr')
     const teiId = teiNode.getAttribute('id')
-        || teiNode.querySelector('tei-ptr')?.getAttribute('target')?.replace('.xml', '');
+        || ptr?.getAttribute('target')?.replace('.xml', '');
     const isMainScore = teiId === 'score'
     const mei = meis.find(mei => mei?.xmlId === teiId)?.mei
 
@@ -277,6 +281,7 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
         setCanModernise(!!meiDoc.querySelector('choice, orig accid, supplied accid'))
 
         const hasEmbeddedAnnotation = !!meiDoc.querySelector('staffDef[type="embeddedAnnotation"]')
+        setHasRightHandStaff(hasEmbeddedAnnotation)
         if (isMainScore && !rightHand && hasEmbeddedAnnotation) removeEmbeddedAnnotations(meiDoc)
         if (!isMainScore) showPieceBarNumbers(meiDoc)
         addEmptyStaves(meiDoc, emptyStaves)
@@ -556,6 +561,7 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
 
                 {isMainScore && (
                     <>
+                        {hasRightHandStaff && (
                         <OptionToggle
                             value="check"
                             label={rightHand ? 'Hide the right-hand staff' : 'Show the right-hand staff'}
@@ -564,6 +570,7 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
                         >
                             {'{}'}
                         </OptionToggle>
+                        )}
                         <OptionButton label="Add an empty staff for a realisation" onClick={() => setEmptyStaves(emptyStaves + 1)}>
                             +
                         </OptionButton>

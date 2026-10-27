@@ -8,7 +8,7 @@ declare module "react-teirouter" {
     export const TEIRender: ComponentType<{ data: Element; children?: ReactNode }>;
     export const TEIRoute: ComponentType<{ el: string; component: unknown }>;
     export const TEINode: ComponentType<{ [key: string]: unknown }>;
-    export const TEINodes: ComponentType<{ teiNodes: NodeListOf<ChildNode>; [key: string]: unknown }>;
+    export const TEINodes: ComponentType<{ teiNodes: ArrayLike<ChildNode>; [key: string]: unknown }>;
 }
 
 interface Window {

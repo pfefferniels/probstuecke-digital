@@ -10,6 +10,7 @@ import { collectExpressionMetadata, collectEmbeddedMEI, collectRefTargets } from
 import { collectZones } from '@/helpers/collectors/collectZones'
 import { collectPersName } from '@/helpers/collectors/collectPersName'
 import { collectHeader } from '@/helpers/collectors/collectHeader'
+import { collectMedia } from '@/helpers/collectors/collectMedia'
 import { normaliseDocument, parseLexicon, type Lexicon } from '@/helpers/normalise'
 import type {
   Work,
@@ -492,6 +493,7 @@ const processExpressionFile = async (filePath: string): Promise<Expression | nul
     teiRoot.getAttribute('xml:lang') ||
     'de'
   const mei = collectEmbeddedMEI(document, filePath)
+  const media = collectMedia(document, filePath, DATA_DIR)
   const refTargets = collectRefTargets(document)
   const indexRefs = collectIndexRefs(document)
 
@@ -510,7 +512,8 @@ const processExpressionFile = async (filePath: string): Promise<Expression | nul
 
   // Extract sections exactly as in gatsby-node
   const selectors: Record<string, string> = {
-    title: 'div[type="score"] head',
+    // the head of the score division; a head in its figure is a caption of the score
+    title: 'div[type="score"] > head',
     score: 'div[type="score"]',
     metadata: 'fileDesc',
     text: 'text',
@@ -557,6 +560,7 @@ const processExpressionFile = async (filePath: string): Promise<Expression | nul
     title: sections.title || null,
     text: sections.text || null,
     mei,
+    media,
     zones,
     refTargets,
     indexRefs,

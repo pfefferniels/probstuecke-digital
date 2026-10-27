@@ -15,6 +15,7 @@ import TermLink from '@/components/TermLink'
 import { Download, InfoOutlined } from '@mui/icons-material'
 import { DownloadDialog } from '@/components/DownloadDialog'
 import { SourcePanel } from '@/components/SourcePanel'
+import { lessonRoutes, Participants } from '@/components/Lesson'
 import { keyLabel, longLabel, shortLabel } from '@/lib/expressionLabels'
 import type { EditionVersion, Expression, ExpressionZone, TermSummary } from '@/lib/types'
 
@@ -29,18 +30,24 @@ export default function PieceClient({ piece, version, terms }: PieceClientProps)
   const [sourceOpen, setSourceOpen] = useState(false)
   const context = piece.context
 
+  const renderMusic = (teiNode: Element) => (
+    <NotatedMusic
+      teiNode={teiNode}
+      meis={piece.mei || []}
+      zones={(piece.zones?.filter(zone => !!zone) || []) as ExpressionZone[]}
+      refs={piece.refTargets || []}
+      expressionId={piece.expressionId || undefined}
+    />
+  )
+
   const routes = {
     'tei-notatedmusic': (node: any) => (
       <Behavior node={node}>
-        <NotatedMusic
-          teiNode={node.teiNode}
-          meis={piece.mei || []}
-          zones={(piece.zones?.filter(zone => !!zone) || []) as ExpressionZone[]}
-          refs={piece.refTargets || []}
-          expressionId={piece.expressionId || undefined}
-        />
+        {renderMusic(node.teiNode)}
       </Behavior>
     ),
+    // lessons and realisations: speakers, actions, transcriptions and recordings
+    ...lessonRoutes({ participants: piece.header.participants, media: piece.media, renderMusic }),
     'tei-w': Word,
     'tei-ref': Ref,
     'tei-persname': (props: any) => <LinkToIndex type="persons" {...props} />,
@@ -166,6 +173,7 @@ export default function PieceClient({ piece, version, terms }: PieceClientProps)
               </Grid>
             )}
             <Grid size={piece.score ? { xs: 12, md: 6 } : 12} p={1.5} className={piece.score ? undefined : 'textOnly'}>
+              {piece.header.participants.length > 0 && <Participants participants={piece.header.participants} />}
               {piece.text && <Ceteicean pageContext={piece.text as any} routes={routes} />}
             </Grid>
           </Grid>

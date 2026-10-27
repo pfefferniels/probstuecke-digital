@@ -9,6 +9,26 @@ export interface ExpressionMei {
   mei: string
 }
 
+/** An audio recording that a text points to (ptr[@type="audio"] or media) */
+export interface ExpressionMedia {
+  /** the file as the TEI names it (ptr/@target, media/@url) */
+  target: string
+  /** where the static export serves the file */
+  url: string
+  mimeType: string | null
+  /** size of the file, if it is in the data */
+  bytes: number | null
+  /** what is heard, from the description of the action in a lesson, e.g. "Robert Hill spielt Takt 1" */
+  label: string | null
+}
+
+/** A participant of a lesson (particDesc), whom @who of an utterance or action points to */
+export interface Participant {
+  xmlId: string | null
+  name: string
+  role: string | null
+}
+
 export interface ExpressionZone {
   xmlId: string | null
   imageApiUrl: string
@@ -30,6 +50,9 @@ export interface TextHeader {
     urn: string | null
   } | null
   licence: { url: string | null; label: string | null } | null
+  participants: Participant[]
+  /** where and when a lesson took place (settingDesc), e.g. "17 May 2019, Hochschule für Musik, …" */
+  setting: string | null
 }
 
 export interface ExpressionContext {
@@ -47,6 +70,7 @@ export interface Expression {
   title: TransformedTEI | null
   text: TransformedTEI | null
   mei: ExpressionMei[]
+  media: ExpressionMedia[]
   zones: ExpressionZone[]
   refTargets: (string | null)[]
   indexRefs: IndexRef[]

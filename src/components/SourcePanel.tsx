@@ -63,6 +63,12 @@ export const SourcePanel = ({ expression, version }: SourcePanelProps) => {
                         )}
                     </Row>
                 )}
+                {header.participants.length > 0 && (
+                    <Row label="Participants">
+                        {joinNames(header.participants.map(p => p.role ? `${p.name} (${p.role})` : p.name))}
+                    </Row>
+                )}
+                {header.setting && <Row label="Date and place">{header.setting}</Row>}
                 {editors.length > 0 && <Row label="Edited by">{joinNames(editors)}</Row>}
                 {translators.length > 0 && <Row label="Translated by">{joinNames(translators)}</Row>}
                 {header.licence && (
