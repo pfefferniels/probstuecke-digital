@@ -7,6 +7,7 @@ import { downloadAs } from './DownloadDialog'
 import { removeEmbeddedAnnotations } from '../helpers/removeEmbeddedAnnotations'
 import { addEmptyStaves } from '../helpers/addEmptyStaves'
 import { smuflFigures } from '../helpers/smuflFigures'
+import { readingsXPathQuery } from '../helpers/readings'
 
 const junicode = '/Junicode.woff'
 const junicodeBold = '/Junicode-Bold.woff'
@@ -46,9 +47,10 @@ const musicFontFamily = /Leipzig|Bravura|Gootville|Leland/
 interface ExportPDFModalProps {
     meiData: string
     fileName: string
+    expressionId?: string
 }
 
-export const ExportPDFModal = ({ meiData, fileName }: ExportPDFModalProps) => {
+export const ExportPDFModal = ({ meiData, fileName, expressionId }: ExportPDFModalProps) => {
     const [activeTab, setActiveTab] = useState(0)
     const [orientation, setOrientation] = useState<'portrait' | 'landscape'>('portrait')
     const [format, setFormat] = useState<'A4' | 'Letter' | 'B4'>('A4')
@@ -61,6 +63,11 @@ export const ExportPDFModal = ({ meiData, fileName }: ExportPDFModalProps) => {
 
         // Verovio is loaded by the VerovioProvider of the page
         const pdfToolkit = new window.verovio.toolkit()
+
+        const dom = new DOMParser().parseFromString(meiData, 'text/xml')
+
+        // as on the page: the readings of its source
+        const readings = readingsXPathQuery(dom, expressionId)
 
         pdfToolkit.setOptions({
             font: font,
@@ -76,9 +83,8 @@ export const ExportPDFModal = ({ meiData, fileName }: ExportPDFModalProps) => {
             pageMarginBottom: margins[margin],
             scale: 100,
             choiceXPathQuery: [window.scoreSettings.modernClefs ? './reg' : './orig'],
+            ...(readings ? { appXPathQuery: readings } : {}),
         })
-
-        const dom = new DOMParser().parseFromString(meiData, 'text/xml')
 
         // insert composer's name on the right side of pgHead
         const composerName = dom.querySelector('composer persName')?.textContent

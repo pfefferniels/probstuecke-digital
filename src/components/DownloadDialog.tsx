@@ -46,7 +46,11 @@ export const DownloadDialog = ({ open, onClose, expression }: DownloadDialogProp
             <DialogContent>
                 {showPDFOptions && meiData
                     ? (
-                        <ExportPDFModal meiData={meiData} fileName={`${baseName}.pdf`} />
+                        <ExportPDFModal
+                            meiData={meiData}
+                            fileName={`${baseName}.pdf`}
+                            expressionId={expression.expressionId || undefined}
+                        />
                     )
                     : (
                         <List>

@@ -8,6 +8,7 @@ import { addEmptyStaves } from '../helpers/addEmptyStaves';
 import { removeEmbeddedAnnotations } from '../helpers/removeEmbeddedAnnotations';
 import { smuflFigures } from '../helpers/smuflFigures';
 import { clearTouchSelection, isTouchInput, revealElement, selectLink } from '../helpers/touchSelection';
+import { readingsXPathQuery } from '../helpers/readings';
 import './NotatedMusic.css'
 import type { ExpressionMei, ExpressionZone } from '@/lib/types'
 
@@ -223,8 +224,8 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
         let mei = corresp.mei
         const meiDoc = new DOMParser().parseFromString(mei, 'application/xml')
 
-        const sourceId = meiDoc
-            .querySelector(`source[corresp="${expressionId}"]`)?.getAttribute('xml:id')
+        // in each <app>, the reading of the source this page is about
+        const readings = readingsXPathQuery(meiDoc, expressionId)
 
         setCanModernise(!!meiDoc.querySelector('choice, orig accid, supplied accid'))
 
@@ -247,9 +248,7 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
             svgAdditionalAttribute: ['staff@facs']
         }
 
-        if (sourceId) {
-            options.appXPathQuery = `./*[source="${sourceId}"]`
-        }
+        if (readings) options.appXPathQuery = readings
 
         vrvToolkit.setOptions(options)
 
