@@ -64,8 +64,41 @@ tei-head {
     display: block;
 }
 
-tei-text {
+/* Junicode covers the characters of the diplomatic transcription (ſ, combining e, …) */
+@font-face {
     font-family: Junicode;
+    src: url('/Junicode.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Junicode;
+    src: url('/Junicode-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Junicode;
+    src: url('/Junicode-Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Junicode;
+    src: url('/Junicode-BoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+tei-text {
+    font-family: Junicode, serif;
     font-size: 1.1rem;
     line-height: 2;
 }
