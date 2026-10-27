@@ -55,6 +55,16 @@ export interface TextHeader {
   setting: string | null
 }
 
+/** A translation side by side with its original, sentence by sentence (see helpers/alignTranslation) */
+export interface ParallelText {
+  /** the translation's text, each group of sentences in a <seg type="pair"> with those of the original */
+  text: TransformedTEI
+  /** expression ID of the original, e.g. ps1-002 */
+  originalId: string | null
+  /** entries of the index of terms that the sentences of the original point to */
+  termIds: string[]
+}
+
 export interface ExpressionContext {
   workTitle: string
   key: WorkKey
@@ -69,6 +79,7 @@ export interface Expression {
   score: TransformedTEI | null
   title: TransformedTEI | null
   text: TransformedTEI | null
+  parallel: ParallelText | null
   mei: ExpressionMei[]
   media: ExpressionMedia[]
   zones: ExpressionZone[]

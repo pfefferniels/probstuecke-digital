@@ -12,9 +12,10 @@ import { Ref } from '@/components/Ref'
 import { GlowDefs } from '@/components/GlowDefs'
 import LinkToIndex from '@/components/LinkToIndex'
 import TermLink from '@/components/TermLink'
-import { Download, InfoOutlined } from '@mui/icons-material'
+import { CompareArrows, Download, InfoOutlined } from '@mui/icons-material'
 import { DownloadDialog } from '@/components/DownloadDialog'
 import { SourcePanel } from '@/components/SourcePanel'
+import { ParallelText } from '@/components/ParallelText'
 import { lessonRoutes, Participants } from '@/components/Lesson'
 import { keyLabel, longLabel, shortLabel } from '@/lib/expressionLabels'
 import type { EditionVersion, Expression, ExpressionZone, TermSummary } from '@/lib/types'
@@ -28,7 +29,22 @@ interface PieceClientProps {
 export default function PieceClient({ piece, version, terms }: PieceClientProps) {
   const [downloadDialogOpen, setDownloadDialogOpen] = useState(false)
   const [sourceOpen, setSourceOpen] = useState(false)
+  // a translation aligned with its original can be shown side by side with it (?view=parallel)
+  const [parallel, setParallel] = useState(false)
   const context = piece.context
+  const showScore = !!piece.score && !parallel
+
+  useEffect(() => {
+    if (piece.parallel && new URLSearchParams(window.location.search).get('view') === 'parallel') setParallel(true)
+  }, [piece.parallel])
+
+  const toggleParallel = () => {
+    const url = new URL(window.location.href)
+    if (parallel) url.searchParams.delete('view')
+    else url.searchParams.set('view', 'parallel')
+    window.history.replaceState(null, '', url)
+    setParallel(!parallel)
+  }
 
   const renderMusic = (teiNode: Element) => (
     <NotatedMusic
@@ -128,6 +144,18 @@ export default function PieceClient({ piece, version, terms }: PieceClientProps)
               </nav>
             )}
             <span className="actions">
+              {piece.parallel && (
+                <Tooltip title={parallel ? 'Back to the score' : 'Compare with the original, sentence by sentence'}>
+                  <IconButton
+                    color="primary"
+                    aria-label="Compare with the original"
+                    aria-pressed={parallel}
+                    onClick={toggleParallel}
+                  >
+                    <CompareArrows />
+                  </IconButton>
+                </Tooltip>
+              )}
               <Tooltip title="About this text">
                 <IconButton
                   color="primary"
@@ -167,14 +195,16 @@ export default function PieceClient({ piece, version, terms }: PieceClientProps)
         <VerovioProvider>
           {/* side by side from the md breakpoint on; below it the score comes first and the commentary follows */}
           <Grid container spacing={1} lang={piece.lang}>
-            {piece.score && (
+            {showScore && (
               <Grid size={{ xs: 12, md: 6 }} className="scoreView">
                 <Ceteicean pageContext={piece.score as any} routes={routes} />
               </Grid>
             )}
-            <Grid size={piece.score ? { xs: 12, md: 6 } : 12} p={1.5} className={piece.score ? undefined : 'textOnly'}>
+            <Grid size={showScore ? { xs: 12, md: 6 } : 12} p={1.5} className={showScore ? undefined : parallel ? 'parallelView' : 'textOnly'}>
               {piece.header.participants.length > 0 && <Participants participants={piece.header.participants} />}
-              {piece.text && <Ceteicean pageContext={piece.text as any} routes={routes} />}
+              {parallel && piece.parallel
+                ? <ParallelText parallel={piece.parallel} context={context} routes={routes} />
+                : piece.text && <Ceteicean pageContext={piece.text as any} routes={routes} />}
             </Grid>
           </Grid>
         </VerovioProvider>
