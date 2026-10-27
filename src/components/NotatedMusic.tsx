@@ -2,12 +2,13 @@
 
 import { type MouseEvent, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { useVerovio } from '../hooks/useVerovio';
-import { Stack, Pagination, ToggleButton, ToggleButtonProps, Button, ButtonProps, Tooltip, IconButton } from '@mui/material';
+import { Stack, Pagination, ToggleButton, ToggleButtonGroup, ToggleButtonProps, Button, ButtonProps, Tooltip, IconButton } from '@mui/material';
 import { Close } from '@mui/icons-material';
 import { addEmptyStaves } from '../helpers/addEmptyStaves';
 import { removeEmbeddedAnnotations } from '../helpers/removeEmbeddedAnnotations';
 import { smuflFigures } from '../helpers/smuflFigures';
 import { clearTouchSelection, isTouchInput, revealElement, selectLink } from '../helpers/touchSelection';
+import { mdivLabel, mdivXPathQuery, topLevelMdivs } from '../helpers/mdivs';
 import { readingsXPathQuery } from '../helpers/readings';
 import './NotatedMusic.css'
 import type { ExpressionMei, ExpressionZone } from '@/lib/types'
@@ -124,7 +125,8 @@ if (typeof window !== 'undefined') {
     window.scoreSettings = window.scoreSettings || {
         modernClefs: false,
         rightHand: false,
-        emptyStaves: 0
+        emptyStaves: 0,
+        mdiv: 0
     }
 }
 
@@ -148,6 +150,14 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
     const [pageWidth, setPageWidth] = useState<number | null>(null)
     // on touch screens: the part of the page image shown for a tapped staff
     const [facsimile, setFacsimile] = useState<Facsimile | null>(null)
+    // the labels of the <mdiv>s, if the score has the piece more than once (e.g. in another key)
+    const [mdivLabels, setMdivLabels] = useState<string[]>([])
+    // the <mdiv> to draw (also as a ref, for highlightRefs), and the one drawn
+    const [mdivIndex, setMdivIndex] = useState(0)
+    const selectedMdiv = useRef(0)
+    const shownMdiv = useRef(0)
+    // the <mdiv> each element of the encoding belongs to
+    const mdivOf = useRef(new Map<string, number>())
     const containerRef = useRef<HTMLDivElement>(null)
     const highlighted = useRef<Highlight>({ ids: [], reveal: false })
     const shownPage = useRef(1)
@@ -155,16 +165,39 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
     const teiId = teiNode.getAttribute('id')
         || teiNode.querySelector('tei-ptr')?.getAttribute('target')?.replace('.xml', '');
     const isMainScore = teiId === 'score'
+    const mei = meis.find(mei => mei?.xmlId === teiId)?.mei
 
     const { vrvToolkit } = useVerovio()
 
+    // the PDF export follows what the main score shows
     useEffect(() => {
+        if (!isMainScore) return
         window.scoreSettings = {
             modernClefs,
             rightHand,
-            emptyStaves
+            emptyStaves,
+            mdiv: mdivIndex
         }
-    }, [modernClefs, rightHand, emptyStaves])
+    }, [isMainScore, modernClefs, rightHand, emptyStaves, mdivIndex])
+
+    useEffect(() => {
+        if (!mei) return
+        const mdivs = topLevelMdivs(new DOMParser().parseFromString(mei, 'application/xml'))
+        const ids = new Map<string, number>()
+        mdivs.forEach((mdiv, i) => {
+            for (const el of Array.from(mdiv.querySelectorAll('*'))) {
+                const id = el.getAttribute('xml:id')
+                if (id) ids.set(id, i)
+            }
+        })
+        mdivOf.current = ids
+        setMdivLabels(mdivs.map(mdivLabel))
+    }, [mei])
+
+    const selectMdiv = (index: number) => {
+        selectedMdiv.current = index
+        setMdivIndex(index)
+    }
 
     useEffect(() => {
         if (!isMainScore) return
@@ -175,21 +208,32 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
             const highlight = { ids: refs, reveal }
             highlighted.current = highlight
 
-            // turn to the page with the elements; they are highlighted once it is drawn
+            const dehighlight = () => {
+                if (highlighted.current === highlight) highlighted.current = { ids: [], reveal: false }
+                for (const ref of refs) {
+                    document.getElementById(ref)?.setAttribute('filter', 'url(#softGlow)')
+                }
+            }
+
+            // the elements may belong to another <mdiv>: draw it, then turn to
+            // the page with them; they are highlighted once it is drawn
+            const mdiv = refs
+                .map(ref => mdivOf.current.get(ref))
+                .find(mdiv => mdiv !== undefined)
+            if (mdiv !== undefined && mdiv !== selectedMdiv.current) {
+                selectMdiv(mdiv)
+                return dehighlight
+            }
+
             const page = refs
                 .map(ref => vrvToolkit.getPageWithElement(ref) as number)
                 .find(page => page > 0)
             if (page && page !== shownPage.current) setCurrentPage(page)
             else applyHighlight(highlight)
 
-            return () => {
-                if (highlighted.current === highlight) highlighted.current = { ids: [], reveal: false }
-                for (const ref of refs) {
-                    document.getElementById(ref)?.setAttribute('filter', 'url(#softGlow)')
-                }
-            }
+            return dehighlight
         }
-    }, [vrvToolkit])
+    }, [vrvToolkit, isMainScore])
 
     // the parts of the page image that a staff was transcribed from
     const facsimileUrls = (staff: Element) => (staff.getAttribute('data-facs')?.split(' ') || [])
@@ -218,14 +262,15 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
     useEffect(() => {
         if (!vrvToolkit || !pageWidth) return
 
-        const corresp = meis.find(mei => mei?.xmlId === teiId)
-        if (!corresp || !corresp.mei) return
+        if (!mei) return
 
-        let mei = corresp.mei
         const meiDoc = new DOMParser().parseFromString(mei, 'application/xml')
 
         // in each <app>, the reading of the source this page is about
         const readings = readingsXPathQuery(meiDoc, expressionId)
+        // the piece may be in the score more than once (e.g. in another key)
+        const mdivCount = topLevelMdivs(meiDoc).length
+        const mdiv = mdivIndex < mdivCount ? mdivIndex : 0
 
         setCanModernise(!!meiDoc.querySelector('choice, orig accid, supplied accid'))
 
@@ -233,8 +278,6 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
         if (isMainScore && !rightHand && hasEmbeddedAnnotation) removeEmbeddedAnnotations(meiDoc)
         addEmptyStaves(meiDoc, emptyStaves)
         smuflFigures(meiDoc)
-
-        mei = new XMLSerializer().serializeToString(meiDoc)
 
         const options: any = {
             scale,
@@ -249,28 +292,32 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
         }
 
         if (readings) options.appXPathQuery = readings
+        if (mdivCount > 1) options.mdivXPathQuery = mdivXPathQuery(mdiv)
 
         vrvToolkit.setOptions(options)
 
-        const svgs = []
-        try {
-            vrvToolkit.loadData(mei);
+        // the page of each element of the drawn <mdiv> that is referenced from the text
+        const pageOf = (ids: string[]) => ids
+            .filter(id => mdivOf.current.get(id) === mdiv)
+            .map(id => [id, vrvToolkit.getPageWithElement(id) as number] as const)
 
+        const svgs = []
+        let referenced: (readonly [string, number])[] = []
+        try {
+            vrvToolkit.loadData(new XMLSerializer().serializeToString(meiDoc));
+
+            referenced = pageOf(refs.flatMap(ref => ref?.split(' ').map(target => target.slice(1)) || []))
             for (let i = 0; i < vrvToolkit.getPageCount(); i++) {
                 // draw refs on the current page into the SVG
                 const currentSVG = new DOMParser().parseFromString(vrvToolkit.renderToSVG(i + 1), 'image/svg+xml')
-                for (const ref of refs) {
-                    if (!ref) continue
-                    ref
-                        .split(' ')
-                        .filter(target => vrvToolkit.getPageWithElement(target.slice(1)) === i + 1)
-                        .forEach(target => {
-                            const correspEl = currentSVG.querySelector(target) as SVGElement | null
-                            if (!correspEl) return
-                            correspEl.setAttribute('filter', 'url(#softGlow)')
-                            correspEl.setAttribute('data-referenced', 'true')
-                        })
-                }
+                referenced
+                    .filter(([, page]) => page === i + 1)
+                    .forEach(([id]) => {
+                        const correspEl = currentSVG.getElementById(id)
+                        if (!correspEl) return
+                        correspEl.setAttribute('filter', 'url(#softGlow)')
+                        correspEl.setAttribute('data-referenced', 'true')
+                    })
                 svgs.push(new XMLSerializer().serializeToString(currentSVG))
             }
         }
@@ -279,9 +326,16 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
             setRenderFailed(true)
             return
         }
+
+        // another <mdiv>: show the page with the highlighted elements, or the first
+        if (mdiv !== shownMdiv.current) {
+            shownMdiv.current = mdiv
+            const page = pageOf(highlighted.current.ids).map(([, page]) => page).find(page => page > 0)
+            setCurrentPage(page || 1)
+        }
         setRenderFailed(false)
         setSVGs(svgs)
-    }, [vrvToolkit, modernClefs, rightHand, emptyStaves, refs, pageWidth])
+    }, [vrvToolkit, mei, expressionId, isMainScore, modernClefs, rightHand, emptyStaves, refs, pageWidth, mdivIndex])
 
     useLayoutEffect(() => {
         const cleanups: (() => void)[] = []
@@ -515,6 +569,37 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
                     </>
                 )}
             </div>
+            )}
+
+            {isMainScore && mdivLabels.length > 1 && (
+                <ToggleButtonGroup
+                    exclusive
+                    value={mdivIndex}
+                    onChange={(_, index: number | null) => {
+                        if (index === null) return
+                        clearTouchSelection()
+                        selectMdiv(index)
+                    }}
+                    aria-label="Notation of the piece"
+                    sx={{
+                        float: 'right',
+                        marginRight: '0.5rem',
+                        border: '0.5px solid gray',
+                        borderRadius: '0.5rem',
+                        '& .MuiToggleButton-root': {
+                            border: 0,
+                            fontWeight: 700,
+                            fontSize: '1rem',
+                            lineHeight: 1.5,
+                            padding: '0.4rem 0.6rem',
+                            textTransform: 'none'
+                        }
+                    }}
+                >
+                    {mdivLabels.map((label, i) => (
+                        <ToggleButton key={i} value={i}>{label}</ToggleButton>
+                    ))}
+                </ToggleButtonGroup>
             )}
 
             {renderFailed && (

@@ -7,6 +7,7 @@ import { downloadAs } from './DownloadDialog'
 import { removeEmbeddedAnnotations } from '../helpers/removeEmbeddedAnnotations'
 import { addEmptyStaves } from '../helpers/addEmptyStaves'
 import { smuflFigures } from '../helpers/smuflFigures'
+import { mdivXPathQuery, topLevelMdivs } from '../helpers/mdivs'
 import { readingsXPathQuery } from '../helpers/readings'
 
 const junicode = '/Junicode.woff'
@@ -66,7 +67,10 @@ export const ExportPDFModal = ({ meiData, fileName, expressionId }: ExportPDFMod
 
         const dom = new DOMParser().parseFromString(meiData, 'text/xml')
 
-        // as on the page: the readings of its source
+        // as on the page: the notation of the piece (<mdiv>) shown, and the readings of its source
+        const mdivs = topLevelMdivs(dom)
+        const mdivIndex = window.scoreSettings.mdiv < mdivs.length ? window.scoreSettings.mdiv : 0
+        const mdiv = mdivs[mdivIndex] || dom
         const readings = readingsXPathQuery(dom, expressionId)
 
         pdfToolkit.setOptions({
@@ -84,6 +88,7 @@ export const ExportPDFModal = ({ meiData, fileName, expressionId }: ExportPDFMod
             scale: 100,
             choiceXPathQuery: [window.scoreSettings.modernClefs ? './reg' : './orig'],
             ...(readings ? { appXPathQuery: readings } : {}),
+            ...(mdivs.length > 1 ? { mdivXPathQuery: mdivXPathQuery(mdivIndex) } : {}),
         })
 
         // insert composer's name on the right side of pgHead
@@ -94,11 +99,11 @@ export const ExportPDFModal = ({ meiData, fileName, expressionId }: ExportPDFMod
         )
         composerRend.setAttribute('halign', 'right')
         composerRend.textContent = composerName || ''
-        const pgHead = dom.querySelector('pgHead')
+        const pgHead = mdiv.querySelector('pgHead')
         pgHead?.appendChild(composerRend)
 
         // insert pgFoot with information on when the content was downloaded.
-        const scoreDef = dom.querySelector('scoreDef')
+        const scoreDef = mdiv.querySelector('scoreDef')
         const pgFoot = dom.createElementNS(
             'http://www.music-encoding.org/ns/mei',
             'pgFoot'

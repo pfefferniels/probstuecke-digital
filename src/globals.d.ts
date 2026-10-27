@@ -18,6 +18,8 @@ interface Window {
         modernClefs: boolean;
         rightHand: boolean;
         emptyStaves: number;
+        /** the index of the <mdiv> shown, if the score has more than one */
+        mdiv: number;
     };
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     verovio: any;
