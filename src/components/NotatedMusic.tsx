@@ -7,6 +7,7 @@ import { Close } from '@mui/icons-material';
 import { addEmptyStaves } from '../helpers/addEmptyStaves';
 import { removeEmbeddedAnnotations } from '../helpers/removeEmbeddedAnnotations';
 import { smuflFigures } from '../helpers/smuflFigures';
+import { showPieceBarNumbers } from '../helpers/showPieceBarNumbers';
 import { clearTouchSelection, isTouchInput, revealElement, selectLink } from '../helpers/touchSelection';
 import { mdivLabel, mdivXPathQuery, topLevelMdivs } from '../helpers/mdivs';
 import { readingsXPathQuery } from '../helpers/readings';
@@ -276,6 +277,7 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
 
         const hasEmbeddedAnnotation = !!meiDoc.querySelector('staffDef[type="embeddedAnnotation"]')
         if (isMainScore && !rightHand && hasEmbeddedAnnotation) removeEmbeddedAnnotations(meiDoc)
+        if (!isMainScore) showPieceBarNumbers(meiDoc)
         addEmptyStaves(meiDoc, emptyStaves)
         smuflFigures(meiDoc)
 
