@@ -141,6 +141,8 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
     const [rightHand, setRightHand] = useState(false)
     const [emptyStaves, setEmptyStaves] = useState(0)
     const [renderFailed, setRenderFailed] = useState(false)
+    // whether the encoding has modern clefs, figures or accidentals to switch to
+    const [canModernise, setCanModernise] = useState(false)
     const [pageWidth, setPageWidth] = useState<number | null>(null)
     // on touch screens: the part of the page image shown for a tapped staff
     const [facsimile, setFacsimile] = useState<Facsimile | null>(null)
@@ -222,6 +224,8 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
 
         const sourceId = meiDoc
             .querySelector(`source[corresp="${expressionId}"]`)?.getAttribute('xml:id')
+
+        setCanModernise(!!meiDoc.querySelector('choice, orig accid, supplied accid'))
 
         const hasEmbeddedAnnotation = !!meiDoc.querySelector('staffDef[type="embeddedAnnotation"]')
         if (isMainScore && !rightHand && hasEmbeddedAnnotation) removeEmbeddedAnnotations(meiDoc)
@@ -337,12 +341,9 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
                     (corresp as HTMLElement).classList.add('highlight')
                 })
                 currentDehighlight = window.highlightRefs([data.meiId])
-                if (data.corresps.length > 0) {
-                    (data.corresps[0] as HTMLElement).scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'center'
-                    })
-                }
+                // scrolling to a passage that is already visible would move the score
+                // away from the pointer (and close the page image)
+                if (data.corresps.length > 0) revealElement(data.corresps[0])
             }
         }
 
@@ -384,9 +385,10 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
                 const onPointerOver = (e: PointerEvent) => {
                     if (e.pointerType === 'touch') return
 
-                    // Don't show facsimile when hovering on a referenced element (score-to-text link)
-                    const target = e.target as Element | null
-                    if (target?.closest('[data-referenced]')) return
+                    // A referenced note or figure links to the commentary instead. A referenced
+                    // bar contains the staff: it links to the commentary and shows the page image.
+                    const referenced = (e.target as Element | null)?.closest('[data-referenced]')
+                    if (referenced && staff.contains(referenced)) return
 
                     cancelRemoveTimer()
                     if (document.querySelector('.zone-preview')) return
@@ -433,20 +435,26 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
     })
 
     // Touch screens: a tap on (or near) a referenced element finds its passage in the
-    // commentary; a tap on another part of a staff shows the page image it comes from
+    // commentary; a tap on another part of a staff shows the page image it comes from.
+    // A referenced bar covers its staves: tapping it again shows the page image.
     const onTap = (e: MouseEvent<HTMLDivElement>) => {
         if (!isTouchInput()) return
         if (!(e.target as Element).closest('.score-page')) return
 
         const referenced = nearestReferenced(e.currentTarget, e.clientX, e.clientY)
         if (referenced) {
-            setFacsimile(null)
             const passages = Array.from(document.querySelectorAll(`[data-target~="#${referenced.id}"]`))
-            selectLink(passages, [referenced.id], 'text')
-            return
+            const selected = passages.some(passage => passage.classList.contains('highlight'))
+            if (!(selected && referenced.querySelector('.staff'))) {
+                setFacsimile(null)
+                selectLink(passages, [referenced.id], 'text')
+                return
+            }
+        }
+        else {
+            clearTouchSelection()
         }
 
-        clearTouchSelection()
         const staff = Array
             .from(e.currentTarget.querySelectorAll('.staff[data-facs]'))
             .find(staff => {
@@ -470,19 +478,22 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
             onClick={onTap}
             className={`score ${isMainScore ? 'main-score' : 'example-score'} ${modernClefs ? 'modernized' : 'diplomatic'}`}
         >
+            {(isMainScore || canModernise) && (
             <div style={{
                 float: isMainScore ? 'right' : 'left',
                 border: '0.5px solid gray',
                 borderRadius: '0.5rem'
             }}>
-                <OptionToggle
-                    value="check"
-                    label={modernClefs ? 'Show original clefs' : 'Show modern clefs'}
-                    selected={modernClefs}
-                    onChange={() => setModernClefs(!modernClefs)}
-                >
-                    {modernClefs ? '\u{1D121}' : '\u{1D122}'}
-                </OptionToggle>
+                {canModernise && (
+                    <OptionToggle
+                        value="check"
+                        label={modernClefs ? 'Show the original notation' : 'Show modern clefs and accidentals'}
+                        selected={modernClefs}
+                        onChange={() => setModernClefs(!modernClefs)}
+                    >
+                        {modernClefs ? '\u{1D121}' : '\u{1D122}'}
+                    </OptionToggle>
+                )}
 
                 {isMainScore && (
                     <>
@@ -503,6 +514,7 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
                     </>
                 )}
             </div>
+            )}
 
             {renderFailed && (
                 <p style={{ clear: 'both', color: 'gray', fontStyle: 'italic' }}>
