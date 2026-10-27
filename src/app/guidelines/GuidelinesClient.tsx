@@ -18,7 +18,7 @@ export default function GuidelinesClient({ transformed }: GuidelinesClientProps)
 
       return (
         <Behavior node={props.teiNode}>
-          <pre style={{ fontSize: '0.8rem' }}>
+          <pre style={{ fontSize: '0.8rem', overflowX: 'auto' }}>
             {xml}
           </pre>
         </Behavior>

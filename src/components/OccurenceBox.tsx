@@ -30,7 +30,7 @@ export const OccurenceBox = ({ forId, expressions }: OccurenceBoxProps) => {
     if (mentions.size === 0) return null
 
     return (
-        <Card style={{ float: 'right', marginBottom: '1rem' }} elevation={7}>
+        <Card sx={{ float: { sm: 'right' }, mb: 2 }} elevation={7}>
             <CardContent>
                 <Typography variant="h6">Mentioned in …</Typography>
                 <List>
