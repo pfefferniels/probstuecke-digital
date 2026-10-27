@@ -17,20 +17,11 @@ export default function ImprintClient() {
       <Typography variant="h4" component="h1" sx={{ fontWeight: 'bold', mb: 2 }}>
         Imprint
       </Typography>
-      <Typography sx={{ mb: 2 }}>Information pursuant to § 5 DDG (Digitale-Dienste-Gesetz)</Typography>
-      <Typography component="address" sx={{ fontStyle: 'normal', mb: 2 }}>
-        {imprint.name}
-        {imprint.address.length > 0
-          ? imprint.address.map(line => <span key={line}><br />{line}</span>)
-          : <><br />[Postal address to be added]</>}
-      </Typography>
       <Typography>
-        Email: {imprint.email
-          ? <Link href={`mailto:${imprint.email}`}>{imprint.email}</Link>
-          : '[to be added]'}
-      </Typography>
-      <Typography sx={{ mt: 2 }}>
         Responsible for the content: {imprint.name}
+      </Typography>
+      <Typography sx={{ mt: 1 }}>
+        Email: <Link href={`mailto:${imprint.email}`}>{imprint.email}</Link>
       </Typography>
 
       <Typography variant="h4" component="h1" sx={{ fontWeight: 'bold', mt: 6, mb: 2 }}>

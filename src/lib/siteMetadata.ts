@@ -8,10 +8,9 @@ export const siteMetadata = {
   // DOI of the archived data release on Zenodo (e.g. '10.5281/zenodo.1234567').
   // Leave empty until the first release has been archived.
   doi: '',
-  // Imprint (Impressum). Address lines and email must be filled in before publishing.
+  // Person responsible for the content, shown on the imprint page
   imprint: {
     name: 'Niels Pfeffer',
-    address: [] as string[],
-    email: '',
+    email: 'niels.pfeffer@gmail.com',
   },
 }
