@@ -9,12 +9,13 @@ interface WordProps {
 }
 
 export const Word = ({ teiNode }: WordProps) => {
+    // CAB leaves tokens it cannot normalise (e.g. music symbols) empty
     const modernizedWord = teiNode.querySelector('tei-moot')?.getAttribute('word')
     const originalWord = teiNode.textContent
 
     return (
         <Tooltip title={originalWord} placement='top'>
-            <span>{modernizedWord}</span>
+            <span>{modernizedWord || originalWord}</span>
         </Tooltip>
     )
 }

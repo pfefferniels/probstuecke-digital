@@ -70,6 +70,21 @@ tei-text {
     line-height: 2;
 }
 
+/* Music symbols in the text (<g type="smufl">), e.g. rests and figures.
+   They sit in the SMuFL private use area, which only a music font covers. */
+@font-face {
+    font-family: Leipzig;
+    src: url('/Leipzig.ttf') format('truetype');
+    font-display: swap;
+}
+
+tei-g[type="smufl"] {
+    font-family: Leipzig;
+    /* SMuFL fonts are scaled to the staff, so the glyphs need a larger size */
+    font-size: 1.8em;
+    line-height: 0;
+}
+
 tei-lb {
     display: none;
 }
