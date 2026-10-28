@@ -16,7 +16,7 @@ const LinkToIndex = (props: LinkToIndexProps) => {
 
   return (
     <Link href={`/${props.type}/#${corresp.replace('#', '')}`}>
-      <span id={props.teiNode.getAttribute('id') || 'unknown'}>{props.children}</span>
+      <span id={props.teiNode.getAttribute('id') || undefined}>{props.children}</span>
     </Link>
   )
 }

@@ -58,25 +58,26 @@ export default function PieceClient({ piece, version, terms }: PieceClientProps)
 
   // a translation aligned with its original shows the original between its lines, a
   // print where the other print differs, unless the reader has hidden it (remembered in
-  // this browser)
+  // this browser, for translations and prints apart)
   const [showOriginal, setShowOriginal] = useState(true)
+  const textRef = useRef<HTMLDivElement>(null)
   const alignedWith = context?.siblings.find((sibling) => sibling.referringTo.includes(piece.original?.expressionId || ''))
   const originalName = !alignedWith
     ? 'original'
     : piece.original?.differences ? `differences from ${shortLabel(alignedWith)}` : `${shortLabel(alignedWith)} text`
-  const textRef = useRef<HTMLDivElement>(null)
+  const storageKey = context?.expression.type === 'edition' ? 'hideOtherPrint' : 'hideOriginal'
 
   useEffect(() => {
     try {
-      if (localStorage.getItem('hideOriginal') === 'true') setShowOriginal(false)
+      if (localStorage.getItem(storageKey) === 'true') setShowOriginal(false)
     } catch {
       // no storage: the original is shown
     }
-  }, [])
+  }, [storageKey])
 
   const toggleOriginal = () => {
     try {
-      localStorage.setItem('hideOriginal', String(showOriginal))
+      localStorage.setItem(storageKey, String(showOriginal))
     } catch {
       // no storage: the choice holds for this page only
     }

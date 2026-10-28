@@ -496,10 +496,10 @@ const collectIndexRefs = (document: Document) =>
   )
 
 // ---------------------------------------------------------------------------
-// A translation aligned with its original
+// A translation aligned with its original, a print with the other print
 // ---------------------------------------------------------------------------
 
-// the original as its own page shows it: a Fraktur print in modern spelling
+// a text as its own page shows it: a Fraktur print in modern spelling
 const loadOriginal = (filePath: string): Original | null => {
   if (!fs.existsSync(filePath)) return null
   const rawXml = fs.readFileSync(filePath, 'utf-8')
