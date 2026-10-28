@@ -55,12 +55,17 @@ export interface TextHeader {
   setting: string | null
 }
 
-/** The original of a translation whose sentences point to it (see helpers/alignTranslation) */
+/**
+ * The text shown between the lines of a translation or a print: the original of the
+ * translation, or the other print (see helpers/alignTranslation)
+ */
 export interface AlignedOriginal {
-  /** expression ID of the original, e.g. ps1-002 */
+  /** expression ID of the original or the other print, e.g. ps1-002 */
   expressionId: string | null
-  /** entries of the index of terms that the sentences of the original point to */
+  /** entries of the index of terms that the sentences shown point to */
   termIds: string[]
+  /** whether only the passages where the other print differs are shown */
+  differences: boolean
 }
 
 export interface ExpressionContext {

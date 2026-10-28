@@ -5,7 +5,7 @@ import serialize from 'w3c-xmlserializer'
 import createVerovioModule from 'verovio/wasm'
 import { VerovioToolkit } from 'verovio/esm'
 import { transformToCeteicean } from '@/helpers/transformToCeteicean'
-import { alignPointedTo, alignTranslation, type Original } from '@/helpers/alignTranslation'
+import { interleave, markDifferences, pointedTo, pointingHere, type Original } from '@/helpers/alignTranslation'
 import { extractFromXML } from '@/helpers/extractFromTEI'
 import { collectExpressionMetadata, collectEmbeddedMEI, collectRefTargets } from '@/helpers/collectors/index'
 import { collectZones } from '@/helpers/collectors/collectZones'
@@ -13,6 +13,7 @@ import { collectPersName } from '@/helpers/collectors/collectPersName'
 import { collectHeader } from '@/helpers/collectors/collectHeader'
 import { collectMedia } from '@/helpers/collectors/collectMedia'
 import { normaliseDocument, parseLexicon, type Lexicon } from '@/helpers/normalise'
+import { shortLabel } from '@/lib/expressionLabels'
 import type {
   Work,
   WorkExpression,
@@ -512,47 +513,51 @@ const loadOriginal = (filePath: string): Original | null => {
   }
 }
 
-// the text of a translation whose sentences point to those of its original, with these sentences
+// the sentences of the other print of a piece that point to those of this print (the
+// 1719 print to the 1731 one), as that print's page shows them
+const pointingPrint = (document: Document, filePath: string, context: ExpressionContext | null) => {
+  if (context?.expression.type !== 'edition') return null
+  for (const sibling of context.siblings) {
+    if (sibling === context.expression || sibling.type !== 'edition') continue
+    const siblingPath = buildExpressionIndex().get(sibling.referringTo[0])?.filePath
+    const pointing = siblingPath ? loadOriginal(siblingPath) : null
+    if (!siblingPath || !pointing) continue
+    const alignment = pointingHere(document, pointing, (file) =>
+      path.resolve(path.dirname(siblingPath), file) === path.resolve(filePath))
+    if (alignment) return alignment
+  }
+  return null
+}
+
+// the text of a translation or a print aligned with another print: the sentences that
+// its sentences point to, or else those that point to its own. A translation shows the
+// sentences of its original; two prints of the text show where they differ
 const alignWithOriginal = (
   textXml: string | null,
-  filePath: string
+  filePath: string,
+  context: ExpressionContext | null,
+  lang: string
 ): { text: TransformedTEI; original: AlignedOriginal } | null => {
   if (!textXml) return null
   const document = parseXml(textXml)
   const originals = new Map<string, Original | null>()
-  const aligned = alignTranslation(document, (file) => {
+  const alignment = pointedTo(document, (file) => {
     const originalPath = path.resolve(path.dirname(filePath), file)
     if (!originals.has(originalPath)) originals.set(originalPath, loadOriginal(originalPath))
     return originals.get(originalPath)!
-  })
-  if (!aligned) return null
-  return { text: transformToCeteicean(serialize(document)), original: aligned }
-}
+  }) ?? pointingPrint(document, filePath, context)
+  if (!alignment) return null
 
-// the text of a print whose sentences another print of the work points to (the 1731
-// print, to which the 1719 print points), with the sentences of that print
-const alignWithOtherPrint = (
-  textXml: string | null,
-  filePath: string,
-  context: ExpressionContext | null
-): { text: TransformedTEI; original: AlignedOriginal } | null => {
-  if (!textXml || !context || context.expression.type !== 'edition') return null
-  const index = buildExpressionIndex()
-  const others = context.siblings
-    .filter((sibling) => sibling.type === 'edition' && sibling !== context.expression)
-    .flatMap((sibling) => sibling.referringTo)
-  for (const id of others) {
-    const otherPath = index.get(id)?.filePath
-    const other = otherPath ? loadOriginal(otherPath) : null
-    if (!otherPath || !other) continue
-    const document = parseXml(textXml)
-    const aligned = alignPointedTo(document, other, (token) => {
-      const [file, sentence] = token.split('#')
-      return file && path.resolve(path.dirname(otherPath), file) === path.resolve(filePath) ? sentence : null
-    })
-    if (aligned) return { text: transformToCeteicean(serialize(document)), original: aligned }
+  const otherId = alignment.other.document.documentElement.getAttribute('xml:id') || ''
+  const other = context?.siblings.find((sibling) => sibling.referringTo.includes(otherId))
+  const differences = other && alignment.other.lang === lang
+    ? markDifferences(document, alignment, `not in ${shortLabel(other)}`)
+    : null
+  const aligned = differences ?? interleave(document, alignment)
+  return {
+    text: transformToCeteicean(serialize(document)),
+    original: { ...aligned, differences: differences !== null },
   }
-  return null
 }
 
 // ---------------------------------------------------------------------------
@@ -638,8 +643,7 @@ const processExpressionFile = async (filePath: string): Promise<Expression | nul
       []
     )
 
-  const textXml = extracts.find((extract) => extract.fill === 'text')?.with ?? null
-  const aligned = alignWithOriginal(textXml, filePath) ?? alignWithOtherPrint(textXml, filePath, context)
+  const aligned = alignWithOriginal(extracts.find((extract) => extract.fill === 'text')?.with ?? null, filePath, context, lang)
 
   const sections = extracts
     .map((extract) => {

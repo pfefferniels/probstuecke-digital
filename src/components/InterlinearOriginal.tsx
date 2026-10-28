@@ -10,6 +10,8 @@ interface Line {
   size: number
   lang: string
   text: string
+  /** a note that the other text lacks the sentence */
+  absent: boolean
 }
 
 interface InterlinearOriginalProps {
@@ -25,6 +27,20 @@ const DROP = 1
 const GAP = 6
 
 const PAIRS = 'tei-seg[type="pair"]'
+// notes, music examples (rendered by components/NotatedMusic) and figures
+const BLOCKS = 'tei-note, .score, tei-figure'
+
+// music glyphs in the text (<g type="smufl">), drawn in the music font
+const SMUFL = /([\uE000-\uF8FF]+)/
+// the size of the music font, relative to the text (tei-g[type="smufl"] in globals.css)
+const SMUFL_SCALE = 1.8
+
+// the width of a word of the original, as its line shows it
+const widthOf = (context: CanvasRenderingContext2D, word: string, size: number) =>
+  word.split(SMUFL).reduce((width, part, i) => {
+    context.font = i % 2 ? `${size * SMUFL_SCALE}px Leipzig` : `${size}px Junicode, serif`
+    return width + context.measureText(part).width
+  }, 0)
 
 const partOf = (pair: Element, type: string) => pair.querySelector<HTMLElement>(`:scope > tei-seg[type="${type}"]`)
 
@@ -38,15 +54,16 @@ const textOf = (original: Element) => {
   return (clone.textContent || '').replace(/\s+/g, ' ').trim()
 }
 
-// the boxes of the words of a translated sentence, line by line (notes left out)
-const textRects = (translation: Element) => {
+// the boxes of the words of a passage, line by line (notes, music examples and figures left
+// out, and music glyphs, whose boxes reach far above and below the line)
+const textRects = (passage: Element) => {
   const rects: DOMRect[] = []
-  const walker = document.createTreeWalker(translation, NodeFilter.SHOW_TEXT)
+  const walker = document.createTreeWalker(passage, NodeFilter.SHOW_TEXT)
   const range = document.createRange()
   for (let node = walker.nextNode(); node; node = walker.nextNode()) {
     const text = node.textContent || ''
     const start = text.search(/\S/)
-    if (start < 0 || node.parentElement?.closest('tei-note')) continue
+    if (start < 0 || node.parentElement?.closest(`${BLOCKS}, tei-g[type="smufl"]`)) continue
     range.setStart(node, start)
     range.setEnd(node, text.trimEnd().length)
     rects.push(...Array.from(range.getClientRects()).filter((rect) => rect.width > 0))
@@ -56,11 +73,12 @@ const textRects = (translation: Element) => {
 
 interface Row { top: number; bottom: number }
 
-// the lines of the translation in a paragraph, top to bottom; where a music example,
-// a note or a spacer leaves a gap, lines at the usual distance are filled in
-const rowsOf = (pairs: Element[], pitch: number) => {
+// the lines of a paragraph, top to bottom; where a music example, a note or a spacer
+// leaves a gap, lines at the usual distance are filled in, as far as a whole line
+// remains before the next (the gap below a music example need not be a whole number)
+const rowsOf = (paragraph: Element, pitch: number) => {
   const rows: Row[] = []
-  const rects = pairs.flatMap((pair) => textRects(partOf(pair, 'translation')!)).sort((a, b) => a.top - b.top)
+  const rects = textRects(paragraph).sort((a, b) => a.top - b.top)
   for (const rect of rects) {
     const row = rows[rows.length - 1]
     if (row && rect.top < row.bottom - 2) row.bottom = Math.max(row.bottom, rect.bottom)
@@ -69,7 +87,7 @@ const rowsOf = (pairs: Element[], pitch: number) => {
   return rows.flatMap((row, i) => {
     const next = rows[i + 1]
     const filled = [row]
-    for (let k = 1; next && row.top + k * pitch < next.top - pitch / 2; k++) {
+    for (let k = 1; next && row.top + (k + 1) * pitch <= next.top + 2; k++) {
       filled.push({ top: row.top + k * pitch, bottom: row.bottom + k * pitch })
     }
     return filled
@@ -77,8 +95,8 @@ const rowsOf = (pairs: Element[], pitch: number) => {
 }
 
 // the distance between the lines of a paragraph
-const pitchOf = (pairs: Element[], style: CSSStyleDeclaration) => {
-  const tops = pairs.flatMap((pair) => textRects(partOf(pair, 'translation')!)).map((rect) => rect.top).sort((a, b) => a - b)
+const pitchOf = (paragraph: Element, style: CSSStyleDeclaration) => {
+  const tops = textRects(paragraph).map((rect) => rect.top).sort((a, b) => a - b)
   const fontSize = parseFloat(style.fontSize)
   const steps = tops.slice(1).map((top, i) => top - tops[i]).filter((step) => step > fontSize)
   return steps.length > 0 ? Math.min(...steps) : parseFloat(style.lineHeight) || fontSize * 2.6
@@ -107,7 +125,7 @@ const layout = (root: HTMLElement, adjust: boolean): Line[] => {
     paragraphs.set(paragraph, [...(paragraphs.get(paragraph) || []), pair])
   }
   // notes and music examples anywhere in the text: a note beside one paragraph may reach into the next
-  const blocks = Array.from(root.querySelectorAll('tei-note, tei-notatedmusic, tei-figure'))
+  const blocks = Array.from(root.querySelectorAll(BLOCKS))
     .filter((el) => !el.closest('tei-seg[type="original"]'))
 
   for (const [paragraph, group] of paragraphs) {
@@ -121,7 +139,7 @@ const layout = (root: HTMLElement, adjust: boolean): Line[] => {
     const contentRight = box.right - parseFloat(style.paddingRight)
     const center = (contentLeft + contentRight) / 2
     const band = size * 1.2
-    const pitch = pitchOf(group, style)
+    const pitch = pitchOf(paragraph, style)
 
     let previous: { top: number; x: number } | null = null
     for (const pair of group) {
@@ -131,7 +149,7 @@ const layout = (root: HTMLElement, adjust: boolean): Line[] => {
       if (!first || words.length === 0) continue
 
       // measured again for each sentence: the spacers of the sentences before may have moved them
-      const rows = rowsOf(group, pitch)
+      const rows = rowsOf(paragraph, pitch)
       const obstacles = blocks.map((el) => el.getBoundingClientRect()).filter((rect) => rect.width > 0 && rect.height > 0)
       const last = rows[rows.length - 1]
       // beyond the last line of the paragraph, lines are added at the same distance
@@ -169,7 +187,7 @@ const layout = (root: HTMLElement, adjust: boolean): Line[] => {
 
       let line: Line | null = null
       for (const word of words) {
-        const width = context.measureText(word).width
+        const width = widthOf(context, word, size)
         for (let tries = 0; tries < 200; tries++) {
           const s = slot(row)
           if (s) {
@@ -178,7 +196,15 @@ const layout = (root: HTMLElement, adjust: boolean): Line[] => {
             // a word longer than the line still has to go somewhere
             if (x + width <= s.right || (fresh && x === s.left) || tries > 50) {
               if (fresh) {
-                line = { pair: pairs.indexOf(pair), left: x - origin.left, top: s.top - origin.top, size, lang: original!.lang, text: word }
+                line = {
+                  pair: pairs.indexOf(pair),
+                  left: x - origin.left,
+                  top: s.top - origin.top,
+                  size,
+                  lang: original!.lang,
+                  text: word,
+                  absent: original!.getAttribute('rend') === 'absent',
+                }
                 lines.push(line)
               } else {
                 line!.text += ` ${word}`
@@ -193,9 +219,15 @@ const layout = (root: HTMLElement, adjust: boolean): Line[] => {
       }
       const end = { top: rowAt(row).top, x: x - space }
 
-      // make room for the rest of the original before the next sentence
+      // make room for the rest of the original before the next sentence; in a print, whose
+      // passages are few, only where the reading would run into the reading of the next,
+      // or beyond the last line of the paragraph
       const spacer = spacerOf(pair)
-      if (adjust && spacer) {
+      const next = group.slice(group.indexOf(pair) + 1).find((other) => partOf(other, 'original'))
+      const nextStart = next && textRects(partOf(next, 'translation')!)[0]
+      const crowded = !pair.hasAttribute('subtype') || row >= rows.length || (!!nextStart
+        && (rowOf(nextStart.top) < row || (rowOf(nextStart.top) === row && nextStart.left < end.x + GAP)))
+      if (adjust && spacer && crowded) {
         spacer.setAttribute('style', 'display: inline-block; width: 0')
         const at = spacer.getBoundingClientRect()
         spacer.removeAttribute('style')
@@ -232,9 +264,10 @@ const layout = (root: HTMLElement, adjust: boolean): Line[] => {
 
 /**
  * The original of an aligned translation between its lines: beneath each sentence
- * of the translation, small and grey, the sentence of the original that it renders
- * (<seg type="pair">, see helpers/alignTranslation). The translation keeps its flow.
- * Pointing at a sentence or at its original highlights both.
+ * of the translation, small and grey, the sentence of the original that it renders;
+ * in a print, beneath each passage where the other print differs, the reading of the
+ * other print (<seg type="pair">, see helpers/alignTranslation). The text keeps its
+ * flow. Pointing at a passage or at what stands beneath it highlights both.
  */
 export const InterlinearOriginal = ({ container }: InterlinearOriginalProps) => {
   const [lines, setLines] = useState<Line[]>([])
@@ -296,10 +329,10 @@ export const InterlinearOriginal = ({ container }: InterlinearOriginalProps) => 
           key={i}
           data-pair={line.pair}
           lang={line.lang || undefined}
-          className={line.pair === active ? 'active' : undefined}
+          className={[line.pair === active ? 'active' : '', line.absent ? 'absent' : ''].join(' ').trim() || undefined}
           style={{ left: line.left, top: line.top, fontSize: line.size }}
         >
-          {line.text}
+          {line.text.split(SMUFL).map((part, k) => (k % 2 ? <span key={k} className="smufl">{part}</span> : part))}
         </span>
       ))}
     </div>
