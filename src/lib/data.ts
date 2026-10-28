@@ -5,7 +5,7 @@ import serialize from 'w3c-xmlserializer'
 import createVerovioModule from 'verovio/wasm'
 import { VerovioToolkit } from 'verovio/esm'
 import { transformToCeteicean } from '@/helpers/transformToCeteicean'
-import { alignTranslation, type Original } from '@/helpers/alignTranslation'
+import { alignPointedTo, alignTranslation, type Original } from '@/helpers/alignTranslation'
 import { extractFromXML } from '@/helpers/extractFromTEI'
 import { collectExpressionMetadata, collectEmbeddedMEI, collectRefTargets } from '@/helpers/collectors/index'
 import { collectZones } from '@/helpers/collectors/collectZones'
@@ -495,10 +495,10 @@ const collectIndexRefs = (document: Document) =>
   )
 
 // ---------------------------------------------------------------------------
-// A translation aligned with its original
+// A translation aligned with its original, a print with the other print
 // ---------------------------------------------------------------------------
 
-// the original as its own page shows it: a Fraktur print in modern spelling
+// a text as its own page shows it: a Fraktur print in modern spelling
 const loadOriginal = (filePath: string): Original | null => {
   if (!fs.existsSync(filePath)) return null
   const rawXml = fs.readFileSync(filePath, 'utf-8')
@@ -527,6 +527,32 @@ const alignWithOriginal = (
   })
   if (!aligned) return null
   return { text: transformToCeteicean(serialize(document)), original: aligned }
+}
+
+// the text of a print whose sentences another print of the work points to (the 1731
+// print, to which the 1719 print points), with the sentences of that print
+const alignWithOtherPrint = (
+  textXml: string | null,
+  filePath: string,
+  context: ExpressionContext | null
+): { text: TransformedTEI; original: AlignedOriginal } | null => {
+  if (!textXml || !context || context.expression.type !== 'edition') return null
+  const index = buildExpressionIndex()
+  const others = context.siblings
+    .filter((sibling) => sibling.type === 'edition' && sibling !== context.expression)
+    .flatMap((sibling) => sibling.referringTo)
+  for (const id of others) {
+    const otherPath = index.get(id)?.filePath
+    const other = otherPath ? loadOriginal(otherPath) : null
+    if (!otherPath || !other) continue
+    const document = parseXml(textXml)
+    const aligned = alignPointedTo(document, other, (token) => {
+      const [file, sentence] = token.split('#')
+      return file && path.resolve(path.dirname(otherPath), file) === path.resolve(filePath) ? sentence : null
+    })
+    if (aligned) return { text: transformToCeteicean(serialize(document)), original: aligned }
+  }
+  return null
 }
 
 // ---------------------------------------------------------------------------
@@ -612,7 +638,8 @@ const processExpressionFile = async (filePath: string): Promise<Expression | nul
       []
     )
 
-  const aligned = alignWithOriginal(extracts.find((extract) => extract.fill === 'text')?.with ?? null, filePath)
+  const textXml = extracts.find((extract) => extract.fill === 'text')?.with ?? null
+  const aligned = alignWithOriginal(textXml, filePath) ?? alignWithOtherPrint(textXml, filePath, context)
 
   const sections = extracts
     .map((extract) => {
