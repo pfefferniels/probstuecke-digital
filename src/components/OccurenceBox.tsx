@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material"
 import Link from 'next/link'
 import { Fragment } from "react"
-import { longLabel, shortLabel } from '@/lib/expressionLabels'
+import { longLabel, versionLabel } from '@/lib/expressionLabels'
 import type { ExpressionIndexData } from '@/lib/types'
 
 interface OccurenceBoxProps {
@@ -18,10 +18,10 @@ interface Mentions {
 const mentionHref = (expressionId: string, xmlId: string | null) =>
     `/${expressionId}/${xmlId ? `#${xmlId}` : ''}`
 
-// A version of a Probstück (e.g. "1731"), linking to the mention in it; several mentions get a link each
+// A version of a Probstück (e.g. "1731" or "Lesson by Hill"), linking to the mention in it; several mentions get a link each
 const Version = ({ expression, xmlIds }: Mentions) => {
     const { expressionId, context } = expression
-    const label = context ? shortLabel(context.expression) : 'Text'
+    const label = context ? versionLabel(context.expression) : 'Text'
     const title = context ? longLabel(context.expression) : expression.label || label
 
     if (xmlIds.length === 1) {
