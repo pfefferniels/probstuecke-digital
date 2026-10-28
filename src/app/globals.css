@@ -155,9 +155,34 @@ tei-lb {
     color: #555;
 }
 
-.pieceBar .versions .sep {
-    color: gray;
-    margin: 0 0.35rem;
+/* the versions as tabs; the one shown is underlined, as in the main navigation */
+.pieceBar .versions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem 1.25rem;
+}
+
+.pieceBar .version {
+    color: #555;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.pieceBar a.version:hover,
+.pieceBar a.version:focus-visible {
+    color: black;
+}
+
+.pieceBar .version[aria-current="page"] {
+    color: black;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 6px;
+}
+
+/* a section opened from another version starts below the bar with the title */
+[id^="section-"] {
+    scroll-margin-top: 8rem;
 }
 
 .pieceBar .actions {
@@ -227,6 +252,10 @@ tei-seg[type="space"] {
     .main-score {
         position: relative;
         padding-top: 0.5rem;
+    }
+
+    [id^="section-"] {
+        scroll-margin-top: 1rem;
     }
 
     tei-note[type="editorial"] {

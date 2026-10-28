@@ -1,7 +1,8 @@
 'use client'
 
-import { useState, useEffect, useRef, Fragment } from 'react'
+import { type MouseEvent, useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { NotatedMusic } from '@/components/NotatedMusic'
 import Ceteicean from '@/ceteicean/Ceteicean'
 import { Behavior } from '@/ceteicean/Behavior'
@@ -17,8 +18,20 @@ import { DownloadDialog } from '@/components/DownloadDialog'
 import { SourcePanel } from '@/components/SourcePanel'
 import { InterlinearOriginal } from '@/components/InterlinearOriginal'
 import { lessonRoutes, Participants } from '@/components/Lesson'
-import { keyLabel, longLabel, shortLabel } from '@/lib/expressionLabels'
-import type { EditionVersion, Expression, ExpressionZone, TermSummary } from '@/lib/types'
+import { keyLabel, longLabel, versionLabel } from '@/lib/expressionLabels'
+import type { EditionVersion, Expression, ExpressionZone, TermSummary, WorkExpression } from '@/lib/types'
+
+// The section (§) being read: the last one that begins above the upper third of the screen.
+// None at the top of the page, which shows the title and the score first.
+const sectionInView = () => {
+  if (window.scrollY === 0) return null
+  let current: string | null = null
+  for (const section of Array.from(document.querySelectorAll('[id^="section-"]'))) {
+    if (section.getBoundingClientRect().top > window.innerHeight / 3) break
+    current = section.id
+  }
+  return current
+}
 
 interface PieceClientProps {
   piece: Expression
@@ -29,11 +42,24 @@ interface PieceClientProps {
 export default function PieceClient({ piece, version, terms }: PieceClientProps) {
   const [downloadDialogOpen, setDownloadDialogOpen] = useState(false)
   const [sourceOpen, setSourceOpen] = useState(false)
+  const router = useRouter()
+  const context = piece.context
+
+  // Another version opens at the section being read, if it has as many sections; versions
+  // divided differently (often 1719 and 1731) do not correspond section by section
+  const openVersion = (event: MouseEvent<HTMLAnchorElement>, sibling: WorkExpression) => {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+    if (!context || sibling.sections !== context.expression.sections) return
+    const section = sectionInView()
+    if (!section) return
+    event.preventDefault()
+    router.push(`/${sibling.referringTo[0]}/#${section}`)
+  }
+
   // a translation aligned with its original shows the original between its lines, a
   // print the other print, unless the reader has hidden it (remembered in this browser)
   const [showOriginal, setShowOriginal] = useState(true)
   const textRef = useRef<HTMLDivElement>(null)
-  const context = piece.context
   const otherPrint = context?.expression.type === 'edition'
     ? context.siblings.find((sibling) => sibling.referringTo.includes(piece.original?.expressionId ?? ''))
     : undefined
@@ -94,10 +120,13 @@ export default function PieceClient({ piece, version, terms }: PieceClientProps)
       const el = document.getElementById(id)
       if (el || ++tries > 40) window.clearInterval(timer)
       if (!el) return
-      el.classList.add('linkTarget')
-      el.scrollIntoView({ block: 'center' })
+      // a section (from another version of the piece) is shown from its start; a passage is marked
+      const section = id.startsWith('section-')
+      const reveal = () => el.scrollIntoView({ block: section ? 'start' : 'center' })
+      if (!section) el.classList.add('linkTarget')
+      reveal()
       // the score is laid out after the text and may push the passage down
-      later.push(window.setTimeout(() => el.scrollIntoView({ block: 'center' }), 1500))
+      later.push(window.setTimeout(reveal, 1500))
     }, 150)
     return () => {
       window.clearInterval(timer)
@@ -115,19 +144,28 @@ export default function PieceClient({ piece, version, terms }: PieceClientProps)
             <span className="workTitle">
               {context ? `${context.workTitle} · ${keyLabel(context.key)}` : piece.header.title}
             </span>
-            {context && <span className="layer">{longLabel(context.expression)}</span>}
             {context && context.siblings.length > 1 && (
               <nav className="versions" aria-label="Versions of this piece">
-                {context.siblings.map((sibling, i) => (
-                  <Fragment key={sibling.id}>
-                    {i > 0 && <span className="sep">·</span>}
-                    {sibling.referringTo.includes(piece.expressionId || '')
-                      ? <strong aria-current="page">{shortLabel(sibling)}</strong>
-                      : <Link href={`/${sibling.referringTo[0]}/`} title={longLabel(sibling)}>{shortLabel(sibling)}</Link>}
-                  </Fragment>
-                ))}
+                {context.siblings.map(sibling => sibling.referringTo.includes(piece.expressionId || '')
+                  ? (
+                    <span key={sibling.id} className="version" aria-current="page" title={longLabel(sibling)}>
+                      {versionLabel(sibling)}
+                    </span>
+                  )
+                  : (
+                    <Link
+                      key={sibling.id}
+                      className="version"
+                      href={`/${sibling.referringTo[0]}/`}
+                      title={longLabel(sibling)}
+                      onClick={event => openVersion(event, sibling)}
+                    >
+                      {versionLabel(sibling)}
+                    </Link>
+                  ))}
               </nav>
             )}
+            {context && context.siblings.length <= 1 && <span className="layer">{longLabel(context.expression)}</span>}
             <span className="actions">
               {piece.original && (
                 <Tooltip title={showOriginal ? `Hide ${between}` : `Show ${between} between the lines`}>
