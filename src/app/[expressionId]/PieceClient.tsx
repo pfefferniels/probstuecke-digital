@@ -18,7 +18,7 @@ import { DownloadDialog } from '@/components/DownloadDialog'
 import { SourcePanel } from '@/components/SourcePanel'
 import { InterlinearOriginal } from '@/components/InterlinearOriginal'
 import { lessonRoutes, Participants } from '@/components/Lesson'
-import { keyLabel, longLabel, versionLabel } from '@/lib/expressionLabels'
+import { keyLabel, longLabel, shortLabel, versionLabel } from '@/lib/expressionLabels'
 import type { EditionVersion, Expression, ExpressionZone, TermSummary, WorkExpression } from '@/lib/types'
 
 // The section (§) being read: the last one that begins above the upper third of the screen.
@@ -56,9 +56,14 @@ export default function PieceClient({ piece, version, terms }: PieceClientProps)
     router.push(`/${sibling.referringTo[0]}/#${section}`)
   }
 
-  // a translation aligned with its original shows the original between its lines,
-  // unless the reader has hidden it (remembered in this browser)
+  // a translation aligned with its original shows the original between its lines, a
+  // print where the other print differs, unless the reader has hidden it (remembered in
+  // this browser)
   const [showOriginal, setShowOriginal] = useState(true)
+  const alignedWith = context?.siblings.find((sibling) => sibling.referringTo.includes(piece.original?.expressionId || ''))
+  const originalName = !alignedWith
+    ? 'original'
+    : piece.original?.differences ? `differences from ${shortLabel(alignedWith)}` : `${shortLabel(alignedWith)} text`
   const textRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -163,10 +168,10 @@ export default function PieceClient({ piece, version, terms }: PieceClientProps)
             {context && context.siblings.length <= 1 && <span className="layer">{longLabel(context.expression)}</span>}
             <span className="actions">
               {piece.original && (
-                <Tooltip title={showOriginal ? 'Hide the original' : 'Show the original between the lines'}>
+                <Tooltip title={showOriginal ? `Hide the ${originalName}` : `Show the ${originalName} between the lines`}>
                   <IconButton
                     color="primary"
-                    aria-label="Original between the lines"
+                    aria-label={`The ${originalName} between the lines`}
                     aria-pressed={showOriginal}
                     onClick={toggleOriginal}
                   >
@@ -221,7 +226,7 @@ export default function PieceClient({ piece, version, terms }: PieceClientProps)
             <Grid
               size={piece.score ? { xs: 12, md: 6 } : 12}
               p={1.5}
-              className={[piece.score ? '' : 'textOnly', piece.original && showOriginal ? 'interlinear' : ''].join(' ').trim() || undefined}
+              className={[piece.score ? '' : 'textOnly', piece.original && showOriginal ? 'interlinear' : '', piece.original?.differences && showOriginal ? 'differences' : ''].join(' ').trim() || undefined}
             >
               {piece.header.participants.length > 0 && <Participants participants={piece.header.participants} />}
               <div ref={textRef} className={piece.original ? 'interlinearText' : undefined}>
