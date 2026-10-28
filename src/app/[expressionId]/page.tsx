@@ -33,7 +33,7 @@ export default async function ExpressionPage({ params }: PageProps) {
     notFound()
   }
 
-  // label and gloss of the words tagged for the index of terms, also in the original between the lines of a translation
+  // label and gloss of the words tagged for the index of terms, also in the text between the lines (the original of a translation, the other print of a print)
   const terms = await loadTermSummaries([
     ...expression.indexRefs.map((ref) => ref.corresp),
     ...(expression.original?.termIds ?? []),

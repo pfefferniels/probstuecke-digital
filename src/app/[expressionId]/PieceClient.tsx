@@ -29,23 +29,28 @@ interface PieceClientProps {
 export default function PieceClient({ piece, version, terms }: PieceClientProps) {
   const [downloadDialogOpen, setDownloadDialogOpen] = useState(false)
   const [sourceOpen, setSourceOpen] = useState(false)
-  // a translation aligned with its original shows the original between its lines,
-  // unless the reader has hidden it (remembered in this browser)
+  // a translation aligned with its original shows the original between its lines, a
+  // print the other print, unless the reader has hidden it (remembered in this browser)
   const [showOriginal, setShowOriginal] = useState(true)
   const textRef = useRef<HTMLDivElement>(null)
   const context = piece.context
+  const otherPrint = context?.expression.type === 'edition'
+    ? context.siblings.find((sibling) => sibling.referringTo.includes(piece.original?.expressionId ?? ''))
+    : undefined
+  const between = otherPrint ? `the ${otherPrint.date} text` : 'the original'
+  const storageKey = otherPrint ? 'hideOtherPrint' : 'hideOriginal'
 
   useEffect(() => {
     try {
-      if (localStorage.getItem('hideOriginal') === 'true') setShowOriginal(false)
+      if (localStorage.getItem(storageKey) === 'true') setShowOriginal(false)
     } catch {
       // no storage: the original is shown
     }
-  }, [])
+  }, [storageKey])
 
   const toggleOriginal = () => {
     try {
-      localStorage.setItem('hideOriginal', String(showOriginal))
+      localStorage.setItem(storageKey, String(showOriginal))
     } catch {
       // no storage: the choice holds for this page only
     }
@@ -125,10 +130,10 @@ export default function PieceClient({ piece, version, terms }: PieceClientProps)
             )}
             <span className="actions">
               {piece.original && (
-                <Tooltip title={showOriginal ? 'Hide the original' : 'Show the original between the lines'}>
+                <Tooltip title={showOriginal ? `Hide ${between}` : `Show ${between} between the lines`}>
                   <IconButton
                     color="primary"
-                    aria-label="Original between the lines"
+                    aria-label={otherPrint ? `${otherPrint.date} text between the lines` : 'Original between the lines'}
                     aria-pressed={showOriginal}
                     onClick={toggleOriginal}
                   >
