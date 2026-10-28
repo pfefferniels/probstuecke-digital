@@ -5,6 +5,7 @@ import serialize from 'w3c-xmlserializer'
 import createVerovioModule from 'verovio/wasm'
 import { VerovioToolkit } from 'verovio/esm'
 import { transformToCeteicean } from '@/helpers/transformToCeteicean'
+import { alignTranslation, type Original } from '@/helpers/alignTranslation'
 import { extractFromXML } from '@/helpers/extractFromTEI'
 import { collectExpressionMetadata, collectEmbeddedMEI, collectRefTargets } from '@/helpers/collectors/index'
 import { collectZones } from '@/helpers/collectors/collectZones'
@@ -27,6 +28,7 @@ import type {
   Register,
   Expression,
   ExpressionContext,
+  AlignedOriginal,
   TransformedTEI,
   ExpressionIndexData,
 } from '@/lib/types'
@@ -493,6 +495,41 @@ const collectIndexRefs = (document: Document) =>
   )
 
 // ---------------------------------------------------------------------------
+// A translation aligned with its original
+// ---------------------------------------------------------------------------
+
+// the original as its own page shows it: a Fraktur print in modern spelling
+const loadOriginal = (filePath: string): Original | null => {
+  if (!fs.existsSync(filePath)) return null
+  const rawXml = fs.readFileSync(filePath, 'utf-8')
+  const document = parseXml(rawXml)
+  const tei = document.querySelector('TEI')
+  const id = tei?.getAttribute('xml:id')
+  const context = id ? findExpressionContext(id) : null
+  return {
+    document: collectExpressionMetadata(document).isFraktur ? parseXml(modernizeTEI(rawXml)) : document,
+    lang: LANGUAGE_TAGS[context?.expression.langCode ?? ''] || tei?.getAttribute('xml:lang') || 'de',
+  }
+}
+
+// the text of a translation whose sentences point to those of its original, with these sentences
+const alignWithOriginal = (
+  textXml: string | null,
+  filePath: string
+): { text: TransformedTEI; original: AlignedOriginal } | null => {
+  if (!textXml) return null
+  const document = parseXml(textXml)
+  const originals = new Map<string, Original | null>()
+  const aligned = alignTranslation(document, (file) => {
+    const originalPath = path.resolve(path.dirname(filePath), file)
+    if (!originals.has(originalPath)) originals.set(originalPath, loadOriginal(originalPath))
+    return originals.get(originalPath)!
+  })
+  if (!aligned) return null
+  return { text: transformToCeteicean(serialize(document)), original: aligned }
+}
+
+// ---------------------------------------------------------------------------
 // Expression processing (core logic ported from gatsby-node onCreateNode)
 // ---------------------------------------------------------------------------
 
@@ -553,7 +590,7 @@ const processExpressionFile = async (filePath: string): Promise<Expression | nul
     text: 'text',
   }
 
-  const sections = Object.entries(selectors)
+  const extracts = Object.entries(selectors)
     .reduce(
       (
         prev: { fill: string; with: string | null; reduced: string }[],
@@ -574,6 +611,10 @@ const processExpressionFile = async (filePath: string): Promise<Expression | nul
       },
       []
     )
+
+  const aligned = alignWithOriginal(extracts.find((extract) => extract.fill === 'text')?.with ?? null, filePath)
+
+  const sections = extracts
     .map((extract) => {
       return {
         fill: extract.fill,
@@ -592,7 +633,8 @@ const processExpressionFile = async (filePath: string): Promise<Expression | nul
     label: metadata.label,
     score: sections.score || null,
     title: sections.title || null,
-    text: sections.text || null,
+    text: aligned?.text || sections.text || null,
+    original: aligned?.original ?? null,
     mei,
     media,
     zones,

@@ -33,8 +33,11 @@ export default async function ExpressionPage({ params }: PageProps) {
     notFound()
   }
 
-  // label and gloss of the words tagged for the index of terms
-  const terms = await loadTermSummaries(expression.indexRefs.map((ref) => ref.corresp))
+  // label and gloss of the words tagged for the index of terms, also in the original between the lines of a translation
+  const terms = await loadTermSummaries([
+    ...expression.indexRefs.map((ref) => ref.corresp),
+    ...(expression.original?.termIds ?? []),
+  ])
 
   return <PieceClient piece={expression} version={loadEditionVersion()} terms={terms} />
 }
