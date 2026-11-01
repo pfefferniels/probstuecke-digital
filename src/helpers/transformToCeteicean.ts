@@ -1,5 +1,6 @@
 import { JSDOM } from "jsdom"
 import serialize from "w3c-xmlserializer"
+import { languageTag } from "./languageTags"
 
 function getAttributeNames(el: Element): string[] {
   const attrs = el.attributes
@@ -42,7 +43,7 @@ export const transformToCeteicean = (rawXml: string) => {
         newElement.setAttribute("id", att.value)
       }
       if (att.name == "xml:lang") {
-        newElement.setAttribute("lang", att.value)
+        newElement.setAttribute("lang", languageTag(att.value))
       }
       if (att.name == "rendition") {
         newElement.setAttribute("class", att.value.replace(/#/g, ""))
