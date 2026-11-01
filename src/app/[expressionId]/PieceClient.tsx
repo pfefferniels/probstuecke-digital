@@ -1,9 +1,9 @@
 'use client'
 
-import { type MouseEvent, useState, useEffect, useRef } from 'react'
+import { type MouseEvent, useState, useEffect, useMemo, useRef } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { NotatedMusic } from '@/components/NotatedMusic'
+import { NotatedMusic, OtherPrintContext } from '@/components/NotatedMusic'
 import Ceteicean from '@/ceteicean/Ceteicean'
 import { Behavior } from '@/ceteicean/Behavior'
 import { Collapse, Grid, IconButton, Tooltip } from '@mui/material'
@@ -57,14 +57,23 @@ export default function PieceClient({ piece, version, terms }: PieceClientProps)
   }
 
   // a translation aligned with its original shows the original between its lines, a
-  // print where the other print differs, unless the reader has hidden it (remembered in
-  // this browser, for translations and prints apart)
+  // print where the other print differs, in the text and in the music, unless the reader
+  // has hidden it (remembered in this browser, for translations and prints apart)
   const [showOriginal, setShowOriginal] = useState(true)
   const textRef = useRef<HTMLDivElement>(null)
   const alignedWith = context?.siblings.find((sibling) => sibling.referringTo.includes(piece.original?.expressionId || ''))
-  const originalName = !alignedWith
-    ? 'original'
-    : piece.original?.differences ? `differences from ${shortLabel(alignedWith)}` : `${shortLabel(alignedWith)} text`
+  const otherEdition = context?.expression.type === 'edition'
+    ? context.siblings.find((sibling) => sibling.type === 'edition' && !sibling.referringTo.includes(piece.expressionId || ''))
+    : undefined
+  const otherPrintId = otherEdition?.referringTo[0]
+  const otherPrintLabel = otherEdition && shortLabel(otherEdition)
+  const otherPrint = useMemo(
+    () => otherPrintId && otherPrintLabel ? { id: otherPrintId, label: otherPrintLabel } : undefined,
+    [otherPrintId, otherPrintLabel]
+  )
+  const originalName = otherPrint
+    ? `differences from ${otherPrint.label}`
+    : alignedWith ? `${shortLabel(alignedWith)} text` : 'original'
   const storageKey = context?.expression.type === 'edition' ? 'hideOtherPrint' : 'hideOriginal'
 
   useEffect(() => {
@@ -74,6 +83,9 @@ export default function PieceClient({ piece, version, terms }: PieceClientProps)
       // no storage: the original is shown
     }
   }, [storageKey])
+
+  // the scores show where the other print differs as well
+  const printContext = useMemo(() => ({ otherPrint, differences: showOriginal }), [otherPrint, showOriginal])
 
   const toggleOriginal = () => {
     try {
@@ -168,11 +180,11 @@ export default function PieceClient({ piece, version, terms }: PieceClientProps)
             )}
             {context && context.siblings.length <= 1 && <span className="layer">{longLabel(context.expression)}</span>}
             <span className="actions">
-              {piece.original && (
-                <Tooltip title={showOriginal ? `Hide the ${originalName}` : `Show the ${originalName} between the lines`}>
+              {(piece.original || otherPrint) && (
+                <Tooltip title={showOriginal ? `Hide the ${originalName}` : `Show the ${originalName}${otherPrint ? '' : ' between the lines'}`}>
                   <IconButton
                     color="primary"
-                    aria-label={`The ${originalName} between the lines`}
+                    aria-label={otherPrint ? `The ${originalName}` : `The ${originalName} between the lines`}
                     aria-pressed={showOriginal}
                     onClick={toggleOriginal}
                   >
@@ -216,27 +228,29 @@ export default function PieceClient({ piece, version, terms }: PieceClientProps)
           <SourcePanel expression={piece} version={version} />
         </Collapse>
 
-        <VerovioProvider>
-          {/* side by side from the md breakpoint on; below it the score comes first and the commentary follows */}
-          <Grid container spacing={1} lang={piece.lang}>
-            {piece.score && (
-              <Grid size={{ xs: 12, md: 6 }} className="scoreView">
-                <Ceteicean pageContext={piece.score as any} routes={routes} />
+        <OtherPrintContext.Provider value={printContext}>
+          <VerovioProvider>
+            {/* side by side from the md breakpoint on; below it the score comes first and the commentary follows */}
+            <Grid container spacing={1} lang={piece.lang}>
+              {piece.score && (
+                <Grid size={{ xs: 12, md: 6 }} className="scoreView">
+                  <Ceteicean pageContext={piece.score as any} routes={routes} />
+                </Grid>
+              )}
+              <Grid
+                size={piece.score ? { xs: 12, md: 6 } : 12}
+                p={1.5}
+                className={[piece.score ? '' : 'textOnly', piece.original && showOriginal ? 'interlinear' : '', piece.original?.differences && showOriginal ? 'differences' : ''].join(' ').trim() || undefined}
+              >
+                {piece.header.participants.length > 0 && <Participants participants={piece.header.participants} />}
+                <div ref={textRef} className={piece.original ? 'interlinearText' : undefined}>
+                  {piece.text && <Ceteicean pageContext={piece.text as any} routes={routes} />}
+                  {piece.original && showOriginal && <InterlinearOriginal container={textRef} />}
+                </div>
               </Grid>
-            )}
-            <Grid
-              size={piece.score ? { xs: 12, md: 6 } : 12}
-              p={1.5}
-              className={[piece.score ? '' : 'textOnly', piece.original && showOriginal ? 'interlinear' : '', piece.original?.differences && showOriginal ? 'differences' : ''].join(' ').trim() || undefined}
-            >
-              {piece.header.participants.length > 0 && <Participants participants={piece.header.participants} />}
-              <div ref={textRef} className={piece.original ? 'interlinearText' : undefined}>
-                {piece.text && <Ceteicean pageContext={piece.text as any} routes={routes} />}
-                {piece.original && showOriginal && <InterlinearOriginal container={textRef} />}
-              </div>
             </Grid>
-          </Grid>
-        </VerovioProvider>
+          </VerovioProvider>
+        </OtherPrintContext.Provider>
       </div>
 
       <DownloadDialog
