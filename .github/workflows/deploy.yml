@@ -3,10 +3,13 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  # sent by probstuecke-data when its main has changed and passed the checks
+  repository_dispatch:
+    types: [data-updated]
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write # to commit the updated submodule to main
   pages: write
   id-token: write
 
@@ -21,7 +24,42 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          # the tip of the branch when the job starts, not when it was queued,
+          # so that a run after an earlier data update builds on top of it
+          ref: ${{ github.ref }}
           submodules: recursive
+
+      # Moves the submodule forward to the latest main of probstuecke-data and
+      # commits this to main. A submodule that points to a commit which is not
+      # part of that main (e.g. on a branch of probstuecke-data that has not
+      # been merged yet) is left as it is.
+      - name: Update the data
+        if: github.ref == 'refs/heads/main'
+        run: |
+          old=$(git rev-parse HEAD:probstuecke-data)
+          if [ "$(git -C probstuecke-data rev-parse --is-shallow-repository)" = true ]; then
+            git -C probstuecke-data fetch --quiet --unshallow origin main
+          else
+            git -C probstuecke-data fetch --quiet origin main
+          fi
+          new=$(git -C probstuecke-data rev-parse FETCH_HEAD)
+          if [ "$old" = "$new" ]; then
+            echo "The data is up to date ($new)."
+          elif ! git -C probstuecke-data merge-base --is-ancestor "$old" "$new"; then
+            echo "::warning::The submodule points to $old, which is not part of the main of probstuecke-data ($new), so it is left as it is."
+          else
+            git -C probstuecke-data checkout --quiet "$new"
+            {
+              echo 'Update the data'
+              echo
+              git -C probstuecke-data log --first-parent --format='- %s' "$old..$new"
+            } > "$RUNNER_TEMP/message.txt"
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898283+github-actions[bot]@users.noreply.github.com'
+            git commit --quiet --file "$RUNNER_TEMP/message.txt" -- probstuecke-data
+            git push origin HEAD:main
+            git log -1 --format='Committed %h:%n%B'
+          fi
 
       - name: Setup Node
         uses: actions/setup-node@v4
