@@ -21,7 +21,11 @@
  * where the other differs (markDifferences): the words of the aligned sentences
  * are compared, and each passage that differs is wrapped the same way, with the
  * reading of the other print (<seg type="pair" subtype="variant">); a sentence
- * the other print lacks gets a note that it does (subtype="absent").
+ * the other print lacks gets a note that it does (subtype="absent"). A paragraph of
+ * the other print none of whose sentences has a counterpart here (the reference to a
+ * piece by another composer with which many commentaries of 1719 begin, a paragraph
+ * added or left out) is no reading of any sentence here: it stands as a paragraph of
+ * its own, where it stands in the other print (<p type="other-print">).
  *
  * The page sets the other text between the lines, or hides it
  * (components/InterlinearOriginal); the spacer makes room where the other text
@@ -378,9 +382,18 @@ const bySentence = (words: Word[], [from, to]: [number, number]) => {
   return parts
 }
 
+// the paragraph a sentence stands in (or the element, if it is in none)
+const paragraphOf = (s: Element) => {
+  for (let el = s.parentElement; el; el = el.parentElement) if (el.localName === 'p') return el
+  return s.parentElement!
+}
+
+interface Group { own: Element[]; other: Element[] }
+
 // the sentences of both prints that are compared together: those of a print that share
-// sentences of the other, and the sentences these point to or are pointed to by
-const groupsOf = (own: Element[], others: Element[], targetsOf: Map<Element, Element[]>) => {
+// sentences of the other, and the sentences these point to or are pointed to by. The
+// sentences of the paragraphs of the other print in `apart` are compared with none.
+const groupsOf = (own: Element[], others: Element[], targetsOf: Map<Element, Element[]>, apart: Set<Element>) => {
   const parent = new Map<Element, Element>()
   const find = (x: Element): Element => {
     const p = parent.get(x) ?? x
@@ -391,7 +404,7 @@ const groupsOf = (own: Element[], others: Element[], targetsOf: Map<Element, Ele
   }
   for (const s of own) for (const target of targetsOf.get(s) ?? []) parent.set(find(target), find(s))
 
-  const groups = new Map<Element, { own: Element[]; other: Element[] }>()
+  const groups = new Map<Element, Group>()
   for (const s of own) {
     if (!targetsOf.has(s)) continue
     const root = find(s)
@@ -400,9 +413,10 @@ const groupsOf = (own: Element[], others: Element[], targetsOf: Map<Element, Ele
   }
   // a sentence of the other print without counterpart here is compared with the
   // sentences of the one before it (or after it, at the beginning)
-  let last: { own: Element[]; other: Element[] } | undefined
+  let last: Group | undefined
   const unplaced: Element[] = []
   for (const s of others) {
+    if (apart.has(paragraphOf(s))) continue
     const group = parent.has(s) ? groups.get(find(s)) : undefined
     if (group) {
       group.other.push(...unplaced.splice(0), s)
@@ -410,21 +424,60 @@ const groupsOf = (own: Element[], others: Element[], targetsOf: Map<Element, Ele
     } else if (last) last.other.push(s)
     else unplaced.push(s)
   }
-  return [...groups.values()]
+  return {
+    groups: [...groups.values()],
+    /** the group of a sentence of the other print that has a counterpart here */
+    groupOf: (s: Element) => (parent.has(s) ? groups.get(find(s)) : undefined),
+  }
+}
+
+// what a paragraph of the other print shows as a paragraph of its own: its sentences,
+// without what the page does not show between the lines either (notes, catchwords, page
+// breaks, music examples)
+const paragraphApart = (text: Document, paragraph: Element, lang: string, only: string) => {
+  const copy = copyOf(text, paragraph)
+  for (const el of Array.from(copy.getElementsByTagName('*'))) {
+    if (['note', 'fw', 'pb', 'figure', 'notatedMusic'].includes(el.localName)) el.remove()
+  }
+  const block = text.createElementNS(TEI_NS, 'p')
+  block.setAttribute('type', 'other-print')
+  block.setAttributeNS(XML_NS, 'xml:lang', lang)
+  const label = seg(text, 'other-print')
+  label.append(only)
+  block.append(label, ' ', ...Array.from(copy.childNodes))
+  return block
+}
+
+// the element of the text that holds a sentence directly in its body (a chapter, say)
+const outermost = (s: Element) => {
+  let el = s
+  while (el.parentElement && el.parentElement.localName !== 'body') el = el.parentElement
+  return el.parentElement ? el : paragraphOf(s)
 }
 
 /**
  * Rewrites a print in place with the passages where the other print differs:
  * beneath each, the reading of the other print; beneath a sentence the other
- * print lacks, `absent` ("not in 1719"). Returns null if the prints have no
- * normalised words to compare.
+ * print lacks, `absent` ("not in 1719"); the paragraphs that only the other print
+ * has, as paragraphs of their own headed `only` ("only in 1719"). Returns null if
+ * the prints have no normalised words to compare.
  */
-export const markDifferences = (text: Document, { targetsOf, other }: Alignment, absent: string) => {
+export const markDifferences = (text: Document, { targetsOf, other }: Alignment, absent: string, only: string) => {
   if (text.getElementsByTagNameNS(TEI_NS, 'w').length === 0) return null
   const own = sentencesOf(text).filter((s) => !isAside(s))
   const others = sentencesOf(other.document).filter((s) => !isAside(s))
 
-  for (const group of groupsOf(own, others, targetsOf)) {
+  // the paragraphs of the other print none of whose sentences has a counterpart here
+  const counterparts = new Set([...targetsOf.values()].flat())
+  const paragraphs = new Map<Element, boolean>()
+  for (const s of others) {
+    const paragraph = paragraphOf(s)
+    paragraphs.set(paragraph, (paragraphs.get(paragraph) ?? false) || counterparts.has(s))
+  }
+  const apart = new Set([...paragraphs].filter(([, matched]) => !matched).map(([paragraph]) => paragraph))
+
+  const { groups, groupOf } = groupsOf(own, others, targetsOf, apart)
+  for (const group of groups) {
     const words = wordsOf(group.own)
     const theirs = wordsOf(group.other.sort(byPosition))
     if (words.length === 0) continue
@@ -481,8 +534,40 @@ export const markDifferences = (text: Document, { targetsOf, other }: Alignment,
     wrap(text, s, s, note, 'absent')
   }
 
+  // the paragraphs that only the other print has: after the paragraph here with the
+  // sentences before them, or, before any, ahead of the part of the text with the first
+  let after: Element | null = null
+  const ahead: Element[] = []
+  const placed = new Set<Element>()
+  for (const s of others) {
+    const paragraph = paragraphOf(s)
+    if (apart.has(paragraph)) {
+      if (placed.has(paragraph)) continue
+      placed.add(paragraph)
+      const block = paragraphApart(text, paragraph, other.lang, only)
+      if (after) {
+        after.after(block)
+        after = block
+      }
+      else ahead.push(block)
+      continue
+    }
+    const group = groupOf(s)
+    if (!group) continue
+    const sentences = [...group.own].sort(byPosition)
+    if (ahead.length > 0) outermost(sentences[0]).before(...ahead.splice(0))
+    after = paragraphOf(sentences[sentences.length - 1])
+  }
+
+  // the words of these paragraphs that are in the index of terms
+  const termIds = [...placed]
+    .flatMap((paragraph) => Array.from(paragraph.getElementsByTagNameNS(TEI_NS, 'term')))
+    .flatMap((term) => (term.getAttribute('corresp') || '').split(/\s+/))
+    .filter((token) => token.startsWith('#'))
+    .map((token) => token.slice(1))
+
   return {
     expressionId: other.document.documentElement.getAttribute('xml:id'),
-    termIds: [],
+    termIds,
   }
 }

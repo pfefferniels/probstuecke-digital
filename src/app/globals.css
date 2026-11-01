@@ -253,6 +253,28 @@ tei-seg[type="space"] {
     font-style: italic;
 }
 
+/* in a print, a paragraph that only the other print has ("only in 1719"), where it
+   stands there, small and grey like the other print between the lines */
+tei-p[type="other-print"] {
+    display: none;
+}
+
+.interlinear.differences tei-p[type="other-print"] {
+    display: block;
+    font-size: 0.72em;
+    line-height: 1.6;
+    color: #666;
+    margin: 0.75em 0;
+}
+
+tei-p[type="other-print"] > tei-seg[type="other-print"] {
+    font-style: italic;
+}
+
+tei-p[type="other-print"] a {
+    color: inherit;
+}
+
 .interlinear tei-seg[type="pair"].active > tei-seg[type="translation"],
 .interlinearOriginal > span.active {
     background-color: rgba(255, 213, 79, 0.25);

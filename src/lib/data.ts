@@ -549,7 +549,7 @@ const alignWithOriginal = (
   const otherId = alignment.other.document.documentElement.getAttribute('xml:id') || ''
   const other = context?.siblings.find((sibling) => sibling.referringTo.includes(otherId))
   const differences = other && alignment.other.lang === lang
-    ? markDifferences(document, alignment, `not in ${shortLabel(other)}`)
+    ? markDifferences(document, alignment, `not in ${shortLabel(other)}`, `only in ${shortLabel(other)}`)
     : null
   const aligned = differences ?? interleave(document, alignment)
   return {
