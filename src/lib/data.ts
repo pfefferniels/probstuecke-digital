@@ -13,6 +13,7 @@ import { collectPersName } from '@/helpers/collectors/collectPersName'
 import { collectHeader } from '@/helpers/collectors/collectHeader'
 import { collectMedia } from '@/helpers/collectors/collectMedia'
 import { normaliseDocument, parseLexicon, type Lexicon } from '@/helpers/normalise'
+import { languageTag } from '@/helpers/languageTags'
 import { shortLabel } from '@/lib/expressionLabels'
 import type {
   Work,
@@ -117,9 +118,6 @@ const cachedExpressionById = new Map<string, Expression>()
 // ---------------------------------------------------------------------------
 // loadWorks
 // ---------------------------------------------------------------------------
-
-// ISO 639-2 codes used in works.xml → BCP 47 language tags
-const LANGUAGE_TAGS: Record<string, string> = { deu: 'de', eng: 'en', fra: 'fr' }
 
 const readWorkList = (): Document => {
   if (!cachedWorkList) {
@@ -509,7 +507,7 @@ const loadOriginal = (filePath: string): Original | null => {
   const context = id ? findExpressionContext(id) : null
   return {
     document: collectExpressionMetadata(document).isFraktur ? parseXml(modernizeTEI(rawXml)) : document,
-    lang: LANGUAGE_TAGS[context?.expression.langCode ?? ''] || tei?.getAttribute('xml:lang') || 'de',
+    lang: languageTag(context?.expression.langCode || tei?.getAttribute('xml:lang') || 'deu'),
   }
 }
 
@@ -589,10 +587,7 @@ const processExpressionFile = async (filePath: string): Promise<Expression | nul
   const metadata = collectExpressionMetadata(document)
   const header = collectHeader(document)
   const context = metadata.expressionId ? findExpressionContext(metadata.expressionId) : null
-  const lang =
-    LANGUAGE_TAGS[context?.expression.langCode ?? ''] ||
-    teiRoot.getAttribute('xml:lang') ||
-    'de'
+  const lang = languageTag(context?.expression.langCode || teiRoot.getAttribute('xml:lang') || 'deu')
   const mei = collectEmbeddedMEI(document, filePath)
   const media = collectMedia(document, filePath, DATA_DIR)
   const refTargets = collectRefTargets(document)

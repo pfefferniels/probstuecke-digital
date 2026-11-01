@@ -25,7 +25,9 @@ export const expressionTitle = (expression: Expression) =>
 /** Author of the text on a piece page: Mattheson for his prints and their translations */
 const expressionAuthor = (expression: Expression) => {
   const type = expression.context?.expression.type
-  if (type === 'edition' || type === 'translation') return MATTHESON
+  if (type === 'edition') return MATTHESON
+  // the translation of a text by another author names that author (Dijoux)
+  if (type === 'translation' && expression.context?.expression.author === '') return MATTHESON
   return null
 }
 
