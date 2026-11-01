@@ -1,6 +1,6 @@
 'use client'
 
-import { type MouseEvent, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { type MouseEvent, createContext, useContext, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { useVerovio } from '../hooks/useVerovio';
 import { Stack, Pagination, ToggleButton, ToggleButtonGroup, ToggleButtonProps, Button, ButtonProps, Tooltip, IconButton } from '@mui/material';
 import { Close } from '@mui/icons-material';
@@ -11,7 +11,8 @@ import { dropHiddenAccidentals } from '../helpers/dropHiddenAccidentals';
 import { showPieceBarNumbers } from '../helpers/showPieceBarNumbers';
 import { clearTouchSelection, isTouchInput, revealElement, selectLink } from '../helpers/touchSelection';
 import { mdivLabel, mdivXPathQuery, topLevelMdivs } from '../helpers/mdivs';
-import { readingsXPathQuery } from '../helpers/readings';
+import { readingsOfSource, readingsXPathQuery, sourceOf } from '../helpers/readings';
+import { boxBehind, findVariants, standInIds, type Variant } from '../helpers/variants';
 import './NotatedMusic.css'
 import type { ExpressionMei, ExpressionZone } from '@/lib/types'
 
@@ -132,6 +133,56 @@ if (typeof window !== 'undefined') {
     }
 }
 
+// pointing within this many pixels of a passage where the other print differs counts as pointing at it
+const variantPadding = 4
+
+// The passage where the other print differs at a point inside the container, if any
+const variantAt = (container: Element, x: number, y: number) => {
+    for (const box of Array.from(container.querySelectorAll('.score-page rect.variant-box'))) {
+        const rect = box.getBoundingClientRect()
+        if (x >= rect.left - variantPadding && x <= rect.right + variantPadding
+            && y >= rect.top - variantPadding && y <= rect.bottom + variantPadding) {
+            return Number(box.getAttribute('data-variant'))
+        }
+    }
+    return null
+}
+
+// the system (the staves drawn together) that a passage stands in
+const systemOf = (svg: Element, passage: DOMRect) => {
+    const middle = passage.top + passage.height / 2
+    return Array.from(svg.querySelectorAll('g.system'))
+        .map(system => system.getBoundingClientRect())
+        .find(rect => middle >= rect.top && middle <= rect.bottom)
+}
+
+// the IDs of a drawing of the other print's reading are made its own, so that they do
+// not clash with those of the score on the page (and its references to its symbols and
+// its style, which names the drawing by its ID, with them)
+const excerptPrefix = 'excerpt-'
+const ownIds = (svg: string) => {
+    const drawing = svg.match(/<svg[^>]* id="([^"]+)"/)?.[1]
+    const renamed = svg
+        .replace(/ id="/g, ` id="${excerptPrefix}`)
+        .replace(/href="#/g, `href="#${excerptPrefix}`)
+    return drawing ? renamed.replaceAll(`#${drawing} `, `#${excerptPrefix}${drawing} `) : renamed
+}
+
+/** The other print of the piece, whose readings of the music are shown where they differ */
+export interface OtherPrint {
+    /** the ID of its text (TEI expression) */
+    id: string
+    /** e.g. "1719" */
+    label: string
+}
+
+/**
+ * On the page of a print: the other print, and whether to show where it differs. A context
+ * rather than props, as the scores in the text are drawn by routes that keep the props
+ * they were first given (react-teirouter)
+ */
+export const OtherPrintContext = createContext<{ otherPrint?: OtherPrint; differences: boolean }>({ differences: false })
+
 interface NotatedMusicProps {
     teiNode: Element,
     meis: readonly (ExpressionMei | null)[]
@@ -141,6 +192,7 @@ interface NotatedMusicProps {
 }
 
 export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: NotatedMusicProps) => {
+    const { otherPrint, differences } = useContext(OtherPrintContext)
     const [currentPage, setCurrentPage] = useState(1)
     const [svgs, setSVGs] = useState<string[]>([])
     const [modernClefs, setModernClefs] = useState(false)
@@ -165,6 +217,17 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
     const containerRef = useRef<HTMLDivElement>(null)
     const highlighted = useRef<Highlight>({ ids: [], reveal: false })
     const shownPage = useRef(1)
+    // where the other print differs, as drawn; the encoding with the other print's
+    // readings, and the drawings of its bars with these passages
+    const [variants, setVariants] = useState<Variant[]>([])
+    const [otherMei, setOtherMei] = useState<string | null>(null)
+    const [excerpts, setExcerpts] = useState<Record<number, string>>({})
+    // the passage whose reading in the other print is shown
+    const [openVariant, setOpenVariant] = useState<number | null>(null)
+    const popupRef = useRef<HTMLDivElement>(null)
+    const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+    // a toolkit of its own, which keeps the score on the page loaded in the other
+    const excerptToolkit = useRef<typeof window.verovio.toolkit | null>(null)
 
     // a notatedMusic, or in lessons a ptr[@type="transcription"] (see collectEmbeddedMEI)
     const ptr = teiNode.tagName.toLowerCase() === 'tei-ptr' ? teiNode : teiNode.querySelector('tei-ptr')
@@ -275,7 +338,8 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
         // in each <app>, the reading of the source this page is about
         const readings = readingsXPathQuery(meiDoc, expressionId)
         // the piece may be in the score more than once (e.g. in another key)
-        const mdivCount = topLevelMdivs(meiDoc).length
+        const mdivs = topLevelMdivs(meiDoc)
+        const mdivCount = mdivs.length
         const mdiv = mdivIndex < mdivCount ? mdivIndex : 0
 
         setCanModernise(!!meiDoc.querySelector('choice, orig accid, supplied accid'))
@@ -284,9 +348,20 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
         setHasRightHandStaff(hasEmbeddedAnnotation)
         if (isMainScore && !rightHand && hasEmbeddedAnnotation) removeEmbeddedAnnotations(meiDoc)
         if (!isMainScore) showPieceBarNumbers(meiDoc)
-        addEmptyStaves(meiDoc, emptyStaves)
         smuflFigures(meiDoc)
         dropHiddenAccidentals(meiDoc, modernClefs)
+
+        // where the other print differs: the encoding as it is now draws its readings
+        // of these bars; this print's is drawn with stand-ins where it has nothing
+        const sourceId = sourceOf(meiDoc, expressionId)
+        const otherSourceId = differences ? sourceOf(meiDoc, otherPrint?.id) : undefined
+        const found = sourceId && otherSourceId && (mdivs[mdiv] || meiDoc.documentElement)
+            ? findVariants(mdivs[mdiv] || meiDoc.documentElement, sourceId, otherSourceId, teiId || 'music')
+            : null
+        const otherEncoding = found && found.variants.length > 0 ? new XMLSerializer().serializeToString(meiDoc) : null
+        found?.addStandIns()
+
+        addEmptyStaves(meiDoc, emptyStaves)
 
         const options: any = {
             scale,
@@ -327,6 +402,11 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
                         correspEl.setAttribute('filter', 'url(#softGlow)')
                         correspEl.setAttribute('data-referenced', 'true')
                     })
+                // what stands in for the other print's reading is grey
+                standInIds(found?.variants || []).forEach(id => {
+                    const el = currentSVG.getElementById(id)
+                    el?.setAttribute('class', `${el.getAttribute('class') || ''} variant-stand-in`.trim())
+                })
                 svgs.push(new XMLSerializer().serializeToString(currentSVG))
             }
         }
@@ -344,7 +424,133 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
         }
         setRenderFailed(false)
         setSVGs(svgs)
-    }, [vrvToolkit, mei, expressionId, isMainScore, modernClefs, rightHand, emptyStaves, refs, pageWidth, mdivIndex])
+        setVariants(found?.variants || [])
+        setOtherMei(otherEncoding)
+        setOpenVariant(null)
+    }, [vrvToolkit, mei, teiId, expressionId, isMainScore, modernClefs, rightHand, emptyStaves, refs, pageWidth, mdivIndex, differences, otherPrint?.id])
+
+    // boxes behind the passages where the other print differs, on the page shown
+    useLayoutEffect(() => {
+        const svg = containerRef.current?.querySelector('.score-page svg')
+        if (!svg || variants.length === 0) return
+        const boxes = boxBehind(svg, variants.map((variant, i) => ({
+            ids: variant.ids,
+            className: 'variant-box',
+            data: { variant: String(i) },
+        })))
+        return () => boxes.forEach(box => box.remove())
+    }, [variants, svgs, currentPage])
+
+    // the passage whose reading in the other print is shown stands out
+    useLayoutEffect(() => {
+        containerRef.current
+            ?.querySelectorAll('.score-page rect.variant-box')
+            .forEach(box => box.classList.toggle('active', Number(box.getAttribute('data-variant')) === openVariant))
+    }, [openVariant, variants, svgs, currentPage])
+
+    // the other print's readings of the bars with these passages, drawn when there is time
+    useEffect(() => {
+        setExcerpts({})
+        if (!otherMei || !pageWidth || typeof window === 'undefined' || !window.verovio) return
+        const otherSourceId = sourceOf(new DOMParser().parseFromString(otherMei, 'application/xml'), otherPrint?.id)
+        if (!otherSourceId) return
+
+        const timer = setTimeout(() => {
+            try {
+                excerptToolkit.current ??= new window.verovio.toolkit()
+                const toolkit = excerptToolkit.current
+                const mdivCount = topLevelMdivs(new DOMParser().parseFromString(otherMei, 'application/xml')).length
+                toolkit.setOptions({
+                    scale,
+                    pageWidth: fullPageWidth,
+                    pageHeight: 2000,
+                    adjustPageHeight: true,
+                    adjustPageWidth: true,
+                    // a little room around the bars, enough for the figures and the bar number
+                    pageMarginLeft: 20,
+                    pageMarginRight: 20,
+                    pageMarginBottom: 20,
+                    svgViewBox: true,
+                    header: 'none',
+                    footer: 'none',
+                    choiceXPathQuery: [modernClefs ? './reg' : './orig'],
+                    appXPathQuery: readingsOfSource(otherSourceId),
+                    ...(mdivCount > 1 ? { mdivXPathQuery: mdivXPathQuery(mdivIndex < mdivCount ? mdivIndex : 0) } : {}),
+                })
+                toolkit.loadData(otherMei)
+                const drawn: Record<number, string> = {}
+                variants.forEach((variant, i) => {
+                    if (!toolkit.select({ start: variant.measure, end: variant.measure })) return
+                    toolkit.redoLayout()
+                    drawn[i] = ownIds(toolkit.renderToSVG(1))
+                })
+                setExcerpts(drawn)
+            }
+            catch {
+                // without the drawings, the passages are still marked
+            }
+        }, 200)
+        return () => clearTimeout(timer)
+    }, [otherMei, variants, otherPrint?.id, modernClefs, mdivIndex, pageWidth])
+
+    // the same object as long as the drawing is the same: React sets the HTML again
+    // whenever the object changes, which would take away what is added to the drawing
+    // (highlights, boxes)
+    const pageHtml = useMemo(() => ({ __html: svgs[currentPage - 1] }), [svgs, currentPage])
+    const excerptHtml = useMemo(
+        () => openVariant !== null && excerpts[openVariant] ? { __html: excerpts[openVariant] } : null,
+        [excerpts, openVariant]
+    )
+
+    const cancelClose = () => {
+        if (closeTimer.current) clearTimeout(closeTimer.current)
+        closeTimer.current = null
+    }
+
+    const scheduleClose = () => {
+        cancelClose()
+        closeTimer.current = setTimeout(() => {
+            closeTimer.current = null
+            setOpenVariant(null)
+        }, 300)
+    }
+
+    useEffect(() => () => cancelClose(), [])
+
+    // the drawing of the other print's reading: as large as the score, with the passage
+    // marked, below the system with the passage (or above it, if there is no room below)
+    useLayoutEffect(() => {
+        const container = containerRef.current
+        const popup = popupRef.current
+        if (openVariant === null || !container || !popup) return
+        const box = container.querySelector(`.score-page rect.variant-box[data-variant="${openVariant}"]`)
+        const page = container.querySelector<SVGSVGElement>('.score-page svg')
+        if (!box || !page) return
+
+        const excerpt = popup.querySelector<SVGSVGElement>('.variant-excerpt > svg')
+        const viewBox = (svg: SVGSVGElement) => svg.viewBox.baseVal
+        if (excerpt) {
+            const zoom = page.getBoundingClientRect().width / viewBox(page).width
+            excerpt.style.width = `${viewBox(excerpt).width * zoom}px`
+            excerpt.style.maxWidth = '100%'
+            excerpt.style.height = 'auto'
+        }
+        const boxes = excerpt
+            ? boxBehind(excerpt, [{ ids: variants[openVariant].otherIds.map(id => excerptPrefix + id), className: 'variant-box active' }])
+            : []
+
+        const area = container.getBoundingClientRect()
+        const passage = box.getBoundingClientRect()
+        const system = systemOf(page, passage) ?? passage
+        const width = popup.offsetWidth
+        const height = popup.offsetHeight
+        const left = Math.min(Math.max(passage.left + passage.width / 2 - width / 2, area.left), area.right - width) - area.left
+        const below = system.bottom + height <= window.innerHeight || system.top - height < 0
+        popup.style.left = `${Math.max(0, left)}px`
+        popup.style.top = `${(below ? system.bottom : system.top - height) - area.top}px`
+        popup.style.visibility = 'visible'
+        return () => boxes.forEach(box => box.remove())
+    }, [openVariant, excerpts, variants, svgs, currentPage])
 
     useLayoutEffect(() => {
         const cleanups: (() => void)[] = []
@@ -367,6 +573,19 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
         // mouse (or pen) only: on touch screens, taps are handled by onTap
         const onPointerMove = (e: PointerEvent) => {
             if (e.pointerType === 'touch') return
+
+            // pointing at a passage where the other print differs shows the other print's
+            // reading; it stays while the pointer moves onto it
+            const container = containerRef.current
+            const variant = container ? variantAt(container, e.clientX, e.clientY) : null
+            if (variant !== null) {
+                cancelClose()
+                document.querySelectorAll('.zone-preview').forEach(preview => preview.remove())
+                if (variant !== openVariant) setOpenVariant(variant)
+            }
+            else if (openVariant !== null && !popupRef.current?.contains(e.target as Node) && !closeTimer.current) {
+                scheduleClose()
+            }
 
             let closestRef: Element | null = null
 
@@ -453,6 +672,8 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
                     // bar contains the staff: it links to the commentary and shows the page image.
                     const referenced = (e.target as Element | null)?.closest('[data-referenced]')
                     if (referenced && staff.contains(referenced)) return
+                    // a passage where the other print differs shows the other print's reading
+                    if (containerRef.current && variantAt(containerRef.current, e.clientX, e.clientY) !== null) return
 
                     cancelRemoveTimer()
                     if (document.querySelector('.zone-preview')) return
@@ -504,6 +725,19 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
     const onTap = (e: MouseEvent<HTMLDivElement>) => {
         if (!isTouchInput()) return
         if (!(e.target as Element).closest('.score-page')) return
+
+        // a passage where the other print differs: its reading in the other print, or
+        // (tapped again) no longer; a reference there is followed as well
+        const variant = variantAt(e.currentTarget, e.clientX, e.clientY)
+        if (variant !== null) {
+            setFacsimile(null)
+            setOpenVariant(variant === openVariant ? null : variant)
+            const near = nearestReferenced(e.currentTarget, e.clientX, e.clientY)
+            if (near) selectLink(Array.from(document.querySelectorAll(`[data-target~="#${near.id}"]`)), [near.id], 'text')
+            else clearTouchSelection()
+            return
+        }
+        setOpenVariant(null)
 
         const referenced = nearestReferenced(e.currentTarget, e.clientX, e.clientY)
         if (referenced) {
@@ -618,7 +852,7 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
                     This music could not be displayed.
                 </p>
             )}
-            <div className="score-page" dangerouslySetInnerHTML={{ __html: svgs[currentPage - 1] }} />
+            <div className="score-page" dangerouslySetInnerHTML={pageHtml} />
 
             {facsimile && (
                 <div className="facsimile-popup" style={{ top: facsimile.top }}>
@@ -631,6 +865,33 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
                     <div className="facsimile-popup-images">
                         {facsimile.imageUrls.map(url => <img key={url} src={url} alt="This staff in the original print" />)}
                     </div>
+                </div>
+            )}
+
+            {openVariant !== null && otherPrint && variants[openVariant] && (
+                <div
+                    ref={popupRef}
+                    className="variant-popup"
+                    style={{ visibility: 'hidden' }}
+                    onPointerEnter={e => { if (e.pointerType !== 'touch') cancelClose() }}
+                    onPointerLeave={e => { if (e.pointerType !== 'touch') scheduleClose() }}
+                >
+                    <div className="facsimile-popup-bar">
+                        <span>{variants[openVariant].notInOther ? `Not in ${otherPrint.label}` : otherPrint.label}</span>
+                        <IconButton size="small" aria-label={`Close the reading of ${otherPrint.label}`} onClick={() => setOpenVariant(null)}>
+                            <Close fontSize="small" />
+                        </IconButton>
+                    </div>
+                    {excerptHtml
+                        ? (
+                            <div
+                                className="variant-excerpt"
+                                role="img"
+                                aria-label={`These bars in ${otherPrint.label}`}
+                                dangerouslySetInnerHTML={excerptHtml}
+                            />
+                        )
+                        : <div className="variant-excerpt variant-excerpt-pending">…</div>}
                 </div>
             )}
 

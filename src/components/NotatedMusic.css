@@ -53,3 +53,43 @@
     max-width: 100%;
     height: auto;
 }
+
+/* Where the other print differs (src/helpers/variants.ts): a tint behind the passage,
+   as behind a passage of the text; pointed at or tapped, it shows the other print's
+   reading of the bar, below the system */
+.score svg rect.variant-box {
+    fill: rgba(96, 125, 139, 0.2);
+}
+
+.score svg rect.variant-box.active {
+    fill: rgba(255, 213, 79, 0.45);
+}
+
+/* the other print's figures, ornaments or directions where this print has none: grey,
+   as the other print's text between the lines */
+.score svg g.variant-stand-in {
+    fill: #8a8a8a;
+    color: #8a8a8a;
+}
+
+.variant-popup {
+    position: absolute;
+    z-index: 60;
+    max-width: 100%;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    padding: 0 0.5rem 0.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.variant-excerpt > svg {
+    display: block;
+}
+
+.variant-excerpt-pending {
+    min-width: 6rem;
+    text-align: center;
+    color: #888;
+}
