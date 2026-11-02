@@ -6,9 +6,11 @@ import { useRouter } from 'next/navigation'
 import { NotatedMusic, OtherPrintContext } from '@/components/NotatedMusic'
 import Ceteicean from '@/ceteicean/Ceteicean'
 import { Behavior } from '@/ceteicean/Behavior'
-import { Collapse, Grid, IconButton, Tooltip } from '@mui/material'
+import { Collapse, Grid, IconButton, ToggleButton, ToggleButtonGroup, Tooltip } from '@mui/material'
 import { Word } from '@/components/Word'
+import { LineBreak } from '@/components/LineBreak'
 import { VerovioProvider } from '@/hooks/useVerovio'
+import { type View, ViewContext } from '@/hooks/useView'
 import { Ref } from '@/components/Ref'
 import { GlowDefs } from '@/components/GlowDefs'
 import LinkToIndex from '@/components/LinkToIndex'
@@ -32,6 +34,11 @@ const sectionInView = () => {
   }
   return current
 }
+
+const views: { value: View, label: string, description: string }[] = [
+  { value: 'modern', label: 'Modern', description: 'Modern spelling, clefs and accidentals' },
+  { value: 'diplomatic', label: 'Diplomatic', description: 'As printed: spelling, characters and line breaks, clefs and accidentals' },
+]
 
 interface PieceClientProps {
   piece: Expression
@@ -84,6 +91,27 @@ export default function PieceClient({ piece, version, terms }: PieceClientProps)
     }
   }, [storageKey])
 
+  // modern or as printed, the text and the music alike; the choice holds for all pages
+  // (remembered in this browser)
+  const [view, setView] = useState<View>('modern')
+
+  useEffect(() => {
+    try {
+      if (localStorage.getItem('view') === 'diplomatic') setView('diplomatic')
+    } catch {
+      // no storage: the modern view
+    }
+  }, [])
+
+  const changeView = (next: View) => {
+    try {
+      localStorage.setItem('view', next)
+    } catch {
+      // no storage: the choice holds for this page only
+    }
+    setView(next)
+  }
+
   // the scores show where the other print differs as well
   const printContext = useMemo(() => ({ otherPrint, differences: showOriginal }), [otherPrint, showOriginal])
 
@@ -115,6 +143,8 @@ export default function PieceClient({ piece, version, terms }: PieceClientProps)
     // lessons and realisations: speakers, actions, transcriptions and recordings
     ...lessonRoutes({ participants: piece.header.participants, media: piece.media, renderMusic }),
     'tei-w': Word,
+    // the lines of a print
+    ...(piece.isFraktur ? { 'tei-lb': LineBreak } : {}),
     'tei-ref': Ref,
     'tei-persname': (props: any) => <LinkToIndex type="persons" {...props} />,
     'tei-name': (props: any) => <LinkToIndex type="musicalworks" {...props} />,
@@ -148,7 +178,7 @@ export default function PieceClient({ piece, version, terms }: PieceClientProps)
   }, [])
 
   return (
-    <>
+    <ViewContext.Provider value={view}>
       <div className="piece">
         <GlowDefs />
 
@@ -179,6 +209,22 @@ export default function PieceClient({ piece, version, terms }: PieceClientProps)
               </nav>
             )}
             {context && context.siblings.length <= 1 && <span className="layer">{longLabel(context.expression)}</span>}
+            {piece.diplomatic && (
+              <ToggleButtonGroup
+                className="viewSwitch"
+                exclusive
+                size="small"
+                value={view}
+                onChange={(_, next: View | null) => next && changeView(next)}
+                aria-label="How the text and the music are shown"
+              >
+                {views.map(({ value, label, description }) => (
+                  <Tooltip key={value} title={description} describeChild>
+                    <ToggleButton value={value}>{label}</ToggleButton>
+                  </Tooltip>
+                ))}
+              </ToggleButtonGroup>
+            )}
             <span className="actions">
               {(piece.original || otherPrint) && (
                 <Tooltip title={showOriginal ? `Hide the ${originalName}` : `Show the ${originalName}${otherPrint ? '' : ' between the lines'}`}>
@@ -258,6 +304,6 @@ export default function PieceClient({ piece, version, terms }: PieceClientProps)
         onClose={() => setDownloadDialogOpen(false)}
         expression={piece}
       />
-    </>
+    </ViewContext.Provider>
   )
 }

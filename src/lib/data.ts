@@ -596,12 +596,10 @@ const processExpressionFile = async (filePath: string): Promise<Expression | nul
   // Collect zones from embedded MEI
   const parser = new JSDOM('').window.DOMParser
   const domParser = new parser()
-  const zones = mei
-    .map((meiEntry) => {
-      const meiDoc = domParser.parseFromString(meiEntry.mei, 'application/xml')
-      return collectZones(meiDoc)
-    })
-    .flat()
+  const meiDocs = mei.map((meiEntry) => domParser.parseFromString(meiEntry.mei, 'application/xml'))
+  const zones = meiDocs.flatMap((meiDoc) => collectZones(meiDoc))
+  // original clefs, figures or accidentals that the modern view changes (see components/NotatedMusic)
+  const originalNotation = meiDocs.some((meiDoc) => !!meiDoc.querySelector('choice, orig accid, supplied accid'))
 
   // Modernize Fraktur TEI
   const xml = serialize(document)
@@ -661,6 +659,8 @@ const processExpressionFile = async (filePath: string): Promise<Expression | nul
     title: sections.title || null,
     text: aligned?.text || sections.text || null,
     original: aligned?.original ?? null,
+    // a print, the original of a translation between its lines, or music as printed
+    diplomatic: metadata.isFraktur || !!aligned || originalNotation,
     mei,
     media,
     zones,

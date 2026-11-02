@@ -2,6 +2,7 @@
 
 import { type MouseEvent, createContext, useContext, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { useVerovio } from '../hooks/useVerovio';
+import { useView } from '../hooks/useView';
 import { Stack, Pagination, ToggleButton, ToggleButtonGroup, ToggleButtonProps, Button, ButtonProps, Tooltip, IconButton } from '@mui/material';
 import { Close } from '@mui/icons-material';
 import { addEmptyStaves } from '../helpers/addEmptyStaves';
@@ -126,7 +127,7 @@ interface Facsimile {
 if (typeof window !== 'undefined') {
     window.highlightRefs = window.highlightRefs || ((_: string[]) => () => { });
     window.scoreSettings = window.scoreSettings || {
-        modernClefs: false,
+        modernClefs: true,
         rightHand: false,
         emptyStaves: 0,
         mdiv: 0
@@ -195,12 +196,11 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
     const { otherPrint, differences } = useContext(OtherPrintContext)
     const [currentPage, setCurrentPage] = useState(1)
     const [svgs, setSVGs] = useState<string[]>([])
-    const [modernClefs, setModernClefs] = useState(false)
+    // original or modern clefs and accidentals, as the page shows the text
+    const modernClefs = useView() === 'modern'
     const [rightHand, setRightHand] = useState(false)
     const [emptyStaves, setEmptyStaves] = useState(0)
     const [renderFailed, setRenderFailed] = useState(false)
-    // whether the encoding has modern clefs, figures or accidentals to switch to
-    const [canModernise, setCanModernise] = useState(false)
     // whether the score has a staff with Mattheson's right hand (realisations have their own)
     const [hasRightHandStaff, setHasRightHandStaff] = useState(false)
     const [pageWidth, setPageWidth] = useState<number | null>(null)
@@ -341,8 +341,6 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
         const mdivs = topLevelMdivs(meiDoc)
         const mdivCount = mdivs.length
         const mdiv = mdivIndex < mdivCount ? mdivIndex : 0
-
-        setCanModernise(!!meiDoc.querySelector('choice, orig accid, supplied accid'))
 
         const hasEmbeddedAnnotation = !!meiDoc.querySelector('staffDef[type="embeddedAnnotation"]')
         setHasRightHandStaff(hasEmbeddedAnnotation)
@@ -776,43 +774,28 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
             onClick={onTap}
             className={`score ${isMainScore ? 'main-score' : 'example-score'} ${modernClefs ? 'modernized' : 'diplomatic'}`}
         >
-            {(isMainScore || canModernise) && (
+            {isMainScore && (
             <div style={{
-                float: isMainScore ? 'right' : 'left',
+                float: 'right',
                 border: '0.5px solid gray',
                 borderRadius: '0.5rem'
             }}>
-                {canModernise && (
-                    <OptionToggle
-                        value="check"
-                        label={modernClefs ? 'Show the original notation' : 'Show modern clefs and accidentals'}
-                        selected={modernClefs}
-                        onChange={() => setModernClefs(!modernClefs)}
-                    >
-                        {modernClefs ? '\u{1D121}' : '\u{1D122}'}
-                    </OptionToggle>
+                {hasRightHandStaff && (
+                <OptionToggle
+                    value="check"
+                    label={rightHand ? 'Hide the right-hand staff' : 'Show the right-hand staff'}
+                    selected={rightHand}
+                    onChange={() => setRightHand(!rightHand)}
+                >
+                    {'{}'}
+                </OptionToggle>
                 )}
-
-                {isMainScore && (
-                    <>
-                        {hasRightHandStaff && (
-                        <OptionToggle
-                            value="check"
-                            label={rightHand ? 'Hide the right-hand staff' : 'Show the right-hand staff'}
-                            selected={rightHand}
-                            onChange={() => setRightHand(!rightHand)}
-                        >
-                            {'{}'}
-                        </OptionToggle>
-                        )}
-                        <OptionButton label="Add an empty staff for a realisation" onClick={() => setEmptyStaves(emptyStaves + 1)}>
-                            +
-                        </OptionButton>
-                        <OptionButton label="Remove an empty staff" onClick={() => setEmptyStaves(Math.max(emptyStaves - 1, 0))}>
-                            -
-                        </OptionButton>
-                    </>
-                )}
+                <OptionButton label="Add an empty staff for a realisation" onClick={() => setEmptyStaves(emptyStaves + 1)}>
+                    +
+                </OptionButton>
+                <OptionButton label="Remove an empty staff" onClick={() => setEmptyStaves(Math.max(emptyStaves - 1, 0))}>
+                    -
+                </OptionButton>
             </div>
             )}
 

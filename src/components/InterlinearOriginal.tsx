@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState, type RefObject } from 'react'
+import { useView } from '@/hooks/useView'
 
 /** A line of the original, beneath a line of the translation */
 interface Line {
@@ -47,7 +48,7 @@ const partOf = (pair: Element, type: string) => pair.querySelector<HTMLElement>(
 // at the end of the translation
 const spacerOf = (pair: Element) => partOf(partOf(pair, 'translation')!, 'space')
 
-// the rendered text of the original (modern spelling), without the editors' notes and catchwords
+// the rendered text of the original (in the spelling of the view), without the editors' notes and catchwords
 const textOf = (original: Element) => {
   const clone = original.cloneNode(true) as Element
   clone.querySelectorAll('tei-note, tei-fw').forEach((el) => el.remove())
@@ -272,9 +273,12 @@ const layout = (root: HTMLElement, adjust: boolean): Line[] => {
 export const InterlinearOriginal = ({ container }: InterlinearOriginalProps) => {
   const [lines, setLines] = useState<Line[]>([])
   const [active, setActive] = useState(-1)
+  // the words of the original are spelt as the view shows them
+  const view = useView()
 
   // laid out again whenever the text changes its size: when it is first rendered,
-  // when the music examples are drawn, when the window is resized, when the fonts arrive
+  // when the music examples are drawn, when the window is resized, when the fonts arrive,
+  // and whenever the view changes the spelling
   useEffect(() => {
     const root = container.current
     if (!root) return
@@ -295,7 +299,7 @@ export const InterlinearOriginal = ({ container }: InterlinearOriginalProps) => 
       observer.disconnect()
       root.querySelectorAll('tei-seg[type="space"]').forEach((spacer) => spacer.removeAttribute('style'))
     }
-  }, [container])
+  }, [container, view])
 
   useEffect(() => {
     const root = container.current
