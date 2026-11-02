@@ -170,7 +170,7 @@ export const interleave = (text: Document, { sentences, targetsOf, other }: Alig
     otherSide.setAttributeNS(XML_NS, 'xml:lang', other.lang)
     targets.forEach((target, i) => {
       if (i > 0) otherSide.append(' ')
-      otherSide.append(copyOf(text, target))
+      otherSide.append(joinBrokenWords(copyOf(text, target)))
     })
     wrap(text, group[0], group[group.length - 1], targets.length > 0 ? otherSide : null)
   }
@@ -207,8 +207,11 @@ const wrap = (text: Document, first: Node, last: Node, otherSide: Element | null
 interface Word {
   /** what is compared: the modern form, spelled loosely (keyOf) */
   key: string
-  /** the modern form with the punctuation around it */
-  text: string
+  /** the modern form */
+  modern: string
+  /** the punctuation before and after the word */
+  leading: string
+  trailing: string
   /** the <w> elements of the word: more than one where it runs across elements */
   pieces: Element[]
   /** the sentence of the word, among those compared */
@@ -265,20 +268,76 @@ const wordsOf = (sentences: Element[]) => {
       }
       // a word broken at the end of a line that the normalisation has not joined ("Or-" / "ganisten")
       const previous = words[words.length - 1]
-      if (!first && previous.text.endsWith('-') && /^\p{Ll}/u.test(modern) && !CONJUNCTIONS.has(modern)) {
-        previous.text = previous.text.slice(0, -1) + modern
-        previous.key = keyOf(previous.text)
+      if (!first && previous.modern.endsWith('-') && /^\p{Ll}/u.test(modern) && !CONJUNCTIONS.has(modern)) {
+        previous.modern = previous.modern.slice(0, -1) + modern
+        previous.key = keyOf(previous.modern)
         previous.pieces.push(w)
         continue
       }
       const before = textBeside(w, 'previousSibling')
       const leading = first || /\s/.test(before) ? before.match(/[^\s\p{L}\p{N}]*$/u)![0] : ''
-      words.push({ key: keyOf(modern), text: leading + modern, pieces: [w], sentence: n })
+      words.push({ key: keyOf(modern), modern, leading, trailing: '', pieces: [w], sentence: n })
       first = false
     }
   })
-  for (const word of words) word.text += textBeside(word.pieces[word.pieces.length - 1], 'nextSibling').match(/^[^\s\p{L}\p{N}]*/u)![0]
+  for (const word of words) word.trailing = textBeside(word.pieces[word.pieces.length - 1], 'nextSibling').match(/^[^\s\p{L}\p{N}]*/u)![0]
   return words
+}
+
+// whether a line or a page of the print ends between two pieces of a word (within root)
+const brokenBetween = (from: Element, to: Element, root: Node = from.ownerDocument) => {
+  const walker = from.ownerDocument.createTreeWalker(root, 1 /* NodeFilter.SHOW_ELEMENT */)
+  walker.currentNode = from
+  for (let el = walker.nextNode() as Element | null; el && el !== to; el = walker.nextNode() as Element | null) {
+    if (el.localName === 'lb' || el.localName === 'pb' || el.localName === 'cb') return true
+  }
+  return false
+}
+
+// a word as printed, without the hyphen at the end of a line that it was broken at
+// (kept before a capital, as the normalisation keeps it; helpers/normalise)
+const printed = ({ pieces }: Word) =>
+  pieces
+    .map((w) => ({ w, text: (w.textContent || '').replace(/\s+/g, '') }))
+    .reduce((word, { w, text }, i) => {
+      if (i === 0 || !word.endsWith('-') || !brokenBetween(pieces[i - 1], w)) return word + text
+      if (text.startsWith('-') || /^\p{Ll}/u.test(text)) return word.slice(0, -1) + text
+      return word + text
+    }, '')
+
+// the words of a copy of the other text that a line of its print broke, joined: the other
+// text runs between the lines without the lines of its print (the hyphen is kept before
+// a capital, as above)
+const joinBrokenWords = (copy: Element) => {
+  const pieces = Array.from(copy.getElementsByTagNameNS(TEI_NS, 'w'))
+  pieces.forEach((w, i) => {
+    const next = pieces[i + 1]
+    // the next piece goes on with this word
+    if (!next || next.getElementsByTagNameNS(TEI_NS, 'moot').length > 0) return
+    const last = w.lastChild
+    if (last?.nodeType !== 3) return
+    const text = (last.nodeValue || '').trimEnd()
+    if (!text.endsWith('-') || !brokenBetween(w, next, copy)) return
+    const continuation = (next.textContent || '').trim()
+    if (continuation.startsWith('-') || /^\p{Ll}/u.test(continuation)) last.nodeValue = text.slice(0, -1)
+  })
+  return copy
+}
+
+// the words of a reading of the other print, as helpers/normalise wraps them: the page
+// shows each in its modern form or as printed
+const appendWords = (otherSide: Element, words: Word[]) => {
+  const document = otherSide.ownerDocument
+  words.forEach((word, i) => {
+    const before = (i > 0 ? ' ' : '') + word.leading
+    if (before) otherSide.append(before)
+    const w = document.createElementNS(TEI_NS, 'w')
+    const moot = document.createElementNS(TEI_NS, 'moot')
+    moot.setAttribute('word', word.modern)
+    w.append(moot, printed(word))
+    otherSide.append(w)
+    if (word.trailing) otherSide.append(word.trailing)
+  })
 }
 
 // for each word of a, the index of the same word in b, or -1 (longest common subsequence)
@@ -509,16 +568,16 @@ export const markDifferences = (text: Document, { targetsOf, other }: Alignment,
       for (let i = from - 1; i >= 0 && before < 0; i--) before = match[i]
       let after = -1
       for (let i = to; i < words.length && after < 0; i++) after = match[i]
-      const reading = theirs.slice(before + 1, after < 0 ? theirs.length : after).map((word) => word.text).join(' ')
+      const reading = theirs.slice(before + 1, after < 0 ? theirs.length : after)
 
       // the reading stands beneath the beginning of the passage
       bySentence(words, [from, to]).forEach(([start, stop], k) => {
         const [first, last] = span(words, start, stop)
         let otherSide: Element | null = null
-        if (k === 0 && reading) {
+        if (k === 0 && reading.length > 0) {
           otherSide = seg(text, 'original')
           otherSide.setAttributeNS(XML_NS, 'xml:lang', other.lang)
-          otherSide.append(reading)
+          appendWords(otherSide, reading)
         }
         wrap(text, first, last, otherSide, 'variant')
       })

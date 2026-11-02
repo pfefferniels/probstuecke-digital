@@ -190,6 +190,29 @@ tei-lb {
     margin-left: auto;
 }
 
+/* modern or as printed (src/hooks/useView.tsx), before the actions */
+.pieceBar .viewSwitch {
+    margin-left: auto;
+}
+
+.pieceBar .viewSwitch + .actions {
+    margin-left: 0;
+}
+
+.pieceBar .viewSwitch .MuiToggleButton-root {
+    font-family: inherit;
+    font-size: 0.85rem;
+    line-height: 1.2;
+    padding: 0.25rem 0.6rem;
+    text-transform: none;
+}
+
+/* in the diplomatic view, the end of a line of the print (src/components/LineBreak.tsx) */
+.lineBreak {
+    color: #999;
+    font-weight: 300;
+}
+
 /* Pages without a score (e.g. lessons) use a single reading column */
 .textOnly {
     max-width: 52rem;
@@ -314,6 +337,7 @@ tei-p[type="other-print"] a {
 @media (max-width: 599.95px) {
     .pieceBar .actions {
         order: 1;
+        margin-left: auto;
     }
 
     .pieceBar::before {
@@ -325,6 +349,11 @@ tei-p[type="other-print"] a {
     .pieceBar .layer,
     .pieceBar .versions {
         order: 3;
+    }
+
+    /* at the end of the second line */
+    .pieceBar .viewSwitch {
+        order: 4;
     }
 
     .piece .title h2 {

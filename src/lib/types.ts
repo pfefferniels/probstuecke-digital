@@ -84,6 +84,8 @@ export interface Expression {
   /** the text; in a translation aligned with its original, with the sentences of the original */
   text: TransformedTEI | null
   original: AlignedOriginal | null
+  /** whether the page can show its sources as printed, which differs from the modern view */
+  diplomatic: boolean
   mei: ExpressionMei[]
   media: ExpressionMedia[]
   zones: ExpressionZone[]
