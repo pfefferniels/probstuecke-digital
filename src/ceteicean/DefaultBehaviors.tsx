@@ -15,7 +15,9 @@ export const Note: TBehavior = DefaultBehavior
 export const Graphic: TBehavior = ({ teiNode }) => {
   const el = teiNode as Element
   const url = el.getAttribute('url') || ''
-  return <img src={url} alt="" />
+  // the <desc> of a graphic says what the image shows, for those who cannot see it
+  const desc = Array.from(el.children).find(child => child.localName === 'tei-desc')
+  return <img src={url} alt={desc?.textContent?.replace(/\s+/g, ' ').trim() ?? ''} />
 }
 
 export const Ptr: TBehavior = ({ teiNode, ...props }) => {
