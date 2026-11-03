@@ -62,13 +62,13 @@ const inWord = (lb: Element) => {
 }
 
 /**
- * The beginning of a line of a print (<lb/>, which TEI places at the start of a line). In the
- * diplomatic view, the end of the line before it is marked with a vertical stroke, as in critical
+ * The beginning of a line of a print (<lb/>, which TEI places at the start of a line). Shown
+ * as printed, the end of the line before it is marked with a vertical stroke, as in critical
  * editions: "Zeiten | mit", within a word "an-|ſchlagen".
  */
 export const LineBreak = ({ teiNode }: { teiNode: Element }) => {
     const view = useView()
-    if (view !== 'diplomatic' || !endsALine(teiNode)) return null
+    if (view === 'modern' || !endsALine(teiNode)) return null
     // the other text between the lines keeps to its sentences
     if (teiNode.closest('tei-seg[type="original"]')) return null
 

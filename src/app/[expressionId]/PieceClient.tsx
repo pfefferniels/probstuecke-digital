@@ -19,6 +19,7 @@ import { Download, InfoOutlined, Subtitles, SubtitlesOff } from '@mui/icons-mate
 import { DownloadDialog } from '@/components/DownloadDialog'
 import { SourcePanel } from '@/components/SourcePanel'
 import { InterlinearOriginal } from '@/components/InterlinearOriginal'
+import { FacsimileProvider, ScoreFacsimile, TextFacsimile } from '@/components/Facsimile'
 import { lessonRoutes, Participants } from '@/components/Lesson'
 import { keyLabel, longLabel, shortLabel, versionLabel } from '@/lib/expressionLabels'
 import type { EditionVersion, Expression, ExpressionZone, TermSummary, WorkExpression } from '@/lib/types'
@@ -38,6 +39,7 @@ const sectionInView = () => {
 const views: { value: View, label: string, description: string }[] = [
   { value: 'modern', label: 'Modern', description: 'Modern spelling, clefs and accidentals' },
   { value: 'diplomatic', label: 'Diplomatic', description: 'As printed: spelling, characters and line breaks, clefs and accidentals' },
+  { value: 'facsimile', label: 'Facsimile', description: 'The pages of the print' },
 ]
 
 interface PieceClientProps {
@@ -91,17 +93,22 @@ export default function PieceClient({ piece, version, terms }: PieceClientProps)
     }
   }, [storageKey])
 
-  // modern or as printed, the text and the music alike; the choice holds for all pages
-  // (remembered in this browser)
+  // modern, as printed or in the pages of the print, the text and the music alike; the
+  // choice holds for all pages (remembered in this browser)
   const [view, setView] = useState<View>('modern')
 
   useEffect(() => {
+    let stored: string | null = null
     try {
-      if (localStorage.getItem('view') === 'diplomatic') setView('diplomatic')
+      stored = localStorage.getItem('view')
     } catch {
       // no storage: the modern view
     }
-  }, [])
+    // a link to a passage (e.g. from an index) shows it in the text, as printed
+    const passage = window.location.hash && !window.location.hash.startsWith('#section-')
+    if (stored === 'facsimile' && piece.facsimile && !passage) setView('facsimile')
+    else if (stored === 'diplomatic' || stored === 'facsimile') setView('diplomatic')
+  }, [piece.facsimile])
 
   const changeView = (next: View) => {
     try {
@@ -111,6 +118,23 @@ export default function PieceClient({ piece, version, terms }: PieceClientProps)
     }
     setView(next)
   }
+
+  // the height of the bar with the title, which stays at the top on wide screens: the pages
+  // of the score stay below it (--title-height, see .facsimileScore)
+  const pieceRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const piece = pieceRef.current
+    const title = piece?.querySelector('.title')
+    if (!piece || !title) return
+    const observer = new ResizeObserver(() => piece.style.setProperty('--title-height', `${title.getBoundingClientRect().height}px`))
+    observer.observe(title)
+    return () => observer.disconnect()
+  }, [])
+
+  // the page images of the score and of the text, where the print has them
+  const facsimileScore = view === 'facsimile' && !!piece.facsimile?.score.length
+  const facsimileText = view === 'facsimile' && !!piece.facsimile?.text.length
+  const printLabel = context ? shortLabel(context.expression) : ''
 
   // the scores show where the other print differs as well
   const printContext = useMemo(() => ({ otherPrint, differences: showOriginal }), [otherPrint, showOriginal])
@@ -179,7 +203,7 @@ export default function PieceClient({ piece, version, terms }: PieceClientProps)
 
   return (
     <ViewContext.Provider value={view}>
-      <div className="piece">
+      <div className="piece" ref={pieceRef}>
         <GlowDefs />
 
         <div className="title">
@@ -218,7 +242,7 @@ export default function PieceClient({ piece, version, terms }: PieceClientProps)
                 onChange={(_, next: View | null) => next && changeView(next)}
                 aria-label="How the text and the music are shown"
               >
-                {views.map(({ value, label, description }) => (
+                {views.filter(({ value }) => value !== 'facsimile' || piece.facsimile).map(({ value, label, description }) => (
                   <Tooltip key={value} title={description} describeChild>
                     <ToggleButton value={value}>{label}</ToggleButton>
                   </Tooltip>
@@ -226,7 +250,7 @@ export default function PieceClient({ piece, version, terms }: PieceClientProps)
               </ToggleButtonGroup>
             )}
             <span className="actions">
-              {(piece.original || otherPrint) && (
+              {(piece.original || otherPrint) && !facsimileText && (
                 <Tooltip title={showOriginal ? `Hide the ${originalName}` : `Show the ${originalName}${otherPrint ? '' : ' between the lines'}`}>
                   <IconButton
                     color="primary"
@@ -276,25 +300,53 @@ export default function PieceClient({ piece, version, terms }: PieceClientProps)
 
         <OtherPrintContext.Provider value={printContext}>
           <VerovioProvider>
-            {/* side by side from the md breakpoint on; below it the score comes first and the commentary follows */}
-            <Grid container spacing={1} lang={piece.lang}>
-              {piece.score && (
-                <Grid size={{ xs: 12, md: 6 }} className="scoreView">
-                  <Ceteicean pageContext={piece.score as any} routes={routes} />
-                </Grid>
-              )}
-              <Grid
-                size={piece.score ? { xs: 12, md: 6 } : 12}
-                p={1.5}
-                className={[piece.score ? '' : 'textOnly', piece.original && showOriginal ? 'interlinear' : '', piece.original?.differences && showOriginal ? 'differences' : ''].join(' ').trim() || undefined}
-              >
-                {piece.header.participants.length > 0 && <Participants participants={piece.header.participants} />}
-                <div ref={textRef} className={piece.original ? 'interlinearText' : undefined}>
-                  {piece.text && <Ceteicean pageContext={piece.text as any} routes={routes} />}
-                  {piece.original && showOriginal && <InterlinearOriginal container={textRef} />}
-                </div>
+            <FacsimileProvider facsimile={piece.facsimile}>
+              {/* side by side from the md breakpoint on; below it the score comes first and the commentary follows */}
+              <Grid container spacing={1} lang={piece.lang}>
+                {piece.score && (
+                  <Grid size={{ xs: 12, md: 6 }} className="scoreView">
+                    {facsimileScore
+                      ? <ScoreFacsimile print={printLabel} />
+                      : (
+                        <>
+                          {view === 'facsimile' && <p className="facsimileMissing">No page images of the score yet: it is shown as printed.</p>}
+                          <Ceteicean pageContext={piece.score as any} routes={routes} />
+                        </>
+                      )}
+                  </Grid>
+                )}
+                {facsimileText
+                  ? (
+                    <Grid size={piece.score ? { xs: 12, md: 6 } : 12} p={1.5}>
+                      <TextFacsimile
+                        print={printLabel}
+                        credit={(
+                          <>
+                            Page images: {piece.header.copy?.shelfmark || 'Bayerische Staatsbibliothek, Munich'}
+                            {piece.header.copy?.urn && (
+                              <> · <a href={`https://nbn-resolving.org/${piece.header.copy.urn}`} target="_blank" rel="noopener noreferrer">Digital copy</a></>
+                            )}
+                          </>
+                        )}
+                      />
+                    </Grid>
+                  )
+                  : (
+                    <Grid
+                      size={piece.score ? { xs: 12, md: 6 } : 12}
+                      p={1.5}
+                      className={[piece.score ? '' : 'textOnly', piece.original && showOriginal ? 'interlinear' : '', piece.original?.differences && showOriginal ? 'differences' : ''].join(' ').trim() || undefined}
+                    >
+                      {view === 'facsimile' && <p className="facsimileMissing">No page images of the text yet: it is shown as printed.</p>}
+                      {piece.header.participants.length > 0 && <Participants participants={piece.header.participants} />}
+                      <div ref={textRef} className={piece.original ? 'interlinearText' : undefined}>
+                        {piece.text && <Ceteicean pageContext={piece.text as any} routes={routes} />}
+                        {piece.original && showOriginal && <InterlinearOriginal container={textRef} />}
+                      </div>
+                    </Grid>
+                  )}
               </Grid>
-            </Grid>
+            </FacsimileProvider>
           </VerovioProvider>
         </OtherPrintContext.Provider>
       </div>

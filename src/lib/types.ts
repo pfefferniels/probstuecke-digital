@@ -34,6 +34,40 @@ export interface ExpressionZone {
   imageApiUrl: string
 }
 
+/** A paragraph of the text or a bar of the score, marked on a page image */
+export interface FacsimileZone {
+  /** the paragraph (TEI xml:id) or the bar (MEI measure xml:id) */
+  key: string
+  x: number
+  y: number
+  w: number
+  h: number
+}
+
+/** A page of a print, or the part of it that belongs to the score or to the text */
+export interface FacsimilePage {
+  /** base of the page image in the IIIF Image API, e.g. …/iiif/image/v2/bsb10598495_00367 */
+  image: string
+  /** the page number in the print, if known */
+  n: string | null
+  /** the part of the image shown, in its pixels */
+  region: { x: number; y: number; w: number; h: number }
+  /** whether that is all of the image */
+  full: boolean
+  /** the paragraphs or bars on it, in pixels of the image */
+  zones: FacsimileZone[]
+  /** the sections (§) that begin on it: their ID and height, in pixels of the image */
+  sections: { id: string; y: number }[]
+}
+
+/** The page images of a print: of its score and of its text (see helpers/collectors/collectFacsimile) */
+export interface ExpressionFacsimile {
+  score: FacsimilePage[]
+  text: FacsimilePage[]
+  /** each paragraph (TEI xml:id) with a bar (MEI measure xml:id) it refers to */
+  links: [string, string][]
+}
+
 export interface IndexRef {
   xmlId: string | null
   corresp: string
@@ -86,6 +120,8 @@ export interface Expression {
   original: AlignedOriginal | null
   /** whether the page can show its sources as printed, which differs from the modern view */
   diplomatic: boolean
+  /** the page images of a print, if it has any */
+  facsimile: ExpressionFacsimile | null
   mei: ExpressionMei[]
   media: ExpressionMedia[]
   zones: ExpressionZone[]

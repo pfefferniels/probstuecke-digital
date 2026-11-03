@@ -207,6 +207,93 @@ tei-lb {
     text-transform: none;
 }
 
+/* The pages of the print (src/components/Facsimile.tsx): the paragraphs and bars marked
+   on them light up as the passages and the notes of the transcription do */
+.facsimilePage {
+    margin: 0 0 1.25rem;
+}
+
+.facsimilePage figcaption {
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-size: 0.8rem;
+    color: #777;
+    margin-bottom: 0.25rem;
+}
+
+/* below the bar with the title, as large as the screen allows */
+.main-score.facsimileScore {
+    top: var(--title-height, 0px);
+    padding-top: 0.5rem;
+}
+
+.facsimileScore .facsimilePage {
+    margin-bottom: 0;
+}
+
+.facsimileScore .facsimilePage figcaption {
+    text-align: center;
+}
+
+/* the pages of the score with bars that light up */
+.facsimileScore .MuiPaginationItem-root.lit {
+    box-shadow: inset 0 -3px 0 rgba(255, 160, 0, 0.7);
+}
+
+.facsimileImage {
+    position: relative;
+    max-width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    background-color: #efe9dc;
+}
+
+.facsimileImage img {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.facsimileZone {
+    position: absolute;
+    border-radius: 3px;
+    mix-blend-mode: multiply;
+}
+
+.facsimileZone.linked {
+    cursor: pointer;
+}
+
+/* bars the text refers to, as the score elements of the transcription glow */
+.facsimileZone.score.linked {
+    background-color: rgba(255, 200, 10, 0.14);
+}
+
+.facsimileZone.text.linked:hover {
+    background-color: rgba(255, 200, 10, 0.14);
+}
+
+.facsimileZone.active,
+.facsimileZone.text.linked.active:hover {
+    background-color: rgba(255, 193, 7, 0.4);
+    box-shadow: 0 0 0 2px rgba(255, 160, 0, 0.7);
+}
+
+.facsimileSection {
+    position: absolute;
+    left: 0;
+    width: 0;
+    height: 0;
+}
+
+.facsimileCredit,
+.facsimileMissing {
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-size: 0.8rem;
+    color: #666;
+}
+
 /* in the diplomatic view, the end of a line of the print (src/components/LineBreak.tsx) */
 .lineBreak {
     color: #999;
@@ -316,8 +403,10 @@ tei-p[type="other-print"] a {
         position: static;
     }
 
-    .main-score {
+    .main-score,
+    .main-score.facsimileScore {
         position: relative;
+        top: 0;
         padding-top: 0.5rem;
     }
 
