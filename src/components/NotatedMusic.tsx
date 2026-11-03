@@ -15,7 +15,7 @@ import { mdivLabel, mdivXPathQuery, topLevelMdivs } from '../helpers/mdivs';
 import { readingsOfSource, readingsXPathQuery, sourceOf } from '../helpers/readings';
 import { boxBehind, findVariants, standInIds, type Variant } from '../helpers/variants';
 import './NotatedMusic.css'
-import type { ExpressionMei, ExpressionZone } from '@/lib/types'
+import type { ExpressionMei } from '@/lib/types'
 
 
 const OptionToggle = ({ label, ...props }: ToggleButtonProps & { label: string }) => {
@@ -116,14 +116,6 @@ const applyHighlight = (highlight: Highlight) => {
     }
 }
 
-interface Facsimile {
-    // the staff tapped
-    staffId: string
-    imageUrls: string[]
-    // position below the staff, relative to the score
-    top: number
-}
-
 if (typeof window !== 'undefined') {
     window.highlightRefs = window.highlightRefs || ((_: string[]) => () => { });
     window.scoreSettings = window.scoreSettings || {
@@ -187,12 +179,11 @@ export const OtherPrintContext = createContext<{ otherPrint?: OtherPrint; differ
 interface NotatedMusicProps {
     teiNode: Element,
     meis: readonly (ExpressionMei | null)[]
-    zones: readonly (ExpressionZone | null)[]
     refs: readonly (string | null)[]
     expressionId?: string
 }
 
-export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: NotatedMusicProps) => {
+export const NotatedMusic = ({ teiNode, meis, refs, expressionId }: NotatedMusicProps) => {
     const { otherPrint, differences } = useContext(OtherPrintContext)
     const [currentPage, setCurrentPage] = useState(1)
     const [svgs, setSVGs] = useState<string[]>([])
@@ -204,8 +195,6 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
     // whether the score has a staff with Mattheson's right hand (realisations have their own)
     const [hasRightHandStaff, setHasRightHandStaff] = useState(false)
     const [pageWidth, setPageWidth] = useState<number | null>(null)
-    // on touch screens: the part of the page image shown for a tapped staff
-    const [facsimile, setFacsimile] = useState<Facsimile | null>(null)
     // the labels of the <mdiv>s, if the score has the piece more than once (e.g. in another key)
     const [mdivLabels, setMdivLabels] = useState<string[]>([])
     // the <mdiv> to draw (also as a ref, for highlightRefs), and the one drawn
@@ -304,11 +293,6 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
         }
     }, [vrvToolkit, isMainScore])
 
-    // the parts of the page image that a staff was transcribed from
-    const facsimileUrls = (staff: Element) => (staff.getAttribute('data-facs')?.split(' ') || [])
-        .map(zoneLink => zones.find(zone => zone?.xmlId === zoneLink.slice(1))?.imageApiUrl)
-        .filter((url): url is string => !!url)
-
     // lay the music out again when the width of the container changes
     useLayoutEffect(() => {
         const container = containerRef.current
@@ -321,11 +305,10 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
         return () => observer.disconnect()
     }, [])
 
-    // a new page or layout: keep the highlight, and close the page image, which belongs to the old one
+    // a new page or layout: keep the highlight
     useLayoutEffect(() => {
         shownPage.current = currentPage
         applyHighlight(highlighted.current)
-        setFacsimile(null)
     }, [currentPage, svgs])
 
     useEffect(() => {
@@ -370,7 +353,6 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
             svgViewBox: true,
             header: 'none',
             choiceXPathQuery: [modernClefs ? './reg' : './orig'],
-            svgAdditionalAttribute: ['staff@facs']
         }
 
         if (readings) options.appXPathQuery = readings
@@ -578,7 +560,6 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
             const variant = container ? variantAt(container, e.clientX, e.clientY) : null
             if (variant !== null) {
                 cancelClose()
-                document.querySelectorAll('.zone-preview').forEach(preview => preview.remove())
                 if (variant !== openVariant) setOpenVariant(variant)
             }
             else if (openVariant !== null && !popupRef.current?.contains(e.target as Node) && !closeTimer.current) {
@@ -623,7 +604,7 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
                 })
                 currentDehighlight = window.highlightRefs([data.meiId])
                 // scrolling to a passage that is already visible would move the score
-                // away from the pointer (and close the page image)
+                // away from the pointer
                 if (data.corresps.length > 0) revealElement(data.corresps[0])
             }
         }
@@ -642,84 +623,12 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
             }
         })
 
-        // Show facsimile on mouseover (mouse or pen; on touch screens see onTap)
-        let removeTimer: ReturnType<typeof setTimeout> | null = null
-
-        const cancelRemoveTimer = () => {
-            if (removeTimer) {
-                clearTimeout(removeTimer)
-                removeTimer = null
-            }
-        }
-
-        const scheduleRemovePreview = () => {
-            cancelRemoveTimer()
-            removeTimer = setTimeout(() => {
-                document.querySelectorAll('.zone-preview').forEach(preview => preview.remove())
-                removeTimer = null
-            }, 300)
-        }
-
-        document
-            .querySelectorAll<SVGGElement>('.staff[data-facs]')
-            .forEach(staff => {
-                const onPointerOver = (e: PointerEvent) => {
-                    if (e.pointerType === 'touch') return
-
-                    // A referenced note or figure links to the commentary instead. A referenced
-                    // bar contains the staff: it links to the commentary and shows the page image.
-                    const referenced = (e.target as Element | null)?.closest('[data-referenced]')
-                    if (referenced && staff.contains(referenced)) return
-                    // a passage where the other print differs shows the other print's reading
-                    if (containerRef.current && variantAt(containerRef.current, e.clientX, e.clientY) !== null) return
-
-                    cancelRemoveTimer()
-                    if (document.querySelector('.zone-preview')) return
-
-                    const selectedZones = facsimileUrls(staff)
-
-                    const bbox = (staff as SVGGraphicsElement).getBoundingClientRect();
-
-                    const div = document.createElement('div');
-                    div.classList.add('zone-preview');
-                    div.style.position = 'fixed';
-                    div.style.left = `${Math.max(bbox.left - 100, 0)}px`;
-                    div.style.top = `${bbox.top - 100}px`;
-                    document.body.appendChild(div);
-
-                    div.addEventListener('mouseenter', cancelRemoveTimer)
-                    div.addEventListener('mouseleave', scheduleRemovePreview)
-
-                    selectedZones.forEach((zone) => {
-                        const img = document.createElement('img');
-                        img.src = zone;
-                        div.appendChild(img);
-                    });
-                }
-
-                const onPointerLeave = (e: PointerEvent) => {
-                    if (e.pointerType === 'touch') return
-                    scheduleRemovePreview()
-                }
-
-                staff.addEventListener('pointerover', onPointerOver)
-                staff.addEventListener('pointerleave', onPointerLeave)
-                cleanups.push(() => {
-                    staff.removeEventListener('pointerover', onPointerOver)
-                    staff.removeEventListener('pointerleave', onPointerLeave)
-                })
-            })
-
-        cleanups.push(() => cancelRemoveTimer())
-
         return () => {
             cleanups.forEach(cleanup => cleanup())
         }
     })
 
-    // Touch screens: a tap on (or near) a referenced element finds its passage in the
-    // commentary; a tap on another part of a staff shows the page image it comes from.
-    // A referenced bar covers its staves: tapping it again shows the page image.
+    // Touch screens: a tap on (or near) a referenced element finds its passage in the commentary
     const onTap = (e: MouseEvent<HTMLDivElement>) => {
         if (!isTouchInput()) return
         if (!(e.target as Element).closest('.score-page')) return
@@ -727,45 +636,12 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
         // a passage where the other print differs: its reading in the other print, or
         // (tapped again) no longer; a reference there is followed as well
         const variant = variantAt(e.currentTarget, e.clientX, e.clientY)
-        if (variant !== null) {
-            setFacsimile(null)
-            setOpenVariant(variant === openVariant ? null : variant)
-            const near = nearestReferenced(e.currentTarget, e.clientX, e.clientY)
-            if (near) selectLink(Array.from(document.querySelectorAll(`[data-target~="#${near.id}"]`)), [near.id], 'text')
-            else clearTouchSelection()
-            return
-        }
-        setOpenVariant(null)
+        if (variant !== null) setOpenVariant(variant === openVariant ? null : variant)
+        else setOpenVariant(null)
 
         const referenced = nearestReferenced(e.currentTarget, e.clientX, e.clientY)
-        if (referenced) {
-            const passages = Array.from(document.querySelectorAll(`[data-target~="#${referenced.id}"]`))
-            const selected = passages.some(passage => passage.classList.contains('highlight'))
-            if (!(selected && referenced.querySelector('.staff'))) {
-                setFacsimile(null)
-                selectLink(passages, [referenced.id], 'text')
-                return
-            }
-        }
-        else {
-            clearTouchSelection()
-        }
-
-        const staff = Array
-            .from(e.currentTarget.querySelectorAll('.staff[data-facs]'))
-            .find(staff => {
-                const rect = staff.getBoundingClientRect()
-                return e.clientX >= rect.left && e.clientX <= rect.right && e.clientY >= rect.top && e.clientY <= rect.bottom
-            })
-        // tapping the same staff again closes the image
-        const imageUrls = staff && staff.id !== facsimile?.staffId ? facsimileUrls(staff) : []
-        if (!staff || imageUrls.length === 0) {
-            setFacsimile(null)
-            return
-        }
-
-        const top = staff.getBoundingClientRect().bottom - e.currentTarget.getBoundingClientRect().top
-        setFacsimile({ staffId: staff.id, imageUrls, top })
+        if (referenced) selectLink(Array.from(document.querySelectorAll(`[data-target~="#${referenced.id}"]`)), [referenced.id], 'text')
+        else clearTouchSelection()
     }
 
     return (
@@ -837,20 +713,6 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
             )}
             <div className="score-page" dangerouslySetInnerHTML={pageHtml} />
 
-            {facsimile && (
-                <div className="facsimile-popup" style={{ top: facsimile.top }}>
-                    <div className="facsimile-popup-bar">
-                        <span>Original print</span>
-                        <IconButton size="small" aria-label="Close the page image" onClick={() => setFacsimile(null)}>
-                            <Close fontSize="small" />
-                        </IconButton>
-                    </div>
-                    <div className="facsimile-popup-images">
-                        {facsimile.imageUrls.map(url => <img key={url} src={url} alt="This staff in the original print" />)}
-                    </div>
-                </div>
-            )}
-
             {openVariant !== null && otherPrint && variants[openVariant] && (
                 <div
                     ref={popupRef}
@@ -859,7 +721,7 @@ export const NotatedMusic = ({ teiNode, meis, refs, zones, expressionId }: Notat
                     onPointerEnter={e => { if (e.pointerType !== 'touch') cancelClose() }}
                     onPointerLeave={e => { if (e.pointerType !== 'touch') scheduleClose() }}
                 >
-                    <div className="facsimile-popup-bar">
+                    <div className="popup-bar">
                         <span>{variants[openVariant].notInOther ? `Not in ${otherPrint.label}` : otherPrint.label}</span>
                         <IconButton size="small" aria-label={`Close the reading of ${otherPrint.label}`} onClick={() => setOpenVariant(null)}>
                             <Close fontSize="small" />

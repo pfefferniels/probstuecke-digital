@@ -8,7 +8,6 @@ import { transformToCeteicean } from '@/helpers/transformToCeteicean'
 import { interleave, markDifferences, pointedTo, pointingHere, type Original } from '@/helpers/alignTranslation'
 import { extractFromXML } from '@/helpers/extractFromTEI'
 import { collectExpressionMetadata, collectEmbeddedMEI, collectRefTargets } from '@/helpers/collectors/index'
-import { collectZones } from '@/helpers/collectors/collectZones'
 import { collectFacsimile } from '@/helpers/collectors/collectFacsimile'
 import { collectPersName } from '@/helpers/collectors/collectPersName'
 import { collectHeader } from '@/helpers/collectors/collectHeader'
@@ -594,11 +593,10 @@ const processExpressionFile = async (filePath: string): Promise<Expression | nul
   const refTargets = collectRefTargets(document)
   const indexRefs = collectIndexRefs(document)
 
-  // Collect zones from embedded MEI
+  // the embedded MEI
   const parser = new JSDOM('').window.DOMParser
   const domParser = new parser()
   const meiDocs = mei.map((meiEntry) => domParser.parseFromString(meiEntry.mei, 'application/xml'))
-  const zones = meiDocs.flatMap((meiDoc) => collectZones(meiDoc))
   // original clefs, figures or accidentals that the modern view changes (see components/NotatedMusic)
   const originalNotation = meiDocs.some((meiDoc) => !!meiDoc.querySelector('choice, orig accid, supplied accid'))
   // the page images of a print, with the bars of its score
@@ -668,7 +666,6 @@ const processExpressionFile = async (filePath: string): Promise<Expression | nul
     facsimile,
     mei,
     media,
-    zones,
     refTargets,
     indexRefs,
     sourcePath: path.relative(DATA_DIR, filePath).split(path.sep).join('/'),

@@ -40,9 +40,9 @@ export default function ImprintClient() {
 
       <Heading>Page images</Heading>
       <Typography>
-        When you point at a line of music, your browser loads that part of the page image directly from the IIIF server
+        When you choose the facsimile view of a piece, your browser loads its page images directly from the IIIF server
         of the Bayerische Staatsbibliothek (api.digitale-sammlungen.de). The library receives your IP address and the
-        request. See the{' '}
+        requests. See the{' '}
         <Link href="https://www.bsb-muenchen.de/datenschutz/" target="_blank" rel="noopener noreferrer">
           privacy statement of the Bayerische Staatsbibliothek
         </Link>.
@@ -51,7 +51,8 @@ export default function ImprintClient() {
       <Heading>No cookies or tracking</Heading>
       <Typography>
         This website sets no cookies, uses no analytics or tracking services, and loads no fonts or scripts from other
-        servers. The search runs entirely in your browser.
+        servers. The search runs entirely in your browser. Your browser remembers (in its local storage) how you chose
+        to view the pieces and whether the text between the lines is shown; this does not leave your browser.
       </Typography>
 
       <Heading>Your rights</Heading>
