@@ -21,7 +21,7 @@ export const Word = ({ teiNode }: WordProps) => {
     // Continuations of words split across elements have no moot: the first part shows the whole word.
     const modernizedWord = moot?.getAttribute('word')
 
-    if (view === 'diplomatic') {
+    if (view !== 'modern') {
         // a continuation is part of the word whose first part has the tooltip
         if (!modernizedWord) return <span>{originalWord}</span>
         return (

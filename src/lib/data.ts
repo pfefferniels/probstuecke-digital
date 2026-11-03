@@ -9,6 +9,7 @@ import { interleave, markDifferences, pointedTo, pointingHere, type Original } f
 import { extractFromXML } from '@/helpers/extractFromTEI'
 import { collectExpressionMetadata, collectEmbeddedMEI, collectRefTargets } from '@/helpers/collectors/index'
 import { collectZones } from '@/helpers/collectors/collectZones'
+import { collectFacsimile } from '@/helpers/collectors/collectFacsimile'
 import { collectPersName } from '@/helpers/collectors/collectPersName'
 import { collectHeader } from '@/helpers/collectors/collectHeader'
 import { collectMedia } from '@/helpers/collectors/collectMedia'
@@ -600,6 +601,9 @@ const processExpressionFile = async (filePath: string): Promise<Expression | nul
   const zones = meiDocs.flatMap((meiDoc) => collectZones(meiDoc))
   // original clefs, figures or accidentals that the modern view changes (see components/NotatedMusic)
   const originalNotation = meiDocs.some((meiDoc) => !!meiDoc.querySelector('choice, orig accid, supplied accid'))
+  // the page images of a print, with the bars of its score
+  const scoreDoc = meiDocs[mei.findIndex((meiEntry) => meiEntry.xmlId === 'score')] ?? null
+  const facsimile = metadata.isFraktur ? collectFacsimile(document, scoreDoc, header.copy?.iiif ?? null) : null
 
   // Modernize Fraktur TEI
   const xml = serialize(document)
@@ -661,6 +665,7 @@ const processExpressionFile = async (filePath: string): Promise<Expression | nul
     original: aligned?.original ?? null,
     // a print, the original of a translation between its lines, or music as printed
     diplomatic: metadata.isFraktur || !!aligned || originalNotation,
+    facsimile,
     mei,
     media,
     zones,
