@@ -1,4 +1,3 @@
-import { Tooltip } from '@mui/material';
 import { useView } from '@/hooks/useView';
 
 if (typeof window !== 'undefined') {
@@ -9,31 +8,13 @@ interface WordProps {
     teiNode: Element
 }
 
-/**
- * A word of a print (see helpers/normalise): in its modern form, with the form of the print
- * in a tooltip, or as printed, with the modern form in the tooltip.
- */
+/** A word of a print (see helpers/normalise): in its modern form, or as printed */
 export const Word = ({ teiNode }: WordProps) => {
     const view = useView()
-    const moot = teiNode.querySelector('tei-moot')
-    // whitespace in a word only joins a word broken at the end of a line
-    const originalWord = teiNode.textContent?.replace(/\s+/g, '') || ''
+
+    // as printed; whitespace in a word only joins a word broken at the end of a line
+    if (view !== 'modern') return teiNode.textContent?.replace(/\s+/g, '') || null
+
     // Continuations of words split across elements have no moot: the first part shows the whole word.
-    const modernizedWord = moot?.getAttribute('word')
-
-    if (view !== 'modern') {
-        // a continuation is part of the word whose first part has the tooltip
-        if (!modernizedWord) return <span>{originalWord}</span>
-        return (
-            <Tooltip title={modernizedWord} placement='top'>
-                <span>{originalWord}</span>
-            </Tooltip>
-        )
-    }
-
-    return (
-        <Tooltip title={originalWord} placement='top'>
-            <span>{modernizedWord}</span>
-        </Tooltip>
-    )
+    return teiNode.querySelector('tei-moot')?.getAttribute('word') || null
 }

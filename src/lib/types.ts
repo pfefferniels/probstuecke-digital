@@ -29,11 +29,6 @@ export interface Participant {
   role: string | null
 }
 
-export interface ExpressionZone {
-  xmlId: string | null
-  imageApiUrl: string
-}
-
 /** A paragraph of the text or a bar of the score, marked on a page image */
 export interface FacsimileZone {
   /** the paragraph (TEI xml:id) or the bar (MEI measure xml:id) */
@@ -124,7 +119,6 @@ export interface Expression {
   facsimile: ExpressionFacsimile | null
   mei: ExpressionMei[]
   media: ExpressionMedia[]
-  zones: ExpressionZone[]
   refTargets: (string | null)[]
   indexRefs: IndexRef[]
   sourcePath: string

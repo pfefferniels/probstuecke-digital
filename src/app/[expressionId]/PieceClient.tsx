@@ -22,7 +22,7 @@ import { InterlinearOriginal } from '@/components/InterlinearOriginal'
 import { FacsimileProvider, ScoreFacsimile, TextFacsimile } from '@/components/Facsimile'
 import { lessonRoutes, Participants } from '@/components/Lesson'
 import { keyLabel, longLabel, shortLabel, versionLabel } from '@/lib/expressionLabels'
-import type { EditionVersion, Expression, ExpressionZone, TermSummary, WorkExpression } from '@/lib/types'
+import type { EditionVersion, Expression, TermSummary, WorkExpression } from '@/lib/types'
 
 // The section (§) being read: the last one that begins above the upper third of the screen.
 // None at the top of the page, which shows the title and the score first.
@@ -152,7 +152,6 @@ export default function PieceClient({ piece, version, terms }: PieceClientProps)
     <NotatedMusic
       teiNode={teiNode}
       meis={piece.mei || []}
-      zones={(piece.zones?.filter(zone => !!zone) || []) as ExpressionZone[]}
       refs={piece.refTargets || []}
       expressionId={piece.expressionId || undefined}
     />
