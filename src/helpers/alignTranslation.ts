@@ -224,6 +224,8 @@ const isAside = (node: Node) => {
     const name = (n as Element).localName
     if (name === 'note' || name === 'fw' || name === 'figure' || name === 'notatedMusic') return true
     if ((name === 'sic' || name === 'abbr' || name === 'orig') && (n.parentNode as Element | null)?.localName === 'choice') return true
+    // the reading of another printing (<app><rdg>): the text is that of the <lem>
+    if (name === 'rdg' && (n.parentNode as Element | null)?.localName === 'app') return true
   }
   return false
 }
@@ -497,6 +499,11 @@ const paragraphApart = (text: Document, paragraph: Element, lang: string, only: 
   const copy = copyOf(text, paragraph)
   for (const el of Array.from(copy.getElementsByTagName('*'))) {
     if (['note', 'fw', 'pb', 'figure', 'notatedMusic'].includes(el.localName)) el.remove()
+  }
+  // where another printing of the other print reads otherwise (<app>), the text of its <lem>
+  for (const app of Array.from(copy.getElementsByTagNameNS(TEI_NS, 'app'))) {
+    const lem = Array.from(app.children).find((child) => child.localName === 'lem')
+    app.replaceWith(...(lem ? Array.from(lem.childNodes) : []))
   }
   const block = text.createElementNS(TEI_NS, 'p')
   block.setAttribute('type', 'other-print')
