@@ -192,8 +192,8 @@ tei-lb {
 }
 
 /* The pages of the print (src/components/Facsimile.tsx): the paragraphs and bars that
-   are linked have a dotted white frame, which shows on the yellowed paper; what is
-   pointed at, and what it is linked to, a solid one */
+   are linked have a dashed frame in the blue of the website, which shows on the
+   yellowed paper; what is pointed at, and what it is linked to, a solid one */
 .facsimilePage {
     margin: 0 0 1.25rem;
 }
@@ -221,7 +221,7 @@ tei-lb {
 
 /* the pages of the score with bars that light up */
 .facsimileScore .MuiPaginationItem-root.lit {
-    text-decoration: underline 2px;
+    text-decoration: underline 2px rgb(25, 118, 210);
     text-underline-offset: 4px;
 }
 
@@ -248,13 +248,13 @@ tei-lb {
 
 .facsimileZone.linked {
     cursor: pointer;
-    outline: 2px dotted rgba(255, 255, 255, 0.95);
-    outline-offset: -2px;
+    outline: 1.5px dashed rgba(25, 118, 210, 0.65);
+    outline-offset: -1px;
 }
 
 .facsimileZone.active {
-    outline-style: solid;
-    background-color: rgba(255, 255, 255, 0.3);
+    outline: 2px solid rgba(25, 118, 210, 0.9);
+    background-color: rgba(25, 118, 210, 0.14);
 }
 
 .facsimileSection {
