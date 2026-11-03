@@ -733,6 +733,46 @@ a.term:hover {
     text-decoration-style: solid;
 }
 
+/* a place where the later printing of 1731 reads otherwise (src/components/ReprintReading.tsx) */
+.reprintMark {
+    color: #8a6d3b;
+    font-size: 0.7em;
+    line-height: 0;
+    padding: 0 0.1em;
+    cursor: help;
+}
+
+.reprintMark:hover,
+.reprintMark:focus-visible {
+    color: #5c4a28;
+}
+
+/* tables in the text of a print (e.g. Neidhardt's numbers in No. 24, §. 8) */
+tei-table {
+    display: table;
+    margin: 0.4em auto;
+    border-collapse: collapse;
+    text-align: center;
+    font-size: 0.95em;
+}
+
+tei-table > tei-head {
+    display: table-caption;
+    text-align: center;
+    font-size: 1em;
+    font-weight: normal;
+    margin: 0.3em 0 0.1em;
+}
+
+tei-row {
+    display: table-row;
+}
+
+tei-cell {
+    display: table-cell;
+    padding: 0 0.3em;
+}
+
 /* the place a link from an index leads to */
 .linkTarget {
     background-color: rgba(255, 213, 79, 0.45);

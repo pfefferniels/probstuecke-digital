@@ -15,6 +15,7 @@ import { Ref } from '@/components/Ref'
 import { GlowDefs } from '@/components/GlowDefs'
 import LinkToIndex from '@/components/LinkToIndex'
 import TermLink from '@/components/TermLink'
+import ReprintReading from '@/components/ReprintReading'
 import { Download, InfoOutlined, Subtitles, SubtitlesOff } from '@mui/icons-material'
 import { DownloadDialog } from '@/components/DownloadDialog'
 import { SourcePanel } from '@/components/SourcePanel'
@@ -173,6 +174,9 @@ export default function PieceClient({ piece, version, terms }: PieceClientProps)
     'tei-name': (props: any) => <LinkToIndex type="musicalworks" {...props} />,
     'tei-bibl': (props: any) => <LinkToIndex type="bibliography" {...props} />,
     'tei-term': (props: any) => <TermLink terms={terms} {...props} />,
+    // the readings of the later printing of 1731: the text of the first, with a mark
+    'tei-app': ReprintReading,
+    'tei-rdg': () => null,
   }
 
   // the text is rendered in the browser, so a link to a place in it (e.g. from an index)
